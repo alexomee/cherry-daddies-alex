@@ -2,7 +2,9 @@
 
 Обновлено: 11.06.2026 вечер (батч cue под репетицию). Легенда: ✅ есть · ⚠️ требует действия · ❌ нет · 🌐 внешняя (Moises), 🎛 нативная (JamZone).
 
-⭐ = заявлена в афише/анонсе концерта.
+⭐ = заявлена в афише/анонсе концерта. 🎯 = в списке ближайшей репетиции.
+
+**Стадии готовности песни:** стемы → structure/chart → cue (отслушан) → **экспорт 4 треков: CLICK, CUES, PB_BASS, PB_OTHER → выгружено в StageTraxx**. Финальная стадия = «в StageTraxx». Сейчас в StageTraxx: **0 песен**; формат ни разу не прогонялся — сначала POC на одной песне.
 
 | Песня | Тип | Стемы | Структ | Cue | Действие |
 |---|---|---|---|---|---|
@@ -32,10 +34,18 @@
 ## Батчи (по убыванию приоритета)
 
 1. ✅ ~~Cue под репетицию~~ (11.06): ре-рендер S&M / No Stress / Alice Deejay (превью в папках песен). Cascada / Basshunter / We Found Love / Infinity 2008 — **cue сделаны вручную в Logic** (`~/Music/Logic/*.logicx`), автоген удалён.
-2. **Сессия прослушки** — 5 превью: S&M, No Stress, Alice Deejay, Quest Pistols (ext), Mr. Saxobeat (контрольно).
-3. **Достать 2 трека:** SEREBRO «Мало тебя» и Демо «Солнышко» — докачать в JamZone (если есть в каталоге) или Moises-путь (`jamzone_cues_ext.py`). **Требует пользователя.**
-4. Ре-рендер оставшихся до-фиксовых cue (вне списка репетиции): ATC, Destination Calabria, Gala, Icona Pop, Shakira, Blinding Lights, Heads Will Roll.
-5. Решения: конец Blinding Lights (fade 3:20.62 vs барабан 3:08); судьба Yann Muller и Karen Souza.
+2. **POC StageTraxx (Rihanna S&M)** — впервые прогнать одну песню до финала на Mac, потом доставка на iPad.
+   - Источник: 4 баунса из `~/Music/Logic/S&M.logicx` (пользователь экспортирует).
+   - Формат финала: 4 трека **CLICK · CUES · PB_BASS · PB_OTHER** (вместо «все стемы»).
+   - Предложенный роутинг (duo+playback): CLICK+CUES → pan +1.0 (R, в уши), unmuted; PB_BASS+PB_OTHER → pan −1.0 (L, в зал), unmuted. ST-метроном off. **Подтвердить разводку уши/зал.**
+   - Баунсить все 4 ОДНИМ диапазоном от абсолютного 0 до конца (сэмпл-в-сэмпл синхрон, иначе клик уедет).
+   - Кладём в `music/songs/Rihanna - S&M/stagetraxx/`: `CLICK.wav` `CUES.wav` `PB_BASS.wav` `PB_OTHER.wav`.
+   - Дальше: я пишу POC-режим (мини-скрипт грузит ровно эти 4 в ST-базу) → проверка на Mac → ревизия `jamzone_stagetraxx.py` под 4-трековый формат → батч.
+   - Образец формата уже в ST: «Besame mucho» (Click/Cues pan 1.0 unmuted, стемы mute). БД: `~/Library/Containers/de.dikant.StageTraxx4/Data/.../music_library.sqlite`.
+3. **Сессия прослушки** — 5 превью: S&M, No Stress, Alice Deejay, Quest Pistols (ext), Mr. Saxobeat (контрольно).
+4. **Достать 2 трека:** SEREBRO «Мало тебя» и Демо «Солнышко» — докачать в JamZone (если есть в каталоге) или Moises-путь (`jamzone_cues_ext.py`). **Требует пользователя.**
+5. Ре-рендер оставшихся до-фиксовых cue (вне списка репетиции): ATC, Destination Calabria, Gala, Icona Pop, Shakira, Blinding Lights, Heads Will Roll.
+6. Решения: конец Blinding Lights (fade 3:20.62 vs барабан 3:08); судьба Yann Muller и Karen Souza.
 
 ## План по репетициям
 
