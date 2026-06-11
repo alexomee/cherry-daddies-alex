@@ -1,97 +1,98 @@
 [
  {
+  "id": "C01",
   "t": 2.644,
-  "bar": 0,
+  "bar": 1,
   "name": "S&M",
   "count_style": "readygo",
-  "src": "start",
-  "id": "C01"
+  "src": "start"
  },
  {
-  "t": 34.05,
+  "id": "C02",
+  "t": 18.704,
+  "bar": 10,
+  "name": "all in",
+  "count_style": "readygo",
+  "src": "sec"
+ },
+ {
+  "id": "C03",
+  "t": 33.47,
   "bar": 17,
-  "name": "vocal in",
+  "name": "verse in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C02"
+  "src": "sec"
  },
  {
-  "t": 62.175,
-  "bar": 32,
-  "name": "vocal in",
+  "id": "C04",
+  "t": 63.704,
+  "bar": 34,
+  "name": "chorus in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C03"
+  "src": "sec"
  },
  {
-  "t": 94.05,
-  "bar": 49,
-  "name": "vocal in",
-  "count_style": "readygo",
-  "src": "sec",
-  "id": "C04"
- },
- {
-  "t": 109.05,
+  "id": "C05",
+  "t": 108.47,
   "bar": 57,
-  "name": "vocal in",
+  "name": "verse in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C05"
+  "src": "sec"
  },
  {
-  "t": 124.05,
+  "id": "C06",
+  "t": 123.47,
   "bar": 65,
-  "name": "vocal in",
+  "name": "chorus in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C06"
+  "src": "sec"
  },
  {
-  "t": 154.05,
-  "bar": 81,
-  "name": "vocal in",
+  "id": "C07",
+  "t": 154.173,
+  "bar": 82,
+  "name": "synth in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C07"
+  "src": "sec"
  },
  {
-  "t": 160.144,
-  "bar": 84,
-  "name": "vocal in",
+  "id": "C08",
+  "t": 161.204,
+  "bar": 86,
+  "name": "bridge in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C08"
+  "src": "sec"
  },
  {
-  "t": 184.05,
+  "id": "C09",
+  "t": 183.47,
   "bar": 97,
-  "name": "vocal in",
+  "name": "soft chorus",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C09"
+  "src": "sec"
  },
  {
-  "t": 214.05,
-  "bar": 113,
-  "name": "vocal in",
+  "id": "C10",
+  "t": 198.939,
+  "bar": 106,
+  "name": "all in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C10"
+  "src": "sec"
  },
  {
-  "t": 229.05,
+  "id": "C11",
+  "t": 228.581,
   "bar": 121,
-  "name": "vocal in",
+  "name": "outro in",
   "count_style": "readygo",
-  "src": "sec",
-  "id": "C11"
+  "src": "sec"
  },
  {
+  "id": "C12",
   "t": 242.175,
-  "bar": 128,
-  "name": "end",
-  "src": "end",
-  "id": "C12"
+  "bar": 129,
+  "name": "end in",
+  "count_style": "321",
+  "src": "end"
  }
 ]

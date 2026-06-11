@@ -149,26 +149,21 @@ def build_duo(cat, folder):
     barno=lambda x: round((x-first_db)/barlen)+1
     cues=[]
     spoken=lambda x: re.sub(r'\s*\([^)]*\)','',x).strip()   # drop "(acoustic)", "(Bossa Nova Covers)"…
+    clean=lambda x: re.sub(r'\s*\d+\s*$','',(x or '')).strip().lower()   # "Chorus 2" -> "chorus"
     for i,s in enumerate(secs):
-        db=s["begin"]; cap=s["caption"]; base=spoken(t if i==0 else cap); target=db
-        # vocal section? positive caption hint OR actual vocal-stem energy at the downbeat
-        # (energy decides "Outro"/ambiguous: an outro that still sings is a vocal entry).
-        is_vocal = bool(VOCAL_CAP.search(cap or '')) or vocal_active_at(env_pack,db,beat)
+        db=s["begin"]; cap=s["caption"]; target=db
         on=vocal_onset(env_pack,db,beat)
-        if on is not None and on < db-0.3*beat:               # clean pickup after silence → anchor to it
-            target=snap(on); is_vocal=True
-        if is_vocal:                                          # VOCAL entry → spoken "vocal in ready go"
-            style="readygo"; label=base if i==0 else "vocal in"
-        else:                                                 # instrumental entry → "3-2-1", part on downbeat
-            style="321"; label=base
+        if on is not None and on < db-0.3*beat: target=snap(on)   # anchor to a vocal pickup
+        # draft label from the section caption: "<caption> in" (human refines to all/synth/soft).
+        label = spoken(t) if i==0 else (f"{clean(cap)} in" if clean(cap) else "in")
         cues.append({"t":round(target,3),"bar":barno(target),"name":label,
-                     "count_style":style,"src":"start" if i==0 else "sec"})
+                     "count_style":"readygo","src":"start" if i==0 else "sec"})
     # END downbeat = the last chord actually STRUCK (last attack across harmonic/rhythm
     # stems), snapped to the grid — avoids the ring-out tail. Fallback: structure end.
     at=last_attack(folder)
     end_t=at if at is not None else secs[-1]["end"]
     end_db=first_db+round((end_t-first_db)/barlen)*barlen
-    cues.append({"t":round(end_db,3),"bar":barno(end_db),"name":"end","src":"end"})
+    cues.append({"t":round(end_db,3),"bar":barno(end_db),"name":"end in","count_style":"321","src":"end"})
     cues.sort(key=lambda c:c["t"])
     for i,c in enumerate(cues,1): c["id"]=f"C{i:02d}"
     return beat,cues
@@ -237,12 +232,14 @@ def render(cat, regen=False, audition=False, final=False):
     gap=min(max(beat,0.30),0.90)
     N=int((max(dur,max(c["t"] for c in cues))+1.0)*SR); bed=np.zeros(N,np.float32)
     crate=int(min(280, max(150, round(105/beat))))   # faster speech on faster songs so one word fits one beat
-    counts={n:say_clip(n,rate=crate) for n in ("3","2","1","vocal","in","ready","go")}
+    wcache={}; ddelay={}
     def odelay(clip,frac=0.4):               # delay to the vowel (felt beat), past the soft consonant
         win=int(0.02*SR)
         e=np.array([np.sqrt((clip[i:i+win]**2).mean()) for i in range(0,len(clip),win)])
         return int(np.argmax(e>frac*(e.max() or 1)))*0.02
-    cdelay={n:odelay(counts[n]) for n in counts}
+    def wclip(w):                            # say + cache any count word (with its vowel-onset delay)
+        if w not in wcache: wcache[w]=say_clip(w,rate=crate); ddelay[w]=odelay(wcache[w])
+        return wcache[w]
     def place(clip,t0):
         s=int(max(0.0,t0)*SR); e=s+len(clip)
         if e>N: clip=clip[:N-s]; e=N
@@ -255,27 +252,31 @@ def render(cat, regen=False, audition=False, final=False):
         T=c["t"]
         if not c.get("count",True):          # spoken-only cue: name finishes ~gap before the downbeat
             nm=say_clip(c["name"]); place(nm, max(0.0, nclick(T)-gap-len(nm)/SR)); continue
-        if c.get("count_style")=="readygo":  # VOCAL entry: "vocal in ready go"; vocal enters the beat AFTER "go"
-            seq=[("vocal",4),("in",3),("ready",2),("go",1)]   # go on −1, voice on the downbeat (0)
-            announce = c["src"]=="start"     # speak the song title only at the very start; phrase carries the rest
-        else:                                # instrumental: name + "3 2 1", the part lands on the downbeat
-            seq=[("3",3),("2",2),("1",1)]; announce=True
-        c0=nclick(T-seq[0][1]*beat)
-        if announce:                         # place the section/song name just before the first count word
-            nm=say_clip(c["name"]); nd=len(nm)/SR; ns=max(0.0,c0-gap-nd)
-            if ns+nd <= c0-0.05: place(nm,ns) # only if it ENDS before the first count word (else skip, no overlap)
-        for word,off in seq:                 # count vowel lands exactly on the click (pre-roll by clip attack)
-            ct=nclick(T-off*beat) if off else nclick(T)
+        if c.get("count_style")=="321":      # numeric count — used only for the END ("end in" + 3 2 1)
+            words=["3","2","1"]; announce=c["name"]
+        else:                                # "ready go": spoken "<label> ready go"; part enters the beat AFTER "go"
+            if c["src"]=="start":            # song start: announce title, then "vocal in ready go"
+                words=["vocal","in","ready","go"]; announce=c["name"]
+            else:                            # the LABEL words ARE the count ("verse in" → "verse in ready go")
+                words=c["name"].split()+["ready","go"]; announce=None
+        offs=list(range(len(words),0,-1))    # T−n … T−1; last word ("go" / "1") on −1, part on 0
+        c0=nclick(T-offs[0]*beat)
+        if announce:                         # place the title/label clip just before the first count word, if it fits
+            nm=say_clip(announce); nd=len(nm)/SR; ns=max(0.0,c0-gap-nd)
+            if ns+nd <= c0-0.05: place(nm,ns)
+        for w,off in zip(words,offs):        # each word's vowel lands on its click (pre-roll by clip attack)
+            ct=nclick(T-off*beat)
             if ct<0: continue
-            place(counts[word], ct - cdelay[word])
+            place(wclip(w), ct - ddelay[w])
     write_wav(os.path.join(folder,"cue_track.wav"), bed, bed)
     print(f"\n{a} - {t}   {bpm:g}bpm   mode=duo   -> cue_track.wav  ({mmss(dur)})")
-    print(f"{'ID':4}{'time':>8} {'bar':>4}  {'spoken':22} {'count':16} src")
+    print(f"{'ID':4}{'time':>8} {'bar':>4}  {'spoken phrase':28} src")
     for c in sorted(cues,key=lambda c:c["t"]):
-        if not c.get("count",True): cnt="(spoken only)"
-        elif c.get("count_style")=="readygo": cnt="vocal in ready go" if c["src"]!="start" else "+vocal in ready go"
-        else: cnt="3 2 1"
-        print(f"{c['id']:4}{mmss(c['t']):>8} {c['bar']:>4}  {c['name']:22} {cnt:16} {c['src']}")
+        if not c.get("count",True): ph=f"{c['name']} (spoken)"
+        elif c.get("count_style")=="321": ph=f"{c['name']} 3 2 1"
+        elif c["src"]=="start": ph=f"{c['name']} + vocal in ready go"
+        else: ph=f"{c['name']} ready go"
+        print(f"{c['id']:4}{mmss(c['t']):>8} {c.get('bar',0):>4}  {ph:28} {c['src']}")
     if audition:
         mix=song_mix(folder, exclude_click=False); cb=cue_bed(folder)   # include click in preview
         L=max(len(mix),len(cb)); mix=np.pad(mix,(0,L-len(mix))); cb=np.pad(cb,(0,L-len(cb)))
