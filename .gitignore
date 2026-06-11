@@ -1,0 +1,26 @@
+# системное
+.DS_Store
+__pycache__/
+*.pyc
+
+# тяжёлое аудио/видео/изображения — живут в папках, но не в git
+*.m4a
+*.wav
+*.mp3
+*.mp4
+*.aiff
+*.flac
+*.png
+*.jpg
+*.jpeg
+*.zip
+
+# артефакты пайплайна JamZone (локальное состояние)
+music/songs/.loudness_cache.json
+music/songs/.realm-*.bak
+
+# исключения: лёгкие важные файлы держим в git
+!assets/**/*.jpg
+
+# realm-tools deps
+node_modules/

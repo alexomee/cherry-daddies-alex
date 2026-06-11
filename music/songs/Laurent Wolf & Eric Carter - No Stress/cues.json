@@ -1,0 +1,72 @@
+[
+ {
+  "t": 3.992,
+  "bar": 1,
+  "name": "No Stress vocal in",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 33.531,
+  "bar": 17,
+  "name": "Pre chorus",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 51.992,
+  "bar": 27,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 96.3,
+  "bar": 51,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 103.684,
+  "bar": 55,
+  "name": "Bridge",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 111.069,
+  "bar": 59,
+  "name": "Verse 2",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 140.607,
+  "bar": 75,
+  "name": "Pre chorus 2",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 155.377,
+  "bar": 83,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 184.915,
+  "bar": 99,
+  "name": "Outro",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 199.217,
+  "bar": 107,
+  "name": "end",
+  "src": "end",
+  "id": "C10"
+ }
+]

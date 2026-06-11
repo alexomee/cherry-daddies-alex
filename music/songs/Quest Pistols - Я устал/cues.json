@@ -1,0 +1,112 @@
+{
+ "_note": "Live cue track (jamzone-stems skill, jamzone_cues_ext.py). EDIT this file to add/change cues; cue 't' are LOGIC times (time_ref=logic) read off the aligned tracks in Logic. Render: jamzone_cues_ext.py '<this file>' --stems  (--audition to ear-check). Anchors: first_drum/stop/drum_end/vocal_in/bass_only/grid. Names: 'X in 3' count-ins, ''=count-only, count:false=spoken-only. Don't change lead_bars/cut_before mid-iteration. See memory jamzone-external-cues.",
+ "song": "/Users/alex/Downloads/Quest Pistols - Я устал.mp3",
+ "stems_dir": "/Users/alex/Downloads/Quest Pistols - Я устал-Eb minor-124bpm-440hz",
+ "drums": "/Users/alex/Downloads/Quest Pistols - Я устал-Eb minor-124bpm-440hz/Quest Pistols - Я устал-drums-Eb minor-124bpm-440hz.mp3",
+ "vocals": "/Users/alex/Downloads/Quest Pistols - Я устал-Eb minor-124bpm-440hz/Quest Pistols - Я устал-vocals-Eb minor-124bpm-440hz.mp3",
+ "bass": "/Users/alex/Downloads/Quest Pistols - Я устал-Eb minor-124bpm-440hz/Quest Pistols - Я устал-bass-Eb minor-124bpm-440hz.mp3",
+ "metronome": "/Users/alex/Downloads/Quest Pistols - Я устал-Eb minor-124bpm-440hz/Quest Pistols - Я устал-metronome-Eb minor-124bpm-440hz.mp3",
+ "out_dir": "/Users/alex/Desktop/jamzone-stems/Quest Pistols - Я устал",
+ "title": "Quest Pistols - Я устал",
+ "key": "Eb minor",
+ "bpm": "124",
+ "voices": {
+  "ru": "Milena",
+  "en": null
+ },
+ "rate": 150,
+ "count_files": {
+  "3": "~/3.aiff",
+  "2": "~/2.aiff",
+  "1": "~/1.aiff"
+ },
+ "levels": {
+  "song": 0.85,
+  "click": 0.6,
+  "cues": 1.0
+ },
+ "lead_bars": 2,
+ "cut_before": 1.012,
+ "time_ref": "logic",
+ "retempo": [
+  {
+   "from": 103.988,
+   "to": 109.956,
+   "bpm": 91
+  }
+ ],
+ "cues": [
+  {
+   "id": "C01",
+   "name": "Я устал",
+   "lang": "ru",
+   "t": "start",
+   "anchor": "bass_in",
+   "count": true
+  },
+  {
+   "id": "C02",
+   "name": "drums in",
+   "lang": "en",
+   "t": 6.846,
+   "count": true
+  },
+  {
+   "id": "C03",
+   "name": "verse in",
+   "lang": "en",
+   "t": 10.671,
+   "count": true
+  },
+  {
+   "id": "C04",
+   "name": "stop",
+   "lang": "en",
+   "t": 26.175,
+   "count": true
+  },
+  {
+   "id": "C05",
+   "name": "verse in",
+   "lang": "en",
+   "t": 49.430,
+   "count": true
+  },
+  {
+   "id": "C06",
+   "name": "stop",
+   "lang": "en",
+   "t": 64.832,
+   "count": true
+  },
+  {
+   "id": "C07",
+   "name": "keep going",
+   "lang": "en",
+   "t": 86.577,
+   "count": false
+  },
+  {
+   "id": "C08",
+   "name": "stop in 3",
+   "lang": "en",
+   "t": 103.591,
+   "count": true
+  },
+  {
+   "id": "C09",
+   "name": "chorus variation in",
+   "lang": "en",
+   "t": 132.584,
+   "count": true
+  },
+  {
+   "id": "C10",
+   "name": "end in 3",
+   "lang": "en",
+   "t": 179.988,
+   "count": true,
+   "anchor": "bass_only"
+  }
+ ]
+}

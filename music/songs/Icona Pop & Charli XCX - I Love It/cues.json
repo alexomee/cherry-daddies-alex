@@ -1,0 +1,86 @@
+[
+ {
+  "t": 4.109,
+  "bar": 1,
+  "name": "I Love It",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 11.729,
+  "bar": 5,
+  "name": "Verse",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 26.967,
+  "bar": 13,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 34.586,
+  "bar": 17,
+  "name": "Verse 2",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 49.824,
+  "bar": 25,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 56.49,
+  "bar": 29,
+  "name": "Bridge vocal in",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 72.681,
+  "bar": 37,
+  "name": "Chorus 3",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 87.919,
+  "bar": 45,
+  "name": "Verse 3",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 102.205,
+  "bar": 53,
+  "name": "Chorus 4 vocal in",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 117.443,
+  "bar": 61,
+  "name": "Bridge 2 vocal in",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 133.633,
+  "bar": 69,
+  "name": "Chorus 5",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 156.49,
+  "bar": 81,
+  "name": "end",
+  "src": "end",
+  "id": "C12"
+ }
+]

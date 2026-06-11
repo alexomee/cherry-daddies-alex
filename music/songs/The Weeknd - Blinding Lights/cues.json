@@ -1,0 +1,93 @@
+[
+ {
+  "t": 3.107,
+  "bar": 1,
+  "name": "Blinding Lights",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 30.125,
+  "bar": 20,
+  "name": "Verse vocal in",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 53.633,
+  "bar": 37,
+  "name": "Pre chorus",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 64.861,
+  "bar": 45,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 87.318,
+  "bar": 61,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 97.493,
+  "bar": 68,
+  "name": "Verse 2 vocal in",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 108.37,
+  "bar": 76,
+  "name": "Pre chorus 2 vocal in",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 121.002,
+  "bar": 85,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 143.458,
+  "bar": 101,
+  "name": "Bridge",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 154.686,
+  "bar": 109,
+  "name": "Chorus 3",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 165.914,
+  "bar": 117,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 187.318,
+  "bar": 132,
+  "name": "Chorus 4 vocal in",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 200.624,
+  "bar": 142,
+  "name": "end",
+  "src": "end",
+  "id": "C13"
+ }
+]

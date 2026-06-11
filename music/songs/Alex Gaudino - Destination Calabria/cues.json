@@ -1,0 +1,93 @@
+[
+ {
+  "t": 4.05,
+  "bar": 1,
+  "name": "Destination Calabria",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 11.55,
+  "bar": 5,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 19.05,
+  "bar": 9,
+  "name": "Verse",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 34.05,
+  "bar": 17,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 50.93,
+  "bar": 26,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 65.93,
+  "bar": 34,
+  "name": "Verse 2",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 80.93,
+  "bar": 42,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 101.55,
+  "bar": 53,
+  "name": "Instrumental 3",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 114.675,
+  "bar": 60,
+  "name": "Break vocal in",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 138.112,
+  "bar": 73,
+  "name": "Chorus 3 vocal in",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 152.644,
+  "bar": 80,
+  "name": "Chorus 4 vocal in",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 160.144,
+  "bar": 84,
+  "name": "Outro vocal in",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 176.55,
+  "bar": 93,
+  "name": "end",
+  "src": "end",
+  "id": "C13"
+ }
+]

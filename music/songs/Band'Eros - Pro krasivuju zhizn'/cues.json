@@ -1,0 +1,97 @@
+{
+ "song": "/Users/alex/Downloads/Band'Eros - Pro krasivuju zhizn'.mp3",
+ "out_dir": "/Users/alex/Desktop/jamzone-stems/Band'Eros - Pro krasivuju zhizn'",
+ "title": "Band'Eros - Pro krasivuju zhizn'",
+ "grid": {
+  "phase": 0.195,
+  "period": 0.47842,
+  "down_res": null
+ },
+ "lead_bars": 2,
+ "voices": {
+  "ru": "Milena",
+  "en": null
+ },
+ "levels": {
+  "song": 0.85,
+  "click": 0.6,
+  "cues": 1.0
+ },
+ "cues": [
+  {
+   "id": "C01",
+   "name": "про красивую жизнь",
+   "lang": "ru",
+   "t": "start",
+   "count": true,
+   "anchor": "first_drum"
+  },
+  {
+   "id": "C02",
+   "name": "vocal in",
+   "lang": "en",
+   "t": 16.708,
+   "count": true,
+   "anchor": "vocal_in"
+  },
+  {
+   "id": "C03",
+   "name": "stop in 3",
+   "lang": "en",
+   "t": 39.24,
+   "count": true,
+   "anchor": "stop"
+  },
+  {
+   "id": "C04",
+   "name": "stop in 3",
+   "lang": "en",
+   "t": 77.52,
+   "count": true,
+   "anchor": "stop"
+  },
+  {
+   "id": "C07",
+   "name": "keep going",
+   "lang": "en",
+   "t": 107.529,
+   "count": false,
+   "anchor": "grid"
+  },
+  {
+   "id": "C06",
+   "name": "stop in 3",
+   "lang": "en",
+   "t": 151.859,
+   "count": true,
+   "anchor": "grid"
+  },
+  {
+   "id": "C08",
+   "name": "",
+   "lang": "en",
+   "t": 154.249,
+   "count": true,
+   "anchor": "grid"
+  },
+  {
+   "id": "C05",
+   "name": "end in 3",
+   "lang": "en",
+   "t": 216.649,
+   "count": true,
+   "anchor": "grid"
+  }
+ ],
+ "rate": 150,
+ "count_files": {
+  "3": "~/3.aiff",
+  "2": "~/2.aiff",
+  "1": "~/1.aiff"
+ },
+ "drums": "/Users/alex/Downloads/Band'Eros - Pro krasivuju zhizn'-Bb minor-125bpm-440hz/Band'Eros - Pro krasivuju zhizn'-drums-Bb minor-125bpm-440hz.mp3",
+ "vocals": "/Users/alex/Downloads/Band'Eros - Pro krasivuju zhizn'-Bb minor-125bpm-440hz/Band'Eros - Pro krasivuju zhizn'-vocals-Bb minor-125bpm-440hz.mp3",
+ "metronome": "/Users/alex/Downloads/Band'Eros - Pro krasivuju zhizn'-Bb minor-125bpm-440hz/Band'Eros - Pro krasivuju zhizn'-metronome-Bb minor-125bpm-440hz.mp3",
+ "stems_dir": "/Users/alex/Downloads/Band'Eros - Pro krasivuju zhizn'-Bb minor-125bpm-440hz",
+ "cut_before": 2.04
+}

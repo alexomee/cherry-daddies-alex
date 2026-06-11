@@ -1,0 +1,93 @@
+[
+ {
+  "t": 2.78,
+  "bar": 1,
+  "name": "Whenever, Wherever",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 18.743,
+  "bar": 8,
+  "name": "Verse vocal in",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 36.642,
+  "bar": 16,
+  "name": "Pre chorus",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 45.449,
+  "bar": 20,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 63.064,
+  "bar": 28,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 73.789,
+  "bar": 33,
+  "name": "Verse 2 vocal in",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 91.688,
+  "bar": 41,
+  "name": "Pre chorus 2",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 100.495,
+  "bar": 45,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 118.11,
+  "bar": 53,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 126.917,
+  "bar": 57,
+  "name": "Bridge",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 146.734,
+  "bar": 66,
+  "name": "Chorus 3",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 181.963,
+  "bar": 82,
+  "name": "Outro",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 187.734,
+  "bar": 85,
+  "name": "end",
+  "src": "end",
+  "id": "C13"
+ }
+]

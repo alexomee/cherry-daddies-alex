@@ -1,0 +1,105 @@
+{
+ "song": "/Users/alex/Desktop/jamzone-stems/Beverly Hills/_refmix.wav",
+ "stems_dir": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz",
+ "drums": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz/Beverly Hills-drums-A minor-115bpm-440hz.mp3",
+ "vocals": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz/Beverly Hills-vocals-A minor-115bpm-440hz.mp3",
+ "bass": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz/Beverly Hills-bass-A minor-115bpm-440hz.mp3",
+ "metronome": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz/Beverly Hills-metronome-A minor-115bpm-440hz.mp3",
+ "out_dir": "/Users/alex/Desktop/jamzone-stems/Beverly Hills-A minor-115bpm-440hz",
+ "title": "Beverly Hills",
+ "key": "A minor",
+ "bpm": "115",
+ "voices": {
+  "ru": "Milena",
+  "en": null
+ },
+ "rate": 150,
+ "count_files": {
+  "3": "~/3.aiff",
+  "2": "~/2.aiff",
+  "1": "~/1.aiff"
+ },
+ "levels": {
+  "song": 0.4,
+  "click": 0.85,
+  "cues": 1.0
+ },
+ "lead_bars": 2,
+ "cut_before": 0.0,
+ "time_ref": "song",
+ "retempo": [],
+ "cues": [
+  {
+   "id": "C01",
+   "name": "Beverly Hills",
+   "lang": "en",
+   "t": "start",
+   "anchor": "first_drum",
+   "count": true
+  },
+  {
+   "id": "C02",
+   "name": "vocal in",
+   "lang": "en",
+   "t": 8.859,
+   "anchor": "vocal_in",
+   "count": true
+  },
+  {
+   "id": "C04",
+   "name": "stop",
+   "lang": "en",
+   "t": 75.101,
+   "anchor": "stop",
+   "count": true
+  },
+  {
+   "id": "C05",
+   "name": "vocal in ready go",
+   "lang": "en",
+   "t": 77.617,
+   "anchor": "grid",
+   "meter": true
+  },
+  {
+   "id": "C07",
+   "name": "stop in",
+   "lang": "en",
+   "t": 110.537,
+   "anchor": "stop",
+   "count": true
+  },
+  {
+   "id": "C08",
+   "name": "stop in",
+   "lang": "en",
+   "t": 162.685,
+   "anchor": "stop",
+   "count": true
+  },
+  {
+   "id": "C09",
+   "name": "all in ready go",
+   "lang": "en",
+   "t": 182.013,
+   "anchor": "grid",
+   "meter": true
+  },
+  {
+   "id": "C10",
+   "name": "outro in ready go",
+   "lang": "en",
+   "t": 198.725,
+   "anchor": "grid",
+   "meter": true
+  },
+  {
+   "id": "C11",
+   "name": "end in",
+   "lang": "en",
+   "t": 215.459,
+   "anchor": "drum_end",
+   "count": true
+  }
+ ]
+}

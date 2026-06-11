@@ -1,0 +1,107 @@
+[
+ {
+  "t": 4.021,
+  "bar": 1,
+  "name": "Freed from Desire",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 17.509,
+  "bar": 8,
+  "name": "Verse vocal in",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 32.858,
+  "bar": 17,
+  "name": "Verse 2 vocal in",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 48.672,
+  "bar": 25,
+  "name": "Pre chorus",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 62.626,
+  "bar": 33,
+  "name": "Chorus vocal in",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 78.44,
+  "bar": 41,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 91.928,
+  "bar": 48,
+  "name": "Verse 3 vocal in",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 107.277,
+  "bar": 57,
+  "name": "Verse 4 vocal in",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 123.091,
+  "bar": 65,
+  "name": "Pre chorus 2",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 137.044,
+  "bar": 73,
+  "name": "Chorus 2 vocal in",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 152.858,
+  "bar": 81,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 167.742,
+  "bar": 89,
+  "name": "Bridge",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 181.695,
+  "bar": 97,
+  "name": "Chorus 3 vocal in",
+  "src": "sec",
+  "id": "C13"
+ },
+ {
+  "t": 197.509,
+  "bar": 105,
+  "name": "Outro",
+  "src": "sec",
+  "id": "C14"
+ },
+ {
+  "t": 210.533,
+  "bar": 112,
+  "name": "end",
+  "src": "end",
+  "id": "C15"
+ }
+]

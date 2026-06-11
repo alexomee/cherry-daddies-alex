@@ -1,0 +1,97 @@
+[
+ {
+  "t": 4.076,
+  "bar": 1,
+  "name": "Mr. Saxobeat",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 28.64,
+  "bar": 14,
+  "name": "Chorus vocal in",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 43.761,
+  "bar": 22,
+  "name": "one more",
+  "src": "sec",
+  "id": "C03",
+  "count": false
+ },
+ {
+  "t": 60.767,
+  "bar": 31,
+  "name": "male vocal",
+  "src": "sec",
+  "id": "C04",
+  "count": false
+ },
+ {
+  "t": 75.888,
+  "bar": 39,
+  "name": "chorus melody",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 91.003,
+  "bar": 47,
+  "name": "Verse",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 108.01,
+  "bar": 56,
+  "name": "Chorus 3 vocal in",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 123.13,
+  "bar": 64,
+  "name": "male vocal",
+  "src": "sec",
+  "id": "C08",
+  "count": false
+ },
+ {
+  "t": 138.246,
+  "bar": 72,
+  "name": "kick off, sax on",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 153.366,
+  "bar": 80,
+  "name": "Break",
+  "src": "sec",
+  "id": "C10",
+  "count": false
+ },
+ {
+  "t": 162.815,
+  "bar": 85,
+  "name": "Chorus 4 vocal in",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 177.931,
+  "bar": 93,
+  "name": "sax in",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 193.056,
+  "bar": 101,
+  "name": "end",
+  "src": "end",
+  "id": "C13"
+ }
+]
