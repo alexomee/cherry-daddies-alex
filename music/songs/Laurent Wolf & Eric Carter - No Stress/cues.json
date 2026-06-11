@@ -2,21 +2,24 @@
  {
   "t": 3.992,
   "bar": 1,
-  "name": "No Stress vocal in",
+  "name": "No Stress",
+  "count_style": "readygo",
   "src": "start",
   "id": "C01"
  },
  {
   "t": 33.531,
   "bar": 17,
-  "name": "Pre chorus",
+  "name": "Pre chorus in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C02"
  },
  {
   "t": 51.992,
   "bar": 27,
-  "name": "Chorus",
+  "name": "Chorus in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C03"
  },
@@ -24,34 +27,39 @@
   "t": 96.3,
   "bar": 51,
   "name": "Instrumental",
+  "count_style": "321",
   "src": "sec",
   "id": "C04"
  },
  {
   "t": 103.684,
   "bar": 55,
-  "name": "Bridge",
+  "name": "Bridge in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C05"
  },
  {
   "t": 111.069,
   "bar": 59,
-  "name": "Verse 2",
+  "name": "Verse 2 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C06"
  },
  {
   "t": 140.607,
   "bar": 75,
-  "name": "Pre chorus 2",
+  "name": "Pre chorus 2 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C07"
  },
  {
   "t": 155.377,
   "bar": 83,
-  "name": "Chorus 2",
+  "name": "Chorus 2 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C08"
  },
@@ -59,11 +67,12 @@
   "t": 184.915,
   "bar": 99,
   "name": "Outro",
+  "count_style": "321",
   "src": "sec",
   "id": "C09"
  },
  {
-  "t": 199.217,
+  "t": 199.685,
   "bar": 107,
   "name": "end",
   "src": "end",

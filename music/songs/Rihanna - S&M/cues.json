@@ -3,69 +3,79 @@
   "t": 4.05,
   "bar": 1,
   "name": "S&M",
+  "count_style": "321",
   "src": "start",
   "id": "C01"
  },
  {
   "t": 34.05,
   "bar": 17,
-  "name": "Verse",
+  "name": "Verse in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C02"
  },
  {
   "t": 63.581,
   "bar": 33,
-  "name": "Chorus vocal in",
+  "name": "Chorus in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C03"
  },
  {
   "t": 94.05,
   "bar": 49,
-  "name": "Chorus 2",
+  "name": "Chorus 2 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C04"
  },
  {
   "t": 109.05,
   "bar": 57,
-  "name": "Verse 2",
+  "name": "Verse 2 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C05"
  },
  {
   "t": 124.05,
   "bar": 65,
-  "name": "Chorus 3",
+  "name": "Chorus 3 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C06"
  },
  {
   "t": 154.05,
   "bar": 81,
-  "name": "Chorus 4",
+  "name": "Chorus 4 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C07"
  },
  {
   "t": 161.55,
   "bar": 85,
-  "name": "Bridge",
+  "name": "Bridge in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C08"
  },
  {
   "t": 184.05,
   "bar": 97,
-  "name": "Chorus 5",
+  "name": "Chorus 5 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C09"
  },
  {
   "t": 214.05,
   "bar": 113,
-  "name": "Chorus 6",
+  "name": "Chorus 6 in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C10"
  },
@@ -73,6 +83,7 @@
   "t": 229.05,
   "bar": 121,
   "name": "Outro",
+  "count_style": "321",
   "src": "sec",
   "id": "C11"
  },
