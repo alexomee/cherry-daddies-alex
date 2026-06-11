@@ -7,11 +7,11 @@
 | Песня | Тип | Стемы | Структ | Cue | Действие |
 |---|---|---|---|---|---|
 | ⭐ Alex Gaudino — Destination Calabria | 🎛 | ✅ 9 | ✅ | ⚠️ до-фикса | **Ре-рендер cue** + отслушать |
-| 🎯 Cascada — Everytime We Touch | 🎛 | ✅ 14 | ✅ | ✅ 11.06 | Отслушать (конец 3:14.67) |
-| 🎯 Guru Josh — Infinity 2008 | 🎛 | ✅ 10 | ✅ | ✅ 11.06 | Отслушать (конец 3:11.55) |
+| 🎯 Cascada — Everytime We Touch | 🎛 | ✅ 14 | ✅ | ✅ вручную (Logic) | Готова — `~/Music/Logic/Everytime We Touch.logicx` |
+| 🎯 Guru Josh — Infinity 2008 | 🎛 | ✅ 10 | ✅ | ✅ вручную (Logic) | Готова — `~/Music/Logic/Infinity 2008.logicx` |
 | 🎯 Laurent Wolf — No Stress | 🎛 | ✅ 7 | ✅ | ✅ ре-рендер 11.06 | Отслушать (конец 3:19.22) |
 | 🎯 Rihanna — S&M | 🎛 | ✅ 13 | ✅ | ✅ ре-рендер 11.06 | Отслушать (конец 4:02.18) |
-| 🎯 Rihanna — We Found Love | 🎛 | ✅ 12 | ✅ | ✅ 11.06 | Отслушать (конец 3:34.05) |
+| 🎯 Rihanna — We Found Love | 🎛 | ✅ 12 | ✅ | ✅ вручную (Logic) | Готова — `~/Music/Logic/We Found Love.logicx` |
 | ⭐ Shakira — Whenever, Wherever | 🎛 | ✅ 14 | ✅ | ⚠️ до-фикса | **Ре-рендер cue** + отслушать |
 | ⭐ Yeah Yeah Yeahs — Heads Will Roll | 🎛 | ✅ 13 | ✅ | ⚠️ до-фикса | **Ре-рендер cue** + отслушать (cat_23443, не A-Trak) |
 | 🎯 Band'Eros — Pro krasivuju zhizn' | 🌐 | ✅ aligned | — | ✅ | Ок (ext не задет багом) |
@@ -21,7 +21,7 @@
 | A Touch of Class — Around the World | 🎛 | ✅ 15 | ✅ | ⚠️ до-фикса | Ре-рендер + отслушать (конец руками 3:37.12) |
 | 🎯 Alexandra Stan — Mr. Saxobeat | 🎛 | ✅ 15 | ✅ | ✅ после фикса | Отслушан в работе 10.06; контрольно прослушать |
 | 🎯 Alice Deejay — Better Off Alone | 🎛 | ✅ 12 | ✅ | ✅ ре-рендер 11.06 | Отслушать (конец 3:33.80) |
-| 🎯 Basshunter — Now You're Gone | 🎛 | ✅ 10 | ✅ | ✅ 11.06 | Отслушать (конец 2:23.66) |
+| 🎯 Basshunter — Now You're Gone | 🎛 | ✅ 10 | ✅ | ✅ вручную (Logic) | Готова — `~/Music/Logic/ Now You're Gone.logicx` |
 | Beverly Hills (Weezer) | 🌐 | ✅ aligned | — | ✅ 11.06 | **Отслушать** (свежий, ext) |
 | Gala — Freed from Desire | 🎛 | ✅ 11 | ✅ | ⚠️ до-фикса | Ре-рендер + отслушать (cat_30111 club) |
 | Icona Pop & Charli XCX — I Love It | 🎛 | ✅ 12 | ✅ | ⚠️ до-фикса | Ре-рендер + отслушать (cat_43230) |
@@ -31,8 +31,8 @@
 
 ## Батчи (по убыванию приоритета)
 
-1. ✅ ~~Cue под репетицию~~ (11.06): ре-рендер S&M / No Stress / Alice Deejay + новые Cascada / Basshunter / We Found Love / Infinity 2008 (+structure). Превью `cue_preview.m4a` лежат в папках песен.
-2. **Сессия прослушки** — 9 превью списка репетиции (см. ниже).
+1. ✅ ~~Cue под репетицию~~ (11.06): ре-рендер S&M / No Stress / Alice Deejay (превью в папках песен). Cascada / Basshunter / We Found Love / Infinity 2008 — **cue сделаны вручную в Logic** (`~/Music/Logic/*.logicx`), автоген удалён.
+2. **Сессия прослушки** — 5 превью: S&M, No Stress, Alice Deejay, Quest Pistols (ext), Mr. Saxobeat (контрольно).
 3. **Достать 2 трека:** SEREBRO «Мало тебя» и Демо «Солнышко» — докачать в JamZone (если есть в каталоге) или Moises-путь (`jamzone_cues_ext.py`). **Требует пользователя.**
 4. Ре-рендер оставшихся до-фиксовых cue (вне списка репетиции): ATC, Destination Calabria, Gala, Icona Pop, Shakira, Blinding Lights, Heads Will Roll.
 5. Решения: конец Blinding Lights (fade 3:20.62 vs барабан 3:08); судьба Yann Muller и Karen Souza.
@@ -43,4 +43,4 @@
 
 | Дата | Песни | Готовность |
 |---|---|---|
-| Ближайшая | Cascada · Basshunter · We Found Love · S&M · Quest Pistols · Band'Eros · Mr. Saxobeat · Демо «Солнышко» · No Stress · SEREBRO «Мало тебя» · Alice Deejay · Infinity 2008 | 10/12 cue готовы (не отслушаны); 2 трека отсутствуют |
+| Ближайшая | Cascada · Basshunter · We Found Love · S&M · Quest Pistols · Band'Eros · Mr. Saxobeat · Демо «Солнышко» · No Stress · SEREBRO «Мало тебя» · Alice Deejay · Infinity 2008 | 10/12 cue есть (4 вручную в Logic ✅, 5 отслушать, Band'Eros ок); 2 трека отсутствуют |
