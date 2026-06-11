@@ -1,9 +1,9 @@
 [
  {
-  "t": 4.05,
-  "bar": 1,
+  "t": 2.644,
+  "bar": 0,
   "name": "S&M",
-  "count_style": "321",
+  "count_style": "readygo",
   "src": "start",
   "id": "C01"
  },
@@ -16,8 +16,8 @@
   "id": "C02"
  },
  {
-  "t": 63.581,
-  "bar": 33,
+  "t": 62.175,
+  "bar": 32,
   "name": "vocal in",
   "count_style": "readygo",
   "src": "sec",
@@ -56,8 +56,8 @@
   "id": "C07"
  },
  {
-  "t": 161.55,
-  "bar": 85,
+  "t": 160.144,
+  "bar": 84,
   "name": "vocal in",
   "count_style": "readygo",
   "src": "sec",
@@ -82,8 +82,8 @@
  {
   "t": 229.05,
   "bar": 121,
-  "name": "Outro",
-  "count_style": "321",
+  "name": "vocal in",
+  "count_style": "readygo",
   "src": "sec",
   "id": "C11"
  },

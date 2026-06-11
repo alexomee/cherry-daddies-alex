@@ -104,10 +104,20 @@ def last_attack(folder, sr=22050):
 
 # ---- analysis -------------------------------------------------------------
 def vocal_envelope(folder):
-    f=stem(folder,"vocal",exclude=("adlib","ad_lib","ad-lib","(ad","backing")) or stem(folder,"vocal")
-    if not f: return None
-    a=decode_mono(f,22050); win=int(0.05*22050)
-    env=np.array([np.sqrt((a[i:i+win]**2).mean()) for i in range(0,len(a),win)])
+    # combine ALL vocal stems (lead + BACKING) so an opening backing hook ("na na na",
+    # like S&M) is detected as the vocal entry — the lead vocal may not enter for bars.
+    fs=[f for f in glob.glob(os.path.join(folder,"*.m4a"))
+        if "vocal" in os.path.basename(f).lower()
+        and not any(x in os.path.basename(f).lower() for x in ("adlib","ad_lib","ad-lib","(ad"))]
+    if not fs: return None
+    comb=None
+    for f in fs:
+        a=decode_mono(f,22050)
+        if comb is None: comb=np.zeros(len(a),np.float32)
+        if len(a)>len(comb): comb=np.pad(comb,(0,len(a)-len(comb)))
+        comb[:len(a)]+=a[:len(comb)]
+    win=int(0.05*22050)
+    env=np.array([np.sqrt((comb[i:i+win]**2).mean()) for i in range(0,len(comb),win)])
     return env, 0.04*(env.max() or 1), 0.05
 
 def vocal_onset(env_pack, db, beat):
@@ -167,7 +177,9 @@ def build_duo(cat, folder):
 def song_mix(folder, exclude_click=True):
     mix=None
     for s in sorted(glob.glob(os.path.join(folder,"*.m4a"))):
-        if exclude_click and os.path.basename(s).startswith("01_Click"): continue
+        b=os.path.basename(s)
+        if not re.match(r'\d+_', b): continue              # ONLY real stems (NN_*.m4a) — never the rendered
+        if exclude_click and b.startswith("01_Click"): continue   # previews/deliverables also live here as .m4a
         x=decode_mono(s)
         if mix is None: mix=np.zeros(len(x),np.float32)
         if len(x)>len(mix): mix=np.pad(mix,(0,len(x)-len(mix)))
@@ -224,7 +236,8 @@ def render(cat, regen=False, audition=False, final=False):
     # cue_track.wav (cues on both channels)
     gap=min(max(beat,0.30),0.90)
     N=int((max(dur,max(c["t"] for c in cues))+1.0)*SR); bed=np.zeros(N,np.float32)
-    counts={n:say_clip(n) for n in ("3","2","1","vocal","in","ready","go")}
+    crate=int(min(280, max(150, round(105/beat))))   # faster speech on faster songs so one word fits one beat
+    counts={n:say_clip(n,rate=crate) for n in ("3","2","1","vocal","in","ready","go")}
     def odelay(clip,frac=0.4):               # delay to the vowel (felt beat), past the soft consonant
         win=int(0.02*SR)
         e=np.array([np.sqrt((clip[i:i+win]**2).mean()) for i in range(0,len(clip),win)])
@@ -247,9 +260,10 @@ def render(cat, regen=False, audition=False, final=False):
             announce = c["src"]=="start"     # speak the song title only at the very start; phrase carries the rest
         else:                                # instrumental: name + "3 2 1", the part lands on the downbeat
             seq=[("3",3),("2",2),("1",1)]; announce=True
-        c0=nclick(T-seq[0][1]*beat); name_end=c0-gap
+        c0=nclick(T-seq[0][1]*beat)
         if announce:                         # place the section/song name just before the first count word
-            nm=say_clip(c["name"]); nd=len(nm)/SR; place(nm, max(0.0,c0-gap-nd)); name_end=max(name_end,c0-gap)
+            nm=say_clip(c["name"]); nd=len(nm)/SR; ns=max(0.0,c0-gap-nd)
+            if ns+nd <= c0-0.05: place(nm,ns) # only if it ENDS before the first count word (else skip, no overlap)
         for word,off in seq:                 # count vowel lands exactly on the click (pre-roll by clip attack)
             ct=nclick(T-off*beat) if off else nclick(T)
             if ct<0: continue
