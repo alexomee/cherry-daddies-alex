@@ -154,8 +154,10 @@ def build_duo(cat, folder):
         db=s["begin"]; cap=s["caption"]; target=db
         on=vocal_onset(env_pack,db,beat)
         if on is not None and on < db-0.3*beat: target=snap(on)   # anchor to a vocal pickup
-        # draft label from the section caption: "<caption> in" (human refines to all/synth/soft).
-        label = spoken(t) if i==0 else (f"{clean(cap)} in" if clean(cap) else "in")
+        # draft label = "<what enters> in". Start: vocal if vocal at the top, else all (full band).
+        # Sections: from the caption. Human refines to all/synth/soft + retimes/removes.
+        if i==0: label = "vocal in" if vocal_active_at(env_pack,target,beat) else "all in"
+        else:    label = f"{clean(cap)} in" if clean(cap) else "in"
         cues.append({"t":round(target,3),"bar":barno(target),"name":label,
                      "count_style":"readygo","src":"start" if i==0 else "sec"})
     # END downbeat = the last chord actually STRUCK (last attack across harmonic/rhythm
@@ -249,16 +251,14 @@ def render(cat, regen=False, audition=False, final=False):
         if not clicks: return t
         c=min(clicks,key=lambda x:abs(x-t)); return c if abs(c-t)<0.5*beat else t
     for c in sorted(cues,key=lambda c:c["t"]):
-        T=c["t"]
         if not c.get("count",True):          # spoken-only cue: name finishes ~gap before the downbeat
-            nm=say_clip(c["name"]); place(nm, max(0.0, nclick(T)-gap-len(nm)/SR)); continue
-        if c.get("count_style")=="321":      # numeric count — used only for the END ("end in" + 3 2 1)
+            nm=say_clip(c["name"]); place(nm, max(0.0, nclick(c["t"])-gap-len(nm)/SR)); continue
+        T=nclick(c["t"])                     # part enters ON a real click — DAW time verified against the grid
+        if c.get("count_style")=="321":      # numeric count (END / STOP): "<name> 3 2 1"
             words=["3","2","1"]; announce=c["name"]
-        else:                                # "ready go": spoken "<label> ready go"; part enters the beat AFTER "go"
-            if c["src"]=="start":            # song start: announce title, then "vocal in ready go"
-                words=["vocal","in","ready","go"]; announce=c["name"]
-            else:                            # the LABEL words ARE the count ("verse in" → "verse in ready go")
-                words=c["name"].split()+["ready","go"]; announce=None
+        else:                                # "<label> ready go"; the label words ARE the count, part AFTER "go"
+            words=c["name"].split()+["ready","go"]
+            announce = t if c["src"]=="start" else None   # at the very start, announce the song TITLE first
         offs=list(range(len(words),0,-1))    # T−n … T−1; last word ("go" / "1") on −1, part on 0
         c0=nclick(T-offs[0]*beat)
         if announce:                         # place the title/label clip just before the first count word, if it fits
@@ -274,7 +274,7 @@ def render(cat, regen=False, audition=False, final=False):
     for c in sorted(cues,key=lambda c:c["t"]):
         if not c.get("count",True): ph=f"{c['name']} (spoken)"
         elif c.get("count_style")=="321": ph=f"{c['name']} 3 2 1"
-        elif c["src"]=="start": ph=f"{c['name']} + vocal in ready go"
+        elif c["src"]=="start": ph=f"{t} + {c['name']} ready go"
         else: ph=f"{c['name']} ready go"
         print(f"{c['id']:4}{mmss(c['t']):>8} {c.get('bar',0):>4}  {ph:28} {c['src']}")
     if audition:
