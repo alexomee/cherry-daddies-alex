@@ -1,0 +1,65 @@
+[
+ {
+  "t": 2.835,
+  "bar": 1,
+  "name": "Everytime We Touch vocal in",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 30.723,
+  "bar": 17,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 57.765,
+  "bar": 33,
+  "name": "Break",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 71.286,
+  "bar": 41,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 99.173,
+  "bar": 57,
+  "name": "Verse 2 vocal in",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 127.06,
+  "bar": 74,
+  "name": "Chorus 2",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 154.103,
+  "bar": 90,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 180.3,
+  "bar": 105,
+  "name": "Chorus 3 vocal in",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 194.666,
+  "bar": 114,
+  "name": "end",
+  "src": "end",
+  "id": "C09"
+ }
+]

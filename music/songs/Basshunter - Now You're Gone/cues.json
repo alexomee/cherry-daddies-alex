@@ -1,0 +1,72 @@
+[
+ {
+  "t": 2.716,
+  "bar": 1,
+  "name": "Now You're Gone vocal in",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 18.016,
+  "bar": 10,
+  "name": "Verse",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 34.121,
+  "bar": 20,
+  "name": "Instrumental",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 46.206,
+  "bar": 27,
+  "name": "Verse 2 vocal in",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 66.331,
+  "bar": 40,
+  "name": "Break",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 75.995,
+  "bar": 46,
+  "name": "Instrumental 2",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 91.306,
+  "bar": 55,
+  "name": "Bridge vocal in",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 119.479,
+  "bar": 73,
+  "name": "Chorus",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 132.363,
+  "bar": 81,
+  "name": "Outro",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 143.655,
+  "bar": 88,
+  "name": "end",
+  "src": "end",
+  "id": "C10"
+ }
+]
