@@ -3,5 +3,6 @@
     "stems": ["04_Noise_effects", "10_Saxophone_(reverse)"],
     "gain_db": {"04_Noise_effects": 8.9, "10_Saxophone_(reverse)": 8.9}
   },
-  "pb-bass": null
+  "pb-bass": null,
+  "export_stems": ["05_Synth_Bass", "06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"]
 }

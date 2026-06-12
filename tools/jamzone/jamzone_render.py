@@ -347,5 +347,20 @@ def main():
               open(os.path.join(adir, "timeline.json"), "w"), indent=1)
     print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json")
 
+    # export_stems: individual stems in the SAME aligned/tempo-labelled format (one wav each),
+    # e.g. to hand the synths to the keyboardist. Same offset/length/grid/key as the set above.
+    exp = mix.get("export_stems") or []
+    for nm in exp:
+        if nm not in audio: sys.exit(f"export_stems: '{nm}' is not a (non-click) stem")
+    if exp:
+        sdir = os.path.join(adir, "synths"); os.makedirs(sdir, exist_ok=True)
+        for nm in exp:
+            buf = mixdown([nm], {})                     # aligned at off_samp, full length
+            if semi: buf = pitch_shift(buf, semi)       # follow the band's key if transposed
+            pk = float(np.abs(buf).max())
+            if pk > 0.99: buf *= 0.95/pk
+            wav_tempo_write(os.path.join(sdir, nm + ".wav"), buf, bpm)
+        print(f"✓ auto-render/synths/: {', '.join(n+'.wav' for n in exp)}")
+
 if __name__ == "__main__":
     main()
