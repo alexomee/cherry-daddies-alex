@@ -1,6 +1,6 @@
 {
- "offset_sec": 1.594684,
+ "offset_sec": -0.29508,
  "bar_sec": 1.889764,
  "bpm": 127.0,
- "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; bar 0 = click count-in"
+ "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line = first stem downbeat; NO count-in bar"
 }
