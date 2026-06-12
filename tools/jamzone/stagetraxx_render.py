@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Load a song's Logic-rendered tracks into Stage Traxx 4 with discrete-output routing.
 
-Reads <song>/logic-render/{click,cues,pb-other,pb-bass}.mp3 (whichever exist) and
+Reads <song>/logic-render/{click,cues,pb-other,pb-bass}.{wav,mp3} (whichever exist;
+wav preferred — sample-exact phase for arp MIDI-clock sync, see arpeggiator-sync.md) and
 creates a Stage Traxx song routed for a multi-out interface (e.g. Roland Rubix24),
 ONE track per hardware output channel:
 
@@ -66,12 +67,18 @@ def main():
     ALIASES = {"cues": ("cues", "cue"), "pb-other": ("pb-other", "pb_other"), "pb-bass": ("pb-bass", "pb_bass")}
     def find_stem(stem):
         for a in ALIASES.get(stem, (stem,)):
-            p = os.path.join(rdir, a + ".mp3")
-            if os.path.exists(p): return p
+            for ext in (".wav", ".mp3"):
+                p = os.path.join(rdir, a + ext)
+                if os.path.exists(p): return p
         return None
     tracks = [(p, nm, ch, bus, pan, mute) for stem, nm, ch, bus, pan, mute in ROUTING
               if (p := find_stem(stem))]
-    if not tracks: sys.exit(f"no logic-render/*.mp3 in {folder}")
+    if not tracks: sys.exit(f"no logic-render/*.{{wav,mp3}} in {folder}")
+
+    # timeline.json: render timeline = stem timeline + offset_sec (re-barred bounces)
+    toff = 0.0
+    tj = os.path.join(rdir, "timeline.json")
+    if os.path.exists(tj): toff = json.load(open(tj)).get("offset_sec", 0.0)
 
     base = os.path.basename(folder)
     artist, _, title = base.partition(" - "); title = title or base
@@ -82,7 +89,7 @@ def main():
     try:
         sys.path.insert(0, os.path.dirname(__file__)); import jamzone_cues as J
         st = json.loads(J.dec(J.resolve(base.split(" - ")[-1]), "structure.json"))
-        regions = [(s["caption"], s["begin"], s["end"]) for s in st
+        regions = [(s["caption"], s["begin"]+toff, s["end"]+toff) for s in st
                    if not s["caption"].lower().startswith("precount")]
     except Exception:
         regions = []
@@ -90,7 +97,7 @@ def main():
         cj = os.path.join(folder, "cues.json")
         if os.path.exists(cj):
             cues = sorted(json.load(open(cj)), key=lambda c: c["t"])
-            regions = [(c["name"], c["t"], cues[i+1]["t"] if i+1 < len(cues) else dur)
+            regions = [(c["name"], c["t"]+toff, cues[i+1]["t"]+toff if i+1 < len(cues) else dur)
                        for i, c in enumerate(cues)]
 
     pl = None
@@ -108,7 +115,7 @@ def main():
         if f.endswith((".mp3",".m4a",".wav")): os.remove(os.path.join(dest, f))
     copied = []
     for p, nm, ch, bus, pan, mute in tracks:
-        fn = f"{ch}_{nm.replace(' ','_')}.mp3"
+        fn = f"{ch}_{nm.replace(' ','_')}{os.path.splitext(p)[1]}"
         shutil.copy2(p, os.path.join(dest, fn)); copied.append((fn, nm, ch, bus, pan, mute))
 
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]

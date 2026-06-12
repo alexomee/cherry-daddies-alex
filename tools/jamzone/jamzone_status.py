@@ -45,7 +45,8 @@ def scan():
         try: ncues = len(json.load(open(os.path.join(d, "cues.json"))))
         except Exception: ncues = 0
         rdir = os.path.join(d, "logic-render")
-        bounces = sorted(os.path.basename(p)[:-4] for p in glob.glob(os.path.join(rdir, "*.mp3"))) if os.path.isdir(rdir) else []
+        bounces = sorted(os.path.basename(p)[:-4] for ext in ("*.mp3", "*.wav")
+                         for p in glob.glob(os.path.join(rdir, ext))) if os.path.isdir(rdir) else []
         has_core = any(b.startswith("click") for b in bounces) and \
                    any(b.startswith("cue") for b in bounces) and \
                    any(b.startswith("pb-other") for b in bounces)
