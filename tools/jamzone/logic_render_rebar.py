@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Re-bar a song's logic-render set so file t=0 sits EXACTLY on a bar line
-(arpeggiator MIDI-clock rule, see music/arpeggiator-sync.md) and prepend one
-full count-in bar of click.
+(arpeggiator MIDI-clock rule, see music/arpeggiator-sync.md). No count-in bar:
+t=0 = the stem's first downbeat (the JZ click stem already gives bars of click
+before the music). If any source has content BEFORE the first downbeat, the
+start is pushed back by whole bars so nothing is clipped.
 
 What it does (all timings measured, not assumed):
   1. Grid: detects every click in the JamZone Click stem (accent ~200Hz = downbeat),
@@ -9,7 +11,7 @@ What it does (all timings measured, not assumed):
   2. Bounce shift: cross-correlates a reference bounce against a source stem to find
      how far the Logic bounce timeline is from the stem timeline.
   3. Rebuild as WAV (no mp3 encoder-delay phase ambiguity):
-       click.wav    = stem's own first click bar copied to t=0 (count-in) + full Click stem
+       click.wav    = full Click stem on the new grid
        cues.wav     = cue_track.wav placed on the new grid
        pb-other.wav = old pb-other bounce re-aligned
        all.wav      = old all bounce re-aligned
@@ -18,7 +20,8 @@ What it does (all timings measured, not assumed):
      to stem-timeline times (cues.json / structure.json) to hit the new audio.
   5. Old mp3s moved to logic-render/_old-<date>/ (version-every-render rule).
 
-Usage: logic_render_rebar.py "<song name or folder>" [--ref-stem <stem.m4a>]
+Usage: logic_render_rebar.py "<song name or folder>" [--ref-stem <stem.m4a>] [--check]
+       --check = full analysis + verification, write nothing
 """
 import os, sys, glob, json, shutil, subprocess, wave, datetime
 import numpy as np
@@ -115,24 +118,34 @@ def main():
     print(f"bounce shift vs stems: {s/SR*1000:+.2f}ms (corr {c:.3f}) ref={os.path.basename(ref_p)}")
     if not (c > 0.3): sys.exit("bounce/stem alignment not confident — aborting")
 
-    OFF = bar - (db0 % bar)                      # stems land at +OFF; t=0 = bar line, bar 0 = count-in
-    off_samp = round(OFF*SR)
-    print(f"new timeline = stem + {OFF:.5f}s  (count-in bar 0, first stem downbeat -> bar 1)")
-
     cue_st = decode(cue_p)
     old_pbo = decode(os.path.join(rdir, "pb-other.mp3"))
+
+    def first_sound(a):
+        nz = np.where(np.abs(a).max(1) > 1e-3)[0]
+        return nz[0]/SR if len(nz) else None
+
+    # t=0 = first stem downbeat; push back whole bars if any content starts earlier
+    OFF = -db0
+    earliest = min(t + OFF_src for a, OFF_src in
+                   [(click_st, OFF), (cue_st, OFF), (old_pbo, OFF + s/SR), (old_all, OFF + s/SR)]
+                   if (t := first_sound(a)) is not None)
+    if earliest < 0:
+        back = int(np.ceil(-earliest/bar))
+        OFF += back*bar
+        print(f"content {-earliest:.3f}s before first downbeat -> pushing back {back} bar(s)")
+    off_samp = round(OFF*SR)
+    print(f"new timeline = stem {OFF:+.5f}s  (t=0 = bar line)")
+
     bounce_at = off_samp + s                     # old bounce content placed back on stem grid
     end = max(off_samp+len(click_st), off_samp+len(cue_st),
               bounce_at+len(old_pbo), bounce_at+len(old_all))
     total = int(np.ceil(end/(bar*SR))*bar*SR)    # whole bars
     print(f"length: {total/SR:.3f}s = {total/SR/bar:.1f} bars")
 
-    db0_samp = round(db0*SR)
-    countin = click_st[db0_samp:db0_samp+round(bar*SR)]   # stem's own first click bar
-
     out = {}
     for name, srcs in {
-        "click":    [(countin, 0), (click_st, off_samp)],
+        "click":    [(click_st, off_samp)],
         "cues":     [(cue_st, off_samp)],
         "pb-other": [(old_pbo, bounce_at)],
         "all":      [(old_all, bounce_at)],
@@ -145,13 +158,16 @@ def main():
     pre = 1000
     v_click = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
     err = [(t - round(t/beat)*beat)*1000 for t in v_click[:8]]
-    print(f"verify click grid: first onset {v_click[0]*1000:.1f}ms, beat err first 8: "
-          f"{[f'{e:+.1f}' for e in err]} ms")
+    bar_err = (v_click[0] - round(v_click[0]/bar)*bar)*1000   # first click must sit ON a bar line
+    print(f"verify click grid: first onset {v_click[0]*1000:.1f}ms (bar-line err {bar_err:+.1f}ms), "
+          f"beat err first 8: {[f'{e:+.1f}' for e in err]} ms")
     vc = shifted_corr(ref_m, out["all"].mean(1), off_samp)
     vq = shifted_corr(decode(cue_p, stereo=False), out["cues"].mean(1), off_samp)
     print(f"verify content: stems->all corr={vc:.3f}  cue_track->cues corr={vq:.3f}")
-    if abs(v_click[0]) > 0.01 or max(abs(e) for e in err) > 3 or vc < 0.3 or vq < 0.9:
+    if abs(bar_err) > 10 or max(abs(e) for e in err) > 3 or vc < 0.3 or vq < 0.9:
         sys.exit("verification failed — nothing written")
+    if "--check" in sys.argv:
+        print("✓ --check: all green, nothing written"); return
 
     old = os.path.join(rdir, "_old-" + datetime.date.today().isoformat())
     os.makedirs(old, exist_ok=True)
@@ -162,7 +178,7 @@ def main():
     json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6),
                "bpm": round(60/beat, 4),
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
-                       "t=0 = bar line; bar 0 = click count-in"},
+                       "t=0 = bar line = stem's first downbeat (no count-in bar)"},
               open(os.path.join(rdir, "timeline.json"), "w"), indent=1)
     print(f"✓ wrote {', '.join(n+'.wav' for n in out)} + timeline.json; old mp3s -> {os.path.basename(old)}/")
 
