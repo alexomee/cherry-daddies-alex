@@ -35,12 +35,12 @@ Yeah Yeah Yeahs - Heads Will Roll            🎙 cue           13   Y  13     Y
 
 ## Нет в библиотеке (докачать — нужен пользователь)
 - **SEREBRO «Мало тебя»** — нет в загруженном JamZone. Докачать в приложении или Moises.
-- **Демо «Солнышко»** — нет. JamZone/Moises.
+- **Демо «Солнышко»** — Moises-стемы есть (`Demo - Solnyshko/`, варп на 138.000 — брейкдаун плыл до +52мс), auto-render + cue готовы.
 (после докачки: extract → cue → довести → bounce в Logic → `stagetraxx_render.py`)
 
 ## Прослушка cue (НЕ выводится из файлов — ведём вручную)
 Сгенерировано, но НЕ отслушано пользователем:
-- S&M (конец 4:02.18) · No Stress (3:19.22) · Alice Deejay (3:33.80) · Quest Pistols (старт + bass-конец, медл. ~1:45–2:00) · Mr. Saxobeat (контрольно)
+- S&M (конец 4:02.18) · No Stress (3:19.22) · Alice Deejay (3:33.80) · Quest Pistols (старт + bass-конец, медл. ~1:45–2:00) · Mr. Saxobeat (контрольно) · Демо «Солнышко» (19 cue; `auto-render/cue_preview.mp3`)
 Отслушивать: `jamzone_cues.py "<песня>" --audition` (нативные) / `jamzone_cues_ext.py … --audition` (внешние).
 
 ## Решения (повисли)

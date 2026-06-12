@@ -138,19 +138,42 @@ def build_click(bpm, total, off_samp, bar):
 
 RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
 _SAY_CACHE = {}
-def _say(text, voice):
+def _say(text, voice, rate=None):
     import hashlib, tempfile
-    key = hashlib.md5(f"{voice}|{text}".encode()).hexdigest()
+    key = hashlib.md5(f"{voice}|{rate}|{text}".encode()).hexdigest()
     if key in _SAY_CACHE: return _SAY_CACHE[key]
     with tempfile.TemporaryDirectory() as d:
         aiff = os.path.join(d, "s.aiff")
-        cmd = ["say"] + (["-v", voice] if voice else []) + ["-o", aiff, text]
+        cmd = ["say"] + (["-v", voice] if voice else []) + (["-r", str(rate)] if rate else []) \
+              + ["-o", aiff, text]
         subprocess.run(cmd, check=True)
         raw = subprocess.run(["ffmpeg","-v","quiet","-i",aiff,"-ac","1","-ar",str(SR),"-f","f32le","-"],
                              capture_output=True).stdout
     x = np.frombuffer(raw, np.float32).copy()
+    nz = np.where(np.abs(x) > 0.005)[0]              # drop synth tail silence (it spills into the
+    if len(nz): x = x[:nz[-1] + int(0.02*SR)]        # next word's slot check otherwise)
     x = x/(np.max(np.abs(x)) or 1)*0.9
     _SAY_CACHE[key] = x; return x
+
+def _atempo(x, factor):
+    """shorten a clip by `factor` keeping pitch (ffmpeg atempo, chained past 2.0)."""
+    stages = []
+    while factor > 2.0: stages.append("atempo=2.0"); factor /= 2.0
+    stages.append(f"atempo={factor:.4f}")
+    raw = subprocess.run(["ffmpeg","-v","quiet","-f","f32le","-ar",str(SR),"-ac","1","-i","-",
+                          "-af", ",".join(stages), "-f","f32le","-"],
+                         input=x.astype(np.float32).tobytes(), capture_output=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
+
+def _say_fit(text, voice, max_dur):
+    """spoken word fitted into one beat slot (a dashed compound = ONE word = ONE beat, e.g.
+    more-arpegiator): escalate `say -r`, top off with atempo if the fastest rate still spills."""
+    x = _say(text, voice)
+    for rate in (220, 300, 360):
+        if len(x)/SR <= max_dur: return x
+        x = _say(text, voice, rate)
+    if len(x)/SR > max_dur: x = _atempo(x, (len(x)/SR)/max_dur)
+    return x
 
 def _vowel_onset(x):
     """time of the first 0.02s window whose RMS > 0.4*peak (the spoken vowel) — so the word
@@ -217,7 +240,7 @@ def build_cues(cue_list, total, bar, beat, lead):
         else:
             words = (text + " ready go" if kind == "in" else text).split(); W = len(words)
             for i, w in enumerate(words):                 # last word on the beat BEFORE the event
-                clip = _say(w, RU_VOICE if _cyrillic(w) else EN_VOICE)
+                clip = _say_fit(w, RU_VOICE if _cyrillic(w) else EN_VOICE, 0.92*beat)
                 _put(buf, clip, t_event - (W-i)*beat - _vowel_onset(clip))
             phrase = " ".join(words)
         rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
