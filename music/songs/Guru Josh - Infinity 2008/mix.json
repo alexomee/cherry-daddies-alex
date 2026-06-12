@@ -1,0 +1,22 @@
+{
+  "pb-other": {"stems": ["08_Arpeggiator", "03_Noise_effects"]},
+  "pb-bass": null,
+  "cues": [
+    {"bar": 3,   "text": "Infinity pad in"},
+    {"bar": 7,   "beat": 3, "text": "sax in"},
+    {"bar": 13,  "text": "drums in"},
+    {"bar": 23,  "text": "main in"},
+    {"bar": 32,  "beat": 3, "text": "sax in"},
+    {"bar": 38,  "text": "main in"},
+    {"bar": 43,  "text": "main in"},
+    {"bar": 48,  "text": "keep going"},
+    {"bar": 53,  "text": "slow part"},
+    {"bar": 57,  "beat": 3, "text": "sax in"},
+    {"bar": 63,  "text": "drums in"},
+    {"bar": 73,  "text": "keys in"},
+    {"bar": 78,  "text": "main in"},
+    {"bar": 87,  "beat": 3, "text": "sax in"},
+    {"bar": 93,  "text": "main-with-sax in"},
+    {"bar": 103, "text": "end stop"}
+  ]
+}
