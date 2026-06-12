@@ -1,5 +1,5 @@
 <!-- STATUS:auto (jamzone_status.py --write) — НЕ редактировать руками -->
-_Сгенерировано из артефактов. Сводка: ✅ StageTraxx:1  ❌ none:1  🎙 cue:16  🎚 bounced:1  🧩 stems:1_
+_Сгенерировано из артефактов. Сводка: ✅ StageTraxx:1  🎙 cue:16  🎚 bounced:1_
 
 ```
 song                                         stage          stems str cue logic  bounce / ST
@@ -21,8 +21,6 @@ Rihanna & Calvin Harris - We Found Love      🎙 cue           12   Y   -     Y
 Shakira - Whenever, Wherever                 🎙 cue           14   Y  13     -  —
 The Weeknd - Blinding Lights                 🎙 cue           13   Y  13     Y  —
 Yeah Yeah Yeahs - Heads Will Roll            🎙 cue           13   Y  13     Y  —
-Yann Muller - Just the Two of Us             🧩 stems          6   Y   -     -  —
-Karen Souza - Every Breath You Take          ❌ none           0   -   -     -  —
 ```
 <!-- /STATUS:auto -->
 
@@ -47,8 +45,6 @@ Karen Souza - Every Breath You Take          ❌ none           0   -   -     - 
 
 ## Решения (повисли)
 - **Blinding Lights** — конец: fade 3:20.62 vs последний барабан 3:08.
-- **Yann Muller — Just the Two of Us** — лаунж, для этого ли сета?
-- **Karen Souza — Every Breath You Take** — только chart, стемов нет; нужна ли — re-extract.
 - До-фиксовые cue вне репы (ре-рендер при надобности): ATC, Destination Calabria, Gala, Icona Pop, Shakira, Heads Will Roll.
 
 ## Репетиция (выбор — человеческий)
