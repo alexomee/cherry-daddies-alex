@@ -161,27 +161,36 @@ def _vowel_onset(x):
     if not len(env): return 0.0
     return int(np.argmax(env > 0.4*env.max()))*(w//2)/SR
 
-def build_cues(cue_list, total, bar, beat):
-    """Spoken cues placed on the render grid (Logic bar/beat -> time = (bar-1)*bar + (beat-1)*beat;
-    the user's Logic bars == render bars). '<x> in' -> '<x> in ready go', '<x> stop' -> '<x> stop
-    ready stop'; the LAST word lands on the event beat, earlier words on the preceding beats
-    (metered count). Russian words use a Russian voice, others the default."""
+def expand_cue(text):
+    """'<x> in' -> '<x> in ready go', '<x> stop' -> '<x> stop ready stop', else unchanged."""
+    last = text.split()[-1].lower()
+    return text + (" ready go" if last == "in" else " ready stop" if last == "stop" else "")
+
+def cue_event_time(c, bar, beat, lead):
+    return lead + (int(c["bar"])-1)*bar + (int(c.get("beat", 1))-1)*beat
+
+def cue_first_word_time(c, bar, beat, lead):
+    """earliest spoken-word beat of a cue (used to size the front lead so nothing clips)."""
+    W = len(expand_cue(c["text"].strip()).split())
+    return cue_event_time(c, bar, beat, lead) - W*beat
+
+def build_cues(cue_list, total, bar, beat, lead):
+    """Spoken cues on the render grid. Event time = the marked Logic bar/beat (+lead); the
+    instrument enters ON that beat, so the phrase's LAST word ('go'/'stop') lands the beat
+    BEFORE it and earlier words on the beats before that (metered count). Russian words use a
+    Russian voice, others the default."""
     import re
     buf = np.zeros((total, 2), np.float32)
     rep = []
     for c in cue_list:
-        b, be = int(c["bar"]), int(c.get("beat", 1))
-        text = c["text"].strip()
-        last = text.split()[-1].lower()
-        phrase = text + (" ready go" if last == "in" else " ready stop" if last == "stop" else "")
-        words = phrase.split(); W = len(words)
-        t_event = (b-1)*bar + (be-1)*beat                 # last word sits here
+        words = expand_cue(c["text"].strip()).split(); W = len(words)
+        t_event = cue_event_time(c, bar, beat, lead)      # instrument enters here (no word on it)
         for i, w in enumerate(words):
             clip = _say(w, RU_VOICE if re.search("[а-яёА-ЯЁ]", w) else EN_VOICE)
-            s = int((t_event - (W-1-i)*beat - _vowel_onset(clip))*SR)
+            s = int((t_event - (W-i)*beat - _vowel_onset(clip))*SR)   # last word on t_event-beat
             a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, total-s)
             if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
-        rep.append((b, be, phrase, t_event))
+        rep.append((int(c["bar"]), int(c.get("beat", 1)), " ".join(words), t_event))
     return buf, rep
 
 def main():
@@ -232,8 +241,19 @@ def main():
     earliest = min(t for a in srcs if (t := first_sound(a)) is not None)
     if earliest + OFF < 0:
         OFF += np.ceil(-(earliest+OFF)/bar)*bar
+    # front lead: whole extra bars so the longest cue phrase (e.g. song-title start cue) fits
+    # before its event instead of clipping off the front. Shifts music + cues + click together.
+    lead = 0.0
+    if mix.get("cues"):
+        min_word = min(cue_first_word_time(c, bar, beat, 0.0) for c in mix["cues"])
+        if min_word < 0.30:                        # 0.30s room for the first word's onset
+            lead = np.ceil((0.30 - min_word)/bar)*bar
+            print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")
+    OFF += lead
     off_samp = round(OFF*SR)
     end = max(len(a) for a in srcs) + off_samp
+    if mix.get("cues"):
+        end = max(end, int((max(cue_event_time(c, bar, beat, lead) for c in mix["cues"]) + 2*bar)*SR))
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
 
@@ -251,7 +271,7 @@ def main():
         out = {"click": cbuf}
     out["all"] = mixdown(music, {})
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
-        out["cues"], crep = build_cues(mix["cues"], total, bar, beat)
+        out["cues"], crep = build_cues(mix["cues"], total, bar, beat, lead)
         print(f"cues: {len(crep)} spoken (ready-go/ready-stop, metered to grid)")
         for b, be, ph, t in crep:
             print(f"  bar {b:>3}.{be}  {t:7.3f}s  {ph}")
