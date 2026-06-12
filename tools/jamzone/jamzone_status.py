@@ -45,7 +45,7 @@ def scan():
         try: ncues = len(json.load(open(os.path.join(d, "cues.json"))))
         except Exception: ncues = 0
         bounces = sorted({os.path.basename(p)[:-4]
-                          for sub, ext in (("auto-render", "*.aif"), ("logic-render", "*.mp3"))
+                          for sub, ext in (("auto-render", "*.wav"), ("logic-render", "*.mp3"))
                           for p in glob.glob(os.path.join(d, sub, ext))})
         has_core = any(b.startswith("click") for b in bounces) and \
                    any(b.startswith("cue") for b in bounces) and \

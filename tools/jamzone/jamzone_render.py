@@ -72,21 +72,20 @@ def place(buf, audio, at_samp):
     n = min(len(audio)-a0, len(buf)-s0)
     if n > 0: buf[s0:s0+n] += audio[a0:a0+n]
 
-def aiff_write(path, x, num_beats):
-    """AIFF + Apple-Loops 'basc' chunk -> MainStage Playback sees tempo/bars, no Logic needed."""
+def wav_tempo_write(path, x, bpm):
+    """WAV + cue@0 labelled 'Tempo: N' (как пишет GarageBand/Logic) ->
+    MainStage Playback видит темп; Stage Traxx играет как обычный wav."""
     import struct
     x = np.clip(x, -1, 1)
-    pcm = (x*32767).astype(">i2").tobytes()
-    nfr = len(x)
-    sr80 = b"\x40\x0e\xac\x44\x00\x00\x00\x00\x00\x00"        # 44100 as 80-bit extended
-    comm = struct.pack(">hLh", 2, nfr, 16) + sr80
-    ssnd = struct.pack(">LL", 0, 0) + pcm
-    basc = struct.pack(">LLHHHH", 1, num_beats, 0, 3, 4, 4) + b"\x00"*68
-    chunks = b""
-    for cid, body in ((b"COMM", comm), (b"basc", basc), (b"SSND", ssnd)):
-        chunks += cid + struct.pack(">L", len(body)) + body + (b"\x00" if len(body) % 2 else b"")
+    pcm = (x*32767).astype("<i2").tobytes()
+    def chunk(cid, body):
+        return cid + struct.pack("<L", len(body)) + body + (b"\x00" if len(body) % 2 else b"")
+    fmt = struct.pack("<HHLLHH", 1, 2, SR, SR*4, 4, 16)
+    cue = struct.pack("<L", 1) + struct.pack("<LL4sLLL", 1, 0, b"data", 0, 0, 0)
+    label = b"adtl" + chunk(b"labl", struct.pack("<L", 1) + f"Tempo: {bpm:.1f}".encode() + b"\x00")
+    body = chunk(b"fmt ", fmt) + chunk(b"data", pcm) + chunk(b"cue ", cue) + chunk(b"LIST", label)
     with open(path, "wb") as f:
-        f.write(b"FORM" + struct.pack(">L", 4+len(chunks)) + b"AIFF" + chunks)
+        f.write(b"RIFF" + struct.pack("<L", 4+len(body)) + b"WAVE" + body)
 
 def main():
     folder = find_folder(sys.argv[1])
@@ -156,14 +155,14 @@ def main():
 
     adir = os.path.join(folder, "auto-render")
     os.makedirs(adir, exist_ok=True)
-    num_beats = round(total/SR/beat)
+    bpm = 60/beat
     for n, buf in out.items():
-        aiff_write(os.path.join(adir, n + ".aif"), buf, num_beats)  # ST + MainStage (Apple-Loops tempo tag)
+        wav_tempo_write(os.path.join(adir, n + ".wav"), buf, bpm)  # ST + MainStage (tempo label)
     json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
                        "t=0 = bar line; downbeat of stem grid on a bar line"},
               open(os.path.join(adir, "timeline.json"), "w"), indent=1)
-    print(f"✓ auto-render/: {', '.join(n+'.aif' for n in out)} + timeline.json")
+    print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json")
 
 if __name__ == "__main__":
     main()
