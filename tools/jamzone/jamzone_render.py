@@ -165,15 +165,26 @@ def _atempo(x, factor):
                          input=x.astype(np.float32).tobytes(), capture_output=True).stdout
     return np.frombuffer(raw, np.float32).copy()
 
-def _say_fit(text, voice, max_dur):
-    """spoken word fitted into one beat slot (a dashed compound = ONE word = ONE beat, e.g.
-    more-arpegiator): escalate `say -r`, top off with atempo if the fastest rate still spills."""
-    x = _say(text, voice)
-    for rate in (220, 300, 360):
-        if len(x)/SR <= max_dur: return x
-        x = _say(text, voice, rate)
-    if len(x)/SR > max_dur: x = _atempo(x, (len(x)/SR)/max_dur)
-    return x
+def _metric_clips(metric, beat):
+    """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
+    beat -(W-i). Speed-up is capped at `say -r 200` — faster is unintelligible; a word that
+    still can't fit one slot STARTS whole beats earlier and spans them (first word only — the
+    slot before it is free; e.g. arpegiator, more-arpegiator, bass-n-beat). Natural pace wins
+    when it needs no more extra beats than the sped-up take."""
+    W = len(metric); out = []
+    for i, w in enumerate(metric):
+        v = RU_VOICE if _cyrillic(w) else EN_VOICE
+        budget = 0.92*beat
+        nat, fast = _say(w, v), _say(w, v, 200)
+        clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
+        if clip is None and i == 0:
+            ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
+            clip = nat if ex(nat) <= ex(fast) else fast
+            extra = ex(clip)
+        elif clip is None:                            # mid-phrase: no room to extend backwards
+            clip = _atempo(fast, (len(fast)/SR)/budget)
+        out.append((clip, (W-i) + extra))
+    return out
 
 def _vowel_onset(x):
     """time of the first 0.02s window whose RMS > 0.4*peak (the spoken vowel) — so the word
@@ -206,13 +217,25 @@ def cue_kind(text):
     last = text.split()[-1].lower()
     return "stop" if last == "stop" else "in" if last == "in" else "plain"
 
+def cue_words(text):
+    """metered words of a cue + natural-pace intro. The counted block is the LAST 4 words
+    ('<x> in ready go'); anything before it (the song title in the start cue) is announcement,
+    spoken at natural speed as one phrase, ending just before the block — never squashed."""
+    words = (text + " ready go" if cue_kind(text) == "in" else text).split()
+    return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
+
+INTRO_GAP = 0.12                                          # breath between intro and the block
 def cue_first_word_time(c, bar, beat, lead):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); te = cue_event_time(c, bar, beat, lead)
     if cue_kind(text) == "stop":
         return te - 5*beat                                # ~announcement + 3-2-1 count
-    W = len((text + " ready go").split()) if cue_kind(text) == "in" else len(text.split())
-    return te - W*beat
+    intro, metric = cue_words(text)
+    t0 = te - _metric_clips(metric, beat)[0][1]*beat
+    if intro:
+        clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
+        return t0 - INTRO_GAP - len(clip)/SR
+    return t0
 
 def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
@@ -238,11 +261,16 @@ def build_cues(cue_list, total, bar, beat, lead):
             _put(buf, ann, (t_event - 3*beat) - 0.35 - len(ann)/SR)
             phrase = text + " in 3 · 3 2 1"
         else:
-            words = (text + " ready go" if kind == "in" else text).split(); W = len(words)
-            for i, w in enumerate(words):                 # last word on the beat BEFORE the event
-                clip = _say_fit(w, RU_VOICE if _cyrillic(w) else EN_VOICE, 0.92*beat)
-                _put(buf, clip, t_event - (W-i)*beat - _vowel_onset(clip))
-            phrase = " ".join(words)
+            intro, metric = cue_words(text)
+            clips = _metric_clips(metric, beat)           # last word on the beat BEFORE the event
+            if intro:                                     # title etc: natural pace, right-aligned
+                clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
+                _put(buf, clip, t_event - clips[0][1]*beat - INTRO_GAP - len(clip)/SR)
+            for (clip, nb), w in zip(clips, metric):
+                _put(buf, clip, t_event - nb*beat - _vowel_onset(clip))
+            ext = clips[0][1] - len(metric)
+            phrase = (intro + " · " if intro else "") + " ".join(metric) \
+                     + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
         rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
     return buf, rep
 
