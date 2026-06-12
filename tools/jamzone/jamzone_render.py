@@ -161,36 +161,66 @@ def _vowel_onset(x):
     if not len(env): return 0.0
     return int(np.argmax(env > 0.4*env.max()))*(w//2)/SR
 
-def expand_cue(text):
-    """'<x> in' -> '<x> in ready go', '<x> stop' -> '<x> stop ready stop', else unchanged."""
-    last = text.split()[-1].lower()
-    return text + (" ready go" if last == "in" else " ready stop" if last == "stop" else "")
+COUNT_FILES = {"3": "~/3.aiff", "2": "~/2.aiff", "1": "~/1.aiff"}
+_CLIP_CACHE = {}
+def _load_clip(path):
+    path = os.path.expanduser(path)
+    if path not in _CLIP_CACHE:
+        raw = subprocess.run(["ffmpeg","-v","quiet","-i",path,"-ac","1","-ar",str(SR),"-f","f32le","-"],
+                             capture_output=True).stdout
+        x = np.frombuffer(raw, np.float32).copy()
+        _CLIP_CACHE[path] = x/(np.max(np.abs(x)) or 1)*0.9
+    return _CLIP_CACHE[path]
+
+def _cyrillic(s):
+    import re
+    return bool(re.search("[а-яёА-ЯЁ]", s))
 
 def cue_event_time(c, bar, beat, lead):
     return lead + (int(c["bar"])-1)*bar + (int(c.get("beat", 1))-1)*beat
 
+def cue_kind(text):
+    last = text.split()[-1].lower()
+    return "stop" if last == "stop" else "in" if last == "in" else "plain"
+
 def cue_first_word_time(c, bar, beat, lead):
-    """earliest spoken-word beat of a cue (used to size the front lead so nothing clips)."""
-    W = len(expand_cue(c["text"].strip()).split())
-    return cue_event_time(c, bar, beat, lead) - W*beat
+    """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
+    text = c["text"].strip(); te = cue_event_time(c, bar, beat, lead)
+    if cue_kind(text) == "stop":
+        return te - 5*beat                                # ~announcement + 3-2-1 count
+    W = len((text + " ready go").split()) if cue_kind(text) == "in" else len(text.split())
+    return te - W*beat
+
+def _put(buf, clip, t):
+    s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
+    if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
 
 def build_cues(cue_list, total, bar, beat, lead):
-    """Spoken cues on the render grid. Event time = the marked Logic bar/beat (+lead); the
-    instrument enters ON that beat, so the phrase's LAST word ('go'/'stop') lands the beat
-    BEFORE it and earlier words on the beats before that (metered count). Russian words use a
-    Russian voice, others the default."""
-    import re
+    """Spoken cues on the render grid. Event time = the marked Logic bar/beat (+lead); the band
+    plays/stops ON that beat (no word on it). Two styles by trailing keyword:
+      '<x> in'   -> '<x> in ready go', metered: last word 'go' on the beat BEFORE the event.
+      '<x> stop' -> announce '<x> stop in 3', then count 3-2-1 on the three beats before the stop.
+    Russian words use a Russian voice; counts use the lifted count clips (~/3,2,1.aiff)."""
     buf = np.zeros((total, 2), np.float32)
     rep = []
     for c in cue_list:
-        words = expand_cue(c["text"].strip()).split(); W = len(words)
-        t_event = cue_event_time(c, bar, beat, lead)      # instrument enters here (no word on it)
-        for i, w in enumerate(words):
-            clip = _say(w, RU_VOICE if re.search("[а-яёА-ЯЁ]", w) else EN_VOICE)
-            s = int((t_event - (W-i)*beat - _vowel_onset(clip))*SR)   # last word on t_event-beat
-            a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, total-s)
-            if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
-        rep.append((int(c["bar"]), int(c.get("beat", 1)), " ".join(words), t_event))
+        text = c["text"].strip(); kind = cue_kind(text)
+        t_event = cue_event_time(c, bar, beat, lead)      # band event here (silent in cue track)
+        voice = RU_VOICE if _cyrillic(text) else EN_VOICE
+        if kind == "stop":
+            for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1
+                clip = _load_clip(COUNT_FILES[d])
+                _put(buf, clip, t_event - k*beat - _vowel_onset(clip))
+            ann = _say(text + " in 3", voice)             # announcement finishes before the count
+            _put(buf, ann, (t_event - 3*beat) - 0.35 - len(ann)/SR)
+            phrase = text + " in 3 · 3 2 1"
+        else:
+            words = (text + " ready go" if kind == "in" else text).split(); W = len(words)
+            for i, w in enumerate(words):                 # last word on the beat BEFORE the event
+                clip = _say(w, RU_VOICE if _cyrillic(w) else EN_VOICE)
+                _put(buf, clip, t_event - (W-i)*beat - _vowel_onset(clip))
+            phrase = " ".join(words)
+        rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
     return buf, rep
 
 def main():
@@ -272,7 +302,7 @@ def main():
     out["all"] = mixdown(music, {})
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
         out["cues"], crep = build_cues(mix["cues"], total, bar, beat, lead)
-        print(f"cues: {len(crep)} spoken (ready-go/ready-stop, metered to grid)")
+        print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid)")
         for b, be, ph, t in crep:
             print(f"  bar {b:>3}.{be}  {t:7.3f}s  {ph}")
     elif cue_st is not None:                        # fallback: prebuilt cue_track.wav (stem timeline)
