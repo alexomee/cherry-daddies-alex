@@ -5,7 +5,8 @@ Per-song manifest mix.json (in the song folder) says which stems go where:
 
     {
       "pb-other": {"stems": ["05_Synth_Bass", "06_Synth_Lead"], "gain_db": {"06_Synth_Lead": -2}},
-      "pb-bass":  null
+      "pb-bass":  null,
+      "pitch_semitones": -2          // optional: transpose playback to the band's key
     }
 
 click and cues need no manifest: click = the JamZone Click stem, cues = cue_track.wav.
@@ -80,6 +81,27 @@ def place(buf, audio, at_samp):
     s0 = max(0, at_samp); a0 = max(0, -at_samp)
     n = min(len(audio)-a0, len(buf)-s0)
     if n > 0: buf[s0:s0+n] += audio[a0:a0+n]
+
+def pitch_shift(buf, semitones):
+    """Shift pitch by `semitones` (negative = down) preserving tempo, so the
+    grid/alignment is untouched. Uses the rubberband CLI R3 engine (`-3`) with
+    formant preservation — the ffmpeg rubberband FILTER (R2) mis-shifts pitch
+    (asking -2 yields ~-1.4st), the CLI is accurate. float-wav temps avoid
+    clipping (mix may exceed 0dBFS before the later headroom step). Length is
+    pinned to input (rubberband may emit ±a few samples) to keep bar lines exact."""
+    if not semitones: return buf
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        fin, fout = os.path.join(d, "in.wav"), os.path.join(d, "out.wav")
+        subprocess.run(["ffmpeg","-v","quiet","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
+                        "-c:a","pcm_f32le",fin], input=buf.astype(np.float32).tobytes())
+        subprocess.run(["rubberband","-3","-F","-p",str(semitones),fin,fout], capture_output=True)
+        raw = subprocess.run(["ffmpeg","-v","quiet","-i",fout,"-f","f32le","-ac","2","-ar",str(SR),"-"],
+                             capture_output=True).stdout
+    y = np.frombuffer(raw, np.float32).reshape(-1, 2).copy()
+    if len(y) < len(buf):
+        y = np.vstack([y, np.zeros((len(buf)-len(y), 2), np.float32)])
+    return y[:len(buf)]
 
 def wav_tempo_write(path, x, bpm):
     """WAV + cue@0 labelled 'Tempo: N' (как пишет GarageBand/Logic) ->
@@ -182,6 +204,13 @@ def main():
     for grp in ("pb-other", "pb-bass"):
         m = mix.get(grp)
         if m: out[grp] = mixdown(m["stems"], m.get("gain_db", {}))
+
+    semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
+    if semi:
+        print(f"pitch: {semi:+g} semitones (rubberband, tempo/grid preserved) on {', '.join(k for k in out if k != 'click')}")
+        for n in out:
+            if n != "click":                       # click is pitchless; cues/pb/all follow the key
+                out[n] = pitch_shift(out[n], semi)
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
