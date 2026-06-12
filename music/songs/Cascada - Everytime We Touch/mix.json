@@ -1,0 +1,19 @@
+{
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 2,   "beat": 4, "text": "Everytime We Touch vocal in"},
+    {"bar": 11,  "text": "drums in"},
+    {"bar": 18,  "text": "stop"},
+    {"bar": 34,  "text": "stop and solo in"},
+    {"bar": 43,  "text": "bass in"},
+    {"bar": 59,  "text": "stop"},
+    {"bar": 59,  "beat": 4, "text": "vocal in"},
+    {"bar": 68,  "text": "bass in"},
+    {"bar": 75,  "text": "light chorus"},
+    {"bar": 91,  "beat": 3, "text": "solo in"},
+    {"bar": 99,  "beat": 3, "text": "keep going"},
+    {"bar": 107, "beat": 3, "text": "vocal in"},
+    {"bar": 116, "text": "end stop"}
+  ]
+}

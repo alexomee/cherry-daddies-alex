@@ -1,0 +1,19 @@
+{
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 3,  "text": "I Love It synth in"},
+    {"bar": 7,  "text": "voice in"},
+    {"bar": 14, "text": "all stop"},
+    {"bar": 15, "text": "main in"},
+    {"bar": 19, "text": "verse in"},
+    {"bar": 30, "beat": 3, "text": "bridge in"},
+    {"bar": 39, "text": "main in"},
+    {"bar": 47, "text": "verse in"},
+    {"bar": 54, "beat": 3, "text": "chorus in"},
+    {"bar": 62, "beat": 3, "text": "bridge in"},
+    {"bar": 69, "text": "keep going"},
+    {"bar": 71, "text": "main in"},
+    {"bar": 83, "text": "end stop"}
+  ]
+}

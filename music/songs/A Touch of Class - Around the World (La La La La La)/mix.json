@@ -1,0 +1,22 @@
+{
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 3,   "text": "Around the World synth in"},
+    {"bar": 6,   "beat": 4, "text": "vocal in"},
+    {"bar": 15,  "text": "bass-n-beat in"},
+    {"bar": 23,  "text": "chorus in"},
+    {"bar": 31,  "text": "solo in"},
+    {"bar": 38,  "beat": 4, "text": "vocal in"},
+    {"bar": 47,  "text": "keys in"},
+    {"bar": 55,  "text": "synth in"},
+    {"bar": 63,  "text": "chorus in"},
+    {"bar": 71,  "text": "solo in"},
+    {"bar": 79,  "text": "slow part"},
+    {"bar": 88,  "text": "main in"},
+    {"bar": 96,  "text": "chorus in"},
+    {"bar": 104, "text": "keys in"},
+    {"bar": 112, "text": "all stop"},
+    {"bar": 120, "text": "end stop"}
+  ]
+}

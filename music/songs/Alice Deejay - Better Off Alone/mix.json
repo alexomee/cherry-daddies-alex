@@ -1,0 +1,21 @@
+{
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 3,   "text": "Better Off Alone synth in"},
+    {"bar": 19,  "text": "drums stop"},
+    {"bar": 27,  "text": "pad stop"},
+    {"bar": 31,  "text": "keep going"},
+    {"bar": 35,  "text": "main in"},
+    {"bar": 43,  "beat": 2, "text": "vocal in"},
+    {"bar": 50,  "text": "keys in"},
+    {"bar": 59,  "text": "synth stop"},
+    {"bar": 67,  "text": "verse in"},
+    {"bar": 75,  "text": "all stop"},
+    {"bar": 83,  "text": "main in"},
+    {"bar": 88,  "text": "keep going"},
+    {"bar": 91,  "text": "drums in"},
+    {"bar": 99,  "text": "chorus in"},
+    {"bar": 123, "text": "end stop"}
+  ]
+}

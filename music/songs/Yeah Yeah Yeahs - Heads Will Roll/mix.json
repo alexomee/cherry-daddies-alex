@@ -1,0 +1,23 @@
+{
+  "bpm": 132.005,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 3,   "text": "Heads will roll synth in"},
+    {"bar": 11,  "text": "vocal in"},
+    {"bar": 19,  "text": "drums in"},
+    {"bar": 20,  "beat": 4, "text": "bass in"},
+    {"bar": 35,  "text": "guitar in"},
+    {"bar": 41,  "text": "bass in"},
+    {"bar": 43,  "text": "main in"},
+    {"bar": 51,  "text": "chorus in"},
+    {"bar": 59,  "text": "bridge in"},
+    {"bar": 75,  "text": "break in"},
+    {"bar": 83,  "text": "verse in"},
+    {"bar": 93,  "text": "solo in"},
+    {"bar": 100, "beat": 3, "text": "chorus in"},
+    {"bar": 109, "text": "guitar in"},
+    {"bar": 117, "text": "break in"},
+    {"bar": 123, "text": "end stop"}
+  ]
+}

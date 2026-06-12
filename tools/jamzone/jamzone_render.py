@@ -293,9 +293,14 @@ def main():
         sys.exit(f"no mix.json in {folder} — define pb-other/pb-bass first")
 
     if external:
-        stems = {os.path.basename(p)[:-4]: p
+        # old-pipeline artifacts share the folder (cue_track.wav, '<Artist> click.wav',
+        # cue_preview) — they are NOT stems and must not leak into the playback mix
+        legacy = lambda n: (n == "cue_track" or "cue_preview" in n.lower()
+                            or n.lower().endswith(" click"))
+        stems = {n: p
                  for p in sorted(glob.glob(os.path.join(folder, "*.mp3")) +
-                                 glob.glob(os.path.join(folder, "*.wav")))}
+                                 glob.glob(os.path.join(folder, "*.wav")))
+                 if not legacy(n := os.path.basename(p)[:-4])}
         click_name = next((n for n in stems if n.lower() in ("metronome", "click")), None) \
                      or sys.exit("external song: no metronome/click stem")
     else:
@@ -330,17 +335,23 @@ def main():
         OFF += np.ceil(-(earliest+OFF)/bar)*bar
     # front lead: whole extra bars so the longest cue phrase (e.g. song-title start cue) fits
     # before its event instead of clipping off the front. Shifts music + cues + click together.
+    # Counted from the PRE-LEAD cue base (OFF+db0): bars the earliest-sound fix already added
+    # give the phrase room too — without this, push songs get a wasted extra count-in bar.
     lead = 0.0
     if mix.get("cues"):
-        min_word = min(cue_first_word_time(c, bar, beat, 0.0) for c in mix["cues"])
+        min_word = min(cue_first_word_time(c, bar, beat, OFF + db0) for c in mix["cues"])
         if min_word < 0.30:                        # 0.30s room for the first word's onset
             lead = np.ceil((0.30 - min_word)/bar)*bar
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")
     OFF += lead
+    # cue grid base = the bar line where the stem downbeat (music bar 1.1) lands. NOT `lead`:
+    # the earliest-sound fix above may have added whole bars to OFF (e.g. a stem starting
+    # before its downbeat), and the cues must shift with the music, not stay on `lead`.
+    cue_base = OFF + db0
     off_samp = round(OFF*SR)
     end = max(len(a) for a in srcs) + off_samp
     if mix.get("cues"):
-        end = max(end, int((max(cue_event_time(c, bar, beat, lead) for c in mix["cues"]) + 2*bar)*SR))
+        end = max(end, int((max(cue_event_time(c, bar, beat, cue_base) for c in mix["cues"]) + 2*bar)*SR))
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
 
@@ -355,11 +366,23 @@ def main():
         out = {"click": build_click(60/beat, total, off_samp, bar)}
     else:                                           # JamZone: the click stem itself, aligned
         cbuf = np.zeros((total, 2), np.float32); place(cbuf, decode(stems[click_name]), off_samp)
+        t0c = first_sound(cbuf)                     # added front bars (lead/offset) must tick too:
+        if t0c and t0c > beat/2:                    # fill them with JZ samples, accent on bar
+            import jamzone_click as JC              # lines, at the stem click's level
+            jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)
+            jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)
+            g = float(np.abs(cbuf).max())
+            for k in range(int(round(t0c/beat))):
+                hit = (jdb if k % 4 == 0 else jbt*0.5)*g
+                s = round(k*beat*SR); n = min(len(hit), total-s)
+                cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
+            print(f"click: front {t0c/bar:.0f} bar(s) filled with JZ count-in")
         out = {"click": cbuf}
     out["all"] = mixdown(music, {})
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
-        out["cues"], crep = build_cues(mix["cues"], total, bar, beat, lead)
-        print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid)")
+        out["cues"], crep = build_cues(mix["cues"], total, bar, beat, cue_base)
+        print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
+              f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
         for b, be, ph, t in crep:
             print(f"  bar {b:>3}.{be}  {t:7.3f}s  {ph}")
     elif cue_st is not None:                        # fallback: prebuilt cue_track.wav (stem timeline)

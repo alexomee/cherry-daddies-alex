@@ -1,0 +1,19 @@
+{
+  "bpm": 124.0,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 1, "text": "Я устал bass in"},
+    {"bar": 3, "text": "drums in"},
+    {"bar": 5, "text": "verse in"},
+    {"bar": 13, "text": "stop"},
+    {"bar": 25, "text": "verse in"},
+    {"bar": 33, "text": "stop"},
+    {"bar": 44, "text": "keep going"},
+    {"bar": 53, "text": "stop"},
+    {"bar": 55, "text": "drums in"},
+    {"bar": 56, "beat": 2, "text": "vocal in"},
+    {"bar": 68, "text": "chorus-vocal in"},
+    {"bar": 92, "beat": 3, "text": "end stop"}
+  ]
+}
