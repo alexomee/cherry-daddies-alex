@@ -77,6 +77,22 @@ def wav_write(path, x):
     w = wave.open(path, "w"); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((x*32767).astype("<i2").tobytes()); w.close()
 
+def aiff_write(path, x, num_beats):
+    """AIFF + Apple-Loops 'basc' chunk -> MainStage Playback sees tempo/bars, no Logic needed."""
+    import struct
+    x = np.clip(x, -1, 1)
+    pcm = (x*32767).astype(">i2").tobytes()
+    nfr = len(x)
+    sr80 = b"\x40\x0e\xac\x44\x00\x00\x00\x00\x00\x00"        # 44100 as 80-bit extended
+    comm = struct.pack(">hLh", 2, nfr, 16) + sr80
+    ssnd = struct.pack(">LL", 0, 0) + pcm
+    basc = struct.pack(">LLHHHH", 1, num_beats, 0, 3, 4, 4) + b"\x00"*68
+    chunks = b""
+    for cid, body in ((b"COMM", comm), (b"basc", basc), (b"SSND", ssnd)):
+        chunks += cid + struct.pack(">L", len(body)) + body + (b"\x00" if len(body) % 2 else b"")
+    with open(path, "wb") as f:
+        f.write(b"FORM" + struct.pack(">L", 4+len(chunks)) + b"AIFF" + chunks)
+
 def main():
     folder = find_folder(sys.argv[1])
     mix_p = os.path.join(folder, "mix.json")
@@ -145,8 +161,10 @@ def main():
 
     adir = os.path.join(folder, "auto-render")
     os.makedirs(adir, exist_ok=True)
+    num_beats = round(total/SR/beat)
     for n, buf in out.items():
-        wav_write(os.path.join(adir, n + ".wav"), buf)
+        wav_write(os.path.join(adir, n + ".wav"), buf)            # Stage Traxx
+        aiff_write(os.path.join(adir, n + ".aif"), buf, num_beats)  # MainStage Playback (tempo-tagged)
     json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
                        "t=0 = bar line; downbeat of stem grid on a bar line"},
