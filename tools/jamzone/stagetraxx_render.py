@@ -63,8 +63,14 @@ def main():
     if not pos: sys.exit(__doc__)
     folder = find_folder(pos[0])
     rdir = os.path.join(folder, "logic-render")
-    tracks = [(os.path.join(rdir, stem+".mp3"), nm, ch, bus, pan, mute)
-              for stem, nm, ch, bus, pan, mute in ROUTING if os.path.exists(os.path.join(rdir, stem+".mp3"))]
+    ALIASES = {"cues": ("cues", "cue"), "pb-other": ("pb-other", "pb_other"), "pb-bass": ("pb-bass", "pb_bass")}
+    def find_stem(stem):
+        for a in ALIASES.get(stem, (stem,)):
+            p = os.path.join(rdir, a + ".mp3")
+            if os.path.exists(p): return p
+        return None
+    tracks = [(p, nm, ch, bus, pan, mute) for stem, nm, ch, bus, pan, mute in ROUTING
+              if (p := find_stem(stem))]
     if not tracks: sys.exit(f"no logic-render/*.mp3 in {folder}")
 
     base = os.path.basename(folder)
