@@ -136,6 +136,54 @@ def build_click(bpm, total, off_samp, bar):
     o = o/(np.max(np.abs(o)) or 1)*0.95
     return np.column_stack([o, o])
 
+RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
+_SAY_CACHE = {}
+def _say(text, voice):
+    import hashlib, tempfile
+    key = hashlib.md5(f"{voice}|{text}".encode()).hexdigest()
+    if key in _SAY_CACHE: return _SAY_CACHE[key]
+    with tempfile.TemporaryDirectory() as d:
+        aiff = os.path.join(d, "s.aiff")
+        cmd = ["say"] + (["-v", voice] if voice else []) + ["-o", aiff, text]
+        subprocess.run(cmd, check=True)
+        raw = subprocess.run(["ffmpeg","-v","quiet","-i",aiff,"-ac","1","-ar",str(SR),"-f","f32le","-"],
+                             capture_output=True).stdout
+    x = np.frombuffer(raw, np.float32).copy()
+    x = x/(np.max(np.abs(x)) or 1)*0.9
+    _SAY_CACHE[key] = x; return x
+
+def _vowel_onset(x):
+    """time of the first 0.02s window whose RMS > 0.4*peak (the spoken vowel) — so the word
+    lands its stressed onset, not its leading silence, on the beat."""
+    w = int(0.02*SR)
+    if len(x) < w: return 0.0
+    env = np.array([np.sqrt((x[i:i+w]**2).mean()) for i in range(0, len(x)-w, w//2)])
+    if not len(env): return 0.0
+    return int(np.argmax(env > 0.4*env.max()))*(w//2)/SR
+
+def build_cues(cue_list, total, bar, beat):
+    """Spoken cues placed on the render grid (Logic bar/beat -> time = (bar-1)*bar + (beat-1)*beat;
+    the user's Logic bars == render bars). '<x> in' -> '<x> in ready go', '<x> stop' -> '<x> stop
+    ready stop'; the LAST word lands on the event beat, earlier words on the preceding beats
+    (metered count). Russian words use a Russian voice, others the default."""
+    import re
+    buf = np.zeros((total, 2), np.float32)
+    rep = []
+    for c in cue_list:
+        b, be = int(c["bar"]), int(c.get("beat", 1))
+        text = c["text"].strip()
+        last = text.split()[-1].lower()
+        phrase = text + (" ready go" if last == "in" else " ready stop" if last == "stop" else "")
+        words = phrase.split(); W = len(words)
+        t_event = (b-1)*bar + (be-1)*beat                 # last word sits here
+        for i, w in enumerate(words):
+            clip = _say(w, RU_VOICE if re.search("[а-яёА-ЯЁ]", w) else EN_VOICE)
+            s = int((t_event - (W-1-i)*beat - _vowel_onset(clip))*SR)
+            a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, total-s)
+            if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
+        rep.append((b, be, phrase, t_event))
+    return buf, rep
+
 def main():
     folder = find_folder(sys.argv[1])
     bpm_force = float(sys.argv[sys.argv.index("--bpm")+1]) if "--bpm" in sys.argv else None
@@ -202,7 +250,12 @@ def main():
         cbuf = np.zeros((total, 2), np.float32); place(cbuf, decode(stems[click_name]), off_samp)
         out = {"click": cbuf}
     out["all"] = mixdown(music, {})
-    if cue_st is not None:
+    if mix.get("cues"):                            # authored bar/beat cue list (preferred)
+        out["cues"], crep = build_cues(mix["cues"], total, bar, beat)
+        print(f"cues: {len(crep)} spoken (ready-go/ready-stop, metered to grid)")
+        for b, be, ph, t in crep:
+            print(f"  bar {b:>3}.{be}  {t:7.3f}s  {ph}")
+    elif cue_st is not None:                        # fallback: prebuilt cue_track.wav (stem timeline)
         cues_buf = np.zeros((total, 2), np.float32); place(cues_buf, cue_st, off_samp)
         out["cues"] = cues_buf
     for grp in ("pb-other", "pb-bass"):
@@ -211,10 +264,10 @@ def main():
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
     if semi:
-        print(f"pitch: {semi:+g} semitones (rubberband, tempo/grid preserved) on {', '.join(k for k in out if k != 'click')}")
-        for n in out:
-            if n != "click":                       # click is pitchless; cues/pb/all follow the key
-                out[n] = pitch_shift(out[n], semi)
+        targets = [k for k in out if k not in ("click", "cues")]   # voice/click never pitched
+        print(f"pitch: {semi:+g} semitones (rubberband, tempo/grid preserved) on {', '.join(targets)}")
+        for n in targets:
+            out[n] = pitch_shift(out[n], semi)
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
