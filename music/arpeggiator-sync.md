@@ -43,7 +43,7 @@ ST **не слушает** аудио-клик. Он генерит MIDI Clock �
 - [x] ST4 шлёт и MIDI Clock, и MTC (взаимоисключающе; bpm песни обязателен — наш `stagetraxx_render.py` его пишет). https://stagetraxx.com/docs/v4/midi/
 - [x] Хост клавишника = MainStage. Слейвится к клоку только по темпу (Concert → Timing → Get tempo from MIDI input); фазу такта (Start/SPP) не держит, темпо-детектор джиттерит → ST-клок для нашего ограничения «рисунок от раза» ненадёжен.
 - [x] Выбран путь: **ноут-мастер — MainStage Playback** (см. ниже). E-RM отпал: хочет свой sync-трек отдельным каналом, а все 4 выхода Rubix заняты.
-- [x] Завести правило в пайплайн: **все `logic-render/` бounce начинать с тактовой черты** (целые такты), темп строго постоянный — иначе арп-синк не сойдётся.
+- [x] Завести правило в пайплайн: финальные файлы для плейбека **начинаются с тактовой черты** (целые такты), темп строго постоянный. Logic-бounce может быть «как попало» — `logic_render_rebar.py` выправит в `st-render/`, сами бounce неприкосновенны.
 
 ## Факты по хостам (проверено 12.06.2026)
 
@@ -62,10 +62,10 @@ ST **не слушает** аудио-клик. Он генерит MIDI Clock �
 
 ## Реализация правила «бounce от тактовой черты» (12.06.2026)
 
-`tools/jamzone/logic_render_rebar.py "<песня>"` — пересобирает logic-render на сетку:
+`tools/jamzone/logic_render_rebar.py "<песня>" [--check]` — из стемов + logic-render (read-only) собирает выровненный набор в `st-render/`:
 - меряет сетку по JZ Click-стему (lstsq по всем кликам; акцент ~200Hz = даунбит), сдвиг бounce↔стемы — кросс-корреляцией;
 - t=0 = тактовая черта = **первый даунбит Click-стема** (каунт-ин такт не нужен: стем и так даёт ~3 такта клика до музыки), длина = целые такты;
 - выход **WAV** (mp3 encoder delay ~26ms портил бы фазу против MIDI Clock), click из Click-стема, cues из `cue_track.wav`, pb-other/all — перевыровненные старые бounce;
-- пишет `logic-render/timeline.json {offset_sec, bar_sec, bpm}`; `stagetraxx_render.py` читает его и сдвигает регионы (и берёт wav поверх mp3); старые mp3 → `logic-render/_old-<дата>/`.
+- пишет `st-render/timeline.json {offset_sec, bar_sec, bpm}`; `stagetraxx_render.py` берёт `st-render/*.wav` (fallback — сырые `logic-render/*.mp3`) и сдвигает регионы по timeline.json. **`logic-render/` скрипты никогда не меняют.**
 
 Сделано для **Mr. Saxobeat** (bpm 127.0000, сетка ±0.3ms, 105 тактов; клик с t=0, cue-речь в такте 1, счёт «1-2-3-4» + синт-интро в такте 2, музыка с такта 3). Для следующих песен: если Logic-бounce опять не от черты — просто прогнать rebar после бounce.

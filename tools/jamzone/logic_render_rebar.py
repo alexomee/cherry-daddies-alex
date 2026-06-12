@@ -10,20 +10,21 @@ What it does (all timings measured, not assumed):
      least-squares fit -> beat, bar, first-downbeat phase.
   2. Bounce shift: cross-correlates a reference bounce against a source stem to find
      how far the Logic bounce timeline is from the stem timeline.
-  3. Rebuild as WAV (no mp3 encoder-delay phase ambiguity):
+  3. Rebuild as WAV (no mp3 encoder-delay phase ambiguity) into st-render/:
        click.wav    = full Click stem on the new grid
        cues.wav     = cue_track.wav placed on the new grid
-       pb-other.wav = old pb-other bounce re-aligned
-       all.wav      = old all bounce re-aligned
+       pb-other.wav = logic-render pb-other bounce re-aligned
+       all.wav      = logic-render all bounce re-aligned
      All files same length = whole number of bars.
-  4. Writes logic-render/timeline.json {offset_sec, bar_sec, bpm} — the shift to add
+  4. Writes st-render/timeline.json {offset_sec, bar_sec, bpm} — the shift to add
      to stem-timeline times (cues.json / structure.json) to hit the new audio.
-  5. Old mp3s moved to logic-render/_old-<date>/ (version-every-render rule).
+
+logic-render/ is the user's Logic bounce output — READ-ONLY, never modified here.
 
 Usage: logic_render_rebar.py "<song name or folder>" [--ref-stem <stem.m4a>] [--check]
        --check = full analysis + verification, write nothing
 """
-import os, sys, glob, json, shutil, subprocess, wave, datetime
+import os, sys, glob, json, subprocess, wave
 import numpy as np
 
 SR = 44100
@@ -169,18 +170,16 @@ def main():
     if "--check" in sys.argv:
         print("✓ --check: all green, nothing written"); return
 
-    old = os.path.join(rdir, "_old-" + datetime.date.today().isoformat())
-    os.makedirs(old, exist_ok=True)
-    for p in glob.glob(os.path.join(rdir, "*.mp3")):
-        shutil.move(p, os.path.join(old, os.path.basename(p)))
+    sdir = os.path.join(folder, "st-render")
+    os.makedirs(sdir, exist_ok=True)
     for name, buf in out.items():
-        wav_write(os.path.join(rdir, name + ".wav"), buf)
+        wav_write(os.path.join(sdir, name + ".wav"), buf)
     json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6),
                "bpm": round(60/beat, 4),
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
                        "t=0 = bar line = stem's first downbeat (no count-in bar)"},
-              open(os.path.join(rdir, "timeline.json"), "w"), indent=1)
-    print(f"✓ wrote {', '.join(n+'.wav' for n in out)} + timeline.json; old mp3s -> {os.path.basename(old)}/")
+              open(os.path.join(sdir, "timeline.json"), "w"), indent=1)
+    print(f"✓ st-render/: {', '.join(n+'.wav' for n in out)} + timeline.json (logic-render untouched)")
 
 if __name__ == "__main__":
     main()

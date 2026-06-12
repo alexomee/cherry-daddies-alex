@@ -52,4 +52,4 @@ Yeah Yeah Yeahs - Heads Will Roll            🎙 cue           13   Y  13     Y
 Готовность каждой — в авто-блоке. «Готово к репе» = cue отслушан; «готово полностью» = ✅ StageTraxx.
 
 Per-song заметки (cat/end — не из файлов):
-- Heads Will Roll: cat_23443 (не A-Trak) · Gala: cat_30111 (club) · Blinding Lights: cat_60088 (не Boyce cover) · ATC: конец руками 3:37.12 · Mr. Saxobeat: logic-render пересобран на тактовую сетку wav-ами (`logic_render_rebar.py`, каунт-ин такт клика, см. arpeggiator-sync.md); старые mp3 в `_old-2026-06-12/` — ночной «click.mp3» был дублем cues, настоящего клика в бounce не было.
+- Heads Will Roll: cat_23443 (не A-Trak) · Gala: cat_30111 (club) · Blinding Lights: cat_60088 (не Boyce cover) · ATC: конец руками 3:37.12 · Saxobeat + S&M: в ST играют из `st-render/` (wav на тактовой сетке от `logic_render_rebar.py`; logic-render не тронут, см. arpeggiator-sync.md) · у Saxobeat в logic-render «click.mp3» — дубль cues, настоящего клика в бounce нет (st-render берёт клик из стема, так что не блокер).

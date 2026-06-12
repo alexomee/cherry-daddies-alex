@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Load a song's Logic-rendered tracks into Stage Traxx 4 with discrete-output routing.
 
-Reads <song>/logic-render/{click,cues,pb-other,pb-bass}.{wav,mp3} (whichever exist;
-wav preferred — sample-exact phase for arp MIDI-clock sync, see arpeggiator-sync.md) and
+Reads <song>/st-render/*.wav (re-barred, preferred — sample-exact phase for arp
+MIDI-clock sync, see arpeggiator-sync.md) or <song>/logic-render/*.mp3 (raw Logic
+bounces, fallback) for {click,cues,pb-other,pb-bass,all} and
 creates a Stage Traxx song routed for a multi-out interface (e.g. Roland Rubix24),
 ONE track per hardware output channel:
 
@@ -63,21 +64,22 @@ def main():
     pos = [a for a in sys.argv[1:] if not a.startswith("--")]
     if not pos: sys.exit(__doc__)
     folder = find_folder(pos[0])
-    rdir = os.path.join(folder, "logic-render")
+    sdir = os.path.join(folder, "st-render")     # generated (re-barred wav) — preferred
+    rdir = os.path.join(folder, "logic-render")  # user's Logic bounces — fallback, read-only
     ALIASES = {"cues": ("cues", "cue"), "pb-other": ("pb-other", "pb_other"), "pb-bass": ("pb-bass", "pb_bass")}
     def find_stem(stem):
-        for a in ALIASES.get(stem, (stem,)):
-            for ext in (".wav", ".mp3"):
-                p = os.path.join(rdir, a + ext)
+        for d, ext in ((sdir, ".wav"), (rdir, ".mp3")):
+            for a in ALIASES.get(stem, (stem,)):
+                p = os.path.join(d, a + ext)
                 if os.path.exists(p): return p
         return None
     tracks = [(p, nm, ch, bus, pan, mute) for stem, nm, ch, bus, pan, mute in ROUTING
               if (p := find_stem(stem))]
-    if not tracks: sys.exit(f"no logic-render/*.{{wav,mp3}} in {folder}")
+    if not tracks: sys.exit(f"no st-render/*.wav or logic-render/*.mp3 in {folder}")
 
     # timeline.json: render timeline = stem timeline + offset_sec (re-barred bounces)
     toff = 0.0
-    tj = os.path.join(rdir, "timeline.json")
+    tj = os.path.join(sdir, "timeline.json")
     if os.path.exists(tj): toff = json.load(open(tj)).get("offset_sec", 0.0)
 
     base = os.path.basename(folder)
