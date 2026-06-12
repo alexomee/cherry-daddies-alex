@@ -4,7 +4,7 @@ _Сгенерировано из артефактов. Сводка: ✅ StageTr
 ```
 song                                         stage          stems str cue logic  bounce / ST
 Alexandra Stan - Mr. Saxobeat                ✅ StageTraxx    15   Y  13     Y  all,click,cues,other  ▶ST:4tr
-Rihanna - S&M                                ✅ StageTraxx    13   Y  13     Y  all,click,cues,other  ▶ST:4tr
+Rihanna - S&M                                ✅ StageTraxx    13   Y  13     Y  all,click,cues,other  ▶ST:3tr
 A Touch of Class - Around the World (La La L 🎙 cue           15   Y  15     Y  —
 Alex Gaudino - Destination Calabria          🎙 cue            9   Y  13     Y  —
 Alice Deejay - Better Off Alone              🎙 cue           12   Y   9     Y  —
