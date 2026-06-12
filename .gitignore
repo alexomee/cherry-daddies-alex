@@ -10,6 +10,9 @@ __pycache__/
 *.mp4
 *.aiff
 *.flac
+*.webm
+*.opus
+*.mkv
 *.png
 *.jpg
 *.jpeg
