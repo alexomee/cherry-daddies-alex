@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""Load a song's Logic-rendered tracks into Stage Traxx 4 with discrete-output routing.
+
+Reads <song>/logic-render/{click,cues,pb-other,pb-bass}.mp3 (whichever exist) and
+creates a Stage Traxx song routed for a multi-out interface (e.g. Roland Rubix24),
+ONE track per hardware output channel:
+
+    ch1 Click     bus0 pan -1     (in-ears)
+    ch2 Cues      bus0 pan +1     (in-ears)
+    ch3 PB Other  bus1 pan -1     (front of house)
+    ch4 PB Bass   bus1 pan +1     (front of house)
+
+(In Stage Traxx each "bus" = one stereo output pair; pan -1/+1 picks the L/R channel
+within it, so bus0→outs 1-2, bus1→outs 3-4.) Some songs have no PB Bass (played live
+on a synth-guitar layer) — just omit pb-bass.mp3 and ch4 stays empty. All tracks
+unmuted, built-in metronome OFF. Sections come from the song's cues.json (regions).
+
+Stage Traxx must be CLOSED (the script quits it first).
+
+Usage: stagetraxx_render.py "<song name or folder>" [--playlist "NAME"] [--launch]
+"""
+import os, sys, glob, json, re, uuid, sqlite3, subprocess, datetime, shutil
+
+SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
+ST    = os.path.expanduser("~/Library/Containers/de.dikant.StageTraxx4/Data")
+DB    = os.path.join(ST, "Library/Application Support/StageTraxx4/music_library.sqlite")
+DOCS  = os.path.join(ST, "Documents")
+EQ = ('{"bands":[{"bw":1,"freq":100,"gain":0,"label":"LO","type":1},'
+      '{"bw":1,"freq":500,"gain":0,"label":"LM","type":0},'
+      '{"bw":2,"freq":2000,"gain":0,"label":"HM","type":0},'
+      '{"bw":1,"freq":10000,"gain":0,"label":"HI","type":2}],"bypass":false}')
+
+# stem file -> (display name, output channel, bus, pan, muted-by-default)
+ROUTING = [
+    ("click",    "Click",    1, 0, -1.0, 0),
+    ("cues",     "Cues",     2, 0,  1.0, 0),
+    ("pb-other", "PB Other", 3, 1, -1.0, 0),
+    ("pb-bass",  "PB Bass",  4, 1,  1.0, 0),
+    ("all",      "All",      3, 1, -1.0, 1),   # full mix to preview the whole song — MUTED, same out as PB Other
+]
+
+def find_folder(q):
+    if os.path.isdir(q): return os.path.abspath(q)
+    for d in sorted(glob.glob(os.path.join(SONGS, "*"))):
+        if os.path.isdir(d) and q.lower() in os.path.basename(d).lower(): return d
+    sys.exit(f"no song folder matches '{q}'")
+
+def dur_of(p):
+    out = subprocess.run(["ffprobe","-v","quiet","-show_entries","format=duration",
+                          "-of","default=nk=1:nw=1", p], capture_output=True).stdout
+    return float(out or 0)
+
+def get_bpm(folder):
+    try:
+        sys.path.insert(0, os.path.dirname(__file__)); import jamzone_cues as J
+        return J.meta(J.resolve(os.path.basename(folder).split(" - ")[-1]))[2]
+    except Exception:
+        m = re.search(r'(\d+)\s*bpm', os.path.basename(folder), re.I)
+        return float(m.group(1)) if m else 120.0
+
+def main():
+    pos = [a for a in sys.argv[1:] if not a.startswith("--")]
+    if not pos: sys.exit(__doc__)
+    folder = find_folder(pos[0])
+    rdir = os.path.join(folder, "logic-render")
+    tracks = [(os.path.join(rdir, stem+".mp3"), nm, ch, bus, pan, mute)
+              for stem, nm, ch, bus, pan, mute in ROUTING if os.path.exists(os.path.join(rdir, stem+".mp3"))]
+    if not tracks: sys.exit(f"no logic-render/*.mp3 in {folder}")
+
+    base = os.path.basename(folder)
+    artist, _, title = base.partition(" - "); title = title or base
+    dur = dur_of(tracks[0][0]); bpm = get_bpm(folder)
+
+    # regions = the SOURCE song structure from JamZone (Verse/Chorus/Bridge…), not the cue labels.
+    regions = []
+    try:
+        sys.path.insert(0, os.path.dirname(__file__)); import jamzone_cues as J
+        st = json.loads(J.dec(J.resolve(base.split(" - ")[-1]), "structure.json"))
+        regions = [(s["caption"], s["begin"], s["end"]) for s in st
+                   if not s["caption"].lower().startswith("precount")]
+    except Exception:
+        regions = []
+    if not regions:                                # external / non-JamZone song → fall back to the cue list
+        cj = os.path.join(folder, "cues.json")
+        if os.path.exists(cj):
+            cues = sorted(json.load(open(cj)), key=lambda c: c["t"])
+            regions = [(c["name"], c["t"], cues[i+1]["t"] if i+1 < len(cues) else dur)
+                       for i, c in enumerate(cues)]
+
+    pl = None
+    if "--playlist" in sys.argv:
+        i = sys.argv.index("--playlist"); pl = sys.argv[i+1] if i+1 < len(sys.argv) else None
+
+    if subprocess.run(["pgrep","-f","Stage Traxx 4"], capture_output=True).stdout.strip():
+        print("Quitting Stage Traxx 4…")
+        subprocess.run(["osascript","-e",'tell application "Stage Traxx 4" to quit'])
+        import time; time.sleep(2)
+
+    dest = os.path.join(DOCS, title.replace('/','-').replace(':','-'))
+    os.makedirs(dest, exist_ok=True)
+    for f in os.listdir(dest):
+        if f.endswith((".mp3",".m4a",".wav")): os.remove(os.path.join(dest, f))
+    copied = []
+    for p, nm, ch, bus, pan, mute in tracks:
+        fn = f"{ch}_{nm.replace(' ','_')}.mp3"
+        shutil.copy2(p, os.path.join(dest, fn)); copied.append((fn, nm, ch, bus, pan, mute))
+
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+    folder_rel = os.path.basename(dest)
+    con = sqlite3.connect(DB); con.execute("PRAGMA foreign_keys=ON"); c = con.cursor()
+    for (sid,) in c.execute("SELECT id FROM song WHERE title=?", (title,)).fetchall():
+        for t in ("track","region","playlistSong"): c.execute(f"DELETE FROM {t} WHERE songID=?", (sid,))
+        c.execute("DELETE FROM song WHERE id=?", (sid,))
+    sid = uuid.uuid4().bytes
+    c.execute("""INSERT INTO song (id,title,artist,added,duration,bpm,year,notes,color,volume,speed,pitch,
+      tune,chordTranspose,pitchToChords,fadeIn,fadeOut,startTime,endTime,fontSize,lyrics,pdfPath,metronomeMode,
+      metronomeType,playCount,lastPlayed,lastModified,timecodeOffset,midiCmd,midiPath,scrollSpeed,folderID,key,
+      waveformTrackID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+      (sid,title,artist or "",now,dur,bpm,None,None,3,0.0,1.0,0,0,0,0,0.0,0.0,0.0,dur,32,None,None,0,2,
+       0,None,now,0.0,None,None,1.2,None,None,None))
+    for n, (fn, nm, ch, bus, pan, mute) in enumerate(copied, 1):
+        c.execute("""INSERT INTO track (id,songID,filePath,duration,volume,pan,mute,bus,number,hasMarkers,
+          equalizer,lastModified,name,color,transpose,muteGroupMask) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+          (uuid.uuid4().bytes, sid, f"{folder_rel}/{fn}", dur, 0.0, pan, mute, bus, n, 0, EQ, now, nm, 0, 1, 0))
+    for i, (nm, st, en) in enumerate(regions):
+        c.execute("""INSERT INTO region (id,songID,name,startTime,endTime,color,playbackMode,lastModified)
+          VALUES (?,?,?,?,?,?,?,?)""", (uuid.uuid4().bytes, sid, nm, st, en, (i % 8)+1, 0, now))
+    if pl:
+        row = c.execute("SELECT id FROM playlist WHERE name=?", (pl,)).fetchone()
+        if row: pid = row[0]
+        else:
+            pid = uuid.uuid4().bytes
+            c.execute("""INSERT INTO playlist (id,name,added,autoplay,color,volume,lastModified,folderID)
+              VALUES (?,?,?,?,?,?,?,?)""", (pid, pl, now, 0, 3, 0.0, now, None))
+        nxt = c.execute("SELECT COALESCE(MAX(sortOrder),-1)+1 FROM playlistSong WHERE playlistID=?", (pid,)).fetchone()[0]
+        c.execute("""INSERT INTO playlistSong (id,songID,playlistID,added,playbackMode,sortOrder,lastModified)
+          VALUES (?,?,?,?,?,?,?)""", (uuid.uuid4().bytes, sid, pid, now, 0, nxt, now))
+    con.commit(); con.close()
+
+    print(f"✓ {artist} - {title}   {bpm:g}bpm   {dur:.1f}s   {len(regions)} regions")
+    for fn, nm, ch, bus, pan, mute in copied:
+        print(f"   ch{ch}  {nm:9} bus{bus} pan{pan:+.0f}  {'MUTED' if mute else 'on':5}  ({fn})")
+    print("  metronome OFF." + (f"  playlist '{pl}'." if pl else ""))
+    if "--launch" in sys.argv: subprocess.run(["open","/Applications/Stage Traxx 4.app"])
+    else: print("  relaunch Stage Traxx 4 to see it.")
+
+if __name__ == "__main__":
+    main()

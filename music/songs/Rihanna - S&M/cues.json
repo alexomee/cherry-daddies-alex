@@ -1,7 +1,7 @@
 [
  {
   "id": "C01",
-  "t": 2.644,
+  "t": 3.113,
   "bar": 1,
   "name": "vocal in",
   "count_style": "readygo",
@@ -9,7 +9,7 @@
  },
  {
   "id": "C02",
-  "t": 18.704,
+  "t": 19.173,
   "bar": 10,
   "name": "all in",
   "count_style": "readygo",
@@ -17,7 +17,7 @@
  },
  {
   "id": "C03",
-  "t": 33.47,
+  "t": 33.939,
   "bar": 17,
   "name": "verse in",
   "count_style": "readygo",
@@ -33,22 +33,30 @@
  },
  {
   "id": "C05",
-  "t": 108.47,
+  "t": 78.822,
+  "bar": 0,
+  "name": "bass in",
+  "count_style": "readygo",
+  "src": "sec"
+ },
+ {
+  "id": "C06",
+  "t": 108.939,
   "bar": 57,
   "name": "verse in",
   "count_style": "readygo",
   "src": "sec"
  },
  {
-  "id": "C06",
-  "t": 123.47,
+  "id": "C07",
+  "t": 123.939,
   "bar": 65,
-  "name": "chorus in",
+  "name": "soft chorus",
   "count_style": "readygo",
   "src": "sec"
  },
  {
-  "id": "C07",
+  "id": "C08",
   "t": 154.173,
   "bar": 82,
   "name": "synth in",
@@ -56,23 +64,23 @@
   "src": "sec"
  },
  {
-  "id": "C08",
-  "t": 161.204,
+  "id": "C09",
+  "t": 161.673,
   "bar": 86,
   "name": "bridge in",
   "count_style": "readygo",
   "src": "sec"
  },
  {
-  "id": "C09",
-  "t": 183.47,
+  "id": "C10",
+  "t": 183.939,
   "bar": 97,
   "name": "soft chorus",
   "count_style": "readygo",
   "src": "sec"
  },
  {
-  "id": "C10",
+  "id": "C11",
   "t": 198.939,
   "bar": 106,
   "name": "all in",
@@ -80,15 +88,15 @@
   "src": "sec"
  },
  {
-  "id": "C11",
-  "t": 228.581,
+  "id": "C12",
+  "t": 229.05,
   "bar": 121,
   "name": "outro in",
   "count_style": "readygo",
   "src": "sec"
  },
  {
-  "id": "C12",
+  "id": "C13",
   "t": 242.175,
   "bar": 129,
   "name": "end in",
