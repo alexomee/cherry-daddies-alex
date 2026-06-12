@@ -1,0 +1,7 @@
+{
+  "pb-other": {
+    "stems": ["04_Noise_effects", "10_Saxophone_(reverse)"],
+    "gain_db": {"04_Noise_effects": 8.9, "10_Saxophone_(reverse)": 8.9}
+  },
+  "pb-bass": null
+}
