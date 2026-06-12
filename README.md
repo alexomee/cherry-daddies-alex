@@ -48,6 +48,7 @@ cherry-daddies/
 ├── music/                    ← МУЗЫКА: подготовка треков (см. music/README.md)
 │   ├── songs/                ← по папке на песню: стемы, structure, chart, cue (1.8 ГБ, вне git)
 │   ├── setlists/             ← сет-листы + лирика
+│   ├── youtube/              ← загрузки с YouTube (`tools/yt-download.sh`, вне git)
 │   └── SONGS.md              ← статус-борд: что готово / что делать к репетициям
 └── tools/jamzone/            ← канонические скрипты пайплайна (extract/chart/normalize/click/cues/setlist/stagetraxx)
 ```
