@@ -20,7 +20,7 @@ User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 Usage: jamzone_render.py "<song name or folder>" [--check]
        --check = analyze + verify, write nothing
 """
-import os, sys, glob, json, subprocess, wave
+import os, sys, glob, json, subprocess
 import numpy as np
 
 SR = 44100
@@ -71,11 +71,6 @@ def place(buf, audio, at_samp):
     s0 = max(0, at_samp); a0 = max(0, -at_samp)
     n = min(len(audio)-a0, len(buf)-s0)
     if n > 0: buf[s0:s0+n] += audio[a0:a0+n]
-
-def wav_write(path, x):
-    x = np.clip(x, -1, 1)
-    w = wave.open(path, "w"); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
-    w.writeframes((x*32767).astype("<i2").tobytes()); w.close()
 
 def aiff_write(path, x, num_beats):
     """AIFF + Apple-Loops 'basc' chunk -> MainStage Playback sees tempo/bars, no Logic needed."""
@@ -163,13 +158,12 @@ def main():
     os.makedirs(adir, exist_ok=True)
     num_beats = round(total/SR/beat)
     for n, buf in out.items():
-        wav_write(os.path.join(adir, n + ".wav"), buf)            # Stage Traxx
-        aiff_write(os.path.join(adir, n + ".aif"), buf, num_beats)  # MainStage Playback (tempo-tagged)
+        aiff_write(os.path.join(adir, n + ".aif"), buf, num_beats)  # ST + MainStage (Apple-Loops tempo tag)
     json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
                        "t=0 = bar line; downbeat of stem grid on a bar line"},
               open(os.path.join(adir, "timeline.json"), "w"), indent=1)
-    print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json")
+    print(f"✓ auto-render/: {', '.join(n+'.aif' for n in out)} + timeline.json")
 
 if __name__ == "__main__":
     main()

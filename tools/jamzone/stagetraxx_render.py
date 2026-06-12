@@ -68,12 +68,13 @@ def main():
     rdir = os.path.join(folder, "logic-render")  # user's Logic bounces — fallback, read-only
     ALIASES = {"cues": ("cues", "cue"), "pb-other": ("pb-other", "pb_other"), "pb-bass": ("pb-bass", "pb_bass")}
     # never mix sources: auto-render (if present) fully defines the song's track set
-    src = (sdir, ".wav") if os.path.isdir(sdir) else (rdir, ".mp3")
+    src = (sdir, (".aif", ".wav")) if os.path.isdir(sdir) else (rdir, (".mp3",))
     def find_stem(stem):
-        d, ext = src
-        for a in ALIASES.get(stem, (stem,)):
-            p = os.path.join(d, a + ext)
-            if os.path.exists(p): return p
+        d, exts = src
+        for ext in exts:
+            for a in ALIASES.get(stem, (stem,)):
+                p = os.path.join(d, a + ext)
+                if os.path.exists(p): return p
         return None
     tracks = [(p, nm, ch, bus, pan, mute) for stem, nm, ch, bus, pan, mute in ROUTING
               if (p := find_stem(stem))]
