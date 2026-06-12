@@ -15,10 +15,19 @@ aligned by construction: t=0 = bar line, stem downbeat on a bar line, whole bars
 {bpm, bar_sec, offset_sec} — offset to add to stem-timeline times (cues.json /
 JamZone structure.json) to hit the rendered audio.
 
+EXTERNAL songs (Moises stems: bass/drums/keys/.../metronome, not NN_*.m4a) — the
+Moises metronome WOBBLES (it tracks the original's natural tempo), so it is NOT used
+as our click. Instead we build a CLEAN constant click from the lifted JamZone samples
+(jz_downbeat/jz_beat) at a fixed bpm (--bpm, default = measured median), accent on
+beat 1. Grid PHASE (first downbeat) = first metronome onset (first click = downbeat).
+The wobbly Moises audio then drifts from the constant click over the song — expected
+for a scratch preview; the real stems get re-recorded to this click.
+
 User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 
-Usage: jamzone_render.py "<song name or folder>" [--check]
+Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
        --check = analyze + verify, write nothing
+       --bpm N = force tempo (external songs; overrides measured)
 """
 import os, sys, glob, json, subprocess
 import numpy as np
@@ -87,16 +96,43 @@ def wav_tempo_write(path, x, bpm):
     with open(path, "wb") as f:
         f.write(b"RIFF" + struct.pack("<L", 4+len(body)) + b"WAVE" + body)
 
+def build_click(bpm, total, off_samp, bar):
+    """Clean constant JZ-sample click for external songs: downbeat (accent) on every
+    bar line of the output (which starts on a bar line at sample 0), beat elsewhere."""
+    import jamzone_click as JC
+    db = JC.wav_read(JC.DB); bt = JC.wav_read(JC.BT)
+    beat = 60.0/bpm
+    o = np.zeros(total, np.float32)
+    n = int(total/(beat*SR)) + 1
+    for i in range(n):
+        s = round(i*beat*SR)
+        hit = db if i % 4 == 0 else bt*0.5
+        if s < total: o[s:s+len(hit)] += hit[:total-s]
+    o = o/(np.max(np.abs(o)) or 1)*0.95
+    return np.column_stack([o, o])
+
 def main():
     folder = find_folder(sys.argv[1])
-    mix_p = os.path.join(folder, "mix.json")
-    if not os.path.exists(mix_p): sys.exit(f"no mix.json in {folder} — define pb-other/pb-bass first")
-    mix = json.load(open(mix_p))
+    bpm_force = float(sys.argv[sys.argv.index("--bpm")+1]) if "--bpm" in sys.argv else None
+    jz_stems = {os.path.basename(p)[:-4]: p
+                for p in sorted(glob.glob(os.path.join(folder, "[0-9][0-9]_*.m4a")))}
+    external = not jz_stems
 
-    stems = {os.path.basename(p)[:-4]: p for p in sorted(glob.glob(os.path.join(folder, "[0-9][0-9]_*.m4a")))}
-    click_name = next((n for n in stems if "click" in n.lower()), None) or sys.exit("no Click stem")
+    mix_p = os.path.join(folder, "mix.json")
+    mix = json.load(open(mix_p)) if os.path.exists(mix_p) else {}
+    if not external and not mix:
+        sys.exit(f"no mix.json in {folder} — define pb-other/pb-bass first")
+
+    if external:
+        stems = {os.path.basename(p)[:-4]: p
+                 for p in sorted(glob.glob(os.path.join(folder, "*.mp3")) +
+                                 glob.glob(os.path.join(folder, "*.wav")))}
+        click_name = next((n for n in stems if n.lower() in ("metronome", "click")), None) \
+                     or sys.exit("external song: no metronome/click stem")
+    else:
+        stems = jz_stems
+        click_name = next((n for n in stems if "click" in n.lower()), None) or sys.exit("no Click stem")
     cue_p = os.path.join(folder, "cue_track.wav")
-    if not os.path.exists(cue_p): sys.exit("no cue_track.wav")
 
     for grp in ("pb-other", "pb-bass"):
         for nm in ((mix.get(grp) or {}).get("stems", [])):
@@ -104,20 +140,26 @@ def main():
 
     click_st = decode(stems[click_name])
     beat, db0, resid, n_on = fit_grid(click_st.mean(1))
+    if external:
+        db0 = float(onsets(click_st.mean(1))[0])  # first click = downbeat (user-specified)
+    if bpm_force: beat = 60.0/bpm_force           # external: user-chosen constant tempo
     bar = 4*beat
+    tag = " (Moises metronome wobbles -> click is BUILT clean)" if external else ""
     print(f"grid: beat={beat:.6f}s bpm={60/beat:.4f} bar={bar:.6f}s "
-          f"downbeat={db0:.4f}s ({n_on} clicks, max resid {resid*1000:.1f}ms)")
+          f"downbeat={db0:.4f}s ({n_on} clicks, max resid {resid*1000:.1f}ms){tag}")
 
-    audio = {n: decode(p) for n, p in stems.items()}
-    cue_st = decode(cue_p)
+    music = [n for n in stems if n != click_name]
+    audio = {n: decode(stems[n]) for n in music}
+    cue_st = decode(cue_p) if os.path.exists(cue_p) else None
 
     # t=0 = bar line at/before all content, stem downbeat lands on a bar line
+    srcs = list(audio.values()) + ([cue_st] if cue_st is not None else [])
     OFF = -db0
-    earliest = min(t for a in [*audio.values(), cue_st] if (t := first_sound(a)) is not None)
+    earliest = min(t for a in srcs if (t := first_sound(a)) is not None)
     if earliest + OFF < 0:
         OFF += np.ceil(-(earliest+OFF)/bar)*bar
     off_samp = round(OFF*SR)
-    end = max(len(a) for a in [*audio.values(), cue_st]) + off_samp
+    end = max(len(a) for a in srcs) + off_samp
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
 
@@ -128,10 +170,15 @@ def main():
             place(buf, audio[n]*g, off_samp)
         return buf
 
-    music = [n for n in stems if n != click_name]
-    out = {"click": mixdown([click_name], {}), "all": mixdown(music, {})}
-    cues_buf = np.zeros((total, 2), np.float32); place(cues_buf, cue_st, off_samp)
-    out["cues"] = cues_buf
+    if external:                                   # built clean click, downbeat on every bar line
+        out = {"click": build_click(60/beat, total, off_samp, bar)}
+    else:                                           # JamZone: the click stem itself, aligned
+        cbuf = np.zeros((total, 2), np.float32); place(cbuf, decode(stems[click_name]), off_samp)
+        out = {"click": cbuf}
+    out["all"] = mixdown(music, {})
+    if cue_st is not None:
+        cues_buf = np.zeros((total, 2), np.float32); place(cues_buf, cue_st, off_samp)
+        out["cues"] = cues_buf
     for grp in ("pb-other", "pb-bass"):
         m = mix.get(grp)
         if m: out[grp] = mixdown(m["stems"], m.get("gain_db", {}))
