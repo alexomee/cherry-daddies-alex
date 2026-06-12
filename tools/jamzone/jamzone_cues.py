@@ -233,7 +233,7 @@ def render(cat, regen=False, audition=False, final=False):
     # cue_track.wav (cues on both channels)
     gap=min(max(beat,0.30),0.90)
     N=int((max(dur,max(c["t"] for c in cues))+1.0)*SR); bed=np.zeros(N,np.float32)
-    crate=int(min(280, max(150, round(105/beat))))   # faster speech on faster songs so one word fits one beat
+    crate=int(min(250, max(150, round(105/beat))))   # faster speech on faster songs so one word fits one beat
     wcache={}; ddelay={}
     def odelay(clip,frac=0.4):               # delay to the vowel (felt beat), past the soft consonant
         win=int(0.02*SR)

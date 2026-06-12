@@ -10,7 +10,9 @@ Per-song manifest mix.json (in the song folder) says which stems go where:
     }
 
 click and cues need no manifest: click = the JamZone Click stem, cues = cue_track.wav.
-all = every music stem (preview mix). Outputs land in <song>/auto-render/ as WAV,
+all = every music stem (preview mix). When cues exist, cue_preview.mp3 = the audition
+mix to approve them: all*0.85 + click*0.6 + cues*1.0 (levels as in jamzone_cues.py).
+Outputs land in <song>/auto-render/ as WAV,
 aligned by construction: t=0 = bar line, stem downbeat on a bar line, whole bars
 (arp MIDI-clock rule, music/arpeggiator-sync.md). auto-render/timeline.json records
 {bpm, bar_sec, offset_sec} — offset to add to stem-timeline times (cues.json /
@@ -38,6 +40,7 @@ import numpy as np
 
 SR = 44100
 SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
+CLICK_LVL, MIX_LVL, CUE_LVL = 0.6, 0.85, 1.0   # cue_preview levels (same as jamzone_cues.py)
 
 def find_folder(q):
     if os.path.isdir(q): return os.path.abspath(q)
@@ -167,17 +170,20 @@ def _atempo(x, factor):
 
 def _metric_clips(metric, beat):
     """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
-    beat -(W-i). Speed-up is capped at `say -r 200` — faster is unintelligible; a word that
-    still can't fit one slot STARTS whole beats earlier and spans them (first word only — the
+    beat -(W-i). Speed-up is capped at `say -r 250` — faster is unintelligible; past that a
+    small overflow (<0.3 beat) is squeezed into the slot by atempo (inaudible at such factors).
+    A word still longer STARTS whole beats earlier and spans them (first word only — the
     slot before it is free; e.g. arpegiator, more-arpegiator, bass-n-beat). Natural pace wins
     when it needs no more extra beats than the sped-up take."""
     W = len(metric); out = []
     for i, w in enumerate(metric):
         v = RU_VOICE if _cyrillic(w) else EN_VOICE
         budget = 0.92*beat
-        nat, fast = _say(w, v), _say(w, v, 200)
+        nat, fast = _say(w, v), _say(w, v, 250)
         clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
-        if clip is None and i == 0:
+        if clip is None and len(fast)/SR - budget < 0.3*beat:   # small overflow: squeeze into the
+            clip = _atempo(fast, (len(fast)/SR)/budget)         # slot — a whole added beat would
+        elif clip is None and i == 0:                           # sit mostly empty (solo: +19ms)
             ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
             clip = nat if ex(nat) <= ex(fast) else fast
             extra = ex(clip)
@@ -396,7 +402,16 @@ def main():
                "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
                        "t=0 = bar line; downbeat of stem grid on a bar line"},
               open(os.path.join(adir, "timeline.json"), "w"), indent=1)
-    print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json")
+    extra = ""
+    if "cues" in out:                              # audition mix to approve cues (levels as in
+        m = out["all"]*MIX_LVL + out["click"]*CLICK_LVL + out["cues"]*CUE_LVL   # jamzone_cues.py)
+        pk = float(np.abs(m).max())
+        if pk > 0.97: m *= 0.97/pk
+        subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
+                        "-b:a","192k",os.path.join(adir, "cue_preview.mp3")],
+                       input=m.astype(np.float32).tobytes())
+        extra = " + cue_preview.mp3"
+    print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json{extra}")
 
     # export_stems: individual stems in the SAME aligned/tempo-labelled format (one wav each),
     # e.g. to hand the synths to the keyboardist. Same offset/length/grid/key as the set above.
