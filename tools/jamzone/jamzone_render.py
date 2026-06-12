@@ -16,13 +16,16 @@ aligned by construction: t=0 = bar line, stem downbeat on a bar line, whole bars
 {bpm, bar_sec, offset_sec} — offset to add to stem-timeline times (cues.json /
 JamZone structure.json) to hit the rendered audio.
 
-EXTERNAL songs (Moises stems: bass/drums/keys/.../metronome, not NN_*.m4a) — the
-Moises metronome WOBBLES (it tracks the original's natural tempo), so it is NOT used
-as our click. Instead we build a CLEAN constant click from the lifted JamZone samples
-(jz_downbeat/jz_beat) at a fixed bpm (--bpm, default = measured median), accent on
-beat 1. Grid PHASE (first downbeat) = first metronome onset (first click = downbeat).
-The wobbly Moises audio then drifts from the constant click over the song — expected
-for a scratch preview; the real stems get re-recorded to this click.
+EXTERNAL songs (Moises stems: bass/drums/keys/.../metronome, not NN_*.m4a). We build a
+CLEAN constant click from the lifted JamZone samples (jz_downbeat/jz_beat) at the song
+bpm (mix.json "bpm" > --bpm > least-squares fit of the metronome), accent on beat 1.
+Grid PHASE (first downbeat) = first metronome onset (first click = downbeat).
+
+  Pick bpm = the SPAN-AVERAGE (least-squares over all clicks), NOT the median interval.
+  Moises tempo is essentially constant (e.g. Мало тебя: lstsq=130.000, ±20ms over 3.7min),
+  but the median is skewed by onset jitter (130.40 here) and a constant grid at the median
+  drifts ~700ms end-to-end — which looks like the downbeat sliding off the bar. The
+  filename bpm (Moises' own average) is usually the right round number.
 
 User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 
@@ -161,12 +164,13 @@ def main():
             if nm not in stems: sys.exit(f"mix.json: unknown stem '{nm}' in {grp}")
 
     click_st = decode(stems[click_name])
-    beat, db0, resid, n_on = fit_grid(click_st.mean(1))
+    beat, db0, resid, n_on = fit_grid(click_st.mean(1))  # fit_grid uses lstsq = span-average
     if external:
         db0 = float(onsets(click_st.mean(1))[0])  # first click = downbeat (user-specified)
-    if bpm_force: beat = 60.0/bpm_force           # external: user-chosen constant tempo
+    bpm_set = mix.get("bpm") or bpm_force         # song's locked constant tempo (mix.json > --bpm)
+    if bpm_set: beat = 60.0/bpm_set
     bar = 4*beat
-    tag = " (Moises metronome wobbles -> click is BUILT clean)" if external else ""
+    tag = " (built clean click; Moises tempo ~constant)" if external else ""
     print(f"grid: beat={beat:.6f}s bpm={60/beat:.4f} bar={bar:.6f}s "
           f"downbeat={db0:.4f}s ({n_on} clicks, max resid {resid*1000:.1f}ms){tag}")
 
