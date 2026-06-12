@@ -1,0 +1,19 @@
+{
+  "pb-other": {"stems": ["08_Noise_effects"]},
+  "pb-bass": null,
+  "cues": [
+    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in"},
+    {"bar": 12, "text": "drums in"},
+    {"bar": 20, "text": "stop and solo in"},
+    {"bar": 29, "text": "drum stop"},
+    {"bar": 42, "text": "break in"},
+    {"bar": 46, "text": "stop"},
+    {"bar": 48, "text": "solo start in"},
+    {"bar": 56, "text": "stop"},
+    {"bar": 57, "beat": 3, "text": "vocal in"},
+    {"bar": 66, "text": "bass in"},
+    {"bar": 74, "beat": 3, "text": "vocal-with-solo in"},
+    {"bar": 83, "text": "keep going"},
+    {"bar": 90, "text": "end stop"}
+  ]
+}
