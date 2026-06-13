@@ -152,7 +152,7 @@ def met_onsets(mono):
         i += 1
     return np.array(peaks)/SR
 
-def build_follow_grid(met_mono, mix):
+def build_follow_grid(met_mono, mix, beat):
     """Tempo-FOLLOW beat grid for songs with a real mid-song tempo change (half-time breakdown)
     that must be tracked then re-locked to the music. Steady sections are cleaned to a constant
     tempo (metronomic to play to); the slow zone is a clean slow tempo; the POST-zone grid is
@@ -170,24 +170,26 @@ def build_follow_grid(met_mono, mix):
     on = met_onsets(met_mono)
     d = np.diff(on); beatA = float(np.median(d[:min(200, len(d))]))
     info = {"n": len(on), "beatA": beatA}
-    def slope(a, b):
-        k = np.arange(a, b); A = np.vstack([k, np.ones_like(k)]).T
-        return np.linalg.lstsq(A, on[a:b], rcond=None)[0]   # (slope, phase)
+    # STEADY tempo = `beat` (mix.json bpm, e.g. 124.000) — NOT the median interval beatA: the median
+    # is skewed by onset jitter (Я устал: median 480.4ms=124.89bpm vs true lstsq 483.9ms=124.000),
+    # and a grid at the median drifts off the song's real tempo (the user's DAW is at the true bpm).
+    def phase_at(a, b):                                   # best phase for `beat`-tempo over onsets a..b
+        kk = np.arange(a, b); return float(np.median(on[a:b] - kk*beat))
     tz = mix.get("tempo_zone")
     if tz:
         z0 = 4*(int(tz["from_bar"])-1) + (int(tz.get("from_beat", 1))-1)
         z1 = 4*(int(tz["to_bar"])-1)   + (int(tz.get("to_beat", 1))-1)
         sb = 60.0/float(tz["bpm"])
-        anchor = float(tz["anchor_sec"]) if "anchor_sec" in tz else on[0] + z0*beatA
-        slB, phB = slope(min(z1, len(on)-2), len(on))      # post tempo from the metronome (re-lock)
+        anchor = float(tz["anchor_sec"]) if "anchor_sec" in tz else on[0] + z0*beat
+        ph_post = phase_at(z1, len(on)) if z1 < len(on)-1 else (on[0] - 0)  # 124 phase = music return
         bt = np.zeros(max(len(on), z1+1))
         for k in range(len(bt)):
-            if   k < z0: bt[k] = on[0] + k*beatA           # clean pre, downbeat anchor
+            if   k < z0: bt[k] = on[0] + k*beat            # clean pre at true bpm, downbeat anchor
             elif k < z1: bt[k] = anchor + (k-z0)*sb        # clean slow zone, phase = real slow downbeat
-            else:        bt[k] = phB + k*slB               # clean post, lstsq phase = locked to music
-        info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": slB,
+            else:        bt[k] = ph_post + k*beat          # clean post at true bpm, phase-locked to music
+        info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": beat,
                      "accent": int(tz.get("accent", 4)), "zone_t": (float(bt[z0]), float(bt[z1-1]))})
-        return bt, slB, info
+        return bt, beat, info
     core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
     bt = on.astype(float).copy()
     if len(core):
@@ -195,16 +197,12 @@ def build_follow_grid(met_mono, mix):
         while lo > 0 and abs(d[lo-1]-beatA) > 0.015: lo -= 1
         while hi < len(d)-1 and abs(d[hi+1]-beatA) > 0.015: hi += 1
         za, zb = lo+1, hi+2
-        slA = slope(0, za)[0]
-        for k in range(za): bt[k] = on[0] + k*slA
-        slB, phB = slope(zb, len(on))
-        for k in range(zb, len(on)): bt[k] = phB + k*slB
-        info.update({"za": za, "zb": zb, "beatB": slB, "zone_t": (float(on[za]), float(on[zb-1])),
+        for k in range(za): bt[k] = on[0] + k*beat         # clean pre at true bpm
+        ph_post = phase_at(zb, len(on))
+        for k in range(zb, len(on)): bt[k] = ph_post + k*beat   # clean post at true bpm
+        info.update({"za": za, "zb": zb, "beatB": beat, "zone_t": (float(on[za]), float(on[zb-1])),
                      "slowbpm": 60/float(np.max(d[lo:hi+1]))})
-        beatB = slB
-    else:
-        beatB = beatA
-    return bt, beatB, info
+    return bt, beat, info
 
 RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
 _SAY_CACHE = {}
@@ -404,7 +402,7 @@ def main():
     bar = 4*beat
     follow = external and mix.get("click") == "follow"   # track a real mid-song tempo change
     if follow:
-        bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix)
+        bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix, beat)
         db0 = float(bt[0])                        # downbeat = first metronome onset
         def relt(i):                              # seconds of beat index i from the downbeat
             i = float(i)
