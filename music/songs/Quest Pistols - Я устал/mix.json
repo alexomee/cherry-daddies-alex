@@ -1,6 +1,7 @@
 {
   "bpm": 124.0,
   "click": "follow",
+  "daw_align": true,
   "tempo_zone": {"from_bar": 55, "from_beat": 4, "to_bar": 63, "to_beat": 3, "bpm": 90.0385, "anchor_sec": 105.513, "accent": 4},
   "pb-other": null,
   "pb-bass": null,

@@ -435,14 +435,18 @@ def main():
     # Counted from the PRE-LEAD cue base (OFF+db0): bars the earliest-sound fix already added
     # give the phrase room too — without this, push songs get a wasted extra count-in bar.
     lead = 0.0
-    if mix.get("cues"):
-        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur) for c in mix["cues"])
+    daw = mix.get("daw_align")                     # DAW-align: WAV time == stem (song) time, no
+    if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
+        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur) for c in mix["cues"])  # song
         if min_word < 0.05:                        # only when the cue would actually clip the front
             lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
             #                                            wasted count-in bar — the silent intro bars
             #                                            already carry the click before the music.
     OFF += lead
+    if daw:                                        # render time == stem time (no offset/count-in);
+        OFF = 0.0                                  # cue intro words before bar 1.1 get clipped
+        print("daw_align: WAV time = stem (song) time, no count-in (drop at bar 1)")
     # cue grid base = the bar line where the stem downbeat (music bar 1.1) lands. NOT `lead`:
     # the earliest-sound fix above may have added whole bars to OFF (e.g. a stem starting
     # before its downbeat), and the cues must shift with the music, not stay on `lead`.
@@ -526,8 +530,9 @@ def main():
 
     pre = 1000
     v = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
-    err = [(t - round(t/beat)*beat)*1000 for t in v[:8]]
-    bar_err = (v[0] - round(v[0]/bar)*bar)*1000
+    ph0 = v[0] if daw else 0.0                      # daw_align: downbeat sits at stem db0, not on a
+    err = [((t-ph0) - round((t-ph0)/beat)*beat)*1000 for t in v[:8]]   # bar line — check spacing
+    bar_err = ((v[0]-ph0) - round((v[0]-ph0)/bar)*bar)*1000            # relative to the first onset
     print(f"verify click: first onset {v[0]*1000:.1f}ms (bar-line err {bar_err:+.1f}ms), "
           f"beat err {[f'{e:+.1f}' for e in err]} ms")
     if abs(bar_err) > 10 or max(abs(e) for e in err) > 3:
