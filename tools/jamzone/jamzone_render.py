@@ -170,20 +170,22 @@ def _atempo(x, factor):
 
 def _metric_clips(metric, beat):
     """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
-    beat -(W-i). Speed-up is capped at `say -r 250` — faster is unintelligible; past that a
-    small overflow (<0.3 beat) is squeezed into the slot by atempo (inaudible at such factors).
-    A word still longer STARTS whole beats earlier and spans them (first word only — the
-    slot before it is free; e.g. arpegiator, more-arpegiator, bass-n-beat). Natural pace wins
-    when it needs no more extra beats than the sped-up take."""
+    beat -(W-i). Speed-up is capped at `say -r 200` — faster is unintelligible; past that a
+    small overflow (<0.15 beat) is squeezed into the slot by atempo (inaudible at such factors,
+    e.g. solo/sax ~1.05x). A word overflowing MORE STARTS whole beats earlier and spans them at
+    natural pace (first word only — the slot before it is free; e.g. instrumental, arpegiator,
+    bass-n-beat): squeezing a long word into one beat sounds rushed, an empty added beat sounds
+    dead, so the 0.15-beat line splits the two. Natural pace wins when it needs no more extra
+    beats than the sped-up take."""
     W = len(metric); out = []
     for i, w in enumerate(metric):
         v = RU_VOICE if _cyrillic(w) else EN_VOICE
         budget = 0.92*beat
-        nat, fast = _say(w, v), _say(w, v, 250)
+        nat, fast = _say(w, v), _say(w, v, 200)
         clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
-        if clip is None and len(fast)/SR - budget < 0.3*beat:   # small overflow: squeeze into the
+        if clip is None and len(fast)/SR - budget < 0.15*beat:  # small overflow: squeeze into the
             clip = _atempo(fast, (len(fast)/SR)/budget)         # slot — a whole added beat would
-        elif clip is None and i == 0:                           # sit mostly empty (solo: +19ms)
+        elif clip is None and i == 0:                           # sit mostly empty (solo/sax ~1.05x)
             ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
             clip = nat if ex(nat) <= ex(fast) else fast
             extra = ex(clip)
@@ -234,7 +236,7 @@ INTRO_GAP = 0.12                                          # breath between intro
 def cue_first_word_time(c, bar, beat, lead):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); te = cue_event_time(c, bar, beat, lead)
-    if cue_kind(text) == "stop":
+    if cue_kind(text) == "stop" or c.get("count"):
         return te - 5*beat                                # ~announcement + 3-2-1 count
     intro, metric = cue_words(text)
     t0 = te - _metric_clips(metric, beat)[0][1]*beat
@@ -249,23 +251,27 @@ def _put(buf, clip, t):
 
 def build_cues(cue_list, total, bar, beat, lead):
     """Spoken cues on the render grid. Event time = the marked Logic bar/beat (+lead); the band
-    plays/stops ON that beat (no word on it). Two styles by trailing keyword:
+    plays/stops ON that beat (no word on it). Three styles:
       '<x> in'   -> '<x> in ready go', metered: last word 'go' on the beat BEFORE the event.
       '<x> stop' -> announce '<x> stop in 3', then count 3-2-1 on the three beats before the stop.
+      "count": true (any text) -> announce '<text> 3' (stop: '<text> in 3'), then count 3-2-1.
+         Use for a counted entry/end ('bass-only in', 'end in') when the band wants a 3-2-1 in
+         instead of 'ready go'. Hyphenated words are spoken with the hyphen as a space.
     Russian words use a Russian voice; counts use the lifted count clips (~/3,2,1.aiff)."""
     buf = np.zeros((total, 2), np.float32)
     rep = []
     for c in cue_list:
-        text = c["text"].strip(); kind = cue_kind(text)
+        text = c["text"].strip(); kind = cue_kind(text); counted = bool(c.get("count"))
         t_event = cue_event_time(c, bar, beat, lead)      # band event here (silent in cue track)
         voice = RU_VOICE if _cyrillic(text) else EN_VOICE
-        if kind == "stop":
+        if kind == "stop" or counted:
             for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1
                 clip = _load_clip(COUNT_FILES[d])
                 _put(buf, clip, t_event - k*beat - _vowel_onset(clip))
-            ann = _say(text + " in 3", voice)             # announcement finishes before the count
+            ann_text = text.replace("-", " ") + (" in 3" if kind == "stop" else " 3")
+            ann = _say(ann_text, voice)                   # announcement finishes before the count
             _put(buf, ann, (t_event - 3*beat) - 0.35 - len(ann)/SR)
-            phrase = text + " in 3 · 3 2 1"
+            phrase = ann_text + " · 3 2 1"
         else:
             intro, metric = cue_words(text)
             clips = _metric_clips(metric, beat)           # last word on the beat BEFORE the event
@@ -340,9 +346,11 @@ def main():
     lead = 0.0
     if mix.get("cues"):
         min_word = min(cue_first_word_time(c, bar, beat, OFF + db0) for c in mix["cues"])
-        if min_word < 0.30:                        # 0.30s room for the first word's onset
-            lead = np.ceil((0.30 - min_word)/bar)*bar
-            print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")
+        if min_word < 0.05:                        # only when the cue would actually clip the front
+            lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
+            print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
+            #                                            wasted count-in bar — the silent intro bars
+            #                                            already carry the click before the music.
     OFF += lead
     # cue grid base = the bar line where the stem downbeat (music bar 1.1) lands. NOT `lead`:
     # the earliest-sound fix above may have added whole bars to OFF (e.g. a stem starting

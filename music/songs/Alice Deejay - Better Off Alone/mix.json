@@ -4,18 +4,19 @@
   "cues": [
     {"bar": 3,   "text": "Better Off Alone synth in"},
     {"bar": 19,  "text": "drums stop"},
-    {"bar": 27,  "text": "pad stop"},
-    {"bar": 31,  "text": "keep going"},
-    {"bar": 35,  "text": "main in"},
+    {"bar": 27,  "text": "bass in"},
+    {"bar": 32,  "text": "cut-off in"},
+    {"bar": 35,  "text": "beat in"},
     {"bar": 43,  "beat": 2, "text": "vocal in"},
     {"bar": 50,  "text": "keys in"},
-    {"bar": 59,  "text": "synth stop"},
+    {"bar": 59,  "text": "lead stop"},
     {"bar": 67,  "text": "verse in"},
-    {"bar": 75,  "text": "all stop"},
-    {"bar": 83,  "text": "main in"},
+    {"bar": 75,  "text": "bass-only in", "count": true},
+    {"bar": 83,  "text": "lead-and-pad in"},
     {"bar": 88,  "text": "keep going"},
     {"bar": 91,  "text": "drums in"},
-    {"bar": 99,  "text": "chorus in"},
-    {"bar": 123, "text": "end stop"}
+    {"bar": 99,  "text": "vocal in"},
+    {"bar": 114, "beat": 3, "text": "outro in"},
+    {"bar": 123, "text": "end in", "count": true}
   ]
 }
