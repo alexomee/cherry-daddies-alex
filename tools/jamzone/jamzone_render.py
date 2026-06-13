@@ -139,6 +139,48 @@ def build_click(bpm, total, off_samp, bar):
     o = o/(np.max(np.abs(o)) or 1)*0.95
     return np.column_stack([o, o])
 
+def met_onsets(mono):
+    """every metronome onset (peak-pick, ~0.25s min gap) — keeps the real tempo map, unlike
+    onsets() which is tuned for a sparse clean click. Returns onset times (s)."""
+    win = int(0.004*SR)
+    env = np.sqrt(np.convolve(mono**2, np.ones(win)/win, mode="same")); env /= (env.max() or 1)
+    thr, mingap, peaks, i = 0.12, int(0.25*SR), [], 1
+    while i < len(env)-1:
+        if env[i] > thr and env[i] >= env[i-1] and env[i] > env[i+1]:
+            if not peaks or i-peaks[-1] >= mingap: peaks.append(i)
+            elif env[i] > env[peaks[-1]]: peaks[-1] = i
+        i += 1
+    return np.array(peaks)/SR
+
+def build_follow_grid(met_mono):
+    """Tempo-FOLLOW beat grid from the metronome onsets, for songs with a real mid-song tempo
+    change (e.g. a half-time breakdown) that must be tracked and then re-locked to the music.
+    Steady sections are cleaned to a constant tempo (so the click is metronomic to play to),
+    the deviating zone keeps the actual onsets (the ritardando), and the POST-zone grid is
+    phase-locked to the real return onset — so when the tempo comes back the bar lines land on
+    the music's downbeats again (the arpeggiator/keys part stays tight). Returns (bt, beatB, info)
+    where bt[k] = stem-time of beat k (bt[0] = downbeat), beatB = post-zone beat for extrapolation."""
+    on = met_onsets(met_mono)
+    d = np.diff(on); beatA = float(np.median(d[:min(200, len(d))]))
+    zone = np.where(np.abs(d - beatA) > 0.04)[0]          # intervals off the main tempo by >40ms
+    bt = on.astype(float).copy()
+    info = {"n": len(on), "beatA": beatA}
+    if len(zone):
+        za, zb = int(zone[0])+1, int(zone[-1])+1          # beats [za..zb-1] are stretched
+        def slope(a, b):
+            k = np.arange(a, b); A = np.vstack([k, np.ones_like(k)]).T
+            return np.linalg.lstsq(A, on[a:b], rcond=None)[0]   # (slope, phase)
+        slA = slope(0, za)[0]
+        for k in range(za): bt[k] = on[0] + k*slA          # clean pre, anchored at downbeat on[0]
+        slB, phB = slope(zb, len(on))
+        for k in range(zb, len(on)): bt[k] = phB + k*slB   # clean post, lstsq phase = locked to music
+        info.update({"za": za, "zb": zb, "beatB": slB, "zone_t": (float(on[za-1]), float(on[zb])),
+                     "slowbpm": 60/float(np.median(d[zone]))})
+        beatB = slB
+    else:
+        beatB = beatA
+    return bt, beatB, info
+
 RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
 _SAY_CACHE = {}
 def _say(text, voice, rate=None):
@@ -218,8 +260,16 @@ def _cyrillic(s):
     import re
     return bool(re.search("[а-яёА-ЯЁ]", s))
 
-def cue_event_time(c, bar, beat, lead):
-    return lead + (int(c["bar"])-1)*bar + (int(c.get("beat", 1))-1)*beat
+def cue_beat_index(c):
+    """beat index from the downbeat (bar 1 beat 1 = 0); beat defaults to 1."""
+    return 4*(int(c["bar"])-1) + (int(c.get("beat", 1))-1)
+
+# Cue placement runs on a beat GRID, not a constant beat: relt(i) = seconds of beat index i
+# from the downbeat (constant songs: i*beat; tempo-follow songs: the metronome's own map, so a
+# mid-song ritardando is tracked and the grid re-locks to the music when the tempo returns).
+# base = the downbeat time in the final timeline; bdur(i) = the local beat duration around i.
+def cue_event_time(c, base, relt):
+    return base + relt(cue_beat_index(c))
 
 def cue_kind(text):
     last = text.split()[-1].lower()
@@ -233,13 +283,14 @@ def cue_words(text):
     return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
 
 INTRO_GAP = 0.12                                          # breath between intro and the block
-def cue_first_word_time(c, bar, beat, lead):
+def cue_first_word_time(c, base, relt, bdur):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
-    text = c["text"].strip(); te = cue_event_time(c, bar, beat, lead)
+    text = c["text"].strip(); i = cue_beat_index(c)
     if cue_kind(text) == "stop" or c.get("count"):
-        return te - 5*beat                                # ~announcement + 3-2-1 count
+        return base + relt(i - 5)                         # ~announcement + 3-2-1 count
     intro, metric = cue_words(text)
-    t0 = te - _metric_clips(metric, beat)[0][1]*beat
+    nb0 = _metric_clips(metric, bdur(i))[0][1]
+    t0 = base + relt(i - nb0)
     if intro:
         clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
         return t0 - INTRO_GAP - len(clip)/SR
@@ -249,9 +300,10 @@ def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
     if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
 
-def build_cues(cue_list, total, bar, beat, lead):
-    """Spoken cues on the render grid. Event time = the marked Logic bar/beat (+lead); the band
-    plays/stops ON that beat (no word on it). Three styles:
+def build_cues(cue_list, total, base, relt, bdur):
+    """Spoken cues on the render grid. Event time = base + relt(beat index of the marked bar/beat);
+    the band plays/stops ON that beat (no word on it). Words land on grid beats (relt), so a
+    tempo-follow song spaces the count/block by the LOCAL tempo. Three styles:
       '<x> in'   -> '<x> in ready go', metered: last word 'go' on the beat BEFORE the event.
       '<x> stop' -> announce '<x> stop in 3', then count 3-2-1 on the three beats before the stop.
       "count": true (any text) -> announce '<text> 3' (stop: '<text> in 3'), then count 3-2-1.
@@ -262,24 +314,24 @@ def build_cues(cue_list, total, bar, beat, lead):
     rep = []
     for c in cue_list:
         text = c["text"].strip(); kind = cue_kind(text); counted = bool(c.get("count"))
-        t_event = cue_event_time(c, bar, beat, lead)      # band event here (silent in cue track)
+        i = cue_beat_index(c); t_event = base + relt(i)   # band event here (silent in cue track)
         voice = RU_VOICE if _cyrillic(text) else EN_VOICE
         if kind == "stop" or counted:
             for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1
                 clip = _load_clip(COUNT_FILES[d])
-                _put(buf, clip, t_event - k*beat - _vowel_onset(clip))
+                _put(buf, clip, base + relt(i - k) - _vowel_onset(clip))
             ann_text = text.replace("-", " ") + (" in 3" if kind == "stop" else " 3")
             ann = _say(ann_text, voice)                   # announcement finishes before the count
-            _put(buf, ann, (t_event - 3*beat) - 0.35 - len(ann)/SR)
+            _put(buf, ann, (base + relt(i - 3)) - 0.35 - len(ann)/SR)
             phrase = ann_text + " · 3 2 1"
         else:
             intro, metric = cue_words(text)
-            clips = _metric_clips(metric, beat)           # last word on the beat BEFORE the event
+            clips = _metric_clips(metric, bdur(i))        # last word on the beat BEFORE the event
             if intro:                                     # title etc: natural pace, right-aligned
                 clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
-                _put(buf, clip, t_event - clips[0][1]*beat - INTRO_GAP - len(clip)/SR)
+                _put(buf, clip, base + relt(i - clips[0][1]) - INTRO_GAP - len(clip)/SR)
             for (clip, nb), w in zip(clips, metric):
-                _put(buf, clip, t_event - nb*beat - _vowel_onset(clip))
+                _put(buf, clip, base + relt(i - nb) - _vowel_onset(clip))
             ext = clips[0][1] - len(metric)
             phrase = (intro + " · " if intro else "") + " ".join(metric) \
                      + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
@@ -325,7 +377,23 @@ def main():
     bpm_set = mix.get("bpm") or bpm_force         # song's locked constant tempo (mix.json > --bpm)
     if bpm_set: beat = 60.0/bpm_set
     bar = 4*beat
-    tag = " (built clean click; Moises tempo ~constant)" if external else ""
+    follow = external and mix.get("click") == "follow"   # track a real mid-song tempo change
+    if follow:
+        bt, beatB, finfo = build_follow_grid(click_st.mean(1))
+        db0 = float(bt[0])                        # downbeat = first metronome onset
+        def relt(i):                              # seconds of beat index i from the downbeat
+            i = float(i)
+            if i <= 0:            return i*beat                          # before downbeat: main tempo
+            if i >= len(bt)-1:    return (bt[-1]-bt[0]) + (i-(len(bt)-1))*beatB   # past last onset
+            lo = int(np.floor(i)); return (bt[lo]-bt[0]) + (i-lo)*(bt[lo+1]-bt[lo])
+        def bdur(i):                              # local beat duration around index i
+            i = int(i); return float(bt[i]-bt[i-1]) if 0 < i < len(bt) else beat
+    else:
+        def relt(i): return i*beat
+        def bdur(i): return beat
+    tag = (f" (tempo-follow: {finfo['n']} onsets, zone {finfo['zone_t'][0]:.1f}-{finfo['zone_t'][1]:.1f}s "
+           f"@~{finfo['slowbpm']:.0f}bpm, re-locked after)" if follow and "zone_t" in finfo
+           else " (built clean click; Moises tempo ~constant)" if external else "")
     print(f"grid: beat={beat:.6f}s bpm={60/beat:.4f} bar={bar:.6f}s "
           f"downbeat={db0:.4f}s ({n_on} clicks, max resid {resid*1000:.1f}ms){tag}")
 
@@ -345,7 +413,7 @@ def main():
     # give the phrase room too — without this, push songs get a wasted extra count-in bar.
     lead = 0.0
     if mix.get("cues"):
-        min_word = min(cue_first_word_time(c, bar, beat, OFF + db0) for c in mix["cues"])
+        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur) for c in mix["cues"])
         if min_word < 0.05:                        # only when the cue would actually clip the front
             lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
@@ -359,7 +427,7 @@ def main():
     off_samp = round(OFF*SR)
     end = max(len(a) for a in srcs) + off_samp
     if mix.get("cues"):
-        end = max(end, int((max(cue_event_time(c, bar, beat, cue_base) for c in mix["cues"]) + 2*bar)*SR))
+        end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
 
@@ -370,7 +438,21 @@ def main():
             place(buf, audio[n]*g, off_samp)
         return buf
 
-    if external:                                   # built clean click, downbeat on every bar line
+    if follow:                                     # JZ-sample click ON the metronome's tempo map
+        import jamzone_click as JC
+        jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95
+        jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95
+        cbuf = np.zeros((total, 2), np.float32)
+        k = -(int(cue_base/beat) + 4)              # start a few bars before bar 1 (count-in fill)
+        while True:
+            s = round((cue_base + relt(k))*SR)
+            if s >= total: break
+            if s >= 0:
+                hit = jdb if k % 4 == 0 else jbt*0.5   # accent on every downbeat (k%4==0)
+                n = min(len(hit), total-s); cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
+            k += 1
+        out = {"click": cbuf}
+    elif external:                                 # built clean click, downbeat on every bar line
         out = {"click": build_click(60/beat, total, off_samp, bar)}
     else:                                           # JamZone: the click stem itself, aligned
         cbuf = np.zeros((total, 2), np.float32); place(cbuf, decode(stems[click_name]), off_samp)
@@ -388,7 +470,7 @@ def main():
         out = {"click": cbuf}
     out["all"] = mixdown(music, {})
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
-        out["cues"], crep = build_cues(mix["cues"], total, bar, beat, cue_base)
+        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur)
         print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
               f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
         for b, be, ph, t in crep:
