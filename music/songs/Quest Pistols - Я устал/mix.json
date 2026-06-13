@@ -1,7 +1,7 @@
 {
   "bpm": 124.0,
   "click": "follow",
-  "tempo_zone": {"from_bar": 56, "from_beat": 4, "to_bar": 63, "to_beat": 3, "bpm": 90.0, "anchor_sec": 108.167},
+  "tempo_zone": {"from_bar": 56, "from_beat": 4, "to_bar": 63, "to_beat": 3, "bpm": 90.23, "anchor_sec": 108.187, "accent": 2},
   "pb-other": null,
   "pb-bass": null,
   "cues": [

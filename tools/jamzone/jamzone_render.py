@@ -186,7 +186,7 @@ def build_follow_grid(met_mono, mix):
             elif k < z1: bt[k] = anchor + (k-z0)*sb        # clean slow zone, phase = real slow downbeat
             else:        bt[k] = phB + k*slB               # clean post, lstsq phase = locked to music
         info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": slB,
-                     "zone_t": (float(bt[z0]), float(bt[z1-1]))})
+                     "accent": int(tz.get("accent", 4)), "zone_t": (float(bt[z0]), float(bt[z1-1]))})
         return bt, slB, info
     core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
     bt = on.astype(float).copy()
@@ -468,12 +468,18 @@ def main():
         jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95
         jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95
         cbuf = np.zeros((total, 2), np.float32)
-        k = -(int(cue_base/beat) + 4)              # start a few bars before bar 1 (count-in fill)
+        zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone may have its own meter (e.g. half-time
+        zacc = int(finfo.get("accent", 4))             # breakdown felt in 2 -> accent every 2 beats,
+        k = -(int(cue_base/beat) + 4)                  # phased to the zone's first beat z0)
         while True:
             s = round((cue_base + relt(k))*SR)
             if s >= total: break
             if s >= 0:
-                hit = jdb if k % 4 == 0 else jbt*0.5   # accent on every downbeat (k%4==0)
+                if zz0 is not None and zz0 <= k < zz1:
+                    accent = (k - zz0) % zacc == 0
+                else:
+                    accent = k % 4 == 0
+                hit = jdb if accent else jbt*0.5
                 n = min(len(hit), total-s); cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
             k += 1
         out = {"click": cbuf}
