@@ -2,6 +2,10 @@
 
 Контекст репо: см. `README.md` (группа, структура, ассеты) и `music/README.md` (музыкальный пайплайн).
 
+## НЕ ЗАЛИВАТЬ без явной просьбы
+
+Никогда не загружать рендеры/превью наружу (R2 `upload-to-r2-dev.ts`, любой аплоад) по своей инициативе. Только когда пользователь явно просит. По умолчанию — рендерить локально в `auto-render/` и давать путь к файлу; пользователь сам копирует.
+
 ## Cues (вокальные подсказки в ухо)
 
 Когда пользователь даёт список cue (обычно позиции из Logic: `такт доля`), текст разворачивается по фиксированным правилам. **Очень важно, действует для ВСЕХ cue, всегда:**
@@ -53,3 +57,27 @@
 - **Имя файла:** `<title> [<video id>].<ext>` — id в имени, чтобы источник был восстановим и версии не перезаписывались.
 - **Git:** тяжёлые медиа вне git (`*.webm`, `*.opus`, `*.mkv` в `.gitignore`, как и остальное аудио/видео).
 - **DAW:** opus/webm не открывается в Logic/GarageBand — для DAW конвертировать в wav через `ffmpeg`.
+
+## Шаринг рендера через R2 (temp)
+
+Отдать клавишнику/группе пакет ссылкой: зипуем `auto-render/` **без json** (timeline/mix — служебные) и льём в бакет `agentiqa-releases`, публичный на `https://releases.agentiqa.com/`.
+
+1. **Zip** (только медиа, json исключить):
+   ```bash
+   cd "music/songs/<Song>/auto-render"
+   zip -j "/tmp/<Song> auto-render.zip" *.wav cue_preview.mp3 -x "*.json"
+   ```
+2. **Креды R2** живут в репо `agentiqa` (НЕ хранить здесь — CLAUDE.md в git): env-имена `R2_ENDPOINT`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET_NAME`, `R2_PUBLIC_URL`. Реальные значения для бакета `agentiqa-releases` — в `agentiqa/docs/plans/2026-03-09-preview-release.md` (endpoint `…74709cb38b6ab441aed5fb0ccd3409f3.r2.cloudflarestorage.com`). Готовый аплоадер: `agentiqa/e2e/scripts/upload-file-to-r2.ts` (`--file --key`), но он требует `R2_PUBLIC_URL` и проверяет публичную доступность.
+3. **Залить** в префикс `temp/` (aws-sdk v2 уже есть в `agentiqa/node_modules`; `boto3`/`aws`/`wrangler` локально не настроены). Минимальный node-аплоад: `S3.putObject` на endpoint выше, `Bucket: agentiqa-releases`, `Key: temp/<Song> auto-render.zip`, `ContentType: application/zip`. Запускать с `NODE_PATH=…/agentiqa/node_modules`. Временный скрипт с кредами — удалять после.
+4. **Публичный URL:** `https://releases.agentiqa.com/temp/<url-encoded key>`. Проверить `curl -sI` (ждём `HTTP/2 200`, `content-type: application/zip`).
+
+## Gemini API (контент-пиллар: смешные рилсы из реп)
+
+Ключ Gemini (Google AI Studio, префикс `AIzaSy…`) живёт в репо `agentiqa` (НЕ хранить здесь — CLAUDE.md в git): var `AGENTIQA_GEMINI_API_KEY` в `~/projects/agentiqa/apps/desktop-next/.env` (также `.env.staging`, `.env.prod`). Достать:
+```bash
+grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cut -d= -f2-
+```
+
+- **Модель:** `gemini-3.5-flash` (GA с 20.05.2026, дефолтная, нативный multimodal: аудио+видео+текст в одном запросе). Pro/Omni-Flash на момент записи ещё не общедоступны — Flash достаточно.
+- **Пайплайн «смешные рилсы»:** видео → `ffmpeg` извлечь аудио → `gemini-3.5-flash` на полное аудио («найди смешное/интересное, таймкоды + почему» — слышит смех/подачу/паузу) → обсудить кандидатов с пользователем → `mlx-whisper large-v3` локально ТОЛЬКО на выбранные сегменты (точные слова + word-таймстемпы для реза) → нарезка. Whisper локальный = бэкбон таймкодов (бесплатно, любая длина); Gemini = поиск смешного по звуку.
+- **Лимиты:** Gemini File API ~2GB / ~9.5ч аудио у Flash. Длинные репы — чанкать аудио. Whisper длину не парит.
