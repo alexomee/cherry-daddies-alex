@@ -1,6 +1,7 @@
 {
   "pb-other": null,
   "pb-bass": null,
+  "pitch_semitones": -2,
   "cues": [
     {"bar": 3,   "text": "We Found Love synth in"},
     {"bar": 7,   "beat": 2, "text": "vocal in"},
