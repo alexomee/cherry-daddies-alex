@@ -3,7 +3,7 @@
   "pb-other": null,
   "pb-bass": null,
   "cues": [
-    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь drums in"},
+    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in"},
     {"bar": 9,   "beat": 4, "text": "vocal in"},
     {"bar": 21,  "beat": 2, "text": "all stop"},
     {"bar": 41,  "beat": 2, "text": "all stop"},
