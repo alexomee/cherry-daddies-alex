@@ -152,30 +152,55 @@ def met_onsets(mono):
         i += 1
     return np.array(peaks)/SR
 
-def build_follow_grid(met_mono):
-    """Tempo-FOLLOW beat grid from the metronome onsets, for songs with a real mid-song tempo
-    change (e.g. a half-time breakdown) that must be tracked and then re-locked to the music.
-    Steady sections are cleaned to a constant tempo (so the click is metronomic to play to),
-    the deviating zone keeps the actual onsets (the ritardando), and the POST-zone grid is
-    phase-locked to the real return onset — so when the tempo comes back the bar lines land on
-    the music's downbeats again (the arpeggiator/keys part stays tight). Returns (bt, beatB, info)
-    where bt[k] = stem-time of beat k (bt[0] = downbeat), beatB = post-zone beat for extrapolation."""
+def build_follow_grid(met_mono, mix):
+    """Tempo-FOLLOW beat grid for songs with a real mid-song tempo change (half-time breakdown)
+    that must be tracked then re-locked to the music. Steady sections are cleaned to a constant
+    tempo (metronomic to play to); the slow zone is a clean slow tempo; the POST-zone grid is
+    lstsq-phase-locked to the metronome's real return onsets — so when the tempo comes back the
+    bar lines land on the music's downbeats again (arpeggiator/keys stay tight). Returns (bt,
+    beatB, info), bt[k] = stem-time of beat k (bt[0] = downbeat).
+
+    The Moises metronome can LAG the music across a drum-break transition (Я устал: real
+    half-time kick downbeat ~105.0s, but the metronome stays 124 until ~107.1s and over-counts
+    the break). So the zone is set MANUALLY via mix.json "tempo_zone":
+        {"from_bar": N, "to_bar": M, "bpm": Z[, "from_beat": b, "to_beat": b, "anchor_sec": T]}
+    from_bar..to_bar (beat-index span) at Z bpm; anchor_sec (stem seconds, optional) phase-locks
+    the zone's first beat to the real slow downbeat (the drum break hides the phase step). Absent
+    "tempo_zone" -> auto-detect the zone from the metronome's own interval deviation."""
     on = met_onsets(met_mono)
     d = np.diff(on); beatA = float(np.median(d[:min(200, len(d))]))
-    zone = np.where(np.abs(d - beatA) > 0.04)[0]          # intervals off the main tempo by >40ms
-    bt = on.astype(float).copy()
     info = {"n": len(on), "beatA": beatA}
-    if len(zone):
-        za, zb = int(zone[0])+1, int(zone[-1])+1          # beats [za..zb-1] are stretched
-        def slope(a, b):
-            k = np.arange(a, b); A = np.vstack([k, np.ones_like(k)]).T
-            return np.linalg.lstsq(A, on[a:b], rcond=None)[0]   # (slope, phase)
+    def slope(a, b):
+        k = np.arange(a, b); A = np.vstack([k, np.ones_like(k)]).T
+        return np.linalg.lstsq(A, on[a:b], rcond=None)[0]   # (slope, phase)
+    tz = mix.get("tempo_zone")
+    if tz:
+        z0 = 4*(int(tz["from_bar"])-1) + (int(tz.get("from_beat", 1))-1)
+        z1 = 4*(int(tz["to_bar"])-1)   + (int(tz.get("to_beat", 1))-1)
+        sb = 60.0/float(tz["bpm"])
+        anchor = float(tz["anchor_sec"]) if "anchor_sec" in tz else on[0] + z0*beatA
+        slB, phB = slope(min(z1, len(on)-2), len(on))      # post tempo from the metronome (re-lock)
+        bt = np.zeros(max(len(on), z1+1))
+        for k in range(len(bt)):
+            if   k < z0: bt[k] = on[0] + k*beatA           # clean pre, downbeat anchor
+            elif k < z1: bt[k] = anchor + (k-z0)*sb        # clean slow zone, phase = real slow downbeat
+            else:        bt[k] = phB + k*slB               # clean post, lstsq phase = locked to music
+        info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": slB,
+                     "zone_t": (float(bt[z0]), float(bt[z1-1]))})
+        return bt, slB, info
+    core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
+    bt = on.astype(float).copy()
+    if len(core):
+        lo, hi = int(core[0]), int(core[-1])
+        while lo > 0 and abs(d[lo-1]-beatA) > 0.015: lo -= 1
+        while hi < len(d)-1 and abs(d[hi+1]-beatA) > 0.015: hi += 1
+        za, zb = lo+1, hi+2
         slA = slope(0, za)[0]
-        for k in range(za): bt[k] = on[0] + k*slA          # clean pre, anchored at downbeat on[0]
+        for k in range(za): bt[k] = on[0] + k*slA
         slB, phB = slope(zb, len(on))
-        for k in range(zb, len(on)): bt[k] = phB + k*slB   # clean post, lstsq phase = locked to music
-        info.update({"za": za, "zb": zb, "beatB": slB, "zone_t": (float(on[za-1]), float(on[zb])),
-                     "slowbpm": 60/float(np.median(d[zone]))})
+        for k in range(zb, len(on)): bt[k] = phB + k*slB
+        info.update({"za": za, "zb": zb, "beatB": slB, "zone_t": (float(on[za]), float(on[zb-1])),
+                     "slowbpm": 60/float(np.max(d[lo:hi+1]))})
         beatB = slB
     else:
         beatB = beatA
@@ -379,7 +404,7 @@ def main():
     bar = 4*beat
     follow = external and mix.get("click") == "follow"   # track a real mid-song tempo change
     if follow:
-        bt, beatB, finfo = build_follow_grid(click_st.mean(1))
+        bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix)
         db0 = float(bt[0])                        # downbeat = first metronome onset
         def relt(i):                              # seconds of beat index i from the downbeat
             i = float(i)
