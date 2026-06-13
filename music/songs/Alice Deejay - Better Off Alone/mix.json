@@ -1,5 +1,5 @@
 {
-  "pb-other": null,
+  "pb-other": {"stems": ["04_Noise_effects"]},
   "pb-bass": null,
   "cues": [
     {"bar": 3,   "text": "Better Off Alone synth in"},
