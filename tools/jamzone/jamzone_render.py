@@ -187,8 +187,11 @@ def build_follow_grid(met_mono, mix, beat):
             if   k < z0: bt[k] = on[0] + k*beat            # clean pre at true bpm, downbeat anchor
             elif k < z1: bt[k] = anchor + (k-z0)*sb        # clean slow zone, phase = real slow downbeat
             else:        bt[k] = ph_post + k*beat          # clean post at true bpm, phase-locked to music
-        bt = np.maximum.accumulate(bt)                     # anchor may sit just before the pre-zone's
-        #          last 124-beat (entry transition) -> keep bt non-decreasing so relt() can't go back
+        for k in range(1, len(bt)):                        # anchor may sit just before the pre-zone's
+            if bt[k] < bt[k-1]:                            # last 124-beat (entry transition). Don't
+                j = k                                      # CLAMP (that makes coincident beats ->
+                while j < len(bt) and bt[j] <= bt[k-1]: j += 1   # double click); BRIDGE the backward
+                if j < len(bt): bt[k-1:j+1] = np.linspace(bt[k-1], bt[j], j-k+2)   # step linearly
         info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": beat,
                      "accent": int(tz.get("accent", 4)), "subdiv": int(tz.get("subdiv", 1)),
                      "zone_t": (float(bt[z0]), float(bt[z1-1]))})
