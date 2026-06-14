@@ -473,8 +473,13 @@ def main():
 
     if follow:                                     # JZ-sample click ON the metronome's tempo map
         import jamzone_click as JC
-        jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95
-        jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95
+        def tight(x):                              # the JZ samples have a secondary bump ~30ms into
+            x = x/(np.max(np.abs(x)) or 1)*0.95    # the tail that reads as a DOUBLE click when the
+            f = int(0.012*SR); w = int(0.010*SR)   # click is loud — keep the 12ms attack, fade the
+            env = np.ones(len(x))                  # tail to 0 over 10ms (clean single transient)
+            env[f:] = np.maximum(0.0, 1 - np.arange(len(x)-f)/w)
+            return x*env
+        jdb = tight(JC.wav_read(JC.DB)); jbt = tight(JC.wav_read(JC.BT))
         cbuf = np.zeros((total, 2), np.float32)
         zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone meter: accent every zacc whole beats
         zacc = int(finfo.get("accent", 4))             # (downbeat), and SUBDIVIDE each beat into zsub
