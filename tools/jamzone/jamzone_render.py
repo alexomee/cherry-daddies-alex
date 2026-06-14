@@ -224,6 +224,7 @@ def build_follow_grid(met_mono, mix, beat):
                 if j < len(bt): bt[k-1:j+1] = np.linspace(bt[k-1], bt[j], j-k+2)   # step linearly
         info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": beat,
                      "accent": int(tz.get("accent", 4)), "subdiv": int(tz.get("subdiv", 1)),
+                     "accent_from": int(tz.get("accent_from", z0)),  # downbeat phase (default z0)
                      "zone_t": (float(bt[z0]), float(bt[z1-1]))})
         return bt, beat, info
     core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
@@ -330,24 +331,25 @@ def cue_beat_index(c):
 def cue_event_time(c, base, relt):
     return base + relt(cue_beat_index(c))
 
-def cue_kind(text):
-    last = text.split()[-1].lower()
-    return "stop" if last == "stop" else "in" if last == "in" else "plain"
+def cue_kind(text, raw=False):
+    if raw: return "plain"                                # literal cue: words verbatim on beats, no
+    last = text.split()[-1].lower()                       # 'ready go'/'3 2 1' expansion — for the slow
+    return "stop" if last == "stop" else "in" if last == "in" else "plain"  # breakdown where a word
 
-def cue_words(text):
+def cue_words(text, kind):                                # already spans 2 fast clicks and there is no
     """metered words of a cue + natural-pace intro. The counted block is the LAST 4 words
     ('<x> in ready go'); anything before it (the song title in the start cue) is announcement,
     spoken at natural speed as one phrase, ending just before the block — never squashed."""
-    words = (text + " ready go" if cue_kind(text) == "in" else text).split()
+    words = (text + " ready go" if kind == "in" else text).split()
     return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
 
 INTRO_GAP = 0.12                                          # breath between intro and the block
 def cue_first_word_time(c, base, relt, bdur):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
-    text = c["text"].strip(); i = cue_beat_index(c)
-    if cue_kind(text) == "stop" or c.get("count"):
+    text = c["text"].strip(); i = cue_beat_index(c); kind = cue_kind(text, c.get("raw"))
+    if kind == "stop" or c.get("count"):
         return base + relt(i - 5)                         # ~announcement + 3-2-1 count
-    intro, metric = cue_words(text)
+    intro, metric = cue_words(text, kind)
     nb0 = _metric_clips(metric, bdur(i))[0][1]
     t0 = base + relt(i - nb0)
     if intro:
@@ -372,7 +374,7 @@ def build_cues(cue_list, total, base, relt, bdur):
     buf = np.zeros((total, 2), np.float32)
     rep = []
     for c in cue_list:
-        text = c["text"].strip(); kind = cue_kind(text); counted = bool(c.get("count"))
+        text = c["text"].strip(); kind = cue_kind(text, c.get("raw")); counted = bool(c.get("count"))
         i = cue_beat_index(c); t_event = base + relt(i)   # band event here (silent in cue track)
         voice = RU_VOICE if _cyrillic(text) else EN_VOICE
         if kind == "stop" or counted:
@@ -384,7 +386,7 @@ def build_cues(cue_list, total, base, relt, bdur):
             _put(buf, ann, (base + relt(i - 3)) - 0.35 - len(ann)/SR)
             phrase = ann_text + " · 3 2 1"
         else:
-            intro, metric = cue_words(text)
+            intro, metric = cue_words(text, kind)
             clips = _metric_clips(metric, bdur(i))        # last word on the beat BEFORE the event
             if intro:                                     # title etc: natural pace, right-aligned
                 clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
@@ -523,8 +525,9 @@ def main():
         # — now skipped above — not the sample tail; clicks are >=333ms apart so tails never overlap.)
         cbuf = np.zeros((total, 2), np.float32)
         zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone meter: accent every zacc whole beats
-        zacc = int(finfo.get("accent", 4))             # (downbeat), and SUBDIVIDE each beat into zsub
-        zsub = int(finfo.get("subdiv", 1))             # ticks (e.g. 2 -> 8ths) so a syncopated half-
+        zaf = finfo.get("accent_from", zz0)            # (downbeat) measured from zaf (= z0 unless the
+        zacc = int(finfo.get("accent", 4))             # zone was extended back for a count-in, keeping
+        zsub = int(finfo.get("subdiv", 1))             # the downbeats put). SUBDIVIDE each beat into zsub
         def put(t, h):                                 # time breakdown whose backbone hits on the 'and'
             s = round(t*SR)                            # gets a click on those sub-beats too
             if 0 <= s < total:
@@ -534,7 +537,7 @@ def main():
             t = cue_base + relt(k)
             if t*SR >= total: break
             inzone = zz0 is not None and zz0 <= k < zz1
-            accent = (k - zz0) % zacc == 0 if inzone else k % 4 == 0
+            accent = (k - zaf) % zacc == 0 if inzone else k % 4 == 0
             dur = relt(k) - relt(k-1)                   # local beat length; the zone-exit linspace
             if dur >= 0.55*beat:                        # bridge fills a backward step with compressed
                 put(t, jdb if accent else jbt*0.55)     # beats (60-85ms) that read as a fast flutter —
