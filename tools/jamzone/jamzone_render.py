@@ -187,8 +187,11 @@ def build_follow_grid(met_mono, mix, beat):
             if   k < z0: bt[k] = on[0] + k*beat            # clean pre at true bpm, downbeat anchor
             elif k < z1: bt[k] = anchor + (k-z0)*sb        # clean slow zone, phase = real slow downbeat
             else:        bt[k] = ph_post + k*beat          # clean post at true bpm, phase-locked to music
+        bt = np.maximum.accumulate(bt)                     # anchor may sit just before the pre-zone's
+        #          last 124-beat (entry transition) -> keep bt non-decreasing so relt() can't go back
         info.update({"manual": True, "z0": z0, "z1": z1, "slowbpm": float(tz["bpm"]), "beatB": beat,
-                     "accent": int(tz.get("accent", 4)), "zone_t": (float(bt[z0]), float(bt[z1-1]))})
+                     "accent": int(tz.get("accent", 4)), "subdiv": int(tz.get("subdiv", 1)),
+                     "zone_t": (float(bt[z0]), float(bt[z1-1]))})
         return bt, beat, info
     core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
     bt = on.astype(float).copy()
@@ -470,19 +473,23 @@ def main():
         jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95
         jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95
         cbuf = np.zeros((total, 2), np.float32)
-        zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone may have its own meter (e.g. half-time
-        zacc = int(finfo.get("accent", 4))             # breakdown felt in 2 -> accent every 2 beats,
-        k = -(int(cue_base/beat) + 4)                  # phased to the zone's first beat z0)
+        zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone meter: accent every zacc whole beats
+        zacc = int(finfo.get("accent", 4))             # (downbeat), and SUBDIVIDE each beat into zsub
+        zsub = int(finfo.get("subdiv", 1))             # ticks (e.g. 2 -> 8ths) so a syncopated half-
+        def put(t, h):                                 # time breakdown whose backbone hits on the 'and'
+            s = round(t*SR)                            # gets a click on those sub-beats too
+            if 0 <= s < total:
+                n = min(len(h), total-s); cbuf[s:s+n, 0] += h[:n]; cbuf[s:s+n, 1] += h[:n]
+        k = -(int(cue_base/beat) + 4)
         while True:
-            s = round((cue_base + relt(k))*SR)
-            if s >= total: break
-            if s >= 0:
-                if zz0 is not None and zz0 <= k < zz1:
-                    accent = (k - zz0) % zacc == 0
-                else:
-                    accent = k % 4 == 0
-                hit = jdb if accent else jbt*0.5
-                n = min(len(hit), total-s); cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
+            t = cue_base + relt(k)
+            if t*SR >= total: break
+            inzone = zz0 is not None and zz0 <= k < zz1
+            accent = (k - zz0) % zacc == 0 if inzone else k % 4 == 0
+            put(t, jdb if accent else jbt*0.55)        # whole beat: downbeat loud, others medium
+            if inzone and zsub > 1 and k < zz1-1:      # sub-beat ticks inside the zone (quiet)
+                for j in range(1, zsub):
+                    put(cue_base + relt(k + j/zsub), jbt*0.35)
             k += 1
         out = {"click": cbuf}
     elif external:                                 # built clean click, downbeat on every bar line
