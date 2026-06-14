@@ -1,0 +1,19 @@
+{
+  "name": "dance2000-promo-sun",
+  "note": "Alt-bed variant of dance2000 promo: bed = Солнышко from 55.887s (SMPTE TC − 01:00:00). Same VO @1.771s + same video as base.",
+  "video": "src/video.mp4",
+  "song": "src/song_sun.mp3",
+  "song_seek": 55.887,
+  "voiceover": "src/voiceover.mp3",
+  "vo_offset": 1.771,
+  "bed_gain_db": 0.0,
+  "bed_fadeout": 0.8,
+  "vo_gain_db": 0.0,
+  "duck": {
+    "threshold": 0.03,
+    "ratio": 8,
+    "attack": 20,
+    "release": 300
+  },
+  "out_prefix": "dance2000-promo-sun"
+}
