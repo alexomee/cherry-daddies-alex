@@ -585,6 +585,14 @@ def main():
                 for j in range(1, zsub):
                     put(cue_base + relt(k + j/zsub), jbt*0.35)
             k += 1
+        if zz0 is not None:                            # ENTRY gap-fill: the slow anchor can sit a beat+
+            t_pre = cue_base + relt(zz0-1)             # past the last 124 beat (the verse still plays
+            t_zone = cue_base + relt(zz0)              # 124 into the break). Continue the 124 grid to its
+            m = 1                                      # natural downbeats so the normal beat keeps its
+            while t_pre + m*beat < t_zone - 0.30*beat: # 'one' instead of the slow grid swallowing it,
+                kk = (zz0-1) + m                       # then the slow count-in starts clean after.
+                put(t_pre + m*beat, jdb if kk % 4 == 0 else jbt*0.55)
+                m += 1
         out = {"click": cbuf}
     elif external:                                 # built clean click, downbeat on every bar line
         out = {"click": build_click(60/beat, total, off_samp, bar)}
