@@ -179,6 +179,29 @@ def build_follow_grid(met_mono, mix, beat):
     if tz:
         z0 = 4*(int(tz["from_bar"])-1) + (int(tz.get("from_beat", 1))-1)
         z1 = 4*(int(tz["to_bar"])-1)   + (int(tz.get("to_beat", 1))-1)
+        if tz.get("anchors"):                          # piecewise grid through explicit beat anchors
+            # [[beat_offset_from_z0, stem_sec], ...] — the breakdown tempo is NOT constant, so a
+            # single bpm drifts (accumulates offset). Pin the grid to the user's real beat marks
+            # (stem = his render timecode − count-in OFF); interpolate between, extrapolate the ends.
+            an = tz["anchors"]
+            idx = np.array([z0 + a[0] for a in an], float); tms = np.array([a[1] for a in an], float)
+            slope = (tms[-1]-tms[-2])/(idx[-1]-idx[-2])
+            ph_post = phase_at(z1, len(on)) if z1 < len(on)-1 else float(on[0])
+            n_bt = max(len(on), z1+1, int(idx[-1])+2)
+            bt = np.zeros(n_bt)
+            for k in range(n_bt):
+                if   k < z0: bt[k] = on[0] + k*beat
+                elif k < z1: bt[k] = float(np.interp(k, idx, tms)) if k <= idx[-1] else tms[-1]+(k-idx[-1])*slope
+                else:        bt[k] = ph_post + k*beat
+            for k in range(1, len(bt)):                # bridge any backward step (entry/exit)
+                if bt[k] < bt[k-1]:
+                    j = k
+                    while j < len(bt) and bt[j] <= bt[k-1]: j += 1
+                    if j < len(bt): bt[k-1:j+1] = np.linspace(bt[k-1], bt[j], j-k+2)
+            info.update({"manual": True, "z0": z0, "z1": z1, "accent": int(tz.get("accent", 4)),
+                         "subdiv": int(tz.get("subdiv", 1)), "beatB": beat,
+                         "slowbpm": 60/((tms[-1]-tms[0])/(idx[-1]-idx[0])), "zone_t": (float(bt[z0]), float(bt[z1-1]))})
+            return bt, beat, info
         sb = 60.0/float(tz["bpm"])
         anchor = float(tz["anchor_sec"]) if "anchor_sec" in tz else on[0] + z0*beat
         ph_post = phase_at(z1, len(on)) if z1 < len(on)-1 else (on[0] - 0)  # 124 phase = music return
@@ -464,11 +487,21 @@ def main():
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
 
-    def mixdown(names, gains):
-        buf = np.zeros((total, 2), np.float32)
-        for n in names:
-            g = 10**(gains.get(n, 0)/20)
-            place(buf, audio[n]*g, off_samp)
+    def mixdown(names, gains, mutes=None):
+        mutes = mutes or {}                            # {stem: [[from_bar, to_bar], ...]}: silence the
+        buf = np.zeros((total, 2), np.float32)         # stem from from_bar downbeat to to_bar downbeat
+        for n in names:                                # (1-indexed bars, to_bar exclusive). Per-stem so
+            g = 10**(gains.get(n, 0)/20)               # one stem can drop out of a section (e.g. backing
+            if n in mutes:                             # vocals off in the verse) without touching others.
+                sb = np.zeros((total, 2), np.float32)
+                place(sb, audio[n]*g, off_samp)
+                for fr, to in mutes[n]:
+                    s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
+                    s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
+                    if s1 > s0: sb[s0:s1] = 0
+                buf += sb
+            else:
+                place(buf, audio[n]*g, off_samp)
         return buf
 
     if follow:                                     # JZ-sample click ON the metronome's tempo map
@@ -528,7 +561,7 @@ def main():
         out["cues"] = cues_buf
     for grp in ("pb-other", "pb-bass"):
         m = mix.get(grp)
-        if m: out[grp] = mixdown(m["stems"], m.get("gain_db", {}))
+        if m: out[grp] = mixdown(m["stems"], m.get("gain_db", {}), m.get("mute"))
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
     if semi:
