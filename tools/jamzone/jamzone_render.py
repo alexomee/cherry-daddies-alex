@@ -502,24 +502,25 @@ def main():
             if n in mutes:                             # vocals off in the verse) without touching others.
                 sb = np.zeros((total, 2), np.float32)
                 place(sb, audio[n]*g, off_samp)
-                for fr, to in mutes[n]:
+                for fr, to in mutes[n]:                # fr/to in bars (fractional ok: 18.2 = bar18 beat1.8)
                     s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
                     s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
-                    if s1 > s0: sb[s0:s1] = 0
+                    if s1 > s0:
+                        sb[s0:s1] = 0
+                        f = int(0.015*SR)              # 15ms fade-in at the un-mute edge so a hard cut
+                        if s1+f <= total:              # landing mid-note doesn't click
+                            sb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
                 buf += sb
             else:
                 place(buf, audio[n]*g, off_samp)
         return buf
 
     if follow:                                     # JZ-sample click ON the metronome's tempo map
-        import jamzone_click as JC
-        def tight(x):                              # the JZ samples have a secondary bump ~30ms into
-            x = x/(np.max(np.abs(x)) or 1)*0.95    # the tail that reads as a DOUBLE click when the
-            f = int(0.012*SR); w = int(0.010*SR)   # click is loud — keep the 12ms attack, fade the
-            env = np.ones(len(x))                  # tail to 0 over 10ms (clean single transient)
-            env[f:] = np.maximum(0.0, 1 - np.arange(len(x)-f)/w)
-            return x*env
-        jdb = tight(JC.wav_read(JC.DB)); jbt = tight(JC.wav_read(JC.BT))
+        import jamzone_click as JC                 # natural JZ samples (full ~70ms decay) — same click
+        jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95   # body as the JamZone-song
+        jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95   # path. (Earlier a 22ms tail-
+        # cut was applied to kill a perceived double-click, but that double was the zone-bridge flutter
+        # — now skipped above — not the sample tail; clicks are >=333ms apart so tails never overlap.)
         cbuf = np.zeros((total, 2), np.float32)
         zz0, zz1 = finfo.get("z0"), finfo.get("z1")    # zone meter: accent every zacc whole beats
         zacc = int(finfo.get("accent", 4))             # (downbeat), and SUBDIVIDE each beat into zsub
