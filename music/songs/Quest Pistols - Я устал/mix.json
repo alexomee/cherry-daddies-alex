@@ -15,7 +15,7 @@
     {"bar": 53, "text": "stop"},
     {"bar": 53, "beat": 3, "text": "vocal in", "fast": true},
     {"bar": 55, "beat": 2, "text": "drums in", "fast": true},
-    {"bar": 68, "text": "chorus-vocal in"},
-    {"bar": 92, "beat": 3, "text": "end stop"}
+    {"bar": 65, "beat": 3, "text": "chorus in"},
+    {"bar": 90, "text": "bass-only in", "count": true}
   ]
 }
