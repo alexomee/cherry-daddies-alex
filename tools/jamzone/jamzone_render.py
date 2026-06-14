@@ -527,7 +527,12 @@ def main():
             if t*SR >= total: break
             inzone = zz0 is not None and zz0 <= k < zz1
             accent = (k - zz0) % zacc == 0 if inzone else k % 4 == 0
-            put(t, jdb if accent else jbt*0.55)        # whole beat: downbeat loud, others medium
+            dur = relt(k) - relt(k-1)                   # local beat length; the zone-exit linspace
+            if dur >= 0.55*beat:                        # bridge fills a backward step with compressed
+                put(t, jdb if accent else jbt*0.55)     # beats (60-85ms) that read as a fast flutter —
+                                                        # skip those in EMISSION only (bt/relt untouched,
+                                                        # so cues stay put); the handoff becomes one
+                                                        # clean gap then the real 124 downbeat
             if inzone and zsub > 1 and k < zz1-1:      # sub-beat ticks inside the zone (quiet)
                 for j in range(1, zsub):
                     put(cue_base + relt(k + j/zsub), jbt*0.35)
