@@ -2,7 +2,7 @@
   "name": "dance2000-promo",
   "note": "DANCE2000 рус promo: replace original mixed audio. New bed = SEREBRO — Мало тебя from 0:30; ElevenLabs VO re-seated at its original onset (1.771s, measured by cross-correlation vs source mix). Video stream untouched.",
   "video": "src/video.mp4",
-  "song": "src/song.webm",
+  "song": "src/song.mp3",
   "song_seek": 30.433,
   "voiceover": "src/voiceover.mp3",
   "vo_offset": 1.771,
