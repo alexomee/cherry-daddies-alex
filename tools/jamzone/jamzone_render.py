@@ -205,6 +205,13 @@ def build_follow_grid(met_mono, mix, beat):
         sb = 60.0/float(tz["bpm"])
         anchor = float(tz["anchor_sec"]) if "anchor_sec" in tz else on[0] + z0*beat
         ph_post = phase_at(z1, len(on)) if z1 < len(on)-1 else (on[0] - 0)  # 124 phase = music return
+        ret = tz.get("return_sec")                         # the Moises metronome's BAR phase drifts through
+        if ret is not None:                                # a half-time break (its beat count != the music's
+            n = int(round((float(ret) - ph_post)/beat))    # bar count), so post k%4 no longer lands on the
+            kref = int(round(n/4.0))*4                      # real downbeats, and it can lead the kick. Re-
+            ph_post = float(ret) - kref*beat               # phase the post 124 grid so a downbeat (k%4==0)
+            info["return_t"] = (kref, float(ret))          # sits exactly on the real return (a stem onset
+                                                           # the user marks, e.g. the chorus kick-drop).
         bt = np.zeros(max(len(on), z1+1))
         for k in range(len(bt)):
             if   k < z0: bt[k] = on[0] + k*beat            # clean pre at true bpm, downbeat anchor
