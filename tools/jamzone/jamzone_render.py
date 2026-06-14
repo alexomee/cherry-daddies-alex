@@ -270,9 +270,11 @@ def _atempo(x, factor):
                          input=x.astype(np.float32).tobytes(), capture_output=True).stdout
     return np.frombuffer(raw, np.float32).copy()
 
-def _metric_clips(metric, beat):
+def _metric_clips(metric, beat, squeeze=False):
     """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
-    beat -(W-i). Speed-up is capped at `say -r 200` — faster is unintelligible; past that a
+    beat -(W-i). squeeze=True (fast breakdown cues) ALWAYS atempo-fits each word into its one
+    slot — 'rushed' is acceptable when the slot is a fast subdiv tick and there's no room to
+    spread. Speed-up is capped at `say -r 200` — faster is unintelligible; past that a
     small overflow (<0.15 beat) is squeezed into the slot by atempo (inaudible at such factors,
     e.g. solo/sax ~1.05x). A word overflowing MORE STARTS whole beats earlier and spans them at
     natural pace (first word only — the slot before it is free; e.g. instrumental, arpegiator,
@@ -285,7 +287,9 @@ def _metric_clips(metric, beat):
         budget = 0.92*beat
         nat, fast = _say(w, v), _say(w, v, 200)
         clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
-        if clip is None and len(fast)/SR - budget < 0.15*beat:  # small overflow: squeeze into the
+        if clip is None and squeeze:                            # fast cue: force into the one tick slot
+            clip = _atempo(fast, (len(fast)/SR)/budget)
+        elif clip is None and len(fast)/SR - budget < 0.15*beat:  # small overflow: squeeze into the
             clip = _atempo(fast, (len(fast)/SR)/budget)         # slot — a whole added beat would
         elif clip is None and i == 0:                           # sit mostly empty (solo/sax ~1.05x)
             ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
@@ -343,15 +347,39 @@ def cue_words(text, kind):                                # already spans 2 fast
     words = (text + " ready go" if kind == "in" else text).split()
     return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
 
+_PC = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
+def _note_hz(nm):
+    """note name (e.g. 'C#4', 'Eb3') -> Hz. A4 = 440, middle C = C4."""
+    import re
+    m = re.match(r'^([A-Ga-g])([#b]?)(-?\d+)$', nm.strip())
+    midi = (int(m.group(3)) + 1)*12 + _PC[m.group(1).upper()] + {'#': 1, 'b': -1, '': 0}[m.group(2)]
+    return 440.0*2**((midi - 69)/12)
+
+def _chord_clip(notes, dur_s, level=0.5):
+    """Soft synth triad for an in-ear pitch reference (authored directly in the BAND key — the
+    cue track is never pitch-shifted). Sine + two quiet harmonics, gentle attack and a long
+    cosine release so it rings like a pad, not a beep."""
+    n = int(dur_s*SR); t = np.arange(n)/SR; y = np.zeros(n)
+    for nm in notes:
+        f = _note_hz(nm)
+        for h, a in ((1, 1.0), (2, 0.35), (3, 0.15)):
+            y += a*np.sin(2*np.pi*f*h*t)
+    env = np.ones(n); at = int(0.015*SR); rl = int(min(0.55, dur_s*0.55)*SR)
+    env[:at] = np.linspace(0, 1, at)
+    env[-rl:] = np.cos(np.linspace(0, np.pi/2, rl))       # smooth fade to 0 (no click into the block)
+    return (y*env/(np.max(np.abs(y*env)) or 1)*level).astype(np.float32)
+
 INTRO_GAP = 0.12                                          # breath between intro and the block
-def cue_first_word_time(c, base, relt, bdur):
+def cue_first_word_time(c, base, relt, bdur, subdiv=1):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); i = cue_beat_index(c); kind = cue_kind(text, c.get("raw"))
     if kind == "stop" or c.get("count"):
         return base + relt(i - 5)                         # ~announcement + 3-2-1 count
     intro, metric = cue_words(text, kind)
-    nb0 = _metric_clips(metric, bdur(i))[0][1]
-    t0 = base + relt(i - nb0)
+    step = 1.0/subdiv if c.get("fast") and subdiv > 1 else 1.0   # 'fast': words on subdiv ticks
+    blk0 = _metric_clips(metric, bdur(i)*step, step < 1.0)[0][1]
+    pre = 4 if c.get("chord") else 0                      # chord reference rings a whole bar before
+    t0 = base + relt(i - blk0*step - pre)                 # the block (extra bar for the vocalist)
     if intro:
         clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
         return t0 - INTRO_GAP - len(clip)/SR
@@ -361,7 +389,7 @@ def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
     if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
 
-def build_cues(cue_list, total, base, relt, bdur):
+def build_cues(cue_list, total, base, relt, bdur, subdiv=1):
     """Spoken cues on the render grid. Event time = base + relt(beat index of the marked bar/beat);
     the band plays/stops ON that beat (no word on it). Words land on grid beats (relt), so a
     tempo-follow song spaces the count/block by the LOCAL tempo. Three styles:
@@ -387,15 +415,23 @@ def build_cues(cue_list, total, base, relt, bdur):
             phrase = ann_text + " · 3 2 1"
         else:
             intro, metric = cue_words(text, kind)
-            clips = _metric_clips(metric, bdur(i))        # last word on the beat BEFORE the event
+            step = 1.0/subdiv if c.get("fast") and subdiv > 1 else 1.0   # 'fast': words on subdiv
+            clips = _metric_clips(metric, bdur(i)*step, step < 1.0)   # ticks (333ms in a half-time
+            blk0 = clips[0][1]; chord = c.get("chord")    # word sped up to fit one tick — so '<x> in
+            if chord:                                     # ready go' (4 fast words) lands after the
+                cs, ce = i - blk0*step - 4, i - blk0*step # band stops. synth triad rings the bar before
+                _put(buf, _chord_clip(chord, relt(ce) - relt(cs)), base + relt(cs))  # the block (in-ear
+                anchor = cs                               # pitch ref + extra bar). Title ends before it.
+            else:
+                anchor = i - blk0*step
             if intro:                                     # title etc: natural pace, right-aligned
                 clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
-                _put(buf, clip, base + relt(i - clips[0][1]) - INTRO_GAP - len(clip)/SR)
+                _put(buf, clip, base + relt(anchor) - INTRO_GAP - len(clip)/SR)
             for (clip, nb), w in zip(clips, metric):
-                _put(buf, clip, base + relt(i - nb) - _vowel_onset(clip))
+                _put(buf, clip, base + relt(i - nb*step) - _vowel_onset(clip))
             ext = clips[0][1] - len(metric)
-            phrase = (intro + " · " if intro else "") + " ".join(metric) \
-                     + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
+            phrase = (f"♪{'+'.join(chord)}♪ · " if chord else "") + (intro + " · " if intro else "") \
+                     + " ".join(metric) + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
         rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
     return buf, rep
 
@@ -452,6 +488,7 @@ def main():
     else:
         def relt(i): return i*beat
         def bdur(i): return beat
+    cue_subdiv = int(finfo.get("subdiv", 1)) if follow else 1   # 'fast' cues space words by ticks
     tag = (f" (tempo-follow: {finfo['n']} onsets, zone {finfo['zone_t'][0]:.1f}-{finfo['zone_t'][1]:.1f}s "
            f"@~{finfo['slowbpm']:.0f}bpm, re-locked after)" if follow and "zone_t" in finfo
            else " (built clean click; Moises tempo ~constant)" if external else "")
@@ -475,7 +512,7 @@ def main():
     lead = 0.0
     daw = mix.get("daw_align")                     # DAW-align: WAV time == stem (song) time, no
     if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
-        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur) for c in mix["cues"])  # song
+        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv) for c in mix["cues"])  # song
         if min_word < 0.05:                        # only when the cue would actually clip the front
             lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
@@ -567,7 +604,7 @@ def main():
         out = {"click": cbuf}
     out["all"] = mixdown(music, {})
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
-        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur)
+        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv)
         print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
               f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
         for b, be, ph, t in crep:

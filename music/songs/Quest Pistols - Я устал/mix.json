@@ -1,7 +1,7 @@
 {
   "bpm": 124.0,
   "click": "follow",
-  "tempo_zone": {"from_bar": 53, "from_beat": 1, "to_bar": 62, "to_beat": 4, "bpm": 89.919, "anchor_sec": 101.116, "accent": 4, "accent_from": 209, "subdiv": 2, "return_sec": 130.799},
+  "tempo_zone": {"from_bar": 52, "from_beat": 4, "to_bar": 62, "to_beat": 4, "bpm": 89.919, "anchor_sec": 100.448, "accent": 4, "accent_from": 209, "subdiv": 2, "return_sec": 130.799},
   "pb-other": null,
   "pb-bass": null,
   "cues": [
@@ -13,8 +13,8 @@
     {"bar": 33, "text": "stop"},
     {"bar": 44, "text": "keep going"},
     {"bar": 53, "text": "stop"},
-    {"bar": 53, "beat": 3, "text": "vocal in", "raw": true},
-    {"bar": 55, "beat": 2, "text": "drums in", "raw": true},
+    {"bar": 53, "beat": 3, "text": "vocal in", "fast": true},
+    {"bar": 55, "beat": 2, "text": "drums in", "fast": true},
     {"bar": 68, "text": "chorus-vocal in"},
     {"bar": 92, "beat": 3, "text": "end stop"}
   ]
