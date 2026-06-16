@@ -1,0 +1,15 @@
+{
+  "pb-other": {"stems": ["06_Synth_Ambiant"], "gain_db": {"06_Synth_Ambiant": -12}},
+  "pb-bass": null,
+  "note": "live bass",
+  "cues": [
+    {"bar": 3,   "text": "No Stress vocal in", "chord": ["A4"], "abs_sec": 5.538},
+    {"bar": 11,  "text": "beat in", "abs_sec": 20.308},
+    {"bar": 29,  "text": "main in", "abs_sec": 53.538},
+    {"bar": 33,  "text": "synth in", "abs_sec": 60.923},
+    {"bar": 53,  "text": "verse piano in", "abs_sec": 97.846},
+    {"bar": 57,  "text": "vocal in", "abs_sec": 105.231},
+    {"bar": 85,  "text": "main in", "abs_sec": 156.923},
+    {"bar": 109, "text": "end in", "count": true, "abs_sec": 201.231}
+  ]
+}
