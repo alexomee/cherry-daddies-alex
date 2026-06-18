@@ -554,6 +554,12 @@ def main():
             for r in (ent.get("replaces", []) if isinstance(ent, dict) else []):
                 if r not in stems: sys.exit(f"mix.json: layer '{nm}' replaces unknown stem '{r}'")
 
+    players = mix.get("players") or {}                  # member -> stems/layers they play live;
+    for who, owned in players.items():                  # practice mix per player = all minus these
+        for nm in owned:
+            if nm not in stems and not glob.glob(os.path.join(folder, "parts", nm + ".*")):
+                sys.exit(f"mix.json: player '{who}' lists unknown stem/layer '{nm}'")
+
     click_st = decode(stems[click_name])
     beat, db0, resid, n_on = fit_grid(click_st.mean(1))  # fit_grid uses lstsq = span-average
     if external:
