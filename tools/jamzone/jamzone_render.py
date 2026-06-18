@@ -48,6 +48,11 @@ User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
        --check = analyze + verify, write nothing
        --bpm N = force tempo (external songs; overrides measured)
+   position converter (writes nothing; pick where to add a cue without bar-grid guessing):
+       --map           list every cue in mix.json bar / render sec / Logic-ruler bar.beat
+       --logic B[.bt]  a spot on Logic's ruler (over the loaded render) -> the mix.json "bar" to write
+       --bar  N[.bt]   a mix.json bar -> render sec + where it lands on Logic's ruler
+       --at   SEC      a render second / Logic SMPTE -> the mix.json "bar" to write
 """
 import os, sys, glob, json, re, subprocess
 import numpy as np
@@ -615,6 +620,50 @@ def main():
         end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
     total = int(np.ceil(end/(bar*SR))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
+
+    # ---- cue position converter (writes nothing) -------------------------------------------------
+    # Three coordinate systems a cue position gets read in — this maps between them:
+    #   mix-bar   : mix.json "bar"/"beat". The MUSIC grid (bar 1.1 = stem downbeat). What you AUTHOR.
+    #   render-s  : seconds into auto-render/*.wav (== "abs_sec" == Logic SMPTE of the loaded render).
+    #   Logic-bar : bar.beat on Logic's OWN ruler when you drop the render in at bar1 = t=0 (constant
+    #               song tempo). What the bar counter shows over the rendered click — OFFSET from
+    #               mix-bar by the count-in lead (+ tempo-follow drift). DON'T author from this directly.
+    # Queries:  --map            whole cue list in all three systems (see the constant lead offset)
+    #           --logic B[.beat] a Logic-ruler spot  -> the mix.json "bar" to write
+    #           --bar  N[.beat]  a mix.json bar       -> render sec + where it shows on Logic's ruler
+    #           --at   SEC       a render/SMPTE second-> mix.json "bar"
+    def idx_to_barbeat(i): i = int(round(i)); return i//4 + 1, i % 4 + 1
+    def mixbar_to_idx(b, bt_=1): return 4*(int(b)-1) + (int(bt_)-1)
+    def render_sec(i): return cue_base + relt(i)
+    def sec_to_idx(t):                                  # inverse of render_sec (tempo-follow aware)
+        if not follow: return (t - cue_base)/beat
+        rel = t - cue_base
+        if rel <= 0: return rel/beat
+        span = bt - bt[0]
+        if rel >= span[-1]: return (len(bt)-1) + (rel-span[-1])/beatB
+        j = max(0, min(int(np.searchsorted(span, rel)) - 1, len(span)-2))
+        return j + (rel - span[j])/(span[j+1]-span[j])
+    def logic_of_sec(t): b = t/bar; return int(b)+1, (b-int(b))*4 + 1   # ruler: bar1=t=0, const tempo
+    def sec_of_logic(bn, be=1): return ((bn-1) + (be-1)/4)*bar
+    def report(t, src):
+        mb, mbe = idx_to_barbeat(sec_to_idx(t)); lb, lbe = logic_of_sec(t)
+        write = f'"bar": {mb}' if mbe == 1 else f'"bar": {mb}, "beat": {mbe}'
+        print(f'  {src:>18} | render {t:8.3f}s | mix.json {{{write}}} | Logic ruler {lb}.{round(lbe)}')
+    def _qval(flag): return sys.argv[sys.argv.index(flag)+1]
+    q = False
+    if "--map" in sys.argv:
+        q = True
+        print("cue map — mix.json bar  ->  render sec  ->  Logic ruler bar.beat:")
+        for c in mix.get("cues", []):
+            i = cue_beat_index(c); t = render_sec(i); lb, lbe = logic_of_sec(t)
+            print(f"  bar {int(c['bar']):>3} beat {int(c.get('beat',1))} | {t:8.3f}s "
+                  f"| Logic {lb}.{round(lbe)} | {c['text']}")
+    for flag, mk in (("--logic", lambda v: sec_of_logic(int(v.split('.')[0]), int((v.split('.')+['1'])[1]))),
+                     ("--bar",   lambda v: render_sec(mixbar_to_idx(int(v.split('.')[0]), int((v.split('.')+['1'])[1])))),
+                     ("--at",    lambda v: float(v))):
+        if flag in sys.argv:
+            q = True; v = _qval(flag); report(mk(v), f"{flag[2:]} {v}")
+    if q: return
 
     def mixdown(names, gains, mutes=None):
         mutes = mutes or {}                            # {stem: [[from_bar, to_bar], ...]}: silence the
