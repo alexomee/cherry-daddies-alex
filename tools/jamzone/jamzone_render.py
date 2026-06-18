@@ -786,6 +786,7 @@ def main():
         n = min(len(a) - a0, total - s0)
         if n > 0: lbuf[s0:s0+n] = a[a0:a0+n]
         return lbuf
+    placed_layers = []                             # (name, placed band-key buffer) for practice minus
     for grp in ("pb-other", "pb-bass"):            # layers added AFTER pitch (band key -> NEVER pitched),
         m = mix.get(grp)                           # BEFORE headroom (catch peaks); each folded into `all`.
         for ent in (m or {}).get("layers", []):    # entry: "name" (render-frame) | {file, frame, offset_ms}
@@ -795,6 +796,7 @@ def main():
             start = base + round(ent.get("offset_ms", 0)/1000*SR) # cut vs Moises stems (native, placed at OFF)
             g = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
             lb = load_layer(nm, start) * 10**(g/20)
+            placed_layers.append((nm, lb))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             out["all"] = out["all"] + lb
             print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch)")
