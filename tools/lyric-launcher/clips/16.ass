@@ -1,0 +1,97 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Now,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,42,&H00AAAAAA,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,2,80,80,60,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:02:33.00,Title,,0,0,0,,Now You're Gone
+Dialogue: 0,0:00:02.40,0:00:04.28,Now,,0,0,0,,Now you're gone
+Dialogue: 0,0:00:02.40,0:00:04.28,Next,,0,0,120,,I realised my love for you was strong
+Dialogue: 0,0:00:04.28,0:00:07.63,Now,,0,0,0,,I realised my love for you was strong
+Dialogue: 0,0:00:04.28,0:00:07.63,Next,,0,0,120,,And
+Dialogue: 0,0:00:07.63,0:00:07.90,Now,,0,0,0,,And
+Dialogue: 0,0:00:07.63,0:00:07.90,Next,,0,0,120,,I miss you here now you're gone
+Dialogue: 0,0:00:07.90,0:00:10.85,Now,,0,0,0,,I miss you here now you're gone
+Dialogue: 0,0:00:07.90,0:00:10.85,Next,,0,0,120,,I'll be waiting here by the phone
+Dialogue: 0,0:00:10.85,0:00:14.08,Now,,0,0,0,,I'll be waiting here by the phone
+Dialogue: 0,0:00:10.85,0:00:14.08,Next,,0,0,120,,With your pictures hanging on the wall
+Dialogue: 0,0:00:14.08,0:00:16.89,Now,,0,0,0,,With your pictures hanging on the wall
+Dialogue: 0,0:00:14.08,0:00:16.89,Next,,0,0,120,,Now you're gone
+Dialogue: 0,0:00:16.89,0:00:18.71,Now,,0,0,0,,Now you're gone
+Dialogue: 0,0:00:16.89,0:00:18.71,Next,,0,0,120,,I realised my love for you was strong
+Dialogue: 0,0:00:18.71,0:00:22.13,Now,,0,0,0,,I realised my love for you was strong
+Dialogue: 0,0:00:18.71,0:00:22.13,Next,,0,0,120,,And
+Dialogue: 0,0:00:22.13,0:00:22.40,Now,,0,0,0,,And
+Dialogue: 0,0:00:22.13,0:00:22.40,Next,,0,0,120,,I miss you here now you're gone
+Dialogue: 0,0:00:22.40,0:00:25.35,Now,,0,0,0,,I miss you here now you're gone
+Dialogue: 0,0:00:22.40,0:00:25.35,Next,,0,0,120,,I'll be waiting here by the phone
+Dialogue: 0,0:00:25.35,0:00:28.57,Now,,0,0,0,,I'll be waiting here by the phone
+Dialogue: 0,0:00:25.35,0:00:28.57,Next,,0,0,120,,With your pictures hanging on the wall
+Dialogue: 0,0:00:28.57,0:00:45.89,Now,,0,0,0,,With your pictures hanging on the wall
+Dialogue: 0,0:00:28.57,0:00:45.89,Next,,0,0,120,,Now you're gone
+Dialogue: 0,0:00:45.89,0:00:47.77,Now,,0,0,0,,Now you're gone
+Dialogue: 0,0:00:45.89,0:00:47.77,Next,,0,0,120,,I realised my love for you was strong
+Dialogue: 0,0:00:47.77,0:00:51.12,Now,,0,0,0,,I realised my love for you was strong
+Dialogue: 0,0:00:47.77,0:00:51.12,Next,,0,0,120,,And
+Dialogue: 0,0:00:51.12,0:00:51.39,Now,,0,0,0,,And
+Dialogue: 0,0:00:51.12,0:00:51.39,Next,,0,0,120,,I miss you here now you're gone
+Dialogue: 0,0:00:51.39,0:00:54.21,Now,,0,0,0,,I miss you here now you're gone
+Dialogue: 0,0:00:51.39,0:00:54.21,Next,,0,0,120,,Is this the way it's meant to be?
+Dialogue: 0,0:00:54.21,0:00:57.57,Now,,0,0,0,,Is this the way it's meant to be?
+Dialogue: 0,0:00:54.21,0:00:57.57,Next,,0,0,120,,Only dreaming that you're missing me
+Dialogue: 0,0:00:57.57,0:01:00.79,Now,,0,0,0,,Only dreaming that you're missing me
+Dialogue: 0,0:00:57.57,0:01:00.79,Next,,0,0,120,,I'm waiting here at home
+Dialogue: 0,0:01:00.79,0:01:04.01,Now,,0,0,0,,I'm waiting here at home
+Dialogue: 0,0:01:00.79,0:01:04.01,Next,,0,0,120,,I'll be crazy now you're gone
+Dialogue: 0,0:01:04.01,0:01:30.99,Now,,0,0,0,,I'll be crazy now you're gone
+Dialogue: 0,0:01:04.01,0:01:30.99,Next,,0,0,120,,Now you're gone
+Dialogue: 0,0:01:30.99,0:01:32.87,Now,,0,0,0,,Now you're gone
+Dialogue: 0,0:01:30.99,0:01:32.87,Next,,0,0,120,,I realised my love for you was strong
+Dialogue: 0,0:01:32.87,0:01:36.22,Now,,0,0,0,,I realised my love for you was strong
+Dialogue: 0,0:01:32.87,0:01:36.22,Next,,0,0,120,,And
+Dialogue: 0,0:01:36.22,0:01:36.49,Now,,0,0,0,,And
+Dialogue: 0,0:01:36.22,0:01:36.49,Next,,0,0,120,,I miss you here now you're gone
+Dialogue: 0,0:01:36.49,0:01:39.44,Now,,0,0,0,,I miss you here now you're gone
+Dialogue: 0,0:01:36.49,0:01:39.44,Next,,0,0,120,,I'll be waiting here by the phone
+Dialogue: 0,0:01:39.44,0:01:42.67,Now,,0,0,0,,I'll be waiting here by the phone
+Dialogue: 0,0:01:39.44,0:01:42.67,Next,,0,0,120,,With your pictures hanging on the wall
+Dialogue: 0,0:01:42.67,0:01:45.89,Now,,0,0,0,,With your pictures hanging on the wall
+Dialogue: 0,0:01:42.67,0:01:45.89,Next,,0,0,120,,There's an empty place in my heart
+Dialogue: 0,0:01:45.89,0:01:48.97,Now,,0,0,0,,There's an empty place in my heart
+Dialogue: 0,0:01:45.89,0:01:48.97,Next,,0,0,120,,Without my
+Dialogue: 0,0:01:48.97,0:01:49.51,Now,,0,0,0,,Without my
+Dialogue: 0,0:01:48.97,0:01:49.51,Next,,0,0,120,,Anna it will break apart
+Dialogue: 0,0:01:49.51,0:01:52.19,Now,,0,0,0,,Anna it will break apart
+Dialogue: 0,0:01:49.51,0:01:52.19,Next,,0,0,120,,It won't heal it never fades away
+Dialogue: 0,0:01:52.19,0:01:55.42,Now,,0,0,0,,It won't heal it never fades away
+Dialogue: 0,0:01:52.19,0:01:55.42,Next,,0,0,120,,I'll be crazy now you're gone
+Dialogue: 0,0:01:55.42,0:01:58.37,Now,,0,0,0,,I'll be crazy now you're gone
+Dialogue: 0,0:01:55.42,0:01:58.37,Next,,0,0,120,,Now you're gone
+Dialogue: 0,0:01:58.37,0:02:00.25,Now,,0,0,0,,Now you're gone
+Dialogue: 0,0:01:58.37,0:02:00.25,Next,,0,0,120,,I realised my love for you was strong
+Dialogue: 0,0:02:00.25,0:02:03.60,Now,,0,0,0,,I realised my love for you was strong
+Dialogue: 0,0:02:00.25,0:02:03.60,Next,,0,0,120,,And
+Dialogue: 0,0:02:03.60,0:02:03.87,Now,,0,0,0,,And
+Dialogue: 0,0:02:03.60,0:02:03.87,Next,,0,0,120,,I miss you here now you're gone
+Dialogue: 0,0:02:03.87,0:02:06.82,Now,,0,0,0,,I miss you here now you're gone
+Dialogue: 0,0:02:03.87,0:02:06.82,Next,,0,0,120,,I'll be waiting here by the phone
+Dialogue: 0,0:02:06.82,0:02:10.05,Now,,0,0,0,,I'll be waiting here by the phone
+Dialogue: 0,0:02:06.82,0:02:10.05,Next,,0,0,120,,With your pictures hanging on the wall
+Dialogue: 0,0:02:10.05,0:02:13.13,Now,,0,0,0,,With your pictures hanging on the wall
+Dialogue: 0,0:02:10.05,0:02:13.13,Next,,0,0,120,,Is this the way it's meant to be?
+Dialogue: 0,0:02:13.13,0:02:16.49,Now,,0,0,0,,Is this the way it's meant to be?
+Dialogue: 0,0:02:13.13,0:02:16.49,Next,,0,0,120,,Only dreaming that you're missing me
+Dialogue: 0,0:02:16.49,0:02:19.71,Now,,0,0,0,,Only dreaming that you're missing me
+Dialogue: 0,0:02:16.49,0:02:19.71,Next,,0,0,120,,I'm waiting here at home
+Dialogue: 0,0:02:19.71,0:02:22.93,Now,,0,0,0,,I'm waiting here at home
+Dialogue: 0,0:02:19.71,0:02:22.93,Next,,0,0,120,,I'll be crazy now you're gone
+Dialogue: 0,0:02:22.93,0:02:28.55,Now,,0,0,0,,I'll be crazy now you're gone
+Dialogue: 0,0:00:00.00,0:00:02.40,Next,,0,0,120,,Now you're gone
