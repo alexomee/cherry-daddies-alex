@@ -1,0 +1,518 @@
+{
+  "generated": "2026-06-16T15:53:06",
+  "counts": {
+    "total": 24,
+    "data": 23,
+    "cues": 23,
+    "playback": 11,
+    "other": 18
+  },
+  "sets": [
+    {
+      "name": "СЕТ 1",
+      "subtitle": "Мировые танцевальные хиты",
+      "cls": "set1",
+      "songs": [
+        {
+          "sid": "Alice Deejay - Better Off Alone",
+          "title": "Better Off Alone",
+          "artist": "Alice Deejay",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects"
+            ]
+          }
+        },
+        {
+          "sid": "A Touch of Class - Around the World (La La La La La)",
+          "title": "Around the World",
+          "artist": "ATC",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals"
+            ]
+          }
+        },
+        {
+          "sid": "Shakira - Whenever, Wherever",
+          "title": "Whenever, Wherever",
+          "artist": "Shakira",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 9
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Female Backing Vocals",
+              "Charango (left)",
+              "Charango (right)"
+            ]
+          }
+        },
+        {
+          "sid": "Guru Josh - Infinity 2008",
+          "title": "Infinity 2008",
+          "artist": "Guru Josh Project",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Arpeggiator",
+              "Noise effects"
+            ]
+          }
+        },
+        {
+          "sid": "Alexandra Stan - Mr. Saxobeat",
+          "title": "Mr. Saxobeat",
+          "artist": "Alexandra Stan",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Saxophone (reverse)"
+            ]
+          }
+        },
+        {
+          "sid": "Alex Gaudino - Destination Calabria",
+          "title": "Destination Calabria",
+          "artist": "Alex Gaudino",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 15
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Sound Effects",
+              "Synth Brass"
+            ]
+          }
+        },
+        {
+          "sid": "Coldplay - Adventure of a Lifetime",
+          "title": "Adventure of a Lifetime",
+          "artist": "Coldplay",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Piano",
+              "Synth Pad",
+              "Sample (sung)",
+              "Backing Vocals",
+              "Backing Vocals"
+            ]
+          }
+        },
+        {
+          "sid": "The Weeknd - Blinding Lights",
+          "title": "Blinding Lights",
+          "artist": "The Weeknd",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 7
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Synth Keys",
+              "Arpeggiator",
+              "Synth Ambiant",
+              "Backing Vocals"
+            ]
+          }
+        },
+        {
+          "sid": "Laurent Wolf & Eric Carter - No Stress",
+          "title": "No Stress",
+          "artist": "Laurent Wolf",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 8
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Synth Ambiant"
+            ]
+          }
+        },
+        {
+          "sid": "Gala - Freed from Desire",
+          "title": "Freed From Desire",
+          "artist": "Gala",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "none"
+          }
+        },
+        {
+          "sid": "Bruno Mars & Mark Ronson - Uptown Funk",
+          "title": "Uptown Funk",
+          "artist": "Mark Ronson",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 19
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Organ",
+              "Synth Pad",
+              "Brass section",
+              "Noise effects",
+              "Backing Vocals"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "СЕТ 2",
+      "subtitle": "",
+      "cls": "set2",
+      "songs": [
+        {
+          "sid": "Demo - Solnyshko",
+          "title": "Солнышко",
+          "artist": "Демо",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 19
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "none"
+          }
+        },
+        {
+          "sid": "Band'Eros - Pro krasivuju zhizn'",
+          "title": "Про красивую жизнь",
+          "artist": "Банд'Эрос",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "keys-noise"
+            ]
+          }
+        },
+        {
+          "sid": "SEREBRO - Malo tebya",
+          "title": "Мало тебя",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "malo-bass"
+          },
+          "other": {
+            "kind": "none"
+          }
+        },
+        {
+          "sid": "Quest Pistols - Я устал",
+          "title": "Я устал",
+          "artist": "Quest Pistols",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 11
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "none"
+          }
+        },
+        {
+          "sid": "Basshunter - Now You're Gone",
+          "title": "Now You're Gone",
+          "artist": "Basshunter",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects"
+            ]
+          }
+        },
+        {
+          "sid": "Rihanna - S&M",
+          "title": "S&M",
+          "artist": "Rihanna",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals 1",
+              "Backing Vocals 2"
+            ]
+          }
+        },
+        {
+          "sid": "Beverly Hills",
+          "title": "Beverly Hills",
+          "artist": "Zivert",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 11
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "none"
+          }
+        },
+        {
+          "sid": "Rihanna & Calvin Harris - We Found Love",
+          "title": "We Found Love",
+          "artist": "Rihanna",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects"
+            ]
+          }
+        },
+        {
+          "sid": "Cascada - Everytime We Touch",
+          "title": "Everytime We Touch",
+          "artist": "Cascada",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Sound effects (Crowd)",
+              "Backing Vocals",
+              "Noise effects",
+              "Synth Voice",
+              "Synth Pad",
+              "Synth Ambiant"
+            ]
+          }
+        },
+        {
+          "sid": "Yeah Yeah Yeahs - Heads Will Roll",
+          "title": "Heads Will Roll",
+          "artist": "Yeah Yeah Yeahs",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects"
+            ]
+          }
+        },
+        {
+          "sid": "Icona Pop & Charli XCX - I Love It",
+          "title": "I Love It",
+          "artist": "Icona Pop",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Noise effects"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "на бис",
+      "subtitle": "",
+      "cls": "bis",
+      "songs": [
+        {
+          "sid": "NOFOLDER:Мелом",
+          "title": "Мелом",
+          "artist": "Пропаганда",
+          "hasData": false
+        },
+        {
+          "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+          "title": "Я сошла с ума",
+          "artist": "ТАТУ",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 11
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Percussion",
+              "Noise effects",
+              "Noise effects (Wind)",
+              "Acoustic Guitar",
+              "Distorted Electric Guitar",
+              "Synth Pad",
+              "Synth Voice",
+              "Synth Lead",
+              "String Section",
+              "Backing Vocals"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

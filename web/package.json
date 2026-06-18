@@ -1,0 +1,12 @@
+{
+  "name": "cherry-daddies-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dev.mjs",
+    "data": "python3 ../tools/setlist_dashboard.py"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.0"
+  }
+}
