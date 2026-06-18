@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cherry Daddies — сетлист / статус</title>
+<style>
+  :root{
+    --bg:#0e0f13; --panel:#16181f; --row2:#171a22; --txt:#e8eaf0; --dim:#9aa0b0;
+    --line:#262a36; --set1:#3a6df0; --set2:#e0457b; --bis:#f0a93a;
+    --ok:#3ad29f; --no:#ff5d6c; --accent:#6c8cff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+    font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:1320px;margin:0 auto;padding:28px 18px 80px}
+  h1{font-size:22px;margin:0 0 4px;letter-spacing:.3px}
+  .summary{color:var(--dim);font-size:13px;margin:0 0 6px}
+  .saved-note{color:#5b6172;font-size:11.5px;margin:0 0 22px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:16px 18px;margin:0 0 26px}
+  .panel h2{margin:0 0 12px;font-size:16px}
+  .todo-add{display:flex;gap:8px;margin-bottom:10px}
+  .todo-add input{flex:1;background:#0e1016;border:1px solid var(--line);color:var(--txt);
+    border-radius:8px;padding:9px 11px;font-size:14px}
+  .todo-add input:focus{outline:none;border-color:var(--accent)}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:0 14px;
+    font-size:18px;cursor:pointer;line-height:1}
+  .btn:hover{filter:brightness(1.1)}
+  .todolist{list-style:none;margin:0;padding:0}
+  .todolist li{display:flex;align-items:flex-start;gap:9px;padding:5px 0;border-bottom:1px solid #20232e}
+  .todolist li:last-child{border-bottom:none}
+  .todolist input[type=checkbox]{margin-top:3px;width:16px;height:16px;accent-color:var(--ok);cursor:pointer;flex:none}
+  .todolist .t{flex:1;word-break:break-word}
+  .todolist li.done .t{text-decoration:line-through;color:#646b7d}
+  .todolist .del{background:none;border:none;color:#5b6172;cursor:pointer;font-size:16px;line-height:1;padding:0 2px}
+  .todolist .del:hover{color:var(--no)}
+  .empty{color:#565c6c;font-size:13px;font-style:italic}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;overflow:hidden}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);
+    text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);background:#13151c;white-space:nowrap}
+  td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:nth-child(even) td{background:var(--row2)}
+  tr.sec td{background:transparent !important;padding:22px 12px 8px}
+  tr.sec .setname{font-weight:700;font-size:15px;padding:3px 12px;border-radius:7px;color:#fff}
+  tr.set1 .setname{background:var(--set1)} tr.set2 .setname{background:var(--set2)}
+  tr.bis .setname{background:var(--bis);color:#1a1300}
+  tr.sec .sub{color:var(--dim);font-size:13px;margin-left:8px}
+  .num{color:var(--dim);width:30px;text-align:right;font-variant-numeric:tabular-nums}
+  .song{min-width:160px}.title{font-weight:600}.artist{color:var(--dim);font-size:12.5px}
+  .c-cues,.c-bass,.c-other,.c-info{font-size:13px}
+  .ready{color:var(--txt)} .notready{color:var(--no)}
+  .ok{color:var(--ok)} .no{color:var(--no)} .dash{color:#555}
+  tr.nodata .c-info{color:var(--no);font-size:12.5px;font-style:italic;background:#241419 !important}
+  .chip{display:inline-block;background:#222838;color:#c7d0e6;border:1px solid #303a52;
+    border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;font-size:11.5px;white-space:nowrap}
+  .c-bass.playback{color:var(--txt);white-space:nowrap}
+  .who{display:inline-block;padding:2px 9px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:nowrap}
+  .who-roma{background:#23304f;color:#9cc0ff}
+  .who-roma-g{background:#1f4038;color:#7fe8c6}
+  .who-alex{background:#43213a;color:#ff9ecb}
+  .c-todo{min-width:185px} .c-notes{min-width:200px}
+  .c-todo .todolist li{padding:3px 0;font-size:13px}
+  .c-todo .todo-add{margin-bottom:6px}
+  .c-todo .todo-add input{padding:6px 8px;font-size:12.5px}
+  .c-todo .btn{padding:0 9px;font-size:15px}
+  .notes-area{width:100%;min-height:42px;background:#0e1016;border:1px solid var(--line);
+    color:var(--txt);border-radius:8px;padding:7px 9px;font:13px/1.4 inherit;resize:vertical}
+  .notes-area:focus{outline:none;border-color:var(--accent)}
+  .notes-area::placeholder{color:#4a5060}
+  @media(max-width:820px){
+    .wrap{padding:18px 10px 60px}.artist{font-size:11.5px}
+    td,th{padding:8px 7px}.song{min-width:110px}
+    table{display:block;overflow-x:auto;white-space:normal}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🍒 Cherry Daddies — сетлист / статус плейбека</h1>
+  <p class="summary">23/24 с данными &nbsp;·&nbsp; 23 cues готовы &nbsp;·&nbsp; 11 bass из playback &nbsp;·&nbsp; 17 с pb-other</p>
+  <p class="saved-note">✏️ Todo и заметки редактируются прямо здесь и хранятся в этом браузере (localStorage) — переживают перезагрузку и пересборку файла.</p>
+
+  <div class="panel">
+    <h2>📋 Общий todo</h2>
+    <div class="todo-add">
+      <input id="gAdd" placeholder="Новая задача… (Enter)">
+      <button class="btn" id="gAddBtn" title="Добавить">+</button>
+    </div>
+    <ul class="todolist" id="gList"></ul>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th class="num">#</th><th>Песня</th><th>Cues</th><th>bass</th>
+      <th>pb-other (stems)</th><th>Todo</th><th>Заметки</th>
+    </tr></thead>
+    <tbody>
+<tr class="sec set1"><td colspan="7"><span class="setname">СЕТ 1</span> <span class="sub">Мировые танцевальные хиты</span></td></tr>
+<tr data-song="Alice Deejay - Better Off Alone"><td class="num">1</td><td class="song"><div class="title">Better Off Alone</div><div class="artist">Alice Deejay</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other has"><span class="chip">Noise effects</span></td><td class="c-todo" data-song="Alice Deejay - Better Off Alone"></td><td class="c-notes" data-song="Alice Deejay - Better Off Alone"></td></tr>
+<tr data-song="A Touch of Class - Around the World (La La La La La)"><td class="num">2</td><td class="song"><div class="title">Around the World</div><div class="artist">ATC</div></td><td class="c-cues ready"><span class="ok">✅</span> 12 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Backing Vocals</span></td><td class="c-todo" data-song="A Touch of Class - Around the World (La La La La La)"></td><td class="c-notes" data-song="A Touch of Class - Around the World (La La La La La)"></td></tr>
+<tr data-song="Shakira - Whenever, Wherever"><td class="num">3</td><td class="song"><div class="title">Whenever, Wherever</div><div class="artist">Shakira</div></td><td class="c-cues ready"><span class="ok">✅</span> 9 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Bass)</td><td class="c-other has"><span class="chip">Female Backing Vocals</span><span class="chip">Charango (left)</span><span class="chip">Charango (right)</span></td><td class="c-todo" data-song="Shakira - Whenever, Wherever"></td><td class="c-notes" data-song="Shakira - Whenever, Wherever"></td></tr>
+<tr data-song="Guru Josh - Infinity 2008"><td class="num">4</td><td class="song"><div class="title">Infinity 2008</div><div class="artist">Guru Josh Project</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other has"><span class="chip">Arpeggiator</span><span class="chip">Noise effects</span></td><td class="c-todo" data-song="Guru Josh - Infinity 2008"></td><td class="c-notes" data-song="Guru Josh - Infinity 2008"></td></tr>
+<tr data-song="Alexandra Stan - Mr. Saxobeat"><td class="num">5</td><td class="song"><div class="title">Mr. Saxobeat</div><div class="artist">Alexandra Stan</div></td><td class="c-cues ready"><span class="ok">✅</span> 13 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Noise effects</span><span class="chip">Saxophone (reverse)</span></td><td class="c-todo" data-song="Alexandra Stan - Mr. Saxobeat"></td><td class="c-notes" data-song="Alexandra Stan - Mr. Saxobeat"></td></tr>
+<tr data-song="Alex Gaudino - Destination Calabria"><td class="num">6</td><td class="song"><div class="title">Destination Calabria</div><div class="artist">Alex Gaudino</div></td><td class="c-cues ready"><span class="ok">✅</span> 15 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Sound Effects</span><span class="chip">Synth Brass</span></td><td class="c-todo" data-song="Alex Gaudino - Destination Calabria"></td><td class="c-notes" data-song="Alex Gaudino - Destination Calabria"></td></tr>
+<tr data-song="Coldplay - Adventure of a Lifetime"><td class="num">7</td><td class="song"><div class="title">Adventure of a Lifetime</div><div class="artist">Coldplay</div></td><td class="c-cues ready"><span class="ok">✅</span> 13 cues</td><td class="c-bass assign"><span class="who who-roma-g">Roma (real bass-guitar)</span></td><td class="c-other has"><span class="chip">Noise effects</span><span class="chip">Piano</span><span class="chip">Synth Pad</span><span class="chip">Sample (sung)</span><span class="chip">Backing Vocals</span><span class="chip">Backing Vocals</span></td><td class="c-todo" data-song="Coldplay - Adventure of a Lifetime"></td><td class="c-notes" data-song="Coldplay - Adventure of a Lifetime"></td></tr>
+<tr data-song="The Weeknd - Blinding Lights"><td class="num">8</td><td class="song"><div class="title">Blinding Lights</div><div class="artist">The Weeknd</div></td><td class="c-cues ready"><span class="ok">✅</span> 7 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Noise effects</span><span class="chip">Synth Keys</span><span class="chip">Arpeggiator</span><span class="chip">Synth Ambiant</span><span class="chip">Backing Vocals</span></td><td class="c-todo" data-song="The Weeknd - Blinding Lights"></td><td class="c-notes" data-song="The Weeknd - Blinding Lights"></td></tr>
+<tr data-song="Laurent Wolf &amp; Eric Carter - No Stress"><td class="num">9</td><td class="song"><div class="title">No Stress</div><div class="artist">Laurent Wolf</div></td><td class="c-cues ready"><span class="ok">✅</span> 8 cues</td><td class="c-bass assign"><span class="who who-alex">Alex</span></td><td class="c-other has"><span class="chip">Synth Ambiant</span></td><td class="c-todo" data-song="Laurent Wolf &amp; Eric Carter - No Stress"></td><td class="c-notes" data-song="Laurent Wolf &amp; Eric Carter - No Stress"></td></tr>
+<tr data-song="Gala - Freed from Desire"><td class="num">10</td><td class="song"><div class="title">Freed From Desire</div><div class="artist">Gala</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="Gala - Freed from Desire"></td><td class="c-notes" data-song="Gala - Freed from Desire"></td></tr>
+<tr data-song="Bruno Mars &amp; Mark Ronson - Uptown Funk"><td class="num">11</td><td class="song"><div class="title">Uptown Funk</div><div class="artist">Mark Ronson</div></td><td class="c-cues ready"><span class="ok">✅</span> 19 cues</td><td class="c-bass assign"><span class="who who-roma-g">Roma (real bass-guitar)</span></td><td class="c-other has"><span class="chip">Organ</span><span class="chip">Synth Pad</span><span class="chip">Brass section</span><span class="chip">Noise effects</span><span class="chip">Backing Vocals</span></td><td class="c-todo" data-song="Bruno Mars &amp; Mark Ronson - Uptown Funk"></td><td class="c-notes" data-song="Bruno Mars &amp; Mark Ronson - Uptown Funk"></td></tr>
+<tr class="sec set2"><td colspan="7"><span class="setname">СЕТ 2</span></td></tr>
+<tr data-song="Demo - Solnyshko"><td class="num">1</td><td class="song"><div class="title">Солнышко</div><div class="artist">Демо</div></td><td class="c-cues ready"><span class="ok">✅</span> 19 cues</td><td class="c-bass assign"><span class="who who-alex">Alex</span></td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="Demo - Solnyshko"></td><td class="c-notes" data-song="Demo - Solnyshko"></td></tr>
+<tr data-song="Band&#x27;Eros - Pro krasivuju zhizn&#x27;"><td class="num">2</td><td class="song"><div class="title">Про красивую жизнь</div><div class="artist">Банд&#x27;Эрос</div></td><td class="c-cues ready"><span class="ok">✅</span> 10 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other has"><span class="ok">🎹</span> layer: keys-noise</td><td class="c-todo" data-song="Band&#x27;Eros - Pro krasivuju zhizn&#x27;"></td><td class="c-notes" data-song="Band&#x27;Eros - Pro krasivuju zhizn&#x27;"></td></tr>
+<tr data-song="SEREBRO - Malo tebya"><td class="num">3</td><td class="song"><div class="title">Мало тебя</div><div class="artist">SEREBRO</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (malo-bass)</td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="SEREBRO - Malo tebya"></td><td class="c-notes" data-song="SEREBRO - Malo tebya"></td></tr>
+<tr data-song="Quest Pistols - Я устал"><td class="num">4</td><td class="song"><div class="title">Я устал</div><div class="artist">Quest Pistols</div></td><td class="c-cues ready"><span class="ok">✅</span> 11 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="Quest Pistols - Я устал"></td><td class="c-notes" data-song="Quest Pistols - Я устал"></td></tr>
+<tr data-song="Basshunter - Now You&#x27;re Gone"><td class="num">5</td><td class="song"><div class="title">Now You&#x27;re Gone</div><div class="artist">Basshunter</div></td><td class="c-cues ready"><span class="ok">✅</span> 13 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other has"><span class="chip">Noise effects</span></td><td class="c-todo" data-song="Basshunter - Now You&#x27;re Gone"></td><td class="c-notes" data-song="Basshunter - Now You&#x27;re Gone"></td></tr>
+<tr data-song="Rihanna - S&amp;M"><td class="num">6</td><td class="song"><div class="title">S&amp;M</div><div class="artist">Rihanna</div></td><td class="c-cues ready"><span class="ok">✅</span> 13 cues</td><td class="c-bass assign"><span class="who who-alex">Alex</span></td><td class="c-other has"><span class="chip">Backing Vocals 1</span><span class="chip">Backing Vocals 2</span></td><td class="c-todo" data-song="Rihanna - S&amp;M"></td><td class="c-notes" data-song="Rihanna - S&amp;M"></td></tr>
+<tr data-song="Beverly Hills"><td class="num">7</td><td class="song"><div class="title">Beverly Hills</div><div class="artist">Zivert</div></td><td class="c-cues ready"><span class="ok">✅</span> 11 cues</td><td class="c-bass assign"><span class="who who-alex">Alex</span></td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="Beverly Hills"></td><td class="c-notes" data-song="Beverly Hills"></td></tr>
+<tr data-song="Rihanna &amp; Calvin Harris - We Found Love"><td class="num">8</td><td class="song"><div class="title">We Found Love</div><div class="artist">Rihanna</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Noise effects</span></td><td class="c-todo" data-song="Rihanna &amp; Calvin Harris - We Found Love"></td><td class="c-notes" data-song="Rihanna &amp; Calvin Harris - We Found Love"></td></tr>
+<tr data-song="Cascada - Everytime We Touch"><td class="num">9</td><td class="song"><div class="title">Everytime We Touch</div><div class="artist">Cascada</div></td><td class="c-cues ready"><span class="ok">✅</span> 12 cues</td><td class="c-bass assign"><span class="who who-roma">Roma</span></td><td class="c-other has"><span class="chip">Sound effects (Crowd)</span><span class="chip">Backing Vocals</span><span class="chip">Noise effects</span><span class="chip">Synth Voice</span><span class="chip">Synth Pad</span><span class="chip">Synth Ambiant</span></td><td class="c-todo" data-song="Cascada - Everytime We Touch"></td><td class="c-notes" data-song="Cascada - Everytime We Touch"></td></tr>
+<tr data-song="Yeah Yeah Yeahs - Heads Will Roll"><td class="num">10</td><td class="song"><div class="title">Heads Will Roll</div><div class="artist">Yeah Yeah Yeahs</div></td><td class="c-cues ready"><span class="ok">✅</span> 16 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Bass)</td><td class="c-other none"><span class="dash">—</span></td><td class="c-todo" data-song="Yeah Yeah Yeahs - Heads Will Roll"></td><td class="c-notes" data-song="Yeah Yeah Yeahs - Heads Will Roll"></td></tr>
+<tr data-song="Icona Pop &amp; Charli XCX - I Love It"><td class="num">11</td><td class="song"><div class="title">I Love It</div><div class="artist">Icona Pop</div></td><td class="c-cues ready"><span class="ok">✅</span> 13 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Synth Bass)</td><td class="c-other has"><span class="chip">Backing Vocals</span><span class="chip">Noise effects</span></td><td class="c-todo" data-song="Icona Pop &amp; Charli XCX - I Love It"></td><td class="c-notes" data-song="Icona Pop &amp; Charli XCX - I Love It"></td></tr>
+<tr class="sec bis"><td colspan="7"><span class="setname">на бис</span></td></tr>
+<tr class="nodata" data-song="NOFOLDER:Мелом"><td class="num">1</td><td class="song"><div class="title">Мелом</div><div class="artist">Пропаганда</div></td><td class="c-info" colspan="3">нет данных (папка/mix.json отсутствует)</td><td class="c-todo" data-song="NOFOLDER:Мелом"></td><td class="c-notes" data-song="NOFOLDER:Мелом"></td></tr>
+<tr data-song="t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"><td class="num">2</td><td class="song"><div class="title">Я сошла с ума</div><div class="artist">ТАТУ</div></td><td class="c-cues ready"><span class="ok">✅</span> 11 cues</td><td class="c-bass playback"><span class="ok">▶︎</span> playback (Bass)</td><td class="c-other has"><span class="chip">Percussion</span><span class="chip">Noise effects</span><span class="chip">Noise effects (Wind)</span><span class="chip">Acoustic Guitar</span><span class="chip">Distorted Electric Guitar</span><span class="chip">Synth Pad</span><span class="chip">Synth Voice</span><span class="chip">Synth Lead</span><span class="chip">String Section</span><span class="chip">Backing Vocals</span></td><td class="c-todo" data-song="t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"></td><td class="c-notes" data-song="t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "cd-dashboard-v1";
+  function loadState(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+  var state = loadState();
+  if(!state.global) state.global = [];   // [{id,text,done}]
+  if(!state.songs)  state.songs  = {};   // { sid: {notes:"", todos:[{id,text,done}]} }
+  var saveT;
+  function save(){ clearTimeout(saveT); saveT = setTimeout(function(){
+    localStorage.setItem(KEY, JSON.stringify(state)); }, 120); }
+  function uid(){ return "i" + Math.random().toString(36).slice(2,9) + Date.now().toString(36); }
+  function songRec(sid){ if(!state.songs[sid]) state.songs[sid] = {notes:"", todos:[]}; return state.songs[sid]; }
+
+  // Generic checklist renderer. arr = array of {id,text,done}; onChange called after mutation.
+  function renderList(ul, arr, onChange){
+    ul.textContent = "";
+    if(!arr.length){
+      var li = document.createElement("li");
+      li.className = "empty-li";
+      var em = document.createElement("span");
+      em.className = "empty"; em.textContent = "пусто";
+      li.appendChild(em); ul.appendChild(li); return;
+    }
+    arr.forEach(function(item){
+      var li = document.createElement("li");
+      if(item.done) li.className = "done";
+      var cb = document.createElement("input");
+      cb.type = "checkbox"; cb.checked = !!item.done;
+      cb.addEventListener("change", function(){ item.done = cb.checked; onChange(); });
+      var t = document.createElement("span");
+      t.className = "t"; t.textContent = item.text;
+      t.title = "Клик — редактировать";
+      t.addEventListener("click", function(){
+        var nv = prompt("Изменить:", item.text);
+        if(nv !== null){ var v = nv.trim(); if(v){ item.text = v; } else { remove(); return; } onChange(); }
+      });
+      var del = document.createElement("button");
+      del.className = "del"; del.textContent = "×"; del.title = "Удалить";
+      function remove(){ var i = arr.indexOf(item); if(i>-1) arr.splice(i,1); onChange(); }
+      del.addEventListener("click", remove);
+      li.appendChild(cb); li.appendChild(t); li.appendChild(del);
+      ul.appendChild(li);
+    });
+  }
+
+  // ----- Global todo -----
+  var gList = document.getElementById("gList");
+  var gAdd  = document.getElementById("gAdd");
+  function renderGlobal(){ renderList(gList, state.global, function(){ renderGlobal(); save(); }); }
+  function addGlobal(){
+    var v = gAdd.value.trim(); if(!v) return;
+    state.global.push({id:uid(), text:v, done:false}); gAdd.value = "";
+    renderGlobal(); save();
+  }
+  document.getElementById("gAddBtn").addEventListener("click", addGlobal);
+  gAdd.addEventListener("keydown", function(e){ if(e.key === "Enter") addGlobal(); });
+  renderGlobal();
+
+  // ----- Per-song todo -----
+  document.querySelectorAll(".c-todo[data-song]").forEach(function(td){
+    var sid = td.getAttribute("data-song");
+    var rec = songRec(sid);
+    var wrap = document.createElement("div"); wrap.className = "todo-add";
+    var inp = document.createElement("input"); inp.placeholder = "+ задача";
+    var b = document.createElement("button"); b.className = "btn"; b.textContent = "+";
+    var ul = document.createElement("ul"); ul.className = "todolist";
+    function rerender(){ renderList(ul, rec.todos, function(){ rerender(); save(); }); }
+    function add(){ var v = inp.value.trim(); if(!v) return;
+      rec.todos.push({id:uid(), text:v, done:false}); inp.value = ""; rerender(); save(); }
+    b.addEventListener("click", add);
+    inp.addEventListener("keydown", function(e){ if(e.key === "Enter") add(); });
+    wrap.appendChild(inp); wrap.appendChild(b);
+    td.appendChild(wrap); td.appendChild(ul);
+    rerender();
+  });
+
+  // ----- Per-song notes -----
+  document.querySelectorAll(".c-notes[data-song]").forEach(function(td){
+    var sid = td.getAttribute("data-song");
+    var rec = songRec(sid);
+    var ta = document.createElement("textarea");
+    ta.className = "notes-area"; ta.placeholder = "заметки…"; ta.value = rec.notes || "";
+    ta.addEventListener("input", function(){ rec.notes = ta.value; save(); });
+    td.appendChild(ta);
+  });
+
+  save(); // persist any freshly-initialized song records
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+[
+ {
+  "is_talk": true,
+  "funny": 8,
+  "tight_start": 1.8,
+  "tight_end": 6.0,
+  "lines": [
+   {
+    "start": 1.8,
+    "end": 3.5,
+    "text": "Давайте сейчас сыграем нормально"
+   },
+   {
+    "start": 3.5,
+    "end": 4.8,
+    "text": "один разочек хотя бы, можно?"
+   },
+   {
+    "start": 4.8,
+    "end": 6.0,
+    "text": "Давай. Let's try."
+   }
+  ],
+  "title": "Когда просишь сыграть нормально",
+  "id": "a_play_normal",
+  "video": "IMG_2564",
+  "abs_start": 1832.6,
+  "abs_end": 1836.8,
+  "clip_offset": 1830.8
+ },
+ {
+  "is_talk": true,
+  "funny": 7,
+  "tight_start": 2.0,
+  "tight_end": 9.5,
+  "lines": [
+   {
+    "start": 2.0,
+    "end": 4.0,
+    "text": "Мне каждые полчаса приходит"
+   },
+   {
+    "start": 4.0,
+    "end": 6.0,
+    "text": "минус два евро, минус два евро"
+   },
+   {
+    "start": 7.0,
+    "end": 8.5,
+    "text": "А докиньте мне денег"
+   },
+   {
+    "start": 8.5,
+    "end": 10.0,
+    "text": "у меня там скоро закончится"
+   }
+  ],
+  "title": "Минус два евро каждые полчаса",
+  "id": "b_minus2eur",
+  "video": "IMG_2564",
+  "abs_start": 1793.8,
+  "abs_end": 1801.3,
+  "clip_offset": 1791.8
+ },
+ {
+  "is_talk": true,
+  "funny": 8,
+  "tight_start": 1.0,
+  "tight_end": 11.0,
+  "lines": [
+   {
+    "start": 0.5,
+    "end": 1.5,
+    "text": "Let's try."
+   },
+   {
+    "start": 1.5,
+    "end": 3.2,
+    "text": "Не трай, давайте ду."
+   },
+   {
+    "start": 3.2,
+    "end": 4.8,
+    "text": "Let's do."
+   },
+   {
+    "start": 4.8,
+    "end": 6.2,
+    "text": "Do what?"
+   },
+   {
+    "start": 6.2,
+    "end": 9.0,
+    "text": "Нормал, блять, работа."
+   },
+   {
+    "start": 9.0,
+    "end": 11.0,
+    "text": "Normal what?"
+   }
+  ],
+  "title": "Не трай, давайте ду!",
+  "id": "c_letsdo",
+  "video": "IMG_2564",
+  "abs_start": 1835.8,
+  "abs_end": 1845.8,
+  "clip_offset": 1834.8
+ },
+ {
+  "is_talk": true,
+  "funny": 6,
+  "tight_start": 1.2,
+  "tight_end": 7.5,
+  "lines": [
+   {
+    "start": 1.2,
+    "end": 3.0,
+    "text": "Саш, а что там у тебя там?"
+   },
+   {
+    "start": 3.0,
+    "end": 4.0,
+    "text": "Где?"
+   },
+   {
+    "start": 4.0,
+    "end": 5.8,
+    "text": "Мне так важно"
+   },
+   {
+    "start": 5.8,
+    "end": 7.5,
+    "text": "что ты думаешь об этом"
+   }
+  ],
+  "title": "Когда очень важно его мнение",
+  "id": "d_sasha",
+  "video": "IMG_2564",
+  "abs_start": 1853.0,
+  "abs_end": 1859.3,
+  "clip_offset": 1851.8
+ },
+ {
+  "is_talk": true,
+  "funny": 7,
+  "tight_start": 1.2,
+  "tight_end": 11.5,
+  "lines": [
+   {
+    "start": 1.2,
+    "end": 3.2,
+    "text": "Рома говорит, когда сядет ноутбук,"
+   },
+   {
+    "start": 3.2,
+    "end": 4.2,
+    "text": "пойдем домой."
+   },
+   {
+    "start": 4.2,
+    "end": 6.0,
+    "text": "А он: «Нихуя, у меня зарядка»."
+   },
+   {
+    "start": 6.0,
+    "end": 7.0,
+    "text": "Не надо!"
+   },
+   {
+    "start": 9.0,
+    "end": 11.0,
+    "text": "Я надеюсь, это твоя зарядка."
+   }
+  ],
+  "title": "Когда очень хочешь уйти с репетиции",
+  "id": "e_zaryadka",
+  "video": "IMG_2563",
+  "abs_start": 2708.0,
+  "abs_end": 2718.3,
+  "clip_offset": 2706.8
+ },
+ {
+  "is_talk": true,
+  "funny": 7,
+  "tight_start": 3.0,
+  "tight_end": 13.5,
+  "lines": [
+   {
+    "start": 3.0,
+    "end": 5.5,
+    "text": "Это тональность какая, напомни?"
+   },
+   {
+    "start": 5.5,
+    "end": 9.0,
+    "text": "Фа минор гармонический."
+   },
+   {
+    "start": 9.0,
+    "end": 11.5,
+    "text": "Блин, а у меня только фа-диез есть."
+   },
+   {
+    "start": 11.5,
+    "end": 13.5,
+    "text": "Начать просто с фа?"
+   }
+  ],
+  "title": "У меня только фа-диез",
+  "id": "f_tonalnost",
+  "video": "IMG_2563",
+  "abs_start": 2760.8,
+  "abs_end": 2771.3,
+  "clip_offset": 2757.8
+ },
+ {
+  "is_talk": true,
+  "funny": 7,
+  "tight_start": 11.0,
+  "tight_end": 16.5,
+  "lines": [
+   {
+    "start": 11.0,
+    "end": 13.0,
+    "text": "Теперь звучит!"
+   },
+   {
+    "start": 13.0,
+    "end": 16.5,
+    "text": "А до этого ты ниже играл, ну отвечаю!"
+   }
+  ],
+  "title": "Типичный спор на репетиции",
+  "id": "g_nizhe",
+  "video": "IMG_2562",
+  "abs_start": 971.8,
+  "abs_end": 977.3,
+  "clip_offset": 960.8
+ },
+ {
+  "is_talk": true,
+  "funny": 4,
+  "tight_start": 1.2,
+  "tight_end": 8.5,
+  "lines": [
+   {
+    "start": 1.2,
+    "end": 3.2,
+    "text": "Рома, кстати, есть"
+   },
+   {
+    "start": 3.2,
+    "end": 5.5,
+    "text": "all дорожка, и там полный трек"
+   },
+   {
+    "start": 5.5,
+    "end": 7.2,
+    "text": "Я знала, что ты сядешь там"
+   },
+   {
+    "start": 7.2,
+    "end": 8.5,
+    "text": "и тебя будет не видно"
+   }
+  ],
+  "title": "Когда спрятался от камеры на репетиции",
+  "id": "h_camera",
+  "video": "IMG_2562",
+  "abs_start": 912.0,
+  "abs_end": 919.3,
+  "clip_offset": 910.8
+ },
+ {
+  "is_talk": true,
+  "funny": 6,
+  "tight_start": 1.0,
+  "tight_end": 9.0,
+  "lines": [
+   {
+    "start": 1.0,
+    "end": 4.5,
+    "text": "Слышишь, у тебя педалька нормальная?"
+   },
+   {
+    "start": 6.0,
+    "end": 9.0,
+    "text": "Тоже мне, отморозился, блядь"
+   }
+  ],
+  "title": "Когда гитарист просто отморозился",
+  "id": "i_metronom",
+  "video": "IMG_2567",
+  "abs_start": 905.8,
+  "abs_end": 913.8,
+  "clip_offset": 904.8
+ }
+]
