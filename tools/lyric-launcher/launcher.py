@@ -37,7 +37,7 @@ SOCK = "/tmp/lyric-mpv.sock"
 # assigns a fresh random uniqueID each time it creates the virtual port, so right
 # after creation we forcibly stamp this constant on it (see set_port_unique_id).
 # 0x4C595243 = ASCII 'LYRC'.
-LYRIC_UNIQUE_ID = 0x4C595243  # 1448301123
+LYRIC_UNIQUE_ID = 0x4C595243  # 1280922179
 
 
 def set_port_unique_id(port_name, uid):
