@@ -62,15 +62,19 @@ SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
 CLICK_LVL, MIX_LVL, CUE_LVL = 0.6, 0.85, 1.0   # cue_preview levels (same as jamzone_cues.py)
 
 # ---- pb-other/pb-bass auto-leveling ----------------------------------------------------------
-# The two recurring SUPPORT roles in pb-other (noise/sound FX, backing vocals) are pinned to a
-# consistent per-role perceived loudness across ALL songs so the keyboardist sets one fader and
-# it's right everywhere. MUSICAL parts (synth lead, arpeggiator, charango...) are left alone --
-# some pb-other is meant to be loud. See docs/plans/2026-06-18-pb-other-autolevel-design.md.
-FX_TARGET, BACKVOX_TARGET = -30.0, -23.0   # dBFS gated-RMS targets (seed; tune once by ear)
-BOOST_CAP = 6.0                            # max dB boost (never pump a sparse stem into noise)
+# pb-other plays through ONE MainStage fader, and never carries the lead/melody -- it's all
+# support (FX, backing vox, pads, synths) whose Moises internal balance should be preserved.
+# So the two recurring SUPPORT roles (noise/sound FX, backing vocals) are bounded by a per-role
+# CEILING, ATTENUATE-ONLY: an element LOUDER than its ceiling is pulled down; nothing is ever
+# boosted (boosting a quiet support element would push it forward against the musical parts that
+# share the same fader -> breaks the balance). MUSICAL parts (synth lead, arpeggiator, charango...)
+# are left alone -- some pb-other is meant to be loud. The ceiling both fixes 'too loud' and keeps
+# loud FX/back-vox consistent across songs, while a song whose FX already sits below the ceiling is
+# untouched. See docs/plans/2026-06-18-pb-other-autolevel-design.md.
+FX_CEILING, BACKVOX_CEILING = -30.0, -23.0   # dBFS gated-RMS ceilings (seed; tune once by ear)
 ROLE_PATTERNS = [("fx", re.compile(r"noise|sound.?effects?", re.I)),
                  ("back-vox", re.compile(r"back(ing)?.?vocals?|back.?vox", re.I))]
-ROLE_TARGET = {"fx": FX_TARGET, "back-vox": BACKVOX_TARGET}   # musical -> not in map -> no level
+ROLE_CEILING = {"fx": FX_CEILING, "back-vox": BACKVOX_CEILING}   # musical -> not in map -> no level
 
 def classify(name, overrides=None):
     """role of a stem/layer by Moises name; mix.json "roles" map overrides (also opt-out)."""
@@ -94,11 +98,12 @@ def gated_rms_db(buf):
     return 20*np.log10(float(np.sqrt(kept.mean())) or 1e-9)
 
 def auto_gain_db(buf, role):
-    """(gain_db, measured_db) to bring buf to its role target (boost capped). musical -> (0, None)."""
-    target = ROLE_TARGET.get(role)
-    if target is None: return 0.0, None
+    """(gain_db<=0, measured_db): pull buf DOWN to its role ceiling if it exceeds it, else 0.
+    NEVER boosts -- only attenuates, to keep pb-other's internal balance. musical -> (0, None)."""
+    ceil = ROLE_CEILING.get(role)
+    if ceil is None: return 0.0, None
     loud = gated_rms_db(buf)
-    return min(target - loud, BOOST_CAP), loud
+    return min(ceil - loud, 0.0), loud
 
 def _stem_paths(folder):
     """name -> file for a song folder: JamZone NN_*.m4a, else external mp3/wav (legacy excluded)."""
@@ -110,9 +115,9 @@ def _stem_paths(folder):
 
 def levels_report(query=None):
     """Dry run (writes nothing): for every fx/back-vox stem & layer in every song (or one if
-    `query`), print role, measured gated-RMS loudness, the auto-level gain that WOULD apply
-    (capped?), and the post-level loudness. Cross-song summary shows the pre/post spread per
-    role — the proof that the targets flatten it. This is the review gate before applying."""
+    `query`), print role, measured gated-RMS loudness, the attenuate-only gain that WOULD apply
+    (<=0; 0 = below ceiling, untouched), and the post loudness. Cross-song summary shows how many
+    exceed the ceiling and the post spread. This is the review gate before applying."""
     folders = ([find_folder(query)] if query else
                sorted(d for d in glob.glob(os.path.join(SONGS, "*")) if os.path.isdir(d)))
     rows = []                                          # (song, grp, name, kind, role, loud, ag, trim)
@@ -142,19 +147,20 @@ def levels_report(query=None):
     cur = None
     for song, grp, name, kind, role, loud, ag, trim in rows:
         if song != cur: print(f"\n{song}"); cur = song
-        cap = " CAP" if ag >= BOOST_CAP - 1e-6 else ""
+        mark = "  CUT" if ag < 0 else "  ok "
         tr = f"  trim{trim:+g}" if trim else ""
-        print(f"  {grp:8} {role:8} {kind:5} {name:30} {loud:+6.1f}dBFS  gain {ag:+5.1f}{cap:4}"
-              f" -> {loud+ag:+6.1f}dBFS (target {ROLE_TARGET[role]:+.0f}){tr}")
-    print("\nsummary (post = measured + auto gain, before any per-song trim):")
+        print(f"  {grp:8} {role:8} {kind:5} {name:30} {loud:+6.1f}dBFS  gain {ag:+5.1f}{mark}"
+              f" -> {loud+ag:+6.1f}dBFS (ceiling {ROLE_CEILING[role]:+.0f}){tr}")
+    print("\nsummary (attenuate-only: gain<=0; post = measured + gain, before any per-song trim):")
     for role in ("fx", "back-vox"):
         rr = [r for r in rows if r[4] == role]
         if not rr: continue
+        ncut = sum(1 for r in rr if r[6] < 0)
         meas = sorted(r[5] for r in rr); post = sorted(r[5] + r[6] for r in rr)
-        print(f"  {role:8} n={len(rr):2}  measured {meas[0]:+.1f}..{meas[-1]:+.1f} "
-              f"(spread {meas[-1]-meas[0]:.1f}dB)  ->  post {post[0]:+.1f}..{post[-1]:+.1f} "
-              f"(spread {post[-1]-post[0]:.1f}dB, target {ROLE_TARGET[role]:+.0f})")
-    print(f"\ntargets: fx {FX_TARGET:+.0f}  back-vox {BACKVOX_TARGET:+.0f}  boost cap +{BOOST_CAP:.0f}dB"
+        print(f"  {role:8} n={len(rr):2}  {ncut} above ceiling -> cut  |  measured "
+              f"{meas[0]:+.1f}..{meas[-1]:+.1f}  ->  post {post[0]:+.1f}..{post[-1]:+.1f} "
+              f"(ceiling {ROLE_CEILING[role]:+.0f})")
+    print(f"\nceilings: fx {FX_CEILING:+.0f}  back-vox {BACKVOX_CEILING:+.0f}  (attenuate-only, never boost)"
           f"   — dry run, nothing written")
 
 def find_folder(q):
@@ -880,10 +886,10 @@ def main():
             eff[n] = ag + trim
             if loud is not None: autoleveled.add(grp)
             if loud is not None:
-                cap = "  (boost capped)" if ag >= BOOST_CAP - 1e-6 else ""
+                note = "" if ag < 0 else "  (under ceiling, unchanged)"
                 tr = f" + trim {trim:+g}" if trim else ""
-                print(f"  level {grp}/{n}: {role}  measured {loud:+.1f}dBFS -> "
-                      f"target {ROLE_TARGET[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{cap}")
+                print(f"  level {grp}/{n}: {role}  measured {loud:+.1f}dBFS vs ceiling "
+                      f"{ROLE_CEILING[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{note}")
         out[grp] = mixdown(m.get("stems", []), eff, m.get("mute"))
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
@@ -917,15 +923,15 @@ def main():
             placed_layers.append((nm, lb))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             out["all"] = out["all"] + lb
-            lvl = (f", {role} measured {loud:+.1f}->{ROLE_TARGET[role]:+.0f}dBFS gain {ag:+.1f}dB"
-                   + (" capped" if ag >= BOOST_CAP-1e-6 else "")) if loud is not None else ""
+            lvl = (f", {role} measured {loud:+.1f}dBFS vs ceiling {ROLE_CEILING[role]:+.0f} gain {ag:+.1f}dB"
+                   + (" (unchanged)" if ag == 0 else "")) if loud is not None else ""
             print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl})")
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
         if pk > 0.99:
             buf *= 0.95/pk
-            warn = "  ⚠ auto-leveled group rescaled — fx/back-vox now below target in this song" \
+            warn = "  ⚠ auto-leveled group rescaled — fx/back-vox now below ceiling in this song" \
                    if n in autoleveled else ""
             print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> normalized to -0.4dBFS{warn}")
 
