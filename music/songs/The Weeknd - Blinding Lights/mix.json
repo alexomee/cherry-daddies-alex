@@ -1,0 +1,14 @@
+{
+  "pb-other": {"stems": ["04_Noise_effects", "09_Synth_Keys", "10_Arpeggiator", "11_Synth_Ambiant", "12_Backing_Vocals"]},
+  "pb-bass": {"stems": ["05_Synth_Bass"]},
+  "cue_step": 2,
+  "cues": [
+    {"bar": 3,   "text": "Blinding Lights synth in ready go", "step": 1, "abs_sec": 2.807},
+    {"bar": 11,  "text": "drums in", "abs_sec": 14.035},
+    {"bar": 22,  "text": "verse in", "abs_sec": 29.474},
+    {"bar": 63,  "text": "keys in", "abs_sec": 87.018},
+    {"bar": 70,  "beat": 3, "text": "verse in", "abs_sec": 97.544},
+    {"bar": 119, "text": "keys in", "abs_sec": 165.614},
+    {"bar": 135, "text": "drums stop", "abs_sec": 188.07}
+  ]
+}

@@ -2,19 +2,19 @@
   "bpm": 124.0,
   "click": "follow",
   "tempo_zone": {"from_bar": 53, "from_beat": 1, "to_bar": 62, "to_beat": 4, "bpm": 89.919, "anchor_sec": 101.116, "accent": 4, "accent_from": 209, "subdiv": 2, "return_sec": 130.799},
-  "pb-other": null,
-  "pb-bass": null,
+  "pb-other": {"layers": [{"file": "backing-vocal", "frame": "render", "gain_db": 0}]},
+  "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
   "cues": [
-    {"bar": 1, "text": "Я устал bass in"},
-    {"bar": 3, "text": "drums in"},
-    {"bar": 13, "text": "stop"},
-    {"bar": 25, "text": "verse in"},
-    {"bar": 33, "text": "stop"},
-    {"bar": 44, "text": "keep going"},
-    {"bar": 53, "text": "stop"},
-    {"bar": 53, "beat": 3, "text": "vocal in", "fast": true},
-    {"bar": 55, "beat": 2, "text": "drums in", "fast": true},
-    {"bar": 65, "beat": 3, "text": "chorus in"},
-    {"bar": 90, "text": "bass-only in", "count": true}
+    {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871},
+    {"bar": 3, "text": "drums in", "abs_sec": 7.742},
+    {"bar": 13, "text": "stop", "abs_sec": 27.097},
+    {"bar": 25, "text": "verse in", "abs_sec": 50.323},
+    {"bar": 33, "text": "stop", "abs_sec": 65.806},
+    {"bar": 44, "text": "keep going", "abs_sec": 87.097},
+    {"bar": 53, "text": "stop", "abs_sec": 104.822},
+    {"bar": 53, "beat": 3, "text": "vocal in", "fast": true, "abs_sec": 106.157},
+    {"bar": 55, "beat": 2, "text": "drums in", "fast": true, "abs_sec": 110.828},
+    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 133.538},
+    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 180.957}
   ]
 }

@@ -1,17 +1,17 @@
 {
   "bpm": 125,
-  "pb-other": null,
+  "pb-other": {"layers": ["keys-noise"]},
   "pb-bass": null,
   "cues": [
-    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in"},
-    {"bar": 9,   "beat": 4, "text": "vocal in"},
-    {"bar": 21,  "beat": 2, "text": "all stop"},
-    {"bar": 41,  "beat": 2, "text": "all stop"},
-    {"bar": 57,  "text": "keep going"},
-    {"bar": 66,  "text": "rap in"},
-    {"bar": 80,  "text": "all stop"},
-    {"bar": 98,  "text": "instrumental outro"},
-    {"bar": 106, "text": "keep going"},
-    {"bar": 113, "beat": 4, "text": "end stop"}
+    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in", "abs_sec": 3.36},
+    {"bar": 9,   "beat": 4, "text": "vocal in", "abs_sec": 18.72},
+    {"bar": 21,  "beat": 2, "text": "all stop", "abs_sec": 40.8},
+    {"bar": 41,  "beat": 2, "text": "all stop", "abs_sec": 79.2},
+    {"bar": 57,  "text": "keep going", "abs_sec": 109.44},
+    {"bar": 66,  "text": "rap in", "abs_sec": 126.72},
+    {"bar": 80,  "text": "all stop", "abs_sec": 153.6},
+    {"bar": 98,  "text": "instrumental outro", "abs_sec": 188.16},
+    {"bar": 106, "text": "keep going", "abs_sec": 203.52},
+    {"bar": 113, "beat": 4, "text": "end stop", "abs_sec": 218.4}
   ]
 }

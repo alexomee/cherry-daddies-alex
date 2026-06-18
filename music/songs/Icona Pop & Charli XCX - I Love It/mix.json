@@ -1,19 +1,19 @@
 {
-  "pb-other": null,
-  "pb-bass": null,
+  "pb-other": {"stems": ["11_Backing_Vocals", "03_Noise_effects"]},
+  "pb-bass": {"stems": ["04_Synth_Bass"]},
   "cues": [
-    {"bar": 3,  "text": "I Love It synth in"},
-    {"bar": 7,  "text": "voice in"},
-    {"bar": 14, "text": "all stop"},
-    {"bar": 15, "text": "main in"},
-    {"bar": 19, "text": "verse in"},
-    {"bar": 30, "beat": 3, "text": "bridge in"},
-    {"bar": 39, "text": "main in"},
-    {"bar": 47, "text": "verse in"},
-    {"bar": 54, "beat": 3, "text": "chorus in"},
-    {"bar": 62, "beat": 3, "text": "bridge in"},
-    {"bar": 69, "text": "keep going"},
-    {"bar": 71, "text": "main in"},
-    {"bar": 83, "text": "end stop"}
+    {"bar": 3,  "text": "I Love It synth in", "abs_sec": 3.81},
+    {"bar": 7,  "text": "voice in", "abs_sec": 11.429},
+    {"bar": 14, "text": "all stop", "abs_sec": 24.762},
+    {"bar": 15, "text": "main in", "abs_sec": 26.667},
+    {"bar": 19, "text": "verse in", "abs_sec": 34.286},
+    {"bar": 30, "beat": 3, "text": "bridge in", "abs_sec": 56.19},
+    {"bar": 39, "text": "main in", "abs_sec": 72.381},
+    {"bar": 47, "text": "verse in", "abs_sec": 87.619},
+    {"bar": 54, "beat": 3, "text": "chorus in", "abs_sec": 101.905},
+    {"bar": 62, "beat": 3, "text": "bridge in", "abs_sec": 117.143},
+    {"bar": 69, "text": "keep going", "abs_sec": 129.524},
+    {"bar": 71, "text": "main in", "abs_sec": 133.333},
+    {"bar": 83, "text": "end stop", "abs_sec": 156.19}
   ]
 }

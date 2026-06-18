@@ -1,0 +1,130 @@
+[
+ {
+  "t": 2.443,
+  "bar": 1,
+  "name": "all in",
+  "count_style": "readygo",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 19.586,
+  "bar": 9,
+  "name": "intro in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 36.729,
+  "bar": 17,
+  "name": "verse in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 71.014,
+  "bar": 33,
+  "name": "pre chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 86.014,
+  "bar": 40,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 103.157,
+  "bar": 48,
+  "name": "verse in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 122.443,
+  "bar": 57,
+  "name": "pre chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 137.443,
+  "bar": 64,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 154.586,
+  "bar": 72,
+  "name": "instrumental in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 165.3,
+  "bar": 77,
+  "name": "pre chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 179.764,
+  "bar": 84,
+  "name": "break in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C11"
+ },
+ {
+  "t": 186.729,
+  "bar": 87,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C12"
+ },
+ {
+  "t": 202.8,
+  "bar": 95,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C13"
+ },
+ {
+  "t": 238.157,
+  "bar": 111,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C14"
+ },
+ {
+  "t": 255.3,
+  "bar": 119,
+  "name": "outro in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C15"
+ },
+ {
+  "t": 255.3,
+  "bar": 119,
+  "name": "end in",
+  "count_style": "321",
+  "src": "end",
+  "id": "C16"
+ }
+]

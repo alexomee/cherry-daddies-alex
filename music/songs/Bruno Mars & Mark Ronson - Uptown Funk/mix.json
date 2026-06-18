@@ -1,0 +1,25 @@
+{
+  "pb-other": {"stems": ["06_Organ", "07_Synth_Pad", "08_Brass_section", "09_Noise_effects", "10_Backing_Vocals"]},
+  "pb-bass": null,
+  "cues": [
+    {"bar": 2,   "text": "Uptown Funk all in ready go", "abs_sec": 4.174},
+    {"bar": 6,   "text": "guitar in", "abs_sec": 12.522},
+    {"bar": 10,  "text": "verse in", "abs_sec": 20.87},
+    {"bar": 18,  "text": "bass in", "abs_sec": 37.565},
+    {"bar": 33,  "text": "stop", "abs_sec": 68.87},
+    {"bar": 35,  "beat": 3, "text": "haa", "abs_sec": 74.087},
+    {"bar": 39,  "beat": 3, "text": "haa", "abs_sec": 82.435},
+    {"bar": 46,  "text": "stop", "abs_sec": 96.0},
+    {"bar": 53,  "beat": 4, "text": "bass in", "abs_sec": 112.174},
+    {"bar": 62,  "text": "kick-vocal only ready go", "abs_sec": 129.391},
+    {"bar": 69,  "text": "stop", "abs_sec": 144.0},
+    {"bar": 71,  "beat": 3, "text": "haa", "abs_sec": 149.217},
+    {"bar": 75,  "beat": 3, "text": "haa", "abs_sec": 157.565},
+    {"bar": 82,  "text": "bridge in", "abs_sec": 171.13},
+    {"bar": 94,  "text": "guitar in", "abs_sec": 196.174},
+    {"bar": 103, "beat": 4, "text": "haa", "abs_sec": 216.522},
+    {"bar": 107, "beat": 3, "text": "haa", "abs_sec": 224.348},
+    {"bar": 114, "text": "outro in", "abs_sec": 237.913},
+    {"bar": 129, "beat": 4, "text": "stop", "abs_sec": 270.783}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "pb-other": {"stems": ["04_Sound_Effects", "06_Synth_Brass"]},
+  "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -3}},
+  "click": "follow",
+  "cues": [
+    {"bar": 3,   "text": "Destination Calabria sax in ready go", "abs_sec": 3.75},
+    {"bar": 7,   "text": "all in", "abs_sec": 11.25},
+    {"bar": 11,  "text": "verse in", "abs_sec": 18.75},
+    {"bar": 27,  "text": "stop", "abs_sec": 48.75},
+    {"bar": 36,  "text": "verse in", "abs_sec": 65.63},
+    {"bar": 44,  "text": "more synths in", "abs_sec": 80.63},
+    {"bar": 52,  "text": "stop", "abs_sec": 95.63},
+    {"bar": 55,  "text": "all in", "abs_sec": 101.25},
+    {"bar": 63,  "text": "stop", "abs_sec": 116.25},
+    {"bar": 65,  "text": "sax solo in", "abs_sec": 120.0},
+    {"bar": 73,  "beat": 2, "text": "crash in", "abs_sec": 135.71},
+    {"bar": 74,  "beat": 2, "text": "vocal in", "abs_sec": 137.58},
+    {"bar": 75,  "beat": 2, "text": "all in", "abs_sec": 139.46},
+    {"bar": 87,  "beat": 2, "text": "outro in", "abs_sec": 161.96},
+    {"bar": 96,  "text": "end stop", "abs_sec": 178.36}
+  ]
+}

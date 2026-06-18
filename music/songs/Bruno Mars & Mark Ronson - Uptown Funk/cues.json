@@ -1,0 +1,90 @@
+[
+ {
+  "t": 2.387,
+  "bar": 1,
+  "name": "vocal in",
+  "count_style": "readygo",
+  "src": "start",
+  "id": "C01"
+ },
+ {
+  "t": 19.083,
+  "bar": 9,
+  "name": "verse in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C02"
+ },
+ {
+  "t": 52.474,
+  "bar": 25,
+  "name": "pre chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C03"
+ },
+ {
+  "t": 67.083,
+  "bar": 32,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C04"
+ },
+ {
+  "t": 94.213,
+  "bar": 45,
+  "name": "verse in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C05"
+ },
+ {
+  "t": 127.604,
+  "bar": 61,
+  "name": "pre chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C06"
+ },
+ {
+  "t": 142.213,
+  "bar": 68,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C07"
+ },
+ {
+  "t": 169.344,
+  "bar": 81,
+  "name": "bridge in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C08"
+ },
+ {
+  "t": 208.996,
+  "bar": 100,
+  "name": "chorus in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C09"
+ },
+ {
+  "t": 236.126,
+  "bar": 113,
+  "name": "outro in",
+  "count_style": "readygo",
+  "src": "sec",
+  "id": "C10"
+ },
+ {
+  "t": 269.517,
+  "bar": 129,
+  "name": "end in",
+  "count_style": "321",
+  "src": "end",
+  "id": "C11"
+ }
+]

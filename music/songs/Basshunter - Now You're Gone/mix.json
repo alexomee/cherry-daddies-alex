@@ -2,18 +2,18 @@
   "pb-other": {"stems": ["08_Noise_effects"]},
   "pb-bass": null,
   "cues": [
-    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in"},
-    {"bar": 12, "text": "drums in"},
-    {"bar": 20, "text": "stop and solo in"},
-    {"bar": 29, "text": "drum stop"},
-    {"bar": 42, "text": "break in"},
-    {"bar": 46, "text": "stop"},
-    {"bar": 48, "text": "solo start in"},
-    {"bar": 56, "text": "stop"},
-    {"bar": 57, "beat": 3, "text": "vocal in"},
-    {"bar": 66, "text": "bass in"},
-    {"bar": 74, "beat": 3, "text": "vocal-with-solo in"},
-    {"bar": 83, "text": "keep going"},
-    {"bar": 90, "text": "end stop"}
+    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "abs_sec": 2.416},
+    {"bar": 12, "text": "drums in", "abs_sec": 17.716},
+    {"bar": 20, "text": "stop and solo in", "abs_sec": 30.6},
+    {"bar": 29, "text": "drum stop", "abs_sec": 45.095},
+    {"bar": 42, "text": "break in", "abs_sec": 66.031},
+    {"bar": 46, "text": "stop", "abs_sec": 72.474},
+    {"bar": 48, "text": "solo start in", "abs_sec": 75.695},
+    {"bar": 56, "text": "stop", "abs_sec": 88.579},
+    {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 90.995},
+    {"bar": 66, "text": "bass in", "abs_sec": 104.684},
+    {"bar": 74, "beat": 3, "text": "vocal-with-solo in", "abs_sec": 118.373},
+    {"bar": 83, "text": "keep going", "abs_sec": 132.063},
+    {"bar": 90, "text": "end stop", "abs_sec": 143.337}
   ]
 }

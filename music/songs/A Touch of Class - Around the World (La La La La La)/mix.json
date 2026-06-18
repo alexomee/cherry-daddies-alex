@@ -1,22 +1,18 @@
 {
-  "pb-other": null,
-  "pb-bass": null,
+  "pb-other": {"stems": ["14_Backing_Vocals"]},
+  "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": 3}},
   "cues": [
-    {"bar": 3,   "text": "Around the World synth in"},
-    {"bar": 6,   "beat": 4, "text": "vocal in"},
-    {"bar": 15,  "text": "bass-n-beat in"},
-    {"bar": 23,  "text": "chorus in"},
-    {"bar": 31,  "text": "solo in"},
-    {"bar": 38,  "beat": 4, "text": "vocal in"},
-    {"bar": 47,  "text": "keys in"},
-    {"bar": 55,  "text": "synth in"},
-    {"bar": 63,  "text": "chorus in"},
-    {"bar": 71,  "text": "solo in"},
-    {"bar": 79,  "text": "slow part"},
-    {"bar": 88,  "text": "main in"},
-    {"bar": 96,  "text": "chorus in"},
-    {"bar": 104, "text": "keys in"},
-    {"bar": 112, "text": "all stop"},
-    {"bar": 120, "text": "end stop"}
+    {"bar": 3,   "text": "Around the World synth in", "abs_sec": 3.636},
+    {"bar": 7,   "text": "vocal in", "abs_sec": 10.909},
+    {"bar": 15,  "text": "bass-n-beat in", "abs_sec": 25.455},
+    {"bar": 31,  "text": "solo in", "abs_sec": 54.545},
+    {"bar": 39,  "text": "vocal in", "abs_sec": 69.091},
+    {"bar": 47,  "text": "piano in", "abs_sec": 83.636},
+    {"bar": 71,  "text": "solo in", "abs_sec": 127.273},
+    {"bar": 79,  "text": "keys-only in", "count": true, "abs_sec": 141.818},
+    {"bar": 88,  "text": "modulation in", "squeeze": true, "abs_sec": 158.182},
+    {"bar": 104, "text": "keep going", "abs_sec": 187.273},
+    {"bar": 112, "text": "keys-only in", "count": true, "abs_sec": 201.818},
+    {"bar": 120, "text": "end stop", "abs_sec": 216.364}
   ]
 }

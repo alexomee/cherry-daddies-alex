@@ -1,4 +1,20 @@
 {
+  "pitch_semitones": -2,
   "pb-other": {"stems": ["11_Backing_Vocals_1", "12_Backing_Vocals_2"]},
-  "pb-bass": null
+  "pb-bass": null,
+  "cues": [
+    {"bar": 2,   "beat": 3, "text": "S and M vocal in", "chord": ["C#4"], "abs_sec": 4.688},
+    {"bar": 11,  "text": "all in", "abs_sec": 20.625},
+    {"bar": 19,  "text": "verse in", "abs_sec": 35.625},
+    {"bar": 35,  "text": "chorus in", "abs_sec": 65.625},
+    {"bar": 43,  "text": "bass in", "abs_sec": 80.625},
+    {"bar": 59,  "text": "verse in", "abs_sec": 110.625},
+    {"bar": 67,  "text": "soft chorus", "abs_sec": 125.625},
+    {"bar": 83,  "text": "synth in", "abs_sec": 155.625},
+    {"bar": 87,  "text": "bridge in", "abs_sec": 163.125},
+    {"bar": 99,  "text": "soft chorus", "abs_sec": 185.625},
+    {"bar": 107, "text": "all in", "abs_sec": 200.625},
+    {"bar": 123, "text": "outro in", "abs_sec": 230.625},
+    {"bar": 130, "text": "end in", "count": true, "abs_sec": 243.75}
+  ]
 }

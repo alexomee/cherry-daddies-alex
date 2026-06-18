@@ -1,0 +1,20 @@
+{
+  "pb-other": {"stems": ["04_Noise_effects", "09_Piano", "10_Synth_Pad", "11_Sample_(sung)", "12_Backing_Vocals", "13_Backing_Vocals"]},
+  "pb-bass": null,
+  "note": "live bass",
+  "cues": [
+    {"bar": 2,             "text": "Adventure guitar in ready go", "abs_sec": 4.286},
+    {"bar": 9,  "beat": 3, "text": "all in", "abs_sec": 20.357},
+    {"bar": 18,            "text": "verse in", "abs_sec": 38.571},
+    {"bar": 40,            "text": "stop", "abs_sec": 85.714},
+    {"bar": 50,            "text": "verse in", "abs_sec": 107.143},
+    {"bar": 64,            "text": "stop", "abs_sec": 137.143},
+    {"bar": 65, "beat": 3, "text": "all in", "abs_sec": 140.357},
+    {"bar": 74,            "text": "drums stop", "abs_sec": 158.571},
+    {"bar": 86,            "text": "drums in", "abs_sec": 184.286},
+    {"bar": 88,            "text": "guitar in", "abs_sec": 188.571},
+    {"bar": 95, "beat": 3, "text": "vocal in", "abs_sec": 204.643},
+    {"bar": 112,           "text": "guitar melody ready go", "abs_sec": 240.0},
+    {"bar": 119, "beat": 4, "text": "stop", "abs_sec": 256.607}
+  ]
+}

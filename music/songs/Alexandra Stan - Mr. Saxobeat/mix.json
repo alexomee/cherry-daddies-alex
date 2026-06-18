@@ -3,6 +3,23 @@
     "stems": ["04_Noise_effects", "10_Saxophone_(reverse)"],
     "gain_db": {"04_Noise_effects": 8.9, "10_Saxophone_(reverse)": 8.9}
   },
-  "pb-bass": null,
-  "export_stems": ["05_Synth_Bass", "06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"]
+  "pb-bass": {
+    "stems": ["05_Synth_Bass"]
+  },
+  "export_stems": ["06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"],
+  "cues": [
+    {"bar": 3,   "text": "Mr Saxobeat sax in ready go", "abs_sec": 3.78},
+    {"bar": 11,  "text": "bass in", "abs_sec": 18.898},
+    {"bar": 16,  "text": "vocal in", "abs_sec": 28.346},
+    {"bar": 33,  "text": "alex vocal in", "abs_sec": 60.472},
+    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591},
+    {"bar": 49,  "text": "verse in", "abs_sec": 90.709},
+    {"bar": 57,  "text": "stop", "abs_sec": 105.827},
+    {"bar": 66,  "text": "alex vocal in", "abs_sec": 122.835},
+    {"bar": 74,  "text": "sax solo in", "abs_sec": 137.953},
+    {"bar": 82,  "text": "bass in", "abs_sec": 153.071},
+    {"bar": 87,  "text": "vocal in", "abs_sec": 162.52},
+    {"bar": 95,  "text": "sax in", "abs_sec": 177.638},
+    {"bar": 103, "text": "stop", "abs_sec": 192.756}
+  ]
 }
