@@ -1,6 +1,5 @@
 {
   "pb-other": {"stems": ["03_Sound_effects_(Crowd)", "13_Backing_Vocals", "04_Noise_effects", "08_Synth_Voice", "07_Synth_Pad", "11_Synth_Ambiant"],
-               "gain_db": {"13_Backing_Vocals": -2},
                "mute": {"13_Backing_Vocals": [[1, 18.2]]}},
   "pb-bass": null,
   "cues": [

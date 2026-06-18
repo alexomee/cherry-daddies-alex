@@ -61,6 +61,102 @@ SR = 44100
 SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
 CLICK_LVL, MIX_LVL, CUE_LVL = 0.6, 0.85, 1.0   # cue_preview levels (same as jamzone_cues.py)
 
+# ---- pb-other/pb-bass auto-leveling ----------------------------------------------------------
+# The two recurring SUPPORT roles in pb-other (noise/sound FX, backing vocals) are pinned to a
+# consistent per-role perceived loudness across ALL songs so the keyboardist sets one fader and
+# it's right everywhere. MUSICAL parts (synth lead, arpeggiator, charango...) are left alone --
+# some pb-other is meant to be loud. See docs/plans/2026-06-18-pb-other-autolevel-design.md.
+FX_TARGET, BACKVOX_TARGET = -30.0, -23.0   # dBFS gated-RMS targets (seed; tune once by ear)
+BOOST_CAP = 6.0                            # max dB boost (never pump a sparse stem into noise)
+ROLE_PATTERNS = [("fx", re.compile(r"noise|sound.?effects?", re.I)),
+                 ("back-vox", re.compile(r"back(ing)?.?vocals?|back.?vox", re.I))]
+ROLE_TARGET = {"fx": FX_TARGET, "back-vox": BACKVOX_TARGET}   # musical -> not in map -> no level
+
+def classify(name, overrides=None):
+    """role of a stem/layer by Moises name; mix.json "roles" map overrides (also opt-out)."""
+    if overrides and name in overrides: return overrides[name]
+    for role, pat in ROLE_PATTERNS:
+        if pat.search(name): return role
+    return "musical"
+
+def gated_rms_db(buf):
+    """Perceived loudness over ACTIVE regions, in dBFS. 400ms windows / 100ms hop, mono-sum;
+    keep windows within 20dB of the loudest (drops the long silences in sparse FX/back-vox so
+    the measure reflects the effect's loudness, not diluted by gaps); RMS of the kept power."""
+    x = buf.mean(1) if buf.ndim == 2 else buf
+    win, hop = int(0.4*SR), int(0.1*SR)
+    if len(x) < win:
+        return 20*np.log10(float(np.sqrt(np.mean(x**2))) or 1e-9)
+    p = np.array([np.mean(x[s:s+win]**2) for s in range(0, len(x)-win, hop)])
+    p = p[p > 0]
+    if not len(p): return -120.0
+    kept = p[p >= p.max()*10**(-20/10)]                # relative gate, -20dB below loudest window
+    return 20*np.log10(float(np.sqrt(kept.mean())) or 1e-9)
+
+def auto_gain_db(buf, role):
+    """(gain_db, measured_db) to bring buf to its role target (boost capped). musical -> (0, None)."""
+    target = ROLE_TARGET.get(role)
+    if target is None: return 0.0, None
+    loud = gated_rms_db(buf)
+    return min(target - loud, BOOST_CAP), loud
+
+def _stem_paths(folder):
+    """name -> file for a song folder: JamZone NN_*.m4a, else external mp3/wav (legacy excluded)."""
+    jz = {os.path.basename(p)[:-4]: p for p in sorted(glob.glob(os.path.join(folder, "[0-9][0-9]_*.m4a")))}
+    if jz: return jz
+    legacy = lambda n: (n == "cue_track" or "cue_preview" in n.lower() or n.lower().endswith(" click"))
+    return {n: p for p in sorted(glob.glob(os.path.join(folder, "*.mp3")) + glob.glob(os.path.join(folder, "*.wav")))
+            if not legacy(n := os.path.basename(p)[:-4])}
+
+def levels_report(query=None):
+    """Dry run (writes nothing): for every fx/back-vox stem & layer in every song (or one if
+    `query`), print role, measured gated-RMS loudness, the auto-level gain that WOULD apply
+    (capped?), and the post-level loudness. Cross-song summary shows the pre/post spread per
+    role — the proof that the targets flatten it. This is the review gate before applying."""
+    folders = ([find_folder(query)] if query else
+               sorted(d for d in glob.glob(os.path.join(SONGS, "*")) if os.path.isdir(d)))
+    rows = []                                          # (song, grp, name, kind, role, loud, ag, trim)
+    for folder in folders:
+        mix_p = os.path.join(folder, "mix.json")
+        if not os.path.exists(mix_p): continue
+        mix = json.load(open(mix_p)); paths = _stem_paths(folder); song = os.path.basename(folder)
+        for grp in ("pb-other", "pb-bass"):
+            m = mix.get(grp) or {}
+            overrides, trims = m.get("roles", {}), (m.get("gain_db") or {})
+            for n in m.get("stems", []):
+                role = classify(n, overrides)
+                if role == "musical": continue
+                if n not in paths: print(f"  !! {song}: stem '{n}' not found"); continue
+                ag, loud = auto_gain_db(decode(paths[n]), role)
+                rows.append((song, grp, n, "stem", role, loud, ag, trims.get(n, 0)))
+            for ent in m.get("layers", []):
+                ent = ent if isinstance(ent, dict) else {"file": ent}
+                nm = ent["file"]; role = classify(nm, overrides)
+                if role == "musical": continue
+                lp = sorted(glob.glob(os.path.join(folder, "parts", nm + ".*")))
+                if not lp: print(f"  !! {song}: layer '{nm}' not found"); continue
+                ag, loud = auto_gain_db(decode(lp[0]), role)
+                rows.append((song, grp, nm, "layer", role, loud, ag, ent.get("gain_db", trims.get(nm, 0))))
+    if not rows:
+        print("no fx/back-vox stems or layers found"); return
+    cur = None
+    for song, grp, name, kind, role, loud, ag, trim in rows:
+        if song != cur: print(f"\n{song}"); cur = song
+        cap = " CAP" if ag >= BOOST_CAP - 1e-6 else ""
+        tr = f"  trim{trim:+g}" if trim else ""
+        print(f"  {grp:8} {role:8} {kind:5} {name:30} {loud:+6.1f}dBFS  gain {ag:+5.1f}{cap:4}"
+              f" -> {loud+ag:+6.1f}dBFS (target {ROLE_TARGET[role]:+.0f}){tr}")
+    print("\nsummary (post = measured + auto gain, before any per-song trim):")
+    for role in ("fx", "back-vox"):
+        rr = [r for r in rows if r[4] == role]
+        if not rr: continue
+        meas = sorted(r[5] for r in rr); post = sorted(r[5] + r[6] for r in rr)
+        print(f"  {role:8} n={len(rr):2}  measured {meas[0]:+.1f}..{meas[-1]:+.1f} "
+              f"(spread {meas[-1]-meas[0]:.1f}dB)  ->  post {post[0]:+.1f}..{post[-1]:+.1f} "
+              f"(spread {post[-1]-post[0]:.1f}dB, target {ROLE_TARGET[role]:+.0f})")
+    print(f"\ntargets: fx {FX_TARGET:+.0f}  back-vox {BACKVOX_TARGET:+.0f}  boost cap +{BOOST_CAP:.0f}dB"
+          f"   — dry run, nothing written")
+
 def find_folder(q):
     if os.path.isdir(q): return os.path.abspath(q)
     for d in sorted(glob.glob(os.path.join(SONGS, "*"))):
@@ -516,6 +612,9 @@ def write_cue_abs_times(mix_path, times):
     return None
 
 def main():
+    if "--levels" in sys.argv:                         # dry-run loudness report (all songs, or one
+        args = [a for a in sys.argv[1:] if not a.startswith("--")]   # if a song query is given); writes
+        return levels_report(args[0] if args else None)             # nothing
     folder = find_folder(sys.argv[1])
     bpm_force = float(sys.argv[sys.argv.index("--bpm")+1]) if "--bpm" in sys.argv else None
     jz_stems = {os.path.basename(p)[:-4]: p
@@ -768,9 +867,24 @@ def main():
     elif cue_st is not None:                        # fallback: prebuilt cue_track.wav (stem timeline)
         cues_buf = np.zeros((total, 2), np.float32); place(cues_buf, cue_st, off_samp)
         out["cues"] = cues_buf
-    for grp in ("pb-other", "pb-bass"):
+    autoleveled = set()                                # groups carrying an auto-leveled (fx/back-vox)
+    for grp in ("pb-other", "pb-bass"):                # stem/layer -> warn if headroom rescales them
         m = mix.get(grp)
-        if m: out[grp] = mixdown(m.get("stems", []), m.get("gain_db", {}), m.get("mute"))
+        if not m: continue
+        overrides, trims = m.get("roles", {}), (m.get("gain_db") or {})
+        eff = {}                                       # fx/back-vox auto-leveled to role target;
+        for n in m.get("stems", []):                   # gain_db = TRIM on top for those, ABSOLUTE
+            role = classify(n, overrides)              # for musical (unchanged behavior)
+            ag, loud = auto_gain_db(audio[n], role)
+            trim = trims.get(n, 0)
+            eff[n] = ag + trim
+            if loud is not None: autoleveled.add(grp)
+            if loud is not None:
+                cap = "  (boost capped)" if ag >= BOOST_CAP - 1e-6 else ""
+                tr = f" + trim {trim:+g}" if trim else ""
+                print(f"  level {grp}/{n}: {role}  measured {loud:+.1f}dBFS -> "
+                      f"target {ROLE_TARGET[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{cap}")
+        out[grp] = mixdown(m.get("stems", []), eff, m.get("mute"))
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
     if semi:
@@ -794,18 +908,26 @@ def main():
             nm, frame = ent["file"], ent.get("frame", "render")   # render-frame = cut vs auto-render
             base = off_samp if frame == "stem" else 0             # (placed at render t=0); stem-frame =
             start = base + round(ent.get("offset_ms", 0)/1000*SR) # cut vs Moises stems (native, placed at OFF)
-            g = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
-            lb = load_layer(nm, start) * 10**(g/20)
+            lbuf = load_layer(nm, start)               # fx/back-vox layers auto-leveled like stems;
+            role = classify(nm, (m.get("roles") or {}))   # gain_db = trim for those, absolute for musical
+            ag, loud = auto_gain_db(lbuf, role)
+            if loud is not None: autoleveled.add(grp)
+            trim = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
+            lb = lbuf * 10**((ag + trim)/20)
             placed_layers.append((nm, lb))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             out["all"] = out["all"] + lb
-            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch)")
+            lvl = (f", {role} measured {loud:+.1f}->{ROLE_TARGET[role]:+.0f}dBFS gain {ag:+.1f}dB"
+                   + (" capped" if ag >= BOOST_CAP-1e-6 else "")) if loud is not None else ""
+            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl})")
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
         if pk > 0.99:
             buf *= 0.95/pk
-            print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> normalized to -0.4dBFS")
+            warn = "  ⚠ auto-leveled group rescaled — fx/back-vox now below target in this song" \
+                   if n in autoleveled else ""
+            print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> normalized to -0.4dBFS{warn}")
 
     pre = 1000
     v = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
