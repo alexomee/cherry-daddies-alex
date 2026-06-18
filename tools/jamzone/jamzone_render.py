@@ -851,6 +851,21 @@ def main():
         extra = " + cue_preview.mp3"
     print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json{extra}")
 
+    for who, owned in players.items():             # practice mix: all MINUS this member's stems,
+        owned = set(owned)                          # pitched to band key, + click + cues (cue_preview
+        minus = mixdown([n for n in music if n not in replaced and n not in owned], {})
+        if semi: minus = pitch_shift(minus, semi)   # member plays in band key -> minus is pitched;
+        for nm, lb in placed_layers:                # layers are already band-key (never pitched): add
+            if nm not in owned: minus = minus + lb  # back the ones this member does NOT play live
+        pm = minus*MIX_LVL + out["click"]*CLICK_LVL
+        if "cues" in out: pm = pm + out["cues"]*CUE_LVL
+        pk = float(np.abs(pm).max())
+        if pk > 0.97: pm *= 0.97/pk
+        subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
+                        "-b:a","192k",os.path.join(adir, f"practice-{who}.mp3")],
+                       input=pm.astype(np.float32).tobytes())
+        print(f"✓ auto-render/practice-{who}.mp3 (all minus {sorted(owned)} + click + cues)")
+
     # export_stems: individual stems in the SAME aligned/tempo-labelled format (one wav each),
     # e.g. to hand the synths to the keyboardist. Same offset/length/grid/key as the set above.
     exp = mix.get("export_stems") or []
