@@ -147,12 +147,13 @@ def mpv_start(screen, windowed):
         f"--input-ipc-server={SOCK}",
         "--background=color",
         "--background-color=#000000",
+        "--ontop=yes",              # always float above MainStage / other windows
     ]
     if windowed:
         args += ["--geometry=960x540", "--title=LyricLauncher (dev)"]
     else:
         args += ["--fullscreen=yes", f"--screen={screen}",
-                 f"--fs-screen={screen}", "--ontop=yes", "--cursor-autohide=100"]
+                 f"--fs-screen={screen}", "--cursor-autohide=100"]
     if os.path.exists(SOCK):
         os.remove(SOCK)
     proc = subprocess.Popen(args)
