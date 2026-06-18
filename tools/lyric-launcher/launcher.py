@@ -19,6 +19,7 @@ MainStage — no IAC Driver setup required). Use --port NAME to instead open
 an existing port (e.g. an IAC bus).
 """
 import argparse
+import ctypes
 import json
 import os
 import socket
@@ -29,6 +30,97 @@ import time
 import mido
 
 SOCK = "/tmp/lyric-mpv.sock"
+
+# Fixed CoreMIDI uniqueID for our virtual "LyricLauncher" port. MainStage's
+# saved MIDI binding stores the endpoint's uniqueID, NOT its name — so unless
+# this is stable across restarts the binding breaks every launch. python-rtmidi
+# assigns a fresh random uniqueID each time it creates the virtual port, so right
+# after creation we forcibly stamp this constant on it (see set_port_unique_id).
+# 0x4C595243 = ASCII 'LYRC'.
+LYRIC_UNIQUE_ID = 0x4C595243  # 1448301123
+
+
+def set_port_unique_id(port_name, uid):
+    """Best-effort: force the CoreMIDI kMIDIPropertyUniqueID of the virtual
+    destination named `port_name` to `uid`, so MainStage's saved binding (keyed
+    on uniqueID) survives restarts. mido/rtmidi keeps owning the port for actual
+    MIDI reading; we only poke its uniqueID property via ctypes against the
+    CoreMIDI framework. Any failure is logged and swallowed — the port still
+    works, just without a stable ID."""
+    try:
+        coremidi = ctypes.CDLL(
+            "/System/Library/Frameworks/CoreMIDI.framework/CoreMIDI")
+        cf = ctypes.CDLL(
+            "/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation")
+
+        CFStringRef = ctypes.c_void_p
+        OSStatus = ctypes.c_int32
+        ItemCount = ctypes.c_ulong
+        MIDIObjectRef = ctypes.c_uint32
+        kCFStringEncodingUTF8 = 0x08000100
+
+        cf.CFStringGetCString.restype = ctypes.c_bool
+        cf.CFStringGetCString.argtypes = [
+            CFStringRef, ctypes.c_char_p, ctypes.c_long, ctypes.c_uint32]
+        cf.CFRelease.argtypes = [ctypes.c_void_p]
+
+        coremidi.MIDIGetNumberOfDestinations.restype = ItemCount
+        coremidi.MIDIGetDestination.restype = MIDIObjectRef
+        coremidi.MIDIGetDestination.argtypes = [ItemCount]
+        coremidi.MIDIObjectGetStringProperty.restype = OSStatus
+        coremidi.MIDIObjectGetStringProperty.argtypes = [
+            MIDIObjectRef, CFStringRef, ctypes.POINTER(CFStringRef)]
+        coremidi.MIDIObjectSetIntegerProperty.restype = OSStatus
+        coremidi.MIDIObjectSetIntegerProperty.argtypes = [
+            MIDIObjectRef, CFStringRef, ctypes.c_int32]
+        coremidi.MIDIObjectGetIntegerProperty.restype = OSStatus
+        coremidi.MIDIObjectGetIntegerProperty.argtypes = [
+            MIDIObjectRef, CFStringRef, ctypes.POINTER(ctypes.c_int32)]
+
+        kName = CFStringRef.in_dll(coremidi, "kMIDIPropertyName")
+        kUID = CFStringRef.in_dll(coremidi, "kMIDIPropertyUniqueID")
+
+        def name_of(obj):
+            out = CFStringRef()
+            if coremidi.MIDIObjectGetStringProperty(
+                    obj, kName, ctypes.byref(out)) != 0 or not out.value:
+                return None
+            buf = ctypes.create_string_buffer(512)
+            s = (buf.value.decode("utf-8")
+                 if cf.CFStringGetCString(out, buf, 512, kCFStringEncodingUTF8)
+                 else None)
+            cf.CFRelease(out)
+            return s
+
+        # Our virtual *input* port shows up to the system as a *destination*.
+        n = coremidi.MIDIGetNumberOfDestinations()
+        targets = [coremidi.MIDIGetDestination(i)
+                   for i in range(n)
+                   if name_of(coremidi.MIDIGetDestination(i)) == port_name]
+        if not targets:
+            print(f"[midi] warn: no destination named {port_name!r} found; "
+                  "uniqueID left as assigned", file=sys.stderr)
+            return
+        if len(targets) > 1:
+            print(f"[midi] warn: {len(targets)} destinations named "
+                  f"{port_name!r}; stamping uniqueID on the first only",
+                  file=sys.stderr)
+        ep = targets[0]
+        st = coremidi.MIDIObjectSetIntegerProperty(ep, kUID, uid)
+        if st != 0:
+            print(f"[midi] warn: could not set uniqueID on {port_name!r} "
+                  f"(OSStatus {st}); using rtmidi-assigned ID", file=sys.stderr)
+            return
+        val = ctypes.c_int32()
+        if coremidi.MIDIObjectGetIntegerProperty(
+                ep, kUID, ctypes.byref(val)) == 0 and val.value == uid:
+            print(f"[midi] LyricLauncher uniqueID={uid} (stable)")
+        else:
+            print(f"[midi] warn: uniqueID set returned OK but readback differs "
+                  f"on {port_name!r}; binding may still drift", file=sys.stderr)
+    except Exception as e:  # noqa: BLE001 - best-effort, never crash the launcher
+        print(f"[midi] warn: stable uniqueID setup failed ({e}); "
+              "port works but ID is rtmidi-random", file=sys.stderr)
 
 
 def find_clip(clips_dir, program):
@@ -170,6 +262,9 @@ def main():
     else:
         inport = mido.open_input("LyricLauncher", virtual=True)
         print("[midi] created virtual destination: 'LyricLauncher'")
+        # Stamp a fixed CoreMIDI uniqueID so MainStage's saved binding (keyed on
+        # uniqueID) resolves across restarts without re-wiring. Best-effort.
+        set_port_unique_id("LyricLauncher", LYRIC_UNIQUE_ID)
 
     # Transport-chase model (MainStage as MIDI clock master):
     #   program_change N -> ARM clip N (load, paused on frame 0, title showing)
