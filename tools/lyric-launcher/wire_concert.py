@@ -239,13 +239,19 @@ def main():
                     help="the hand-wired set whose Lyrics strip + .cst is the template")
     ap.add_argument("--dry-run", action="store_true",
                     help="report what would change without writing")
+    ap.add_argument("--skip-clips", default="",
+                    help="comma-separated clip numbers to NOT wire (e.g. 24 for tatu)")
+    ap.add_argument("--allow-live", action="store_true",
+                    help="deliberately permit writing the live concert "
+                         "(only after a copy has been verified in MainStage)")
     args = ap.parse_args()
 
     concert = os.path.abspath(args.concert)
-    # Hard guard: refuse to touch the live concert.
+    # Hard guard: refuse to touch the live concert unless explicitly allowed.
     if os.path.realpath(concert).rstrip("/").endswith(
-            "cherry-daddies-2000/2000.concert"):
-        sys.exit("REFUSING to write to the live concert. Run against a copy.")
+            "cherry-daddies-2000/2000.concert") and not args.allow_live:
+        sys.exit("REFUSING to write to the live concert. Run against a copy, "
+                 "or pass --allow-live once a copy has been verified.")
 
     base = os.path.join(concert, "Concert.patch")
     if not os.path.isdir(base):
@@ -265,7 +271,11 @@ def main():
     # Parse manifest -> jamzone rows.
     with open(args.tsv, newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
-    jz = [r for r in rows if r.get("source") == "jamzone"]
+    jz = [r for r in rows if r.get("source") in ("jamzone", "static")]
+    skip = {int(x) for x in args.skip_clips.split(",") if x.strip()}
+    if skip:
+        jz = [r for r in jz if int(r["clip"]) not in skip]
+        print(f"skipping clips: {sorted(skip)}")
 
     print(f"concert: {concert}")
     print(f"template set: {args.template_set}  (strip instID stride {INSTID_STRIDE})")

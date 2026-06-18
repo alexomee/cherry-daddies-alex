@@ -10,13 +10,13 @@ set	song	clip	pc_field	source	cat	factory_dir	bed_dir	concert_patch
 9	No Stress	09	10	jamzone	cat_18010	music/songs/Laurent Wolf & Eric Carter - No Stress	cherry-daddies-setlist-2026-06-16/Laurent Wolf & Eric Carter - No Stress	Laurent Wolf.patch
 10	Freed From Desire	10	11	jamzone	cat_30111	music/songs/Gala - Freed from Desire	cherry-daddies-setlist-2026-06-16/10 Freed From Desire	Freed From Desire.patch
 11	Uptown Funk	11	12	jamzone	cat_48052	music/songs/Bruno Mars & Mark Ronson - Uptown Funk	cherry-daddies-setlist-2026-06-16/11 Uptown Funk	Uptown Funk.patch
-12	Солнышко	12	13	manual			cherry-daddies-setlist-2026-06-16/12 Солнышко	Demo.patch
-13	Про красивую жизнь	13	14	manual			cherry-daddies-setlist-2026-06-16/13 Про красивую жизнь	Бандерос.patch
-14	Мало тебя	14	15	manual			cherry-daddies-setlist-2026-06-16/SEREBRO - Malo tebya	Серебро.patch
-15	Я устал	15	16	manual			cherry-daddies-setlist-2026-06-16/15 Я устал	Quest pistols.patch
+12	Солнышко	12	13	static			cherry-daddies-setlist-2026-06-16/12 Солнышко	Demo.patch
+13	Про красивую жизнь	13	14	static			cherry-daddies-setlist-2026-06-16/13 Про красивую жизнь	Бандерос.patch
+14	Мало тебя	14	15	static			cherry-daddies-setlist-2026-06-16/SEREBRO - Malo tebya	Серебро.patch
+15	Я устал	15	16	static			cherry-daddies-setlist-2026-06-16/15 Я устал	Quest pistols.patch
 16	Now You're Gone	16	17	jamzone	cat_14567	music/songs/Basshunter - Now You're Gone	cherry-daddies-setlist-2026-06-16/16 Now You're Gone	Basshunter.patch
 17	S&M	17	18	jamzone	cat_35327	music/songs/Rihanna - S&M	cherry-daddies-setlist-2026-06-16/17 S&M	Rihanna.patch
-18	Beverly Hills	18	19	manual			cherry-daddies-setlist-2026-06-16/18 Beverly Hills	beverly hills.patch
+18	Beverly Hills	18	19	static			cherry-daddies-setlist-2026-06-16/18 Beverly Hills	beverly hills.patch
 19	We Found Love	19	20	jamzone	cat_38332	music/songs/Rihanna & Calvin Harris - We Found Love	cherry-daddies-setlist-2026-06-16/19 We Found Love	1__#$!@%!#__Rihanna.patch
 20	Everytime We Touch	20	21	jamzone	cat_12436	music/songs/Cascada - Everytime We Touch	cherry-daddies-setlist-2026-06-16/20 Everytime We Touch	Cascada.patch
 21	Heads Will Roll	21	22	jamzone	cat_23443	music/songs/Yeah Yeah Yeahs - Heads Will Roll	cherry-daddies-setlist-2026-06-16/Yeah Yeah Yeahs - Heads Will Roll	heads will roll.patch
