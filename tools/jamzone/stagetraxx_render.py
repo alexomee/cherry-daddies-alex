@@ -56,7 +56,13 @@ def get_bpm(folder):
     try:
         sys.path.insert(0, os.path.dirname(__file__)); import jamzone_cues as J
         return J.meta(J.resolve(os.path.basename(folder).split(" - ")[-1]))[2]
-    except Exception:
+    except (Exception, SystemExit):                # external (Moises) song → not in JamZone; resolve() sys.exits
+        mj = os.path.join(folder, "mix.json")
+        if os.path.exists(mj):
+            try:
+                b = json.load(open(mj)).get("bpm")
+                if b: return float(b)
+            except Exception: pass
         m = re.search(r'(\d+)\s*bpm', os.path.basename(folder), re.I)
         return float(m.group(1)) if m else 120.0
 
@@ -96,14 +102,18 @@ def main():
         st = json.loads(J.dec(J.resolve(base.split(" - ")[-1]), "structure.json"))
         regions = [(s["caption"], s["begin"]+toff, s["end"]+toff) for s in st
                    if not s["caption"].lower().startswith("precount")]
-    except Exception:
+    except (Exception, SystemExit):                # external song: resolve() sys.exits — fall through to cues
         regions = []
     if not regions:                                # external / non-JamZone song → fall back to the cue list
         cj = os.path.join(folder, "cues.json")
-        if os.path.exists(cj):
-            cues = sorted(json.load(open(cj)), key=lambda c: c["t"])
-            regions = [(c["name"], c["t"]+toff, cues[i+1]["t"]+toff if i+1 < len(cues) else dur)
-                       for i, c in enumerate(cues)]
+        try:                                       # only the simple {name, t:<sec>} list form; ext/dict form → skip
+            data = json.load(open(cj)) if os.path.exists(cj) else None
+            if isinstance(data, list) and data and all(isinstance(c.get("t"), (int, float)) for c in data):
+                cues = sorted(data, key=lambda c: c["t"])
+                regions = [(c.get("name", ""), c["t"]+toff, cues[i+1]["t"]+toff if i+1 < len(cues) else dur)
+                           for i, c in enumerate(cues)]
+        except Exception:
+            regions = []
 
     pl = None
     if "--playlist" in sys.argv:

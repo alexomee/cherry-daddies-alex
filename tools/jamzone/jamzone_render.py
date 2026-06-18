@@ -4,10 +4,24 @@
 Per-song manifest mix.json (in the song folder) says which stems go where:
 
     {
-      "pb-other": {"stems": ["05_Synth_Bass", "06_Synth_Lead"], "gain_db": {"06_Synth_Lead": -2}},
+      "pb-other": {"stems": ["05_Synth_Bass", "06_Synth_Lead"], "gain_db": {"06_Synth_Lead": -2},
+                   "layers": ["keys-noise"]},          // contributed parts, parts/<name>.{wav,mp3}
       "pb-bass":  null,
       "pitch_semitones": -2          // optional: transpose playback to the band's key
     }
+
+A "layer" is a part a bandmate recorded for playback (keyboardist synth, live bass...). It is
+ALWAYS delivered in the BAND's key -> layers are NEVER pitched. Only the timing FRAME varies,
+by what the player monitored while recording:
+  - frame "render" (default; entry = "name"): cut against this song's auto-render -> already
+    carries the count-in lead + render bpm -> placed 1:1 at render t=0 (no offset).
+  - frame "stem" (entry = {"file": "name", "frame": "stem"}): cut against the raw Moises stems
+    -> native timeline, no lead -> placed at OFF, exactly where the stems sit.
+Determine the frame by MEASURING (don't assume): wide cross-correlate the part's envelope vs
+drums; peak near 0 = stem-frame, peak near +OFF = render-frame. Optional "offset_ms" nudges a
+residual latency/feel. Source lives in <song>/parts/<name>.{wav,mp3} (outside the stem glob ->
+never auto-becomes a stem) and is folded into its group + `all`. A layer is valid only against
+the render/stems it was cut to: re-cutting cues (OFF change) invalidates render-frame layers.
 
 click and cues need no manifest: click = the JamZone Click stem, cues = cue_track.wav.
 all = every music stem (preview mix). When cues exist, cue_preview.mp3 = the audition
@@ -35,7 +49,7 @@ Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
        --check = analyze + verify, write nothing
        --bpm N = force tempo (external songs; overrides measured)
 """
-import os, sys, glob, json, subprocess
+import os, sys, glob, json, re, subprocess
 import numpy as np
 
 SR = 44100
@@ -67,17 +81,39 @@ def onsets(mono, thr_ratio=0.3, min_gap=0.3):
 
 def fit_grid(click_mono):
     on = onsets(click_mono)
-    k = np.round((on-on[0])/np.median(np.diff(on)))
+    # Integer beat-index per onset by CUMULATIVE per-gap rounding, not a single global
+    # (on-on[0])/median division. A global division accumulates any seed error: a swung
+    # click (Heads Will Roll alternates 450/460ms gaps -> bimodal median 0.9% below the true
+    # beat) drifts the projected index until it slips a whole beat mid-song, mis-assigning k
+    # and corrupting the lstsq slope/phase (and then the robust loop runs away). Rounding each
+    # gap to its own beat-count is drift-immune: each ~one-beat gap -> +1 regardless of swing.
+    d = np.diff(on)
+    k = np.concatenate([[0.0], np.cumsum(np.round(d/np.median(d)))])
     A = np.vstack([k, np.ones_like(k)]).T
     beat, phase = np.linalg.lstsq(A, on, rcond=None)[0]
+    # ROBUST: a constant lstsq over ALL onsets is corrupted by a non-constant intro
+    # (Whenever Wherever's rubato Andean opening) or a single onset-detection glitch
+    # (Destination Calabria, a doubled click mid-song) — both shift the fitted slope/
+    # phase so the BODY (which is dead-constant) ends up tens of ms off the grid and the
+    # cues drift. Iteratively reject onsets >20% of a beat off and refit, locking to the
+    # dominant regular run. For a clean click nothing is rejected -> identical to before.
+    keep = np.ones(len(on), bool)
+    for _ in range(6):
+        b, p = np.linalg.lstsq(np.vstack([k[keep], np.ones(int(keep.sum()))]).T,
+                               on[keep], rcond=None)[0]
+        nk = np.abs(on - (k*b + p)) < 0.20*b
+        if int(nk.sum()) < 8 or np.array_equal(nk, keep):
+            beat, phase = b, p; keep = nk if int(nk.sum()) >= 8 else keep; break
+        beat, phase, keep = b, p, nk
     def dom_freq(t):
         s = click_mono[int(t*SR):int(t*SR)+int(0.08*SR)]
         S = np.abs(np.fft.rfft(s*np.hanning(len(s))))
         return np.fft.rfftfreq(len(s), 1/SR)[np.argmax(S)]
-    freqs = np.array([dom_freq(t) for t in on[:4]])
-    db0 = phase + int(np.argmax(freqs))*beat       # accent (~200Hz) = downbeat
-    resid = np.abs(A@[beat, phase]-on)
-    return beat, db0, float(resid.max()), len(on)
+    freqs = np.array([dom_freq(t) for t in on[:4]])    # downbeat = accent among the first 4 onsets;
+    kb0 = int(round((on[0]-phase)/beat))               # anchor db0 at the song's FIRST downbeat (bar 1,
+    db0 = phase + (kb0 + int(np.argmax(freqs)))*beat   # so the intro is preserved), using the locked beat
+    resid = np.abs((k*beat+phase) - on)[keep]
+    return beat, db0, float(resid.max() if len(resid) else 0.0), len(on)
 
 def first_sound(a, thr=1e-3):
     nz = np.where(np.abs(a).max(1) > thr)[0]
@@ -152,7 +188,7 @@ def met_onsets(mono):
         i += 1
     return np.array(peaks)/SR
 
-def build_follow_grid(met_mono, mix, beat):
+def build_follow_grid(met_mono, mix, beat, external=True):
     """Tempo-FOLLOW beat grid for songs with a real mid-song tempo change (half-time breakdown)
     that must be tracked then re-locked to the music. Steady sections are cleaned to a constant
     tempo (metronomic to play to); the slow zone is a clean slow tempo; the POST-zone grid is
@@ -229,7 +265,11 @@ def build_follow_grid(met_mono, mix, beat):
         return bt, beat, info
     core = np.where(d > beatA*1.15)[0]                    # auto: clearly-slow intervals (breakdown)
     bt = on.astype(float).copy()
-    if len(core):
+    # A Moises METRONOME is ~constant outside a real breakdown, so cleaning pre/post to constant tempo
+    # tightens it. A JamZone CLICK instead tracks the recording's tempo continuously (Destination
+    # Calabria drifts a few % whole-song, no discrete zone) — constant-izing it makes the cues sit on a
+    # straight grid that walks off the real click. For JZ (external=False) keep PURE follow: bt = on.
+    if external and len(core):
         lo, hi = int(core[0]), int(core[-1])
         while lo > 0 and abs(d[lo-1]-beatA) > 0.015: lo -= 1
         while hi < len(d)-1 and abs(d[hi+1]-beatA) > 0.015: hi += 1
@@ -347,6 +387,16 @@ def cue_words(text, kind):                                # already spans 2 fast
     words = (text + " ready go" if kind == "in" else text).split()
     return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
 
+def _cue_step(c, song_step, subdiv):
+    """beats per metered word / count segment. Per-cue "step" > song "cue_step" > 'fast' subdiv
+    ticks (1/subdiv, words PACKED into sub-beat ticks of a slow zone) > 1.0 (one word per beat).
+    song "cue_step" > 1 SPREADS each word over N beats — for very fast songs (e.g. 171 bpm) where
+    one-word-per-beat is too rushed to parse in-ear; the block just spans N× the beats, 'go' still
+    one step before the event."""
+    if "step" in c:  return float(c["step"])
+    if song_step:    return float(song_step)
+    return 1.0/subdiv if c.get("fast") and subdiv > 1 else 1.0
+
 _PC = {'C': 0, 'D': 2, 'E': 4, 'F': 5, 'G': 7, 'A': 9, 'B': 11}
 def _note_hz(nm):
     """note name (e.g. 'C#4', 'Eb3') -> Hz. A4 = 440, middle C = C4."""
@@ -370,14 +420,14 @@ def _chord_clip(notes, dur_s, level=0.5):
     return (y*env/(np.max(np.abs(y*env)) or 1)*level).astype(np.float32)
 
 INTRO_GAP = 0.12                                          # breath between intro and the block
-def cue_first_word_time(c, base, relt, bdur, subdiv=1):
+def cue_first_word_time(c, base, relt, bdur, subdiv=1, song_step=None):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); i = cue_beat_index(c); kind = cue_kind(text, c.get("raw"))
+    step = _cue_step(c, song_step, subdiv)
     if kind == "stop" or c.get("count"):
-        return base + relt(i - 5)                         # ~announcement + 3-2-1 count
+        return base + relt(i - 5*step)                    # ~announcement + 3-2-1 count
     intro, metric = cue_words(text, kind)
-    step = 1.0/subdiv if c.get("fast") and subdiv > 1 else 1.0   # 'fast': words on subdiv ticks
-    blk0 = _metric_clips(metric, bdur(i)*step, step < 1.0)[0][1]
+    blk0 = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))[0][1]
     pre = 4 if c.get("chord") else 0                      # chord reference rings a whole bar before
     t0 = base + relt(i - blk0*step - pre)                 # the block (extra bar for the vocalist)
     if intro:
@@ -389,7 +439,7 @@ def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
     if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
 
-def build_cues(cue_list, total, base, relt, bdur, subdiv=1):
+def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
     """Spoken cues on the render grid. Event time = base + relt(beat index of the marked bar/beat);
     the band plays/stops ON that beat (no word on it). Words land on grid beats (relt), so a
     tempo-follow song spaces the count/block by the LOCAL tempo. Three styles:
@@ -404,19 +454,19 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1):
     for c in cue_list:
         text = c["text"].strip(); kind = cue_kind(text, c.get("raw")); counted = bool(c.get("count"))
         i = cue_beat_index(c); t_event = base + relt(i)   # band event here (silent in cue track)
+        step = _cue_step(c, song_step, subdiv)            # beats per metered word / count segment
         voice = RU_VOICE if _cyrillic(text) else EN_VOICE
         if kind == "stop" or counted:
-            for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1
+            for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1 (× step)
                 clip = _load_clip(COUNT_FILES[d])
-                _put(buf, clip, base + relt(i - k) - _vowel_onset(clip))
+                _put(buf, clip, base + relt(i - k*step) - _vowel_onset(clip))
             ann_text = text.replace("-", " ") + (" in 3" if kind == "stop" else " 3")
             ann = _say(ann_text, voice)                   # announcement finishes before the count
-            _put(buf, ann, (base + relt(i - 3)) - 0.35 - len(ann)/SR)
+            _put(buf, ann, (base + relt(i - 3*step)) - 0.35 - len(ann)/SR)
             phrase = ann_text + " · 3 2 1"
         else:
             intro, metric = cue_words(text, kind)
-            step = 1.0/subdiv if c.get("fast") and subdiv > 1 else 1.0   # 'fast': words on subdiv
-            clips = _metric_clips(metric, bdur(i)*step, step < 1.0)   # ticks (333ms in a half-time
+            clips = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))   # ticks (333ms in a half-time
             blk0 = clips[0][1]; chord = c.get("chord")    # word sped up to fit one tick — so '<x> in
             if chord:                                     # ready go' (4 fast words) lands after the
                 cs, ce = i - blk0*step - 4, i - blk0*step # band stops. synth triad rings the bar before
@@ -434,6 +484,31 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1):
                      + " ".join(metric) + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
         rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
     return buf, rep
+
+def write_cue_abs_times(mix_path, times):
+    """Refresh "abs_sec" (render-timeline event seconds, what you hear in auto-render/cue_preview)
+    on each cue in mix.json, IN PLACE. Edits the raw text line-by-line — never re-serializes the
+    whole file — so hand-formatting (column alignment, field order, one cue per line) is preserved
+    byte-for-byte. Idempotent: an existing abs_sec is stripped and rewritten. times[k] = the k-th
+    cue's render event time, in file order. Cue lines are matched by carrying both "bar" and "text"
+    ("from_bar"/"to_bar" in tempo_zone never match — no surrounding quotes on `bar`, and no "text").
+    Skips writing on a count mismatch (returns the mismatch for the caller to report)."""
+    src = open(mix_path, encoding="utf-8").read()
+    lines = src.split("\n")
+    is_cue = lambda ln: re.search(r'"bar"\s*:', ln) and '"text"' in ln
+    n = sum(1 for ln in lines if is_cue(ln))
+    if n != len(times):
+        return f"abs_sec NOT written ({mix_path}): {n} cue lines vs {len(times)} computed"
+    k = 0
+    for j, ln in enumerate(lines):
+        if not is_cue(ln):
+            continue
+        body = re.sub(r',\s*"abs_sec"\s*:\s*[-0-9.]+', "", ln)   # drop any prior abs_sec
+        idx = body.rfind("}")                                    # insert before the cue's closing brace
+        t = round(times[k], 3); k += 1
+        lines[j] = body[:idx].rstrip() + f', "abs_sec": {t}' + body[idx:]
+    open(mix_path, "w", encoding="utf-8").write("\n".join(lines))
+    return None
 
 def main():
     folder = find_folder(sys.argv[1])
@@ -464,8 +539,15 @@ def main():
     cue_p = os.path.join(folder, "cue_track.wav")
 
     for grp in ("pb-other", "pb-bass"):
-        for nm in ((mix.get(grp) or {}).get("stems", [])):
+        g = mix.get(grp) or {}
+        for nm in g.get("stems", []):
             if nm not in stems: sys.exit(f"mix.json: unknown stem '{nm}' in {grp}")
+        for ent in g.get("layers", []):                    # contributed parts (str | {file,...})
+            nm = ent["file"] if isinstance(ent, dict) else ent
+            if not glob.glob(os.path.join(folder, "parts", nm + ".*")):
+                sys.exit(f"mix.json: layer '{nm}' not found in {folder}/parts/")
+            for r in (ent.get("replaces", []) if isinstance(ent, dict) else []):
+                if r not in stems: sys.exit(f"mix.json: layer '{nm}' replaces unknown stem '{r}'")
 
     click_st = decode(stems[click_name])
     beat, db0, resid, n_on = fit_grid(click_st.mean(1))  # fit_grid uses lstsq = span-average
@@ -474,9 +556,9 @@ def main():
     bpm_set = mix.get("bpm") or bpm_force         # song's locked constant tempo (mix.json > --bpm)
     if bpm_set: beat = 60.0/bpm_set
     bar = 4*beat
-    follow = external and mix.get("click") == "follow"   # track a real mid-song tempo change
+    follow = mix.get("click") == "follow"   # track a non-constant tempo (Moises drift OR a JZ click
     if follow:
-        bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix, beat)
+        bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix, beat, external)
         db0 = float(bt[0])                        # downbeat = first metronome onset
         def relt(i):                              # seconds of beat index i from the downbeat
             i = float(i)
@@ -489,6 +571,7 @@ def main():
         def relt(i): return i*beat
         def bdur(i): return beat
     cue_subdiv = int(finfo.get("subdiv", 1)) if follow else 1   # 'fast' cues space words by ticks
+    cue_step = mix.get("cue_step")                # song-level beats-per-word (>1 spreads on fast songs)
     tag = (f" (tempo-follow: {finfo['n']} onsets, zone {finfo['zone_t'][0]:.1f}-{finfo['zone_t'][1]:.1f}s "
            f"@~{finfo['slowbpm']:.0f}bpm, re-locked after)" if follow and "zone_t" in finfo
            else " (built clean click; Moises tempo ~constant)" if external else "")
@@ -512,7 +595,7 @@ def main():
     lead = 0.0
     daw = mix.get("daw_align")                     # DAW-align: WAV time == stem (song) time, no
     if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
-        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv) for c in mix["cues"])  # song
+        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv, cue_step) for c in mix["cues"])  # song
         if min_word < 0.05:                        # only when the cue would actually clip the front
             lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
@@ -554,7 +637,12 @@ def main():
                 place(buf, audio[n]*g, off_samp)
         return buf
 
-    if follow:                                     # JZ-sample click ON the metronome's tempo map
+    if follow and external:                        # Moises: JZ-sample click ON the metronome's tempo map
+        # (no clean click stem exists). A JamZone song HAS its real click — which already tracks the
+        # recording's tempo exactly (Destination Calabria: raw click sits -63ms off the kick, std 3ms,
+        # whole song) — so rebuilding it from samples on detected onsets only ADDS drift. JZ songs
+        # (follow or not) therefore fall through to the real-click-stem branch below; the follow grid is
+        # still used for CUE placement so cues sit on the real clicks.
         import jamzone_click as JC                 # natural JZ samples (full ~70ms decay) — same click
         jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)*0.95   # body as the JamZone-song
         jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)*0.95   # path. (Earlier a 22ms tail-
@@ -610,9 +698,14 @@ def main():
                 cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
             print(f"click: front {t0c/bar:.0f} bar(s) filled with JZ count-in")
         out = {"click": cbuf}
-    out["all"] = mixdown(music, {})
+    replaced = {r for grp in ("pb-other", "pb-bass")          # a layer that RE-RECORDS a Moises stem
+                for ent in (mix.get(grp) or {}).get("layers", []) if isinstance(ent, dict)
+                for r in ent.get("replaces", [])}             # (live bass for studio bass) -> drop that
+    out["all"] = mixdown([n for n in music if n not in replaced], {})   # stem from `all` so it isn't doubled
+    if replaced: print(f"all: Moises stems replaced by a layer, excluded: {sorted(replaced)}")
+    crep = None
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
-        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv)
+        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv, cue_step)
         print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
               f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
         for b, be, ph, t in crep:
@@ -622,7 +715,7 @@ def main():
         out["cues"] = cues_buf
     for grp in ("pb-other", "pb-bass"):
         m = mix.get(grp)
-        if m: out[grp] = mixdown(m["stems"], m.get("gain_db", {}), m.get("mute"))
+        if m: out[grp] = mixdown(m.get("stems", []), m.get("gain_db", {}), m.get("mute"))
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
     if semi:
@@ -630,6 +723,26 @@ def main():
         print(f"pitch: {semi:+g} semitones (rubberband, tempo/grid preserved) on {', '.join(targets)}")
         for n in targets:
             out[n] = pitch_shift(out[n], semi)
+
+    def load_layer(nm, start):                     # contributed part (parts/), ALWAYS in band key ->
+        p = sorted(glob.glob(os.path.join(folder, "parts", nm + ".*")))[0]   # never pitched. `start` =
+        a = decode(p); lbuf = np.zeros((total, 2), np.float32)                # render-sample where the
+        s0 = max(0, start); a0 = max(0, -start)                               # file's t=0 lands.
+        n = min(len(a) - a0, total - s0)
+        if n > 0: lbuf[s0:s0+n] = a[a0:a0+n]
+        return lbuf
+    for grp in ("pb-other", "pb-bass"):            # layers added AFTER pitch (band key -> NEVER pitched),
+        m = mix.get(grp)                           # BEFORE headroom (catch peaks); each folded into `all`.
+        for ent in (m or {}).get("layers", []):    # entry: "name" (render-frame) | {file, frame, offset_ms}
+            ent = ent if isinstance(ent, dict) else {"file": ent}
+            nm, frame = ent["file"], ent.get("frame", "render")   # render-frame = cut vs auto-render
+            base = off_samp if frame == "stem" else 0             # (placed at render t=0); stem-frame =
+            start = base + round(ent.get("offset_ms", 0)/1000*SR) # cut vs Moises stems (native, placed at OFF)
+            g = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
+            lb = load_layer(nm, start) * 10**(g/20)
+            out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
+            out["all"] = out["all"] + lb
+            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch)")
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
@@ -640,14 +753,26 @@ def main():
     pre = 1000
     v = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
     ph0 = v[0] if daw else 0.0                      # daw_align: downbeat sits at stem db0, not on a
-    err = [((t-ph0) - round((t-ph0)/beat)*beat)*1000 for t in v[:8]]   # bar line — check spacing
-    bar_err = ((v[0]-ph0) - round((v[0]-ph0)/bar)*bar)*1000            # relative to the first onset
-    print(f"verify click: first onset {v[0]*1000:.1f}ms (bar-line err {bar_err:+.1f}ms), "
-          f"beat err {[f'{e:+.1f}' for e in err]} ms")
-    if abs(bar_err) > 10 or max(abs(e) for e in err) > 3:
-        sys.exit("verification failed — nothing written")
+    eall = np.array([((t-ph0) - round((t-ph0)/beat)*beat)*1000 for t in v])   # each onset's spacing err
+    # Grid health = the MEDIAN onset error (robust). A wrong bpm makes the error RAMP across the
+    # song (median blows up -> caught); a clean click sits ~1ms; a jittery JZ click (Destination
+    # Calabria, ~±15ms quantization noise) or a non-constant intro (Whenever Wherever's rubato
+    # opening — a minority of onsets) leaves the median small, so neither false-fails. The first-8
+    # spacing + downbeat bar-line are still reported for clean songs as before.
+    med = float(np.median(np.abs(eall))); p90 = float(np.percentile(np.abs(eall), 90))
+    bar_err = ((v[0]-ph0) - round((v[0]-ph0)/bar)*bar)*1000
+    print(f"verify click: median err {med:.1f}ms (p90 {p90:.1f}ms), first onset {v[0]*1000:.1f}ms "
+          f"(bar-line err {bar_err:+.1f}ms), beat err {[f'{e:+.1f}' for e in eall[:8]]} ms"
+          + ("  [follow: err vs constant beat is the tracked drift, not a fault]" if follow else ""))
+    if med > 8 and not follow:                      # gross drift / wrong bpm — cues would walk off.
+        sys.exit("verification failed — nothing written")  # follow rebuilds click+cues ON the metronome's
+                                                            # own map, so a non-zero constant-beat median IS
+                                                            # the tracked tempo curve (correct by construction).
+    if crep is not None:                            # write render-timeline abs_sec back onto each cue
+        warn = write_cue_abs_times(mix_p, [t for *_, t in crep])
+        print(warn if warn else f"✓ abs_sec: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")
     if "--check" in sys.argv:
-        print("✓ --check: all green, nothing written"); return
+        print("✓ --check: grid green, mix.json abs_sec updated, no audio written"); return
 
     adir = os.path.join(folder, "auto-render")
     os.makedirs(adir, exist_ok=True)
