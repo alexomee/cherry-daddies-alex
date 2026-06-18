@@ -115,32 +115,39 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
 
 def layout(lines):
-    """Columns + fontsize to fit one 720p screen. Splits between columns on a
-    blank line where possible."""
+    """Columns + fontsize to fit one 720p screen, constrained BOTH vertically
+    (lines per column) and horizontally (longest line must fit the column
+    width). Picks the column count giving the largest readable font."""
     avail_h = H - 100
+    margin, gap = 70, 36
+    maxchars = max((len(l) for l in lines if l), default=1)
+    best = None
     for ncol in (1, 2, 3):
-        per = (len(lines) + ncol - 1) // ncol
-        fs = int(min(46, avail_h / (max(per, 1) * 1.18)))
-        if fs >= 22 or ncol == 3:
-            fs = max(15, fs)
-            margin, gap = 70, 36
-            colw = (W - 2 * margin - (ncol - 1) * gap) // ncol
-            cols, start = [], 0
-            for k in range(ncol):
-                end = start + per
-                # nudge the split to the nearest blank line within +/-2
-                if k < ncol - 1:
-                    for d in (0, 1, -1, 2, -2):
-                        if 0 < end + d < len(lines) and lines[end + d] == "":
-                            end = end + d + 1; break
-                chunk = lines[start:end]
-                while chunk and chunk[0] == "":
-                    chunk = chunk[1:]
-                if chunk:
-                    cols.append((margin + k * (colw + gap), chunk))
-                start = end
-            return cols, fs
-    return [(70, lines)], 22
+        per = max(1, (len(lines) + ncol - 1) // ncol)
+        colw = (W - 2 * margin - (ncol - 1) * gap) / ncol
+        fs_v = avail_h / (per * 1.18)
+        fs_h = colw / (maxchars * 0.56)        # Arial avg glyph ~0.56*fontsize
+        fs = min(46, fs_v, fs_h)
+        if best is None or fs > best[0]:
+            best = (fs, ncol)
+    fs, ncol = best
+    fs = int(max(15, fs))
+    colw = (W - 2 * margin - (ncol - 1) * gap) // ncol
+    per = max(1, (len(lines) + ncol - 1) // ncol)
+    cols, start = [], 0
+    for k in range(ncol):
+        end = start + per
+        if k < ncol - 1:                        # nudge split to a blank line
+            for d in (0, 1, -1, 2, -2):
+                if 0 < end + d < len(lines) and lines[end + d] == "":
+                    end = end + d + 1; break
+        chunk = lines[start:end]
+        while chunk and chunk[0] == "":
+            chunk = chunk[1:]
+        if chunk:
+            cols.append((margin + k * (colw + gap), chunk))
+        start = end
+    return cols, fs
 
 
 def main():
