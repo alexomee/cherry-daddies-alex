@@ -1,0 +1,234 @@
+#!/usr/bin/env python3
+"""Build a real lyric clip (NN.mp4 + NN.ass) for one song from JamZone tiles.
+
+Lyrics + per-syllable timing come straight from JamZone's tiles.json (the data
+the app uses to highlight words). Times are shifted by the render's offset_sec
+(auto-render/timeline.json) so the clip sits on the SAME timeline MainStage
+plays (click / pb-other / all.wav share it).
+
+Usage:
+  make_song_clip.py --cat cat_7372 --index 10 \
+      --song "/Users/alex/projects/cherry-daddies/music/songs/Alice Deejay - Better Off Alone" \
+      --title "Better Off Alone"
+
+Writes clips/<NN>.mp4 (black, song length) + clips/<NN>.ass (timed lines).
+"""
+import argparse
+import json
+import os
+import subprocess
+import hashlib
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+JAMS = os.path.expanduser(
+    "~/Library/Containers/com.recisio.jamzone.ios/Data/Library/"
+    "Application Support/com.recisio.jamzone.ios/jams")
+W, H = 1280, 720
+
+
+def key_for(cat):
+    return hashlib.md5(cat.encode()).hexdigest().encode().hex()
+
+
+def dj(cat, name):
+    d = open(os.path.join(JAMS, cat, name), "rb").read()
+    out = subprocess.run(["openssl", "enc", "-aes-256-cbc", "-d", "-K", key_for(cat),
+                          "-iv", d[:16].hex()], input=d[16:], capture_output=True).stdout
+    return json.loads(out)
+
+
+def lead_color(tiles):
+    """Lead voice = colour in the most distinct sections; tie-break syllables."""
+    info = {}
+    for t in tiles:
+        cap = t.get("sectionCaption") or ""
+        w = t.get("words")
+        if not isinstance(w, dict):
+            continue
+        for col, groups in w.items():
+            secs, n = info.setdefault(col, [set(), 0])[0:2]
+            info[col][0].add(cap)
+            info[col][1] += sum(len(g.get("syllabes", [])) for g in groups)
+    if not info:
+        return None
+    return max(info, key=lambda c: (len(info[c][0]), info[c][1]))
+
+
+def words_for_color(tiles, color):
+    """Flat [(start, end, word)] for one voice, time-ordered (whole words)."""
+    out = []
+    for t in tiles:
+        w = t.get("words")
+        if not isinstance(w, dict):
+            continue
+        for col, groups in w.items():
+            if col != color:
+                continue
+            for g in groups:
+                cur = {}  # word_id -> [start, end, text]
+                order = []
+                for s in g.get("syllabes", []):
+                    wid = s.get("word_id")
+                    st = s.get("start"); en = s.get("end", st)
+                    if wid not in cur:
+                        cur[wid] = [st, en, ""]; order.append(wid)
+                    cur[wid][0] = min(cur[wid][0], st) if cur[wid][0] is not None else st
+                    cur[wid][1] = max(cur[wid][1] or st, en or st)
+                    cur[wid][2] += s.get("text", "")
+                for wid in order:
+                    st, en, tx = cur[wid]
+                    if st is not None:
+                        out.append((st, en, tx))
+    out.sort(key=lambda e: e[0])
+    return out
+
+
+def parse_time(s):
+    """Parse 'm:ss.s' (e.g. '0:21.0') OR plain seconds into a float of seconds."""
+    s = s.strip()
+    if ":" in s:
+        mm, ss = s.rsplit(":", 1)
+        return int(mm) * 60 + float(ss)
+    return float(s)
+
+
+def parse_lines_table(path):
+    """Parse a manual '<time>\\t<line>' TSV into [(start, end, text), ...].
+
+    time = 'm:ss.s' or plain seconds (playback seconds, used directly — no
+    offset). Each line's end = the next line's start; the last line's end =
+    its own start + 3.0s. Blank lines are skipped.
+    """
+    rows = []
+    with open(path, encoding="utf-8") as f:
+        for raw in f:
+            line = raw.rstrip("\n")
+            if not line.strip():
+                continue
+            time_s, _, text = line.partition("\t")
+            rows.append((parse_time(time_s), text.strip()))
+    out = []
+    for i, (st, tx) in enumerate(rows):
+        en = rows[i + 1][0] if i + 1 < len(rows) else st + 3.0
+        out.append((st, en, tx))
+    return out
+
+
+def group_lines(words):
+    """Break into lines: JamZone capitalises the first word of each lyric line."""
+    lines = []
+    cur = []
+    for st, en, tx in words:
+        if cur and tx[:1].isupper():
+            lines.append(cur); cur = []
+        cur.append((st, en, tx))
+    if cur:
+        lines.append(cur)
+    # -> (start, end, text) per line
+    return [(ln[0][0], ln[-1][1], " ".join(w[2] for w in ln)) for ln in lines]
+
+
+ASS_HEAD = """[Script Info]
+ScriptType: v4.00+
+PlayResX: {w}
+PlayResY: {h}
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Now,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,42,&H00AAAAAA,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,2,80,80,60,1
+"""
+
+
+def t(sec):
+    sec = max(0.0, sec)
+    cs = int(round(sec * 100))
+    h, cs = divmod(cs, 360000)
+    m, cs = divmod(cs, 6000)
+    s, cs = divmod(cs, 100)
+    return f"{h:d}:{m:02d}:{s:02d}.{cs:02d}"
+
+
+def esc(s):
+    return s.replace("{", "(").replace("}", ")").replace("\n", " ").strip()
+
+
+def make_ass(path, title, lines, dur, offset):
+    body = ASS_HEAD.format(w=W, h=H)
+
+    def dlg(start, end, style, text, mv=0):
+        return f"Dialogue: 0,{t(start)},{t(end)},{style},,0,0,{mv},,{esc(text)}\n"
+
+    body += "[Events]\n"
+    body += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
+    body += dlg(0, dur, "Title", title)
+    for i, (st, en, tx) in enumerate(lines):
+        s = st + offset
+        nxt = (lines[i + 1][0] + offset) if i + 1 < len(lines) else (en + offset + 3)
+        # current line big, until the next line begins
+        body += dlg(s, nxt, "Now", tx)
+        # preview the upcoming line, dim, below
+        if i + 1 < len(lines):
+            body += dlg(s, nxt, "Next", lines[i + 1][2], mv=120)
+    # pre-roll: show line 1 as a dim preview a few seconds before it starts
+    if lines:
+        s1 = lines[0][0] + offset
+        body += dlg(max(0, s1 - 6), s1, "Next", lines[0][2], mv=120)
+    with open(path, "w") as f:
+        f.write(body)
+
+
+def make_black(path, dur):
+    subprocess.run(
+        ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+         "-f", "lavfi", "-i", f"color=c=black:s={W}x{H}:d={dur:.3f}:r=30",
+         "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an", path],
+        check=True)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cat", help="JamZone cat id (required unless --lines)")
+    ap.add_argument("--index", type=int, required=True, help="Program Change number / clip NN")
+    ap.add_argument("--song", required=True, help="song folder (for auto-render/timeline.json + length)")
+    ap.add_argument("--title", required=True)
+    ap.add_argument("--lines", help="manual <time>\\t<line> TSV; bypasses JamZone tiles (offset=0)")
+    args = ap.parse_args()
+    if not args.lines and not args.cat:
+        ap.error("--cat is required unless --lines is given")
+
+    allwav = os.path.join(args.song, "auto-render", "all.wav")
+    dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                "-of", "csv=p=0", allwav], capture_output=True, text=True).stdout.strip())
+
+    if args.lines:
+        # Manual front-end: times are already playback-relative, so offset=0.
+        offset = 0.0
+        lines = parse_lines_table(args.lines)
+        print(f"manual lines: {len(lines)} lines (offset 0)")
+        print(f"song length {dur:.2f}s")
+    else:
+        tl = json.load(open(os.path.join(args.song, "auto-render", "timeline.json")))
+        offset = tl.get("offset_sec", 0.0)
+        tiles = dj(args.cat, "tiles.json")
+        color = lead_color(tiles)
+        words = words_for_color(tiles, color)
+        lines = group_lines(words)
+        print(f"lead colour {color}: {len(words)} words -> {len(lines)} lines")
+        print(f"offset_sec {offset:+.4f}  song length {dur:.2f}s")
+    for st, en, tx in lines[:6]:
+        print(f"  [{t(st+offset)}] {tx}")
+
+    mp4 = os.path.join(HERE, "clips", f"{args.index:02d}.mp4")
+    ass = os.path.join(HERE, "clips", f"{args.index:02d}.ass")
+    make_black(mp4, dur)
+    make_ass(ass, args.title, lines, dur, offset)
+    print(f"wrote {mp4}")
+    print(f"wrote {ass}")
+
+
+if __name__ == "__main__":
+    main()
