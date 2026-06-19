@@ -2,14 +2,18 @@
   "click": "follow",
   "pb-other": {"stems": ["13_Female_Backing_Vocals", "08_Charango_(left)", "09_Charango_(right)"]},
   "pb-bass": {"stems": ["04_Bass"]},
+  "players": {"alex": ["05_Rhythm_Electric_Guitar", "06_Distorted_Electric_Guitar_(left)", "07_Distorted_Electric_Guitar_(right)"]},
   "cues": [
     {"bar": 2,   "text": "Shakira guitar in ready go", "abs_sec": 4.682},
     {"bar": 5,   "text": "all in ready go", "abs_sec": 12.122},
     {"bar": 9,   "text": "verse in", "abs_sec": 20.929},
+    {"bar": 20,  "text": "stop", "abs_sec": 45.149},
     {"bar": 29,  "text": "flute in", "abs_sec": 64.966},
     {"bar": 34,  "text": "verse in", "abs_sec": 75.975},
+    {"bar": 45,  "text": "stop", "abs_sec": 100.195},
     {"bar": 58,  "text": "bridge in", "abs_sec": 128.819},
     {"bar": 66,  "text": "stop", "abs_sec": 146.434},
+    {"bar": 67,  "text": "all in ready go", "abs_sec": 148.636},
     {"bar": 78,  "text": "keep going", "abs_sec": 172.856},
     {"bar": 86,  "text": "end stop", "abs_sec": 190.47}
   ]
