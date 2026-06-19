@@ -2,6 +2,7 @@
   "pb-other": {"stems": ["04_Noise_effects", "09_Synth_Keys", "10_Arpeggiator", "11_Synth_Ambiant", "12_Backing_Vocals"]},
   "pb-bass": {"stems": ["05_Synth_Bass"]},
   "cue_step": 2,
+  "players": {"roma": ["06_Synthesizer", "07_Synth_Pad_1", "08_Synth_Pad_2"]},
   "cues": [
     {"bar": 3,   "text": "Blinding Lights synth in ready go", "step": 1, "abs_sec": 2.807},
     {"bar": 11,  "text": "drums in", "abs_sec": 14.035},

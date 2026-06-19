@@ -2,6 +2,7 @@
   "pb-other": {"stems": ["06_Synth_Ambiant"], "gain_db": {"06_Synth_Ambiant": -12}},
   "pb-bass": null,
   "note": "live bass",
+  "players": {"roma": ["04_Piano", "05_Synthesizer"]},
   "cues": [
     {"bar": 3,   "text": "No Stress vocal in", "chord": ["A4"], "abs_sec": 5.538},
     {"bar": 11,  "text": "beat in", "abs_sec": 20.308},

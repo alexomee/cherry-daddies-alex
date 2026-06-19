@@ -7,6 +7,7 @@
     "stems": ["05_Synth_Bass"]
   },
   "export_stems": ["06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"],
+  "players": {"alex": ["06_Synth_Lead", "11_Saxophone"]},
   "cues": [
     {"bar": 3,   "text": "Mr Saxobeat sax in ready go", "abs_sec": 3.78},
     {"bar": 11,  "text": "bass in", "abs_sec": 18.898},
