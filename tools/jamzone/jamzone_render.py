@@ -59,7 +59,10 @@ import numpy as np
 
 SR = 44100
 SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
-CLICK_LVL, MIX_LVL, CUE_LVL = 0.6, 0.85, 1.0   # cue_preview levels (same as jamzone_cues.py)
+MIX_LVL = 0.85                                 # music level in the all-preview / practice mixes
+CLICK_LVL, CUE_LVL = 0.6, 1.0                  # base click/cue levels (were matched to jamzone_cues.py)
+GUIDE_DB = 5.0                                  # ...then click+cues run +5dB hotter so they cut over the
+CLICK_LVL *= 10**(GUIDE_DB/20); CUE_LVL *= 10**(GUIDE_DB/20)   # full band in cue_preview & practice-*
 
 # Percussion EXCEPT the main drum kit NEVER goes to playback/preview — the live drummer plays
 # it, and in the mix it clashes with him (CLAUDE.md "Перкуссия — ВСЕГДА вон…"). Dropped from
