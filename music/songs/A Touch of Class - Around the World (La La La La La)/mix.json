@@ -1,6 +1,7 @@
 {
   "pb-other": {"stems": ["14_Backing_Vocals"]},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": 3}},
+  "players": {"alex": ["07_Synth_Pad_1", "08_Synth_Pad_2", "10_Synth_Strings"]},
   "cues": [
     {"bar": 3,   "text": "Around the World synth in", "abs_sec": 3.636},
     {"bar": 7,   "text": "vocal in", "abs_sec": 10.909},
