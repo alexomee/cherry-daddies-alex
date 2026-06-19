@@ -19,8 +19,10 @@ the `.ass` clip + black `.mp4` (Mac/MainStage-only) and a raw timed text dump.
   hosting, no accounts.
 - **Scope = reusable script** for any setlist song, not a one-off.
 - **Timecode label = `M:SS` song time** (matches the review TSV times exactly).
-- **Audio = `all.wav`** (full mix incl. lead vocal) so she hears the sung words
-  against the on-screen flow. `--audio cue_preview` swaps in the click variant.
+- **Audio = music + click + cues, cues +3 dB** (cue_preview recipe with the
+  cues hotter) so the in-ear prompts sit clearly over the music; peak-normalised
+  to −1 dBFS so the boost never clips. `--audio all` = clean mix (no click/cues);
+  `--cue-db N` tunes the boost.
 
 ## Why it lines up (verified, not assumed)
 
@@ -38,10 +40,12 @@ re-render before it produces a misleading review).
 
 - Resolve song → clip `NN` + factory dir via `songs.tsv` (match `song` or
   `factory_dir`). Accepts a song name substring or a folder path.
-- Inputs: `clips/NN.ass`, `<factory>/auto-render/all.wav`.
-- One ffmpeg call: black `1280x720` bg sized to audio duration →
-  `subtitles=NN.ass` (burn Now/Next/Title) → `drawtext` running `M:SS`
-  timecode in a corner clear of the centered Now/Next text → mux `all.wav`.
+- Inputs: `clips/NN.ass`, `<factory>/auto-render/{all,click,cues}.wav`.
+- Audio: ffmpeg pre-mixes `all·0.85 + click·0.6 + cues·(1.0·+3 dB)`, measures
+  the true peak, scales to −1 dBFS (per-song, so the cue boost never clips).
+- Render: **mpv** (repo ffmpeg lacks libass/drawtext) burns the clip `.ass`;
+  the running `M:SS` timecode is baked into a combined `.ass` as per-second
+  lines (top-right, clear of centered Now/Next), muxed with the cue mix.
 - Output: `<factory>/auto-render/<NN>-lyric-review.mp4`. Local only; I hand
   back the path, the user forwards over messenger. Overwrites on each rebuild
   (disposable iteration artifact, not a promo render).
