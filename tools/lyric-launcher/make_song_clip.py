@@ -83,6 +83,44 @@ def words_for_color(tiles, color):
     return out
 
 
+def syllables_per_color(tiles):
+    n = {}
+    for t in tiles:
+        w = t.get("words")
+        if not isinstance(w, dict):
+            continue
+        for col, groups in w.items():
+            n[col] = n.get(col, 0) + sum(len(g.get("syllabes", [])) for g in groups)
+    return n
+
+
+def lead_words(tiles, frac=0.5, dedup_sec=0.25):
+    """Merged lead lyric stream. Duets (e.g. t.A.T.u.) split verses across two
+    colours while singing choruses in unison, so a single lead colour drops a
+    whole verse. Take every colour with >= frac of the busiest colour's
+    syllables (co-leads, not sparse backing) and merge; collapse near-simultaneous
+    identical words (the unison choruses) so they show once.
+    Returns (words=[(start,end,text)], colors_used)."""
+    syl = syllables_per_color(tiles)
+    if not syl:
+        return [], []
+    mx = max(syl.values())
+    cols = sorted((c for c, n in syl.items() if n >= frac * mx),
+                  key=lambda c: -syl[c])
+    if len(cols) <= 1:
+        return words_for_color(tiles, cols[0]), cols
+    merged = sorted((w for c in cols for w in words_for_color(tiles, c)),
+                    key=lambda e: e[0])
+    out = []
+    for st, en, tx in merged:
+        key = tx.strip().lower()
+        if any(abs(ost - st) <= dedup_sec and otx.strip().lower() == key
+               for ost, _, otx in out[-8:]):
+            continue
+        out.append((st, en, tx))
+    return out, cols
+
+
 def parse_time(s):
     """Parse 'm:ss.s' (e.g. '0:21.0') OR plain seconds into a float of seconds."""
     s = s.strip()
@@ -214,10 +252,9 @@ def main():
         tl = json.load(open(os.path.join(args.song, "auto-render", "timeline.json")))
         offset = tl.get("offset_sec", 0.0)
         tiles = dj(args.cat, "tiles.json")
-        color = lead_color(tiles)
-        words = words_for_color(tiles, color)
+        words, cols = lead_words(tiles)
         lines = group_lines(words)
-        print(f"lead colour {color}: {len(words)} words -> {len(lines)} lines")
+        print(f"lead colour(s) {','.join(cols)}: {len(words)} words -> {len(lines)} lines")
         print(f"offset_sec {offset:+.4f}  song length {dur:.2f}s")
     for st, en, tx in lines[:6]:
         print(f"  [{t(st+offset)}] {tx}")
