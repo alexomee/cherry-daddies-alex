@@ -1,7 +1,8 @@
 {
   "pitch_semitones": -2,
-  "pb-other": {"stems": ["11_Backing_Vocals_1", "12_Backing_Vocals_2"]},
+  "pb-other": {"stems": ["06_Synthesizer", "11_Backing_Vocals_1", "12_Backing_Vocals_2"]},
   "pb-bass": null,
+  "players": {"alex": ["04_Electric_Bass", "05_Synth_Bass"]},
   "cues": [
     {"bar": 2,   "beat": 3, "text": "S and M vocal in", "chord": ["C#4"], "abs_sec": 4.688},
     {"bar": 11,  "text": "all in", "abs_sec": 20.625},
