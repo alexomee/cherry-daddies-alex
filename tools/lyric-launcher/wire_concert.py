@@ -19,19 +19,30 @@ Background (verified against the live concert, see commit message / report):
         programChangeNumber        = <clip number for that song>
 
   * The accompanying `Lyrics.cst` file is the strip's instrument/channel-strip
-    setting. It is *set-independent*: the same factory `.cst` files (e.g.
-    `Inst 352.cst`) are reused byte-for-byte across every set, while each set's
-    `data.plist` gives the strip its own UUID + instID. The UUID embedded in the
-    `.cst` (`_WsChannelUUID`/`UUIDBytes`) is therefore authoritative-from-plist,
-    not from the `.cst` — so copying `Lyrics.cst` verbatim into another set is
-    safe. We just append a strip dict with a fresh per-set-unique UUID + instID.
+    setting. At first wiring it is *set-independent*: the same blob is copied
+    into every set, while each set's `data.plist` gives the strip its own UUID +
+    instID. The UUID embedded in the `.cst` (`_WsChannelUUID`/`UUIDBytes`) is
+    non-authoritative (the per-set `data.plist` UUID wins) — so seeding a new
+    set from another set's `.cst` is safe. We append a strip dict with a fresh
+    per-set-unique UUID + instID.
+
+    !! IMPORTANT (regression guard): once MainStage SAVES a set, it re-authors
+    that set's `Lyrics.cst` per-set, and the keyboardist's manual fix — the
+    Lyrics layer's key/velocity range + "No Output" routing, so the strip stops
+    acting as a playable layer on his top keyboard (Akai) — lives partly in this
+    proprietary OCuA blob and partly in `data.plist` (`Channel_outputIndex=-1`,
+    no `Channel_outputIsStereo`). So re-running this script must NEVER overwrite
+    an existing set's `.cst` (default behaviour; `--force-cst` to override) and
+    must touch only the MIDI patch-change wiring in `data.plist`, leaving output
+    routing / ranges intact. Brand-new sets are seeded from an already-fixed
+    set's `.cst` when one exists, and stamped `Channel_outputIndex=-1`.
 
   * The stable LyricLauncher CoreMIDI uniqueID is 1280922179 (0x4C595243,
     b'LYRC'). Whenever's saved wiring still holds an OLD random uniqueID
     (217740483); this script re-stamps it too.
 
-Idempotent: re-running updates an existing Lyrics strip in place (never
-duplicates) and re-copies the `.cst`.
+Idempotent: re-running updates an existing Lyrics strip's MIDI wiring in place
+(never duplicates) and PRESERVES the set's existing `.cst` + output/range fix.
 
 The `programChangeChannel` / `programChangePort` / `sendThruProgramChanges`
 keys on `patch.engineNode` are PRE-EXISTING set-level patch-change config (they
@@ -98,7 +109,33 @@ def build_lyrics_strip(template_strip, prog_number, instid, strip_uuid):
     strip["shouldSendProgramChange"] = True
     strip["programChangeNumber"] = int(prog_number)
 
+    # Born "No Output": the Lyrics strip is a MIDI-only patch-change sender, not
+    # an audible keyboard layer. The keyboardist's manual fix sets the strip's
+    # audio output to none (Channel_outputIndex = -1, no Channel_outputIsStereo)
+    # so it never grabs an output bus / shows up as a playable layer on his Akai.
+    # Stamp that here so a NEW set is born correct instead of cloning whatever
+    # the (possibly un-fixed) template carries. See no_output_fix() / the
+    # idempotent update path, which preserve this for already-wired sets.
+    no_output_fix(strip)
+
     return strip
+
+
+def no_output_fix(strip):
+    """Force the keyboardist's 'No Output' state on a Lyrics strip.
+
+    Only ever moves a strip TOWARD No Output (audio output = none); it never
+    re-routes a strip back to an audio bus, so it can't revert his fix — it only
+    completes it on a strip a previous run left routed to Output 1-2.
+    Returns True if anything changed."""
+    changed = False
+    if strip.get("Channel_outputIndex") != -1:
+        strip["Channel_outputIndex"] = -1
+        changed = True
+    if "Channel_outputIsStereo" in strip:
+        del strip["Channel_outputIsStereo"]
+        changed = True
+    return changed
 
 
 def restamp_uniqueid(strip):
@@ -119,6 +156,34 @@ def restamp_uniqueid(strip):
             port["isSource"] = False
             changed = True
     return changed
+
+
+def find_fixed_cst(base, exclude_dir=None):
+    """Find a set whose Lyrics strip already carries the keyboardist's fix
+    (Channel_outputIndex == -1) and return that set's Lyrics.cst path.
+
+    Used to seed BRAND-NEW sets: their .cst is then a copy of a real, fixed
+    set's blob (which carries his per-set layer/key-range fix in the OCuA data)
+    rather than the possibly-un-fixed template's .cst. Returns None if no fixed
+    set exists yet. The .cst's embedded UUID is non-authoritative (the per-set
+    data.plist UUID wins), so copying one set's .cst to another is safe."""
+    if not os.path.isdir(base):
+        return None
+    for name in sorted(os.listdir(base)):
+        patch_dir = os.path.join(base, name)
+        if exclude_dir and os.path.abspath(patch_dir) == os.path.abspath(exclude_dir):
+            continue
+        dp = os.path.join(patch_dir, "data.plist")
+        cst = os.path.join(patch_dir, LYRICS_CST)
+        if not (os.path.isfile(dp) and os.path.isfile(cst)):
+            continue
+        try:
+            strip = find_lyrics_strip(load_plist(dp).get("channels", []))
+        except Exception:
+            continue
+        if strip is not None and strip.get("Channel_outputIndex") == -1:
+            return cst
+    return None
 
 
 def next_instid(channels):
@@ -142,7 +207,7 @@ def new_unique_uuid(used):
 
 
 def wire_set(concert, patch_folder, clip_number, template_strip, template_cst_path,
-             dry_run=False):
+             dry_run=False, force_cst=False):
     """Wire one jamzone set. Returns a dict of what happened."""
     patch_dir = os.path.join(concert, "Concert.patch", patch_folder)
     data_plist = os.path.join(patch_dir, "data.plist")
@@ -154,7 +219,7 @@ def wire_set(concert, patch_folder, clip_number, template_strip, template_cst_pa
         "prog_number": None,
         "uuid": None,
         "instid": None,
-        "cst_copied": False,
+        "cst_copied": "",
         "note": "",
     }
     if not os.path.isdir(patch_dir):
@@ -164,13 +229,24 @@ def wire_set(concert, patch_folder, clip_number, template_strip, template_cst_pa
         result["note"] = "MISSING data.plist"
         return result
 
-    # (a) copy Lyrics.cst into the set (idempotent overwrite).
-    # Skip the copy when this set IS the template (src and dest are one file).
+    # (a) Seed Lyrics.cst into the set — but PRESERVE an existing one.
+    # Once MainStage saves a set, it re-authors that set's Lyrics.cst per-set
+    # (its own embedded UUID, and the keyboardist's layer/key-range fix lives in
+    # this proprietary OCuA blob). Overwriting it from the template would REVERT
+    # that fix — exactly the regression we are guarding against. So we only copy
+    # the template .cst when the set has NONE yet (brand-new wiring), or when the
+    # operator explicitly asks with --force-cst. An existing .cst is left intact.
     dest_cst = os.path.join(patch_dir, LYRICS_CST)
-    is_same = os.path.isfile(dest_cst) and os.path.samefile(template_cst_path, dest_cst)
-    if not dry_run and not is_same:
-        shutil.copy2(template_cst_path, dest_cst)
-    result["cst_copied"] = os.path.isfile(dest_cst)
+    dest_exists = os.path.isfile(dest_cst)
+    is_same = dest_exists and os.path.samefile(template_cst_path, dest_cst)
+    if is_same:
+        result["cst_copied"] = "is-template"
+    elif dest_exists and not force_cst:
+        result["cst_copied"] = "preserved"          # keyboardist's per-set .cst — never clobber
+    else:
+        if not dry_run:
+            shutil.copy2(template_cst_path, dest_cst)
+        result["cst_copied"] = "forced" if dest_exists else "seeded"
 
     # (b) insert/update the strip in data.plist.
     d = load_plist(data_plist)
@@ -178,7 +254,10 @@ def wire_set(concert, patch_folder, clip_number, template_strip, template_cst_pa
     existing = find_lyrics_strip(channels)
 
     if existing is not None:
-        # idempotent update in place — keep its UUID/instID, restamp wiring.
+        # Idempotent update in place — touch ONLY the MIDI patch-change wiring
+        # this tool owns. Everything else (audio output routing, key/velocity
+        # range, MIDITransform, filters) is the keyboardist's domain and is left
+        # exactly as he saved it, so re-running never reverts his fix.
         existing["Channel_MIDIOutputChannel"] = 1
         existing["Channel_MIDIOutputPort"] = {
             "name": PORT_NAME,
@@ -192,6 +271,9 @@ def wire_set(concert, patch_folder, clip_number, template_strip, template_cst_pa
             existing["UUID"] = new_unique_uuid(existing_uuids(channels))
         if not isinstance(existing.get("Channel_instID"), int):
             existing["Channel_instID"] = next_instid(channels)
+        # Complete (never revert) the No-Output fix: -1 stays -1; only an
+        # older-run strip still routed to an audio bus gets corrected.
+        no_output_fix(existing)
         result["action"] = "updated"
         result["uuid"] = existing["UUID"]
         result["instid"] = existing["Channel_instID"]
@@ -241,6 +323,11 @@ def main():
                     help="report what would change without writing")
     ap.add_argument("--skip-clips", default="",
                     help="comma-separated clip numbers to NOT wire (e.g. 24 for tatu)")
+    ap.add_argument("--force-cst", action="store_true",
+                    help="overwrite each set's existing Lyrics.cst from the template. "
+                         "DEFAULT IS OFF: a set's saved .cst carries the keyboardist's "
+                         "per-set layer/key-range fix and is preserved. Only use this to "
+                         "deliberately reset every set's strip setting.")
     ap.add_argument("--allow-live", action="store_true",
                     help="deliberately permit writing the live concert "
                          "(only after a copy has been verified in MainStage)")
@@ -267,6 +354,12 @@ def main():
     template_strip = find_lyrics_strip(tmpl.get("channels", []))
     if template_strip is None:
         sys.exit(f"template set has no Lyrics strip: {tmpl_dir}")
+
+    # Seed source for the .cst of BRAND-NEW sets: prefer an already-fixed set's
+    # blob (carries the keyboardist's layer/key-range fix) over the template's.
+    seed_cst = find_fixed_cst(base, exclude_dir=tmpl_dir) or tmpl_cst
+    print(f"new-set .cst seed: {os.path.relpath(seed_cst, base)}"
+          + ("  (fixed donor)" if seed_cst != tmpl_cst else "  (template — no fixed set found)"))
 
     # Parse manifest -> jamzone rows.
     with open(args.tsv, newline="") as f:
@@ -295,7 +388,8 @@ def main():
     for r in jz:
         clip = int(r["clip"])  # zero-padded string -> int
         res = wire_set(concert, r["concert_patch"], clip,
-                       template_strip, tmpl_cst, dry_run=args.dry_run)
+                       template_strip, seed_cst, dry_run=args.dry_run,
+                       force_cst=args.force_cst)
         results.append(res)
         flag = "OK " if res["ok"] else "ERR"
         print(f"[{flag}] clip={clip:>2} {res['action']:>8} "
