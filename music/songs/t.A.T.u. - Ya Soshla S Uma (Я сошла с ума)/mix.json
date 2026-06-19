@@ -1,6 +1,6 @@
 {
   "bpm": 90.0,
-  "pb-other": {"stems": ["03_Percussion", "04_Noise_effects", "05_Noise_effects_(Wind)", "07_Acoustic_Guitar", "08_Distorted_Electric_Guitar", "09_Synth_Pad", "10_Synth_Voice", "11_Synth_Lead", "12_String_Section", "13_Backing_Vocals"]},
+  "pb-other": {"stems": ["04_Noise_effects", "05_Noise_effects_(Wind)", "07_Acoustic_Guitar", "08_Distorted_Electric_Guitar", "09_Synth_Pad", "10_Synth_Voice", "11_Synth_Lead", "12_String_Section", "13_Backing_Vocals"]},
   "pb-bass": {"stems": ["06_Bass"]},
   "cues": [
     {"bar": 2,  "text": "Я сошла с ума pad in", "abs_sec": 5.333},

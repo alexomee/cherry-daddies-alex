@@ -61,6 +61,13 @@ SR = 44100
 SONGS = os.path.expanduser("~/projects/cherry-daddies/music/songs")
 CLICK_LVL, MIX_LVL, CUE_LVL = 0.6, 0.85, 1.0   # cue_preview levels (same as jamzone_cues.py)
 
+# Percussion EXCEPT the main drum kit NEVER goes to playback/preview — the live drummer plays
+# it, and in the mix it clashes with him (CLAUDE.md "Перкуссия — ВСЕГДА вон…"). Dropped from
+# the stem universe -> absent from music/all/pb-other/pb-bass/cue_preview/practice in one place.
+_PERC = re.compile(r"percussion|conga|bongo|shaker|tambour|cowbell|clap|claves|guiro|cabasa|woodblock", re.I)
+def is_percussion(name):
+    return bool(_PERC.search(name)) and not re.search(r"drum", name, re.I)   # the kit always stays
+
 # ---- pb-other/pb-bass auto-leveling ----------------------------------------------------------
 # pb-other plays through ONE MainStage fader, and never carries the lead/melody -- it's all
 # support (FX, backing vox, pads, synths) whose Moises internal balance should be preserved.
@@ -694,7 +701,9 @@ def main():
     print(f"grid: beat={beat:.6f}s bpm={60/beat:.4f} bar={bar:.6f}s "
           f"downbeat={db0:.4f}s ({n_on} clicks, max resid {resid*1000:.1f}ms){tag}")
 
-    music = [n for n in stems if n != click_name]
+    perc = [n for n in stems if n != click_name and is_percussion(n)]
+    if perc: print(f"percussion dropped (live drummer plays it, never in playback): {sorted(perc)}")
+    music = [n for n in stems if n != click_name and n not in perc]
     audio = {n: decode(stems[n]) for n in music}
     cue_st = decode(cue_p) if os.path.exists(cue_p) else None
 
@@ -878,8 +887,11 @@ def main():
         m = mix.get(grp)
         if not m: continue
         overrides, trims = m.get("roles", {}), (m.get("gain_db") or {})
+        gstems = [s for s in m.get("stems", []) if s not in perc]   # percussion never in playback
+        if len(gstems) != len(m.get("stems", [])):
+            print(f"  {grp}: percussion auto-removed from playback: {[s for s in m.get('stems', []) if s in perc]}")
         eff = {}                                       # fx/back-vox auto-leveled to role target;
-        for n in m.get("stems", []):                   # gain_db = TRIM on top for those, ABSOLUTE
+        for n in gstems:                               # gain_db = TRIM on top for those, ABSOLUTE
             role = classify(n, overrides)              # for musical (unchanged behavior)
             ag, loud = auto_gain_db(audio[n], role)
             trim = trims.get(n, 0)
@@ -890,7 +902,7 @@ def main():
                 tr = f" + trim {trim:+g}" if trim else ""
                 print(f"  level {grp}/{n}: {role}  measured {loud:+.1f}dBFS vs ceiling "
                       f"{ROLE_CEILING[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{note}")
-        out[grp] = mixdown(m.get("stems", []), eff, m.get("mute"))
+        out[grp] = mixdown(gstems, eff, m.get("mute"))
 
     semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
     if semi:
