@@ -1,6 +1,7 @@
 {
   "pb-other": {"stems": ["04_Noise_effects"]},
   "pb-bass": {"stems": ["05_Bass"]},
+  "players": {"alex": ["06_Electric_Guitar", "07_Distorted_Electric_Guitar", "08_Electric_Guitar_(delay)"], "roma": ["09_Synthesizer_(disto)", "10_Synth_Pad", "11_Synth_Strings"]},
   "cues": [
     {"bar": 3,   "text": "Heads will roll synth in", "abs_sec": 3.637},
     {"bar": 11,  "text": "vocal in", "abs_sec": 18.184},

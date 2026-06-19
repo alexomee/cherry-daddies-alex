@@ -4,6 +4,7 @@
   "tempo_zone": {"from_bar": 53, "from_beat": 1, "to_bar": 62, "to_beat": 4, "bpm": 89.919, "anchor_sec": 101.116, "accent": 4, "accent_from": 209, "subdiv": 2, "return_sec": 130.799},
   "pb-other": {"layers": [{"file": "backing-vocal", "frame": "render", "gain_db": 0}]},
   "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
+  "players": {"alex": ["guitars"]},
   "cues": [
     {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871},
     {"bar": 3, "text": "drums in", "abs_sec": 7.742},

@@ -1,19 +1,20 @@
 {
   "pb-other": {"stems": ["08_Noise_effects"]},
   "pb-bass": null,
+  "players": {"alex": ["07_Synth_Lead"], "roma": ["05_Synthesizer", "06_Synth_Voice"]},
   "cues": [
-    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "abs_sec": 2.416},
-    {"bar": 12, "text": "drums in", "abs_sec": 17.716},
-    {"bar": 20, "text": "stop and solo in", "abs_sec": 30.6},
-    {"bar": 29, "text": "drum stop", "abs_sec": 45.095},
-    {"bar": 42, "text": "break in", "abs_sec": 66.031},
-    {"bar": 46, "text": "stop", "abs_sec": 72.474},
-    {"bar": 48, "text": "solo start in", "abs_sec": 75.695},
-    {"bar": 56, "text": "stop", "abs_sec": 88.579},
-    {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 90.995},
-    {"bar": 66, "text": "bass in", "abs_sec": 104.684},
-    {"bar": 74, "beat": 3, "text": "vocal-with-solo in", "abs_sec": 118.373},
-    {"bar": 83, "text": "keep going", "abs_sec": 132.063},
-    {"bar": 90, "text": "end stop", "abs_sec": 143.337}
+    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "chord": ["C#4"], "abs_sec": 4.026},
+    {"bar": 12, "text": "drums in", "abs_sec": 19.326},
+    {"bar": 20, "text": "stop and solo in", "abs_sec": 32.21},
+    {"bar": 29, "text": "drum stop", "abs_sec": 46.705},
+    {"bar": 42, "text": "break in", "abs_sec": 67.642},
+    {"bar": 46, "text": "stop", "abs_sec": 74.084},
+    {"bar": 48, "text": "solo start in", "abs_sec": 77.305},
+    {"bar": 56, "text": "stop", "abs_sec": 90.189},
+    {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 92.605},
+    {"bar": 66, "text": "bass in", "abs_sec": 106.295},
+    {"bar": 74, "beat": 3, "text": "vocal-with-solo in", "abs_sec": 119.984},
+    {"bar": 83, "text": "keep going", "abs_sec": 133.673},
+    {"bar": 90, "text": "end stop", "abs_sec": 144.947}
   ]
 }

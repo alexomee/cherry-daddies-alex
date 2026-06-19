@@ -1,6 +1,7 @@
 {
   "pb-other": {"stems": ["11_Backing_Vocals", "03_Noise_effects"]},
   "pb-bass": {"stems": ["04_Synth_Bass"]},
+  "players": {"alex": ["05_Synthesizer", "08_Synth_Lead", "09_Guitar_Synth_1", "10_Guitar_Synth_2"], "roma": ["06_Synth_Pad", "07_Synth_Strings"]},
   "cues": [
     {"bar": 3,  "text": "I Love It synth in", "abs_sec": 3.81},
     {"bar": 7,  "text": "voice in", "abs_sec": 11.429},

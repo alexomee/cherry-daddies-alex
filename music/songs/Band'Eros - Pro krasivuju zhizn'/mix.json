@@ -2,6 +2,7 @@
   "bpm": 125,
   "pb-other": {"layers": ["keys-noise"]},
   "pb-bass": null,
+  "players": {"alex": ["guitars"]},
   "cues": [
     {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in", "abs_sec": 3.36},
     {"bar": 9,   "beat": 4, "text": "vocal in", "abs_sec": 18.72},
