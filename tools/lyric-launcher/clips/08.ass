@@ -28,11 +28,9 @@ Dialogue: 0,0:00:44.21,0:00:47.02,Next,,0,0,120,,You can turn me on with just a 
 Dialogue: 0,0:00:47.02,0:00:49.83,Now,,0,0,0,,You can turn me on with just a touch
 Dialogue: 0,0:00:47.02,0:00:49.83,Next,,0,0,120,,Baby
 Dialogue: 0,0:00:49.83,0:00:53.69,Now,,0,0,0,,Baby
-Dialogue: 0,0:00:49.83,0:00:53.69,Next,,0,0,120,,Sin
-Dialogue: 0,0:00:53.69,0:00:54.04,Now,,0,0,0,,Sin
-Dialogue: 0,0:00:53.69,0:00:54.04,Next,,0,0,120,,City's cold and empty
-Dialogue: 0,0:00:54.04,0:00:56.49,Now,,0,0,0,,City's cold and empty
-Dialogue: 0,0:00:54.04,0:00:56.49,Next,,0,0,120,,No one's around to judge me
+Dialogue: 0,0:00:49.83,0:00:53.69,Next,,0,0,120,,Sin City's cold and empty
+Dialogue: 0,0:00:53.69,0:00:56.49,Now,,0,0,0,,Sin City's cold and empty
+Dialogue: 0,0:00:53.69,0:00:56.49,Next,,0,0,120,,No one's around to judge me
 Dialogue: 0,0:00:56.49,0:00:59.30,Now,,0,0,0,,No one's around to judge me
 Dialogue: 0,0:00:56.49,0:00:59.30,Next,,0,0,120,,I can't see clearly when you're go-o-one
 Dialogue: 0,0:00:59.30,0:01:03.69,Now,,0,0,0,,I can't see clearly when you're go-o-one
@@ -40,11 +38,9 @@ Dialogue: 0,0:00:59.30,0:01:03.69,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:01:03.69,0:01:06.85,Now,,0,0,0,,I said, ooh
 Dialogue: 0,0:01:03.69,0:01:06.85,Next,,0,0,120,,I'm blinded by the lights
 Dialogue: 0,0:01:06.85,0:01:09.83,Now,,0,0,0,,I'm blinded by the lights
-Dialogue: 0,0:01:06.85,0:01:09.83,Next,,0,0,120,,No,
-Dialogue: 0,0:01:09.83,0:01:10.18,Now,,0,0,0,,No,
-Dialogue: 0,0:01:09.83,0:01:10.18,Next,,0,0,120,,I can't sleep until
-Dialogue: 0,0:01:10.18,0:01:11.76,Now,,0,0,0,,I can't sleep until
-Dialogue: 0,0:01:10.18,0:01:11.76,Next,,0,0,120,,I feel your touch
+Dialogue: 0,0:01:06.85,0:01:09.83,Next,,0,0,120,,No, I can't sleep until
+Dialogue: 0,0:01:09.83,0:01:11.76,Now,,0,0,0,,No, I can't sleep until
+Dialogue: 0,0:01:09.83,0:01:11.76,Next,,0,0,120,,I feel your touch
 Dialogue: 0,0:01:11.76,0:01:14.92,Now,,0,0,0,,I feel your touch
 Dialogue: 0,0:01:11.76,0:01:14.92,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:01:14.92,0:01:18.07,Now,,0,0,0,,I said, ooh
@@ -62,17 +58,13 @@ Dialogue: 0,0:01:25.27,0:01:37.37,Next,,0,0,120,,I'm running out of time 'Cos
 Dialogue: 0,0:01:37.37,0:01:40.35,Now,,0,0,0,,I'm running out of time 'Cos
 Dialogue: 0,0:01:37.37,0:01:40.35,Next,,0,0,120,,I can see the sun light up the sky
 Dialogue: 0,0:01:40.35,0:01:43.16,Now,,0,0,0,,I can see the sun light up the sky
-Dialogue: 0,0:01:40.35,0:01:43.16,Next,,0,0,120,,So
-Dialogue: 0,0:01:43.16,0:01:43.33,Now,,0,0,0,,So
-Dialogue: 0,0:01:43.16,0:01:43.33,Next,,0,0,120,,I hit the road in overdrive
-Dialogue: 0,0:01:43.33,0:01:45.97,Now,,0,0,0,,I hit the road in overdrive
-Dialogue: 0,0:01:43.33,0:01:45.97,Next,,0,0,120,,Baby
+Dialogue: 0,0:01:40.35,0:01:43.16,Next,,0,0,120,,So I hit the road in overdrive
+Dialogue: 0,0:01:43.16,0:01:45.97,Now,,0,0,0,,So I hit the road in overdrive
+Dialogue: 0,0:01:43.16,0:01:45.97,Next,,0,0,120,,Baby
 Dialogue: 0,0:01:45.97,0:01:48.07,Now,,0,0,0,,Baby
-Dialogue: 0,0:01:45.97,0:01:48.07,Next,,0,0,120,,Oh
-Dialogue: 0,0:01:48.07,0:01:49.83,Now,,0,0,0,,Oh
-Dialogue: 0,0:01:48.07,0:01:49.83,Next,,0,0,120,,The city's cold and empty
-Dialogue: 0,0:01:49.83,0:01:52.63,Now,,0,0,0,,The city's cold and empty
-Dialogue: 0,0:01:49.83,0:01:52.63,Next,,0,0,120,,No one's around to judge me
+Dialogue: 0,0:01:45.97,0:01:48.07,Next,,0,0,120,,Oh The city's cold and empty
+Dialogue: 0,0:01:48.07,0:01:52.63,Now,,0,0,0,,Oh The city's cold and empty
+Dialogue: 0,0:01:48.07,0:01:52.63,Next,,0,0,120,,No one's around to judge me
 Dialogue: 0,0:01:52.63,0:01:55.44,Now,,0,0,0,,No one's around to judge me
 Dialogue: 0,0:01:52.63,0:01:55.44,Next,,0,0,120,,I can't see clearly when you're go-o-one
 Dialogue: 0,0:01:55.44,0:01:59.83,Now,,0,0,0,,I can't see clearly when you're go-o-one
@@ -80,11 +72,9 @@ Dialogue: 0,0:01:55.44,0:01:59.83,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:01:59.83,0:02:02.99,Now,,0,0,0,,I said, ooh
 Dialogue: 0,0:01:59.83,0:02:02.99,Next,,0,0,120,,I'm blinded by the lights
 Dialogue: 0,0:02:02.99,0:02:05.97,Now,,0,0,0,,I'm blinded by the lights
-Dialogue: 0,0:02:02.99,0:02:05.97,Next,,0,0,120,,No,
-Dialogue: 0,0:02:05.97,0:02:06.32,Now,,0,0,0,,No,
-Dialogue: 0,0:02:05.97,0:02:06.32,Next,,0,0,120,,I can't sleep until
-Dialogue: 0,0:02:06.32,0:02:07.90,Now,,0,0,0,,I can't sleep until
-Dialogue: 0,0:02:06.32,0:02:07.90,Next,,0,0,120,,I feel your touch
+Dialogue: 0,0:02:02.99,0:02:05.97,Next,,0,0,120,,No, I can't sleep until
+Dialogue: 0,0:02:05.97,0:02:07.90,Now,,0,0,0,,No, I can't sleep until
+Dialogue: 0,0:02:05.97,0:02:07.90,Next,,0,0,120,,I feel your touch
 Dialogue: 0,0:02:07.90,0:02:11.06,Now,,0,0,0,,I feel your touch
 Dialogue: 0,0:02:07.90,0:02:11.06,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:02:11.06,0:02:14.21,Now,,0,0,0,,I said, ooh
@@ -106,11 +96,9 @@ Dialogue: 0,0:02:28.42,0:02:33.51,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:02:33.51,0:02:36.68,Now,,0,0,0,,I said, ooh
 Dialogue: 0,0:02:33.51,0:02:36.68,Next,,0,0,120,,I'm blinded by the lights
 Dialogue: 0,0:02:36.68,0:02:39.65,Now,,0,0,0,,I'm blinded by the lights
-Dialogue: 0,0:02:36.68,0:02:39.65,Next,,0,0,120,,No,
-Dialogue: 0,0:02:39.65,0:02:40.00,Now,,0,0,0,,No,
-Dialogue: 0,0:02:39.65,0:02:40.00,Next,,0,0,120,,I can't sleep until
-Dialogue: 0,0:02:40.00,0:02:41.58,Now,,0,0,0,,I can't sleep until
-Dialogue: 0,0:02:40.00,0:02:41.58,Next,,0,0,120,,I feel your touch
+Dialogue: 0,0:02:36.68,0:02:39.65,Next,,0,0,120,,No, I can't sleep until
+Dialogue: 0,0:02:39.65,0:02:41.58,Now,,0,0,0,,No, I can't sleep until
+Dialogue: 0,0:02:39.65,0:02:41.58,Next,,0,0,120,,I feel your touch
 Dialogue: 0,0:02:41.58,0:02:43.86,Now,,0,0,0,,I feel your touch
 Dialogue: 0,0:02:41.58,0:02:43.86,Next,,0,0,120,,Hey, hey, hey
 Dialogue: 0,0:02:43.86,0:02:55.09,Now,,0,0,0,,Hey, hey, hey
@@ -120,10 +108,8 @@ Dialogue: 0,0:02:55.09,0:03:07.20,Next,,0,0,120,,I said, ooh
 Dialogue: 0,0:03:07.20,0:03:10.36,Now,,0,0,0,,I said, ooh
 Dialogue: 0,0:03:07.20,0:03:10.36,Next,,0,0,120,,I'm blinded by the lights
 Dialogue: 0,0:03:10.36,0:03:13.34,Now,,0,0,0,,I'm blinded by the lights
-Dialogue: 0,0:03:10.36,0:03:13.34,Next,,0,0,120,,No,
-Dialogue: 0,0:03:13.34,0:03:13.69,Now,,0,0,0,,No,
-Dialogue: 0,0:03:13.34,0:03:13.69,Next,,0,0,120,,I can't sleep until
-Dialogue: 0,0:03:13.69,0:03:15.27,Now,,0,0,0,,I can't sleep until
-Dialogue: 0,0:03:13.69,0:03:15.27,Next,,0,0,120,,I feel your touch
+Dialogue: 0,0:03:10.36,0:03:13.34,Next,,0,0,120,,No, I can't sleep until
+Dialogue: 0,0:03:13.34,0:03:15.27,Now,,0,0,0,,No, I can't sleep until
+Dialogue: 0,0:03:13.34,0:03:15.27,Next,,0,0,120,,I feel your touch
 Dialogue: 0,0:03:15.27,0:03:20.71,Now,,0,0,0,,I feel your touch
 Dialogue: 0,0:00:24.18,0:00:30.18,Next,,0,0,120,,I've been tryna call

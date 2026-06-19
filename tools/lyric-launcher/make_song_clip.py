@@ -166,6 +166,48 @@ def group_lines(words):
     return [(ln[0][0], ln[-1][1], " ".join(w[2] for w in ln)) for ln in lines]
 
 
+def collapse_letter_runs(lines, min_run=3):
+    """A spelled chant (S&M's 'S S S M M M ...') comes through as many one-letter
+    screens. Collapse a run of >= min_run single-letter lines into one screen of
+    the distinct letters, '&'-joined ('S','M' -> 'S&M'), spanning the whole run."""
+    out, i, n = [], 0, len(lines)
+    while i < n:
+        if len(lines[i][2].strip()) == 1 and lines[i][2].strip().isalpha():
+            j = i
+            seen = []
+            while j < n and len(lines[j][2].strip()) == 1 and lines[j][2].strip().isalpha():
+                L = lines[j][2].strip().upper()
+                if L not in seen:
+                    seen.append(L)
+                j += 1
+            if j - i >= min_run:
+                out.append((lines[i][0], lines[j - 1][1], "&".join(seen)))
+                i = j
+                continue
+        out.append(lines[i])
+        i += 1
+    return out
+
+
+def pack_lines(lines, min_sec=2.0):
+    """Kill single-word flashes: while a screen is ONE word and shows for < min_sec
+    (gap to the next line), merge the next line into it. Stops at >=2 words, so a
+    held single word (>= min_sec) is left alone and merges produce short readable
+    phrases ('Mister'+'Saxobeat' -> 'Mister Saxobeat'; 'And'+next -> 'And ...')."""
+    if not lines:
+        return []
+    out = []
+    cs, ce, ct = lines[0]
+    for st, en, tx in lines[1:]:
+        if len(ct.split()) == 1 and (st - cs) < min_sec:
+            ct, ce = ct + " " + tx, en
+        else:
+            out.append((cs, ce, ct))
+            cs, ce, ct = st, en, tx
+    out.append((cs, ce, ct))
+    return out
+
+
 ASS_HEAD = """[Script Info]
 ScriptType: v4.00+
 PlayResX: {w}
@@ -254,7 +296,10 @@ def main():
         tiles = dj(args.cat, "tiles.json")
         words, cols = lead_words(tiles)
         lines = group_lines(words)
-        print(f"lead colour(s) {','.join(cols)}: {len(words)} words -> {len(lines)} lines")
+        raw = len(lines)
+        lines = pack_lines(collapse_letter_runs(lines))
+        print(f"lead colour(s) {','.join(cols)}: {len(words)} words -> "
+              f"{raw} lines -> {len(lines)} packed (no 1-word flashes)")
         print(f"offset_sec {offset:+.4f}  song length {dur:.2f}s")
     for st, en, tx in lines[:6]:
         print(f"  [{t(st+offset)}] {tx}")
