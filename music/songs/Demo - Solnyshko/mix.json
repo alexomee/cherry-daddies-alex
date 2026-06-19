@@ -3,6 +3,7 @@
   "pb-other": null,
   "pb-bass": null,
   "pitch_semitones": -2,
+  "players": {"alex": ["bass"]},
   "cues": [
     {"bar": 2,   "text": "Солнышко all in", "abs_sec": 3.478},
     {"bar": 8,   "beat": 4, "text": "stop", "abs_sec": 15.217},

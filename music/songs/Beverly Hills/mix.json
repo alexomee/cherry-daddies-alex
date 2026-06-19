@@ -3,6 +3,7 @@
   "pb-other": null,
   "pb-bass": null,
   "click": "follow",
+  "players": {"alex": ["bass"]},
   "cues": [
     {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.174},
     {"bar": 5,   "text": "vocal in", "abs_sec": 12.514},
