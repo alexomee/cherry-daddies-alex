@@ -65,14 +65,14 @@ def duration(path):
 
 def resolve(song):
     """song = substring of the 'song' column, or a factory-dir basename/path.
-    Returns (clip_NN:int, title:str, factory_dir:abs)."""
+    Returns (clip_NN:int, title:str, factory_dir:abs_or_None, source:str)."""
     rows = list(csv.DictReader(open(TSV, encoding="utf-8"), delimiter="\t"))
     q = song.strip().lower()
     base = os.path.basename(song.rstrip("/")).lower()
     hits = []
     for r in rows:
         names = [r["song"].lower(), os.path.basename(r["factory_dir"]).lower()]
-        if q in names[0] or q in names[1] or base == names[1]:
+        if q in names[0] or (names[1] and (q in names[1] or base == names[1])):
             hits.append(r)
     uniq = {r["clip"]: r for r in hits}
     if not uniq:
@@ -81,10 +81,9 @@ def resolve(song):
         opts = ", ".join(f"{r['song']} (clip {r['clip']})" for r in uniq.values())
         sys.exit(f"{song!r} is ambiguous: {opts}")
     r = next(iter(uniq.values()))
-    fac = r["factory_dir"]
-    if not os.path.isabs(fac):
-        fac = os.path.join(REPO, fac)
-    return int(r["clip"]), r["song"], fac
+    fac = r["factory_dir"].strip()
+    fac = (fac if os.path.isabs(fac) else os.path.join(REPO, fac)) if fac else None
+    return int(r["clip"]), r["song"], fac, r["source"]
 
 
 def _maxvol(filterchain, inputs):
@@ -144,26 +143,45 @@ def main():
     ap.add_argument("--cue-db", type=float, default=3.0,
                     help="cue boost for --audio mix (default +3 dB)")
     ap.add_argument("--out", help="default <factory>/auto-render/<NN>-lyric-review.mp4")
+    ap.add_argument("--song-dir", help="override the audio folder (for static songs "
+                    "whose songs.tsv factory_dir is blank; expects <dir>/auto-render/)")
     args = ap.parse_args()
 
-    nn, title, fac = resolve(args.song)
+    nn, title, fac, source = resolve(args.song)
+    if args.song_dir:
+        fac = args.song_dir if os.path.isabs(args.song_dir) else os.path.join(REPO, args.song_dir)
+    if not fac:
+        sys.exit(f"clip {nn:02d} '{title}' has no factory_dir in songs.tsv -> pass --song-dir")
     ass = os.path.join(CLIPS, f"{nn:02d}.ass")
     mp4 = os.path.join(CLIPS, f"{nn:02d}.mp4")
     ar = os.path.join(fac, "auto-render")
     allw = os.path.join(ar, "all.wav")
-    for p in (ass, mp4, allw):
+    for p in (ass, allw):
         if not os.path.exists(p):
             sys.exit(f"missing: {p}")
 
-    da, dv = duration(allw), duration(mp4)
-    if abs(da - dv) > 0.25:
-        sys.exit(f"clip {nn:02d}.mp4 ({dv:.3f}s) and all.wav ({da:.3f}s) differ by "
-                 f"{abs(da - dv):.3f}s -> timelines drifted; re-render the clip "
-                 f"(make_song_clip.py) before reviewing.")
-
+    da = duration(allw)
     out = args.out or os.path.join(ar, f"{nn:02d}-lyric-review.mp4")
 
     with tempfile.TemporaryDirectory() as tmp:
+        # canvas: timed clips reuse the stage mp4 (same render timeline; guard drift);
+        # static clips are a 6s still -> make a black canvas at song length instead.
+        if source == "static":
+            canvas = os.path.join(tmp, "canvas.mp4")
+            subprocess.run(
+                ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
+                 "-f", "lavfi", "-i", f"color=c=black:s=1280x720:d={da:.3f}:r=30",
+                 "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an", canvas], check=True)
+        else:
+            if not os.path.exists(mp4):
+                sys.exit(f"missing: {mp4}")
+            dv = duration(mp4)
+            if abs(da - dv) > 0.25:
+                sys.exit(f"clip {nn:02d}.mp4 ({dv:.3f}s) and all.wav ({da:.3f}s) differ by "
+                         f"{abs(da - dv):.3f}s -> timelines drifted; re-render the clip "
+                         f"(make_song_clip.py) before reviewing.")
+            canvas = mp4
+
         if args.audio == "mix":
             audio, note = cuemix_wav(ar, args.cue_db, tmp)
         elif args.audio == "all":
@@ -174,7 +192,7 @@ def main():
                 sys.exit(f"missing: {audio}")
         comb = combined_ass(ass, da, tmp)
         subprocess.run(
-            ["mpv", mp4, "--audio-file=" + audio, "--aid=1",
+            ["mpv", canvas, "--audio-file=" + audio, "--aid=1",
              "--sub-files=" + comb,
              "--o=" + out, "--ovc=libx264", "--oac=aac",
              "--no-config", "--really-quiet"],
