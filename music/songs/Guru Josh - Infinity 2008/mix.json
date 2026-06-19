@@ -1,6 +1,7 @@
 {
   "pb-other": {"stems": ["08_Arpeggiator", "03_Noise_effects"]},
   "pb-bass": null,
+  "players": {"alex": ["06_Synth_Pad", "07_Synth_Keys"]},
   "cues": [
     {"bar": 3,   "text": "Infinity pad in", "abs_sec": 3.75},
     {"bar": 7,   "beat": 3, "text": "sax in", "abs_sec": 12.187},
