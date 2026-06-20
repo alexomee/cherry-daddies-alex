@@ -236,6 +236,16 @@ def first_sound(a, thr=1e-3):
     nz = np.where(np.abs(a).max(1) > thr)[0]
     return nz[0]/SR if len(nz) else None
 
+
+def last_sound(a, thr=10 ** (-55 / 20.0)):
+    """Sample count up to the last non-silent peak (> thr). Trims trailing silence:
+    Moises stems are zero-padded to a common length, so len(a) would carry dead
+    zeros into the playback (+ the click ticking through them). thr = -55 dBFS keeps
+    real fades, strips only the silence."""
+    amp = np.abs(a).max(1) if a.ndim == 2 else np.abs(a)
+    nz = np.nonzero(amp > thr)[0]
+    return int(nz[-1]) + 1 if len(nz) else len(a)
+
 def place(buf, audio, at_samp):
     s0 = max(0, at_samp); a0 = max(0, -at_samp)
     n = min(len(audio)-a0, len(buf)-s0)
@@ -746,11 +756,17 @@ def main():
     # before its downbeat), and the cues must shift with the music, not stay on `lead`.
     cue_base = OFF + db0
     off_samp = round(OFF*SR)
-    end = max(len(a) for a in srcs) + off_samp
+    # trailing-silence trim: end on the last REAL sound (not the zero-padded stem length),
+    # rounded up to a whole bar, + (tail_bars-1) extra bars. "tail_bars" (mix.json, default 1)
+    # tunes the clean tail. The cue tail still holds 2 bars after the last cue so an "end" cue
+    # isn't clipped. Strips Moises stem zero-padding so the click doesn't tick into dead air.
+    tail_bars = int(mix.get("tail_bars", 1) or 1)
+    end = max(last_sound(a) for a in srcs) + off_samp
     if mix.get("cues"):
         end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
-    total = int(np.ceil(end/(bar*SR))*bar*SR)
-    print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars")
+    total = int((np.ceil(end/(bar*SR)) + (tail_bars - 1))*bar*SR)
+    print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars "
+          f"(tail {tail_bars}b, trailing silence trimmed)")
 
     # ---- cue position converter (writes nothing) -------------------------------------------------
     # Three coordinate systems a cue position gets read in — this maps between them:
