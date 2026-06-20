@@ -1,7 +1,7 @@
 {
   "bpm": 124.0,
   "click": "follow",
-  "tempo_zone": {"from_bar": 53, "from_beat": 1, "to_bar": 62, "to_beat": 4, "bpm": 89.919, "anchor_sec": 101.116, "accent": 4, "accent_from": 209, "subdiv": 2, "return_sec": 130.799},
+  "tempo_zone": {"from_bar": 53, "from_beat": 3, "to_bar": 63, "to_beat": 2, "bpm": 89.919, "anchor_sec": 102.083742, "accent": 4, "accent_from": 211, "subdiv": 2, "return_sec": 131.766742},
   "pb-other": {"layers": [{"file": "backing-vocal", "frame": "render", "gain_db": 0}]},
   "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
   "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
@@ -12,10 +12,10 @@
     {"bar": 25, "text": "verse in", "abs_sec": 50.323},
     {"bar": 33, "text": "stop", "abs_sec": 65.806},
     {"bar": 44, "text": "keep going", "abs_sec": 87.097},
-    {"bar": 53, "text": "stop", "abs_sec": 104.822},
-    {"bar": 53, "beat": 3, "text": "vocal in", "fast": true, "abs_sec": 106.157},
-    {"bar": 55, "beat": 2, "text": "drums in", "fast": true, "abs_sec": 110.828},
-    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 133.538},
-    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 180.957}
+    {"bar": 53, "text": "stop", "abs_sec": 104.516},
+    {"bar": 54, "beat": 1, "text": "vocal in", "fast": true, "abs_sec": 107.125},
+    {"bar": 55, "beat": 4, "text": "drums in", "fast": true, "abs_sec": 111.795},
+    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 134.505},
+    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 181.925}
   ]
 }
