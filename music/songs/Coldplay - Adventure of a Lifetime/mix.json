@@ -2,7 +2,7 @@
   "pb-other": {"stems": ["04_Noise_effects", "09_Piano", "10_Synth_Pad", "11_Sample_(sung)", "12_Backing_Vocals", "13_Backing_Vocals"]},
   "pb-bass": null,
   "note": "live bass",
-  "players": {"alex": ["06_Acoustic_Guitar", "07_Electric_Guitar", "08_Electric_Guitar_(right)"]},
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["06_Acoustic_Guitar", "07_Electric_Guitar", "08_Electric_Guitar_(right)"]},
   "cues": [
     {"bar": 2,             "text": "Adventure guitar in ready go", "abs_sec": 4.286},
     {"bar": 9,  "beat": 3, "text": "all in", "abs_sec": 20.357},

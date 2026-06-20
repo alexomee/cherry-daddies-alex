@@ -1,0 +1,17 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,40,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,20,1
+Style: Lyr,Arial,22,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,7,0,0,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,9:59:59.99,Title,,0,0,0,,Мелом
+Dialogue: 0,0:00:00.00,9:59:59.99,Lyr,,0,0,0,,{\pos(70,84)}Я рисую на асфальте\NБелым мелом слово «хватит»\NХватит лжи и хватит боли\NОтпусти себя на волю\NЯ рисую белым мелом\NВсё, что так давно хотела\NЛиний взлёт, кардиограмма\NСердце мира терпит раны\N\NФиолетовая пудра, в ней ты и я\NЖизнь такая — ты ж акула, ты ж беззубая\NЗавтра мел исчезнет в лужах, и десятки машин\NЗа собой следы оставят разноцветных шин  ×3\N
+Dialogue: 0,0:00:00.00,9:59:59.99,Lyr,,0,0,0,,{\pos(658,84)}В белых крошках серый камень\NКем-то для других оставлен\NСлово «ждать» и слово «всюду»\NИх не помню, их забуду\NЕсли хочешь, можешь ты дождаться\NСчастья в жизни лет так через двадцать\NА мне не нужно слово «если»\NМне нельзя сидеть на месте…\NПальцы в белом, пальцы в синем\NБелый мел похож на иней\NСиний мел похож на небо\NЭх, ещё бы красный мне бы\NМир, похожий на калеку\NВ чёрном трудно жить цветному человеку\NМел стащила в пятом классе

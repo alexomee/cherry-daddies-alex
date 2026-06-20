@@ -2,7 +2,7 @@
   "pb-other": {"stems": ["04_Sound_Effects", "06_Synth_Brass"]},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -3}},
   "click": "follow",
-  "players": {"alex": ["07_Baritone_Saxophone"], "roma": ["08_Tenor_Saxophone"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["09_Lead_Vocal"], "alex": ["07_Baritone_Saxophone"], "roma": ["08_Tenor_Saxophone"]},
   "cues": [
     {"bar": 3,   "text": "Destination Calabria bass in ready go", "abs_sec": 3.75},
     {"bar": 7,   "text": "all in", "abs_sec": 11.25},

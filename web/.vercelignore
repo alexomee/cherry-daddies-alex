@@ -1,0 +1,11 @@
+# Hosted = static board only (index.html + songs.json). Audio is on R2.
+# Everything below is localhost-only (dev server, notes/todos backend) — never deployed.
+api/
+dev.mjs
+data/
+package.json
+package-lock.json
+node_modules/
+README.md
+.env
+.env.*

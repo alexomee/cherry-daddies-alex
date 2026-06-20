@@ -55,8 +55,34 @@
   tr.nodata .c-info{color:var(--no);font-size:12.5px;font-style:italic;background:#241419 !important}
   .chip{display:inline-block;background:#222838;color:#c7d0e6;border:1px solid #303a52;
     border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;font-size:11.5px;white-space:nowrap}
-  .c-bass{white-space:nowrap}
-  .who{display:inline-block;padding:2px 9px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:nowrap}
+  .c-bass{width:112px;max-width:112px;white-space:normal}
+  .c-other{width:152px;max-width:152px}
+  .c-mix{width:330px}
+  .player{display:flex;align-items:center;gap:8px;margin:5px 0}
+  .mix-lbl{font-size:11px;width:40px;flex:none;font-weight:600;color:var(--dim)}
+  .mix-lbl.alex{color:#ff9ecb} .mix-lbl.roma{color:#9cc0ff}
+  .mix-lbl.steve{color:#f0a93a} .mix-lbl.tanya{color:#7fe8c6} .mix-lbl.all{color:#cdd3e0}
+  .mixhead{vertical-align:middle}
+  .mixsel{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+  .mixsel-lbl{font-size:11px;color:var(--dim);margin-right:2px;text-transform:none}
+  .psel{border:1px solid var(--line);background:#13151c;color:var(--dim);border-radius:6px;
+    padding:3px 9px;font-size:11px;font-weight:700;cursor:pointer;text-transform:none;letter-spacing:0}
+  .psel:hover{border-color:var(--accent)}
+  .psel.all.active{background:#2e3340;border-color:#cdd3e0;color:#fff}
+  .psel.alex.active{background:#7a3357;border-color:#ff9ecb;color:#ffd9ea}
+  .psel.steve.active{background:#6b4a1a;border-color:#f0a93a;color:#ffe2b0}
+  .psel.roma.active{background:#23304f;border-color:#9cc0ff;color:#d4e4ff}
+  .psel.tanya.active{background:#1f4038;border-color:#7fe8c6;color:#c4f5e6}
+  .pbtn{flex:none;width:28px;height:28px;border-radius:50%;border:none;background:var(--accent);
+    color:#fff;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center}
+  .pbtn:hover{filter:brightness(1.1)}
+  .seek{flex:1;min-width:110px;height:5px;-webkit-appearance:none;appearance:none;
+    background:#2a2f3d;border-radius:3px;cursor:pointer}
+  .seek::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;
+    border-radius:50%;background:var(--accent);cursor:pointer}
+  .seek::-moz-range-thumb{width:14px;height:14px;border:none;border-radius:50%;background:var(--accent);cursor:pointer}
+  .time{flex:none;font-size:11px;color:var(--dim);width:32px;text-align:right;font-variant-numeric:tabular-nums}
+  .who{display:inline-block;padding:2px 9px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:normal}
   .who-roma{background:#23304f;color:#9cc0ff}
   .who-roma-g{background:#1f4038;color:#7fe8c6}
   .who-alex{background:#43213a;color:#ff9ecb}
@@ -70,6 +96,9 @@
   .notes-area:focus{outline:none;border-color:var(--accent)}
   .notes-area::placeholder{color:#4a5060}
   .loading{color:var(--dim);padding:30px 4px}
+  /* hosted (non-localhost): hide private notes/todos, keep board + player */
+  body.hosted #gpanel, body.hosted .saved-note, body.hosted #sync,
+  body.hosted .c-todo, body.hosted .c-notes, body.hosted .h-todo, body.hosted .h-notes{display:none}
   @media(max-width:820px){
     .wrap{padding:18px 10px 60px}.artist{font-size:11.5px}
     td,th{padding:8px 7px}.song{min-width:110px}
@@ -86,7 +115,7 @@
   <p class="summary" id="summary"></p>
   <p class="saved-note">✏️ Todo и заметки правятся прямо здесь и сохраняются на сервере (общие для всех). Если сервер недоступен — пишутся локально и синхронизируются позже.</p>
 
-  <div class="panel">
+  <div class="panel" id="gpanel">
     <h2>📋 Общий todo</h2>
     <div class="todo-add">
       <input id="gAdd" placeholder="Новая задача… (Enter)">
@@ -97,8 +126,16 @@
 
   <table>
     <thead><tr>
-      <th class="num">#</th><th>Песня</th><th>Cues</th><th>bass</th>
-      <th>pb-other (stems)</th><th>Todo</th><th>Заметки</th>
+      <th class="num">#</th><th>Песня</th>
+      <th class="mixhead"><div class="mixsel" id="mixsel">
+        <span class="mixsel-lbl">Mix:</span>
+        <button class="psel all" data-p="all" title="full mix + click + cues">All</button>
+        <button class="psel alex" data-p="alex">Alex</button>
+        <button class="psel steve" data-p="steve" title="drums">Steve</button>
+        <button class="psel roma" data-p="roma">Roma</button>
+        <button class="psel tanya" data-p="tanya" title="vocal">Tanya</button>
+      </div></th>
+      <th>bass</th><th>pb-other (stems)</th><th class="h-todo">Todo</th><th class="h-notes">Заметки</th>
     </tr></thead>
     <tbody id="tbody"><tr><td class="loading" colspan="7">загрузка…</td></tr></tbody>
   </table>
@@ -110,6 +147,18 @@
   var API = "/api/state", LS = "cd-dashboard-v1";
   var state = { global: [], songs: {} };
   var online = false;
+  var SONGS = {};                 // sid -> song (reference data from songs.json)
+  var MIXLS = "cd-mixplayer";
+  var currentPlayer = "all";
+  try { var _mp = localStorage.getItem(MIXLS); if(_mp) currentPlayer = _mp; } catch(e){}
+  // localhost = full tool (local audio + notes/todos); hosted = static board (R2 audio, no notes)
+  var LOCAL = ["localhost","127.0.0.1","[::1]",""].indexOf(location.hostname) >= 0 || location.protocol === "file:";
+  var R2_BASE = "https://releases.agentiqa.com/cherry-dash";
+  function audioSrc(s, player){
+    if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&p=" + player;
+    var file = player === "all" ? "all.mp3" : "practice-" + player + ".mp3";
+    return R2_BASE + "/" + s.slug + "/" + file;
+  }
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
@@ -175,7 +224,6 @@
   }
 
   // ---- read-only cell renderers (data from songs.json) ----
-  function cuesCell(c){ return c && c.ready ? '<span class="ok">✅</span> '+c.count+' cues' : '<span class="no">❌</span> нет cues'; }
   function whoClass(w){ return {"Roma":"who who-roma","Roma (real bass-guitar)":"who who-roma-g","Alex":"who who-alex"}[w] || "who"; }
   function bassCell(b){
     if(!b || b.kind==="none") return '<span class="dash">—</span>';
@@ -189,6 +237,63 @@
     if(o.kind==="stems") return o.items.map(function(x){ return '<span class="chip">'+esc(x)+'</span>'; }).join("");
     return '<span class="dash">—</span>';
   }
+  // mix cell for the currently selected player (one player per row)
+  function mixCellFor(s, player){
+    if(!s.hasData || !s.practice || s.practice.indexOf(player) < 0) return '<span class="dash">—</span>';
+    var lbl = player.charAt(0).toUpperCase() + player.slice(1);
+    var src = audioSrc(s, player);
+    return '<div class="player">'
+         + '<span class="mix-lbl '+player+'">'+lbl+'</span>'
+         + '<button class="pbtn" aria-label="play/pause">▶</button>'
+         + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'
+         + '<span class="time">0:00</span>'
+         + '<audio class="mixaudio" preload="metadata" src="'+src+'"></audio>'
+         + '</div>';
+  }
+
+  function fmtTime(t){ if(!isFinite(t) || t < 0) t = 0; t = Math.floor(t);
+    return Math.floor(t/60) + ":" + ("0" + (t%60)).slice(-2); }
+
+  // wire every visible practice player (seek thumb + only one plays at a time)
+  function wirePlayers(){
+    var allAudio = document.querySelectorAll(".mixaudio");
+    function pauseOthers(cur){ allAudio.forEach(function(o){ if(o !== cur) o.pause(); }); }
+    document.querySelectorAll(".player").forEach(function(pl){
+      var audio = pl.querySelector(".mixaudio"), btn = pl.querySelector(".pbtn"),
+          seek = pl.querySelector(".seek"), time = pl.querySelector(".time"), scrubbing = false;
+      audio.addEventListener("loadedmetadata", function(){ seek.max = audio.duration || 0; time.textContent = fmtTime(audio.duration); });
+      audio.addEventListener("timeupdate", function(){ if(!scrubbing){ seek.value = audio.currentTime; time.textContent = fmtTime(audio.currentTime); } });
+      audio.addEventListener("play", function(){ btn.textContent = "⏸"; pauseOthers(audio); });
+      audio.addEventListener("pause", function(){ btn.textContent = "▶"; });
+      audio.addEventListener("ended", function(){ btn.textContent = "▶"; seek.value = 0; time.textContent = fmtTime(audio.duration); });
+      btn.addEventListener("click", function(){ if(audio.paused) audio.play(); else audio.pause(); });
+      seek.addEventListener("input", function(){ scrubbing = true; time.textContent = fmtTime(parseFloat(seek.value)); });
+      seek.addEventListener("change", function(){ audio.currentTime = parseFloat(seek.value); scrubbing = false; });
+    });
+  }
+
+  // re-render the Mix column for the selected player
+  function updateMixColumn(){
+    document.querySelectorAll(".mixaudio").forEach(function(a){ a.pause(); });
+    document.querySelectorAll("#mixsel .psel").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-p") === currentPlayer); });
+    document.querySelectorAll("tr[data-song] td.c-mix").forEach(function(td){
+      var sid = td.parentNode.getAttribute("data-song"), s = SONGS[sid];
+      td.innerHTML = s ? mixCellFor(s, currentPlayer) : '<span class="dash">—</span>';
+    });
+    wirePlayers();
+  }
+
+  function setupMixSelector(){
+    document.querySelectorAll("#mixsel .psel").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-p") === currentPlayer);
+      b.addEventListener("click", function(){
+        currentPlayer = b.getAttribute("data-p");
+        try { localStorage.setItem(MIXLS, currentPlayer); } catch(e){}
+        updateMixColumn();
+      });
+    });
+  }
 
   function renderTable(data){
     var html = "";
@@ -196,27 +301,31 @@
       var sub = st.subtitle ? ' <span class="sub">'+esc(st.subtitle)+'</span>' : "";
       html += '<tr class="sec '+esc(st.cls)+'"><td colspan="7"><span class="setname">'+esc(st.name)+'</span>'+sub+'</td></tr>';
       st.songs.forEach(function(s, idx){
+        SONGS[s.sid] = s;
         var sid = esc(s.sid), n = idx+1;
         var songCell = '<div class="title">'+esc(s.title)+'</div><div class="artist">'+esc(s.artist)+'</div>';
         var edit = '<td class="c-todo" data-song="'+sid+'"></td><td class="c-notes" data-song="'+sid+'"></td>';
         if(!s.hasData){
           html += '<tr class="nodata" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-                + '<td class="c-info" colspan="3">нет данных (папка/mix.json отсутствует)</td>'+edit+'</tr>';
+                + '<td class="c-mix">'+mixCellFor(s, currentPlayer)+'</td>'
+                + '<td class="c-info" colspan="2">нет данных (папка/mix.json отсутствует)</td>'+edit+'</tr>';
           return;
         }
         html += '<tr data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-              + '<td class="c-cues '+(s.cues.ready?"ready":"notready")+'">'+cuesCell(s.cues)+'</td>'
+              + '<td class="c-mix">'+mixCellFor(s, currentPlayer)+'</td>'
               + '<td class="c-bass">'+bassCell(s.bass)+'</td>'
               + '<td class="c-other">'+otherCell(s.other)+'</td>'+edit+'</tr>';
       });
     });
     document.getElementById("tbody").innerHTML = html;
+    wirePlayers();
 
     if(data.counts){
       var c = data.counts;
       document.getElementById("summary").innerHTML =
         c.data+"/"+c.total+" с данными &nbsp;·&nbsp; "+c.cues+" cues готовы &nbsp;·&nbsp; "+
-        c.playback+" bass из playback &nbsp;·&nbsp; "+c.other+" с pb-other";
+        c.playback+" bass из playback &nbsp;·&nbsp; "+c.other+" с pb-other &nbsp;·&nbsp; "+
+        (c.practice||0)+" с практис-миксом";
     }
   }
 
@@ -254,14 +363,16 @@
 
   // ---- boot ----
   (async function(){
+    document.body.classList.toggle("hosted", !LOCAL);
     var dataP = fetch("songs.json", {cache:"no-store"}).then(function(r){ return r.json(); });
-    await loadState();
+    if(LOCAL) await loadState();            // notes/todos backend — localhost only
     var data;
     try{ data = await dataP; }
     catch(e){ document.getElementById("tbody").innerHTML =
       '<tr><td class="loading no" colspan="7">не удалось загрузить songs.json</td></tr>'; return; }
     renderTable(data);
-    hydrate();
+    setupMixSelector();
+    if(LOCAL) hydrate();                     // wire global todo + per-song notes/todos
   })();
 })();
 </script>

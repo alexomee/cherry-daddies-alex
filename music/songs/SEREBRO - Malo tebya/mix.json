@@ -99,7 +99,7 @@
       "abs_sec": 221.538
     }
   ],
-  "players": {
+  "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], 
     "alex": [
       "guitars"
     ]

@@ -1,7 +1,7 @@
 {
   "pb-other": {"stems": ["08_Noise_effects"]},
   "pb-bass": null,
-  "players": {"alex": ["07_Synth_Lead"], "roma": ["05_Synthesizer", "06_Synth_Voice"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["07_Synth_Lead"], "roma": ["05_Synthesizer", "06_Synth_Voice"]},
   "cues": [
     {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "chord": ["C#4"], "abs_sec": 4.026},
     {"bar": 12, "text": "drums in", "abs_sec": 19.326},

@@ -1,9 +1,9 @@
 {
   "bpm": 115,
   "pb-other": null,
-  "pb-bass": null,
+  "pb-bass": {"layers": [{"file": "zivert-bass", "frame": "render", "replaces": ["bass"], "gain_db": -7.5}]},
   "click": "follow",
-  "players": {"alex": ["bass"]},
+  "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.174},
     {"bar": 5,   "text": "vocal in", "abs_sec": 12.514},

@@ -1,0 +1,19 @@
+{
+  "bpm": 120,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1,  "text": "Мелом guitar in", "abs_sec": 4.0},
+    {"bar": 29, "text": "drums stop", "abs_sec": 60.0},
+    {"bar": 41, "text": "bass-only in", "abs_sec": 84.0},
+    {"bar": 45, "text": "all in", "abs_sec": 92.0},
+    {"bar": 53, "text": "drums stop", "abs_sec": 108.0},
+    {"bar": 61, "text": "drums in", "abs_sec": 124.0},
+    {"bar": 69, "text": "drums stop", "abs_sec": 140.0},
+    {"bar": 73, "text": "drums in", "abs_sec": 148.0},
+    {"bar": 81, "text": "keep going", "raw": true, "abs_sec": 164.0},
+    {"bar": 89, "text": "guitar only ready go", "raw": true, "abs_sec": 180.0}
+  ]
+}

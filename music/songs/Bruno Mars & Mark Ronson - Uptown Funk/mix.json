@@ -1,7 +1,7 @@
 {
   "pb-other": {"stems": ["06_Organ", "07_Synth_Pad", "08_Brass_section", "09_Noise_effects", "10_Backing_Vocals"]},
   "pb-bass": null,
-  "players": {"alex": ["05_Electric_Guitar"]},
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["11_Lead_Vocal"], "alex": ["05_Electric_Guitar"]},
   "cues": [
     {"bar": 2,   "text": "Uptown Funk all in ready go", "abs_sec": 4.174},
     {"bar": 6,   "text": "guitar in", "abs_sec": 12.522},

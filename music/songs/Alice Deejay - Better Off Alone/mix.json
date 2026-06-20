@@ -1,7 +1,7 @@
 {
   "pb-other": {"stems": ["04_Noise_effects"]},
   "pb-bass": null,
-  "players": {"alex": ["09_Synth_Lead_1"]},
+  "players": {"roma": ["07_Synth_Pad", "11_Arpeggiator", "08_Synth_Strings", "10_Synth_Lead_2"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["09_Synth_Lead_1"]},
   "cues": [
     {"bar": 3,   "text": "Better Off Alone all in", "abs_sec": 3.504},
     {"bar": 19,  "text": "drums stop", "abs_sec": 31.537},

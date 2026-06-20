@@ -2,7 +2,7 @@
   "click": "follow",
   "pb-other": {"stems": ["13_Female_Backing_Vocals", "08_Charango_(left)", "09_Charango_(right)"]},
   "pb-bass": {"stems": ["04_Bass"]},
-  "players": {"alex": ["05_Rhythm_Electric_Guitar", "06_Distorted_Electric_Guitar_(left)", "07_Distorted_Electric_Guitar_(right)"]},
+  "players": {"roma": ["10_Synth_Pad"], "steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["05_Rhythm_Electric_Guitar", "06_Distorted_Electric_Guitar_(left)", "07_Distorted_Electric_Guitar_(right)"]},
   "cues": [
     {"bar": 2,   "text": "Shakira guitar in ready go", "abs_sec": 4.682},
     {"bar": 5,   "text": "all in ready go", "abs_sec": 12.122},

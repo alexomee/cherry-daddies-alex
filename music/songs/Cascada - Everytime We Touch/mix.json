@@ -2,7 +2,7 @@
   "pb-other": {"stems": ["03_Sound_effects_(Crowd)", "13_Backing_Vocals", "04_Noise_effects", "08_Synth_Voice", "07_Synth_Pad", "11_Synth_Ambiant"],
                "mute": {"13_Backing_Vocals": [[1, 18.2]]}},
   "pb-bass": null,
-  "players": {"alex": ["09_Synth_Lead"], "roma": ["10_Synth_Keys_(Bells)", "12_Bells"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["09_Synth_Lead"], "roma": ["10_Synth_Keys_(Bells)", "12_Bells"]},
   "cues": [
     {"bar": 2,   "beat": 4, "text": "Everytime We Touch vocal in", "abs_sec": 2.958},
     {"bar": 11,  "text": "drums in", "abs_sec": 16.901},

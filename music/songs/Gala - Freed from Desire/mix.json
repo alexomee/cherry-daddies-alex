@@ -1,7 +1,7 @@
 {
   "pb-other": null,
   "pb-bass": {"stems": ["03_Synth_Bass"]},
-  "players": {"roma": ["04_Piano", "05_Organ", "06_Synth_Strings", "07_Synth_Strings_(treble)", "08_Synth_Lead", "09_Arpeggiator"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["11_Lead_Vocal"], "roma": ["04_Piano", "05_Organ", "06_Synth_Strings", "07_Synth_Strings_(treble)", "08_Synth_Lead", "09_Arpeggiator"]},
   "cues": [
     {"bar": 3,   "text": "Freed from desire keys in", "abs_sec": 3.721},
     {"bar": 10,  "text": "vocal in", "abs_sec": 16.744},

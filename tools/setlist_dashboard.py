@@ -60,7 +60,7 @@ SETS = [
         "subtitle": "",
         "cls": "bis",
         "songs": [
-            ("Мелом", "Пропаганда", None),
+            ("Мелом", "Пропаганда", "Мелом"),
             ("Я сошла с ума", "ТАТУ", "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"),
         ],
     },
@@ -81,8 +81,9 @@ BASS_ASSIGN = {
     "Quest Pistols - Я устал": "Roma",
     "Basshunter - Now You're Gone": "Roma",
     "Rihanna - S&M": "Alex",
-    "Beverly Hills": "Alex",
     "Cascada - Everytime We Touch": "Roma",
+    # на бис
+    "Мелом": "Roma",  # roma plays bass live (players.roma = ['bass'])
 }
 
 
@@ -128,9 +129,15 @@ def song_id(title, folder):
     return folder if folder else "NOFOLDER:" + title
 
 
+def slug_of(sid):
+    """Stable ascii slug for R2 audio keys / URLs. Unguessable (mild privacy)."""
+    import hashlib
+    return hashlib.sha1(sid.encode("utf-8")).hexdigest()[:12]
+
+
 def build_data():
     sets = []
-    counts = {"total": 0, "data": 0, "cues": 0, "playback": 0, "other": 0}
+    counts = {"total": 0, "data": 0, "cues": 0, "playback": 0, "other": 0, "practice": 0}
     for st in SETS:
         songs = []
         for title, artist, folder in st["songs"]:
@@ -164,10 +171,23 @@ def build_data():
             else:
                 other = {"kind": "none"}
 
+            # Mixes available in auto-render/: "all" = full mix (cue_preview.mp3),
+            # then per-player practice mixes (practice-<player>.mp3 = all minus their stems).
+            ar = SONGS / folder / "auto-render"
+            practice = []
+            if (ar / "cue_preview.mp3").is_file():
+                practice.append("all")
+            practice += [
+                p for p in ("alex", "steve", "roma", "tanya")
+                if (ar / f"practice-{p}.mp3").is_file()
+            ]
+            if any(p != "all" for p in practice):
+                counts["practice"] += 1
+
             songs.append({
-                "sid": sid, "title": title, "artist": artist, "hasData": True,
+                "sid": sid, "slug": slug_of(sid), "title": title, "artist": artist, "hasData": True,
                 "cues": {"ready": bool(cues), "count": len(cues)},
-                "bass": bass, "other": other,
+                "bass": bass, "other": other, "practice": practice,
             })
         sets.append({
             "name": st["name"], "subtitle": st["subtitle"], "cls": st["cls"], "songs": songs,
@@ -186,7 +206,8 @@ def main():
     c = data["counts"]
     print(f"wrote {OUT}")
     print(f"  {c['data']}/{c['total']} songs with data · {c['cues']} cues · "
-          f"{c['playback']} bass playback · {c['other']} pb-other")
+          f"{c['playback']} bass playback · {c['other']} pb-other · "
+          f"{c['practice']} with practice mix")
 
 
 if __name__ == "__main__":

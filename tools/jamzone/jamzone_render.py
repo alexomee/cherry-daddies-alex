@@ -729,6 +729,14 @@ def main():
             print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
             #                                            wasted count-in bar — the silent intro bars
             #                                            already carry the click before the music.
+    # forced count-in: songs whose music's own intro starts under the start cue (no clean
+    # count-in space) set "count_in": N to push N whole silent bars in front — the click ticks
+    # them (JZ count-in) and the start cue gets room before the first note. Shifts music+cues+
+    # click together; cue stays anchored to its music bar.
+    ci = int(mix.get("count_in", 0) or 0)
+    if ci and not daw:
+        lead = max(lead, ci * bar)
+        print(f"count_in: forced +{ci} bar(s) of front count-in")
     OFF += lead
     if daw:                                        # render time == stem time (no offset/count-in);
         OFF = 0.0                                  # cue intro words before bar 1.1 get clipped

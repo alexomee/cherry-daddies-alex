@@ -1,11 +1,12 @@
 {
-  "generated": "2026-06-16T15:53:06",
+  "generated": "2026-06-20T10:27:32",
   "counts": {
     "total": 24,
-    "data": 23,
-    "cues": 23,
-    "playback": 11,
-    "other": 18
+    "data": 24,
+    "cues": 24,
+    "playback": 13,
+    "other": 19,
+    "practice": 24
   },
   "sets": [
     {
@@ -15,6 +16,7 @@
       "songs": [
         {
           "sid": "Alice Deejay - Better Off Alone",
+          "slug": "3d16441c6169",
           "title": "Better Off Alone",
           "artist": "Alice Deejay",
           "hasData": true,
@@ -31,10 +33,18 @@
             "items": [
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "A Touch of Class - Around the World (La La La La La)",
+          "slug": "dfa18d189118",
           "title": "Around the World",
           "artist": "ATC",
           "hasData": true,
@@ -51,16 +61,24 @@
             "items": [
               "Backing Vocals"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Shakira - Whenever, Wherever",
+          "slug": "1876a74e9617",
           "title": "Whenever, Wherever",
           "artist": "Shakira",
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 9
+            "count": 12
           },
           "bass": {
             "kind": "playback",
@@ -73,10 +91,18 @@
               "Charango (left)",
               "Charango (right)"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Guru Josh - Infinity 2008",
+          "slug": "38db2519ed89",
           "title": "Infinity 2008",
           "artist": "Guru Josh Project",
           "hasData": true,
@@ -94,10 +120,18 @@
               "Arpeggiator",
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Alexandra Stan - Mr. Saxobeat",
+          "slug": "297f69dca0f1",
           "title": "Mr. Saxobeat",
           "artist": "Alexandra Stan",
           "hasData": true,
@@ -115,10 +149,18 @@
               "Noise effects",
               "Saxophone (reverse)"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
+          "slug": "351bca043e8d",
           "title": "Destination Calabria",
           "artist": "Alex Gaudino",
           "hasData": true,
@@ -136,10 +178,18 @@
               "Sound Effects",
               "Synth Brass"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Coldplay - Adventure of a Lifetime",
+          "slug": "369f5f6cb7e3",
           "title": "Adventure of a Lifetime",
           "artist": "Coldplay",
           "hasData": true,
@@ -161,16 +211,23 @@
               "Backing Vocals",
               "Backing Vocals"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ]
         },
         {
           "sid": "The Weeknd - Blinding Lights",
+          "slug": "ce6a8891a4b7",
           "title": "Blinding Lights",
           "artist": "The Weeknd",
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 7
+            "count": 8
           },
           "bass": {
             "kind": "playback",
@@ -185,10 +242,17 @@
               "Synth Ambiant",
               "Backing Vocals"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Laurent Wolf & Eric Carter - No Stress",
+          "slug": "39c9137c546c",
           "title": "No Stress",
           "artist": "Laurent Wolf",
           "hasData": true,
@@ -205,10 +269,18 @@
             "items": [
               "Synth Ambiant"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Gala - Freed from Desire",
+          "slug": "a234bff4f98d",
           "title": "Freed From Desire",
           "artist": "Gala",
           "hasData": true,
@@ -222,10 +294,17 @@
           },
           "other": {
             "kind": "none"
-          }
+          },
+          "practice": [
+            "all",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Bruno Mars & Mark Ronson - Uptown Funk",
+          "slug": "cc8aac87e388",
           "title": "Uptown Funk",
           "artist": "Mark Ronson",
           "hasData": true,
@@ -246,7 +325,13 @@
               "Noise effects",
               "Backing Vocals"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ]
         }
       ]
     },
@@ -257,6 +342,7 @@
       "songs": [
         {
           "sid": "Demo - Solnyshko",
+          "slug": "c1b741b6747a",
           "title": "Солнышко",
           "artist": "Демо",
           "hasData": true,
@@ -270,10 +356,18 @@
           },
           "other": {
             "kind": "none"
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Band'Eros - Pro krasivuju zhizn'",
+          "slug": "ab33e65bf629",
           "title": "Про красивую жизнь",
           "artist": "Банд'Эрос",
           "hasData": true,
@@ -290,10 +384,18 @@
             "items": [
               "keys-noise"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "SEREBRO - Malo tebya",
+          "slug": "ace2a923452e",
           "title": "Мало тебя",
           "artist": "SEREBRO",
           "hasData": true,
@@ -307,10 +409,18 @@
           },
           "other": {
             "kind": "none"
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Quest Pistols - Я устал",
+          "slug": "cfc3bca52e8c",
           "title": "Я устал",
           "artist": "Quest Pistols",
           "hasData": true,
@@ -319,15 +429,26 @@
             "count": 11
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "live-bass"
           },
           "other": {
-            "kind": "none"
-          }
+            "kind": "layers",
+            "items": [
+              "backing-vocal"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Basshunter - Now You're Gone",
+          "slug": "7988839c0526",
           "title": "Now You're Gone",
           "artist": "Basshunter",
           "hasData": true,
@@ -344,10 +465,18 @@
             "items": [
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Rihanna - S&M",
+          "slug": "3101b8a72732",
           "title": "S&M",
           "artist": "Rihanna",
           "hasData": true,
@@ -362,13 +491,22 @@
           "other": {
             "kind": "stems",
             "items": [
+              "Synthesizer",
               "Backing Vocals 1",
               "Backing Vocals 2"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Beverly Hills",
+          "slug": "06185b95940b",
           "title": "Beverly Hills",
           "artist": "Zivert",
           "hasData": true,
@@ -377,15 +515,22 @@
             "count": 11
           },
           "bass": {
-            "kind": "assign",
-            "who": "Alex"
+            "kind": "playback",
+            "label": "zivert-bass"
           },
           "other": {
             "kind": "none"
-          }
+          },
+          "practice": [
+            "all",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Rihanna & Calvin Harris - We Found Love",
+          "slug": "e2b0f300fbae",
           "title": "We Found Love",
           "artist": "Rihanna",
           "hasData": true,
@@ -402,10 +547,17 @@
             "items": [
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Cascada - Everytime We Touch",
+          "slug": "cadd346666dc",
           "title": "Everytime We Touch",
           "artist": "Cascada",
           "hasData": true,
@@ -427,10 +579,18 @@
               "Synth Pad",
               "Synth Ambiant"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Yeah Yeah Yeahs - Heads Will Roll",
+          "slug": "38c4670831f0",
           "title": "Heads Will Roll",
           "artist": "Yeah Yeah Yeahs",
           "hasData": true,
@@ -447,10 +607,18 @@
             "items": [
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "Icona Pop & Charli XCX - I Love It",
+          "slug": "278090c6fbe3",
           "title": "I Love It",
           "artist": "Icona Pop",
           "hasData": true,
@@ -468,7 +636,14 @@
               "Backing Vocals",
               "Noise effects"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         }
       ]
     },
@@ -478,13 +653,33 @@
       "cls": "bis",
       "songs": [
         {
-          "sid": "NOFOLDER:Мелом",
+          "sid": "Мелом",
+          "slug": "b581fa388c98",
           "title": "Мелом",
           "artist": "Пропаганда",
-          "hasData": false
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ]
         },
         {
           "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+          "slug": "fde163f34bf4",
           "title": "Я сошла с ума",
           "artist": "ТАТУ",
           "hasData": true,
@@ -499,18 +694,21 @@
           "other": {
             "kind": "stems",
             "items": [
-              "Percussion",
               "Noise effects",
               "Noise effects (Wind)",
               "Acoustic Guitar",
-              "Distorted Electric Guitar",
               "Synth Pad",
               "Synth Voice",
               "Synth Lead",
               "String Section",
               "Backing Vocals"
             ]
-          }
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ]
         }
       ]
     }

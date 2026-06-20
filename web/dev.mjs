@@ -2,7 +2,8 @@
 // same handler logic used in production (api/state.js). Uses node:sqlite locally.
 //   node dev.mjs      (needs Node >= 22.5; you have 24)
 import http from "node:http";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
+import { createReadStream } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { getState, putState } from "./api/state.js";
@@ -40,6 +41,45 @@ const server = http.createServer(async (req, res) => {
       }
     } catch (e) {
       send(res, 500, JSON.stringify({ error: String((e && e.message) || e) }), MIME[".json"]);
+    }
+    return;
+  }
+
+  // practice-mix audio: /audio?sid=<folder>&p=alex|roma  ->  music/songs/<folder>/auto-render/practice-<p>.mp3
+  // (local dev only; renders are not uploaded — see CLAUDE.md)
+  if (url.pathname === "/audio") {
+    const sid = url.searchParams.get("sid") || "";
+    const player = url.searchParams.get("p") || "";
+    if (!/^(all|alex|steve|roma|tanya)$/.test(player)) return send(res, 400, "bad player");
+    const MUSIC = path.resolve(ROOT, "..", "music", "songs");
+    const fp = player === "all"
+      ? path.join(MUSIC, sid, "auto-render", "cue_preview.mp3")
+      : path.join(MUSIC, sid, "auto-render", `practice-${player}.mp3`);
+    if (!fp.startsWith(MUSIC + path.sep)) return send(res, 403, "forbidden");
+    let st;
+    try { st = await stat(fp); } catch { return send(res, 404, "no mix"); }
+    const total = st.size;
+    res.setHeader("content-type", "audio/mpeg");
+    res.setHeader("accept-ranges", "bytes");
+    const range = req.headers.range;
+    if (range) {
+      const m = /bytes=(\d*)-(\d*)/.exec(range) || [];
+      let start = m[1] ? parseInt(m[1], 10) : 0;
+      let end = m[2] ? parseInt(m[2], 10) : total - 1;
+      if (isNaN(start) || start < 0) start = 0;
+      if (isNaN(end) || end >= total) end = total - 1;
+      if (start > end) {
+        res.statusCode = 416;
+        res.setHeader("content-range", `bytes */${total}`);
+        return res.end();
+      }
+      res.statusCode = 206;
+      res.setHeader("content-range", `bytes ${start}-${end}/${total}`);
+      res.setHeader("content-length", end - start + 1);
+      createReadStream(fp, { start, end }).pipe(res);
+    } else {
+      res.setHeader("content-length", total);
+      createReadStream(fp).pipe(res);
     }
     return;
   }
