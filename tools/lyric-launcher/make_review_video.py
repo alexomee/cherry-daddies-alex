@@ -145,6 +145,10 @@ def main():
     ap.add_argument("--out", help="default <factory>/auto-render/<NN>-lyric-review.mp4")
     ap.add_argument("--song-dir", help="override the audio folder (for static songs "
                     "whose songs.tsv factory_dir is blank; expects <dir>/auto-render/)")
+    ap.add_argument("--fit-audio", action="store_true",
+                    help="if the clip mp4 drifts from all.wav (e.g. after a trailing-"
+                    "silence re-render), use a black canvas at the audio length instead "
+                    "of refusing; lyric .ass timing is front-anchored so it stays in sync")
     args = ap.parse_args()
 
     nn, title, fac, source = resolve(args.song)
@@ -164,23 +168,40 @@ def main():
     out = args.out or os.path.join(ar, f"{nn:02d}-lyric-review.mp4")
 
     with tempfile.TemporaryDirectory() as tmp:
-        # canvas: timed clips reuse the stage mp4 (same render timeline; guard drift);
-        # static clips are a 6s still -> make a black canvas at song length instead.
-        if source == "static":
-            canvas = os.path.join(tmp, "canvas.mp4")
+        def black_canvas():
+            c = os.path.join(tmp, "canvas.mp4")
             subprocess.run(
                 ["ffmpeg", "-y", "-hide_banner", "-loglevel", "error",
                  "-f", "lavfi", "-i", f"color=c=black:s=1280x720:d={da:.3f}:r=30",
-                 "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an", canvas], check=True)
+                 "-c:v", "libx264", "-pix_fmt", "yuv420p", "-an", c], check=True)
+            return c
+
+        # canvas: timed clips reuse the stage mp4 (same render timeline; guard drift);
+        # static clips (+ the --fit-audio fallback) use a black canvas at song length.
+        # The stage mp4 IS just a black canvas overlaid with the .ass at runtime, so a
+        # regenerated black canvas + the same .ass is visually identical — only the
+        # canvas LENGTH differs. The lyric .ass is front-anchored (offset_sec), so a
+        # trailing-silence trim that shortens all.wav leaves every lyric line's timing
+        # correct; the drift is a cosmetic tail (the song-length Title bar). --fit-audio
+        # proceeds on that drift with a black canvas at the (trimmed) audio length.
+        if source == "static":
+            canvas = black_canvas()
         else:
             if not os.path.exists(mp4):
                 sys.exit(f"missing: {mp4}")
             dv = duration(mp4)
             if abs(da - dv) > 0.25:
-                sys.exit(f"clip {nn:02d}.mp4 ({dv:.3f}s) and all.wav ({da:.3f}s) differ by "
-                         f"{abs(da - dv):.3f}s -> timelines drifted; re-render the clip "
-                         f"(make_song_clip.py) before reviewing.")
-            canvas = mp4
+                if args.fit_audio:
+                    print(f"note: clip {nn:02d}.mp4 ({dv:.3f}s) vs all.wav ({da:.3f}s) "
+                          f"differ {abs(da - dv):.3f}s -> --fit-audio: black canvas at "
+                          f"audio length (lyric timing unaffected; trailing-trim tail).")
+                    canvas = black_canvas()
+                else:
+                    sys.exit(f"clip {nn:02d}.mp4 ({dv:.3f}s) and all.wav ({da:.3f}s) differ by "
+                             f"{abs(da - dv):.3f}s -> timelines drifted; re-render the clip "
+                             f"(make_song_clip.py) or pass --fit-audio before reviewing.")
+            else:
+                canvas = mp4
 
         if args.audio == "mix":
             audio, note = cuemix_wav(ar, args.cue_db, tmp)
