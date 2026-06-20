@@ -80,7 +80,31 @@ PATCH_FOR_SID = {
     "Yeah Yeah Yeahs - Heads Will Roll":                   "heads will roll.patch",
     "Icona Pop & Charli XCX - I Love It":                  "I dont care.patch",
     "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)":          "tatu.patch",
+    "Мелом":                                               "пропоганда.patch",
 }
+
+# Non-JamZone songs still get a deployed NN clip and MUST be wired. Two kinds,
+# auto-detected by which lyrics source file exists (clip number = set position):
+#   lyrics-timed/NN.tsv   -> "dynamic" — force-aligned timed clip (plays like a
+#                            JamZone clip; review-video reuses the real mp4).
+#   lyrics-manual/NN.txt  -> "static"  — full-text sheet (review-video swaps in a
+#                            black canvas at song length).
+# Both wire (see wire_concert). Pure "manual" = no clip yet -> not wired.
+LYRICS_TIMED = os.path.join(HERE, "lyrics-timed")
+LYRICS_MANUAL = os.path.join(HERE, "lyrics-manual")
+
+
+def _exists_nn(d, pos, ext):
+    return (os.path.exists(os.path.join(d, f"{pos}{ext}"))
+            or os.path.exists(os.path.join(d, f"{pos:02d}{ext}")))
+
+
+def has_timed_clip(pos):    # force-aligned dynamic lyrics
+    return _exists_nn(LYRICS_TIMED, pos, ".tsv")
+
+
+def has_static_sheet(pos):  # full-text static sheet
+    return _exists_nn(LYRICS_MANUAL, pos, ".txt")
 
 
 # --- JamZone decryption (same scheme as make_song_clip.py) -------------------
@@ -240,6 +264,10 @@ def discover():
             # source decision
             if cat and has_tl and has_aw:
                 source = "jamzone"
+            elif has_timed_clip(pos):
+                source = "dynamic"   # force-aligned timed clip (lyrics-timed/NN.tsv)
+            elif has_static_sheet(pos):
+                source = "static"    # full-text sheet clip (lyrics-manual/NN.txt)
             else:
                 source = "manual"
                 if cat and not (has_tl and has_aw):
@@ -263,7 +291,10 @@ def _row(pos, title, source, cat, sid, bed, patch, issues):
     if source == "jamzone":
         cat_out = cat or ""
         fac_out = f"music/songs/{sid}"
-    else:  # manual rows carry no cat/factory per spec
+    elif source == "dynamic":
+        cat_out = ""                    # no JamZone cat; timing from lyrics-timed/
+        fac_out = f"music/songs/{sid}"  # has auto-render -> review-video finds audio
+    else:  # static / manual: static uses --song-dir, manual has no clip
         cat_out = ""
         fac_out = ""
     return {
@@ -288,9 +319,10 @@ def print_table(rows, problems):
     for r in rows:
         print("  ".join(str(r[c]).ljust(widths[c]) for c in COLUMNS))
 
-    nj = sum(1 for r in rows if r["source"] == "jamzone")
-    nm = sum(1 for r in rows if r["source"] == "manual")
-    print(f"\n{len(rows)} songs: {nj} jamzone, {nm} manual")
+    nc = {s: sum(1 for r in rows if r["source"] == s)
+          for s in ("jamzone", "dynamic", "static", "manual")}
+    print(f"\n{len(rows)} songs: {nc['jamzone']} jamzone, {nc['dynamic']} dynamic, "
+          f"{nc['static']} static, {nc['manual']} manual")
 
     if problems:
         print(f"\n--- {len(problems)} row(s) needing attention ---")
@@ -325,7 +357,7 @@ def check():
     problems = []
 
     clips, pcs = {}, {}
-    nj = nm = 0
+    nj = nm = nd = ns = 0
     for r in rows:
         song = r["song"]
         src = r["source"]
@@ -345,6 +377,21 @@ def check():
                     problems.append(f"[{song}] missing {fac}/auto-render/timeline.json")
                 if not os.path.isfile(os.path.join(ar, "all.wav")):
                     problems.append(f"[{song}] missing {fac}/auto-render/all.wav")
+        elif src == "dynamic":
+            nd += 1
+            if r["cat"]:
+                problems.append(f"[{song}] dynamic row should have blank cat (got {r['cat']})")
+            fac = r["factory_dir"]
+            if not fac:
+                problems.append(f"[{song}] dynamic row with empty factory_dir")
+            elif not os.path.isfile(os.path.join(F, fac, "auto-render", "all.wav")):
+                problems.append(f"[{song}] missing {fac}/auto-render/all.wav")
+        elif src == "static":
+            ns += 1
+            if r["cat"]:
+                problems.append(f"[{song}] static row should have blank cat (got {r['cat']})")
+            if r["factory_dir"]:
+                problems.append(f"[{song}] static row should have blank factory_dir (uses --song-dir)")
         elif src == "manual":
             nm += 1
             if r["cat"]:
@@ -385,7 +432,7 @@ def check():
         for p in problems:
             print(f"  {p}")
         sys.exit(1)
-    print(f"manifest OK ({nj} jamzone, {nm} manual)")
+    print(f"manifest OK ({nj} jamzone, {nd} dynamic, {ns} static, {nm} manual)")
 
 
 def main():

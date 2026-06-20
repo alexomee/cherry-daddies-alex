@@ -364,7 +364,7 @@ def main():
     # Parse manifest -> jamzone rows.
     with open(args.tsv, newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
-    jz = [r for r in rows if r.get("source") in ("jamzone", "static")]
+    jz = [r for r in rows if r.get("source") in ("jamzone", "static", "dynamic")]
     skip = {int(x) for x in args.skip_clips.split(",") if x.strip()}
     if skip:
         jz = [r for r in jz if int(r["clip"]) not in skip]
