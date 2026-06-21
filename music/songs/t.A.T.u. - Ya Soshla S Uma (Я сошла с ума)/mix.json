@@ -8,6 +8,7 @@
     {"bar": 6,  "beat": 3, "text": "chorus in", "abs_sec": 17.333},
     {"bar": 14, "beat": 3, "text": "verse in", "abs_sec": 38.667},
     {"bar": 23, "beat": 3, "text": "chorus in", "abs_sec": 62.667},
+    {"bar": 31, "beat": 3, "text": "drums stop", "abs_sec": 84.0},
     {"bar": 33, "beat": 3, "text": "instrumental in", "abs_sec": 89.333},
     {"bar": 41, "beat": 3, "text": "all stop", "abs_sec": 110.667},
     {"bar": 49, "beat": 3, "text": "chorus in", "abs_sec": 132.0},
