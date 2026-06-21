@@ -10,6 +10,7 @@
     {"bar": 34,  "text": "stop and solo in", "abs_sec": 55.775},
     {"bar": 43,  "text": "bass in", "abs_sec": 70.986},
     {"bar": 59,  "text": "stop", "abs_sec": 98.028},
+    {"bar": 59,  "beat": 4, "text": "vocal ready go", "raw": true, "abs_sec": 99.296},
     {"bar": 68,  "text": "bass in", "abs_sec": 113.239},
     {"bar": 75,  "text": "drums stop", "abs_sec": 125.07},
     {"bar": 91,  "beat": 3, "text": "solo in", "abs_sec": 152.958},
