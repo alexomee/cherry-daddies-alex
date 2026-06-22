@@ -50,15 +50,15 @@ TEMPLATE = """<!doctype html><html lang="en"><head>
 <script>
 const songs={songs};
 const p=document.getElementById('p'),L=document.getElementById('list'),now=document.getElementById('now');
-songs.forEach(s=>{{
+songs.forEach(s=>{
  const li=document.createElement('li'),a=document.createElement('a');a.href='#';
  a.innerHTML='<span class="n">'+s.n+'</span><span class="t">'+s.t+'</span>';
- a.onclick=e=>{{e.preventDefault();
+ a.onclick=e=>{e.preventDefault();
   document.querySelectorAll('#list a').forEach(x=>x.classList.remove('active'));
   a.classList.add('active');now.textContent='Now: '+s.n+' '+s.t;
-  p.src=s.u;p.play();window.scrollTo({{top:0,behavior:'smooth'}});}};
+  p.src=s.u;p.play();window.scrollTo({top:0,behavior:'smooth'});};
  li.appendChild(a);L.appendChild(li);
-}});
+});
 </script></body></html>"""
 
 
