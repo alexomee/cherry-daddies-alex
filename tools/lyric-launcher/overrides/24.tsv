@@ -1,0 +1,5 @@
+# t.A.T.u. — Я сошла с ума. The outro is a two-voice duet; the single-thread
+# merge dropped the REPEAT of "Раз, два, после пяти" at ~2:55 and substituted the
+# other voice's "До угла по стене" (both are real tiles, merge picked wrong).
+# Tanya: that line should repeat "Раз, два, после пяти". Keep timing, fix text.
+replace	2:54.7	Раз, два, после пяти

@@ -8,116 +8,38 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
-Style: Now,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
-Style: Next,Arial,42,&H00AAAAAA,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,2,80,80,60,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:04:30.00,Title,,0,0,0,,Adventure of a Lifetime
-Dialogue: 0,0:00:39.92,0:00:42.00,Now,,0,0,0,,Turn your magic on
-Dialogue: 0,0:00:39.92,0:00:42.00,Next,,0,0,120,,Umi she'd say
-Dialogue: 0,0:00:42.00,0:00:44.74,Now,,0,0,0,,Umi she'd say
-Dialogue: 0,0:00:42.00,0:00:44.74,Next,,0,0,120,,Everything you want's a dream away
-Dialogue: 0,0:00:44.74,0:00:48.62,Now,,0,0,0,,Everything you want's a dream away
-Dialogue: 0,0:00:44.74,0:00:48.62,Next,,0,0,120,,And we are legends every day
-Dialogue: 0,0:00:48.62,0:00:52.91,Now,,0,0,0,,And we are legends every day
-Dialogue: 0,0:00:48.62,0:00:52.91,Next,,0,0,120,,That's what she told me
-Dialogue: 0,0:00:52.91,0:00:57.06,Now,,0,0,0,,That's what she told me
-Dialogue: 0,0:00:52.91,0:00:57.06,Next,,0,0,120,,Turn your magic on to me she'd say
-Dialogue: 0,0:00:57.06,0:01:01.88,Now,,0,0,0,,Turn your magic on to me she'd say
-Dialogue: 0,0:00:57.06,0:01:01.88,Next,,0,0,120,,Everything you want's a dream away
-Dialogue: 0,0:01:01.88,0:01:05.76,Now,,0,0,0,,Everything you want's a dream away
-Dialogue: 0,0:01:01.88,0:01:05.76,Next,,0,0,120,,Under this pressure
-Dialogue: 0,0:01:05.76,0:01:07.77,Now,,0,0,0,,Under this pressure
-Dialogue: 0,0:01:05.76,0:01:07.77,Next,,0,0,120,,Under this weight we are diamonds
-Dialogue: 0,0:01:07.77,0:01:11.52,Now,,0,0,0,,Under this weight we are diamonds
-Dialogue: 0,0:01:07.77,0:01:11.52,Next,,0,0,120,,Now I feel my heart beating
-Dialogue: 0,0:01:11.52,0:01:15.81,Now,,0,0,0,,Now I feel my heart beating
-Dialogue: 0,0:01:11.52,0:01:15.81,Next,,0,0,120,,I feel my heart underneath my skin
-Dialogue: 0,0:01:15.81,0:01:19.83,Now,,0,0,0,,I feel my heart underneath my skin
-Dialogue: 0,0:01:15.81,0:01:19.83,Next,,0,0,120,,But I feel my heart beating oh you make me feel
-Dialogue: 0,0:01:19.83,0:01:28.13,Now,,0,0,0,,But I feel my heart beating oh you make me feel
-Dialogue: 0,0:01:19.83,0:01:28.13,Next,,0,0,120,,Like I'm alive again
-Dialogue: 0,0:01:28.13,0:01:37.24,Now,,0,0,0,,Like I'm alive again
-Dialogue: 0,0:01:28.13,0:01:37.24,Next,,0,0,120,,Alive again
-Dialogue: 0,0:01:37.24,0:01:41.52,Now,,0,0,0,,Alive again
-Dialogue: 0,0:01:37.24,0:01:41.52,Next,,0,0,120,,Oh you make me feel like
-Dialogue: 0,0:01:41.52,0:01:45.54,Now,,0,0,0,,Oh you make me feel like
-Dialogue: 0,0:01:41.52,0:01:45.54,Next,,0,0,120,,I'm alive again
-Dialogue: 0,0:01:45.54,0:01:48.49,Now,,0,0,0,,I'm alive again
-Dialogue: 0,0:01:45.54,0:01:48.49,Next,,0,0,120,,Said I can't go on not in this way
-Dialogue: 0,0:01:48.49,0:01:53.31,Now,,0,0,0,,Said I can't go on not in this way
-Dialogue: 0,0:01:48.49,0:01:53.31,Next,,0,0,120,,I'm a dream that died by light of day
-Dialogue: 0,0:01:53.31,0:01:57.06,Now,,0,0,0,,I'm a dream that died by light of day
-Dialogue: 0,0:01:53.31,0:01:57.06,Next,,0,0,120,,Gonna hold up half the sky and say only
-Dialogue: 0,0:01:57.06,0:02:01.75,Now,,0,0,0,,Gonna hold up half the sky and say only
-Dialogue: 0,0:01:57.06,0:02:01.75,Next,,0,0,120,,I own me
-Dialogue: 0,0:02:01.75,0:02:02.95,Now,,0,0,0,,I own me
-Dialogue: 0,0:02:01.75,0:02:02.95,Next,,0,0,120,,And I feel my heart beating
-Dialogue: 0,0:02:02.95,0:02:06.97,Now,,0,0,0,,And I feel my heart beating
-Dialogue: 0,0:02:02.95,0:02:06.97,Next,,0,0,120,,I can feel my heart underneath my skin
-Dialogue: 0,0:02:06.97,0:02:10.99,Now,,0,0,0,,I can feel my heart underneath my skin
-Dialogue: 0,0:02:06.97,0:02:10.99,Next,,0,0,120,,Oh I can feel my heart beating 'cos you make me feel like
-Dialogue: 0,0:02:10.99,0:02:19.82,Now,,0,0,0,,Oh I can feel my heart beating 'cos you make me feel like
-Dialogue: 0,0:02:10.99,0:02:19.82,Next,,0,0,120,,I'm alive again
-Dialogue: 0,0:02:19.82,0:02:28.66,Now,,0,0,0,,I'm alive again
-Dialogue: 0,0:02:19.82,0:02:28.66,Next,,0,0,120,,Alive again
-Dialogue: 0,0:02:28.66,0:02:32.95,Now,,0,0,0,,Alive again
-Dialogue: 0,0:02:28.66,0:02:32.95,Next,,0,0,120,,Oh you make me feel like
-Dialogue: 0,0:02:32.95,0:02:36.96,Now,,0,0,0,,Oh you make me feel like
-Dialogue: 0,0:02:32.95,0:02:36.96,Next,,0,0,120,,I'm alive again
-Dialogue: 0,0:02:36.96,0:02:48.49,Now,,0,0,0,,I'm alive again
-Dialogue: 0,0:02:36.96,0:02:48.49,Next,,0,0,120,,Turn your magic on
-Dialogue: 0,0:02:48.49,0:02:50.63,Now,,0,0,0,,Turn your magic on
-Dialogue: 0,0:02:48.49,0:02:50.63,Next,,0,0,120,,Umi she'd say
-Dialogue: 0,0:02:50.63,0:02:53.31,Now,,0,0,0,,Umi she'd say
-Dialogue: 0,0:02:50.63,0:02:53.31,Next,,0,0,120,,Everything you want's a dream away
-Dialogue: 0,0:02:53.31,0:02:57.19,Now,,0,0,0,,Everything you want's a dream away
-Dialogue: 0,0:02:53.31,0:02:57.19,Next,,0,0,120,,Under this pressure
-Dialogue: 0,0:02:57.19,0:02:59.20,Now,,0,0,0,,Under this pressure
-Dialogue: 0,0:02:57.19,0:02:59.20,Next,,0,0,120,,Under this weight
-Dialogue: 0,0:02:59.20,0:03:01.61,Now,,0,0,0,,Under this weight
-Dialogue: 0,0:02:59.20,0:03:01.61,Next,,0,0,120,,We are diamonds taking shape
-Dialogue: 0,0:03:01.61,0:03:05.90,Now,,0,0,0,,We are diamonds taking shape
-Dialogue: 0,0:03:01.61,0:03:05.90,Next,,0,0,120,,We are diamonds taking shape
-Dialogue: 0,0:03:05.90,0:03:16.08,Now,,0,0,0,,We are diamonds taking shape
-Dialogue: 0,0:03:05.90,0:03:16.08,Next,,0,0,120,,Ooh ooh ooh ooh ooh
-Dialogue: 0,0:03:16.08,0:03:20.36,Now,,0,0,0,,Ooh ooh ooh ooh ooh
-Dialogue: 0,0:03:16.08,0:03:20.36,Next,,0,0,120,,Ooh ooh ooh ooh ooh
-Dialogue: 0,0:03:20.36,0:03:24.65,Now,,0,0,0,,Ooh ooh ooh ooh ooh
-Dialogue: 0,0:03:20.36,0:03:24.65,Next,,0,0,120,,If we've only got this life this adventure oh then
-Dialogue: 0,0:03:24.65,0:03:31.88,Now,,0,0,0,,If we've only got this life this adventure oh then
-Dialogue: 0,0:03:24.65,0:03:31.88,Next,,0,0,120,,I And if we've only got this life you get me through
-Dialogue: 0,0:03:31.88,0:03:41.52,Now,,0,0,0,,I And if we've only got this life you get me through
-Dialogue: 0,0:03:31.88,0:03:41.52,Next,,0,0,120,,And if we've only got this life in this adventure oh then
-Dialogue: 0,0:03:41.52,0:03:49.02,Now,,0,0,0,,And if we've only got this life in this adventure oh then
-Dialogue: 0,0:03:41.52,0:03:49.02,Next,,0,0,120,,I want to share it with you with you
-Dialogue: 0,0:03:49.02,0:03:55.18,Now,,0,0,0,,I want to share it with you with you
-Dialogue: 0,0:03:49.02,0:03:55.18,Next,,0,0,120,,With you
-Dialogue: 0,0:03:55.18,0:03:57.06,Now,,0,0,0,,With you
-Dialogue: 0,0:03:55.18,0:03:57.06,Next,,0,0,120,,Yes with you
-Dialogue: 0,0:03:57.06,0:03:58.93,Now,,0,0,0,,Yes with you
-Dialogue: 0,0:03:57.06,0:03:58.93,Next,,0,0,120,,Yes I do ooh
-Dialogue: 0,0:03:58.93,0:04:01.61,Now,,0,0,0,,Yes I do ooh
-Dialogue: 0,0:03:58.93,0:04:01.61,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:01.61,0:04:03.75,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:01.61,0:04:03.75,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:03.75,0:04:05.89,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:03.75,0:04:05.89,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:05.89,0:04:08.04,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:05.89,0:04:08.04,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:08.04,0:04:10.18,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:08.04,0:04:10.18,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:10.18,0:04:12.32,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:10.18,0:04:12.32,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:12.32,0:04:14.46,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:12.32,0:04:14.46,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:14.46,0:04:16.61,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:14.46,0:04:16.61,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:16.61,0:04:18.75,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:16.61,0:04:18.75,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:18.75,0:04:20.89,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:18.75,0:04:20.89,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:20.89,0:04:23.12,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:04:20.89,0:04:23.12,Next,,0,0,120,,Ooh ooh
-Dialogue: 0,0:04:23.12,0:04:27.82,Now,,0,0,0,,Ooh ooh
-Dialogue: 0,0:00:33.92,0:00:39.92,Next,,0,0,120,,Turn your magic on
+Dialogue: 0,0:00:00.00,0:04:27.86,Title,,0,0,0,,Adventure of a Lifetime
+Dialogue: 0,0:00:34.92,0:00:44.74,Pair,,0,0,0,,Turn your magic on\NUmi she'd say
+Dialogue: 0,0:00:44.74,0:00:52.91,Pair,,0,0,0,,Everything you want's a dream away\NAnd we are legends every day
+Dialogue: 0,0:00:52.91,0:01:01.88,Pair,,0,0,0,,That's what she told me\NTurn your magic on to me she'd say
+Dialogue: 0,0:01:01.88,0:01:07.77,Pair,,0,0,0,,Everything you want's a dream away\NUnder this pressure
+Dialogue: 0,0:01:07.77,0:01:15.81,Pair,,0,0,0,,Under this weight we are diamonds\NNow I feel my heart beating
+Dialogue: 0,0:01:15.81,0:01:28.13,Pair,,0,0,0,,I feel my heart underneath my skin\NBut I feel my heart beating oh you make me feel
+Dialogue: 0,0:01:28.13,0:01:37.24,Pair,,0,0,0,,Like I'm alive again
+Dialogue: 0,0:01:37.24,0:01:45.54,Pair,,0,0,0,,Alive again\NOh you make me feel like
+Dialogue: 0,0:01:45.54,0:01:53.31,Pair,,0,0,0,,I'm alive again\NSaid I can't go on not in this way
+Dialogue: 0,0:01:53.31,0:02:01.75,Pair,,0,0,0,,I'm a dream that died by light of day\NGonna hold up half the sky and say only
+Dialogue: 0,0:02:01.75,0:02:06.97,Pair,,0,0,0,,I own me\NAnd I feel my heart beating
+Dialogue: 0,0:02:06.97,0:02:19.82,Pair,,0,0,0,,I can feel my heart underneath my skin\NOh I can feel my heart beating 'cos you make me feel like
+Dialogue: 0,0:02:19.82,0:02:28.66,Pair,,0,0,0,,I'm alive again
+Dialogue: 0,0:02:28.66,0:02:36.96,Pair,,0,0,0,,Alive again\NOh you make me feel like
+Dialogue: 0,0:02:36.96,0:02:48.49,Pair,,0,0,0,,I'm alive again
+Dialogue: 0,0:02:48.49,0:02:53.31,Pair,,0,0,0,,Turn your magic on\NUmi she'd say
+Dialogue: 0,0:02:53.31,0:02:59.20,Pair,,0,0,0,,Everything you want's a dream away\NUnder this pressure
+Dialogue: 0,0:02:59.20,0:03:05.90,Pair,,0,0,0,,Under this weight\NWe are diamonds taking shape
+Dialogue: 0,0:03:05.90,0:03:16.08,Pair,,0,0,0,,We are diamonds taking shape
+Dialogue: 0,0:03:16.08,0:03:24.65,Pair,,0,0,0,,Ooh ooh ooh ooh ooh\NOoh ooh ooh ooh ooh
+Dialogue: 0,0:03:24.65,0:03:31.88,Pair,,0,0,0,,If we've only got this life this adventure oh then
+Dialogue: 0,0:03:31.88,0:03:41.52,Pair,,0,0,0,,I And if we've only got this life you get me through
+Dialogue: 0,0:03:41.52,0:03:49.02,Pair,,0,0,0,,And if we've only got this life in this adventure oh then
+Dialogue: 0,0:03:49.02,0:03:55.18,Pair,,0,0,0,,I want to share it with you with you
+Dialogue: 0,0:03:55.18,0:03:58.93,Pair,,0,0,0,,With you\NYes with you
+Dialogue: 0,0:03:58.93,0:04:03.75,Pair,,0,0,0,,Yes I do ooh\NOoh ooh
+Dialogue: 0,0:04:03.75,0:04:08.04,Pair,,0,0,0,,Ooh ooh\NOoh ooh
+Dialogue: 0,0:04:08.04,0:04:12.32,Pair,,0,0,0,,Ooh ooh\NOoh ooh
+Dialogue: 0,0:04:12.32,0:04:16.61,Pair,,0,0,0,,Ooh ooh\NOoh ooh
+Dialogue: 0,0:04:16.61,0:04:20.89,Pair,,0,0,0,,Ooh ooh\NOoh ooh
+Dialogue: 0,0:04:20.89,0:04:27.82,Pair,,0,0,0,,Ooh ooh\NOoh ooh

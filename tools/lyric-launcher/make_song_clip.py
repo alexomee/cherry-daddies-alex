@@ -152,6 +152,44 @@ def parse_lines_table(path):
     return out
 
 
+def apply_overrides(lines, offset, path):
+    """Surgical per-song line fixes the extraction can't get right on its own —
+    e.g. a duet merge (t.A.T.u.) picking the wrong voice's line for a repeat.
+    overrides/<NN>.tsv rows (tab-separated), <time> = PLAYBACK time the vocalist
+    cites ('m:ss.s' or seconds); '#' lines and blanks ignored:
+        replace <time> <text>   replace the line nearest <time> (KEEP its timing)
+        insert  <time> <text>   add a line starting at <time>
+        delete  <time>          drop the line nearest <time>
+    """
+    lines = list(lines)
+    for raw in open(path, encoding="utf-8"):
+        if not raw.strip() or raw.lstrip().startswith("#"):
+            continue
+        parts = raw.rstrip("\n").split("\t")
+        op = parts[0].strip().lower()
+        ts = parts[1].strip()
+        tstem = parse_time(ts) - offset                  # playback -> stem time
+        text = parts[2].strip() if len(parts) > 2 else ""
+        if op == "insert":
+            lines.append((tstem, tstem + 3.0, text))
+            lines.sort(key=lambda e: e[0])
+            print(f"  override insert @{ts}: {text!r}")
+            continue
+        if not lines:
+            continue
+        i = min(range(len(lines)), key=lambda k: abs(lines[k][0] - tstem))
+        st, en, old = lines[i]
+        if op == "replace":
+            lines[i] = (st, en, text)
+            print(f"  override replace @{ts} (was {old!r}) -> {text!r}")
+        elif op == "delete":
+            del lines[i]
+            print(f"  override delete @{ts}: {old!r}")
+        else:
+            print(f"  override SKIP unknown op {op!r}")
+    return lines
+
+
 def group_lines(words):
     """Break into lines: JamZone capitalises the first word of each lyric line."""
     lines = []
@@ -218,8 +256,7 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
-Style: Now,Arial,62,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
-Style: Next,Arial,42,&H00AAAAAA,&H000000FF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,2,0,2,80,80,60,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
 """
 
 
@@ -236,7 +273,28 @@ def esc(s):
     return s.replace("{", "(").replace("}", ")").replace("\n", " ").strip()
 
 
-def make_ass(path, title, lines, dur, offset):
+def build_pairs(lines, max_gap=6.0):
+    """Page-flip pairing (vocalist asked for two lines at once, less eye-jumping):
+    group consecutive lines two-at-a-time, but NEVER pair across an interval >
+    max_gap seconds to the next line (a section boundary / instrumental break) —
+    that line shows alone so the next pair starts clean on the new section. Odd
+    trailing line = singleton. The metric is the start-to-start interval, which
+    works for both the JamZone path (real syllable times) and the manual --lines
+    path (where each line's end is just the next line's start, so an end-based gap
+    would always be zero and never split)."""
+    pairs, i, n = [], 0, len(lines)
+    while i < n:
+        if i + 1 < n and (lines[i + 1][0] - lines[i][0]) <= max_gap:
+            pairs.append([lines[i], lines[i + 1]]); i += 2
+        else:
+            pairs.append([lines[i]]); i += 1
+    return pairs
+
+
+def make_ass(path, title, lines, dur, offset, lead=5.0, max_gap=6.0):
+    """Two-line page-flip layout: lines shown in pairs (both equal weight, centred);
+    the screen flips once per pair so the eye jumps half as often. Each pair holds
+    until the next pair begins; the first pair gets a `lead`-second read-ahead."""
     body = ASS_HEAD.format(w=W, h=H)
 
     def dlg(start, end, style, text, mv=0):
@@ -245,18 +303,13 @@ def make_ass(path, title, lines, dur, offset):
     body += "[Events]\n"
     body += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
     body += dlg(0, dur, "Title", title)
-    for i, (st, en, tx) in enumerate(lines):
-        s = st + offset
-        nxt = (lines[i + 1][0] + offset) if i + 1 < len(lines) else (en + offset + 3)
-        # current line big, until the next line begins
-        body += dlg(s, nxt, "Now", tx)
-        # preview the upcoming line, dim, below
-        if i + 1 < len(lines):
-            body += dlg(s, nxt, "Next", lines[i + 1][2], mv=120)
-    # pre-roll: show line 1 as a dim preview a few seconds before it starts
-    if lines:
-        s1 = lines[0][0] + offset
-        body += dlg(max(0, s1 - 6), s1, "Next", lines[0][2], mv=120)
+    pairs = build_pairs(lines, max_gap)
+    for k, pr in enumerate(pairs):
+        s = pr[0][0] + offset
+        nxt = (pairs[k + 1][0][0] + offset) if k + 1 < len(pairs) else (pr[-1][1] + offset + 3)
+        if k == 0:                       # read-ahead before the very first line is sung
+            s = max(0, s - lead)
+        body += dlg(s, nxt, "Pair", "\\N".join(p[2] for p in pr))
     with open(path, "w") as f:
         f.write(body)
 
@@ -301,6 +354,9 @@ def main():
         print(f"lead colour(s) {','.join(cols)}: {len(words)} words -> "
               f"{raw} lines -> {len(lines)} packed (no 1-word flashes)")
         print(f"offset_sec {offset:+.4f}  song length {dur:.2f}s")
+    ov = os.path.join(HERE, "overrides", f"{args.index:02d}.tsv")
+    if os.path.exists(ov):
+        lines = apply_overrides(lines, offset, ov)
     for st, en, tx in lines[:6]:
         print(f"  [{t(st+offset)}] {tx}")
 
