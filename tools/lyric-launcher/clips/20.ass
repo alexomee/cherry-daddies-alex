@@ -9,29 +9,52 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
 Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:03:19.44,Title,,0,0,0,,Everytime We Touch
-Dialogue: 0,0:00:00.00,0:00:09.66,Pair,,0,0,0,,I still hear your voice when you sleep next to me
-Dialogue: 0,0:00:09.66,0:00:16.48,Pair,,0,0,0,,I still feel your touch in my dreams
-Dialogue: 0,0:00:16.48,0:00:23.24,Pair,,0,0,0,,Forgive me my weakness but\NI don't know why
-Dialogue: 0,0:00:23.24,0:00:31.06,Pair,,0,0,0,,Without you it's hard to survive 'Cos everytime we touch
-Dialogue: 0,0:00:31.06,0:00:34.23,Pair,,0,0,0,,I get this feeling\NAnd everytime we kiss
-Dialogue: 0,0:00:34.23,0:00:36.34,Pair,,0,0,0,,I swear\NI could fly
-Dialogue: 0,0:00:36.34,0:00:44.59,Pair,,0,0,0,,Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
-Dialogue: 0,0:00:44.59,0:00:47.76,Pair,,0,0,0,,I feel the static\NAnd everytime we kiss
-Dialogue: 0,0:00:47.76,0:00:52.19,Pair,,0,0,0,,I reach for the sky\NCan't you hear my heart beat so?
-Dialogue: 0,0:00:52.19,0:01:39.30,Pair,,0,0,0,,I can't let you go want you in my life
-Dialogue: 0,0:01:39.30,0:01:46.06,Pair,,0,0,0,,Your arms are my castle your heart is my sky
-Dialogue: 0,0:01:46.06,0:01:52.82,Pair,,0,0,0,,They wipe away tears that\NI cry
-Dialogue: 0,0:01:52.82,0:02:00.00,Pair,,0,0,0,,The good and the bad times we've been through them all
-Dialogue: 0,0:02:00.00,0:02:07.39,Pair,,0,0,0,,You make me rise when\NI fall 'Cos everytime we touch
-Dialogue: 0,0:02:07.39,0:02:10.56,Pair,,0,0,0,,I get this feeling\NAnd everytime we kiss
-Dialogue: 0,0:02:10.56,0:02:12.67,Pair,,0,0,0,,I swear\NI could fly
-Dialogue: 0,0:02:12.67,0:02:20.93,Pair,,0,0,0,,Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
-Dialogue: 0,0:02:20.93,0:02:24.09,Pair,,0,0,0,,I feel the static\NAnd everytime we kiss
-Dialogue: 0,0:02:24.09,0:02:28.52,Pair,,0,0,0,,I reach for the sky\NCan't you hear my heart beat so?
-Dialogue: 0,0:02:28.52,0:03:01.48,Pair,,0,0,0,,I can't let you go want you in my life 'Cos everytime we touch
-Dialogue: 0,0:03:01.48,0:03:04.66,Pair,,0,0,0,,I get this feeling\NAnd everytime we kiss
-Dialogue: 0,0:03:04.66,0:03:06.76,Pair,,0,0,0,,I swear\NI could fly
-Dialogue: 0,0:03:06.76,0:03:16.10,Pair,,0,0,0,,Can't you feel my heart beat fast?\NI want this to last need you by my side
+Dialogue: 0,0:00:00.00,0:00:09.66,Pair,,0,0,0,,{\pos(640,285)}I still hear your voice when you sleep next to me
+Dialogue: 0,0:00:00.00,0:00:09.66,Next,,0,0,0,,{\pos(640,475)}I still feel your touch in my dreams
+Dialogue: 0,0:00:09.66,0:00:16.48,Pair,,0,0,0,,{\pos(640,285)}I still feel your touch in my dreams
+Dialogue: 0,0:00:09.66,0:00:16.48,Next,,0,0,0,,{\pos(640,475)}Forgive me my weakness but\NI don't know why
+Dialogue: 0,0:00:16.48,0:00:23.24,Pair,,0,0,0,,{\pos(640,285)}Forgive me my weakness but\NI don't know why
+Dialogue: 0,0:00:16.48,0:00:23.24,Next,,0,0,0,,{\pos(640,475)}Without you it's hard to survive 'Cos everytime we touch
+Dialogue: 0,0:00:23.24,0:00:31.06,Pair,,0,0,0,,{\pos(640,285)}Without you it's hard to survive 'Cos everytime we touch
+Dialogue: 0,0:00:23.24,0:00:31.06,Next,,0,0,0,,{\pos(640,475)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:00:31.06,0:00:34.23,Pair,,0,0,0,,{\pos(640,285)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:00:31.06,0:00:34.23,Next,,0,0,0,,{\pos(640,475)}I swear\NI could fly
+Dialogue: 0,0:00:34.23,0:00:36.34,Pair,,0,0,0,,{\pos(640,285)}I swear\NI could fly
+Dialogue: 0,0:00:34.23,0:00:36.34,Next,,0,0,0,,{\pos(640,475)}Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
+Dialogue: 0,0:00:36.34,0:00:44.59,Pair,,0,0,0,,{\pos(640,285)}Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
+Dialogue: 0,0:00:36.34,0:00:44.59,Next,,0,0,0,,{\pos(640,475)}I feel the static\NAnd everytime we kiss
+Dialogue: 0,0:00:44.59,0:00:47.76,Pair,,0,0,0,,{\pos(640,285)}I feel the static\NAnd everytime we kiss
+Dialogue: 0,0:00:44.59,0:00:47.76,Next,,0,0,0,,{\pos(640,475)}I reach for the sky\NCan't you hear my heart beat so?
+Dialogue: 0,0:00:47.76,0:00:52.19,Pair,,0,0,0,,{\pos(640,285)}I reach for the sky\NCan't you hear my heart beat so?
+Dialogue: 0,0:00:47.76,0:00:52.19,Next,,0,0,0,,{\pos(640,475)}I can't let you go want you in my life
+Dialogue: 0,0:00:52.19,0:01:39.30,Pair,,0,0,0,,{\pos(640,285)}I can't let you go want you in my life
+Dialogue: 0,0:00:52.19,0:01:39.30,Next,,0,0,0,,{\pos(640,475)}Your arms are my castle your heart is my sky
+Dialogue: 0,0:01:39.30,0:01:46.06,Pair,,0,0,0,,{\pos(640,285)}Your arms are my castle your heart is my sky
+Dialogue: 0,0:01:39.30,0:01:46.06,Next,,0,0,0,,{\pos(640,475)}They wipe away tears that\NI cry
+Dialogue: 0,0:01:46.06,0:01:52.82,Pair,,0,0,0,,{\pos(640,285)}They wipe away tears that\NI cry
+Dialogue: 0,0:01:46.06,0:01:52.82,Next,,0,0,0,,{\pos(640,475)}The good and the bad times we've been through them all
+Dialogue: 0,0:01:52.82,0:02:00.00,Pair,,0,0,0,,{\pos(640,285)}The good and the bad times we've been through them all
+Dialogue: 0,0:01:52.82,0:02:00.00,Next,,0,0,0,,{\pos(640,475)}You make me rise when\NI fall 'Cos everytime we touch
+Dialogue: 0,0:02:00.00,0:02:07.39,Pair,,0,0,0,,{\pos(640,285)}You make me rise when\NI fall 'Cos everytime we touch
+Dialogue: 0,0:02:00.00,0:02:07.39,Next,,0,0,0,,{\pos(640,475)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:02:07.39,0:02:10.56,Pair,,0,0,0,,{\pos(640,285)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:02:07.39,0:02:10.56,Next,,0,0,0,,{\pos(640,475)}I swear\NI could fly
+Dialogue: 0,0:02:10.56,0:02:12.67,Pair,,0,0,0,,{\pos(640,285)}I swear\NI could fly
+Dialogue: 0,0:02:10.56,0:02:12.67,Next,,0,0,0,,{\pos(640,475)}Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
+Dialogue: 0,0:02:12.67,0:02:20.93,Pair,,0,0,0,,{\pos(640,285)}Can't you feel my heart beat fast?\NI want this to last need you by my side 'Cos everytime we touch
+Dialogue: 0,0:02:12.67,0:02:20.93,Next,,0,0,0,,{\pos(640,475)}I feel the static\NAnd everytime we kiss
+Dialogue: 0,0:02:20.93,0:02:24.09,Pair,,0,0,0,,{\pos(640,285)}I feel the static\NAnd everytime we kiss
+Dialogue: 0,0:02:20.93,0:02:24.09,Next,,0,0,0,,{\pos(640,475)}I reach for the sky\NCan't you hear my heart beat so?
+Dialogue: 0,0:02:24.09,0:02:28.52,Pair,,0,0,0,,{\pos(640,285)}I reach for the sky\NCan't you hear my heart beat so?
+Dialogue: 0,0:02:24.09,0:02:28.52,Next,,0,0,0,,{\pos(640,475)}I can't let you go want you in my life 'Cos everytime we touch
+Dialogue: 0,0:02:28.52,0:03:01.48,Pair,,0,0,0,,{\pos(640,285)}I can't let you go want you in my life 'Cos everytime we touch
+Dialogue: 0,0:02:28.52,0:03:01.48,Next,,0,0,0,,{\pos(640,475)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:03:01.48,0:03:04.66,Pair,,0,0,0,,{\pos(640,285)}I get this feeling\NAnd everytime we kiss
+Dialogue: 0,0:03:01.48,0:03:04.66,Next,,0,0,0,,{\pos(640,475)}I swear\NI could fly
+Dialogue: 0,0:03:04.66,0:03:06.76,Pair,,0,0,0,,{\pos(640,285)}I swear\NI could fly
+Dialogue: 0,0:03:04.66,0:03:06.76,Next,,0,0,0,,{\pos(640,475)}Can't you feel my heart beat fast?\NI want this to last need you by my side
+Dialogue: 0,0:03:06.76,0:03:16.10,Pair,,0,0,0,,{\pos(640,285)}Can't you feel my heart beat fast?\NI want this to last need you by my side

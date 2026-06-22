@@ -9,27 +9,48 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
 Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:03:18.17,Title,,0,0,0,,Whenever, Wherever
-Dialogue: 0,0:00:15.92,0:00:25.75,Pair,,0,0,0,,Lucky you were born that far away so we could both make fun of distance\NLucky that
-Dialogue: 0,0:00:25.75,0:00:30.84,Pair,,0,0,0,,I love a foreign man for the lucky fact of your existence\NBaby I would climb the
-Dialogue: 0,0:00:30.84,0:00:38.55,Pair,,0,0,0,,Andes solely to count the freckles on your body\NNever could imagine there were only ten million ways to love somebody
-Dialogue: 0,0:00:38.55,0:00:45.15,Pair,,0,0,0,,Leh roh loh leh loh leh leh loh loh leh loh leh\NCan't you see
-Dialogue: 0,0:00:45.15,0:00:51.76,Pair,,0,0,0,,I'm at your feet\NWhenever, wherever we're meant to be together
-Dialogue: 0,0:00:51.76,0:01:00.57,Pair,,0,0,0,,I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you'll never have to wonder
-Dialogue: 0,0:01:00.57,0:01:15.97,Pair,,0,0,0,,We can always play by ear but that's the deal my dear
-Dialogue: 0,0:01:15.97,0:01:20.39,Pair,,0,0,0,,Lucky that my lips not only mumble\NThey spill kisses like a fountain
-Dialogue: 0,0:01:20.39,0:01:28.37,Pair,,0,0,0,,Lucky that my breasts are small and humble so you don't confuse them with mountains\NLucky I have strong legs like my mother to run for cover when
-Dialogue: 0,0:01:28.37,0:01:31.53,Pair,,0,0,0,,I need it\NAnd these two eyes that for no other
-Dialogue: 0,0:01:31.53,0:01:38.00,Pair,,0,0,0,,The day you leave will cry a river\NLeh roh loh leh loh leh leh roh loh leh loh leh
-Dialogue: 0,0:01:38.00,0:01:42.67,Pair,,0,0,0,,At your feet\NI'm at your feet
-Dialogue: 0,0:01:42.67,0:01:51.49,Pair,,0,0,0,,Whenever, Wherever we're meant to be together\NI'll be there and you'll be near and that's the deal my dear
-Dialogue: 0,0:01:51.49,0:02:08.83,Pair,,0,0,0,,There over, hereunder you'll never have to wonder\NWe can always play by ear but that's the deal my dear
-Dialogue: 0,0:02:08.83,0:02:17.64,Pair,,0,0,0,,Leh roh loh leh loh leh leh roh loh leh loh leh\NThink out loud say it again
-Dialogue: 0,0:02:17.64,0:02:28.91,Pair,,0,0,0,,Leh roh loh leh loh leh loh leh\NTell me one more time that you'll live lost in my eyes
-Dialogue: 0,0:02:28.91,0:02:37.72,Pair,,0,0,0,,Whenever, wherever we'll meant to be together\NI'll be there and you'll be near and that's the deal my dear
-Dialogue: 0,0:02:37.72,0:02:45.71,Pair,,0,0,0,,There over, hereunder you've got me head over heels\NThere's nothing left to fear if you really feel the way
-Dialogue: 0,0:02:45.71,0:02:50.66,Pair,,0,0,0,,I feel\NWhenever, wherever we're meant to be together
-Dialogue: 0,0:02:50.66,0:02:59.75,Pair,,0,0,0,,I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you've got me head over heels
-Dialogue: 0,0:02:59.75,0:03:07.28,Pair,,0,0,0,,There's nothing left to fear if you really feel the way\NI feel
+Dialogue: 0,0:00:15.92,0:00:25.75,Pair,,0,0,0,,{\pos(640,285)}Lucky you were born that far away so we could both make fun of distance\NLucky that
+Dialogue: 0,0:00:15.92,0:00:25.75,Next,,0,0,0,,{\pos(640,475)}I love a foreign man for the lucky fact of your existence\NBaby I would climb the
+Dialogue: 0,0:00:25.75,0:00:30.84,Pair,,0,0,0,,{\pos(640,285)}I love a foreign man for the lucky fact of your existence\NBaby I would climb the
+Dialogue: 0,0:00:25.75,0:00:30.84,Next,,0,0,0,,{\pos(640,475)}Andes solely to count the freckles on your body\NNever could imagine there were only ten million ways to love somebody
+Dialogue: 0,0:00:30.84,0:00:38.55,Pair,,0,0,0,,{\pos(640,285)}Andes solely to count the freckles on your body\NNever could imagine there were only ten million ways to love somebody
+Dialogue: 0,0:00:30.84,0:00:38.55,Next,,0,0,0,,{\pos(640,475)}Leh roh loh leh loh leh leh loh loh leh loh leh\NCan't you see
+Dialogue: 0,0:00:38.55,0:00:45.15,Pair,,0,0,0,,{\pos(640,285)}Leh roh loh leh loh leh leh loh loh leh loh leh\NCan't you see
+Dialogue: 0,0:00:38.55,0:00:45.15,Next,,0,0,0,,{\pos(640,475)}I'm at your feet\NWhenever, wherever we're meant to be together
+Dialogue: 0,0:00:45.15,0:00:51.76,Pair,,0,0,0,,{\pos(640,285)}I'm at your feet\NWhenever, wherever we're meant to be together
+Dialogue: 0,0:00:45.15,0:00:51.76,Next,,0,0,0,,{\pos(640,475)}I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you'll never have to wonder
+Dialogue: 0,0:00:51.76,0:01:00.57,Pair,,0,0,0,,{\pos(640,285)}I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you'll never have to wonder
+Dialogue: 0,0:00:51.76,0:01:00.57,Next,,0,0,0,,{\pos(640,475)}We can always play by ear but that's the deal my dear
+Dialogue: 0,0:01:00.57,0:01:15.97,Pair,,0,0,0,,{\pos(640,285)}We can always play by ear but that's the deal my dear
+Dialogue: 0,0:01:00.57,0:01:15.97,Next,,0,0,0,,{\pos(640,475)}Lucky that my lips not only mumble\NThey spill kisses like a fountain
+Dialogue: 0,0:01:15.97,0:01:20.39,Pair,,0,0,0,,{\pos(640,285)}Lucky that my lips not only mumble\NThey spill kisses like a fountain
+Dialogue: 0,0:01:15.97,0:01:20.39,Next,,0,0,0,,{\pos(640,475)}Lucky that my breasts are small and humble so you don't confuse them with mountains\NLucky I have strong legs like my mother to run for cover when
+Dialogue: 0,0:01:20.39,0:01:28.37,Pair,,0,0,0,,{\pos(640,285)}Lucky that my breasts are small and humble so you don't confuse them with mountains\NLucky I have strong legs like my mother to run for cover when
+Dialogue: 0,0:01:20.39,0:01:28.37,Next,,0,0,0,,{\pos(640,475)}I need it\NAnd these two eyes that for no other
+Dialogue: 0,0:01:28.37,0:01:31.53,Pair,,0,0,0,,{\pos(640,285)}I need it\NAnd these two eyes that for no other
+Dialogue: 0,0:01:28.37,0:01:31.53,Next,,0,0,0,,{\pos(640,475)}The day you leave will cry a river\NLeh roh loh leh loh leh leh roh loh leh loh leh
+Dialogue: 0,0:01:31.53,0:01:38.00,Pair,,0,0,0,,{\pos(640,285)}The day you leave will cry a river\NLeh roh loh leh loh leh leh roh loh leh loh leh
+Dialogue: 0,0:01:31.53,0:01:38.00,Next,,0,0,0,,{\pos(640,475)}At your feet\NI'm at your feet
+Dialogue: 0,0:01:38.00,0:01:42.67,Pair,,0,0,0,,{\pos(640,285)}At your feet\NI'm at your feet
+Dialogue: 0,0:01:38.00,0:01:42.67,Next,,0,0,0,,{\pos(640,475)}Whenever, Wherever we're meant to be together\NI'll be there and you'll be near and that's the deal my dear
+Dialogue: 0,0:01:42.67,0:01:51.49,Pair,,0,0,0,,{\pos(640,285)}Whenever, Wherever we're meant to be together\NI'll be there and you'll be near and that's the deal my dear
+Dialogue: 0,0:01:42.67,0:01:51.49,Next,,0,0,0,,{\pos(640,475)}There over, hereunder you'll never have to wonder\NWe can always play by ear but that's the deal my dear
+Dialogue: 0,0:01:51.49,0:02:08.83,Pair,,0,0,0,,{\pos(640,285)}There over, hereunder you'll never have to wonder\NWe can always play by ear but that's the deal my dear
+Dialogue: 0,0:01:51.49,0:02:08.83,Next,,0,0,0,,{\pos(640,475)}Leh roh loh leh loh leh leh roh loh leh loh leh\NThink out loud say it again
+Dialogue: 0,0:02:08.83,0:02:17.64,Pair,,0,0,0,,{\pos(640,285)}Leh roh loh leh loh leh leh roh loh leh loh leh\NThink out loud say it again
+Dialogue: 0,0:02:08.83,0:02:17.64,Next,,0,0,0,,{\pos(640,475)}Leh roh loh leh loh leh loh leh\NTell me one more time that you'll live lost in my eyes
+Dialogue: 0,0:02:17.64,0:02:28.91,Pair,,0,0,0,,{\pos(640,285)}Leh roh loh leh loh leh loh leh\NTell me one more time that you'll live lost in my eyes
+Dialogue: 0,0:02:17.64,0:02:28.91,Next,,0,0,0,,{\pos(640,475)}Whenever, wherever we'll meant to be together\NI'll be there and you'll be near and that's the deal my dear
+Dialogue: 0,0:02:28.91,0:02:37.72,Pair,,0,0,0,,{\pos(640,285)}Whenever, wherever we'll meant to be together\NI'll be there and you'll be near and that's the deal my dear
+Dialogue: 0,0:02:28.91,0:02:37.72,Next,,0,0,0,,{\pos(640,475)}There over, hereunder you've got me head over heels\NThere's nothing left to fear if you really feel the way
+Dialogue: 0,0:02:37.72,0:02:45.71,Pair,,0,0,0,,{\pos(640,285)}There over, hereunder you've got me head over heels\NThere's nothing left to fear if you really feel the way
+Dialogue: 0,0:02:37.72,0:02:45.71,Next,,0,0,0,,{\pos(640,475)}I feel\NWhenever, wherever we're meant to be together
+Dialogue: 0,0:02:45.71,0:02:50.66,Pair,,0,0,0,,{\pos(640,285)}I feel\NWhenever, wherever we're meant to be together
+Dialogue: 0,0:02:45.71,0:02:50.66,Next,,0,0,0,,{\pos(640,475)}I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you've got me head over heels
+Dialogue: 0,0:02:50.66,0:02:59.75,Pair,,0,0,0,,{\pos(640,285)}I'll be there and you'll be near and that's the deal my dear\NThere over, hereunder you've got me head over heels
+Dialogue: 0,0:02:50.66,0:02:59.75,Next,,0,0,0,,{\pos(640,475)}There's nothing left to fear if you really feel the way\NI feel
+Dialogue: 0,0:02:59.75,0:03:07.28,Pair,,0,0,0,,{\pos(640,285)}There's nothing left to fear if you really feel the way\NI feel

@@ -42,7 +42,7 @@ TEMPLATE = """<!doctype html><html lang="en"><head>
 <video id="p" controls playsinline preload="metadata"></video>
 <header>
  <h1>Cherry Daddies - Lyric Review <span class="ver">{ver}</span></h1>
- <div class="hint">Tap a song to play. Lyrics now show <b>two lines at once</b> &mdash; sing top &rarr; bottom; the screen flips once per pair, clock top-right.<br>
+ <div class="hint">Tap a song to play. Sing the <b>bright two lines</b> (top &rarr; bottom); the <b>grey pair below</b> previews what's next. Clock top-right.<br>
  To request a change, message me the <b>song + M:SS timecode</b> (e.g. "Beverly Hills 3:14 - line should be ...").</div>
  <div class="now" id="now"></div>
 </header>

@@ -257,6 +257,7 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
 Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 """
 
 
@@ -292,13 +293,17 @@ def build_pairs(lines, max_gap=6.0):
 
 
 def make_ass(path, title, lines, dur, offset, lead=5.0, max_gap=6.0):
-    """Two-line page-flip layout: lines shown in pairs (both equal weight, centred);
-    the screen flips once per pair so the eye jumps half as often. Each pair holds
-    until the next pair begins; the first pair gets a `lead`-second read-ahead."""
+    """Two-line page-flip layout: the CURRENT pair (bright, upper) plus the NEXT
+    pair (dimmed, lower) as a read-ahead preview. The screen flips once per pair so
+    the eye jumps half as often; the first pair gets a `lead`-second read-ahead."""
     body = ASS_HEAD.format(w=W, h=H)
+    CUR_Y, NXT_Y = 285, 475          # vertical centres of the current / next-preview pairs
 
-    def dlg(start, end, style, text, mv=0):
-        return f"Dialogue: 0,{t(start)},{t(end)},{style},,0,0,{mv},,{esc(text)}\n"
+    def dlg(start, end, style, text, pos=None):
+        txt = esc(text)
+        if pos:                      # \pos bypasses esc (esc would turn { } into ( ))
+            txt = f"{{\\pos({pos[0]},{pos[1]})}}" + txt
+        return f"Dialogue: 0,{t(start)},{t(end)},{style},,0,0,0,,{txt}\n"
 
     body += "[Events]\n"
     body += "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
@@ -309,7 +314,9 @@ def make_ass(path, title, lines, dur, offset, lead=5.0, max_gap=6.0):
         nxt = (pairs[k + 1][0][0] + offset) if k + 1 < len(pairs) else (pr[-1][1] + offset + 3)
         if k == 0:                       # read-ahead before the very first line is sung
             s = max(0, s - lead)
-        body += dlg(s, nxt, "Pair", "\\N".join(p[2] for p in pr))
+        body += dlg(s, nxt, "Pair", "\\N".join(p[2] for p in pr), pos=(W // 2, CUR_Y))
+        if k + 1 < len(pairs):           # dim preview of the next pair, below
+            body += dlg(s, nxt, "Next", "\\N".join(p[2] for p in pairs[k + 1]), pos=(W // 2, NXT_Y))
     with open(path, "w") as f:
         f.write(body)
 

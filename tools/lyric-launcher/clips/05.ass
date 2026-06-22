@@ -9,36 +9,66 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
 Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:03:16.54,Title,,0,0,0,,Mr. Saxobeat
-Dialogue: 0,0:00:23.35,0:00:30.65,Pair,,0,0,0,,You make me dance\NBring me up
-Dialogue: 0,0:00:30.65,0:00:32.49,Pair,,0,0,0,,Bring me down\NPlay it sweet
-Dialogue: 0,0:00:32.49,0:00:37.27,Pair,,0,0,0,,Make me move like a freak\NMister Saxobeat makes me dance
-Dialogue: 0,0:00:37.27,0:00:39.19,Pair,,0,0,0,,Brings me up\NBrings me down
-Dialogue: 0,0:00:39.19,0:00:42.52,Pair,,0,0,0,,Plays it sweet\NMakes me move like a freak
-Dialogue: 0,0:00:42.52,0:00:44.83,Pair,,0,0,0,,Mister Saxobeat\NYou make me dance
-Dialogue: 0,0:00:44.83,0:00:46.75,Pair,,0,0,0,,Bring me up\NBring me down
-Dialogue: 0,0:00:46.75,0:00:50.07,Pair,,0,0,0,,Play it sweet\NMake me move like a freak
-Dialogue: 0,0:00:50.07,0:00:53.31,Pair,,0,0,0,,Mister Saxobeat makes me dance\NBrings me up
-Dialogue: 0,0:00:53.31,0:00:55.16,Pair,,0,0,0,,Brings me down\NPlays it sweet
-Dialogue: 0,0:00:55.16,0:01:18.66,Pair,,0,0,0,,Makes me move like a freak\NMister Saxobeat
-Dialogue: 0,0:01:18.66,0:01:26.21,Pair,,0,0,0,,Mister Saxobeat
-Dialogue: 0,0:01:26.21,0:01:32.84,Pair,,0,0,0,,Mister Saxobeat\NHey sexy boy set me free
-Dialogue: 0,0:01:32.84,0:01:38.50,Pair,,0,0,0,,Don't be so shy, play with me\NMy dirty boy can't you see that you belong next to me
-Dialogue: 0,0:01:38.50,0:01:42.28,Pair,,0,0,0,,Hey sexy boy set me free\NDon't be so shy, play with me
-Dialogue: 0,0:01:42.28,0:01:47.72,Pair,,0,0,0,,My dirty boy can't you see you are the one\NI need
-Dialogue: 0,0:01:47.72,0:01:50.02,Pair,,0,0,0,,You make me dance\NBring me up
-Dialogue: 0,0:01:50.02,0:01:51.86,Pair,,0,0,0,,Bring me down\NPlay it sweet
-Dialogue: 0,0:01:51.86,0:01:56.64,Pair,,0,0,0,,Make me move like a freak\NMister Saxobeat makes me dance
-Dialogue: 0,0:01:56.64,0:01:58.56,Pair,,0,0,0,,Brings me up\NBrings me down
-Dialogue: 0,0:01:58.56,0:02:42.52,Pair,,0,0,0,,Plays it sweet\NMakes me move like a freak
-Dialogue: 0,0:02:42.52,0:02:44.82,Pair,,0,0,0,,You make me dance\NBring me up
-Dialogue: 0,0:02:44.82,0:02:46.66,Pair,,0,0,0,,Bring me down\NPlay it sweet
-Dialogue: 0,0:02:46.66,0:02:51.44,Pair,,0,0,0,,Make me move like a freak\NMister Saxobeat makes me dance
-Dialogue: 0,0:02:51.44,0:02:53.36,Pair,,0,0,0,,Brings me up\NBrings me down
-Dialogue: 0,0:02:53.36,0:02:57.64,Pair,,0,0,0,,Plays it sweet\NMakes me move like a freak
-Dialogue: 0,0:02:57.64,0:02:59.93,Pair,,0,0,0,,You make me dance\NBring me up
-Dialogue: 0,0:02:59.93,0:03:05.18,Pair,,0,0,0,,Bring me down\NMister Saxobeat
-Dialogue: 0,0:03:05.18,0:03:07.48,Pair,,0,0,0,,You make me dance\NBring me up
-Dialogue: 0,0:03:07.48,0:03:14.31,Pair,,0,0,0,,Bring me down\NMister Saxobeat
+Dialogue: 0,0:00:23.35,0:00:30.65,Pair,,0,0,0,,{\pos(640,285)}You make me dance\NBring me up
+Dialogue: 0,0:00:23.35,0:00:30.65,Next,,0,0,0,,{\pos(640,475)}Bring me down\NPlay it sweet
+Dialogue: 0,0:00:30.65,0:00:32.49,Pair,,0,0,0,,{\pos(640,285)}Bring me down\NPlay it sweet
+Dialogue: 0,0:00:30.65,0:00:32.49,Next,,0,0,0,,{\pos(640,475)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:00:32.49,0:00:37.27,Pair,,0,0,0,,{\pos(640,285)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:00:32.49,0:00:37.27,Next,,0,0,0,,{\pos(640,475)}Brings me up\NBrings me down
+Dialogue: 0,0:00:37.27,0:00:39.19,Pair,,0,0,0,,{\pos(640,285)}Brings me up\NBrings me down
+Dialogue: 0,0:00:37.27,0:00:39.19,Next,,0,0,0,,{\pos(640,475)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:00:39.19,0:00:42.52,Pair,,0,0,0,,{\pos(640,285)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:00:39.19,0:00:42.52,Next,,0,0,0,,{\pos(640,475)}Mister Saxobeat\NYou make me dance
+Dialogue: 0,0:00:42.52,0:00:44.83,Pair,,0,0,0,,{\pos(640,285)}Mister Saxobeat\NYou make me dance
+Dialogue: 0,0:00:42.52,0:00:44.83,Next,,0,0,0,,{\pos(640,475)}Bring me up\NBring me down
+Dialogue: 0,0:00:44.83,0:00:46.75,Pair,,0,0,0,,{\pos(640,285)}Bring me up\NBring me down
+Dialogue: 0,0:00:44.83,0:00:46.75,Next,,0,0,0,,{\pos(640,475)}Play it sweet\NMake me move like a freak
+Dialogue: 0,0:00:46.75,0:00:50.07,Pair,,0,0,0,,{\pos(640,285)}Play it sweet\NMake me move like a freak
+Dialogue: 0,0:00:46.75,0:00:50.07,Next,,0,0,0,,{\pos(640,475)}Mister Saxobeat makes me dance\NBrings me up
+Dialogue: 0,0:00:50.07,0:00:53.31,Pair,,0,0,0,,{\pos(640,285)}Mister Saxobeat makes me dance\NBrings me up
+Dialogue: 0,0:00:50.07,0:00:53.31,Next,,0,0,0,,{\pos(640,475)}Brings me down\NPlays it sweet
+Dialogue: 0,0:00:53.31,0:00:55.16,Pair,,0,0,0,,{\pos(640,285)}Brings me down\NPlays it sweet
+Dialogue: 0,0:00:53.31,0:00:55.16,Next,,0,0,0,,{\pos(640,475)}Makes me move like a freak\NMister Saxobeat
+Dialogue: 0,0:00:55.16,0:01:18.66,Pair,,0,0,0,,{\pos(640,285)}Makes me move like a freak\NMister Saxobeat
+Dialogue: 0,0:00:55.16,0:01:18.66,Next,,0,0,0,,{\pos(640,475)}Mister Saxobeat
+Dialogue: 0,0:01:18.66,0:01:26.21,Pair,,0,0,0,,{\pos(640,285)}Mister Saxobeat
+Dialogue: 0,0:01:18.66,0:01:26.21,Next,,0,0,0,,{\pos(640,475)}Mister Saxobeat\NHey sexy boy set me free
+Dialogue: 0,0:01:26.21,0:01:32.84,Pair,,0,0,0,,{\pos(640,285)}Mister Saxobeat\NHey sexy boy set me free
+Dialogue: 0,0:01:26.21,0:01:32.84,Next,,0,0,0,,{\pos(640,475)}Don't be so shy, play with me\NMy dirty boy can't you see that you belong next to me
+Dialogue: 0,0:01:32.84,0:01:38.50,Pair,,0,0,0,,{\pos(640,285)}Don't be so shy, play with me\NMy dirty boy can't you see that you belong next to me
+Dialogue: 0,0:01:32.84,0:01:38.50,Next,,0,0,0,,{\pos(640,475)}Hey sexy boy set me free\NDon't be so shy, play with me
+Dialogue: 0,0:01:38.50,0:01:42.28,Pair,,0,0,0,,{\pos(640,285)}Hey sexy boy set me free\NDon't be so shy, play with me
+Dialogue: 0,0:01:38.50,0:01:42.28,Next,,0,0,0,,{\pos(640,475)}My dirty boy can't you see you are the one\NI need
+Dialogue: 0,0:01:42.28,0:01:47.72,Pair,,0,0,0,,{\pos(640,285)}My dirty boy can't you see you are the one\NI need
+Dialogue: 0,0:01:42.28,0:01:47.72,Next,,0,0,0,,{\pos(640,475)}You make me dance\NBring me up
+Dialogue: 0,0:01:47.72,0:01:50.02,Pair,,0,0,0,,{\pos(640,285)}You make me dance\NBring me up
+Dialogue: 0,0:01:47.72,0:01:50.02,Next,,0,0,0,,{\pos(640,475)}Bring me down\NPlay it sweet
+Dialogue: 0,0:01:50.02,0:01:51.86,Pair,,0,0,0,,{\pos(640,285)}Bring me down\NPlay it sweet
+Dialogue: 0,0:01:50.02,0:01:51.86,Next,,0,0,0,,{\pos(640,475)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:01:51.86,0:01:56.64,Pair,,0,0,0,,{\pos(640,285)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:01:51.86,0:01:56.64,Next,,0,0,0,,{\pos(640,475)}Brings me up\NBrings me down
+Dialogue: 0,0:01:56.64,0:01:58.56,Pair,,0,0,0,,{\pos(640,285)}Brings me up\NBrings me down
+Dialogue: 0,0:01:56.64,0:01:58.56,Next,,0,0,0,,{\pos(640,475)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:01:58.56,0:02:42.52,Pair,,0,0,0,,{\pos(640,285)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:01:58.56,0:02:42.52,Next,,0,0,0,,{\pos(640,475)}You make me dance\NBring me up
+Dialogue: 0,0:02:42.52,0:02:44.82,Pair,,0,0,0,,{\pos(640,285)}You make me dance\NBring me up
+Dialogue: 0,0:02:42.52,0:02:44.82,Next,,0,0,0,,{\pos(640,475)}Bring me down\NPlay it sweet
+Dialogue: 0,0:02:44.82,0:02:46.66,Pair,,0,0,0,,{\pos(640,285)}Bring me down\NPlay it sweet
+Dialogue: 0,0:02:44.82,0:02:46.66,Next,,0,0,0,,{\pos(640,475)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:02:46.66,0:02:51.44,Pair,,0,0,0,,{\pos(640,285)}Make me move like a freak\NMister Saxobeat makes me dance
+Dialogue: 0,0:02:46.66,0:02:51.44,Next,,0,0,0,,{\pos(640,475)}Brings me up\NBrings me down
+Dialogue: 0,0:02:51.44,0:02:53.36,Pair,,0,0,0,,{\pos(640,285)}Brings me up\NBrings me down
+Dialogue: 0,0:02:51.44,0:02:53.36,Next,,0,0,0,,{\pos(640,475)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:02:53.36,0:02:57.64,Pair,,0,0,0,,{\pos(640,285)}Plays it sweet\NMakes me move like a freak
+Dialogue: 0,0:02:53.36,0:02:57.64,Next,,0,0,0,,{\pos(640,475)}You make me dance\NBring me up
+Dialogue: 0,0:02:57.64,0:02:59.93,Pair,,0,0,0,,{\pos(640,285)}You make me dance\NBring me up
+Dialogue: 0,0:02:57.64,0:02:59.93,Next,,0,0,0,,{\pos(640,475)}Bring me down\NMister Saxobeat
+Dialogue: 0,0:02:59.93,0:03:05.18,Pair,,0,0,0,,{\pos(640,285)}Bring me down\NMister Saxobeat
+Dialogue: 0,0:02:59.93,0:03:05.18,Next,,0,0,0,,{\pos(640,475)}You make me dance\NBring me up
+Dialogue: 0,0:03:05.18,0:03:07.48,Pair,,0,0,0,,{\pos(640,285)}You make me dance\NBring me up
+Dialogue: 0,0:03:05.18,0:03:07.48,Next,,0,0,0,,{\pos(640,475)}Bring me down\NMister Saxobeat
+Dialogue: 0,0:03:07.48,0:03:14.31,Pair,,0,0,0,,{\pos(640,285)}Bring me down\NMister Saxobeat

@@ -9,32 +9,58 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
 Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:03:22.11,Title,,0,0,0,,Blinding Lights
-Dialogue: 0,0:00:25.18,0:00:35.79,Pair,,0,0,0,,I've been tryna call\NI've been on my own for long enough
-Dialogue: 0,0:00:35.79,0:00:41.23,Pair,,0,0,0,,Maybe you can show me how to love\NMaybe
-Dialogue: 0,0:00:41.23,0:00:47.02,Pair,,0,0,0,,I'm going through withdrawals\NYou don't even have to do too much
-Dialogue: 0,0:00:47.02,0:00:53.69,Pair,,0,0,0,,You can turn me on with just a touch\NBaby
-Dialogue: 0,0:00:53.69,0:00:59.30,Pair,,0,0,0,,Sin City's cold and empty\NNo one's around to judge me
-Dialogue: 0,0:00:59.30,0:01:06.85,Pair,,0,0,0,,I can't see clearly when you're go-o-one\NI said, ooh
-Dialogue: 0,0:01:06.85,0:01:11.76,Pair,,0,0,0,,I'm blinded by the lights\NNo, I can't sleep until
-Dialogue: 0,0:01:11.76,0:01:18.07,Pair,,0,0,0,,I feel your touch\NI said, ooh
-Dialogue: 0,0:01:18.07,0:01:21.58,Pair,,0,0,0,,I'm drowning in the night\NOh, when
-Dialogue: 0,0:01:21.58,0:01:25.27,Pair,,0,0,0,,I'm like this you're the one\NI trust
-Dialogue: 0,0:01:25.27,0:01:37.37,Pair,,0,0,0,,Hey, hey, hey
-Dialogue: 0,0:01:37.37,0:01:43.16,Pair,,0,0,0,,I'm running out of time 'Cos\NI can see the sun light up the sky
-Dialogue: 0,0:01:43.16,0:01:48.07,Pair,,0,0,0,,So I hit the road in overdrive\NBaby
-Dialogue: 0,0:01:48.07,0:01:55.44,Pair,,0,0,0,,Oh The city's cold and empty\NNo one's around to judge me
-Dialogue: 0,0:01:55.44,0:02:02.99,Pair,,0,0,0,,I can't see clearly when you're go-o-one\NI said, ooh
-Dialogue: 0,0:02:02.99,0:02:07.90,Pair,,0,0,0,,I'm blinded by the lights\NNo, I can't sleep until
-Dialogue: 0,0:02:07.90,0:02:14.21,Pair,,0,0,0,,I feel your touch\NI said, ooh
-Dialogue: 0,0:02:14.21,0:02:17.72,Pair,,0,0,0,,I'm drowning in the night\NOh, when
-Dialogue: 0,0:02:17.72,0:02:22.46,Pair,,0,0,0,,I'm like this you're the one\NI trust
-Dialogue: 0,0:02:22.46,0:02:28.42,Pair,,0,0,0,,I just coming back to let you know\NI could never say it on the phone
-Dialogue: 0,0:02:28.42,0:02:36.68,Pair,,0,0,0,,Will never let you go this time\NI said, ooh
-Dialogue: 0,0:02:36.68,0:02:41.58,Pair,,0,0,0,,I'm blinded by the lights\NNo, I can't sleep until
-Dialogue: 0,0:02:41.58,0:02:55.09,Pair,,0,0,0,,I feel your touch\NHey, hey, hey
-Dialogue: 0,0:02:55.09,0:03:07.20,Pair,,0,0,0,,Hey, hey, hey
-Dialogue: 0,0:03:07.20,0:03:13.34,Pair,,0,0,0,,I said, ooh\NI'm blinded by the lights
-Dialogue: 0,0:03:13.34,0:03:20.71,Pair,,0,0,0,,No, I can't sleep until\NI feel your touch
+Dialogue: 0,0:00:25.18,0:00:35.79,Pair,,0,0,0,,{\pos(640,285)}I've been tryna call\NI've been on my own for long enough
+Dialogue: 0,0:00:25.18,0:00:35.79,Next,,0,0,0,,{\pos(640,475)}Maybe you can show me how to love\NMaybe
+Dialogue: 0,0:00:35.79,0:00:41.23,Pair,,0,0,0,,{\pos(640,285)}Maybe you can show me how to love\NMaybe
+Dialogue: 0,0:00:35.79,0:00:41.23,Next,,0,0,0,,{\pos(640,475)}I'm going through withdrawals\NYou don't even have to do too much
+Dialogue: 0,0:00:41.23,0:00:47.02,Pair,,0,0,0,,{\pos(640,285)}I'm going through withdrawals\NYou don't even have to do too much
+Dialogue: 0,0:00:41.23,0:00:47.02,Next,,0,0,0,,{\pos(640,475)}You can turn me on with just a touch\NBaby
+Dialogue: 0,0:00:47.02,0:00:53.69,Pair,,0,0,0,,{\pos(640,285)}You can turn me on with just a touch\NBaby
+Dialogue: 0,0:00:47.02,0:00:53.69,Next,,0,0,0,,{\pos(640,475)}Sin City's cold and empty\NNo one's around to judge me
+Dialogue: 0,0:00:53.69,0:00:59.30,Pair,,0,0,0,,{\pos(640,285)}Sin City's cold and empty\NNo one's around to judge me
+Dialogue: 0,0:00:53.69,0:00:59.30,Next,,0,0,0,,{\pos(640,475)}I can't see clearly when you're go-o-one\NI said, ooh
+Dialogue: 0,0:00:59.30,0:01:06.85,Pair,,0,0,0,,{\pos(640,285)}I can't see clearly when you're go-o-one\NI said, ooh
+Dialogue: 0,0:00:59.30,0:01:06.85,Next,,0,0,0,,{\pos(640,475)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:01:06.85,0:01:11.76,Pair,,0,0,0,,{\pos(640,285)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:01:06.85,0:01:11.76,Next,,0,0,0,,{\pos(640,475)}I feel your touch\NI said, ooh
+Dialogue: 0,0:01:11.76,0:01:18.07,Pair,,0,0,0,,{\pos(640,285)}I feel your touch\NI said, ooh
+Dialogue: 0,0:01:11.76,0:01:18.07,Next,,0,0,0,,{\pos(640,475)}I'm drowning in the night\NOh, when
+Dialogue: 0,0:01:18.07,0:01:21.58,Pair,,0,0,0,,{\pos(640,285)}I'm drowning in the night\NOh, when
+Dialogue: 0,0:01:18.07,0:01:21.58,Next,,0,0,0,,{\pos(640,475)}I'm like this you're the one\NI trust
+Dialogue: 0,0:01:21.58,0:01:25.27,Pair,,0,0,0,,{\pos(640,285)}I'm like this you're the one\NI trust
+Dialogue: 0,0:01:21.58,0:01:25.27,Next,,0,0,0,,{\pos(640,475)}Hey, hey, hey
+Dialogue: 0,0:01:25.27,0:01:37.37,Pair,,0,0,0,,{\pos(640,285)}Hey, hey, hey
+Dialogue: 0,0:01:25.27,0:01:37.37,Next,,0,0,0,,{\pos(640,475)}I'm running out of time 'Cos\NI can see the sun light up the sky
+Dialogue: 0,0:01:37.37,0:01:43.16,Pair,,0,0,0,,{\pos(640,285)}I'm running out of time 'Cos\NI can see the sun light up the sky
+Dialogue: 0,0:01:37.37,0:01:43.16,Next,,0,0,0,,{\pos(640,475)}So I hit the road in overdrive\NBaby
+Dialogue: 0,0:01:43.16,0:01:48.07,Pair,,0,0,0,,{\pos(640,285)}So I hit the road in overdrive\NBaby
+Dialogue: 0,0:01:43.16,0:01:48.07,Next,,0,0,0,,{\pos(640,475)}Oh The city's cold and empty\NNo one's around to judge me
+Dialogue: 0,0:01:48.07,0:01:55.44,Pair,,0,0,0,,{\pos(640,285)}Oh The city's cold and empty\NNo one's around to judge me
+Dialogue: 0,0:01:48.07,0:01:55.44,Next,,0,0,0,,{\pos(640,475)}I can't see clearly when you're go-o-one\NI said, ooh
+Dialogue: 0,0:01:55.44,0:02:02.99,Pair,,0,0,0,,{\pos(640,285)}I can't see clearly when you're go-o-one\NI said, ooh
+Dialogue: 0,0:01:55.44,0:02:02.99,Next,,0,0,0,,{\pos(640,475)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:02:02.99,0:02:07.90,Pair,,0,0,0,,{\pos(640,285)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:02:02.99,0:02:07.90,Next,,0,0,0,,{\pos(640,475)}I feel your touch\NI said, ooh
+Dialogue: 0,0:02:07.90,0:02:14.21,Pair,,0,0,0,,{\pos(640,285)}I feel your touch\NI said, ooh
+Dialogue: 0,0:02:07.90,0:02:14.21,Next,,0,0,0,,{\pos(640,475)}I'm drowning in the night\NOh, when
+Dialogue: 0,0:02:14.21,0:02:17.72,Pair,,0,0,0,,{\pos(640,285)}I'm drowning in the night\NOh, when
+Dialogue: 0,0:02:14.21,0:02:17.72,Next,,0,0,0,,{\pos(640,475)}I'm like this you're the one\NI trust
+Dialogue: 0,0:02:17.72,0:02:22.46,Pair,,0,0,0,,{\pos(640,285)}I'm like this you're the one\NI trust
+Dialogue: 0,0:02:17.72,0:02:22.46,Next,,0,0,0,,{\pos(640,475)}I just coming back to let you know\NI could never say it on the phone
+Dialogue: 0,0:02:22.46,0:02:28.42,Pair,,0,0,0,,{\pos(640,285)}I just coming back to let you know\NI could never say it on the phone
+Dialogue: 0,0:02:22.46,0:02:28.42,Next,,0,0,0,,{\pos(640,475)}Will never let you go this time\NI said, ooh
+Dialogue: 0,0:02:28.42,0:02:36.68,Pair,,0,0,0,,{\pos(640,285)}Will never let you go this time\NI said, ooh
+Dialogue: 0,0:02:28.42,0:02:36.68,Next,,0,0,0,,{\pos(640,475)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:02:36.68,0:02:41.58,Pair,,0,0,0,,{\pos(640,285)}I'm blinded by the lights\NNo, I can't sleep until
+Dialogue: 0,0:02:36.68,0:02:41.58,Next,,0,0,0,,{\pos(640,475)}I feel your touch\NHey, hey, hey
+Dialogue: 0,0:02:41.58,0:02:55.09,Pair,,0,0,0,,{\pos(640,285)}I feel your touch\NHey, hey, hey
+Dialogue: 0,0:02:41.58,0:02:55.09,Next,,0,0,0,,{\pos(640,475)}Hey, hey, hey
+Dialogue: 0,0:02:55.09,0:03:07.20,Pair,,0,0,0,,{\pos(640,285)}Hey, hey, hey
+Dialogue: 0,0:02:55.09,0:03:07.20,Next,,0,0,0,,{\pos(640,475)}I said, ooh\NI'm blinded by the lights
+Dialogue: 0,0:03:07.20,0:03:13.34,Pair,,0,0,0,,{\pos(640,285)}I said, ooh\NI'm blinded by the lights
+Dialogue: 0,0:03:07.20,0:03:13.34,Next,,0,0,0,,{\pos(640,475)}No, I can't sleep until\NI feel your touch
+Dialogue: 0,0:03:13.34,0:03:20.71,Pair,,0,0,0,,{\pos(640,285)}No, I can't sleep until\NI feel your touch
