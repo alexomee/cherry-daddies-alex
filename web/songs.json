@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-20T10:27:32",
+  "generated": "2026-07-21T23:34:55",
   "counts": {
-    "total": 24,
-    "data": 24,
-    "cues": 24,
-    "playback": 13,
-    "other": 19,
-    "practice": 24
+    "total": 30,
+    "data": 30,
+    "cues": 30,
+    "playback": 19,
+    "other": 21,
+    "practice": 29
   },
   "sets": [
     {
@@ -22,7 +22,105 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.504,
+                "text": "Better Off Alone all in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 31.537,
+                "text": "drums stop",
+                "bar": 19,
+                "snap": 27.595
+              },
+              {
+                "t": 45.554,
+                "text": "bass in",
+                "bar": 27,
+                "snap": 42.05
+              },
+              {
+                "t": 54.314,
+                "text": "cut off in",
+                "bar": 32,
+                "snap": 50.358
+              },
+              {
+                "t": 59.571,
+                "text": "beat in",
+                "bar": 35,
+                "snap": 56.067
+              },
+              {
+                "t": 74.025,
+                "text": "vocal in",
+                "bar": 43,
+                "snap": 70.521
+              },
+              {
+                "t": 85.852,
+                "text": "keys in",
+                "bar": 50,
+                "snap": 82.348
+              },
+              {
+                "t": 101.621,
+                "text": "lead stop",
+                "bar": 59,
+                "snap": 97.678
+              },
+              {
+                "t": 115.637,
+                "text": "verse in",
+                "bar": 67,
+                "snap": 112.133
+              },
+              {
+                "t": 129.654,
+                "text": "bass-only in",
+                "bar": 75,
+                "snap": 125.712
+              },
+              {
+                "t": 143.671,
+                "text": "lead-and-pad in",
+                "bar": 83,
+                "snap": 139.728
+              },
+              {
+                "t": 152.431,
+                "text": "keep going",
+                "bar": 88,
+                "snap": 149.803
+              },
+              {
+                "t": 157.687,
+                "text": "drums in",
+                "bar": 91,
+                "snap": 154.183
+              },
+              {
+                "t": 171.704,
+                "text": "vocal in",
+                "bar": 99,
+                "snap": 168.2
+              },
+              {
+                "t": 198.861,
+                "text": "outro in",
+                "bar": 114,
+                "snap": 195.357
+              },
+              {
+                "t": 213.754,
+                "text": "end in",
+                "bar": 123,
+                "snap": 209.812
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -40,7 +138,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "e7453d498c",
+            "alex": "be8272c3c1",
+            "steve": "fa13ff468e",
+            "roma": "8d1a001468",
+            "tanya": "b57e044445"
+          }
         },
         {
           "sid": "A Touch of Class - Around the World (La La La La La)",
@@ -50,7 +155,81 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12
+            "count": 12,
+            "list": [
+              {
+                "t": 3.636,
+                "text": "Around the World synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 10.909,
+                "text": "vocal in",
+                "bar": 7,
+                "snap": 7.273
+              },
+              {
+                "t": 25.455,
+                "text": "bass-n-beat in",
+                "bar": 15,
+                "snap": 21.364
+              },
+              {
+                "t": 54.545,
+                "text": "solo in",
+                "bar": 31,
+                "snap": 50.909
+              },
+              {
+                "t": 69.091,
+                "text": "vocal in",
+                "bar": 39,
+                "snap": 65.455
+              },
+              {
+                "t": 83.636,
+                "text": "piano in",
+                "bar": 47,
+                "snap": 80.0
+              },
+              {
+                "t": 127.273,
+                "text": "solo in",
+                "bar": 71,
+                "snap": 123.636
+              },
+              {
+                "t": 141.818,
+                "text": "keys-only in",
+                "bar": 79,
+                "snap": 137.727
+              },
+              {
+                "t": 158.182,
+                "text": "modulation in",
+                "bar": 88,
+                "snap": 154.545
+              },
+              {
+                "t": 187.273,
+                "text": "keep going",
+                "bar": 104,
+                "snap": 184.545
+              },
+              {
+                "t": 201.818,
+                "text": "keys-only in",
+                "bar": 112,
+                "snap": 197.727
+              },
+              {
+                "t": 216.364,
+                "text": "end stop",
+                "bar": 120,
+                "snap": 212.273
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -68,7 +247,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "60f431573e",
+            "alex": "9dbf7245db",
+            "steve": "d14b66cbed",
+            "roma": "ab9600a2aa",
+            "tanya": "3f2e4b4a9a"
+          }
         },
         {
           "sid": "Shakira - Whenever, Wherever",
@@ -78,7 +264,69 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12
+            "count": 12,
+            "list": [
+              {
+                "t": 4.682,
+                "text": "Shakira guitar in ready go",
+                "bar": 2
+              },
+              {
+                "t": 12.122,
+                "text": "all in ready go",
+                "bar": 5
+              },
+              {
+                "t": 20.929,
+                "text": "verse in",
+                "bar": 9
+              },
+              {
+                "t": 45.149,
+                "text": "stop",
+                "bar": 20
+              },
+              {
+                "t": 64.966,
+                "text": "flute in",
+                "bar": 29
+              },
+              {
+                "t": 75.975,
+                "text": "verse in",
+                "bar": 34
+              },
+              {
+                "t": 100.195,
+                "text": "stop",
+                "bar": 45
+              },
+              {
+                "t": 128.819,
+                "text": "bridge in",
+                "bar": 58
+              },
+              {
+                "t": 146.434,
+                "text": "stop",
+                "bar": 66
+              },
+              {
+                "t": 148.636,
+                "text": "all in ready go",
+                "bar": 67
+              },
+              {
+                "t": 172.856,
+                "text": "keep going",
+                "bar": 78
+              },
+              {
+                "t": 190.47,
+                "text": "end stop",
+                "bar": 86
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -98,7 +346,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "1bedefa952",
+            "alex": "222bb2ae09",
+            "steve": "e102beff2a",
+            "roma": "972035491d",
+            "tanya": "a12f1bfe53"
+          }
         },
         {
           "sid": "Guru Josh - Infinity 2008",
@@ -108,17 +363,116 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.75,
+                "text": "Infinity pad in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 12.187,
+                "text": "sax in",
+                "bar": 7,
+                "snap": 8.437
+              },
+              {
+                "t": 22.5,
+                "text": "drums in",
+                "bar": 13,
+                "snap": 18.75
+              },
+              {
+                "t": 41.25,
+                "text": "main in",
+                "bar": 23,
+                "snap": 37.5
+              },
+              {
+                "t": 59.062,
+                "text": "sax in",
+                "bar": 32,
+                "snap": 55.312
+              },
+              {
+                "t": 69.375,
+                "text": "main in",
+                "bar": 38,
+                "snap": 65.625
+              },
+              {
+                "t": 78.75,
+                "text": "main in",
+                "bar": 43,
+                "snap": 75.0
+              },
+              {
+                "t": 88.125,
+                "text": "keep going",
+                "bar": 48,
+                "snap": 85.312
+              },
+              {
+                "t": 97.5,
+                "text": "slow part",
+                "bar": 53,
+                "snap": 94.687
+              },
+              {
+                "t": 105.937,
+                "text": "sax in",
+                "bar": 57,
+                "snap": 102.187
+              },
+              {
+                "t": 116.25,
+                "text": "drums in",
+                "bar": 63,
+                "snap": 112.5
+              },
+              {
+                "t": 135.0,
+                "text": "keys in",
+                "bar": 73,
+                "snap": 131.25
+              },
+              {
+                "t": 144.375,
+                "text": "main in",
+                "bar": 78,
+                "snap": 140.625
+              },
+              {
+                "t": 162.187,
+                "text": "sax in",
+                "bar": 87,
+                "snap": 158.437
+              },
+              {
+                "t": 172.5,
+                "text": "main-with-sax in",
+                "bar": 93,
+                "snap": 168.281
+              },
+              {
+                "t": 191.25,
+                "text": "end stop",
+                "bar": 103,
+                "snap": 187.031
+              }
+            ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "Synth Bass"
           },
           "other": {
             "kind": "stems",
             "items": [
               "Arpeggiator",
-              "Noise effects"
+              "Noise effects",
+              "Synth Keys"
             ]
           },
           "practice": [
@@ -127,7 +481,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "0a8fc4e48f",
+            "alex": "8c5fa74486",
+            "steve": "7283393907",
+            "roma": "116f3a3232",
+            "tanya": "d5f4d105d1"
+          }
         },
         {
           "sid": "Alexandra Stan - Mr. Saxobeat",
@@ -137,7 +498,87 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 13
+            "count": 13,
+            "list": [
+              {
+                "t": 3.78,
+                "text": "Mr Saxobeat sax in ready go",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 18.898,
+                "text": "bass in",
+                "bar": 11,
+                "snap": 15.118
+              },
+              {
+                "t": 28.346,
+                "text": "vocal in",
+                "bar": 16,
+                "snap": 24.567
+              },
+              {
+                "t": 60.472,
+                "text": "alex vocal in",
+                "bar": 33,
+                "snap": 56.087
+              },
+              {
+                "t": 75.591,
+                "text": "chorus melody in",
+                "bar": 41,
+                "snap": 71.228
+              },
+              {
+                "t": 90.709,
+                "text": "verse in",
+                "bar": 49,
+                "snap": 86.929
+              },
+              {
+                "t": 105.827,
+                "text": "stop",
+                "bar": 57,
+                "snap": 101.575
+              },
+              {
+                "t": 122.835,
+                "text": "alex vocal in",
+                "bar": 66,
+                "snap": 118.449
+              },
+              {
+                "t": 137.953,
+                "text": "sax solo in",
+                "bar": 74,
+                "snap": 133.489
+              },
+              {
+                "t": 153.071,
+                "text": "bass in",
+                "bar": 82,
+                "snap": 149.291
+              },
+              {
+                "t": 162.52,
+                "text": "vocal in",
+                "bar": 87,
+                "snap": 158.74
+              },
+              {
+                "t": 177.638,
+                "text": "sax in",
+                "bar": 95,
+                "snap": 173.858
+              },
+              {
+                "t": 192.756,
+                "text": "stop",
+                "bar": 103,
+                "snap": 188.504
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -156,7 +597,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "6ddfca8303",
+            "alex": "4ac4eb6c01",
+            "steve": "78e4df1f69",
+            "roma": "556fdd5816",
+            "tanya": "708cd894b2"
+          }
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
@@ -166,7 +614,99 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 15
+            "count": 15,
+            "list": [
+              {
+                "t": 3.75,
+                "text": "Destination Calabria bass in ready go",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.25,
+                "text": "all in",
+                "bar": 7,
+                "snap": 7.508
+              },
+              {
+                "t": 18.75,
+                "text": "verse in",
+                "bar": 11,
+                "snap": 15.008
+              },
+              {
+                "t": 48.75,
+                "text": "stop",
+                "bar": 27,
+                "snap": 44.538
+              },
+              {
+                "t": 65.63,
+                "text": "verse in",
+                "bar": 36,
+                "snap": 61.878
+              },
+              {
+                "t": 80.63,
+                "text": "more synths in",
+                "bar": 44,
+                "snap": 76.364
+              },
+              {
+                "t": 95.63,
+                "text": "stop",
+                "bar": 52,
+                "snap": 91.418
+              },
+              {
+                "t": 101.25,
+                "text": "all in",
+                "bar": 55,
+                "snap": 97.508
+              },
+              {
+                "t": 116.25,
+                "text": "stop",
+                "bar": 63,
+                "snap": 112.038
+              },
+              {
+                "t": 120.0,
+                "text": "sax solo in",
+                "bar": 65,
+                "snap": 115.574
+              },
+              {
+                "t": 135.71,
+                "text": "crash in",
+                "bar": 73,
+                "snap": 131.958
+              },
+              {
+                "t": 137.58,
+                "text": "vocal in",
+                "bar": 74,
+                "snap": 133.838
+              },
+              {
+                "t": 139.46,
+                "text": "all in",
+                "bar": 75,
+                "snap": 135.708
+              },
+              {
+                "t": 161.96,
+                "text": "outro in",
+                "bar": 87,
+                "snap": 158.208
+              },
+              {
+                "t": 178.36,
+                "text": "end stop",
+                "bar": 96,
+                "snap": 174.148
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -185,7 +725,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "cf18ee3a3e",
+            "alex": "0f4d3c35d3",
+            "steve": "2cf4bac152",
+            "roma": "fa6385daeb",
+            "tanya": "faf9682786"
+          }
         },
         {
           "sid": "Coldplay - Adventure of a Lifetime",
@@ -195,7 +742,87 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 13
+            "count": 13,
+            "list": [
+              {
+                "t": 4.286,
+                "text": "Adventure guitar in ready go",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 20.357,
+                "text": "all in",
+                "bar": 9,
+                "snap": 16.071
+              },
+              {
+                "t": 38.571,
+                "text": "verse in",
+                "bar": 18,
+                "snap": 34.286
+              },
+              {
+                "t": 85.714,
+                "text": "stop",
+                "bar": 40,
+                "snap": 80.893
+              },
+              {
+                "t": 107.143,
+                "text": "verse in",
+                "bar": 50,
+                "snap": 102.857
+              },
+              {
+                "t": 137.143,
+                "text": "stop",
+                "bar": 64,
+                "snap": 132.321
+              },
+              {
+                "t": 140.357,
+                "text": "all in",
+                "bar": 65,
+                "snap": 136.071
+              },
+              {
+                "t": 158.571,
+                "text": "drums stop",
+                "bar": 74,
+                "snap": 153.75
+              },
+              {
+                "t": 184.286,
+                "text": "drums in",
+                "bar": 86,
+                "snap": 180.0
+              },
+              {
+                "t": 188.571,
+                "text": "guitar in",
+                "bar": 88,
+                "snap": 184.286
+              },
+              {
+                "t": 204.643,
+                "text": "vocal in",
+                "bar": 95,
+                "snap": 200.357
+              },
+              {
+                "t": 240.0,
+                "text": "guitar melody ready go",
+                "bar": 112,
+                "snap": 235.714
+              },
+              {
+                "t": 256.607,
+                "text": "stop",
+                "bar": 119,
+                "snap": 251.786
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -217,7 +844,13 @@
             "alex",
             "steve",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "fbb93bc038",
+            "alex": "edeb09d1ec",
+            "steve": "37c2eb57e7",
+            "tanya": "891eff58a0"
+          }
         },
         {
           "sid": "The Weeknd - Blinding Lights",
@@ -227,7 +860,49 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 8
+            "count": 8,
+            "list": [
+              {
+                "t": 2.807,
+                "text": "Blinding Lights synth in ready go",
+                "bar": 3
+              },
+              {
+                "t": 14.035,
+                "text": "drums in",
+                "bar": 11
+              },
+              {
+                "t": 20.0,
+                "text": "melody in",
+                "bar": 15
+              },
+              {
+                "t": 29.474,
+                "text": "verse in",
+                "bar": 22
+              },
+              {
+                "t": 87.018,
+                "text": "keys in",
+                "bar": 63
+              },
+              {
+                "t": 97.544,
+                "text": "verse in",
+                "bar": 70
+              },
+              {
+                "t": 165.614,
+                "text": "keys in",
+                "bar": 119
+              },
+              {
+                "t": 188.07,
+                "text": "drums stop",
+                "bar": 135
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -248,7 +923,13 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "b1ef27e781",
+            "steve": "a1dbddbd9d",
+            "roma": "b3b83684bb",
+            "tanya": "01ef9839ca"
+          }
         },
         {
           "sid": "Laurent Wolf & Eric Carter - No Stress",
@@ -258,7 +939,57 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 8
+            "count": 8,
+            "list": [
+              {
+                "t": 5.538,
+                "text": "No Stress vocal in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 20.308,
+                "text": "beat in",
+                "bar": 11,
+                "snap": 16.615
+              },
+              {
+                "t": 53.538,
+                "text": "main in",
+                "bar": 29,
+                "snap": 49.846
+              },
+              {
+                "t": 60.923,
+                "text": "synth in",
+                "bar": 33,
+                "snap": 57.231
+              },
+              {
+                "t": 97.846,
+                "text": "verse piano in",
+                "bar": 53,
+                "snap": 93.554
+              },
+              {
+                "t": 105.231,
+                "text": "vocal in",
+                "bar": 57,
+                "snap": 101.538
+              },
+              {
+                "t": 156.923,
+                "text": "main in",
+                "bar": 85,
+                "snap": 153.231
+              },
+              {
+                "t": 201.231,
+                "text": "end in",
+                "bar": 109,
+                "snap": 197.077
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -276,7 +1007,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "036533e25a",
+            "alex": "fbeed8536b",
+            "steve": "4b268f7e45",
+            "roma": "0681d05c3f",
+            "tanya": "22cac472ce"
+          }
         },
         {
           "sid": "Gala - Freed from Desire",
@@ -286,7 +1024,89 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.721,
+                "text": "Freed from desire keys in",
+                "bar": 3
+              },
+              {
+                "t": 16.744,
+                "text": "vocal in",
+                "bar": 10
+              },
+              {
+                "t": 18.605,
+                "text": "drums in",
+                "bar": 11
+              },
+              {
+                "t": 33.488,
+                "text": "piano in",
+                "bar": 19
+              },
+              {
+                "t": 55.814,
+                "text": "keep going",
+                "bar": 31
+              },
+              {
+                "t": 63.256,
+                "text": "chorus in",
+                "bar": 35
+              },
+              {
+                "t": 78.14,
+                "text": "solo in",
+                "bar": 43
+              },
+              {
+                "t": 91.163,
+                "text": "verse in",
+                "bar": 50
+              },
+              {
+                "t": 107.907,
+                "text": "piano in",
+                "bar": 59
+              },
+              {
+                "t": 130.233,
+                "text": "break in",
+                "bar": 71
+              },
+              {
+                "t": 137.674,
+                "text": "chorus in",
+                "bar": 75
+              },
+              {
+                "t": 152.558,
+                "text": "solo in",
+                "bar": 83
+              },
+              {
+                "t": 167.442,
+                "text": "bridge in",
+                "bar": 91
+              },
+              {
+                "t": 181.395,
+                "text": "chorus in",
+                "bar": 98
+              },
+              {
+                "t": 197.209,
+                "text": "bass stop",
+                "bar": 107
+              },
+              {
+                "t": 210.233,
+                "text": "end stop",
+                "bar": 114
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -300,7 +1120,13 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "bd0a11c939",
+            "steve": "3dc662ce79",
+            "roma": "da02ad8e98",
+            "tanya": "3f4243c47a"
+          }
         },
         {
           "sid": "Bruno Mars & Mark Ronson - Uptown Funk",
@@ -310,7 +1136,123 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 19
+            "count": 19,
+            "list": [
+              {
+                "t": 4.174,
+                "text": "Uptown Funk all in ready go",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 12.522,
+                "text": "guitar in",
+                "bar": 6,
+                "snap": 8.348
+              },
+              {
+                "t": 20.87,
+                "text": "verse in",
+                "bar": 10,
+                "snap": 16.696
+              },
+              {
+                "t": 37.565,
+                "text": "bass in",
+                "bar": 18,
+                "snap": 33.391
+              },
+              {
+                "t": 68.87,
+                "text": "stop",
+                "bar": 33,
+                "snap": 64.174
+              },
+              {
+                "t": 74.087,
+                "text": "haa",
+                "bar": 35,
+                "snap": 71.478
+              },
+              {
+                "t": 82.435,
+                "text": "haa",
+                "bar": 39,
+                "snap": 79.826
+              },
+              {
+                "t": 96.0,
+                "text": "stop",
+                "bar": 46,
+                "snap": 91.304
+              },
+              {
+                "t": 112.174,
+                "text": "bass in",
+                "bar": 53,
+                "snap": 108.0
+              },
+              {
+                "t": 129.391,
+                "text": "kick-vocal only ready go",
+                "bar": 62,
+                "snap": 125.217
+              },
+              {
+                "t": 144.0,
+                "text": "stop",
+                "bar": 69,
+                "snap": 139.304
+              },
+              {
+                "t": 149.217,
+                "text": "haa",
+                "bar": 71,
+                "snap": 146.609
+              },
+              {
+                "t": 157.565,
+                "text": "haa",
+                "bar": 75,
+                "snap": 154.957
+              },
+              {
+                "t": 171.13,
+                "text": "bridge in",
+                "bar": 82,
+                "snap": 166.957
+              },
+              {
+                "t": 196.174,
+                "text": "guitar in",
+                "bar": 94,
+                "snap": 192.0
+              },
+              {
+                "t": 216.522,
+                "text": "haa",
+                "bar": 103,
+                "snap": 213.913
+              },
+              {
+                "t": 224.348,
+                "text": "haa",
+                "bar": 107,
+                "snap": 221.739
+              },
+              {
+                "t": 237.913,
+                "text": "outro in",
+                "bar": 114,
+                "snap": 233.739
+              },
+              {
+                "t": 270.783,
+                "text": "stop",
+                "bar": 129,
+                "snap": 266.087
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -331,7 +1273,13 @@
             "alex",
             "steve",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "86a28bb254",
+            "alex": "6deb73f930",
+            "steve": "429d8b4d60",
+            "tanya": "a0adb5f93e"
+          }
         }
       ]
     },
@@ -348,11 +1296,108 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 19
+            "count": 19,
+            "list": [
+              {
+                "t": 3.478,
+                "text": "Солнышко all in",
+                "bar": 1
+              },
+              {
+                "t": 15.217,
+                "text": "stop",
+                "bar": 7
+              },
+              {
+                "t": 17.391,
+                "text": "all in",
+                "bar": 9
+              },
+              {
+                "t": 31.304,
+                "text": "alex in",
+                "bar": 17
+              },
+              {
+                "t": 45.217,
+                "text": "verse in",
+                "bar": 25
+              },
+              {
+                "t": 86.957,
+                "text": "arpegiator in",
+                "bar": 49
+              },
+              {
+                "t": 100.87,
+                "text": "more-arpegiator in",
+                "bar": 57
+              },
+              {
+                "t": 128.696,
+                "text": "soft-verse in",
+                "bar": 73
+              },
+              {
+                "t": 135.652,
+                "text": "drum in",
+                "bar": 77
+              },
+              {
+                "t": 142.609,
+                "text": "bass-n-beat in",
+                "bar": 81
+              },
+              {
+                "t": 170.435,
+                "text": "arpegiator in",
+                "bar": 97
+              },
+              {
+                "t": 184.348,
+                "text": "roma only ready go",
+                "bar": 105
+              },
+              {
+                "t": 191.304,
+                "text": "bass in",
+                "bar": 109
+              },
+              {
+                "t": 198.261,
+                "text": "drums in",
+                "bar": 113
+              },
+              {
+                "t": 212.174,
+                "text": "alex in",
+                "bar": 121
+              },
+              {
+                "t": 223.913,
+                "text": "stop",
+                "bar": 127
+              },
+              {
+                "t": 226.087,
+                "text": "chorus in",
+                "bar": 129
+              },
+              {
+                "t": 240.0,
+                "text": "outro-solo in",
+                "bar": 137
+              },
+              {
+                "t": 253.913,
+                "text": "stop",
+                "bar": 145
+              }
+            ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Alex"
+            "kind": "playback",
+            "label": "synth-bass"
           },
           "other": {
             "kind": "none"
@@ -363,7 +1408,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "437006c9fd",
+            "alex": "d7046c1a6c",
+            "steve": "e7d5937f2d",
+            "roma": "4897c52f7c",
+            "tanya": "4d0c54ad60"
+          }
         },
         {
           "sid": "Band'Eros - Pro krasivuju zhizn'",
@@ -373,7 +1425,69 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 10
+            "count": 10,
+            "list": [
+              {
+                "t": 3.36,
+                "text": "Про красивую жизнь all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 18.72,
+                "text": "vocal in",
+                "bar": 9,
+                "snap": 14.88
+              },
+              {
+                "t": 40.8,
+                "text": "all stop",
+                "bar": 21,
+                "snap": 36.48
+              },
+              {
+                "t": 79.2,
+                "text": "all stop",
+                "bar": 41,
+                "snap": 74.88
+              },
+              {
+                "t": 109.44,
+                "text": "keep going",
+                "bar": 57,
+                "snap": 106.56
+              },
+              {
+                "t": 126.72,
+                "text": "rap in",
+                "bar": 66,
+                "snap": 122.88
+              },
+              {
+                "t": 153.6,
+                "text": "all stop",
+                "bar": 80,
+                "snap": 149.28
+              },
+              {
+                "t": 188.16,
+                "text": "instrumental outro",
+                "bar": 98,
+                "snap": 185.28
+              },
+              {
+                "t": 203.52,
+                "text": "keep going",
+                "bar": 106,
+                "snap": 200.64
+              },
+              {
+                "t": 218.4,
+                "text": "end stop",
+                "bar": 113,
+                "snap": 214.08
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -391,7 +1505,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "1c2cbbc3cf",
+            "alex": "325065da6d",
+            "steve": "6e37ba5873",
+            "roma": "5c71bfe54e",
+            "tanya": "c5df2e6ba9"
+          }
         },
         {
           "sid": "SEREBRO - Malo tebya",
@@ -401,7 +1522,89 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Мало тебя guitar in",
+                "bar": 1
+              },
+              {
+                "t": 11.077,
+                "text": "voice in",
+                "bar": 5
+              },
+              {
+                "t": 25.846,
+                "text": "bass in",
+                "bar": 13
+              },
+              {
+                "t": 33.231,
+                "text": "drums in",
+                "bar": 17
+              },
+              {
+                "t": 70.154,
+                "text": "solo in",
+                "bar": 37
+              },
+              {
+                "t": 84.923,
+                "text": "verse in",
+                "bar": 45
+              },
+              {
+                "t": 88.615,
+                "text": "kick in",
+                "bar": 47
+              },
+              {
+                "t": 99.692,
+                "text": "bass in",
+                "bar": 53
+              },
+              {
+                "t": 114.0,
+                "text": "pause in",
+                "bar": 60
+              },
+              {
+                "t": 144.0,
+                "text": "solo in",
+                "bar": 77
+              },
+              {
+                "t": 158.769,
+                "text": "bridge in",
+                "bar": 85
+              },
+              {
+                "t": 169.846,
+                "text": "snare in",
+                "bar": 91
+              },
+              {
+                "t": 175.385,
+                "text": "all stop",
+                "bar": 94
+              },
+              {
+                "t": 177.231,
+                "text": "solo in",
+                "bar": 95
+              },
+              {
+                "t": 192.0,
+                "text": "chorus in",
+                "bar": 103
+              },
+              {
+                "t": 221.538,
+                "text": "all stop",
+                "bar": 119
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -416,7 +1619,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "4a2f9a3269",
+            "alex": "ba213fb465",
+            "steve": "2e89296029",
+            "roma": "63c1875d1d",
+            "tanya": "698094df25"
+          }
         },
         {
           "sid": "Quest Pistols - Я устал",
@@ -426,7 +1636,75 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 11
+            "count": 11,
+            "list": [
+              {
+                "t": 3.871,
+                "text": "Я устал bass in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 7.742,
+                "text": "drums in",
+                "bar": 3,
+                "snap": 3.871
+              },
+              {
+                "t": 27.097,
+                "text": "stop",
+                "bar": 13,
+                "snap": 22.742
+              },
+              {
+                "t": 50.323,
+                "text": "verse in",
+                "bar": 25,
+                "snap": 46.452
+              },
+              {
+                "t": 65.806,
+                "text": "stop",
+                "bar": 33,
+                "snap": 61.452
+              },
+              {
+                "t": 87.097,
+                "text": "keep going",
+                "bar": 44,
+                "snap": 84.194
+              },
+              {
+                "t": 104.516,
+                "text": "stop",
+                "bar": 53,
+                "snap": 100.161
+              },
+              {
+                "t": 107.125,
+                "text": "vocal in",
+                "bar": 54,
+                "snap": 103.855
+              },
+              {
+                "t": 111.795,
+                "text": "drums in",
+                "bar": 55,
+                "snap": 108.525
+              },
+              {
+                "t": 134.505,
+                "text": "chorus in",
+                "bar": 65,
+                "snap": 130.634
+              },
+              {
+                "t": 181.925,
+                "text": "bass-only in",
+                "bar": 90,
+                "snap": 177.57
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -444,7 +1722,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "b750284116",
+            "alex": "f16af22398",
+            "steve": "401e46aed6",
+            "roma": "38edd9cdb7",
+            "tanya": "f6b2995e20"
+          }
         },
         {
           "sid": "Basshunter - Now You're Gone",
@@ -454,7 +1739,87 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 13
+            "count": 13,
+            "list": [
+              {
+                "t": 2.416,
+                "text": "Now you're gone vocal in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 17.716,
+                "text": "drums in",
+                "bar": 12,
+                "snap": 14.495
+              },
+              {
+                "t": 30.6,
+                "text": "stop and solo in",
+                "bar": 20,
+                "snap": 26.574
+              },
+              {
+                "t": 45.095,
+                "text": "drum stop",
+                "bar": 29,
+                "snap": 41.471
+              },
+              {
+                "t": 66.031,
+                "text": "break in",
+                "bar": 42,
+                "snap": 62.81
+              },
+              {
+                "t": 72.474,
+                "text": "stop",
+                "bar": 46,
+                "snap": 68.85
+              },
+              {
+                "t": 75.695,
+                "text": "solo start in",
+                "bar": 48,
+                "snap": 71.808
+              },
+              {
+                "t": 88.579,
+                "text": "stop",
+                "bar": 56,
+                "snap": 84.955
+              },
+              {
+                "t": 90.995,
+                "text": "vocal in",
+                "bar": 57,
+                "snap": 87.773
+              },
+              {
+                "t": 104.684,
+                "text": "bass in",
+                "bar": 66,
+                "snap": 101.463
+              },
+              {
+                "t": 118.373,
+                "text": "vocal-with-solo in",
+                "bar": 74,
+                "snap": 114.347
+              },
+              {
+                "t": 132.063,
+                "text": "keep going",
+                "bar": 83,
+                "snap": 129.647
+              },
+              {
+                "t": 143.337,
+                "text": "end stop",
+                "bar": 90,
+                "snap": 139.713
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -472,7 +1837,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "03987b69a8",
+            "alex": "9c339c1587",
+            "steve": "ceb32d1346",
+            "roma": "3e2da789df",
+            "tanya": "49e32e1ee9"
+          }
         },
         {
           "sid": "Rihanna - S&M",
@@ -482,11 +1854,78 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 13
+            "count": 13,
+            "list": [
+              {
+                "t": 4.688,
+                "text": "S and M vocal in",
+                "bar": 2
+              },
+              {
+                "t": 20.625,
+                "text": "all in",
+                "bar": 11
+              },
+              {
+                "t": 35.625,
+                "text": "verse in",
+                "bar": 19
+              },
+              {
+                "t": 65.625,
+                "text": "chorus in",
+                "bar": 35
+              },
+              {
+                "t": 80.625,
+                "text": "bass in",
+                "bar": 43
+              },
+              {
+                "t": 110.625,
+                "text": "verse in",
+                "bar": 59
+              },
+              {
+                "t": 125.625,
+                "text": "soft chorus",
+                "bar": 67
+              },
+              {
+                "t": 155.625,
+                "text": "synth in",
+                "bar": 83
+              },
+              {
+                "t": 163.125,
+                "text": "bridge in",
+                "bar": 87
+              },
+              {
+                "t": 185.625,
+                "text": "soft chorus",
+                "bar": 99
+              },
+              {
+                "t": 200.625,
+                "text": "all in",
+                "bar": 107
+              },
+              {
+                "t": 230.625,
+                "text": "outro in",
+                "bar": 123
+              },
+              {
+                "t": 243.75,
+                "text": "end in",
+                "bar": 130
+              }
+            ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Alex"
+            "kind": "playback",
+            "label": "Electric Bass"
           },
           "other": {
             "kind": "stems",
@@ -502,7 +1941,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "8cee132c2e",
+            "alex": "d12fbf402f",
+            "steve": "0aa338f0a2",
+            "roma": "0e66dc2716",
+            "tanya": "a2984faaf8"
+          }
         },
         {
           "sid": "Beverly Hills",
@@ -512,7 +1958,81 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 11
+            "count": 12,
+            "list": [
+              {
+                "t": 4.174,
+                "text": "Beverly Hills all in ready go",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 12.514,
+                "text": "vocal in",
+                "bar": 5,
+                "snap": 8.329
+              },
+              {
+                "t": 29.213,
+                "text": "ghost beat ready skip",
+                "bar": 13,
+                "snap": 25.029
+              },
+              {
+                "t": 79.294,
+                "text": "stop",
+                "bar": 37,
+                "snap": 74.607
+              },
+              {
+                "t": 81.372,
+                "text": "all in",
+                "bar": 38,
+                "snap": 77.207
+              },
+              {
+                "t": 98.074,
+                "text": "ghost beat ready skip",
+                "bar": 46,
+                "snap": 93.906
+              },
+              {
+                "t": 114.774,
+                "text": "stop",
+                "bar": 54,
+                "snap": 110.087
+              },
+              {
+                "t": 116.854,
+                "text": "all in",
+                "bar": 55,
+                "snap": 112.687
+              },
+              {
+                "t": 166.935,
+                "text": "all stop",
+                "bar": 79,
+                "snap": 162.245
+              },
+              {
+                "t": 185.734,
+                "text": "all in",
+                "bar": 88,
+                "snap": 181.549
+              },
+              {
+                "t": 202.433,
+                "text": "outro in",
+                "bar": 96,
+                "snap": 198.247
+              },
+              {
+                "t": 219.114,
+                "text": "end stop",
+                "bar": 104,
+                "snap": 214.427
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -526,7 +2046,13 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "3cf2ed4c6f",
+            "steve": "f949a30546",
+            "roma": "3aeb63ddc0",
+            "tanya": "883b52fa78"
+          }
         },
         {
           "sid": "Rihanna & Calvin Harris - We Found Love",
@@ -536,7 +2062,105 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.75,
+                "text": "We Found Love synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.719,
+                "text": "vocal in",
+                "bar": 7,
+                "snap": 7.969
+              },
+              {
+                "t": 26.25,
+                "text": "more synth in",
+                "bar": 15,
+                "snap": 21.986
+              },
+              {
+                "t": 41.25,
+                "text": "chorus",
+                "bar": 23,
+                "snap": 38.906
+              },
+              {
+                "t": 56.25,
+                "text": "break pitch in",
+                "bar": 31,
+                "snap": 52.01
+              },
+              {
+                "t": 71.25,
+                "text": "intro 2 in",
+                "bar": 39,
+                "snap": 66.925
+              },
+              {
+                "t": 86.719,
+                "text": "verse 2 less synth in",
+                "bar": 47,
+                "snap": 81.891
+              },
+              {
+                "t": 112.5,
+                "text": "build up in",
+                "bar": 61,
+                "snap": 108.268
+              },
+              {
+                "t": 116.25,
+                "text": "chorus 2 in",
+                "bar": 63,
+                "snap": 111.917
+              },
+              {
+                "t": 131.25,
+                "text": "break 2 drum stop",
+                "bar": 71,
+                "snap": 127.031
+              },
+              {
+                "t": 139.219,
+                "text": "verse 3 in",
+                "bar": 75,
+                "snap": 134.869
+              },
+              {
+                "t": 153.75,
+                "text": "chorus 3 in",
+                "bar": 83,
+                "snap": 149.417
+              },
+              {
+                "t": 168.75,
+                "text": "break 3 pitch in",
+                "bar": 91,
+                "snap": 164.355
+              },
+              {
+                "t": 183.75,
+                "text": "instrumental in",
+                "bar": 99,
+                "snap": 180.0
+              },
+              {
+                "t": 198.75,
+                "text": "chorus 4 in",
+                "bar": 107,
+                "snap": 194.417
+              },
+              {
+                "t": 213.281,
+                "text": "end stop",
+                "bar": 114,
+                "snap": 209.062
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -553,7 +2177,13 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "cd9e71c6f1",
+            "steve": "9cf05e65fe",
+            "roma": "e3993c5ea6",
+            "tanya": "7c4593bddb"
+          }
         },
         {
           "sid": "Cascada - Everytime We Touch",
@@ -563,7 +2193,87 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12
+            "count": 13,
+            "list": [
+              {
+                "t": 2.958,
+                "text": "Everytime We Touch vocal in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 16.901,
+                "text": "drums in",
+                "bar": 11,
+                "snap": 13.521
+              },
+              {
+                "t": 28.732,
+                "text": "stop",
+                "bar": 18,
+                "snap": 24.93
+              },
+              {
+                "t": 55.775,
+                "text": "stop and solo in",
+                "bar": 34,
+                "snap": 51.589
+              },
+              {
+                "t": 70.986,
+                "text": "bass in",
+                "bar": 43,
+                "snap": 67.606
+              },
+              {
+                "t": 98.028,
+                "text": "stop",
+                "bar": 59,
+                "snap": 94.225
+              },
+              {
+                "t": 99.296,
+                "text": "vocal ready go",
+                "bar": 59,
+                "snap": 96.338
+              },
+              {
+                "t": 113.239,
+                "text": "bass in",
+                "bar": 68,
+                "snap": 109.859
+              },
+              {
+                "t": 125.07,
+                "text": "drums stop",
+                "bar": 75,
+                "snap": 121.268
+              },
+              {
+                "t": 152.958,
+                "text": "solo in",
+                "bar": 91,
+                "snap": 149.578
+              },
+              {
+                "t": 166.479,
+                "text": "keep going",
+                "bar": 99,
+                "snap": 163.944
+              },
+              {
+                "t": 180.0,
+                "text": "vocal in",
+                "bar": 107,
+                "snap": 176.62
+              },
+              {
+                "t": 194.366,
+                "text": "end stop",
+                "bar": 116,
+                "snap": 190.563
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -586,7 +2296,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "cbec9ea6fe",
+            "alex": "95e172c6b5",
+            "steve": "b7586b8f83",
+            "roma": "f16f81ec54",
+            "tanya": "439f0ce423"
+          }
         },
         {
           "sid": "Yeah Yeah Yeahs - Heads Will Roll",
@@ -596,7 +2313,89 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16
+            "count": 16,
+            "list": [
+              {
+                "t": 3.637,
+                "text": "Heads will roll synth in",
+                "bar": 3
+              },
+              {
+                "t": 18.184,
+                "text": "vocal in",
+                "bar": 11
+              },
+              {
+                "t": 32.731,
+                "text": "drums in",
+                "bar": 19
+              },
+              {
+                "t": 35.914,
+                "text": "bass in",
+                "bar": 20
+              },
+              {
+                "t": 61.826,
+                "text": "guitar in",
+                "bar": 35
+              },
+              {
+                "t": 72.736,
+                "text": "bass in",
+                "bar": 41
+              },
+              {
+                "t": 76.373,
+                "text": "main in",
+                "bar": 43
+              },
+              {
+                "t": 90.466,
+                "text": "vocal in",
+                "bar": 50
+              },
+              {
+                "t": 105.468,
+                "text": "bridge in",
+                "bar": 59
+              },
+              {
+                "t": 134.562,
+                "text": "guitar break ready go",
+                "bar": 75
+              },
+              {
+                "t": 149.11,
+                "text": "all in",
+                "bar": 83
+              },
+              {
+                "t": 167.294,
+                "text": "solo in",
+                "bar": 93
+              },
+              {
+                "t": 180.932,
+                "text": "vocal in",
+                "bar": 100
+              },
+              {
+                "t": 196.388,
+                "text": "guitar solo ready go",
+                "bar": 109
+              },
+              {
+                "t": 210.936,
+                "text": "drums only ready go",
+                "bar": 117
+              },
+              {
+                "t": 221.846,
+                "text": "end stop",
+                "bar": 123
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -614,7 +2413,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "e71f7cf147",
+            "alex": "c4cb934af6",
+            "steve": "67bf292012",
+            "roma": "cfd072e686",
+            "tanya": "e2f36a8210"
+          }
         },
         {
           "sid": "Icona Pop & Charli XCX - I Love It",
@@ -624,7 +2430,87 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 13
+            "count": 13,
+            "list": [
+              {
+                "t": 3.81,
+                "text": "I Love It synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.429,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 7.619
+              },
+              {
+                "t": 24.762,
+                "text": "all stop",
+                "bar": 14,
+                "snap": 20.476
+              },
+              {
+                "t": 26.667,
+                "text": "main in",
+                "bar": 15,
+                "snap": 22.857
+              },
+              {
+                "t": 34.286,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 30.476
+              },
+              {
+                "t": 56.19,
+                "text": "bridge in",
+                "bar": 30,
+                "snap": 52.381
+              },
+              {
+                "t": 72.381,
+                "text": "main in",
+                "bar": 39,
+                "snap": 68.571
+              },
+              {
+                "t": 87.619,
+                "text": "verse in",
+                "bar": 47,
+                "snap": 83.81
+              },
+              {
+                "t": 101.905,
+                "text": "chorus in",
+                "bar": 54,
+                "snap": 98.095
+              },
+              {
+                "t": 117.143,
+                "text": "bridge in",
+                "bar": 62,
+                "snap": 113.333
+              },
+              {
+                "t": 129.524,
+                "text": "keep going",
+                "bar": 69,
+                "snap": 126.667
+              },
+              {
+                "t": 133.333,
+                "text": "main in",
+                "bar": 71,
+                "snap": 129.524
+              },
+              {
+                "t": 156.19,
+                "text": "end stop",
+                "bar": 83,
+                "snap": 151.905
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -643,7 +2529,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "a0060fe4a0",
+            "alex": "0b7c273e97",
+            "steve": "32a771d2ab",
+            "roma": "814c2ce30c",
+            "tanya": "69b41bc304"
+          }
         }
       ]
     },
@@ -660,7 +2553,59 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 10
+            "count": 10,
+            "list": [
+              {
+                "t": 4.0,
+                "text": "Мелом guitar in",
+                "bar": 1
+              },
+              {
+                "t": 60.0,
+                "text": "drums stop",
+                "bar": 29
+              },
+              {
+                "t": 84.0,
+                "text": "bass-only in",
+                "bar": 41
+              },
+              {
+                "t": 92.0,
+                "text": "all in",
+                "bar": 45
+              },
+              {
+                "t": 108.0,
+                "text": "drums stop",
+                "bar": 53
+              },
+              {
+                "t": 124.0,
+                "text": "drums in",
+                "bar": 61
+              },
+              {
+                "t": 140.0,
+                "text": "drums stop",
+                "bar": 69
+              },
+              {
+                "t": 148.0,
+                "text": "drums in",
+                "bar": 73
+              },
+              {
+                "t": 164.0,
+                "text": "keep going",
+                "bar": 81
+              },
+              {
+                "t": 180.0,
+                "text": "guitar only ready go",
+                "bar": 89
+              }
+            ]
           },
           "bass": {
             "kind": "assign",
@@ -675,7 +2620,14 @@
             "steve",
             "roma",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "cd427b5e80",
+            "alex": "f9ee2b9781",
+            "steve": "7d078aeaba",
+            "roma": "ade44592b7",
+            "tanya": "64c3383844"
+          }
         },
         {
           "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
@@ -685,7 +2637,81 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 11
+            "count": 12,
+            "list": [
+              {
+                "t": 2.964,
+                "text": "pad in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 14.964,
+                "text": "chorus in",
+                "bar": 6,
+                "snap": 9.63
+              },
+              {
+                "t": 36.297,
+                "text": "verse in",
+                "bar": 14,
+                "snap": 30.964
+              },
+              {
+                "t": 60.297,
+                "text": "chorus in",
+                "bar": 23,
+                "snap": 54.964
+              },
+              {
+                "t": 81.63,
+                "text": "drums stop",
+                "bar": 31,
+                "snap": 75.63
+              },
+              {
+                "t": 86.964,
+                "text": "instrumental in",
+                "bar": 33,
+                "snap": 81.63
+              },
+              {
+                "t": 108.297,
+                "text": "all stop",
+                "bar": 41,
+                "snap": 102.297
+              },
+              {
+                "t": 129.63,
+                "text": "chorus in",
+                "bar": 49,
+                "snap": 124.297
+              },
+              {
+                "t": 161.63,
+                "text": "all stop",
+                "bar": 61,
+                "snap": 155.63
+              },
+              {
+                "t": 172.297,
+                "text": "drums in",
+                "bar": 65,
+                "snap": 166.964
+              },
+              {
+                "t": 182.964,
+                "text": "chorus in",
+                "bar": 69,
+                "snap": 177.63
+              },
+              {
+                "t": 204.297,
+                "text": "all stop",
+                "bar": 77,
+                "snap": 198.297
+              }
+            ]
           },
           "bass": {
             "kind": "playback",
@@ -708,7 +2734,675 @@
             "all",
             "steve",
             "tanya"
-          ]
+          ],
+          "versions": {
+            "all": "6b9b87f44d",
+            "steve": "add90d2cc9",
+            "tanya": "ff45541b81"
+          }
+        }
+      ]
+    },
+    {
+      "name": "НА ПРОБУ",
+      "subtitle": "новые песни — черновые авто-рендеры",
+      "cls": "tryout",
+      "songs": [
+        {
+          "sid": "Мама Люба",
+          "slug": "bfc10db79749",
+          "title": "Мама Люба",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 15,
+            "list": [
+              {
+                "t": 3.765,
+                "text": "Мама Люба all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 20.706,
+                "text": "keep going",
+                "bar": 10,
+                "snap": 17.882
+              },
+              {
+                "t": 24.471,
+                "text": "verse-instrumental ready go",
+                "bar": 12,
+                "snap": 20.706
+              },
+              {
+                "t": 39.529,
+                "text": "verse in ready go",
+                "bar": 20,
+                "snap": 35.765
+              },
+              {
+                "t": 69.647,
+                "text": "chorus in ready go",
+                "bar": 36,
+                "snap": 65.882
+              },
+              {
+                "t": 99.765,
+                "text": "soft verse ready go",
+                "bar": 52,
+                "snap": 96.0
+              },
+              {
+                "t": 129.882,
+                "text": "guitar break ready go",
+                "bar": 68,
+                "snap": 126.118
+              },
+              {
+                "t": 133.176,
+                "text": "stop-n-chorus in",
+                "bar": 69,
+                "snap": 128.941
+              },
+              {
+                "t": 163.765,
+                "text": "synth solo ready go",
+                "bar": 86,
+                "snap": 160.0
+              },
+              {
+                "t": 178.824,
+                "text": "kick stop",
+                "bar": 94,
+                "snap": 174.588
+              },
+              {
+                "t": 193.882,
+                "text": "chorus variation ready go",
+                "bar": 102,
+                "snap": 190.118
+              },
+              {
+                "t": 205.176,
+                "text": "build up ready go",
+                "bar": 108,
+                "snap": 201.412
+              },
+              {
+                "t": 208.471,
+                "text": "stop-n-chorus ready stop",
+                "bar": 109,
+                "snap": 204.706
+              },
+              {
+                "t": 224.0,
+                "text": "solo in ready go",
+                "bar": 118,
+                "snap": 220.235
+              },
+              {
+                "t": 239.059,
+                "text": "end in",
+                "bar": 126,
+                "snap": 234.824
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "roma",
+            "trio"
+          ],
+          "versions": {
+            "all": "3ce8e1b69f",
+            "alex": "69629730cf",
+            "roma": "60f02f454f",
+            "trio": "ecccbb6c58"
+          }
+        },
+        {
+          "sid": "Кислотный DJ",
+          "slug": "fd31c4f9ad95",
+          "title": "Кислотный DJ",
+          "artist": "Мари Краймбрери",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 20,
+            "list": [
+              {
+                "t": 3.429,
+                "text": "Кислотный DJ drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.714,
+                "text": "synth in",
+                "bar": 8,
+                "snap": 13.286
+              },
+              {
+                "t": 29.143,
+                "text": "stop",
+                "bar": 16,
+                "snap": 25.286
+              },
+              {
+                "t": 42.857,
+                "text": "drums break ready go",
+                "bar": 24,
+                "snap": 39.429
+              },
+              {
+                "t": 56.571,
+                "text": "drums-bass break ready go",
+                "bar": 32,
+                "snap": 52.714
+              },
+              {
+                "t": 66.857,
+                "text": "synth in ready go",
+                "bar": 38,
+                "snap": 63.429
+              },
+              {
+                "t": 68.571,
+                "text": "build up ready go",
+                "bar": 39,
+                "snap": 65.143
+              },
+              {
+                "t": 72.0,
+                "text": "chorus in ready go",
+                "bar": 41,
+                "snap": 68.571
+              },
+              {
+                "t": 97.714,
+                "text": "drums-bass break ready go",
+                "bar": 56,
+                "snap": 93.857
+              },
+              {
+                "t": 111.429,
+                "text": "bass break ready go",
+                "bar": 64,
+                "snap": 108.0
+              },
+              {
+                "t": 113.143,
+                "text": "solo in ready go",
+                "bar": 65,
+                "snap": 109.714
+              },
+              {
+                "t": 125.143,
+                "text": "drum break ready go",
+                "bar": 72,
+                "snap": 121.714
+              },
+              {
+                "t": 140.571,
+                "text": "long break ready go",
+                "bar": 81,
+                "snap": 137.143
+              },
+              {
+                "t": 147.429,
+                "text": "build up ready go",
+                "bar": 85,
+                "snap": 144.0
+              },
+              {
+                "t": 174.857,
+                "text": "stop",
+                "bar": 101,
+                "snap": 171.0
+              },
+              {
+                "t": 176.571,
+                "text": "solo in ready go",
+                "bar": 102,
+                "snap": 173.143
+              },
+              {
+                "t": 202.286,
+                "text": "drums-bass stop",
+                "bar": 117,
+                "snap": 198.429
+              },
+              {
+                "t": 214.286,
+                "text": "build up ready go",
+                "bar": 124,
+                "snap": 210.857
+              },
+              {
+                "t": 219.429,
+                "text": "all in ready go",
+                "bar": 127,
+                "snap": 216.0
+              },
+              {
+                "t": 233.143,
+                "text": "end in",
+                "bar": 135,
+                "snap": 229.286
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "roma",
+            "trio"
+          ],
+          "versions": {
+            "all": "cf284d180d",
+            "alex": "9b1d15f6e7",
+            "roma": "2185249c05",
+            "trio": "59957eb4b8"
+          }
+        },
+        {
+          "sid": "Такая любовь",
+          "slug": "059476adbfec",
+          "title": "Такая любовь",
+          "artist": "",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 3.556,
+                "text": "Такая любовь synth in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 10.667,
+                "text": "chords in",
+                "bar": 5,
+                "snap": 7.111
+              },
+              {
+                "t": 17.778,
+                "text": "verse in",
+                "bar": 9,
+                "snap": 14.222
+              },
+              {
+                "t": 39.111,
+                "text": "strings in",
+                "bar": 21,
+                "snap": 35.556
+              },
+              {
+                "t": 78.222,
+                "text": "solo in",
+                "bar": 43,
+                "snap": 74.667
+              },
+              {
+                "t": 92.444,
+                "text": "soft verse ready go",
+                "bar": 51,
+                "snap": 88.889
+              },
+              {
+                "t": 151.111,
+                "text": "solo in",
+                "bar": 84,
+                "snap": 147.556
+              },
+              {
+                "t": 165.333,
+                "text": "stop",
+                "bar": 92,
+                "snap": 161.333
+              },
+              {
+                "t": 168.444,
+                "text": "guitar in",
+                "bar": 93,
+                "snap": 164.889
+              },
+              {
+                "t": 179.556,
+                "text": "verse in",
+                "bar": 100,
+                "snap": 176.0
+              },
+              {
+                "t": 199.111,
+                "text": "chorus in",
+                "bar": 111,
+                "snap": 195.556
+              },
+              {
+                "t": 241.778,
+                "text": "end in",
+                "bar": 135,
+                "snap": 237.778
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "backing vocals",
+              "strings"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "roma",
+            "trio"
+          ],
+          "versions": {
+            "all": "cb5f810a00",
+            "alex": "b37139a5a2",
+            "roma": "1bad0a7fe3",
+            "trio": "b580fd6c6f"
+          }
+        },
+        {
+          "sid": "Елена Терлеева - Солнце",
+          "slug": "8aed085975f2",
+          "title": "Солнце",
+          "artist": "Елена Терлеева",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Солнце all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.615,
+                "text": "stop",
+                "bar": 8,
+                "snap": 12.462
+              },
+              {
+                "t": 33.692,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 30.0
+              },
+              {
+                "t": 60.923,
+                "text": "stop",
+                "bar": 32,
+                "snap": 56.769
+              },
+              {
+                "t": 90.462,
+                "text": "stop",
+                "bar": 48,
+                "snap": 86.308
+              },
+              {
+                "t": 92.308,
+                "text": "verse in",
+                "bar": 49,
+                "snap": 88.615
+              },
+              {
+                "t": 120.0,
+                "text": "stop",
+                "bar": 64,
+                "snap": 115.846
+              },
+              {
+                "t": 151.385,
+                "text": "bass stop",
+                "bar": 81,
+                "snap": 147.231
+              },
+              {
+                "t": 166.154,
+                "text": "bass in",
+                "bar": 89,
+                "snap": 162.462
+              },
+              {
+                "t": 179.077,
+                "text": "stop",
+                "bar": 96,
+                "snap": 174.923
+              },
+              {
+                "t": 180.923,
+                "text": "chorus in",
+                "bar": 97,
+                "snap": 177.231
+              },
+              {
+                "t": 210.462,
+                "text": "end in",
+                "bar": 113,
+                "snap": 206.308
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "roma",
+            "trio"
+          ],
+          "versions": {
+            "all": "212a0a74fe",
+            "alex": "00babf8914",
+            "roma": "9e951353e9",
+            "trio": "43d0c07fb6"
+          }
+        },
+        {
+          "sid": "Беги от меня",
+          "slug": "e773956ecaa6",
+          "title": "Беги от меня",
+          "artist": "",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 3.36,
+                "text": "Беги от меня all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 18.24,
+                "text": "kick in",
+                "bar": 8,
+                "snap": 14.4
+              },
+              {
+                "t": 48.96,
+                "text": "stop",
+                "bar": 24,
+                "snap": 44.64
+              },
+              {
+                "t": 52.8,
+                "text": "kick-bass ready go",
+                "bar": 26,
+                "snap": 49.44
+              },
+              {
+                "t": 68.16,
+                "text": "beat in",
+                "bar": 34,
+                "snap": 64.32
+              },
+              {
+                "t": 114.24,
+                "text": "solo in",
+                "bar": 58,
+                "snap": 110.4
+              },
+              {
+                "t": 129.6,
+                "text": "stop",
+                "bar": 66,
+                "snap": 125.28
+              },
+              {
+                "t": 131.52,
+                "text": "kick-bass ready go",
+                "bar": 67,
+                "snap": 128.16
+              },
+              {
+                "t": 146.88,
+                "text": "beat in",
+                "bar": 75,
+                "snap": 143.04
+              },
+              {
+                "t": 192.96,
+                "text": "solo in",
+                "bar": 99,
+                "snap": 189.12
+              },
+              {
+                "t": 207.36,
+                "text": "keep going",
+                "bar": 107,
+                "snap": 204.48
+              },
+              {
+                "t": 216.0,
+                "text": "stop-and-bridge-in",
+                "bar": 111,
+                "snap": 211.68
+              },
+              {
+                "t": 231.36,
+                "text": "all in",
+                "bar": 119,
+                "snap": 227.52
+              },
+              {
+                "t": 246.72,
+                "text": "chorus in",
+                "bar": 127,
+                "snap": 242.88
+              },
+              {
+                "t": 277.44,
+                "text": "stop-and-solo-only-in",
+                "bar": 143,
+                "snap": 273.12
+              },
+              {
+                "t": 292.8,
+                "text": "end in",
+                "bar": 151,
+                "snap": 288.48
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "strings"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "versions": {
+            "all": "e1b12a6f69"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Архив",
+      "subtitle": "снято с программы",
+      "cls": "archived",
+      "songs": [
+        {
+          "sid": "Eva 2.0",
+          "slug": "3e37ea786167",
+          "title": "Eva 2.0",
+          "artist": "",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.636,
+                "text": "Ева all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "roma",
+            "trio"
+          ],
+          "versions": {
+            "all": "c714e6f814",
+            "alex": "e40c4f1999",
+            "roma": "1c7758b13a",
+            "trio": "bda94b715a"
+          }
         }
       ]
     }

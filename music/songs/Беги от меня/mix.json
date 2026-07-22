@@ -1,0 +1,24 @@
+{
+  "bpm": 125.0,
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["strings"]},
+  "pb-bass": {"stems": ["bass"]},
+  "cues": [
+    {"bar": 1,  "beat": 0, "text": "Беги от меня all in", "abs_sec": 3.36, "snap_sec": 0.0},
+    {"bar": 8,  "beat": 3, "text": "kick in", "abs_sec": 18.24, "snap_sec": 14.4},
+    {"bar": 24, "beat": 3, "text": "stop", "abs_sec": 48.96, "snap_sec": 44.64},
+    {"bar": 26, "beat": 3, "text": "kick-bass ready go", "abs_sec": 52.8, "snap_sec": 49.44},
+    {"bar": 34, "beat": 3, "text": "beat in", "abs_sec": 68.16, "snap_sec": 64.32},
+    {"bar": 58, "beat": 3, "text": "solo in", "abs_sec": 114.24, "snap_sec": 110.4},
+    {"bar": 66, "beat": 3, "text": "stop", "abs_sec": 129.6, "snap_sec": 125.28},
+    {"bar": 67, "beat": 3, "text": "kick-bass ready go", "abs_sec": 131.52, "snap_sec": 128.16},
+    {"bar": 75, "beat": 3, "text": "beat in", "abs_sec": 146.88, "snap_sec": 143.04},
+    {"bar": 99, "beat": 3, "text": "solo in", "abs_sec": 192.96, "snap_sec": 189.12},
+    {"bar": 107, "text": "keep going", "abs_sec": 207.36, "snap_sec": 204.48},
+    {"bar": 111, "beat": 3, "text": "stop-and-bridge-in", "count": true, "abs_sec": 216.0, "snap_sec": 211.68},
+    {"bar": 119, "beat": 3, "text": "all in", "abs_sec": 231.36, "snap_sec": 227.52},
+    {"bar": 127, "beat": 3, "text": "chorus in", "abs_sec": 246.72, "snap_sec": 242.88},
+    {"bar": 143, "beat": 3, "text": "stop-and-solo-only-in", "count": true, "abs_sec": 277.44, "snap_sec": 273.12},
+    {"bar": 151, "beat": 3, "text": "end in", "count": true, "abs_sec": 292.8, "snap_sec": 288.48}
+  ]
+}
