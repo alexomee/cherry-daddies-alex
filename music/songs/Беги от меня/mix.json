@@ -3,6 +3,8 @@
   "pitch_semitones": 0,
   "pb-other": {"stems": ["strings"]},
   "pb-bass": {"stems": ["bass"]},
+  "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -1.1}},
+  "players": {"steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,  "beat": 0, "text": "Беги от меня all in", "abs_sec": 3.36, "snap_sec": 0.0},
     {"bar": 8,  "beat": 3, "text": "kick in", "abs_sec": 18.24, "snap_sec": 14.4},
