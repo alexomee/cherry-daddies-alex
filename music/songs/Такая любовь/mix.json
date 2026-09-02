@@ -2,7 +2,7 @@
   "bpm": 135.0,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["backing_vocals", "strings"]},
-  "pb-bass": {"stems": ["bass"]},
+  "pb-bass": {"stems": ["bass"], "mute": {"bass": [[135.5, 138]]}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -3.1}},
   "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
   "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
