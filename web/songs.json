@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-21T23:34:55",
+  "generated": "2026-09-02T22:02:41",
   "counts": {
     "total": 30,
     "data": 30,
     "cues": 30,
     "playback": 19,
     "other": 21,
-    "practice": 29
+    "practice": 30
   },
   "sets": [
     {
@@ -2859,15 +2859,21 @@
           },
           "practice": [
             "all",
+            "drums",
             "alex",
+            "steve",
             "roma",
+            "tanya",
             "trio"
           ],
           "versions": {
-            "all": "3ce8e1b69f",
-            "alex": "69629730cf",
-            "roma": "60f02f454f",
-            "trio": "ecccbb6c58"
+            "all": "9675da8341",
+            "drums": "7ca61fa907",
+            "alex": "b9d70f9af8",
+            "steve": "18405f3807",
+            "roma": "01e54399c2",
+            "tanya": "84fe882b15",
+            "trio": "692a9739dc"
           }
         },
         {
@@ -3011,15 +3017,21 @@
           },
           "practice": [
             "all",
+            "drums",
             "alex",
+            "steve",
             "roma",
+            "tanya",
             "trio"
           ],
           "versions": {
-            "all": "cf284d180d",
-            "alex": "9b1d15f6e7",
-            "roma": "2185249c05",
-            "trio": "59957eb4b8"
+            "all": "b6954ca62e",
+            "drums": "e3d5793b1a",
+            "alex": "b43e398361",
+            "steve": "b513fca78d",
+            "roma": "1f1a2dc4a9",
+            "tanya": "2c9b84859f",
+            "trio": "0b22383f5b"
           }
         },
         {
@@ -3030,7 +3042,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12,
+            "count": 15,
             "list": [
               {
                 "t": 3.556,
@@ -3057,6 +3069,12 @@
                 "snap": 35.556
               },
               {
+                "t": 49.778,
+                "text": "drums in",
+                "bar": 27,
+                "snap": 46.222
+              },
+              {
                 "t": 78.222,
                 "text": "solo in",
                 "bar": 43,
@@ -3067,6 +3085,18 @@
                 "text": "soft verse ready go",
                 "bar": 51,
                 "snap": 88.889
+              },
+              {
+                "t": 106.667,
+                "text": "light drums ready go",
+                "bar": 59,
+                "snap": 103.111
+              },
+              {
+                "t": 122.667,
+                "text": "drums in",
+                "bar": 68,
+                "snap": 119.111
               },
               {
                 "t": 151.111,
@@ -3119,15 +3149,21 @@
           },
           "practice": [
             "all",
+            "drums",
             "alex",
+            "steve",
             "roma",
+            "tanya",
             "trio"
           ],
           "versions": {
-            "all": "cb5f810a00",
-            "alex": "b37139a5a2",
-            "roma": "1bad0a7fe3",
-            "trio": "b580fd6c6f"
+            "all": "704a4d30d1",
+            "drums": "60933609ce",
+            "alex": "c0258db291",
+            "steve": "dfa3fd931a",
+            "roma": "6c3d38f235",
+            "tanya": "fbd20d4728",
+            "trio": "ddddbef862"
           }
         },
         {
@@ -3223,15 +3259,21 @@
           },
           "practice": [
             "all",
+            "drums",
             "alex",
+            "steve",
             "roma",
+            "tanya",
             "trio"
           ],
           "versions": {
-            "all": "212a0a74fe",
-            "alex": "00babf8914",
-            "roma": "9e951353e9",
-            "trio": "43d0c07fb6"
+            "all": "810d36e48b",
+            "drums": "1a7a0f4609",
+            "alex": "ecd028c8dc",
+            "steve": "9e4a4b8cc4",
+            "roma": "8d9e880a82",
+            "tanya": "460f52af05",
+            "trio": "41f6fd2580"
           }
         },
         {
@@ -3353,10 +3395,16 @@
             ]
           },
           "practice": [
-            "all"
+            "all",
+            "drums",
+            "steve",
+            "tanya"
           ],
           "versions": {
-            "all": "e1b12a6f69"
+            "all": "d2c7f44063",
+            "drums": "06faaf1456",
+            "steve": "05e47e7fc3",
+            "tanya": "4a30697f60"
           }
         }
       ]
