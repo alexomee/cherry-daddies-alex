@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-02T22:02:41",
+  "generated": "2026-09-02T22:41:29",
   "counts": {
     "total": 30,
     "data": 30,
@@ -3287,100 +3287,100 @@
             "count": 16,
             "list": [
               {
-                "t": 3.36,
+                "t": 3.84,
                 "text": "Беги от меня all in",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 18.24,
+                "t": 19.2,
                 "text": "kick in",
-                "bar": 8,
-                "snap": 14.4
+                "bar": 9,
+                "snap": 15.36
               },
               {
-                "t": 48.96,
+                "t": 49.92,
                 "text": "stop",
-                "bar": 24,
-                "snap": 44.64
+                "bar": 25,
+                "snap": 45.6
               },
               {
-                "t": 52.8,
+                "t": 53.76,
                 "text": "kick-bass ready go",
-                "bar": 26,
-                "snap": 49.44
+                "bar": 27,
+                "snap": 50.4
               },
               {
-                "t": 68.16,
+                "t": 69.12,
                 "text": "beat in",
-                "bar": 34,
-                "snap": 64.32
+                "bar": 35,
+                "snap": 65.28
               },
               {
-                "t": 114.24,
+                "t": 115.2,
                 "text": "solo in",
-                "bar": 58,
-                "snap": 110.4
+                "bar": 59,
+                "snap": 111.36
               },
               {
-                "t": 129.6,
+                "t": 130.56,
                 "text": "stop",
-                "bar": 66,
-                "snap": 125.28
-              },
-              {
-                "t": 131.52,
-                "text": "kick-bass ready go",
                 "bar": 67,
-                "snap": 128.16
+                "snap": 126.24
               },
               {
-                "t": 146.88,
+                "t": 132.48,
+                "text": "kick-bass ready go",
+                "bar": 68,
+                "snap": 129.12
+              },
+              {
+                "t": 147.84,
                 "text": "beat in",
-                "bar": 75,
-                "snap": 143.04
+                "bar": 76,
+                "snap": 144.0
               },
               {
-                "t": 192.96,
+                "t": 193.92,
                 "text": "solo in",
-                "bar": 99,
-                "snap": 189.12
+                "bar": 100,
+                "snap": 190.08
               },
               {
-                "t": 207.36,
+                "t": 208.32,
                 "text": "keep going",
                 "bar": 107,
-                "snap": 204.48
+                "snap": 205.44
               },
               {
-                "t": 216.0,
+                "t": 216.96,
                 "text": "stop-and-bridge-in",
-                "bar": 111,
-                "snap": 211.68
+                "bar": 112,
+                "snap": 212.64
               },
               {
-                "t": 231.36,
+                "t": 232.32,
                 "text": "all in",
-                "bar": 119,
-                "snap": 227.52
+                "bar": 120,
+                "snap": 228.48
               },
               {
-                "t": 246.72,
+                "t": 247.68,
                 "text": "chorus in",
-                "bar": 127,
-                "snap": 242.88
+                "bar": 128,
+                "snap": 243.84
               },
               {
-                "t": 277.44,
+                "t": 278.4,
                 "text": "stop-and-solo-only-in",
-                "bar": 143,
-                "snap": 273.12
+                "bar": 144,
+                "snap": 274.08
               },
               {
-                "t": 292.8,
+                "t": 293.76,
                 "text": "end in",
-                "bar": 151,
-                "snap": 288.48
+                "bar": 152,
+                "snap": 289.44
               }
             ]
           },
@@ -3401,10 +3401,10 @@
             "tanya"
           ],
           "versions": {
-            "all": "d2c7f44063",
-            "drums": "06faaf1456",
-            "steve": "05e47e7fc3",
-            "tanya": "4a30697f60"
+            "all": "8a0473f0b0",
+            "drums": "87b4614bd3",
+            "steve": "c46fa39e34",
+            "tanya": "17834c552b"
           }
         }
       ]

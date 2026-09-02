@@ -13,6 +13,14 @@ change is <1%, fine for a rough fix on mp3-sourced stems.
 Originals are moved to <song>/moises-orig/ (jamzone_render globs only the song
 folder root); warped stems land in the root as 16-bit WAVs with the same names.
 
+Grid PHASE is anchored at the song's START (dev(0) = 0): t=0 of the warped stems
+== t=0 of the originals, and the drift is absorbed towards the end (output is
+extended so nothing is lost there either). NOT the median over all clicks: the
+warp reads the source at t + dev(t), so a positive dev at t=0 silently DROPS the
+first dev seconds of every stem (Беги от меня: median phase put +700ms at the
+front -> first 1.5 beats chopped, first keys note started mid-note, the render
+then took metronome click 2 as bar 1 -> bar lines half a bar off the music).
+
 --downbeat K: the true bar line is click K of the metronome (Moises clicks are
 unaccented; jamzone_render takes "first metronome onset = downbeat"). The
 warped metronome is silenced before click K so the render anchors bars right.
@@ -36,11 +44,11 @@ def grid_dev(metro_mono, bpm):
         k[i] = k[i-1] + max(1, round(d[i-1]/np.median(d)))  # drift exceeds half a beat span-wise
     beat = 60.0/bpm
     dev = on - k*beat
-    phase = np.median(dev)                            # grid phase = robust fit over all clicks
-    dev -= phase
     w = np.hanning(SMOOTH+2)[1:-1]; w /= w.sum()
     pad = SMOOTH//2
     sm = np.convolve(np.pad(dev, pad, mode="edge"), w, mode="valid")
+    phase = float(sm[0])                              # grid phase = the song's START (see module
+    dev -= phase; sm = sm - phase                     # doc): dev(0) = 0, nothing chopped off the front
     return phase + k*beat, sm, on, k
 
 def main():
@@ -67,10 +75,11 @@ def main():
     for p in stems:
         name = os.path.basename(p)[:-4]
         a = decode(p)                                  # stereo float32
-        t_out = np.arange(len(a))/SR
+        n_out = len(a) + int(np.ceil(max(0.0, -float(dev[-1]))*SR))   # end drifts early -> the
+        t_out = np.arange(n_out)/SR                    # output grows so the tail is not cut off
         src = (t_out + np.interp(t_out, grid_t, dev)) * SR   # flat extrapolation at both ends
         idx = np.arange(len(a))
-        w = np.empty_like(a)
+        w = np.empty((n_out, 2), np.float32)
         for ch in range(2):
             w[:, ch] = np.interp(src, idx, a[:, ch])
         if p == metro and db_k > 0:                    # true downbeat = click db_k: silence the
