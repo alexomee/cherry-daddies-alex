@@ -1,0 +1,13 @@
+{
+  "bpm": 130.6,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {
+      "bar": 1,
+      "text": "Ту-лу-ла in",
+      "count": true
+    }
+  ]
+}

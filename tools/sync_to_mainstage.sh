@@ -51,9 +51,24 @@ MAP=(
   "Laurent Wolf & Eric Carter - No Stress|||Laurent Wolf & Eric Carter - No Stress"
   "SEREBRO - Malo tebya|||SEREBRO - Malo tebya"
   "Yeah Yeah Yeahs - Heads Will Roll|||Yeah Yeah Yeahs - Heads Will Roll"
+  # tryout batch (2026-07, folders named by source song; wired manually in MainStage)
+  "Мама Люба|||Мама Люба"
+  "Кислотный DJ|||Кислотный DJ"
+  "Такая любовь|||Такая любовь"
+  "Eva 2.0|||Eva 2.0"
+  "Елена Терлеева - Солнце|||Елена Терлеева - Солнце"
+  "Беги от меня|||Беги от меня"
+  "Медведица|||Мумий Тролль - Медведица"
+  "Кукла колдуна|||Король и Шут - Кукла колдуна"
+  "Ту-лу-ла|||Чичерина - Ту-лу-ла"
 )
 
-STEMS=(click.wav cues.wav pb-other.wav pb-bass.wav)
+# Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,
+# pb-other-keys, pb-drums …) — the per-song filter below is "does the target already have it",
+# so listing a stem here never CREATES one, it only keeps an existing one up to date.
+STEMS=(click.wav cues.wav)
+while IFS= read -r f; do STEMS+=("$f"); done < <(
+  for p in "$SRC_ROOT"/*/auto-render/pb-*.wav; do [ -e "$p" ] && basename "$p"; done | sort -u)
 
 APPLY=0
 COMMIT_MSG=""

@@ -1,0 +1,13 @@
+{
+  "bpm": 130.0,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {
+      "bar": 1,
+      "text": "Медведица in",
+      "count": true
+    }
+  ]
+}

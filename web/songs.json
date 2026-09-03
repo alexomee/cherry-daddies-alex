@@ -1,9 +1,9 @@
 {
-  "generated": "2026-09-02T23:16:12",
+  "generated": "2026-09-03T07:09:37",
   "counts": {
-    "total": 30,
-    "data": 30,
-    "cues": 30,
+    "total": 33,
+    "data": 33,
+    "cues": 33,
     "playback": 19,
     "other": 21,
     "practice": 30
@@ -3405,6 +3405,78 @@
             "drums": "87b4614bd3",
             "steve": "c46fa39e34",
             "tanya": "17834c552b"
+          }
+        },
+        {
+          "sid": "Мумий Тролль - Медведица",
+          "slug": "42a10b949a41",
+          "title": "Медведица",
+          "artist": "Мумий Тролль",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": []
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all"
+          ],
+          "versions": {
+            "all": "b411cf1786"
+          }
+        },
+        {
+          "sid": "Король и Шут - Кукла колдуна",
+          "slug": "ccbcf0c2cad9",
+          "title": "Кукла колдуна",
+          "artist": "Король и Шут",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": []
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all"
+          ],
+          "versions": {
+            "all": "42fcef0389"
+          }
+        },
+        {
+          "sid": "Чичерина - Ту-лу-ла",
+          "slug": "fb79a34f990d",
+          "title": "Ту-лу-ла",
+          "artist": "Чичерина",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": []
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all"
+          ],
+          "versions": {
+            "all": "25e3e65c9f"
           }
         }
       ]

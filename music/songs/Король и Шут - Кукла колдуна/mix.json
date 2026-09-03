@@ -1,0 +1,13 @@
+{
+  "bpm": 148.6,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {
+      "bar": 1,
+      "text": "Кукла колдуна in",
+      "count": true
+    }
+  ]
+}
