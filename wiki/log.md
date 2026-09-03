@@ -26,3 +26,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 Три новые песни без плейбека: оригиналы с YouTube (yt-dlp с куками Chrome — brew-версия отдаёт 403/age-gate), bpm по lstsq на beat-треке librosa (130.0 / 148.6 / 130.6), синтетический `metronome.wav` от первой сильной доли (хрома-флакс mod 4), один cue `bar 1` + `count: true` («<Название> in 3» + 3 2 1). Рендер click/cues/all/cue_preview, дашборд «НА ПРОБУ», в риге папки с click+cues (`eb9b74f6`), MAP синка дополнен; сеты в MainStage заводятся руками. Новый пайплайн-page [youtube-click-only](pipelines/youtube-click-only.md).
 
+## [2026-09-03] fix | Tryout-тройка: стартовый cue → стандартный «<Название> … all in ready go»
+
+По правке пользователя: не `count: true` («in 3» + 3 2 1), а обычный стартовый cue — название естественным темпом в такте 1, «all in ready go» по долям такта 2, вход на 1.1. Геометрия рендера та же (click побайтно тот же), в риг ушли только `cues.wav` (`f7b647ec`). Страницы песен, index и [youtube-click-only](pipelines/youtube-click-only.md) поправлены.
+

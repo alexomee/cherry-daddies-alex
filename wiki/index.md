@@ -36,9 +36,9 @@
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 15 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-09-02 бас в pb-bass заглушен с 135.3 (студийная фраза с 136.1 звучала после финального удара).
-3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — tryout 2026-09, YouTube-оригинал, 130.0 bpm (константа); только click + стартовый cue («Медведица in 3» + 3 2 1), плейбека нет; в риге click/cues, сет в MainStage не заведён.
-4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, YouTube-оригинал, 148.6 bpm (живая запись, ±47 мс); только click + стартовый cue («Кукла колдуна in 3» + 3 2 1); в риге click/cues, сет в MainStage не заведён.
-5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — tryout 2026-09, YouTube-оригинал (альбом 2000), 130.6 bpm; только click + стартовый cue («Ту лу ла in 3» + 3 2 1); в риге click/cues, сет в MainStage не заведён.
+3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — tryout 2026-09, YouTube-оригинал, 130.0 bpm (константа); только click + стартовый cue («Медведица … all in ready go»), плейбека нет; в риге click/cues, сет в MainStage не заведён.
+4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, YouTube-оригинал, 148.6 bpm (живая запись, ±47 мс); только click + стартовый cue («Кукла колдуна … all in ready go»); в риге click/cues, сет в MainStage не заведён.
+5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — tryout 2026-09, YouTube-оригинал (альбом 2000), 130.6 bpm; только click + стартовый cue («Ту-лу-ла … all in ready go»); в риге click/cues, сет в MainStage не заведён.
 
 ### На бис
 
@@ -52,7 +52,7 @@
 - [jamzone-render — главный рендер-пайплайн](pipelines/jamzone-render.md) — tools/jamzone/jamzone_render.py: что рендерит (click/cues/pb-other/pb-bass/all/cue_preview/practice), уровни, pb-other loudness ceiling, layers участников, practice-миксы, перкуссия вон, версионирование.
 - [lyric-launcher — тексты на сценический монитор](pipelines/lyric-launcher.md) — Синхронные тексты песни на сценический монитор с ноута клавишника: фабрика (tools/lyric-launcher/) генерит клипы, риг (cherry-daddies-2000/lyrics/) их гонит через mpv по MIDI-триггеру из MainStage.
 - [MainStage-риг (боевой playback клавишника)](pipelines/mainstage-rig.md) — Ноут клавишника = мастер плейбека (click+playback+cues); sync_to_mainstage.sh накатывает только существующие стемы (dry-run дефолт, --apply/--commit, MAP-таблица), новый/переименованный стем — только руками в MainStage, cue-правка едет как cues.wav only.
-- [YouTube-оригинал → только click + cues](pipelines/youtube-click-only.md) — Песни без плейбека: bpm и сильная доля по оригиналу (librosa lstsq, хрома-флакс mod 4), синтетический metronome.wav, один стартовый cue с отсчётом; в риг только click+cues.
+- [YouTube-оригинал → только click + cues](pipelines/youtube-click-only.md) — Песни без плейбека: bpm и сильная доля по оригиналу (librosa lstsq, хрома-флакс mod 4), синтетический metronome.wav, один стандартный стартовый cue («<Название> … all in ready go»); в риг только click+cues.
 - [Moises-импорт (внешние песни)](pipelines/moises-import.md) — Импорт чужих песен через Moises-стемы: zip → переименование → mix.json → рендер; два молчаливых гоча (локальный дрейф, первый клик ≠ сильная доля) и реальная смена темпа (click:follow, tempo_zone, subdiv).
 - [Мультикам-видео концертов](pipelines/multicam-concert.md) — Пайплайн многокамерного концертного видео: широкая полнобэндовая камера (источник звука) + оператор 4K, clock-калибровка +1h00m16.6s + тесная onset-flux кросскор, EDL-рендер с фиксом дрейфа 59.94/60fps.
 

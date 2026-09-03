@@ -8,7 +8,7 @@ set: tryout batch 2026-09
 
 # Медведица (Мумий Тролль)
 
-Tryout 2026-09. **Только click + cues** — плейбека нет, банда играет живьём под клик; в ухо только название + отсчёт на старт. См. [youtube-click-only](../pipelines/youtube-click-only.md).
+Tryout 2026-09. **Только click + cues** — плейбека нет, банда играет живьём под клик; в ухо только название + «all in ready go» на старт. См. [youtube-click-only](../pipelines/youtube-click-only.md).
 
 ## Сводка
 
@@ -21,8 +21,8 @@ Tryout 2026-09. **Только click + cues** — плейбека нет, ба�
 
 ## Cue
 
-1 cue: `bar 1`, `count: true` → «Медведица in 3» + 3 2 1. Событие (вход) на такте 1.1 = первая сильная доля оригинала.
+1 cue: `bar 1`, `"Медведица all in"` → «Медведица» (естественным темпом в пустом такте 1, выровнено по концу) + «all in ready go» на долях такта 2. Событие (вход) на такте 1.1 = первая сильная доля оригинала.
 
 ## Риг (MainStage)
 
-`/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Медведица/` — `click.wav` + `cues.wav` (риг-коммит `eb9b74f6`, запушен). Сет в MainStage **не заведён** — новые песни wire'ятся руками (Playback-плагин на два wav). MAP в `sync_to_mainstage.sh` добавлен.
+`/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Медведица/` — `click.wav` + `cues.wav` (риг-коммиты `eb9b74f6` → `f7b647ec` (cue переделан на стандартный стартовый, 2026-09-03), запушены). Сет в MainStage **не заведён** — новые песни wire'ятся руками (Playback-плагин на два wav). MAP в `sync_to_mainstage.sh` добавлен.
