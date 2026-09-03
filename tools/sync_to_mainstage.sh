@@ -61,6 +61,7 @@ MAP=(
   "Медведица|||Мумий Тролль - Медведица"
   "Кукла колдуна|||Король и Шут - Кукла колдуна"
   "Ту-лу-ла|||Чичерина - Ту-лу-ла"
+  "Rock & Roll Queen|||The Subways - Rock & Roll Queen"
 )
 
 # Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,

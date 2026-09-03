@@ -39,6 +39,7 @@
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — tryout 2026-09, YouTube-оригинал, 130.0 bpm (константа); только click + стартовый cue («Медведица … all in ready go»), плейбека нет; в риге click/cues, сет в MainStage не заведён.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, YouTube-оригинал, 148.6 bpm (живая запись, ±47 мс); только click + стартовый cue («Кукла колдуна … all in ready go»); в риге click/cues, сет в MainStage не заведён.
 5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — tryout 2026-09, YouTube-оригинал (альбом 2000), 130.6 bpm; только click + стартовый cue («Ту-лу-ла … all in ready go»); в риге click/cues, сет в MainStage не заведён.
+6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — tryout 2026-09, YouTube-оригинал, 141 bpm (живая запись, темп гуляет 138–145); только click + стартовый cue («Rock & Roll Queen … all in ready go»); в риге click/cues, сет в MainStage не заведён.
 
 ### На бис
 
