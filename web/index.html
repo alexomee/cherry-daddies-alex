@@ -215,16 +215,25 @@
              : player === "drums" ? "pb-drums.mp3"        // playback drum track, not a practice mix
              : "practice-" + player + ".mp3";
     var v = (s.versions && s.versions[player]) ? "?v=" + s.versions[player] : "";
-    return R2_BASE + "/" + s.slug + "/" + file + v;   // ?v = content hash, busts CF edge cache on change
+    var sep = v ? "&" : "?";
+    return R2_BASE + "/" + s.slug + "/" + file + v + sep + "cors=1";   // ?v = content hash, busts CF edge cache on change
   }
   function stemAudioSrc(s, stemId){
     if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&stem=" + stemId;
     var v = (s.stem_versions && s.stem_versions[stemId]) ? "?v=" + s.stem_versions[stemId] : "";
-    return R2_BASE + "/" + s.slug + "/stems/" + stemId + ".mp3" + v;
+    var sep = v ? "&" : "?";
+    return R2_BASE + "/" + s.slug + "/stems/" + stemId + ".mp3" + v + sep + "cors=1";
   }
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
+  function findByAttr(selector, attr, val){
+    var list = document.querySelectorAll(selector);
+    for(var i = 0; i < list.length; i++){
+      if(list[i].getAttribute(attr) === val) return list[i];
+    }
+    return null;
+  }
   function normalize(s){ s = s || {}; return {
     global: Array.isArray(s.global) ? s.global : [],
     songs: (s.songs && typeof s.songs === "object" && !Array.isArray(s.songs)) ? s.songs : {} }; }
@@ -330,7 +339,7 @@
   function updateMixBadge(sid){
     var s = SONGS[sid];
     if(!s || !s.stems) return;
-    var pl = document.querySelector('.player[data-sid="'+esc(sid)+'"]');
+    var pl = findByAttr(".player", "data-sid", sid);
     if(!pl) return;
     var b = pl.querySelector(".mix-badge");
     if(!b) return;
@@ -423,7 +432,11 @@
         console.error("Stem load error for", s.sid, err);
         pbtn.textContent = "▶";
         var audio = plEl.querySelector(".mixaudio");
-        if(audio) audio.play();
+        if(audio){
+          if(!audio.src) audio.src = audioSrc(s, "all");
+          if(seekTime !== undefined) audio.currentTime = seekTime;
+          audio.play().catch(function(e){ console.error("Audio playback fallback failed", e); });
+        }
         return;
       }
     }
@@ -561,7 +574,7 @@
       if(cueBtn){
         var srow = cueBtn.closest("tr[data-song]");
         var sid = srow ? srow.getAttribute("data-song") : "";
-        var crow = document.querySelector('tr.cuerow[data-song="'+esc(sid)+'"]');
+        var crow = findByAttr("tr.cuerow", "data-song", sid);
         if(crow){
           var open = crow.hidden; crow.hidden = !open;
           cueBtn.classList.toggle("open", open);
@@ -575,7 +588,7 @@
         var srow = mixBtn.closest("tr[data-song]");
         if(srow){
           var sid = srow.getAttribute("data-song");
-          var mrow = document.querySelector('tr.mixrow[data-song="'+esc(sid)+'"]');
+          var mrow = findByAttr("tr.mixrow", "data-song", sid);
           if(mrow){
             var open = mrow.hidden; mrow.hidden = !open;
             var mb = srow.querySelector(".mixbtn");
@@ -592,7 +605,7 @@
       if(item){
         var crow = item.closest("tr.cuerow");
         var sid = crow && crow.getAttribute("data-song");
-        var srow = document.querySelector('tr[data-song="'+esc(sid)+'"]');
+        var srow = findByAttr("tr:not(.cuerow):not(.mixrow)", "data-song", sid);
         var s = SONGS[sid];
         var t = parseFloat(item.getAttribute("data-t"));
         var snap = parseFloat(item.getAttribute("data-snap"));
@@ -639,7 +652,7 @@
       var time = pl.querySelector(".time");
       var audio = pl.querySelector(".mixaudio");
 
-      if(audio && audio.src && audio.src !== location.href && !audio.src.endsWith("/")){
+      if(audio){
         audio.addEventListener("loadedmetadata", function(){
           seek.max = audio.duration || 0;
           time.textContent = fmtTime(0) + " / " + fmtTime(audio.duration);
