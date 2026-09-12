@@ -4,13 +4,13 @@
   "cue_step": 2,
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "roma": ["06_Synthesizer", "07_Synth_Pad_1", "08_Synth_Pad_2"]},
   "cues": [
-    {"bar": 3,   "text": "Blinding Lights synth in ready go", "step": 1, "abs_sec": 2.807},
-    {"bar": 11,  "text": "drums in", "abs_sec": 14.035},
-    {"bar": 15,  "beat": 2, "text": "melody in", "abs_sec": 20.0},
-    {"bar": 22,  "text": "verse in", "abs_sec": 29.474},
-    {"bar": 63,  "text": "keys in", "abs_sec": 87.018},
-    {"bar": 70,  "beat": 3, "text": "verse in", "abs_sec": 97.544},
-    {"bar": 119, "text": "keys in", "abs_sec": 165.614},
-    {"bar": 135, "text": "drums stop", "abs_sec": 188.07}
+    {"bar": 3,   "text": "Blinding Lights synth in ready go", "step": 1, "abs_sec": 2.807, "snap_sec": 0.0},
+    {"bar": 11,  "text": "drums in", "abs_sec": 14.035, "snap_sec": 9.825},
+    {"bar": 15,  "beat": 2, "text": "melody in", "abs_sec": 20.0, "snap_sec": 15.789},
+    {"bar": 22,  "text": "verse in", "abs_sec": 29.474, "snap_sec": 25.263},
+    {"bar": 63,  "text": "keys in", "abs_sec": 87.018, "snap_sec": 82.807},
+    {"bar": 70,  "beat": 3, "text": "verse in", "abs_sec": 97.544, "snap_sec": 93.333},
+    {"bar": 119, "text": "keys in", "abs_sec": 165.614, "snap_sec": 161.403},
+    {"bar": 135, "text": "drums stop", "abs_sec": 188.07, "snap_sec": 183.158}
   ]
 }

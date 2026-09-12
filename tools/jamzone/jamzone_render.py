@@ -1294,12 +1294,15 @@ def main():
                       f"{ROLE_CEILING[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{note}")
         out[grp] = mixdown(gstems, eff, m.get("mute"))
 
-    semi = mix.get("pitch_semitones", 0)           # band's key vs original (e.g. -2)
+    semi = mix.get("pitch_semitones", 0)
     if semi:
-        targets = [k for k in out if k not in ("click", "cues")]   # voice/click never pitched
+        targets = [k for k in out if k not in ("click", "cues", "pb-drums")]
         print(f"pitch: {semi:+g} semitones (rubberband, tempo/grid preserved) on {', '.join(targets)}")
-        for n in targets:
-            out[n] = pitch_shift(out[n], semi)
+        import concurrent.futures
+        with concurrent.futures.ThreadPoolExecutor() as ex:
+            futs = {n: ex.submit(pitch_shift, out[n], semi) for n in targets}
+            for n, fut in futs.items():
+                out[n] = fut.result()
 
     def load_layer(nm, start):                     # contributed part (parts/), ALWAYS in band key ->
         p = sorted(glob.glob(os.path.join(folder, "parts", nm + ".*")))[0]   # never pitched. `start` =
@@ -1422,9 +1425,10 @@ def main():
                 break
         cat_map.setdefault(matched, []).append(st)
 
-    for cid, st_list in cat_map.items():
+    def render_cat_stem(item):
+        cid, st_list = item
         buf = mixdown([n for n in st_list if n not in replaced], {})
-        if semi: buf = pitch_shift(buf, semi)
+        if semi and cid != "drums": buf = pitch_shift(buf, semi)
         for lnm, lb in placed_layers:
             matched_l = "other"
             for cid_l, pat in cat_rules:
@@ -1438,6 +1442,10 @@ def main():
         out_p = os.path.join(stems_dir, f"{cid}.mp3")
         subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
                         "-b:a", "192k", out_p], input=buf.astype(np.float32).tobytes())
+
+    import concurrent.futures
+    with concurrent.futures.ThreadPoolExecutor() as ex:
+        list(ex.map(render_cat_stem, cat_map.items()))
 
     if "click" in out:
         c_pk = float(np.abs(out["click"]).max())
@@ -1453,20 +1461,21 @@ def main():
 
     print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json{extra}")
 
-    for who, owned in players.items():             # practice mix: all MINUS this member's stems,
-        owned = set(owned)                          # pitched to band key, + click + cues (cue_preview
-        minus = mixdown([n for n in music if n not in replaced and n not in owned], {})
-        if semi: minus = pitch_shift(minus, semi)   # member plays in band key -> minus is pitched;
-        for nm, lb in placed_layers:                # layers are already band-key (never pitched): add
-            if nm not in owned: minus = minus + lb  # back the ones this member does NOT play live
-        pm = minus*MIX_LVL + out["click"]*CLICK_LVL
-        if "cues" in out: pm = pm + out["cues"]*CUE_LVL
-        pk = float(np.abs(pm).max())
-        if pk > 0.97: pm *= 0.97/pk
-        subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
-                        "-b:a","192k",os.path.join(adir, f"practice-{who}.mp3")],
-                       input=pm.astype(np.float32).tobytes())
-        print(f"✓ auto-render/practice-{who}.mp3 (all minus {sorted(owned)} + click + cues)")
+    if "--practice" in sys.argv:
+        for who, owned in players.items():             # practice mix: all MINUS this member's stems,
+            owned = set(owned)                          # pitched to band key, + click + cues (cue_preview
+            minus = mixdown([n for n in music if n not in replaced and n not in owned], {})
+            if semi: minus = pitch_shift(minus, semi)   # member plays in band key -> minus is pitched;
+            for nm, lb in placed_layers:                # layers are already band-key (never pitched): add
+                if nm not in owned: minus = minus + lb  # back the ones this member does NOT play live
+            pm = minus*MIX_LVL + out["click"]*CLICK_LVL
+            if "cues" in out: pm = pm + out["cues"]*CUE_LVL
+            pk = float(np.abs(pm).max())
+            if pk > 0.97: pm *= 0.97/pk
+            subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
+                            "-b:a","192k",os.path.join(adir, f"practice-{who}.mp3")],
+                           input=pm.astype(np.float32).tobytes())
+            print(f"✓ auto-render/practice-{who}.mp3 (all minus {sorted(owned)} + click + cues)")
 
     # export_stems: individual stems in the SAME aligned/tempo-labelled format (one wav each),
     # e.g. to hand the synths to the keyboardist. Same offset/length/grid/key as the set above.

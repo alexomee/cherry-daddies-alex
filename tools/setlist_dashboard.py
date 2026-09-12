@@ -278,6 +278,7 @@ def build_data():
             # Multi-track stems in auto-render/stems/:
             stems_dir = ar / "stems"
             track_stems = []
+            stem_versions = {}
             for cid, clbl in [
                 ("vocal", "Вокал"),
                 ("back_vox", "Бэк-вокал"),
@@ -289,8 +290,12 @@ def build_data():
                 ("click", "Клик"),
                 ("cues", "Cues"),
             ]:
-                if (stems_dir / f"{cid}.mp3").is_file():
+                sf = stems_dir / f"{cid}.mp3"
+                if sf.is_file():
                     track_stems.append({"id": cid, "label": clbl})
+                    sv = mix_version(sf)
+                    if sv:
+                        stem_versions[cid] = sv
 
             # content-hash version per mix (for ?v= cache-busting on R2)
             versions = {}
@@ -302,7 +307,8 @@ def build_data():
             songs.append({
                 "sid": sid, "slug": slug_of(sid), "title": title, "artist": artist, "hasData": True,
                 "cues": {"ready": bool(cues), "count": len(cues), "list": cue_list},
-                "bass": bass, "other": other, "practice": practice, "stems": track_stems, "versions": versions,
+                "bass": bass, "other": other, "practice": practice, "stems": track_stems,
+                "stem_versions": stem_versions, "versions": versions,
             })
         sets.append({
             "name": st["name"], "subtitle": st["subtitle"], "cls": st["cls"], "songs": songs,

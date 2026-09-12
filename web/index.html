@@ -217,6 +217,11 @@
     var v = (s.versions && s.versions[player]) ? "?v=" + s.versions[player] : "";
     return R2_BASE + "/" + s.slug + "/" + file + v;   // ?v = content hash, busts CF edge cache on change
   }
+  function stemAudioSrc(s, stemId){
+    if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&stem=" + stemId;
+    var v = (s.stem_versions && s.stem_versions[stemId]) ? "?v=" + s.stem_versions[stemId] : "";
+    return R2_BASE + "/" + s.slug + "/stems/" + stemId + ".mp3" + v;
+  }
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
@@ -403,7 +408,7 @@
     if(!map){
       try {
         var fetches = s.stems.map(async function(st){
-          var url = "audio?sid=" + encodeURIComponent(s.sid) + "&stem=" + st.id;
+          var url = stemAudioSrc(s, st.id);
           var r = await fetch(url);
           if(!r.ok) throw new Error("stem " + st.id + " HTTP " + r.status);
           var ab = await r.arrayBuffer();

@@ -55,12 +55,21 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 3 cue: `Кукла колдуна all in` на 1.1, `drums in` на 8.1 (вход ударных и полного бэнда), `verse in` на 17.1.
 Сгенерирован полный авто-рендер со всеми practice-миксами, дашборд обновлён.
 
-## [2026-09-11] ingest | Tryout: Я буду (5sta Family & 23:45) — Moises stems + click + cues + pb-drums + pb-other + pb-bass
+## [2026-09-12] tune | Pretty Fly (For A White Guy): транспонирование на 1 тон вниз (B minor → A minor, pitch_semitones: -2)
 
-Импорт из архива Moises (90 bpm, A minor): выравнивание через `jamzone_warp_ext.py` (`--bpm 90.0`), нулевой дрейф (±6 мс).
-Настроен `mix.json`: `pb-other` (backing_vocals + piano), `pb-other-keys` (+keys), `pb-drums`, `pb-bass`.
-3 cue: `Я буду all in` на 1.1, `chorus in` на 9.1 (вход припева), `verse in` на 17.1 (рэп-куплет).
-Сгенерирован полный авто-рендер, песня добавлена в дашборд («НА ПРОБУ», 37 песен) и синхронизирована в риг MainStage.
+По запросу группы песня переведена на 1 тон ниже оригинала (B minor → A minor, `"pitch_semitones": -2` в `mix.json`).
+Выполнен полный перерендер (`jamzone_render.py` с флагом `--practice`):
+- `all.wav`, `pb-other.wav` (бэк-вокал), а также мультитрековые стемы (`auto-render/stems/`) и practice-миксы для участников (`alex`, `roma`, `steve`, `tanya`) спитчены на -2 полутона через Rubberband R3 `-3 -F` с сохранением формант;
+- `pb-drums.wav` и барабанный стем оставлены без питча;
+- Сетка, клик и стартовый cue («Pretty Fly drums in») не изменились;
+- Риг MainStage синхронизирован через `sync_to_mainstage.sh --apply "Pretty Fly"`.
+
+## [2026-09-12] feat | Интерактивный мультитрековый микшер на дашборде (100% песен репертуара)
+
+- В `jamzone_render.py` добавлен параллельный экспорт выровненных mp3-стемов (vocal, back_vox, drums, keys, bass, guitars, other, click, cues) в `auto-render/stems/`.
+- Выполнен экспорт стемов для всех 37 песен всех сетов (СЕТ 1, СЕТ 2, НА БИС, НА ПРОБУ, АРХИВ).
+- В `web/index.html` реализован Web Audio мультитрековый плеер со строгим каноническим порядком дорожек и независимым мгновенным мьютом/анмьютом на лету (с сохранением состояния в `localStorage`).
+- Настроен `tools/sync_site.py` и `tools/r2_upload_mixes.cjs`: 410 файлов мультитреков залиты в Cloudflare R2 (`cherry-dash/<slug>/stems/`), деплой на Vercel Production.
 
 
 

@@ -1,6 +1,6 @@
 {
   "bpm": 143.0,
-  "pitch_semitones": 0,
+  "pitch_semitones": -2,
   "pb-other": {"stems": ["backing_vocals"]},
   "pb-drums": {"stems": ["drums"]},
   "pb-bass": null,

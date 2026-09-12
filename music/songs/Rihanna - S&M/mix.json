@@ -4,18 +4,18 @@
   "pb-bass": {"stems": ["04_Electric_Bass"], "gain_db": {"04_Electric_Bass": 2}},
   "players": {"roma": ["07_Synth_Lead", "09_Arpeggiator", "08_Synth_Keys"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "alex": ["04_Electric_Bass", "05_Synth_Bass"]},
   "cues": [
-    {"bar": 2,   "beat": 3, "text": "S and M vocal in", "chord": ["C#4"], "abs_sec": 4.688},
-    {"bar": 11,  "text": "all in", "abs_sec": 20.625},
-    {"bar": 19,  "text": "verse in", "abs_sec": 35.625},
-    {"bar": 35,  "text": "chorus in", "abs_sec": 65.625},
-    {"bar": 43,  "text": "bass in", "abs_sec": 80.625},
-    {"bar": 59,  "text": "verse in", "abs_sec": 110.625},
-    {"bar": 67,  "text": "soft chorus", "abs_sec": 125.625},
-    {"bar": 83,  "text": "synth in", "abs_sec": 155.625},
-    {"bar": 87,  "text": "bridge in", "abs_sec": 163.125},
-    {"bar": 99,  "text": "soft chorus", "abs_sec": 185.625},
-    {"bar": 107, "text": "all in", "abs_sec": 200.625},
-    {"bar": 123, "text": "outro in", "abs_sec": 230.625},
-    {"bar": 130, "text": "end in", "count": true, "abs_sec": 243.75}
+    {"bar": 2,   "beat": 3, "text": "S and M vocal in", "chord": ["C#4"], "abs_sec": 4.688, "snap_sec": 0.0},
+    {"bar": 11,  "text": "all in", "abs_sec": 20.625, "snap_sec": 16.875},
+    {"bar": 19,  "text": "verse in", "abs_sec": 35.625, "snap_sec": 31.875},
+    {"bar": 35,  "text": "chorus in", "abs_sec": 65.625, "snap_sec": 61.875},
+    {"bar": 43,  "text": "bass in", "abs_sec": 80.625, "snap_sec": 76.875},
+    {"bar": 59,  "text": "verse in", "abs_sec": 110.625, "snap_sec": 106.875},
+    {"bar": 67,  "text": "soft chorus", "abs_sec": 125.625, "snap_sec": 122.813},
+    {"bar": 83,  "text": "synth in", "abs_sec": 155.625, "snap_sec": 151.875},
+    {"bar": 87,  "text": "bridge in", "abs_sec": 163.125, "snap_sec": 159.375},
+    {"bar": 99,  "text": "soft chorus", "abs_sec": 185.625, "snap_sec": 182.813},
+    {"bar": 107, "text": "all in", "abs_sec": 200.625, "snap_sec": 196.875},
+    {"bar": 123, "text": "outro in", "abs_sec": 230.625, "snap_sec": 226.875},
+    {"bar": 130, "text": "end in", "count": true, "abs_sec": 243.75, "snap_sec": 239.531}
   ]
 }
