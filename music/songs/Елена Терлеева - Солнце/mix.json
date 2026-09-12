@@ -1,0 +1,23 @@
+{
+  "bpm": 130.0,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "pb-drums": {"stems": ["drums"], "gain_db": {"drums": 5.5}},
+  "pb-other-keys": {"stems": ["keys"]},
+  "players": {"alex": ["guitars"], "roma": ["bass"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1,   "text": "Солнце all in", "abs_sec": 3.692, "snap_sec": 0.0},
+    {"bar": 8,   "text": "stop", "abs_sec": 16.615, "snap_sec": 12.462},
+    {"bar": 17,  "beat": 2, "text": "verse in", "abs_sec": 33.692, "snap_sec": 30.0},
+    {"bar": 32,  "text": "stop", "abs_sec": 60.923, "snap_sec": 56.769},
+    {"bar": 48,  "text": "stop", "abs_sec": 90.462, "snap_sec": 86.308},
+    {"bar": 49,  "text": "verse in", "abs_sec": 92.308, "snap_sec": 88.615},
+    {"bar": 64,  "text": "stop", "abs_sec": 120.0, "snap_sec": 115.846},
+    {"bar": 81,  "text": "bass stop", "abs_sec": 151.385, "snap_sec": 147.231},
+    {"bar": 89,  "text": "bass in", "abs_sec": 166.154, "snap_sec": 162.462},
+    {"bar": 96,  "text": "stop", "abs_sec": 179.077, "snap_sec": 174.923},
+    {"bar": 97,  "text": "chorus in", "abs_sec": 180.923, "snap_sec": 177.231},
+    {"bar": 113, "text": "end in", "count": true, "abs_sec": 210.462, "snap_sec": 206.308}
+  ]
+}

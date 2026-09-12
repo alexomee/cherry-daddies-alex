@@ -123,6 +123,13 @@ def _stem_paths(folder):
     return {n: p for p in sorted(glob.glob(os.path.join(folder, "*.mp3")) + glob.glob(os.path.join(folder, "*.wav")))
             if not legacy(n := os.path.basename(p)[:-4])}
 
+def pb_group_names(mix):
+    """Playback group keys in a mix, json order: pb-other, pb-bass, and any extra pb-* variant
+    (e.g. pb-other-keys = pb-other + the keys stem, an alternate MainStage track). Each renders
+    to <name>.wav from its own stem/layer subset; stems already live in `all`, so no double-add."""
+    return [k for k in mix if k.startswith("pb-")]
+
+
 def levels_report(query=None):
     """Dry run (writes nothing): for every fx/back-vox stem & layer in every song (or one if
     `query`), print role, measured gated-RMS loudness, the attenuate-only gain that WOULD apply
@@ -135,7 +142,7 @@ def levels_report(query=None):
         mix_p = os.path.join(folder, "mix.json")
         if not os.path.exists(mix_p): continue
         mix = json.load(open(mix_p)); paths = _stem_paths(folder); song = os.path.basename(folder)
-        for grp in ("pb-other", "pb-bass"):
+        for grp in pb_group_names(mix):
             m = mix.get(grp) or {}
             overrides, trims = m.get("roles", {}), (m.get("gain_db") or {})
             for n in m.get("stems", []):
@@ -255,19 +262,29 @@ def pitch_shift(buf, semitones):
     """Shift pitch by `semitones` (negative = down) preserving tempo, so the
     grid/alignment is untouched. Uses the rubberband CLI R3 engine (`-3`) with
     formant preservation — the ffmpeg rubberband FILTER (R2) mis-shifts pitch
-    (asking -2 yields ~-1.4st), the CLI is accurate. float-wav temps avoid
-    clipping (mix may exceed 0dBFS before the later headroom step). Length is
-    pinned to input (rubberband may emit ±a few samples) to keep bar lines exact."""
+    (asking -2 yields ~-1.4st), the CLI is accurate. Length is pinned to input
+    (rubberband may emit ±a few samples) to keep bar lines exact.
+
+    HEADROOM GUARD: the rubberband CLI hard-clips its output at ±1.0 even with
+    float wav in and out (verified: a 1.5-peak sine comes back at exactly 1.000).
+    The pitch pass runs BEFORE the headroom step and Moises stems routinely peak
+    above 0dBFS, so hot material was being clipped here — audible on the kit, and
+    it pinned the group's loudness to the crest of the CLIPPED buffer (a trim in
+    mix.json then looked like a no-op). Scale down to 0.98 peak before the shift
+    and back up after: linear, no clipping, headroom step attenuates as designed."""
     if not semitones: return buf
     import tempfile
+    pk = float(np.abs(buf).max())
+    guard = 0.98/pk if pk > 0.98 else 1.0
     with tempfile.TemporaryDirectory() as d:
         fin, fout = os.path.join(d, "in.wav"), os.path.join(d, "out.wav")
         subprocess.run(["ffmpeg","-v","quiet","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
-                        "-c:a","pcm_f32le",fin], input=buf.astype(np.float32).tobytes())
+                        "-c:a","pcm_f32le",fin], input=(buf*guard).astype(np.float32).tobytes())
         subprocess.run(["rubberband","-3","-F","-p",str(semitones),fin,fout], capture_output=True)
         raw = subprocess.run(["ffmpeg","-v","quiet","-i",fout,"-f","f32le","-ac","2","-ar",str(SR),"-"],
                              capture_output=True).stdout
     y = np.frombuffer(raw, np.float32).reshape(-1, 2).copy()
+    if guard != 1.0: y = y/guard                   # undo the guard: net effect is pure pitch
     if len(y) < len(buf):
         y = np.vstack([y, np.zeros((len(buf)-len(y), 2), np.float32)])
     return y[:len(buf)]
@@ -410,21 +427,210 @@ def build_follow_grid(met_mono, mix, beat, external=True):
 
 RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
 _SAY_CACHE = {}
+
+# ---- optional ElevenLabs cue voice (OFF by default) -----------------------------------------
+# Cue speech is macOS `say`. ElevenLabs was tried as the cue voice but sounded flat/robotic in
+# the ear live (rehearsal verdict 2026-07-13) — reverted to `say`, which is now the hard default
+# regardless of any key present. The whole EL path below stays dormant and is opt-in per render:
+# set CUE_TTS=eleven (needs ELEVENLABS_API_KEY in env or ~/.cherry-secrets, never committed) to
+# route cue words/announcements through ElevenLabs multilingual v2. Timing is engine-transparent:
+# _metric_clips MEASURES each returned clip to fit words to beats; the 3-2-1 count stays recorded
+# aiff clips. Override voice/model with CUE_TTS_VOICE / CUE_TTS_MODEL.
+def _load_secrets():
+    p = os.path.expanduser("~/.cherry-secrets")
+    if os.path.exists(p):
+        for ln in open(p):
+            ln = ln.strip()
+            if "=" in ln and not ln.startswith("#"):
+                k, v = ln.split("=", 1); os.environ.setdefault(k, v)
+_load_secrets()
+# EL only when explicitly requested; a stray key no longer auto-engages it.
+ELEVEN_KEY = os.environ.get("ELEVENLABS_API_KEY") if os.environ.get("CUE_TTS", "").lower() in ("eleven", "elevenlabs", "11labs") else None
+ELEVEN_VOICE = os.environ.get("CUE_TTS_VOICE", "ZSNL4hPqCnqoMPaI4jGX")   # settled cue voice
+ELEVEN_MODEL = os.environ.get("CUE_TTS_MODEL", "eleven_multilingual_v2")
+ELEVEN_SPEED = float(os.environ.get("CUE_TTS_SPEED", "1.0"))    # 0.7..1.2; 1.15 felt rushed -> 1.0 natural
+# Cue words are rendered SEPARATELY (one synth per word, placed on its beat) — clean boundaries, no
+# co-articulation smear. To keep them from sounding choppy/random (each isolated word getting its own
+# intonation), tone is flattened: HIGH stability + ZERO style ("creativity" off) -> every word renders
+# with the same even delivery, so the sequence reads uniform. Phrase-split (one utterance sliced by
+# char timestamps) is opt-in via CUE_TTS_PHRASE=1 — natural prosody but the slices smear word edges.
+ELEVEN_STABILITY = float(os.environ.get("CUE_TTS_STABILITY", "1.0"))   # 1.0 = flattest/most consistent
+ELEVEN_STYLE     = float(os.environ.get("CUE_TTS_STYLE", "0.0"))       # tone ACROSS separate cue gens
+ELEVEN_SEED      = int(os.environ.get("CUE_TTS_SEED", "7"))            # fixed seed -> deterministic gen
+CUE_BREAK_S      = float(os.environ.get("CUE_TTS_BREAK", "0.22"))      # <break> pause between cue words
+ELEVEN_PHRASE    = os.environ.get("CUE_TTS_PHRASE", "1") != "0"   # phrase-synth+gap-slice by default
+                                                                  # (consistent intonation); =0 -> per-word
+# cache-key suffix: MUST include every synthesis knob, else changing stability/style/seed silently
+# serves a stale cached clip (was a real bug — tone drifted between files mid-tuning).
+def _tts_sig(speed):
+    return f"{ELEVEN_VOICE}|{ELEVEN_MODEL}|{speed}|st{ELEVEN_STABILITY}|sy{ELEVEN_STYLE}|sd{ELEVEN_SEED}"
+def _voice_settings(speed):
+    return {"stability": ELEVEN_STABILITY, "similarity_boost": 0.9,
+            "style": ELEVEN_STYLE, "use_speaker_boost": True, "speed": speed}
+TTS_CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".tts-cache")
+
+# Spoken respelling: fixes TTS mispronunciation (stress/reading) WITHOUT changing the cue's
+# DISPLAY text (mix.json "text" / web songs.json stay verbatim). Applied to both engines just
+# before synthesis; whole-word, case-insensitive. Default fixes "DJ" -> Russian «диджей»
+# (dee-JAY, stress on 2nd syllable — 11labs/say otherwise say DEE-jay). Extend per song with
+# mix.json "say_as": {"word": "respelling"}.
+DEFAULT_SAY_AS = {"dj": "ди́джей"}   # combining acute (U+0301) on «и» -> stress FIRST syllable (DEE-jay)
+_SAY_AS = {}
+def _apply_say_as(text):
+    m = {**DEFAULT_SAY_AS, **_SAY_AS}
+    if not m: return text
+    return re.sub(r"[A-Za-zА-Яа-яЁё]+", lambda mo: m.get(mo.group(0).lower(), mo.group(0)), text)
+
+def _trim_sil(x, thr=0.005, pad=0.02):
+    """strip leading+trailing silence (ElevenLabs mp3 carries breath/pad on both ends;
+    the length feeds the beat-fit, so untrimmed pad would force needless atempo squeeze)."""
+    nz = np.where(np.abs(x) > thr)[0]
+    if not len(nz): return x
+    return x[max(0, nz[0]-int(pad*SR)): nz[-1]+int(pad*SR)]
+
+# Each ElevenLabs cue is a SEPARATE generation, so their loudness (±10dB) and pitch (nearly an
+# octave) drift — one cue sounds fine, the next is quieter/lower. Normalize every synthesized cue
+# clip to a common loudness and pitch center so the whole cue track is uniform. Counts ("3 2 1")
+# are recorded clips, untouched. Tunable/disable via env.
+CUE_LOUDNESS_DB = float(os.environ.get("CUE_TTS_LOUDNESS", "-18"))   # target voiced RMS, dBFS
+CUE_F0_HZ       = float(os.environ.get("CUE_TTS_F0", "0"))           # target pitch center (0 = OFF;
+                                                                     # rubberband on voice = artifacts,
+                                                                     # unacceptable — use API stitching)
+
+def _voiced_rms(x):
+    v = x[np.abs(x) > 0.02]
+    return float(np.sqrt(np.mean(v**2))) if len(v) > 100 else 0.0
+
+def _median_f0(x, lo=80, hi=350):
+    """robust median voiced pitch (autocorrelation per 46ms frame, voiced frames only)."""
+    W = 2048; f = []
+    for i in range(0, max(0, len(x)-W), W//2):
+        s = x[i:i+W]
+        if np.sqrt(np.mean(s**2)) < 0.02: continue           # unvoiced/silence
+        s = s*np.hanning(W); ac = np.correlate(s, s, "full")[W-1:]
+        lo_l, hi_l = int(SR/hi), int(SR/lo)
+        if hi_l >= len(ac): continue
+        lag = np.argmax(ac[lo_l:hi_l]) + lo_l
+        if lag > 0 and ac[lag] > 0.3*ac[0]: f.append(SR/lag)
+    return float(np.median(f)) if len(f) >= 3 else 0.0
+
+def _mono_pitch(x, semitones):
+    if abs(semitones) < 0.1: return x
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        fin, fout = os.path.join(d, "i.wav"), os.path.join(d, "o.wav")
+        subprocess.run(["ffmpeg","-v","quiet","-f","f32le","-ar",str(SR),"-ac","1","-i","-",
+                        "-c:a","pcm_f32le",fin], input=x.astype(np.float32).tobytes())
+        subprocess.run(["rubberband","-3","-F","-p",f"{semitones:.3f}",fin,fout], capture_output=True)
+        raw = subprocess.run(["ffmpeg","-v","quiet","-i",fout,"-f","f32le","-ac","1","-ar",str(SR),"-"],
+                             capture_output=True).stdout
+    y = np.frombuffer(raw, np.float32).copy()
+    return y if len(y) else x
+
+def _normalize_cue(x):
+    """pitch-center to CUE_F0_HZ (formant-preserved, clamped ±5 st), then loudness to
+    CUE_LOUDNESS_DB voiced-RMS, peak-limited. Makes separate cue generations sound uniform."""
+    if CUE_F0_HZ > 0:
+        f0 = _median_f0(x)
+        if f0 > 0:
+            semi = max(-5.0, min(5.0, 12*np.log2(CUE_F0_HZ/f0)))
+            x = _mono_pitch(x, semi)
+    rms = _voiced_rms(x)
+    if rms > 0:
+        x = x * (10**(CUE_LOUDNESS_DB/20) / rms)
+    pk = float(np.max(np.abs(x)) or 1)
+    if pk > 0.97: x = x*0.97/pk
+    return x.astype(np.float32)
+
+_PREGEN = {}   # text -> pre-generated audio (filled by _pregen_blocks: all cue blocks synthesized in
+               # ONE request so the voice character is identical across cues; measured f0 spread drops
+               # 185Hz (independent) -> 86Hz (single gen). _eleven_tts serves these before hitting the API.
+
+def _eleven_raw(text, speed):
+    """one ElevenLabs call -> decoded mono f32 @SR (untrimmed). None on error."""
+    import json as _json, urllib.request
+    body = _json.dumps({"text": text, "model_id": ELEVEN_MODEL, "seed": ELEVEN_SEED,
+                        "voice_settings": _voice_settings(speed)}).encode()
+    req = urllib.request.Request(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVEN_VOICE}?output_format=mp3_44100_128",
+        data=body, headers={"xi-api-key": ELEVEN_KEY, "Content-Type": "application/json"})
+    try:
+        data = urllib.request.urlopen(req, timeout=60).read()
+    except Exception as e:
+        print(f"  ElevenLabs failed ({e})"); return None
+    raw = subprocess.run(["ffmpeg","-v","quiet","-i","-","-ac","1","-ar",str(SR),"-f","f32le","-"],
+                         input=data, capture_output=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
+
+def _pregen_blocks(blocks):
+    """Synthesize ALL distinct cue blocks in ONE request (each block = its break-joined words), so
+    every cue shares one consistent voice/pitch/loudness — the ElevenLabs-documented way to keep
+    separate cues uniform is to generate together, not to pitch-correct after (that wrecks the voice).
+    A throwaway warm-up phrase leads so the real cues avoid the sentence-initial high contour. Pieces
+    are separated by a long <break>; split back apart at the long silences, loudness-normalized, and
+    stashed in _PREGEN keyed by the exact block text _eleven_tts will ask for. On any mismatch we bail
+    (per-cue generation still works, just less uniform)."""
+    if not (ELEVEN_KEY and blocks): return
+    warm = "ready go"
+    big = ' <break time="1.4s" /> '
+    combined = big.join([warm] + blocks)
+    audio = _eleven_raw(combined, ELEVEN_SPEED)
+    if audio is None: return
+    # split at long (>=0.7s) silences into pieces; the in-block 0.22s gaps stay merged
+    segs = _voiced_segments(audio, min_gap=0.7, min_run=0.05)
+    if len(segs) != len(blocks) + 1:
+        print(f"  pregen: split {len(segs)} != {len(blocks)+1} expected — per-cue fallback"); return
+    for k, b in enumerate(blocks):                        # seg 0 = warm-up (discard)
+        a, e = segs[k+1]
+        pad = int(0.05*SR)
+        _PREGEN[b] = _normalize_cue(audio[max(0, a-pad):min(len(audio), e+pad)])
+    print(f"  pregen: {len(blocks)} cue blocks in 1 generation (uniform voice), split OK")
+
+def _eleven_tts(text, speed):
+    """ElevenLabs multilingual TTS -> mono f32 @SR, silence-trimmed, disk-cached. None on error."""
+    import hashlib, json as _json, urllib.request
+    if text in _PREGEN: return _PREGEN[text]              # from the single-generation pre-pass
+    ck = hashlib.md5(f"{_tts_sig(speed)}|{text}".encode()).hexdigest()
+    os.makedirs(TTS_CACHE_DIR, exist_ok=True)
+    fp = os.path.join(TTS_CACHE_DIR, ck + ".mp3")
+    if not os.path.exists(fp):
+        body = _json.dumps({"text": text, "model_id": ELEVEN_MODEL, "seed": ELEVEN_SEED,
+                            "voice_settings": _voice_settings(speed)}).encode()
+        req = urllib.request.Request(
+            f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVEN_VOICE}?output_format=mp3_44100_128",
+            data=body, headers={"xi-api-key": ELEVEN_KEY, "Content-Type": "application/json"})
+        try:
+            data = urllib.request.urlopen(req, timeout=30).read()
+        except Exception as e:
+            print(f"  ElevenLabs TTS failed ({e}) — say fallback for {text!r}"); return None
+        with open(fp, "wb") as f: f.write(data)
+    raw = subprocess.run(["ffmpeg","-v","quiet","-i",fp,"-ac","1","-ar",str(SR),"-f","f32le","-"],
+                         capture_output=True).stdout
+    x = np.frombuffer(raw, np.float32).copy()
+    return _normalize_cue(_trim_sil(x)) if len(x) else None   # uniform loudness+pitch across cues
+
 def _say(text, voice, rate=None):
     import hashlib, tempfile
-    key = hashlib.md5(f"{voice}|{rate}|{text}".encode()).hexdigest()
+    text = _apply_say_as(text)                        # spoken respelling (display text unaffected)
+    src = "EL" if ELEVEN_KEY else "say"
+    key = hashlib.md5(f"{src}|{ELEVEN_VOICE if ELEVEN_KEY else voice}|{rate}|{text}".encode()).hexdigest()
     if key in _SAY_CACHE: return _SAY_CACHE[key]
-    with tempfile.TemporaryDirectory() as d:
-        aiff = os.path.join(d, "s.aiff")
-        cmd = ["say"] + (["-v", voice] if voice else []) + (["-r", str(rate)] if rate else []) \
-              + ["-o", aiff, text]
-        subprocess.run(cmd, check=True)
-        raw = subprocess.run(["ffmpeg","-v","quiet","-i",aiff,"-ac","1","-ar",str(SR),"-f","f32le","-"],
-                             capture_output=True).stdout
-    x = np.frombuffer(raw, np.float32).copy()
-    nz = np.where(np.abs(x) > 0.005)[0]              # drop synth tail silence (it spills into the
-    if len(nz): x = x[:nz[-1] + int(0.02*SR)]        # next word's slot check otherwise)
-    x = x/(np.max(np.abs(x)) or 1)*0.9
+    x = None
+    if ELEVEN_KEY:                                   # ElevenLabs; say's fast rate -> speed 1.2 (max)
+        x = _eleven_tts(text, 1.2 if rate else ELEVEN_SPEED)
+    if x is None:                                    # macOS say (default, or EL failure fallback)
+        with tempfile.TemporaryDirectory() as d:
+            aiff = os.path.join(d, "s.aiff")
+            cmd = ["say"] + (["-v", voice] if voice else []) + (["-r", str(rate)] if rate else []) \
+                  + ["-o", aiff, text]
+            subprocess.run(cmd, check=True)
+            raw = subprocess.run(["ffmpeg","-v","quiet","-i",aiff,"-ac","1","-ar",str(SR),"-f","f32le","-"],
+                                 capture_output=True).stdout
+        x = np.frombuffer(raw, np.float32).copy()
+        nz = np.where(np.abs(x) > 0.005)[0]          # drop synth tail silence (it spills into the
+        if len(nz): x = x[:nz[-1] + int(0.02*SR)]    # next word's slot check otherwise)
+        x = x/(np.max(np.abs(x)) or 1)*0.9           # macOS say: peak-norm (EL path already
+                                                     # loudness+pitch normalized in _eleven_tts)
     _SAY_CACHE[key] = x; return x
 
 def _atempo(x, factor):
@@ -437,27 +643,126 @@ def _atempo(x, factor):
                          input=x.astype(np.float32).tobytes(), capture_output=True).stdout
     return np.frombuffer(raw, np.float32).copy()
 
+def _eleven_phrase(text, speed):
+    """ElevenLabs with-timestamps: synthesize `text` as ONE utterance -> (mono f32 @SR,
+    [(word_start_s, word_end_s), ...]) with word spans from the char alignment (split on
+    spaces). Disk-cached (mp3 + alignment json). (None, None) on failure."""
+    import hashlib, json as _json, urllib.request, base64
+    ck = hashlib.md5(f"ph|{_tts_sig(speed)}|{text}".encode()).hexdigest()
+    os.makedirs(TTS_CACHE_DIR, exist_ok=True)
+    mp3 = os.path.join(TTS_CACHE_DIR, ck + ".mp3"); jsp = os.path.join(TTS_CACHE_DIR, ck + ".json")
+    if not (os.path.exists(mp3) and os.path.exists(jsp)):
+        body = _json.dumps({"text": text, "model_id": ELEVEN_MODEL, "seed": ELEVEN_SEED,
+                            "voice_settings": _voice_settings(speed)}).encode()
+        req = urllib.request.Request(
+            f"https://api.elevenlabs.io/v1/text-to-speech/{ELEVEN_VOICE}/with-timestamps?output_format=mp3_44100_128",
+            data=body, headers={"xi-api-key": ELEVEN_KEY, "Content-Type": "application/json"})
+        try:
+            resp = _json.loads(urllib.request.urlopen(req, timeout=30).read())
+        except Exception as e:
+            print(f"  ElevenLabs timestamps failed ({e})"); return None, None
+        with open(mp3, "wb") as f: f.write(base64.b64decode(resp["audio_base64"]))
+        with open(jsp, "w") as f: _json.dump(resp.get("alignment") or {}, f)
+    al = _json.load(open(jsp))
+    raw = subprocess.run(["ffmpeg","-v","quiet","-i",mp3,"-ac","1","-ar",str(SR),"-f","f32le","-"],
+                         capture_output=True).stdout
+    audio = np.frombuffer(raw, np.float32).copy()
+    chars = al.get("characters") or []; st = al.get("character_start_times_seconds") or []
+    en = al.get("character_end_times_seconds") or []
+    if not chars or len(chars) != len(st) or len(chars) != len(en): return audio, None
+    spans = []; a0 = None; b0 = None                     # group chars into words on whitespace
+    for ch, a, b in zip(chars, st, en):
+        if ch.strip() == "":
+            if a0 is not None: spans.append((a0, b0)); a0 = None
+        else:
+            if a0 is None: a0 = a
+            b0 = b
+    if a0 is not None: spans.append((a0, b0))
+    return audio, spans
+
+def _voiced_segments(x, thr_ratio=0.08, min_run=0.04, min_gap=0.06):
+    """[(start,end)] sample spans of voiced runs. The <break> pauses between cue words leave real
+    silence, so a simple energy gate splits the words cleanly (no co-articulation to smear)."""
+    w = max(1, int(0.01*SR))
+    env = np.sqrt(np.convolve(x**2, np.ones(w)/w, mode="same"))
+    voiced = env > thr_ratio*(env.max() or 1)
+    segs = []; i = 0; n = len(voiced)
+    while i < n:
+        if voiced[i]:
+            j = i
+            while j < n and voiced[j]: j += 1
+            segs.append([i, j]); i = j
+        else:
+            i += 1
+    merged = []
+    for s in segs:                                       # bridge micro-gaps inside one word
+        if merged and (s[0]-merged[-1][1]) < int(min_gap*SR): merged[-1][1] = s[1]
+        else: merged.append(list(s))
+    return [(a, b) for a, b in merged if (b-a) >= int(min_run*SR)]
+
+def _phrase_word_clips(metric):
+    """Per-word clips for the metric block, cut from ONE natural ElevenLabs generation. The block is
+    synthesized WITH <break> pauses between the words ('drums <break/> in <break/> ready <break/>
+    go') — one generation so the tone/voice is consistent across the words, and the breaks insert
+    REAL silence between them, so segmenting by energy gives clean per-word clips with nothing
+    sliced inside a word (co-articulated continuous speech had no gaps to cut — that was the smear).
+    _metric_clips then places each clip on its beat (a long word like a hyphenated label overflows
+    its beat and is given extra beats there, so words never overlap). Returns clips (len==len(metric))
+    or None to fall back to per-word say."""
+    try:
+        synth = [_apply_say_as(w) for w in metric]
+        if any(" " in sw for sw in synth): return None   # a respelling split a word -> can't map 1:1
+        tag = f' <break time="{CUE_BREAK_S:.2f}s" /> '
+        audio = _eleven_tts(tag.join(synth), ELEVEN_SPEED)   # break tags = pauses, not spoken
+        if audio is None: return None
+        segs = [list(s) for s in _voiced_segments(audio)]
+        if len(segs) < len(metric): return None          # can't split enough -> safe fallback
+        while len(segs) > len(metric):                    # too many (a hyphen-word 'drum-bass' split at
+            gaps = [segs[k+1][0]-segs[k][1] for k in range(len(segs)-1)]   # its internal seam at slow
+            k = int(np.argmin(gaps))                      # speed) -> merge the NARROWEST gap (the seam is
+            segs[k] = [segs[k][0], segs[k+1][1]]; segs.pop(k+1)   # tighter than the real <break> pauses)
+        # extend each word end through its RELEASE (energy decays below the 8% gate while the word
+        # tail is still audible -> a bare [s,e] cut clips 'up'/'build' short = sounds rushed). Follow
+        # the release down to 2% of peak, into the <break> silence, capped before the next word.
+        w = max(1, int(0.01*SR))
+        env = np.sqrt(np.convolve(audio**2, np.ones(w)/w, mode="same")); pk = env.max() or 1
+        clips = []
+        for k, (s, e) in enumerate(segs):
+            lim = segs[k+1][0] if k+1 < len(segs) else len(audio)
+            j = e
+            while j < lim-1 and env[j] > 0.02*pk: j += 1   # ride the release tail down
+            clips.append(audio[max(0, s-int(0.015*SR)):j])
+        return clips
+    except Exception as e:
+        print(f"  phrase-split failed ({e}); per-word fallback"); return None
+
 def _metric_clips(metric, beat, squeeze=False):
     """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
     beat -(W-i). squeeze=True (fast breakdown cues) ALWAYS atempo-fits each word into its one
     slot — 'rushed' is acceptable when the slot is a fast subdiv tick and there's no room to
     spread. Speed-up is capped at `say -r 200` — faster is unintelligible; past that a
-    small overflow (<0.15 beat) is squeezed into the slot by atempo (inaudible at such factors,
-    e.g. solo/sax ~1.05x). A word overflowing MORE STARTS whole beats earlier and spans them at
-    natural pace (first word only — the slot before it is free; e.g. instrumental, arpegiator,
-    bass-n-beat): squeezing a long word into one beat sounds rushed, an empty added beat sounds
-    dead, so the 0.15-beat line splits the two. Natural pace wins when it needs no more extra
-    beats than the sped-up take."""
+    overflow up to 0.35 beat is squeezed into the slot by atempo (<=~1.4x, still crisp — a short
+    word like drums/vocal that runs ~1.1 beat should sit on ONE beat, not sprawl over two). A word
+    overflowing MORE STARTS whole beats earlier and spans them at natural pace (first word only —
+    the slot before it is free; e.g. instrumental, arpegiator, bass-n-beat): squeezing a genuinely
+    long word into one beat sounds rushed, an empty added beat sounds dead, so the 0.35-beat line
+    splits the two. Natural pace wins when it needs no more extra beats than the sped-up take."""
     W = len(metric); out = []
+    phrase_clips = _phrase_word_clips(metric) if (ELEVEN_KEY and ELEVEN_PHRASE) else None  # opt-in
     for i, w in enumerate(metric):
         v = RU_VOICE if _cyrillic(w) else EN_VOICE
         budget = 0.92*beat
-        nat, fast = _say(w, v), _say(w, v, 200)
+        if phrase_clips is not None:                     # natural-phrase slice (no faster variant;
+            nat = fast = phrase_clips[i]                  # atempo handles any beat overflow below)
+        else:
+            nat, fast = _say(w, v), _say(w, v, 200)
         clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
         if clip is None and squeeze:                            # fast cue: force into the one tick slot
             clip = _atempo(fast, (len(fast)/SR)/budget)
-        elif clip is None and len(fast)/SR - budget < 0.15*beat:  # small overflow: squeeze into the
-            clip = _atempo(fast, (len(fast)/SR)/budget)         # slot — a whole added beat would
+        elif clip is None and len(fast)/SR - budget < 0.35*beat:  # overflow up to ~1.4 beat: squeeze
+            clip = _atempo(fast, (len(fast)/SR)/budget)         # into the slot (<=1.4x, inaudible for a
+                                                                # short word like drums/vocal). A whole
+                                                                # added beat would
         elif clip is None and i == 0:                           # sit mostly empty (solo/sax ~1.05x)
             ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
             clip = nat if ex(nat) <= ex(fast) else fast
@@ -476,7 +781,12 @@ def _vowel_onset(x):
     if not len(env): return 0.0
     return int(np.argmax(env > 0.4*env.max()))*(w//2)/SR
 
-COUNT_FILES = {"3": "~/3.aiff", "2": "~/2.aiff", "1": "~/1.aiff"}
+COUNT_FILES = {"3": "~/3.aiff", "2": "~/2.aiff", "1": "~/1.aiff"}   # recorded count (say-voice era)
+COUNT_WORDS = {"3": "three", "2": "two", "1": "one"}                # spoken via the cue TTS voice
+def _count_clip(d):
+    """the 3-2-1 count segment. With an ElevenLabs cue voice, speak it in the SAME voice as the
+    announcement (so 'stop in 3 … 3 2 1' is one voice); else the recorded aiff clips."""
+    return _say(COUNT_WORDS[d], EN_VOICE) if ELEVEN_KEY else _load_clip(COUNT_FILES[d])
 _CLIP_CACHE = {}
 def _load_clip(path):
     path = os.path.expanduser(path)
@@ -508,11 +818,15 @@ def cue_kind(text, raw=False):
     return "stop" if last == "stop" else "in" if last == "in" else "plain"  # breakdown where a word
 
 def cue_words(text, kind):                                # already spans 2 fast clicks and there is no
-    """metered words of a cue + natural-pace intro. The counted block is the LAST 4 words
-    ('<x> in ready go'); anything before it (the song title in the start cue) is announcement,
-    spoken at natural speed as one phrase, ending just before the block — never squashed."""
+    """metered words of a cue + natural-pace intro. For an 'in' cue the counted block is the LAST 4
+    words ('<x> in ready go') and anything before it is the song TITLE — announcement spoken at
+    natural speed as one phrase, ending just before the block. A PLAIN cue (the user typed the whole
+    phrase, e.g. 'drum bass break ready go') has no title: EVERY word is metered on its own beat, so
+    each is heard clearly (else the leading words get crammed into a fast intro and swallowed)."""
     words = (text + " ready go" if kind == "in" else text).split()
-    return (" ".join(words[:-4]), words[-4:]) if len(words) > 4 else ("", words)
+    if kind == "in" and len(words) > 4:                   # title (natural) + '<x> in ready go' block
+        return (" ".join(words[:-4]), words[-4:])
+    return ("", words)                                    # plain: meter every word, one per beat
 
 def _cue_step(c, song_step, subdiv):
     """beats per metered word / count segment. Per-cue "step" > song "cue_step" > 'fast' subdiv
@@ -532,18 +846,38 @@ def _note_hz(nm):
     midi = (int(m.group(3)) + 1)*12 + _PC[m.group(1).upper()] + {'#': 1, 'b': -1, '': 0}[m.group(2)]
     return 440.0*2**((midi - 69)/12)
 
+def _pluck(f, dur_s):
+    """One plucked string (Karplus-Strong) at f Hz, ringing for dur_s. A short full-band
+    noise burst into a lowpass-feedback delay line -> bright pluck attack with the upper
+    harmonics decaying fastest (a guitar/string, not a beep). Excitation is seeded per pitch
+    so renders stay reproducible; the per-period gain is set from dur_s so a single pluck is
+    still ~-12 dB at clip end -> let-rings the whole bar before the vocal."""
+    n = max(1, int(dur_s*SR))
+    N = max(2, int(round(SR/f)))                 # delay length = one period of the note
+    noise = np.random.default_rng(int(round(f))).uniform(-1.0, 1.0, N)   # pluck color/attack
+    sine = np.sin(2*np.pi*np.arange(N)/N)        # exactly one period -> seeds the fundamental
+    d = 0.3*noise + 0.7*sine                     # so the fundamental wins (no octave-up at high notes)
+    g = 0.25 ** (N/float(n))                      # per-period feedback -> long, controlled ring
+    nper = -(-n // N)                             # ceil(n/N) period passes
+    out = np.empty(nper*N)
+    for p in range(nper):
+        out[p*N:(p+1)*N] = d
+        d = g*0.5*(d + np.roll(d, -1))            # avg with neighbour = one-pole string damping
+    return out[:n]
+
 def _chord_clip(notes, dur_s, level=0.5):
-    """Soft synth triad for an in-ear pitch reference (authored directly in the BAND key — the
-    cue track is never pitch-shifted). Sine + two quiet harmonics, gentle attack and a long
-    cosine release so it rings like a pad, not a beep."""
-    n = int(dur_s*SR); t = np.arange(n)/SR; y = np.zeros(n)
-    for nm in notes:
-        f = _note_hz(nm)
-        for h, a in ((1, 1.0), (2, 0.35), (3, 0.15)):
-            y += a*np.sin(2*np.pi*f*h*t)
-    env = np.ones(n); at = int(0.015*SR); rl = int(min(0.55, dur_s*0.55)*SR)
-    env[:at] = np.linspace(0, 1, at)
-    env[-rl:] = np.cos(np.linspace(0, np.pi/2, rl))       # smooth fade to 0 (no click into the block)
+    """Plucked-string in-ear pitch reference (guitar timbre), authored directly in the BAND
+    key (cue track is never pitch-shifted). One Karplus-Strong pluck per note, let ringing the
+    whole bar; a tiny stagger strums a real multi-note chord (single-note refs unaffected)."""
+    n = int(dur_s*SR); y = np.zeros(max(n, 1))
+    for k, nm in enumerate(notes):
+        p = _pluck(_note_hz(nm), dur_s)
+        s = int(0.012*SR)*k                       # strum stagger (0 for the first/only note)
+        if s: p = np.concatenate([np.zeros(s), p])[:len(y)]
+        y[:len(p)] += p[:len(y)]
+    env = np.ones(len(y)); at = int(0.004*SR); rl = int(min(0.08, dur_s*0.2)*SR)
+    env[:at] = np.linspace(0, 1, at)              # de-click the pluck attack
+    if rl: env[-rl:] = np.cos(np.linspace(0, np.pi/2, rl))   # short fade out (no click into the block)
     return (y*env/(np.max(np.abs(y*env)) or 1)*level).astype(np.float32)
 
 INTRO_GAP = 0.12                                          # breath between intro and the block
@@ -585,7 +919,7 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
         voice = RU_VOICE if _cyrillic(text) else EN_VOICE
         if kind == "stop" or counted:
             for d, k in (("3", 3), ("2", 2), ("1", 1)):   # count on event-3 / -2 / -1 (× step)
-                clip = _load_clip(COUNT_FILES[d])
+                clip = _count_clip(d)
                 _put(buf, clip, base + relt(i - k*step) - _vowel_onset(clip))
             ann_text = text.replace("-", " ") + (" in 3" if kind == "stop" else " 3")
             ann = _say(ann_text, voice)                   # announcement finishes before the count
@@ -612,13 +946,15 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
         rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
     return buf, rep
 
-def write_cue_abs_times(mix_path, times):
+def write_cue_abs_times(mix_path, times, snaps=None):
     """Refresh "abs_sec" (render-timeline event seconds, what you hear in auto-render/cue_preview)
-    on each cue in mix.json, IN PLACE. Edits the raw text line-by-line — never re-serializes the
-    whole file — so hand-formatting (column alignment, field order, one cue per line) is preserved
-    byte-for-byte. Idempotent: an existing abs_sec is stripped and rewritten. times[k] = the k-th
-    cue's render event time, in file order. Cue lines are matched by carrying both "bar" and "text"
-    ("from_bar"/"to_bar" in tempo_zone never match — no surrounding quotes on `bar`, and no "text").
+    and "snap_sec" (seek point = 1 bar before the cue's first spoken word, so clicking a cue in the
+    web player replays the WHOLE cue, not just its event) on each cue in mix.json, IN PLACE. Edits
+    the raw text line-by-line — never re-serializes the whole file — so hand-formatting (column
+    alignment, field order, one cue per line) is preserved byte-for-byte. Idempotent: existing
+    abs_sec/snap_sec are stripped and rewritten. times[k]/snaps[k] = the k-th cue's render event /
+    seek time, in file order. Cue lines are matched by carrying both "bar" and "text" ("from_bar"/
+    "to_bar" in tempo_zone never match — no surrounding quotes on `bar`, and no "text").
     Skips writing on a count mismatch (returns the mismatch for the caller to report)."""
     src = open(mix_path, encoding="utf-8").read()
     lines = src.split("\n")
@@ -630,10 +966,13 @@ def write_cue_abs_times(mix_path, times):
     for j, ln in enumerate(lines):
         if not is_cue(ln):
             continue
-        body = re.sub(r',\s*"abs_sec"\s*:\s*[-0-9.]+', "", ln)   # drop any prior abs_sec
+        body = re.sub(r',\s*"(abs_sec|snap_sec)"\s*:\s*[-0-9.]+', "", ln)   # drop any prior values
         idx = body.rfind("}")                                    # insert before the cue's closing brace
-        t = round(times[k], 3); k += 1
-        lines[j] = body[:idx].rstrip() + f', "abs_sec": {t}' + body[idx:]
+        add = f', "abs_sec": {round(times[k], 3)}'
+        if snaps is not None:
+            add += f', "snap_sec": {round(snaps[k], 3)}'
+        k += 1
+        lines[j] = body[:idx].rstrip() + add + body[idx:]
     open(mix_path, "w", encoding="utf-8").write("\n".join(lines))
     return None
 
@@ -649,6 +988,7 @@ def main():
 
     mix_p = os.path.join(folder, "mix.json")
     mix = json.load(open(mix_p)) if os.path.exists(mix_p) else {}
+    _SAY_AS.clear(); _SAY_AS.update({k.lower(): v for k, v in (mix.get("say_as") or {}).items()})
     if not external and not mix:
         sys.exit(f"no mix.json in {folder} — define pb-other/pb-bass first")
 
@@ -668,7 +1008,7 @@ def main():
         click_name = next((n for n in stems if "click" in n.lower()), None) or sys.exit("no Click stem")
     cue_p = os.path.join(folder, "cue_track.wav")
 
-    for grp in ("pb-other", "pb-bass"):
+    for grp in pb_group_names(mix):
         g = mix.get(grp) or {}
         for nm in g.get("stems", []):
             if nm not in stems: sys.exit(f"mix.json: unknown stem '{nm}' in {grp}")
@@ -761,9 +1101,20 @@ def main():
     # tunes the clean tail. The cue tail still holds 2 bars after the last cue so an "end" cue
     # isn't clipped. Strips Moises stem zero-padding so the click doesn't tick into dead air.
     tail_bars = int(mix.get("tail_bars", 1) or 1)
-    end = max(last_sound(a) for a in srcs) + off_samp
-    if mix.get("cues"):
-        end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
+    # "cut_after_last_cue": N -> end the render N bars after the LAST cue event and drop the song's
+    # tail past it (e.g. an 'end' cue where the band finishes and the recording's outro is unwanted).
+    # N bars let the final hit ring; the output is faded at the cut so the hard stop doesn't click.
+    # (true -> 2 bars.) Absent -> normal: extend to the last real sound, +2 bars of cue-tail room.
+    cut = mix.get("cut_after_last_cue")
+    cut_bars = (2.0 if cut is True else float(cut)) if (cut is not None and mix.get("cues")) else None
+    if cut_bars is not None:
+        last_ev = max(cue_event_time(c, cue_base, relt) for c in mix["cues"])
+        end = int((last_ev + cut_bars*bar)*SR)
+        print(f"cut: render ends {cut_bars:g} bar(s) after the last cue event — song tail dropped")
+    else:
+        end = max(last_sound(a) for a in srcs) + off_samp
+        if mix.get("cues"):
+            end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
     total = int((np.ceil(end/(bar*SR)) + (tail_bars - 1))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars "
           f"(tail {tail_bars}b, trailing silence trimmed)")
@@ -894,13 +1245,25 @@ def main():
                 cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
             print(f"click: front {t0c/bar:.0f} bar(s) filled with JZ count-in")
         out = {"click": cbuf}
-    replaced = {r for grp in ("pb-other", "pb-bass")          # a layer that RE-RECORDS a Moises stem
+    replaced = {r for grp in pb_group_names(mix)              # a layer that RE-RECORDS a Moises stem
                 for ent in (mix.get(grp) or {}).get("layers", []) if isinstance(ent, dict)
                 for r in ent.get("replaces", [])}             # (live bass for studio bass) -> drop that
     out["all"] = mixdown([n for n in music if n not in replaced], {})   # stem from `all` so it isn't doubled
     if replaced: print(f"all: Moises stems replaced by a layer, excluded: {sorted(replaced)}")
     crep = None
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
+        print(f"cue voice: {'ElevenLabs ' + ELEVEN_VOICE + ' (' + ELEVEN_MODEL + f'), stab {ELEVEN_STABILITY} style {ELEVEN_STYLE} speed {ELEVEN_SPEED}, counts spoken' if ELEVEN_KEY else 'macOS say ' + str(RU_VOICE) + ', counts = recorded clips'}")
+        if ELEVEN_KEY and ELEVEN_PHRASE:           # pre-generate every cue block in ONE request so the
+            _tag = f' <break time="{CUE_BREAK_S:.2f}s" /> '   # voice is identical across cues (not pitch-DSP'd)
+            _blocks = []
+            for _c in mix["cues"]:
+                _t = _c["text"].strip(); _k = cue_kind(_t, _c.get("raw"))
+                if _c.get("count") or _k == "stop": continue      # these use announcement + recorded counts
+                _synth = [_apply_say_as(w) for w in cue_words(_t, _k)[1]]
+                if any(" " in s for s in _synth): continue
+                _b = _tag.join(_synth)
+                if _b not in _blocks: _blocks.append(_b)
+            _pregen_blocks(_blocks)
         out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv, cue_step)
         print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
               f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
@@ -910,7 +1273,7 @@ def main():
         cues_buf = np.zeros((total, 2), np.float32); place(cues_buf, cue_st, off_samp)
         out["cues"] = cues_buf
     autoleveled = set()                                # groups carrying an auto-leveled (fx/back-vox)
-    for grp in ("pb-other", "pb-bass"):                # stem/layer -> warn if headroom rescales them
+    for grp in pb_group_names(mix):                    # stem/layer -> warn if headroom rescales them
         m = mix.get(grp)
         if not m: continue
         overrides, trims = m.get("roles", {}), (m.get("gain_db") or {})
@@ -946,7 +1309,7 @@ def main():
         if n > 0: lbuf[s0:s0+n] = a[a0:a0+n]
         return lbuf
     placed_layers = []                             # (name, placed band-key buffer) for practice minus
-    for grp in ("pb-other", "pb-bass"):            # layers added AFTER pitch (band key -> NEVER pitched),
+    for grp in pb_group_names(mix):                # layers added AFTER pitch (band key -> NEVER pitched),
         m = mix.get(grp)                           # BEFORE headroom (catch peaks); each folded into `all`.
         for ent in (m or {}).get("layers", []):    # entry: "name" (render-frame) | {file, frame, offset_ms}
             ent = ent if isinstance(ent, dict) else {"file": ent}
@@ -974,6 +1337,12 @@ def main():
                    if n in autoleveled else ""
             print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> normalized to -0.4dBFS{warn}")
 
+    if cut_bars is not None:                        # soften the hard truncation so the dropped-tail
+        fade = min(int(0.08*SR), total)             # cut ends on a clean ramp, not a click
+        ramp = np.linspace(1.0, 0.0, fade, dtype=np.float32)[:, None]
+        for n in out:
+            out[n][-fade:] *= ramp
+
     pre = 1000
     v = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
     ph0 = v[0] if daw else 0.0                      # daw_align: downbeat sits at stem db0, not on a
@@ -992,11 +1361,16 @@ def main():
         sys.exit("verification failed — nothing written")  # follow rebuilds click+cues ON the metronome's
                                                             # own map, so a non-zero constant-beat median IS
                                                             # the tracked tempo curve (correct by construction).
-    if crep is not None:                            # write render-timeline abs_sec back onto each cue
-        warn = write_cue_abs_times(mix_p, [t for *_, t in crep])
-        print(warn if warn else f"✓ abs_sec: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")
+    if crep is not None:                            # write render-timeline abs_sec + snap back per cue.
+        # snap = seek point for the web player = 1 bar before the cue's FIRST spoken word, so clicking
+        # a cue replays the WHOLE spoken cue (title/announcement/count) and hears the event, not just
+        # the event beat with the words already gone. Clamped to >=0 (start cue sits near t=0).
+        snaps = [max(0.0, cue_first_word_time(c, cue_base, relt, bdur, cue_subdiv, cue_step) - bar)
+                 for c in mix["cues"]]
+        warn = write_cue_abs_times(mix_p, [t for *_, t in crep], snaps)
+        print(warn if warn else f"✓ abs_sec+snap: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")
     if "--check" in sys.argv:
-        print("✓ --check: grid green, mix.json abs_sec updated, no audio written"); return
+        print("✓ --check: grid green, mix.json abs_sec+snap updated, no audio written"); return
 
     adir = os.path.join(folder, "auto-render")
     os.makedirs(adir, exist_ok=True)
@@ -1016,6 +1390,67 @@ def main():
                         "-b:a","192k",os.path.join(adir, "cue_preview.mp3")],
                        input=m.astype(np.float32).tobytes())
         extra = " + cue_preview.mp3"
+
+    for grp in pb_group_names(mix):                # audition mp3 per playback group: the group ALONE
+        if grp not in out: continue                # over click + cues, cue_preview levels. Lets a new
+        g = out[grp]*MIX_LVL + out["click"]*CLICK_LVL   # group (pb-drums = the kit for a rehearsal
+        if "cues" in out: g = g + out["cues"]*CUE_LVL   # without the drummer) be checked for level and
+        pk = float(np.abs(g).max())                     # tightness on the web dashboard BEFORE it is
+        if pk > 0.97: g *= 0.97/pk                      # wired into MainStage by hand.
+        subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
+                        "-b:a","192k",os.path.join(adir, grp + ".mp3")],
+                       input=g.astype(np.float32).tobytes())
+        extra += f" + {grp}.mp3"
+
+    stems_dir = os.path.join(adir, "stems")
+    os.makedirs(stems_dir, exist_ok=True)
+    cat_rules = [
+        ("back_vox", r"back(ing)?.?vocals?|back.?vox"),
+        ("vocal",    r"lead.?vocal|^vocals?$"),
+        ("drums",    r"drum"),
+        ("bass",     r"bass"),
+        ("guitars",  r"guitar"),
+        ("keys",     r"keys|piano|organ|synth|clav|rhodes|accord|vibe"),
+    ]
+    cat_map = {}
+    for st in music:
+        low = st.lower()
+        matched = "other"
+        for cid, pat in cat_rules:
+            if re.search(pat, low):
+                matched = cid
+                break
+        cat_map.setdefault(matched, []).append(st)
+
+    for cid, st_list in cat_map.items():
+        buf = mixdown([n for n in st_list if n not in replaced], {})
+        if semi: buf = pitch_shift(buf, semi)
+        for lnm, lb in placed_layers:
+            matched_l = "other"
+            for cid_l, pat in cat_rules:
+                if re.search(pat, lnm.lower()):
+                    matched_l = cid_l
+                    break
+            if matched_l == cid:
+                buf = buf + lb
+        pk = float(np.abs(buf).max())
+        if pk > 0.97: buf *= 0.97 / pk
+        out_p = os.path.join(stems_dir, f"{cid}.mp3")
+        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                        "-b:a", "192k", out_p], input=buf.astype(np.float32).tobytes())
+
+    if "click" in out:
+        c_pk = float(np.abs(out["click"]).max())
+        c_buf = out["click"] * (0.97 / c_pk if c_pk > 0.97 else 1.0)
+        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                        "-b:a", "192k", os.path.join(stems_dir, "click.mp3")], input=c_buf.astype(np.float32).tobytes())
+    if "cues" in out:
+        cu_pk = float(np.abs(out["cues"]).max())
+        cu_buf = out["cues"] * (0.97 / cu_pk if cu_pk > 0.97 else 1.0)
+        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                        "-b:a", "192k", os.path.join(stems_dir, "cues.mp3")], input=cu_buf.astype(np.float32).tobytes())
+    extra += " + stems/"
+
     print(f"✓ auto-render/: {', '.join(n+'.wav' for n in out)} + timeline.json{extra}")
 
     for who, owned in players.items():             # practice mix: all MINUS this member's stems,
@@ -1047,6 +1482,21 @@ def main():
             if pk > 0.99: buf *= 0.95/pk
             wav_tempo_write(os.path.join(sdir, nm + ".wav"), buf, bpm)
         print(f"✓ auto-render/synths/: {', '.join(n+'.wav' for n in exp)}")
+
+    # Keep the web dashboard in sync: web/songs.json is GENERATED from every mix.json by
+    # setlist_dashboard.py, and the dashboard reads that file (not mix.json). A cue/stem edit only
+    # reaches the page — text, timecodes, and the snap seek-target — once it's rebuilt, so a full
+    # render refreshes it automatically. Set JZ_SKIP_SITE=1 in batch loops (rebuild once at the end).
+    # Never fatal: a refresh failure must not sink an otherwise-good render.
+    if not os.environ.get("JZ_SKIP_SITE"):
+        dash = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "setlist_dashboard.py")
+        try:
+            r = subprocess.run([sys.executable, dash], capture_output=True, text=True)
+            tail = next((l for l in reversed(r.stdout.strip().splitlines()) if l.strip()), "")
+            print(f"✓ web/songs.json refreshed — {tail}" if r.returncode == 0
+                  else f"  web/songs.json refresh skipped (setlist_dashboard exit {r.returncode})")
+        except Exception as e:
+            print(f"  web/songs.json refresh skipped ({e})")
 
 if __name__ == "__main__":
     main()

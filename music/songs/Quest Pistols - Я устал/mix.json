@@ -6,16 +6,16 @@
   "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
   "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [
-    {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871},
-    {"bar": 3, "text": "drums in", "abs_sec": 7.742},
-    {"bar": 13, "text": "stop", "abs_sec": 27.097},
-    {"bar": 25, "text": "verse in", "abs_sec": 50.323},
-    {"bar": 33, "text": "stop", "abs_sec": 65.806},
-    {"bar": 44, "text": "keep going", "abs_sec": 87.097},
-    {"bar": 53, "text": "stop", "abs_sec": 104.516},
-    {"bar": 54, "beat": 1, "text": "vocal in", "fast": true, "abs_sec": 107.125},
-    {"bar": 55, "beat": 4, "text": "drums in", "fast": true, "abs_sec": 111.795},
-    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 134.505},
-    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 181.925}
+    {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871, "snap_sec": 0.0},
+    {"bar": 3, "text": "drums in", "abs_sec": 7.742, "snap_sec": 3.871},
+    {"bar": 13, "text": "stop", "abs_sec": 27.097, "snap_sec": 22.742},
+    {"bar": 25, "text": "verse in", "abs_sec": 50.323, "snap_sec": 46.452},
+    {"bar": 33, "text": "stop", "abs_sec": 65.806, "snap_sec": 61.452},
+    {"bar": 44, "text": "keep going", "abs_sec": 87.097, "snap_sec": 84.194},
+    {"bar": 53, "text": "stop", "abs_sec": 104.516, "snap_sec": 100.161},
+    {"bar": 54, "beat": 1, "text": "vocal in", "fast": true, "abs_sec": 107.125, "snap_sec": 103.855},
+    {"bar": 55, "beat": 4, "text": "drums in", "fast": true, "abs_sec": 111.795, "snap_sec": 108.525},
+    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 134.505, "snap_sec": 130.634},
+    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 181.925, "snap_sec": 177.57}
   ]
 }

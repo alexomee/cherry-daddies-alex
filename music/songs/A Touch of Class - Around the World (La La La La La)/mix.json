@@ -1,19 +1,20 @@
 {
   "pb-other": {"stems": ["14_Backing_Vocals"]},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": 3}},
+  "pb-drums": {"stems": ["02_Electronic_Drum_Kit"]},
   "players": {"roma": ["13_Vibes", "11_Synth_Lead", "06_Digital_Piano", "12_Synth_Keys", "09_Synth_Strings_(pizzicato)"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal"], "alex": ["07_Synth_Pad_1", "08_Synth_Pad_2", "10_Synth_Strings"]},
   "cues": [
-    {"bar": 3,   "text": "Around the World synth in", "abs_sec": 3.636},
-    {"bar": 7,   "text": "vocal in", "abs_sec": 10.909},
-    {"bar": 15,  "text": "bass-n-beat in", "abs_sec": 25.455},
-    {"bar": 31,  "text": "solo in", "abs_sec": 54.545},
-    {"bar": 39,  "text": "vocal in", "abs_sec": 69.091},
-    {"bar": 47,  "text": "piano in", "abs_sec": 83.636},
-    {"bar": 71,  "text": "solo in", "abs_sec": 127.273},
-    {"bar": 79,  "text": "keys-only in", "count": true, "abs_sec": 141.818},
-    {"bar": 88,  "text": "modulation in", "squeeze": true, "abs_sec": 158.182},
-    {"bar": 104, "text": "keep going", "abs_sec": 187.273},
-    {"bar": 112, "text": "keys-only in", "count": true, "abs_sec": 201.818},
-    {"bar": 120, "text": "end stop", "abs_sec": 216.364}
+    {"bar": 3,   "text": "Around the World synth in", "abs_sec": 3.636, "snap_sec": 0.0},
+    {"bar": 7,   "text": "vocal in", "abs_sec": 10.909, "snap_sec": 7.273},
+    {"bar": 15,  "text": "bass-n-beat in", "abs_sec": 25.455, "snap_sec": 21.364},
+    {"bar": 31,  "text": "solo in", "abs_sec": 54.545, "snap_sec": 50.909},
+    {"bar": 39,  "text": "vocal in", "abs_sec": 69.091, "snap_sec": 65.455},
+    {"bar": 47,  "text": "piano in", "abs_sec": 83.636, "snap_sec": 80.0},
+    {"bar": 71,  "text": "solo in", "abs_sec": 127.273, "snap_sec": 123.636},
+    {"bar": 79,  "text": "keys-only in", "count": true, "abs_sec": 141.818, "snap_sec": 137.727},
+    {"bar": 88,  "text": "modulation in", "squeeze": true, "abs_sec": 158.182, "snap_sec": 154.545},
+    {"bar": 104, "text": "keep going", "abs_sec": 187.273, "snap_sec": 184.545},
+    {"bar": 112, "text": "keys-only in", "count": true, "abs_sec": 201.818, "snap_sec": 197.727},
+    {"bar": 120, "text": "end stop", "abs_sec": 216.364, "snap_sec": 212.273}
   ]
 }

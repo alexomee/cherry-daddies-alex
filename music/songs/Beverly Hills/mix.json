@@ -5,16 +5,17 @@
   "click": "follow",
   "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.174},
-    {"bar": 5,   "text": "vocal in", "abs_sec": 12.514},
-    {"bar": 13,  "text": "ghost beat ready skip", "abs_sec": 29.213},
-    {"bar": 37,  "text": "stop", "abs_sec": 79.294},
-    {"bar": 38,  "text": "all in", "abs_sec": 81.372},
-    {"bar": 46,  "text": "ghost beat ready skip", "abs_sec": 98.074},
-    {"bar": 54,  "text": "stop", "abs_sec": 114.774},
-    {"bar": 79,  "text": "all stop", "abs_sec": 166.935},
-    {"bar": 88,  "text": "all in", "abs_sec": 185.734},
-    {"bar": 96,  "text": "outro in", "abs_sec": 202.433},
-    {"bar": 104, "text": "end stop", "abs_sec": 219.114}
+    {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.174, "snap_sec": 0.0},
+    {"bar": 5,   "text": "vocal in", "abs_sec": 12.514, "snap_sec": 8.329},
+    {"bar": 13,  "text": "ghost beat ready skip", "abs_sec": 29.213, "snap_sec": 25.029},
+    {"bar": 37,  "text": "stop", "abs_sec": 79.294, "snap_sec": 74.607},
+    {"bar": 38,  "text": "all in", "abs_sec": 81.372, "snap_sec": 77.207},
+    {"bar": 46,  "text": "ghost beat ready skip", "abs_sec": 98.074, "snap_sec": 93.906},
+    {"bar": 54,  "text": "stop", "abs_sec": 114.774, "snap_sec": 110.087},
+    {"bar": 55,  "text": "all in", "abs_sec": 116.854, "snap_sec": 112.687},
+    {"bar": 79,  "text": "all stop", "abs_sec": 166.935, "snap_sec": 162.245},
+    {"bar": 88,  "text": "all in", "abs_sec": 185.734, "snap_sec": 181.549},
+    {"bar": 96,  "text": "outro in", "abs_sec": 202.433, "snap_sec": 198.247},
+    {"bar": 104, "text": "end stop", "abs_sec": 219.114, "snap_sec": 214.427}
   ]
 }

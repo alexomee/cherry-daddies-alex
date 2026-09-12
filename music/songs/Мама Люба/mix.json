@@ -1,0 +1,25 @@
+{
+  "bpm": 127.5,
+  "pitch_semitones": -2,
+  "pb-other": null,
+  "pb-bass": {"stems": ["bass"]},
+  "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.8}},
+  "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1,   "text": "Мама Люба all in", "abs_sec": 3.765, "snap_sec": 0.0},
+    {"bar": 10,  "text": "keep going", "abs_sec": 20.706, "snap_sec": 17.882},
+    {"bar": 12,  "text": "verse-instrumental ready go", "abs_sec": 24.471, "snap_sec": 20.706},
+    {"bar": 20,  "text": "verse in ready go", "abs_sec": 39.529, "snap_sec": 35.765},
+    {"bar": 36,  "text": "chorus in ready go", "abs_sec": 69.647, "snap_sec": 65.882},
+    {"bar": 52,  "text": "soft verse ready go", "abs_sec": 99.765, "snap_sec": 96.0},
+    {"bar": 68,  "text": "guitar break ready go", "abs_sec": 129.882, "snap_sec": 126.118},
+    {"bar": 69,  "beat": 4, "text": "stop-n-chorus in", "count": true, "abs_sec": 133.176, "snap_sec": 128.941},
+    {"bar": 86,  "text": "synth solo ready go", "abs_sec": 163.765, "snap_sec": 160.0},
+    {"bar": 94,  "text": "kick stop", "abs_sec": 178.824, "snap_sec": 174.588},
+    {"bar": 102, "text": "chorus variation ready go", "abs_sec": 193.882, "snap_sec": 190.118},
+    {"bar": 108, "text": "build up ready go", "abs_sec": 205.176, "snap_sec": 201.412},
+    {"bar": 109, "beat": 4, "text": "stop-n-chorus ready stop", "raw": true, "abs_sec": 208.471, "snap_sec": 204.706},
+    {"bar": 118, "text": "solo in ready go", "abs_sec": 224.0, "snap_sec": 220.235},
+    {"bar": 126, "text": "end in", "count": true, "abs_sec": 239.059, "snap_sec": 234.824}
+  ]
+}

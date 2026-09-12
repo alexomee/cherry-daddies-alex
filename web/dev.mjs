@@ -45,16 +45,26 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // practice-mix audio: /audio?sid=<folder>&p=alex|roma  ->  music/songs/<folder>/auto-render/practice-<p>.mp3
-  // (local dev only; renders are not uploaded — see CLAUDE.md)
+  // practice-mix or stem audio:
+  //   /audio?sid=<folder>&stem=drums|bass... -> music/songs/<folder>/auto-render/stems/<stem>.mp3
+  //   /audio?sid=<folder>&p=all|alex...      -> music/songs/<folder>/auto-render/practice-<p>.mp3
   if (url.pathname === "/audio") {
     const sid = url.searchParams.get("sid") || "";
+    const stem = url.searchParams.get("stem") || "";
     const player = url.searchParams.get("p") || "";
-    if (!/^(all|alex|steve|roma|tanya)$/.test(player)) return send(res, 400, "bad player");
     const MUSIC = path.resolve(ROOT, "..", "music", "songs");
-    const fp = player === "all"
-      ? path.join(MUSIC, sid, "auto-render", "cue_preview.mp3")
-      : path.join(MUSIC, sid, "auto-render", `practice-${player}.mp3`);
+    let fp = "";
+    if (stem) {
+      if (!/^[a-zA-Z0-9_-]+$/.test(stem)) return send(res, 400, "bad stem");
+      fp = path.join(MUSIC, sid, "auto-render", "stems", `${stem}.mp3`);
+    } else {
+      if (!/^(all|drums|alex|steve|roma|tanya|trio)$/.test(player)) return send(res, 400, "bad player");
+      fp = player === "all"
+        ? path.join(MUSIC, sid, "auto-render", "cue_preview.mp3")
+        : player === "drums"                       // playback drum track (rehearsal без барабанщика)
+        ? path.join(MUSIC, sid, "auto-render", "pb-drums.mp3")
+        : path.join(MUSIC, sid, "auto-render", `practice-${player}.mp3`);
+    }
     if (!fp.startsWith(MUSIC + path.sep)) return send(res, 403, "forbidden");
     let st;
     try { st = await stat(fp); } catch { return send(res, 404, "no mix"); }

@@ -4,15 +4,15 @@
   "pb-bass": null,
   "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [
-    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in", "abs_sec": 3.36},
-    {"bar": 9,   "beat": 4, "text": "vocal in", "abs_sec": 18.72},
-    {"bar": 21,  "beat": 2, "text": "all stop", "abs_sec": 40.8},
-    {"bar": 41,  "beat": 2, "text": "all stop", "abs_sec": 79.2},
-    {"bar": 57,  "text": "keep going", "abs_sec": 109.44},
-    {"bar": 66,  "text": "rap in", "abs_sec": 126.72},
-    {"bar": 80,  "text": "all stop", "abs_sec": 153.6},
-    {"bar": 98,  "text": "instrumental outro", "abs_sec": 188.16},
-    {"bar": 106, "text": "keep going", "abs_sec": 203.52},
-    {"bar": 113, "beat": 4, "text": "end stop", "abs_sec": 218.4}
+    {"bar": 1,   "beat": 4, "text": "Про красивую жизнь all in", "abs_sec": 3.36, "snap_sec": 0.0},
+    {"bar": 9,   "beat": 4, "text": "vocal in", "abs_sec": 18.72, "snap_sec": 14.88},
+    {"bar": 21,  "beat": 2, "text": "all stop", "abs_sec": 40.8, "snap_sec": 36.48},
+    {"bar": 41,  "beat": 2, "text": "all stop", "abs_sec": 79.2, "snap_sec": 74.88},
+    {"bar": 57,  "text": "keep going", "abs_sec": 109.44, "snap_sec": 106.56},
+    {"bar": 66,  "text": "rap in", "abs_sec": 126.72, "snap_sec": 122.88},
+    {"bar": 80,  "text": "all stop", "abs_sec": 153.6, "snap_sec": 149.28},
+    {"bar": 98,  "text": "instrumental outro", "abs_sec": 188.16, "snap_sec": 185.28},
+    {"bar": 106, "text": "keep going", "abs_sec": 203.52, "snap_sec": 200.64},
+    {"bar": 113, "beat": 4, "text": "end stop", "abs_sec": 218.4, "snap_sec": 214.08}
   ]
 }

@@ -4,13 +4,13 @@
   "note": "live bass",
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["07_Lead_Vocal"], "alex": ["03_Synth_Bass"], "roma": ["04_Piano", "05_Synthesizer"]},
   "cues": [
-    {"bar": 3,   "text": "No Stress vocal in", "chord": ["A4"], "abs_sec": 5.538},
-    {"bar": 11,  "text": "beat in", "abs_sec": 20.308},
-    {"bar": 29,  "text": "main in", "abs_sec": 53.538},
-    {"bar": 33,  "text": "synth in", "abs_sec": 60.923},
-    {"bar": 53,  "text": "verse piano in", "abs_sec": 97.846},
-    {"bar": 57,  "text": "vocal in", "abs_sec": 105.231},
-    {"bar": 85,  "text": "main in", "abs_sec": 156.923},
-    {"bar": 109, "text": "end in", "count": true, "abs_sec": 201.231}
+    {"bar": 3,   "text": "No Stress vocal in", "chord": ["A#4"], "abs_sec": 5.538, "snap_sec": 0.0},
+    {"bar": 11,  "text": "beat in", "abs_sec": 20.308, "snap_sec": 16.615},
+    {"bar": 29,  "text": "main in", "abs_sec": 53.538, "snap_sec": 49.846},
+    {"bar": 33,  "text": "synth in", "abs_sec": 60.923, "snap_sec": 57.231},
+    {"bar": 53,  "text": "verse piano in", "abs_sec": 97.846, "snap_sec": 93.554},
+    {"bar": 57,  "text": "vocal in", "abs_sec": 105.231, "snap_sec": 101.538},
+    {"bar": 85,  "text": "main in", "abs_sec": 156.923, "snap_sec": 153.231},
+    {"bar": 109, "text": "end in", "count": true, "abs_sec": 201.231, "snap_sec": 197.077}
   ]
 }

@@ -29,3 +29,11 @@ music/songs/.realm-*.bak
 
 # realm-tools deps
 node_modules/
+
+# logs & dev artifacts
+*.log
+.omo/
+web/dev.log
+
+# ElevenLabs cue-clip cache (synthesized audio, rebuildable)
+tools/jamzone/.tts-cache/

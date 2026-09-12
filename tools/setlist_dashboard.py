@@ -119,6 +119,9 @@ SETS = [
             ("Кукла колдуна", "Король и Шут", "Король и Шут - Кукла колдуна"),
             ("Ту-лу-ла", "Чичерина", "Чичерина - Ту-лу-ла"),
             ("Rock & Roll Queen", "The Subways", "The Subways - Rock & Roll Queen"),
+            ("Pretty Fly (For A White Guy)", "The Offspring", "The Offspring - Pretty Fly (For A White Guy)"),
+            ("Медляк", "Mr. Credo", "Mr. Credo - Медляк"),
+            ("Я буду", "5sta Family & 23:45", "5sta Family & 23:45 - Я буду"),
         ],
     },
     {
@@ -153,6 +156,8 @@ BASS_ASSIGN = {
     "Кислотный DJ": "Alex",  # alex plays bass live (pb-bass removed)
     "Eva 2.0": "Alex",       # alex plays bass live (pb-bass removed)
     "Елена Терлеева - Солнце": "Roma (real bass-guitar)",  # pb-bass removed, roma plays real bass
+    "The Offspring - Pretty Fly (For A White Guy)": "Roma (real bass-guitar)",
+    "Король и Шут - Кукла колдуна": "Roma (real bass-guitar)",
 }
 
 
@@ -270,6 +275,23 @@ def build_data():
             if any(p not in ("all", "drums") for p in practice):
                 counts["practice"] += 1
 
+            # Multi-track stems in auto-render/stems/:
+            stems_dir = ar / "stems"
+            track_stems = []
+            for cid, clbl in [
+                ("vocal", "Вокал"),
+                ("back_vox", "Бэк-вокал"),
+                ("drums", "Барабаны"),
+                ("keys", "Клавиши"),
+                ("bass", "Бас"),
+                ("guitars", "Гитары"),
+                ("other", "Остальное"),
+                ("click", "Клик"),
+                ("cues", "Cues"),
+            ]:
+                if (stems_dir / f"{cid}.mp3").is_file():
+                    track_stems.append({"id": cid, "label": clbl})
+
             # content-hash version per mix (for ?v= cache-busting on R2)
             versions = {}
             for p in practice:
@@ -280,7 +302,7 @@ def build_data():
             songs.append({
                 "sid": sid, "slug": slug_of(sid), "title": title, "artist": artist, "hasData": True,
                 "cues": {"ready": bool(cues), "count": len(cues), "list": cue_list},
-                "bass": bass, "other": other, "practice": practice, "versions": versions,
+                "bass": bass, "other": other, "practice": practice, "stems": track_stems, "versions": versions,
             })
         sets.append({
             "name": st["name"], "subtitle": st["subtitle"], "cls": st["cls"], "songs": songs,

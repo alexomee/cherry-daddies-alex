@@ -1,0 +1,14 @@
+{
+  "bpm": 105.0,
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["backing_vocals", "strings"]},
+  "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
+  "pb-drums": {"stems": ["drums"]},
+  "pb-bass": {"stems": ["bass"]},
+  "players": {"roma": ["keys", "strings"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1, "text": "Медляк synth in", "abs_sec": 4.571, "snap_sec": 0.0},
+    {"bar": 9, "text": "drums in", "abs_sec": 22.857, "snap_sec": 18.286},
+    {"bar": 17, "text": "verse in", "abs_sec": 41.143, "snap_sec": 36.571}
+  ]
+}

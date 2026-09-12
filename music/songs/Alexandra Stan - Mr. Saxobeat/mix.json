@@ -6,21 +6,24 @@
   "pb-bass": {
     "stems": ["05_Synth_Bass"]
   },
+  "pb-drums": {
+    "stems": ["02_Electronic_Drum_Kit"]
+  },
   "export_stems": ["06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"],
   "players": {"roma": ["08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal_♂", "14_Lead_Vocal_Alexandra_Stan", "13_Lead_Vocal_Alexandra_Stan_(ad_lib)"], "alex": ["06_Synth_Lead", "11_Saxophone"]},
   "cues": [
-    {"bar": 3,   "text": "Mr Saxobeat sax in ready go", "abs_sec": 3.78},
-    {"bar": 11,  "text": "bass in", "abs_sec": 18.898},
-    {"bar": 16,  "text": "vocal in", "abs_sec": 28.346},
-    {"bar": 33,  "text": "alex vocal in", "abs_sec": 60.472},
-    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591},
-    {"bar": 49,  "text": "verse in", "abs_sec": 90.709},
-    {"bar": 57,  "text": "stop", "abs_sec": 105.827},
-    {"bar": 66,  "text": "alex vocal in", "abs_sec": 122.835},
-    {"bar": 74,  "text": "sax solo in", "abs_sec": 137.953},
-    {"bar": 82,  "text": "bass in", "abs_sec": 153.071},
-    {"bar": 87,  "text": "vocal in", "abs_sec": 162.52},
-    {"bar": 95,  "text": "sax in", "abs_sec": 177.638},
-    {"bar": 103, "text": "stop", "abs_sec": 192.756}
+    {"bar": 3,   "text": "Mr Saxobeat sax in ready go", "abs_sec": 3.78, "snap_sec": 0.0},
+    {"bar": 11,  "text": "bass in", "abs_sec": 18.898, "snap_sec": 15.118},
+    {"bar": 16,  "text": "vocal in", "abs_sec": 28.346, "snap_sec": 24.567},
+    {"bar": 33,  "text": "alex vocal in", "abs_sec": 60.472, "snap_sec": 56.087},
+    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591, "snap_sec": 71.228},
+    {"bar": 49,  "text": "verse in", "abs_sec": 90.709, "snap_sec": 86.929},
+    {"bar": 57,  "text": "stop", "abs_sec": 105.827, "snap_sec": 101.575},
+    {"bar": 66,  "text": "alex vocal in", "abs_sec": 122.835, "snap_sec": 118.449},
+    {"bar": 74,  "text": "sax solo in", "abs_sec": 137.953, "snap_sec": 133.489},
+    {"bar": 82,  "text": "bass in", "abs_sec": 153.071, "snap_sec": 149.291},
+    {"bar": 87,  "text": "vocal in", "abs_sec": 162.52, "snap_sec": 158.74},
+    {"bar": 95,  "text": "sax in", "abs_sec": 177.638, "snap_sec": 173.858},
+    {"bar": 103, "text": "stop", "abs_sec": 192.756, "snap_sec": 188.504}
   ]
 }

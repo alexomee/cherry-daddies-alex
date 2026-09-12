@@ -1,0 +1,30 @@
+{
+  "bpm": 140.0,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.5}},
+  "players": {"alex": ["guitars", "bass"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals", "bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1,   "text": "Кислотный DJ drums in", "abs_sec": 3.429, "snap_sec": 0.0},
+    {"bar": 8,   "beat": 4, "text": "synth in", "abs_sec": 16.714, "snap_sec": 13.286},
+    {"bar": 16,  "text": "stop", "abs_sec": 29.143, "snap_sec": 25.286},
+    {"bar": 24,  "text": "drums break ready go", "abs_sec": 42.857, "snap_sec": 39.429},
+    {"bar": 32,  "text": "drums-bass break ready go", "abs_sec": 56.571, "snap_sec": 52.714},
+    {"bar": 38,  "text": "synth in ready go", "abs_sec": 66.857, "snap_sec": 63.429},
+    {"bar": 39,  "text": "build up ready go", "abs_sec": 68.571, "snap_sec": 65.143},
+    {"bar": 41,  "text": "chorus in ready go", "abs_sec": 72.0, "snap_sec": 68.571},
+    {"bar": 56,  "text": "drums-bass break ready go", "abs_sec": 97.714, "snap_sec": 93.857},
+    {"bar": 64,  "text": "bass break ready go", "abs_sec": 111.429, "snap_sec": 108.0},
+    {"bar": 65,  "text": "solo in ready go", "abs_sec": 113.143, "snap_sec": 109.714},
+    {"bar": 72,  "text": "drum break ready go", "abs_sec": 125.143, "snap_sec": 121.714},
+    {"bar": 81,  "text": "long break ready go", "abs_sec": 140.571, "snap_sec": 137.143},
+    {"bar": 85,  "text": "build up ready go", "abs_sec": 147.429, "snap_sec": 144.0},
+    {"bar": 101, "text": "stop", "abs_sec": 174.857, "snap_sec": 171.0},
+    {"bar": 102, "text": "solo in ready go", "abs_sec": 176.571, "snap_sec": 173.143},
+    {"bar": 117, "text": "drums-bass stop", "abs_sec": 202.286, "snap_sec": 198.429},
+    {"bar": 124, "text": "build up ready go", "abs_sec": 214.286, "snap_sec": 210.857},
+    {"bar": 127, "text": "all in ready go", "abs_sec": 219.429, "snap_sec": 216.0},
+    {"bar": 135, "text": "end in", "count": true, "abs_sec": 233.143, "snap_sec": 229.286}
+  ]
+}

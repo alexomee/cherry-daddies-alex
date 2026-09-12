@@ -34,3 +34,34 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 Тем же пайплайном [youtube-click-only](pipelines/youtube-click-only.md). Гоча: `beat_track` без приора трекал половину долей (197 на 170 с), с `start_bpm` и hop 128 — 400 долей, но темп живой (138–145 по окнам), lstsq по всей песне 141.0 → взято 141. Сильная доля по кик/хрома mod 4 на трекнутых долях (не на константной сетке — она теряет фазу на плывущем темпе). Риг `55091574`, дашборд «НА ПРОБУ» (34 песни).
 
+## [2026-09-11] ingest | Tryout: Pretty Fly (For A White Guy) (The Offspring) — Moises stems + click + cues + pb-drums + backing vocals
+
+Импорт из архива Moises (143 bpm, B minor): выравнивание через `jamzone_warp_ext.py` (`--bpm 143 --downbeat 1`), интро 3 такта отрезано под вход барабанов.
+Настроен `mix.json`: стартовый cue (`Pretty Fly drums in`), `pb-other` (backing vocals, auto-leveled до -23 dBFS), `pb-drums` (drums для репетиций), бас живой (Roma).
+Сгенерирован полный авто-рендер (click, cues, pb-other, pb-drums, all, cue_preview, pb-drums.mp3, practice-миксы). Песня добавлена в дашборд («НА ПРОБУ», 35 песен).
+
+## [2026-09-11] ingest | Tryout: Медляк (Mr. Credo) — Moises stems + click + cues + pb-drums + pb-other + pb-bass
+
+Импорт из архива Moises (105 bpm, G minor): выравнивание через `jamzone_warp_ext.py` (`--bpm 105.0`), дрейф минимальный (0–36 мс).
+Настроен `mix.json`: `pb-other` (backing_vocals + strings), `pb-other-keys` (+keys), `pb-drums`, `pb-bass`.
+3 cue: `Медляк synth in` на 1.1, `drums in` на 9.1 (вход барабанов и баса), `verse in` на 17.1 (куплет).
+Сгенерирован полный авто-рендер, песня добавлена в дашборд («НА ПРОБУ», 36 песен).
+
+## [2026-09-11] ingest | Tryout: Кукла колдуна (Король и Шут) — Moises stems + click + cues + pb-drums + pb-other (strings скрипка)
+
+Импорт из архива Moises (148.6 bpm, D minor): замена старого youtube-click-only на полный набор стемов.
+Выравнивание через `jamzone_warp_ext.py` (`--bpm 148.6`), сетка сведена с плавающей живой записью 1999 года.
+Настроен `mix.json`: `pb-other` (backing_vocals + strings со скрипичной темой), `pb-other-keys` (+keys), `pb-drums` (барабаны для репетиций), бас живой (Roma).
+3 cue: `Кукла колдуна all in` на 1.1, `drums in` на 8.1 (вход ударных и полного бэнда), `verse in` на 17.1.
+Сгенерирован полный авто-рендер со всеми practice-миксами, дашборд обновлён.
+
+## [2026-09-11] ingest | Tryout: Я буду (5sta Family & 23:45) — Moises stems + click + cues + pb-drums + pb-other + pb-bass
+
+Импорт из архива Moises (90 bpm, A minor): выравнивание через `jamzone_warp_ext.py` (`--bpm 90.0`), нулевой дрейф (±6 мс).
+Настроен `mix.json`: `pb-other` (backing_vocals + piano), `pb-other-keys` (+keys), `pb-drums`, `pb-bass`.
+3 cue: `Я буду all in` на 1.1, `chorus in` на 9.1 (вход припева), `verse in` на 17.1 (рэп-куплет).
+Сгенерирован полный авто-рендер, песня добавлена в дашборд («НА ПРОБУ», 37 песен) и синхронизирована в риг MainStage.
+
+
+
+

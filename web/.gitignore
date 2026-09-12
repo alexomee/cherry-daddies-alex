@@ -3,3 +3,5 @@ data/
 .env
 .env.*
 .vercel
+.mix-hashes.json
+.r2-uploaded.json

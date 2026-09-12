@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-09-03
+updated: 2026-09-11
 title: Кукла колдуна
 artist: Король и Шут
 set: tryout batch 2026-09
@@ -8,21 +8,30 @@ set: tryout batch 2026-09
 
 # Кукла колдуна (Король и Шут)
 
-Tryout 2026-09. **Только click + cues** — плейбека нет, банда играет живьём под клик; в ухо только название + «all in ready go» на старт. См. [youtube-click-only](../pipelines/youtube-click-only.md).
+Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). В плейбеке: `pb-other` (`backing_vocals` + `strings` со скрипичной темой), альтернативная дорожка `pb-other-keys` (включает `keys`), `pb-drums` (барабаны для репетиций), бас живой (`pb-bass: null`, Roma).
 
 ## Сводка
 
-- **bpm:** 148.6 (lstsq по beat-треку librosa, живая запись: ±47 мс (0–60 с +10…−11, 90–120 с −25…−30, 150 с +47) — константный клик к оригиналу в превью плывёт на пол-доли, для рига неважно)
-- **pitch_semitones:** 0 · `pb-other: null`, `pb-bass: null`, `players` нет.
-- Источник: YouTube `yUp01GbQxTw` → `music/youtube/`, копия `original.mp3` в папке песни (идёт только в `all`/`cue_preview`). `metronome.wav` синтетический: клики от первой сильной доли оригинала (0.286 с) на константной сетке.
-- Сильная доля: хрома-флакс mod 4 по сетке, пик на индексе 0 от первого клика.
-- mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Король и Шут - Кукла колдуна/mix.json`
-- Рендер: OFF +2.946 с, такт 1.1 = 3.230 с; lead +1 такт под стартовый cue (2 такта каунт-ина).
+- **bpm:** 148.6 — Moises стемы выровнены через `jamzone_warp_ext.py` (`--bpm 148.6`).
+- **pitch_semitones:** 0 (D minor).
+- **pb-other:** `backing_vocals` (хор, подпевки) + `strings` (скрипка).
+- **pb-other-keys:** `backing_vocals` + `strings` + `keys`.
+- **pb-drums:** `drums` (установка для репетиций без барабанщика).
+- **pb-bass:** null (живой бас, Roma).
+- **players:** alex: `guitars`, roma: `bass`, steve: `drums`, tanya: `vocals`.
+- **mix.json:** `music/songs/Король и Шут - Кукла колдуна/mix.json`
+- **Рендер:** OFF +3.058 с, lead +1 такт под стартовую фразу, длина 205.1 с (127 тактов).
 
 ## Cue
 
-1 cue: `bar 1`, `"Кукла колдуна all in"` → «Кукла колдуна» (естественным темпом в пустом такте 1, выровнено по концу) + «all in ready go» на долях такта 2. Событие (вход) на такте 1.1 = первая сильная доля оригинала.
+3 cue:
+1. `bar 1.1` (3.230 с) — `"Кукла колдуна strings in"` → «Кукла колдуна» + «strings in ready go», на 1.1 вступают акустическая гитара и скрипка (`strings`).
+2. `bar 8.1` (14.536 с) — `"drums in"` → «drums in ready go», на 8.1 вступают барабаны и полный бэнд.
+3. `bar 17.1` (29.071 с) — `"verse in"` → «verse in ready go», на 17.1 вступает куплет («Крик подобен грому...»).
 
-## Риг (MainStage)
+## Файлы рендера (`auto-render/`)
 
-`/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Кукла колдуна/` — `click.wav` + `cues.wav` (риг-коммиты `eb9b74f6` → `f7b647ec` (cue переделан на стандартный стартовый, 2026-09-03), запушены). Сет в MainStage **не заведён** — новые песни wire'ятся руками (Playback-плагин на два wav). MAP в `sync_to_mainstage.sh` добавлен.
+- `click.wav`, `cues.wav`, `all.wav`
+- `pb-other.wav`, `pb-other-keys.wav`, `pb-drums.wav`
+- `cue_preview.mp3`, `pb-drums.mp3`, `pb-other.mp3`, `pb-other-keys.mp3`
+- `practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`

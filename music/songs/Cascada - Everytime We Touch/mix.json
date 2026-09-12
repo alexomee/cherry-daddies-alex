@@ -4,18 +4,18 @@
   "pb-bass": null,
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["09_Synth_Lead"], "roma": ["10_Synth_Keys_(Bells)", "12_Bells"]},
   "cues": [
-    {"bar": 2,   "beat": 4, "text": "Everytime We Touch vocal in", "abs_sec": 2.958},
-    {"bar": 11,  "text": "drums in", "abs_sec": 16.901},
-    {"bar": 18,  "text": "stop", "abs_sec": 28.732},
-    {"bar": 34,  "text": "stop and solo in", "abs_sec": 55.775},
-    {"bar": 43,  "text": "bass in", "abs_sec": 70.986},
-    {"bar": 59,  "text": "stop", "abs_sec": 98.028},
-    {"bar": 59,  "beat": 4, "text": "vocal ready go", "raw": true, "abs_sec": 99.296},
-    {"bar": 68,  "text": "bass in", "abs_sec": 113.239},
-    {"bar": 75,  "text": "drums stop", "abs_sec": 125.07},
-    {"bar": 91,  "beat": 3, "text": "solo in", "abs_sec": 152.958},
-    {"bar": 99,  "beat": 3, "text": "keep going", "abs_sec": 166.479},
-    {"bar": 107, "beat": 3, "text": "vocal in", "abs_sec": 180.0},
-    {"bar": 116, "text": "end stop", "abs_sec": 194.366}
+    {"bar": 2,   "beat": 4, "text": "Everytime We Touch vocal in", "abs_sec": 2.958, "snap_sec": 0.0},
+    {"bar": 11,  "text": "drums in", "abs_sec": 16.901, "snap_sec": 13.521},
+    {"bar": 18,  "text": "stop", "abs_sec": 28.732, "snap_sec": 24.93},
+    {"bar": 34,  "text": "stop and solo in", "abs_sec": 55.775, "snap_sec": 51.589},
+    {"bar": 43,  "text": "bass in", "abs_sec": 70.986, "snap_sec": 67.606},
+    {"bar": 59,  "text": "stop", "abs_sec": 98.028, "snap_sec": 94.225},
+    {"bar": 59,  "beat": 4, "text": "vocal ready go", "raw": true, "abs_sec": 99.296, "snap_sec": 96.338},
+    {"bar": 68,  "text": "bass in", "abs_sec": 113.239, "snap_sec": 109.859},
+    {"bar": 75,  "text": "drums stop", "abs_sec": 125.07, "snap_sec": 121.268},
+    {"bar": 91,  "beat": 3, "text": "solo in", "abs_sec": 152.958, "snap_sec": 149.578},
+    {"bar": 99,  "beat": 3, "text": "keep going", "abs_sec": 166.479, "snap_sec": 163.944},
+    {"bar": 107, "beat": 3, "text": "vocal in", "abs_sec": 180.0, "snap_sec": 176.62},
+    {"bar": 116, "text": "end stop", "abs_sec": 194.366, "snap_sec": 190.563}
   ]
 }

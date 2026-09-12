@@ -4,18 +4,18 @@
   "note": "live bass",
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["06_Acoustic_Guitar", "07_Electric_Guitar", "08_Electric_Guitar_(right)"]},
   "cues": [
-    {"bar": 2,             "text": "Adventure guitar in ready go", "abs_sec": 4.286},
-    {"bar": 9,  "beat": 3, "text": "all in", "abs_sec": 20.357},
-    {"bar": 18,            "text": "verse in", "abs_sec": 38.571},
-    {"bar": 40,            "text": "stop", "abs_sec": 85.714},
-    {"bar": 50,            "text": "verse in", "abs_sec": 107.143},
-    {"bar": 64,            "text": "stop", "abs_sec": 137.143},
-    {"bar": 65, "beat": 3, "text": "all in", "abs_sec": 140.357},
-    {"bar": 74,            "text": "drums stop", "abs_sec": 158.571},
-    {"bar": 86,            "text": "drums in", "abs_sec": 184.286},
-    {"bar": 88,            "text": "guitar in", "abs_sec": 188.571},
-    {"bar": 95, "beat": 3, "text": "vocal in", "abs_sec": 204.643},
-    {"bar": 112,           "text": "guitar melody ready go", "abs_sec": 240.0},
-    {"bar": 119, "beat": 4, "text": "stop", "abs_sec": 256.607}
+    {"bar": 2,             "text": "Adventure guitar in ready go", "abs_sec": 4.286, "snap_sec": 0.0},
+    {"bar": 9,  "beat": 3, "text": "all in", "abs_sec": 20.357, "snap_sec": 16.071},
+    {"bar": 18,            "text": "verse in", "abs_sec": 38.571, "snap_sec": 34.286},
+    {"bar": 40,            "text": "stop", "abs_sec": 85.714, "snap_sec": 80.893},
+    {"bar": 50,            "text": "verse in", "abs_sec": 107.143, "snap_sec": 102.857},
+    {"bar": 64,            "text": "stop", "abs_sec": 137.143, "snap_sec": 132.321},
+    {"bar": 65, "beat": 3, "text": "all in", "abs_sec": 140.357, "snap_sec": 136.071},
+    {"bar": 74,            "text": "drums stop", "abs_sec": 158.571, "snap_sec": 153.75},
+    {"bar": 86,            "text": "drums in", "abs_sec": 184.286, "snap_sec": 180.0},
+    {"bar": 88,            "text": "guitar in", "abs_sec": 188.571, "snap_sec": 184.286},
+    {"bar": 95, "beat": 3, "text": "vocal in", "abs_sec": 204.643, "snap_sec": 200.357},
+    {"bar": 112,           "text": "guitar melody ready go", "abs_sec": 240.0, "snap_sec": 235.714},
+    {"bar": 119, "beat": 4, "text": "stop", "abs_sec": 256.607, "snap_sec": 251.786}
   ]
 }

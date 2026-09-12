@@ -1,20 +1,21 @@
 {
   "bpm": 90.0,
+  "daw_align": true,
   "pb-other": {"stems": ["04_Noise_effects", "05_Noise_effects_(Wind)", "07_Acoustic_Guitar", "09_Synth_Pad", "10_Synth_Voice", "11_Synth_Lead", "12_String_Section", "13_Backing_Vocals"]},
   "pb-bass": {"stems": ["06_Bass"]},
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["15_Lead_Vocal_Lena", "14_Lead_Vocal_Julia"]},
   "cues": [
-    {"bar": 2,  "text": "Я сошла с ума pad in", "abs_sec": 5.333},
-    {"bar": 6,  "beat": 3, "text": "chorus in", "abs_sec": 17.333},
-    {"bar": 14, "beat": 3, "text": "verse in", "abs_sec": 38.667},
-    {"bar": 23, "beat": 3, "text": "chorus in", "abs_sec": 62.667},
-    {"bar": 31, "beat": 3, "text": "drums stop", "abs_sec": 84.0},
-    {"bar": 33, "beat": 3, "text": "instrumental in", "abs_sec": 89.333},
-    {"bar": 41, "beat": 3, "text": "all stop", "abs_sec": 110.667},
-    {"bar": 49, "beat": 3, "text": "chorus in", "abs_sec": 132.0},
-    {"bar": 61, "beat": 3, "text": "all stop", "abs_sec": 164.0},
-    {"bar": 65, "beat": 3, "text": "drums in", "abs_sec": 174.667},
-    {"bar": 69, "beat": 3, "text": "chorus in", "abs_sec": 185.333},
-    {"bar": 77, "beat": 3, "text": "all stop", "abs_sec": 206.667}
+    {"bar": 2,  "text": "pad in", "abs_sec": 2.964, "snap_sec": 0.0},
+    {"bar": 6,  "beat": 3, "text": "chorus in", "abs_sec": 14.964, "snap_sec": 9.63},
+    {"bar": 14, "beat": 3, "text": "verse in", "abs_sec": 36.297, "snap_sec": 30.964},
+    {"bar": 23, "beat": 3, "text": "chorus in", "abs_sec": 60.297, "snap_sec": 54.964},
+    {"bar": 31, "beat": 3, "text": "drums stop", "abs_sec": 81.63, "snap_sec": 75.63},
+    {"bar": 33, "beat": 3, "text": "instrumental in", "abs_sec": 86.964, "snap_sec": 81.63},
+    {"bar": 41, "beat": 3, "text": "all stop", "abs_sec": 108.297, "snap_sec": 102.297},
+    {"bar": 49, "beat": 3, "text": "chorus in", "abs_sec": 129.63, "snap_sec": 124.297},
+    {"bar": 61, "beat": 3, "text": "all stop", "abs_sec": 161.63, "snap_sec": 155.63},
+    {"bar": 65, "beat": 3, "text": "drums in", "abs_sec": 172.297, "snap_sec": 166.964},
+    {"bar": 69, "beat": 3, "text": "chorus in", "abs_sec": 182.964, "snap_sec": 177.63},
+    {"bar": 77, "beat": 3, "text": "all stop", "abs_sec": 204.297, "snap_sec": 198.297}
   ]
 }

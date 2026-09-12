@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cherry Daddies — сетлист / статус</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <style>
   :root{
     --bg:#0e0f13; --panel:#16181f; --row2:#171a22; --txt:#e8eaf0; --dim:#9aa0b0;
-    --line:#262a36; --set1:#3a6df0; --set2:#e0457b; --bis:#f0a93a;
+    --line:#262a36; --set1:#3a6df0; --set2:#e0457b; --bis:#f0a93a; --try:#39b57a; --arch:#5b6172;
     --ok:#3ad29f; --no:#ff5d6c; --accent:#6c8cff;
   }
   *{box-sizing:border-box}
@@ -19,6 +22,13 @@
   .sync{font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:20px;padding:2px 10px}
   .sync.on{color:var(--ok)} .sync.off{color:var(--no);border-color:#5a2630}
   .summary{color:var(--dim);font-size:13px;margin:0 0 6px}
+  .tabs{display:flex;gap:6px;margin:2px 0 16px}
+  .tab{background:#0e1016;border:1px solid var(--line);color:var(--dim);border-radius:8px;
+    padding:6px 16px;font-size:13.5px;font-weight:600;cursor:pointer;letter-spacing:.2px}
+  .tab:hover{color:var(--txt);border-color:#39415a}
+  .tab.active{background:var(--try);border-color:var(--try);color:#03150d}
+  .tab.t2606.active{background:var(--set1);border-color:var(--set1);color:#fff}
+  .tab.tarch.active{background:var(--arch);border-color:var(--arch);color:#fff}
   .saved-note{color:#5b6172;font-size:11.5px;margin:0 0 22px}
   .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 26px}
   .panel h2{margin:0 0 12px;font-size:16px}
@@ -41,11 +51,13 @@
   th{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);
     text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);background:#13151c;white-space:nowrap}
   td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  tbody tr:nth-child(even) td{background:var(--row2)}
+  tbody tr.alt td{background:var(--row2)}
   tr.sec td{background:transparent !important;padding:22px 12px 8px}
   tr.sec .setname{font-weight:700;font-size:15px;padding:3px 12px;border-radius:7px;color:#fff}
   tr.set1 .setname{background:var(--set1)} tr.set2 .setname{background:var(--set2)}
   tr.bis .setname{background:var(--bis);color:#1a1300}
+  tr.tryout .setname{background:var(--try);color:#03150d}
+  tr.archived .setname{background:var(--arch);color:#e8eaf0}
   tr.sec .sub{color:var(--dim);font-size:13px;margin-left:8px}
   .num{color:var(--dim);width:30px;text-align:right;font-variant-numeric:tabular-nums}
   .song{min-width:160px}.title{font-weight:600}.artist{color:var(--dim);font-size:12.5px}
@@ -62,6 +74,7 @@
   .mix-lbl{font-size:11px;width:40px;flex:none;font-weight:600;color:var(--dim)}
   .mix-lbl.alex{color:#ff9ecb} .mix-lbl.roma{color:#9cc0ff}
   .mix-lbl.steve{color:#f0a93a} .mix-lbl.tanya{color:#7fe8c6} .mix-lbl.all{color:#cdd3e0}
+  .mix-lbl.trio{color:#c9a6ff} .mix-lbl.drums{color:#ffc46b;width:56px}
   .mixhead{vertical-align:middle}
   .mixsel{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
   .mixsel-lbl{font-size:11px;color:var(--dim);margin-right:2px;text-transform:none}
@@ -73,6 +86,8 @@
   .psel.steve.active{background:#6b4a1a;border-color:#f0a93a;color:#ffe2b0}
   .psel.roma.active{background:#23304f;border-color:#9cc0ff;color:#d4e4ff}
   .psel.tanya.active{background:#1f4038;border-color:#7fe8c6;color:#c4f5e6}
+  .psel.trio.active{background:#3a2d55;border-color:#c9a6ff;color:#e7dbff}
+  .psel.drums.active{background:#4a3312;border-color:#ffc46b;color:#ffe4b8}
   .pbtn{flex:none;width:28px;height:28px;border-radius:50%;border:none;background:var(--accent);
     color:#fff;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center}
   .pbtn:hover{filter:brightness(1.1)}
@@ -95,6 +110,47 @@
     color:var(--txt);border-radius:8px;padding:7px 9px;font:13px/1.4 inherit;resize:vertical}
   .notes-area:focus{outline:none;border-color:var(--accent)}
   .notes-area::placeholder{color:#4a5060}
+  .sub-btns{display:flex;align-items:center;gap:5px;margin-top:6px;flex-wrap:wrap}
+  .cuebtn,.mixbtn{background:#1a1e29;border:1px solid var(--line);color:var(--dim);
+    border-radius:7px;padding:3px 9px;font-size:11.5px;cursor:pointer;display:inline-flex;
+    align-items:center;gap:5px;font-weight:600;white-space:nowrap}
+  .cuebtn:hover,.mixbtn:hover{border-color:var(--accent);color:var(--txt)}
+  .cuebtn.open,.mixbtn.open{border-color:var(--accent);color:var(--txt);background:#1e2433}
+  .cuebtn .cv,.mixbtn .mv{font-size:10px;color:var(--accent)}
+  tr.cuerow td{background:#101218 !important;padding:8px 12px 12px}
+  .cues-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:5px}
+  .cueitem{display:flex;align-items:baseline;gap:8px;background:#161a23;border:1px solid #232838;
+    border-radius:7px;padding:5px 9px;cursor:pointer;text-align:left;color:var(--txt);
+    font:inherit;font-size:12.5px;width:100%}
+  .cueitem:hover{border-color:var(--accent);background:#1b2130}
+  .cuetime{flex:none;font-variant-numeric:tabular-nums;font-weight:700;color:var(--accent);min-width:34px}
+  .cuetext{flex:1;word-break:break-word}
+  .cuebar{flex:none;color:#5b6172;font-size:11px}
+  @keyframes cueNo{0%{border-color:var(--no);background:#2a1620}100%{border-color:#232838;background:#161a23}}
+  .cueitem.cue-noaudio{animation:cueNo .6s ease-out}
+
+  tr.mixrow td{background:#0e1117 !important;padding:10px 14px 14px;border-bottom:1px solid var(--line)}
+  .mix-wrap{display:flex;align-items:center}
+  .stem-buttons{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .stem-btn{display:inline-flex;align-items:center;gap:6px;background:#151821;border:1px solid #2a3142;
+    border-radius:7px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;color:var(--txt);
+    transition:all 0.15s ease;letter-spacing:0.2px}
+  .stem-btn:hover{filter:brightness(1.2)}
+  .stem-btn.active.vocal{border-color:#ec4899;background:#351425;color:#fbcfe8}
+  .stem-btn.active.back_vox{border-color:#d946ef;background:#321438;color:#f5d0fe}
+  .stem-btn.active.drums{border-color:#eab308;background:#37280d;color:#fef08a}
+  .stem-btn.active.keys{border-color:#38bdf8;background:#102b3d;color:#bae6fd}
+  .stem-btn.active.bass{border-color:#a855f7;background:#29143a;color:#e9d5ff}
+  .stem-btn.active.guitars{border-color:#f97316;background:#351a0d;color:#fed7aa}
+  .stem-btn.active.other{border-color:#14b8a6;background:#0d2825;color:#99f6e4}
+  .stem-btn.active.click{border-color:#64748b;background:#1c2536;color:#cbd5e1}
+  .stem-btn.active.cues{border-color:#8b5cf6;background:#23173d;color:#ddd6fe}
+  .stem-btn.muted{background:#0e1015;border-color:#20232e;color:#4f5666;text-decoration:line-through;opacity:0.55}
+
+  .mix-badge{font-size:10.5px;padding:2px 6px;border-radius:5px;background:#1b202d;border:1px solid #2d354a;
+    color:var(--dim);cursor:pointer;white-space:nowrap;margin-left:auto}
+  .mix-badge:hover{border-color:var(--accent);color:var(--txt)}
+  .mix-badge.custom{border-color:#eab308;color:#fef08a;background:#2a200d}
   .loading{color:var(--dim);padding:30px 4px}
   /* hosted (non-localhost): hide private notes/todos, keep board + player */
   body.hosted #gpanel, body.hosted .saved-note, body.hosted #sync,
@@ -112,6 +168,11 @@
     <h1>🍒 Cherry Daddies — сетлист / статус плейбека</h1>
     <span class="sync" id="sync">…</span>
   </div>
+  <div class="tabs" id="tabs">
+    <button class="tab active" data-tab="new">New</button>
+    <button class="tab t2606" data-tab="old">26.06</button>
+    <button class="tab tarch" data-tab="arch">Архив</button>
+  </div>
   <p class="summary" id="summary"></p>
   <p class="saved-note">✏️ Todo и заметки правятся прямо здесь и сохраняются на сервере (общие для всех). Если сервер недоступен — пишутся локально и синхронизируются позже.</p>
 
@@ -127,14 +188,7 @@
   <table>
     <thead><tr>
       <th class="num">#</th><th>Песня</th>
-      <th class="mixhead"><div class="mixsel" id="mixsel">
-        <span class="mixsel-lbl">Mix:</span>
-        <button class="psel all" data-p="all" title="full mix + click + cues">All</button>
-        <button class="psel alex" data-p="alex">Alex</button>
-        <button class="psel steve" data-p="steve" title="drums">Steve</button>
-        <button class="psel roma" data-p="roma">Roma</button>
-        <button class="psel tanya" data-p="tanya" title="vocal">Tanya</button>
-      </div></th>
+      <th class="mixhead">Микс / Плеер</th>
       <th>bass</th><th>pb-other (stems)</th><th class="h-todo">Todo</th><th class="h-notes">Заметки</th>
     </tr></thead>
     <tbody id="tbody"><tr><td class="loading" colspan="7">загрузка…</td></tr></tbody>
@@ -151,13 +205,17 @@
   var MIXLS = "cd-mixplayer";
   var currentPlayer = "all";
   try { var _mp = localStorage.getItem(MIXLS); if(_mp) currentPlayer = _mp; } catch(e){}
+  if(currentPlayer === "trio") currentPlayer = "all";   // trio selector removed from UI
   // localhost = full tool (local audio + notes/todos); hosted = static board (R2 audio, no notes)
   var LOCAL = ["localhost","127.0.0.1","[::1]",""].indexOf(location.hostname) >= 0 || location.protocol === "file:";
   var R2_BASE = "https://releases.agentiqa.com/cherry-dash";
   function audioSrc(s, player){
     if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&p=" + player;
-    var file = player === "all" ? "all.mp3" : "practice-" + player + ".mp3";
-    return R2_BASE + "/" + s.slug + "/" + file;
+    var file = player === "all" ? "all.mp3"
+             : player === "drums" ? "pb-drums.mp3"        // playback drum track, not a practice mix
+             : "practice-" + player + ".mp3";
+    var v = (s.versions && s.versions[player]) ? "?v=" + s.versions[player] : "";
+    return R2_BASE + "/" + s.slug + "/" + file + v;   // ?v = content hash, busts CF edge cache on change
   }
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
@@ -237,61 +295,415 @@
     if(o.kind==="stems") return o.items.map(function(x){ return '<span class="chip">'+esc(x)+'</span>'; }).join("");
     return '<span class="dash">—</span>';
   }
-  // mix cell for the currently selected player (one player per row)
-  function mixCellFor(s, player){
-    if(!s.hasData || !s.practice || s.practice.indexOf(player) < 0) return '<span class="dash">—</span>';
-    var lbl = player.charAt(0).toUpperCase() + player.slice(1);
-    var src = audioSrc(s, player);
-    return '<div class="player">'
-         + '<span class="mix-lbl '+player+'">'+lbl+'</span>'
+  // ---- Web Audio Multi-track Engine & Mixer ----
+  var audioCtx = null;
+  function getAudioCtx(){
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === "suspended") audioCtx.resume();
+    return audioCtx;
+  }
+
+  var STEM_BUFFERS = {};
+  var activePlayer = null;
+  var animFrameId = null;
+
+  function getMixPref(sid, stems){
+    var key = "cd-mix-stems:" + sid;
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key)) || {}; } catch(e){}
+    var res = {};
+    stems.forEach(function(st){
+      res[st.id] = (saved[st.id] !== undefined) ? !!saved[st.id] : true;
+    });
+    return res;
+  }
+
+  function saveMixPref(sid, map){
+    try { localStorage.setItem("cd-mix-stems:" + sid, JSON.stringify(map)); } catch(e){}
+  }
+
+  function updateMixBadge(sid){
+    var s = SONGS[sid];
+    if(!s || !s.stems) return;
+    var pl = document.querySelector('.player[data-sid="'+esc(sid)+'"]');
+    if(!pl) return;
+    var b = pl.querySelector(".mix-badge");
+    if(!b) return;
+    var prefs = getMixPref(sid, s.stems);
+    var total = s.stems.length;
+    var onCount = 0;
+    s.stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
+    var isCustom = onCount < total;
+    b.className = "mix-badge" + (isCustom ? " custom" : "");
+    b.textContent = isCustom ? "🎛️ " + onCount + "/" + total : "🎛️ Все (" + total + ")";
+  }
+
+  function stopActivePlayer(resetPos){
+    if(!activePlayer) return;
+    if(animFrameId) cancelAnimationFrame(animFrameId);
+    try {
+      if(activePlayer.sources){
+        Object.values(activePlayer.sources).forEach(function(src){
+          try { src.stop(); src.disconnect(); } catch(e){}
+        });
+      }
+      if(activePlayer.plEl){
+        var b = activePlayer.plEl.querySelector(".pbtn");
+        if(b) b.textContent = "▶";
+        if(resetPos){
+          var seek = activePlayer.plEl.querySelector(".seek");
+          var time = activePlayer.plEl.querySelector(".time");
+          if(seek) seek.value = 0;
+          if(time) time.textContent = "0:00 / " + fmtTime(activePlayer.duration || 0);
+        }
+      }
+    } catch(e){}
+    document.querySelectorAll(".mixaudio").forEach(function(a){
+      a.pause();
+      if(resetPos) a.currentTime = 0;
+    });
+    activePlayer = null;
+  }
+
+  async function playOrToggle(s, plEl, seekTime){
+    var ctx = getAudioCtx();
+    var pbtn = plEl.querySelector(".pbtn");
+    var seek = plEl.querySelector(".seek");
+    var time = plEl.querySelector(".time");
+
+    if(activePlayer && activePlayer.sid === s.sid && seekTime === undefined && !activePlayer.paused){
+      var currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx);
+      stopActivePlayer(false);
+      activePlayer = { sid: s.sid, pausedAt: currentPos, duration: s.duration || 0, plEl: plEl, paused: true };
+      pbtn.textContent = "▶";
+      return;
+    }
+
+    var startOffset = 0;
+    if(seekTime !== undefined){
+      startOffset = seekTime;
+    } else if(activePlayer && activePlayer.sid === s.sid && activePlayer.pausedAt !== undefined){
+      startOffset = activePlayer.pausedAt;
+    }
+
+    stopActivePlayer(false);
+
+    if(!s.stems || !s.stems.length){
+      var audio = plEl.querySelector(".mixaudio");
+      if(audio){
+        if(seekTime !== undefined) audio.currentTime = seekTime;
+        if(audio.paused) audio.play(); else audio.pause();
+      }
+      return;
+    }
+
+    pbtn.textContent = "⏳";
+
+    var map = STEM_BUFFERS[s.sid];
+    if(!map){
+      try {
+        var fetches = s.stems.map(async function(st){
+          var url = "audio?sid=" + encodeURIComponent(s.sid) + "&stem=" + st.id;
+          var r = await fetch(url);
+          if(!r.ok) throw new Error("stem " + st.id + " HTTP " + r.status);
+          var ab = await r.arrayBuffer();
+          var decoded = await ctx.decodeAudioData(ab);
+          return { id: st.id, buf: decoded };
+        });
+        var loaded = await Promise.all(fetches);
+        map = {};
+        loaded.forEach(function(x){ map[x.id] = x.buf; });
+        STEM_BUFFERS[s.sid] = map;
+      } catch(err){
+        console.error("Stem load error for", s.sid, err);
+        pbtn.textContent = "▶";
+        var audio = plEl.querySelector(".mixaudio");
+        if(audio) audio.play();
+        return;
+      }
+    }
+
+    var firstBuf = map[s.stems[0].id];
+    var dur = firstBuf ? firstBuf.duration : 0;
+    if(startOffset >= dur) startOffset = 0;
+    seek.max = dur;
+
+    var prefs = getMixPref(s.sid, s.stems);
+    var sources = {};
+    var gains = {};
+    var master = ctx.createGain();
+    master.connect(ctx.destination);
+
+    s.stems.forEach(function(st){
+      var abuf = map[st.id];
+      if(!abuf) return;
+      var src = ctx.createBufferSource();
+      src.buffer = abuf;
+      var g = ctx.createGain();
+      g.gain.value = prefs[st.id] !== false ? 1.0 : 0.0;
+      src.connect(g);
+      g.connect(master);
+      sources[st.id] = src;
+      gains[st.id] = g;
+    });
+
+    var startCtx = ctx.currentTime;
+    Object.values(sources).forEach(function(src){
+      src.start(0, startOffset);
+    });
+
+    activePlayer = {
+      sid: s.sid,
+      sources: sources,
+      gains: gains,
+      master: master,
+      startCtx: startCtx,
+      offset: startOffset,
+      duration: dur,
+      plEl: plEl,
+      paused: false,
+      scrubbing: false
+    };
+
+    pbtn.textContent = "⏸";
+
+    function updateLoop(){
+      if(!activePlayer || activePlayer.sid !== s.sid || activePlayer.paused) return;
+      var elapsed = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx);
+      if(elapsed >= dur){
+        seek.value = 0;
+        time.textContent = fmtTime(0) + " / " + fmtTime(dur);
+        stopActivePlayer(true);
+        return;
+      }
+      if(!activePlayer.scrubbing){
+        seek.value = elapsed;
+        time.textContent = fmtTime(elapsed) + " / " + fmtTime(dur);
+      }
+      animFrameId = requestAnimationFrame(updateLoop);
+    }
+    updateLoop();
+  }
+
+  function mixCellFor(s){
+    if(!s.hasData) return '<span class="dash">—</span>';
+    var sid = esc(s.sid);
+    var hasStems = s.stems && s.stems.length;
+    var badge = "";
+    if(hasStems){
+      var prefs = getMixPref(s.sid, s.stems);
+      var total = s.stems.length;
+      var onCount = 0;
+      s.stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
+      var isCustom = onCount < total;
+      var badgeCls = "mix-badge" + (isCustom ? " custom" : "");
+      var badgeTxt = isCustom ? "🎛️ " + onCount + "/" + total : "🎛️ Все (" + total + ")";
+      badge = '<span class="'+badgeCls+'" title="клик — открыть микс дорожек">'+badgeTxt+'</span>';
+    }
+    return '<div class="player" data-sid="'+sid+'">'
          + '<button class="pbtn" aria-label="play/pause">▶</button>'
          + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'
          + '<span class="time">0:00</span>'
-         + '<audio class="mixaudio" preload="metadata" src="'+src+'"></audio>'
+         + badge
+         + '<audio class="mixaudio" preload="metadata" src="'+(hasStems ? "" : audioSrc(s, "all"))+'"></audio>'
          + '</div>';
   }
 
   function fmtTime(t){ if(!isFinite(t) || t < 0) t = 0; t = Math.floor(t);
     return Math.floor(t/60) + ":" + ("0" + (t%60)).slice(-2); }
 
-  // wire every visible practice player (seek thumb + only one plays at a time)
+  function cueRowHtml(s){
+    var list = (s.cues && s.cues.list) || [];
+    if(!list.length) return "";
+    var items = list.map(function(c){
+      var bar = (c.bar != null) ? '<span class="cuebar">т.'+esc(c.bar)+'</span>' : "";
+      var snap = (c.snap != null) ? ' data-snap="'+esc(c.snap)+'"' : "";
+      return '<button class="cueitem" type="button" data-t="'+esc(c.t)+'"'+snap+' title="перейти к '+fmtTime(c.t)+'">'
+           + '<span class="cuetime">'+fmtTime(c.t)+'</span>'
+           + '<span class="cuetext">'+esc(c.text || "")+'</span>'+bar+'</button>';
+    }).join("");
+    return '<tr class="cuerow" hidden data-song="'+esc(s.sid)+'"><td colspan="7"><div class="cues-wrap">'+items+'</div></td></tr>';
+  }
+
+  function mixRowHtml(s){
+    var stems = s.stems || [];
+    if(!stems.length) return "";
+    var sid = esc(s.sid);
+    var saved = getMixPref(s.sid, stems);
+
+    var stemIcons = {
+      vocal: "🎤", back_vox: "👥", drums: "🥁", keys: "🎹",
+      bass: "🎸", guitars: "🎸", other: "🎷", click: "⏱️", cues: "🗣️"
+    };
+
+    var items = stems.map(function(st){
+      var active = saved[st.id] !== false;
+      var icon = stemIcons[st.id] || "🎵";
+      var cls = "stem-btn " + st.id + (active ? " active" : " muted");
+      return '<button class="'+cls+'" type="button" data-stem="'+st.id+'">'
+           + icon + ' ' + esc(st.label) + '</button>';
+    }).join("");
+
+    return '<tr class="mixrow" hidden data-song="'+sid+'"><td colspan="7">'
+         + '<div class="mix-wrap">'
+         + '<div class="stem-buttons">'+items+'</div>'
+         + '</div></td></tr>';
+  }
+
+  function setupToggles(){
+    document.getElementById("tbody").addEventListener("click", function(e){
+      var cueBtn = e.target.closest(".cuebtn");
+      if(cueBtn){
+        var srow = cueBtn.closest("tr[data-song]");
+        var sid = srow ? srow.getAttribute("data-song") : "";
+        var crow = document.querySelector('tr.cuerow[data-song="'+esc(sid)+'"]');
+        if(crow){
+          var open = crow.hidden; crow.hidden = !open;
+          cueBtn.classList.toggle("open", open);
+          var cv = cueBtn.querySelector(".cv"); if(cv) cv.textContent = open ? "▾" : "▸";
+        }
+        return;
+      }
+
+      var mixBtn = e.target.closest(".mixbtn") || e.target.closest(".mix-badge");
+      if(mixBtn){
+        var srow = mixBtn.closest("tr[data-song]");
+        if(srow){
+          var sid = srow.getAttribute("data-song");
+          var mrow = document.querySelector('tr.mixrow[data-song="'+esc(sid)+'"]');
+          if(mrow){
+            var open = mrow.hidden; mrow.hidden = !open;
+            var mb = srow.querySelector(".mixbtn");
+            if(mb){
+              mb.classList.toggle("open", open);
+              var mv = mb.querySelector(".mv"); if(mv) mv.textContent = open ? "▾" : "▸";
+            }
+          }
+        }
+        return;
+      }
+
+      var item = e.target.closest(".cueitem");
+      if(item){
+        var crow = item.closest("tr.cuerow");
+        var sid = crow && crow.getAttribute("data-song");
+        var srow = document.querySelector('tr[data-song="'+esc(sid)+'"]');
+        var s = SONGS[sid];
+        var t = parseFloat(item.getAttribute("data-t"));
+        var snap = parseFloat(item.getAttribute("data-snap"));
+        var seekTo = isFinite(snap) ? snap : t;
+        if(s && srow){
+          var pl = srow.querySelector(".player");
+          if(pl) playOrToggle(s, pl, seekTo);
+        }
+        return;
+      }
+
+      var stemBtn = e.target.closest(".stem-btn");
+      if(stemBtn){
+        var stemId = stemBtn.getAttribute("data-stem");
+        var mrow = stemBtn.closest("tr.mixrow");
+        var sid = mrow && mrow.getAttribute("data-song");
+        var s = SONGS[sid];
+        if(!s || !s.stems) return;
+        var prefs = getMixPref(sid, s.stems);
+        var isNowActive = !prefs[stemId];
+        prefs[stemId] = isNowActive;
+        saveMixPref(sid, prefs);
+
+        stemBtn.classList.toggle("active", isNowActive);
+        stemBtn.classList.toggle("muted", !isNowActive);
+        updateMixBadge(sid);
+
+        var ctx = getAudioCtx();
+        if(activePlayer && activePlayer.sid === sid && activePlayer.gains[stemId]){
+          activePlayer.gains[stemId].gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+        }
+        return;
+      }
+    });
+  }
+
   function wirePlayers(){
-    var allAudio = document.querySelectorAll(".mixaudio");
-    function pauseOthers(cur){ allAudio.forEach(function(o){ if(o !== cur) o.pause(); }); }
     document.querySelectorAll(".player").forEach(function(pl){
-      var audio = pl.querySelector(".mixaudio"), btn = pl.querySelector(".pbtn"),
-          seek = pl.querySelector(".seek"), time = pl.querySelector(".time"), scrubbing = false;
-      audio.addEventListener("loadedmetadata", function(){ seek.max = audio.duration || 0; time.textContent = fmtTime(audio.duration); });
-      audio.addEventListener("timeupdate", function(){ if(!scrubbing){ seek.value = audio.currentTime; time.textContent = fmtTime(audio.currentTime); } });
-      audio.addEventListener("play", function(){ btn.textContent = "⏸"; pauseOthers(audio); });
-      audio.addEventListener("pause", function(){ btn.textContent = "▶"; });
-      audio.addEventListener("ended", function(){ btn.textContent = "▶"; seek.value = 0; time.textContent = fmtTime(audio.duration); });
-      btn.addEventListener("click", function(){ if(audio.paused) audio.play(); else audio.pause(); });
-      seek.addEventListener("input", function(){ scrubbing = true; time.textContent = fmtTime(parseFloat(seek.value)); });
-      seek.addEventListener("change", function(){ audio.currentTime = parseFloat(seek.value); scrubbing = false; });
+      var sid = pl.getAttribute("data-sid");
+      var s = SONGS[sid];
+      if(!s) return;
+      var btn = pl.querySelector(".pbtn");
+      var seek = pl.querySelector(".seek");
+      var time = pl.querySelector(".time");
+      var audio = pl.querySelector(".mixaudio");
+
+      if(audio && audio.src && audio.src !== location.href && !audio.src.endsWith("/")){
+        audio.addEventListener("loadedmetadata", function(){
+          seek.max = audio.duration || 0;
+          time.textContent = fmtTime(0) + " / " + fmtTime(audio.duration);
+        });
+        audio.addEventListener("timeupdate", function(){
+          if(!audio.paused && !pl.scrubbing){
+            seek.value = audio.currentTime;
+            time.textContent = fmtTime(audio.currentTime) + " / " + fmtTime(audio.duration);
+          }
+        });
+        audio.addEventListener("play", function(){ btn.textContent = "⏸"; });
+        audio.addEventListener("pause", function(){ btn.textContent = "▶"; });
+        audio.addEventListener("ended", function(){ btn.textContent = "▶"; seek.value = 0; });
+      }
+
+      btn.onclick = function(){
+        playOrToggle(s, pl);
+      };
+
+      seek.oninput = function(){
+        pl.scrubbing = true;
+        var maxDur = (activePlayer && activePlayer.sid === s.sid) ? activePlayer.duration : (audio ? audio.duration : parseFloat(seek.max));
+        time.textContent = fmtTime(parseFloat(seek.value)) + " / " + fmtTime(maxDur || 0);
+      };
+
+      seek.onchange = function(){
+        var targetT = parseFloat(seek.value);
+        pl.scrubbing = false;
+        playOrToggle(s, pl, targetT);
+      };
     });
   }
 
-  // re-render the Mix column for the selected player
-  function updateMixColumn(){
-    document.querySelectorAll(".mixaudio").forEach(function(a){ a.pause(); });
-    document.querySelectorAll("#mixsel .psel").forEach(function(b){
-      b.classList.toggle("active", b.getAttribute("data-p") === currentPlayer); });
-    document.querySelectorAll("tr[data-song] td.c-mix").forEach(function(td){
-      var sid = td.parentNode.getAttribute("data-song"), s = SONGS[sid];
-      td.innerHTML = s ? mixCellFor(s, currentPlayer) : '<span class="dash">—</span>';
-    });
-    wirePlayers();
+  // ---- setlist tabs: "New" (tryout) / "26.06" (shipped СЕТ 1/2/бис) / "Архив" (archived) ----
+  var ALLDATA = null;                        // full songs.json, kept so tab switches re-filter
+  var TABLS = "cd-settab";
+  var TAB_CLS = {new: ["tryout"], old: ["set1", "set2", "bis"], arch: ["archived"]};
+  var currentTab = "new";
+  try { var _tb = localStorage.getItem(TABLS); if(_tb && TAB_CLS[_tb]) currentTab = _tb; } catch(e){}
+  function setsForTab(tab){
+    var allow = TAB_CLS[tab] || TAB_CLS.new;
+    return (ALLDATA.sets || []).filter(function(st){ return allow.indexOf(st.cls) !== -1; });
   }
-
-  function setupMixSelector(){
-    document.querySelectorAll("#mixsel .psel").forEach(function(b){
-      b.classList.toggle("active", b.getAttribute("data-p") === currentPlayer);
-      b.addEventListener("click", function(){
-        currentPlayer = b.getAttribute("data-p");
-        try { localStorage.setItem(MIXLS, currentPlayer); } catch(e){}
-        updateMixColumn();
-      });
+  function countsOf(sets){                    // mirror setlist_dashboard.py counts, for the visible tab
+    var c = {total:0, data:0, cues:0, playback:0, other:0, practice:0};
+    sets.forEach(function(st){ st.songs.forEach(function(s){
+      c.total++;
+      if(s.hasData){ c.data++;
+        if(s.cues && s.cues.count) c.cues++;
+        if(s.bass && s.bass.kind === "playback") c.playback++;
+        if(s.other && (s.other.kind === "stems" || s.other.kind === "layers")) c.other++;
+        if(s.practice && s.practice.some(function(p){ return p !== "all"; })) c.practice++;
+      }
+    }); });
+    return c;
+  }
+  function applyTab(tab){
+    if(!TAB_CLS[tab]) tab = "new";
+    currentTab = tab;
+    try { localStorage.setItem(TABLS, tab); } catch(e){}
+    document.querySelectorAll("#tabs .tab").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-tab") === tab); });
+    var sets = setsForTab(tab);
+    renderTable({sets: sets, counts: countsOf(sets)});
+    if(LOCAL) hydrate();                       // re-wire notes/todos for the freshly rendered rows
+  }
+  function setupTabs(){
+    document.querySelectorAll("#tabs .tab").forEach(function(b){
+      b.addEventListener("click", function(){ applyTab(b.getAttribute("data-tab")); });
     });
   }
 
@@ -303,18 +715,29 @@
       st.songs.forEach(function(s, idx){
         SONGS[s.sid] = s;
         var sid = esc(s.sid), n = idx+1;
-        var songCell = '<div class="title">'+esc(s.title)+'</div><div class="artist">'+esc(s.artist)+'</div>';
+        var altCls = (idx % 2) ? " alt" : "";   // explicit zebra (cue sub-rows break nth-child parity)
+        // count drives off the SAME list the sub-row renders, so button and row never disagree
+        var cueN = (s.cues && s.cues.list) ? s.cues.list.length : 0;
+        var cueBtn = cueN ? '<button class="cuebtn" type="button" title="показать cues с таймкодами">'
+                          + '<span class="cv">▸</span> 🎯 '+cueN+' cues</button>' : '';
+        var stemN = (s.stems && s.stems.length) ? s.stems.length : 0;
+        var mixBtn = stemN ? '<button class="mixbtn" type="button" title="настройка микса дорожек">'
+                          + '<span class="mv">▸</span> 🎛️ Mix</button>' : '';
+        var songCell = '<div class="title">'+esc(s.title)+'</div><div class="artist">'+esc(s.artist)+'</div>'
+                     + '<div class="sub-btns">' + cueBtn + mixBtn + '</div>';
         var edit = '<td class="c-todo" data-song="'+sid+'"></td><td class="c-notes" data-song="'+sid+'"></td>';
         if(!s.hasData){
-          html += '<tr class="nodata" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-                + '<td class="c-mix">'+mixCellFor(s, currentPlayer)+'</td>'
+          html += '<tr class="nodata'+altCls+'" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
+                + '<td class="c-mix">'+mixCellFor(s)+'</td>'
                 + '<td class="c-info" colspan="2">нет данных (папка/mix.json отсутствует)</td>'+edit+'</tr>';
           return;
         }
-        html += '<tr data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-              + '<td class="c-mix">'+mixCellFor(s, currentPlayer)+'</td>'
+        html += '<tr class="'+altCls.trim()+'" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
+              + '<td class="c-mix">'+mixCellFor(s)+'</td>'
               + '<td class="c-bass">'+bassCell(s.bass)+'</td>'
-              + '<td class="c-other">'+otherCell(s.other)+'</td>'+edit+'</tr>';
+              + '<td class="c-other">'+otherCell(s.other)+'</td>'+edit+'</tr>'
+              + cueRowHtml(s)
+              + mixRowHtml(s);
       });
     });
     document.getElementById("tbody").innerHTML = html;
@@ -370,9 +793,10 @@
     try{ data = await dataP; }
     catch(e){ document.getElementById("tbody").innerHTML =
       '<tr><td class="loading no" colspan="7">не удалось загрузить songs.json</td></tr>'; return; }
-    renderTable(data);
-    setupMixSelector();
-    if(LOCAL) hydrate();                     // wire global todo + per-song notes/todos
+    ALLDATA = data;
+    setupToggles();                          // delegated on persistent #tbody — attach once
+    setupTabs();
+    applyTab(currentTab);                    // renders the active tab's sets (+ hydrate when LOCAL)
   })();
 })();
 </script>

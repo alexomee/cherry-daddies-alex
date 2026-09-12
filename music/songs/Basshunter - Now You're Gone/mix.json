@@ -3,18 +3,18 @@
   "pb-bass": null,
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["07_Synth_Lead"], "roma": ["05_Synthesizer", "06_Synth_Voice"]},
   "cues": [
-    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "chord": ["C#4"], "abs_sec": 4.026},
-    {"bar": 12, "text": "drums in", "abs_sec": 19.326},
-    {"bar": 20, "text": "stop and solo in", "abs_sec": 32.21},
-    {"bar": 29, "text": "drum stop", "abs_sec": 46.705},
-    {"bar": 42, "text": "break in", "abs_sec": 67.642},
-    {"bar": 46, "text": "stop", "abs_sec": 74.084},
-    {"bar": 48, "text": "solo start in", "abs_sec": 77.305},
-    {"bar": 56, "text": "stop", "abs_sec": 90.189},
-    {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 92.605},
-    {"bar": 66, "text": "bass in", "abs_sec": 106.295},
-    {"bar": 74, "beat": 3, "text": "vocal-with-solo in", "abs_sec": 119.984},
-    {"bar": 83, "text": "keep going", "abs_sec": 133.673},
-    {"bar": 90, "text": "end stop", "abs_sec": 144.947}
+    {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "abs_sec": 2.416, "snap_sec": 0.0},
+    {"bar": 12, "text": "drums in", "abs_sec": 17.716, "snap_sec": 14.495},
+    {"bar": 20, "text": "stop and solo in", "abs_sec": 30.6, "snap_sec": 26.574},
+    {"bar": 29, "text": "drum stop", "abs_sec": 45.095, "snap_sec": 41.471},
+    {"bar": 42, "text": "break in", "abs_sec": 66.031, "snap_sec": 62.81},
+    {"bar": 46, "text": "stop", "abs_sec": 72.474, "snap_sec": 68.85},
+    {"bar": 48, "text": "solo start in", "abs_sec": 75.695, "snap_sec": 71.808},
+    {"bar": 56, "text": "stop", "abs_sec": 88.579, "snap_sec": 84.955},
+    {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 90.995, "snap_sec": 87.773},
+    {"bar": 66, "text": "bass in", "abs_sec": 104.684, "snap_sec": 101.463},
+    {"bar": 74, "beat": 3, "text": "vocal-with-solo in", "abs_sec": 118.373, "snap_sec": 114.347},
+    {"bar": 83, "text": "keep going", "abs_sec": 132.063, "snap_sec": 129.647},
+    {"bar": 90, "text": "end stop", "abs_sec": 143.337, "snap_sec": 139.713}
   ]
 }

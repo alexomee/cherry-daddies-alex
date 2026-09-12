@@ -1,0 +1,14 @@
+{
+  "bpm": 90.0,
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["backing_vocals", "piano"]},
+  "pb-other-keys": {"stems": ["backing_vocals", "piano", "keys", "other"]},
+  "pb-drums": {"stems": ["drums"]},
+  "pb-bass": {"stems": ["bass"]},
+  "players": {"alex": ["guitars"], "roma": ["keys"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1, "text": "Я буду all in", "abs_sec": 5.333, "snap_sec": 0.0},
+    {"bar": 9, "text": "chorus in", "abs_sec": 26.667, "snap_sec": 21.333},
+    {"bar": 17, "text": "verse in", "abs_sec": 48.0, "snap_sec": 42.667}
+  ]
+}

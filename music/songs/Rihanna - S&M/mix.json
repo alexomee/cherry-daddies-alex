@@ -1,7 +1,7 @@
 {
   "pitch_semitones": -2,
   "pb-other": {"stems": ["06_Synthesizer", "11_Backing_Vocals_1", "12_Backing_Vocals_2"]},
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Electric_Bass"], "gain_db": {"04_Electric_Bass": 2}},
   "players": {"roma": ["07_Synth_Lead", "09_Arpeggiator", "08_Synth_Keys"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "alex": ["04_Electric_Bass", "05_Synth_Bass"]},
   "cues": [
     {"bar": 2,   "beat": 3, "text": "S and M vocal in", "chord": ["C#4"], "abs_sec": 4.688},

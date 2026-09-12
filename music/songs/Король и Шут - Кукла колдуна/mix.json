@@ -1,12 +1,14 @@
 {
   "bpm": 148.6,
   "pitch_semitones": 0,
-  "pb-other": null,
+  "pb-other": {"stems": ["backing_vocals", "strings"]},
+  "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
+  "pb-drums": {"stems": ["drums"]},
   "pb-bass": null,
+  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {
-      "bar": 1,
-      "text": "Кукла колдуна all in"
-    }
+    {"bar": 1, "text": "Кукла колдуна strings in", "abs_sec": 3.23, "snap_sec": 0.0},
+    {"bar": 8, "text": "drums in", "abs_sec": 14.536, "snap_sec": 11.306},
+    {"bar": 17, "text": "verse in", "abs_sec": 29.071, "snap_sec": 25.841}
   ]
 }

@@ -37,9 +37,12 @@
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 15 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-09-02 бас в pb-bass заглушен с 135.3 (студийная фраза с 136.1 звучала после финального удара).
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — tryout 2026-09, YouTube-оригинал, 130.0 bpm (константа); только click + стартовый cue («Медведица … all in ready go»), плейбека нет; в риге click/cues, сет в MainStage не заведён.
-4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, YouTube-оригинал, 148.6 bpm (живая запись, ±47 мс); только click + стартовый cue («Кукла колдуна … all in ready go»); в риге click/cues, сет в MainStage не заведён.
+4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, Moises-стемы, 148.6 bpm (D minor); pb-other (backing vocals + strings скрипка), pb-drums, бас живой; 3 cue (старт all in, bar 8 drums in, bar 17 verse in).
 5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — tryout 2026-09, YouTube-оригинал (альбом 2000), 130.6 bpm; только click + стартовый cue («Ту-лу-ла … all in ready go»); в риге click/cues, сет в MainStage не заведён.
 6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — tryout 2026-09, YouTube-оригинал, 141 bpm (живая запись, темп гуляет 138–145); только click + стартовый cue («Rock & Roll Queen … all in ready go»); в риге click/cues, сет в MainStage не заведён.
+7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — tryout 2026-09, Moises-стемы, 143 bpm (B minor); интро 3 такта отрезано под вход барабанов; pb-other (backing vocals), pb-drums (установка для репетиций), бас живой; cue «Pretty Fly … drums in ready go» на 1.1.
+8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 3 cue (старт synth in, bar 9 drums in, bar 17 verse in).
+9. [Я буду — 5sta Family & 23:45](songs/ya-budu.md) — tryout 2026-09, Moises-стемы, 90 bpm (A minor); pb-other (backing vocals + piano), pb-other-keys, pb-drums, pb-bass; 3 cue (старт all in, bar 9 chorus in, bar 17 verse in).
 
 ### На бис
 
