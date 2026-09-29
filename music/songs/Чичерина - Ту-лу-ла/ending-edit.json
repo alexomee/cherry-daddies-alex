@@ -1,0 +1,14 @@
+{
+  "source": "music/songs/Чичерина - Ту-лу-ла/versions/2026-09-29-before-cues-v1",
+  "bpm": 130.6,
+  "final_event_bar": 77,
+  "final_event_stem_sec": 140.10529296149292,
+  "fade_start_stem_sec": 140.18528344671202,
+  "silence_from_stem_sec": 140.36528344671203,
+  "source_sha256": {
+    "bass.wav": "d92b49e5c1188c9cdc35660f92513ca21dca8e7612d153d841d00376b40c7b99",
+    "drums.wav": "33af56667fd4d32ffefc7fdefa9413a1c8b00cbc9537e729bb313ab441b4a98a",
+    "guitars.wav": "095e67233cc326b37e5208f4063f2d50b07fee63d5df67a5c3ba993d415fb78d",
+    "vocals.wav": "49066fb0e06cc8f5ae9880ebd656fc4fb1d29bd8b2f1deb34b229c2ff0a1f326"
+  }
+}

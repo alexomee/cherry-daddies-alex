@@ -1,0 +1,10 @@
+Lisa Ono - Besame mucho    Gm / 113 bpm
+I-Ch-V-Ch2-V2-Ch3-O
+
+I   : Cm Gm7 Cm Gm7 Cm Gm7 C Fmaj7 Cm Gm7 D7 Gm
+Ch  : Gm7 Cm7 G7 Cm7 D7 Gm7 Ddim G7 Cm7 Gm7 D#7 D7 Gm7
+V   : Cm7 Gm7 D7 Gm7 Cm7 Gm7 A7 D# D7
+Ch2 : Gm7 Cm7 G7 Cm7 D7 Gm7 Ddim G7 Cm7 Gm7 D#7 D7 Gm7
+V2  : Cm7 Gm7 D7 Gm7 Cm7 Gm7 A7 D# D7
+Ch3 : Gm7 Cm7 G7 Cm7 D7 Gm7 Ddim G7 Cm7 Gm7 D#7 D7 Gm7 D#7 D7 Gm7 Adim Ab7 Gm7
+O   : (Adim Ab7 Gm7) x5

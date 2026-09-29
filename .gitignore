@@ -19,6 +19,7 @@ __pycache__/
 *.jpg
 *.jpeg
 *.zip
+*.part
 
 # артефакты пайплайна JamZone (локальное состояние)
 music/songs/.loudness_cache.json

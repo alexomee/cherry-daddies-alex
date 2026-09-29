@@ -169,7 +169,7 @@
     <span class="sync" id="sync">…</span>
   </div>
   <div class="tabs" id="tabs">
-    <button class="tab active" data-tab="new">New</button>
+    <button class="tab active" data-tab="new">28.10 new songs</button>
     <button class="tab t2606" data-tab="old">26.06</button>
     <button class="tab tarch" data-tab="arch">Архив</button>
   </div>
@@ -479,8 +479,7 @@
       offset: startOffset,
       duration: dur,
       plEl: plEl,
-      paused: false,
-      scrubbing: false
+      paused: false
     };
 
     pbtn.textContent = "⏸";
@@ -494,7 +493,7 @@
         stopActivePlayer(true);
         return;
       }
-      if(!activePlayer.scrubbing){
+      if(!plEl.scrubbing){
         seek.value = elapsed;
         time.textContent = fmtTime(elapsed) + " / " + fmtTime(dur);
       }

@@ -1,0 +1,20 @@
+{
+  "method": "Source stem activity plus confirmation against existing aligned/pitched category MP3; onsets measured at 20% local 10ms RMS peak",
+  "anchors": [
+    {
+      "render_stem": "back_vox",
+      "first_20pct_rms_sec": 5.05941,
+      "nearest_cue_grid_sec": 5.034965,
+      "onset_minus_grid_ms": 24.445
+    },
+    {
+      "render_stem": "vocal",
+      "first_20pct_rms_sec": 125.366803,
+      "nearest_cue_grid_sec": 125.454545,
+      "onset_minus_grid_ms": -87.742
+    }
+  ],
+  "all_in_grid_sec": 18.461538,
+  "bass_entry_grid_sec": 125.874126,
+  "first_vocal_choice": "User confirmed first backing vocal (Give it to me baby), not lead vocal around 15s"
+}

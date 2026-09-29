@@ -106,7 +106,7 @@ SETS = [
         ],
     },
     {
-        "name": "НА ПРОБУ",
+        "name": "28.10 new songs",
         "subtitle": "новые песни — черновые авто-рендеры",
         "cls": "tryout",
         "songs": [

@@ -1,0 +1,11 @@
+{
+  "bpm": 143.0,
+  "pitch_semitones": -2,
+  "pb-other": {"stems": ["backing_vocals"]},
+  "pb-drums": {"stems": ["drums"]},
+  "pb-bass": null,
+  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1, "text": "Pretty Fly drums in", "abs_sec": 3.357, "snap_sec": 0.0}
+  ]
+}

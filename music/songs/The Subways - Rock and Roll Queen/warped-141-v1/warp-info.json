@@ -1,0 +1,28 @@
+{
+  "source_cat": "cat_67531",
+  "bpm": 141.0,
+  "engine": "RubberBand R2",
+  "smoothing": "7-beat Hann, jamzone_warp_ext.grid_dev",
+  "pitch_semitones": 0,
+  "trim_source_sec": 2.9877324263038547,
+  "input_samples": 7533606,
+  "output_samples": 7552180,
+  "downbeat_source_sec": 3.387732426303855,
+  "downbeat_warped_sec": 0.38702538589083413,
+  "unsmoothed_minus_smoothed_ms_quantiles": [
+    -29.56631365356799,
+    -10.692669202535399,
+    -0.02987867711023995,
+    11.231035635287855,
+    18.206129367072776
+  ],
+  "source_sha256": {
+    "01_Click.m4a": "18ea83d02a8294f4d4ec8eccb16e9cd5391e362955bc8bc9284f7a9de6de5204",
+    "02_Drum_Kit.m4a": "22ed786ce2d9650eabcd66b41288827ff4cc96a253d20059e08b34a4f670fd21",
+    "03_Bass.m4a": "f5923db708574e4b07216ef88c00746915babb25a916865543889f6d28c9d9fe",
+    "04_Distorted_Electric_Guitar.m4a": "ba07b3b437296d6c22e0eab1e3746312195ea6036f8fa65bedfc37efeaba82bc",
+    "05_Lead_Electric_Guitar.m4a": "35e3f9710862d20dc6a16b0137c992b92a5cf4f86b2ec62954c75b41c95bbdb0",
+    "06_Backing_Vocals.m4a": "7609f39305744009d9859bc4e9de487939e5014b44a00e9b92012d82d60d4af6",
+    "07_Lead_Vocal.m4a": "8fa8a777bd71aec79e3ee0ce4c13854c7ed6a4a79b2bcfc06e37fc2f5186a642"
+  }
+}

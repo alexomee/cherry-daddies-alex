@@ -1,0 +1,75 @@
+{
+  "method": "drum onset-envelope cross-correlation against independently time-mapped source, 7s windows, lag search +/-80ms",
+  "drum_alignment": [
+    {
+      "warped_start_sec": 21,
+      "end_sec": 28,
+      "lag_ms": 1.995,
+      "onset_envelope_correlation": 0.5878
+    },
+    {
+      "warped_start_sec": 31,
+      "end_sec": 38,
+      "lag_ms": 3.991,
+      "onset_envelope_correlation": 0.664
+    },
+    {
+      "warped_start_sec": 41,
+      "end_sec": 48,
+      "lag_ms": 4.989,
+      "onset_envelope_correlation": 0.6185
+    },
+    {
+      "warped_start_sec": 61,
+      "end_sec": 68,
+      "lag_ms": 2.993,
+      "onset_envelope_correlation": 0.5682
+    },
+    {
+      "warped_start_sec": 71,
+      "end_sec": 78,
+      "lag_ms": 2.993,
+      "onset_envelope_correlation": 0.6194
+    },
+    {
+      "warped_start_sec": 81,
+      "end_sec": 88,
+      "lag_ms": 5.986,
+      "onset_envelope_correlation": 0.5179
+    },
+    {
+      "warped_start_sec": 91,
+      "end_sec": 98,
+      "lag_ms": 1.995,
+      "onset_envelope_correlation": 0.7437
+    },
+    {
+      "warped_start_sec": 121,
+      "end_sec": 128,
+      "lag_ms": 2.993,
+      "onset_envelope_correlation": 0.4994
+    },
+    {
+      "warped_start_sec": 131,
+      "end_sec": 138,
+      "lag_ms": 3.991,
+      "onset_envelope_correlation": 0.5705
+    },
+    {
+      "warped_start_sec": 141,
+      "end_sec": 148,
+      "lag_ms": 1.995,
+      "onset_envelope_correlation": 0.705
+    },
+    {
+      "warped_start_sec": 151,
+      "end_sec": 158,
+      "lag_ms": 3.991,
+      "onset_envelope_correlation": 0.6015
+    }
+  ],
+  "click_bpm_fit": 140.99999670091873,
+  "click_max_fit_residual_ms": 0.3021107453662353,
+  "guitar_first_sound_render_sec": 3.392123800453515,
+  "first_music_beat_render_sec": 3.404255319148936
+}

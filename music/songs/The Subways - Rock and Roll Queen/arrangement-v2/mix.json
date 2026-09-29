@@ -1,0 +1,13 @@
+{
+  "bpm": 141.0,
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["06_Backing_Vocals", "05_Lead_Electric_Guitar"]},
+  "pb-bass": null,
+  "players": {"roma": ["03_Bass"]},
+  "cues": [
+    {"bar": 1, "text": "Rock & Roll Queen guitar in", "abs_sec": 3.404, "snap_sec": 0.0},
+    {"bar": 13, "text": "all in", "abs_sec": 23.83, "snap_sec": 20.426},
+    {"bar": 69, "text": "solo in", "abs_sec": 119.149, "snap_sec": 115.745},
+    {"bar": 77, "text": "chorus in", "abs_sec": 132.766, "snap_sec": 129.362}
+  ]
+}

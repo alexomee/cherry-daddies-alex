@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-12T15:13:47",
+  "generated": "2026-09-29T18:39:04",
   "counts": {
     "total": 37,
     "data": 37,
     "cues": 37,
     "playback": 21,
-    "other": 25,
-    "practice": 35
+    "other": 26,
+    "practice": 36
   },
   "sets": [
     {
@@ -3903,7 +3903,7 @@
       ]
     },
     {
-      "name": "НА ПРОБУ",
+      "name": "28.10 new songs",
       "subtitle": "новые песни — черновые авто-рендеры",
       "cls": "tryout",
       "songs": [
@@ -4809,8 +4809,27 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
-            "list": []
+            "count": 3,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Медведица drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 7.385,
+                "text": "all in",
+                "bar": 3,
+                "snap": 3.692
+              },
+              {
+                "t": 36.923,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 33.231
+              }
+            ]
           },
           "bass": {
             "kind": "none"
@@ -4822,6 +4841,26 @@
             "all"
           ],
           "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
             {
               "id": "other",
               "label": "Остальное"
@@ -4836,12 +4875,17 @@
             }
           ],
           "stem_versions": {
-            "other": "592c8f4ba7",
+            "vocal": "5f6d4552ce",
+            "drums": "e8c4ca658c",
+            "keys": "319cc3015e",
+            "bass": "43fa282052",
+            "guitars": "6d0cc27304",
+            "other": "645d59f777",
             "click": "76a8740645",
-            "cues": "2b47b63d33"
+            "cues": "f13e9b3389"
           },
           "versions": {
-            "all": "8618c47c35"
+            "all": "0ab30c4812"
           }
         },
         {
@@ -4932,23 +4976,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e9f15144c1",
-            "back_vox": "7bdf4bf5a6",
-            "drums": "8432802f6f",
-            "keys": "6b7abb880d",
-            "bass": "7ee9e799de",
-            "guitars": "af45a766b3",
-            "other": "ab5fbc4451",
+            "vocal": "9659bea991",
+            "back_vox": "3bbbdef298",
+            "drums": "bd9138b2db",
+            "keys": "bb02c35350",
+            "bass": "e22132c75d",
+            "guitars": "70888629d7",
+            "other": "77ec73fb05",
             "click": "eb545ae26c",
-            "cues": "2f74f5ce9b"
+            "cues": "76daa09aa3"
           },
           "versions": {
-            "all": "cf70f32dee",
-            "drums": "224c2b3b9a",
-            "alex": "6cff3ad01c",
-            "steve": "aa725c2357",
-            "roma": "3a0c4099b8",
-            "tanya": "4d6def758e"
+            "all": "b50593b8a8",
+            "drums": "c5068d456e",
+            "alex": "7f1aeaffd5",
+            "steve": "25825a20c7",
+            "roma": "d7a73d7dbf",
+            "tanya": "e09bb1cba0"
           }
         },
         {
@@ -4959,13 +5003,67 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
+            "count": 10,
             "list": [
               {
                 "t": 3.675,
-                "text": "Ту-лу-ла all in",
+                "text": "Ту-лу-ла drums in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 10.567,
+                "text": "guitar in",
+                "bar": 4,
+                "snap": 6.891
+              },
+              {
+                "t": 25.727,
+                "text": "verse in",
+                "bar": 13,
+                "snap": 22.052
+              },
+              {
+                "t": 62.021,
+                "text": "solo in",
+                "bar": 32,
+                "snap": 58.346
+              },
+              {
+                "t": 77.182,
+                "text": "verse in",
+                "bar": 41,
+                "snap": 73.507
+              },
+              {
+                "t": 95.559,
+                "text": "drums only ready go",
+                "bar": 51,
+                "snap": 91.884
+              },
+              {
+                "t": 99.234,
+                "text": "all in",
+                "bar": 53,
+                "snap": 95.559
+              },
+              {
+                "t": 121.286,
+                "text": "keep going",
+                "bar": 65,
+                "snap": 118.53
+              },
+              {
+                "t": 128.178,
+                "text": "solo in",
+                "bar": 68,
+                "snap": 124.502
+              },
+              {
+                "t": 143.338,
+                "text": "end in",
+                "bar": 77,
+                "snap": 139.204
               }
             ]
           },
@@ -5010,20 +5108,20 @@
             }
           ],
           "stem_versions": {
-            "vocal": "4dcb6f4775",
-            "drums": "eba98af67c",
-            "bass": "d3efde09fb",
-            "guitars": "161dcdba2e",
-            "click": "475f1e3b46",
-            "cues": "f08e1f4241"
+            "vocal": "aa3bd4c36f",
+            "drums": "345d1c2c8a",
+            "bass": "f6d61a650d",
+            "guitars": "c18d9d9c3b",
+            "click": "209cc138cf",
+            "cues": "7bbc60f4ee"
           },
           "versions": {
-            "all": "fd20e10c51",
-            "drums": "98f27f8424",
-            "alex": "6a582846f2",
-            "steve": "1b04b3dfd0",
-            "roma": "93b2cb56bf",
-            "tanya": "05757c6d94"
+            "all": "a18c2f7332",
+            "drums": "0004252abe",
+            "alex": "62de6e05a5",
+            "steve": "e6252174d6",
+            "roma": "36d0e114dc",
+            "tanya": "31b8bb162d"
           }
         },
         {
@@ -5034,22 +5132,92 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
-            "list": []
+            "count": 8,
+            "list": [
+              {
+                "t": 3.404,
+                "text": "Rock & Roll Queen guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 23.83,
+                "text": "all in",
+                "bar": 13,
+                "snap": 20.426
+              },
+              {
+                "t": 57.872,
+                "text": "verse in",
+                "bar": 33,
+                "snap": 54.468
+              },
+              {
+                "t": 98.723,
+                "text": "guitar only ready go",
+                "bar": 57,
+                "snap": 95.319
+              },
+              {
+                "t": 105.532,
+                "text": "verse in",
+                "bar": 61,
+                "snap": 102.128
+              },
+              {
+                "t": 119.149,
+                "text": "solo in",
+                "bar": 69,
+                "snap": 115.745
+              },
+              {
+                "t": 132.766,
+                "text": "chorus in",
+                "bar": 77,
+                "snap": 129.362
+              },
+              {
+                "t": 160.0,
+                "text": "end in",
+                "bar": 93,
+                "snap": 156.17
+              }
+            ]
           },
           "bass": {
             "kind": "none"
           },
           "other": {
-            "kind": "none"
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Lead Electric Guitar"
+            ]
           },
           "practice": [
-            "all"
+            "all",
+            "roma"
           ],
           "stems": [
             {
-              "id": "other",
-              "label": "Остальное"
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
             },
             {
               "id": "click",
@@ -5061,12 +5229,17 @@
             }
           ],
           "stem_versions": {
-            "other": "be9583ecd3",
+            "vocal": "7b0f15f2d0",
+            "back_vox": "c693c3200e",
+            "drums": "c7ee8583b0",
+            "bass": "71842772a9",
+            "guitars": "85316f9cf0",
             "click": "4b29dccd45",
-            "cues": "4a0cf6c17f"
+            "cues": "5d47a44aa0"
           },
           "versions": {
-            "all": "fbdad1bd90"
+            "all": "f7f749329f",
+            "roma": "5e854372cd"
           }
         },
         {
@@ -5077,13 +5250,31 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
+            "count": 4,
             "list": [
               {
                 "t": 3.357,
                 "text": "Pretty Fly drums in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 5.035,
+                "text": "vocal in",
+                "bar": 2,
+                "snap": 1.678
+              },
+              {
+                "t": 18.462,
+                "text": "all in",
+                "bar": 10,
+                "snap": 15.105
+              },
+              {
+                "t": 125.455,
+                "text": "bass verse ready go",
+                "bar": 73,
+                "snap": 122.098
               }
             ]
           },
@@ -5142,15 +5333,15 @@
             "bass": "7c3632a7f2",
             "guitars": "688e111c9e",
             "click": "fb1e8291df",
-            "cues": "b8037b9e33"
+            "cues": "8558b90fa2"
           },
           "versions": {
-            "all": "237d4fc600",
-            "drums": "4d330c2d63",
-            "alex": "5dfc677026",
-            "steve": "ae106836cf",
-            "roma": "173b0233e0",
-            "tanya": "7283be248a"
+            "all": "e108082b82",
+            "drums": "11bd061dff",
+            "alex": "6cda40d1a3",
+            "steve": "929337f9bd",
+            "roma": "c8ec4f9c91",
+            "tanya": "e01df2f3a5"
           }
         },
         {

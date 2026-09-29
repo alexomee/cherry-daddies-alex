@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-09-11
+updated: 2026-09-12
 title: Кукла колдуна
 artist: Король и Шут
 set: tryout batch 2026-09
@@ -12,7 +12,7 @@ Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). В плейбеке: `pb
 
 ## Сводка
 
-- **bpm:** 148.6 — Moises стемы выровнены через `jamzone_warp_ext.py` (`--bpm 148.6`).
+- **bpm:** 148.6 — Moises стемы выровнены через `jamzone_warp_ext.py` (`--bpm 148.6`) с использованием RubberBand (timemap, engine R2). Ранее наивный линейный ресемпл (`np.interp`) вызывал varispeed-колебания высоты тона скрипки до ±60 центов из-за плавающего живого темпа записи 1999 года; после исправления RubberBand сохраняет оригинальную высоту нот без фальши.
 - **pitch_semitones:** 0 (D minor).
 - **pb-other:** `backing_vocals` (хор, подпевки) + `strings` (скрипка).
 - **pb-other-keys:** `backing_vocals` + `strings` + `keys`.

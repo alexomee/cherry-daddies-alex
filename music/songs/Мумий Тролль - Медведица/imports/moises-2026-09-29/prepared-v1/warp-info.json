@@ -1,0 +1,26 @@
+{
+  "bpm": 130,
+  "pitch_semitones": 0,
+  "engine": "RubberBand R2",
+  "smoothing": "7-beat Hann",
+  "first_raw_click_sec": 4.312199546485261,
+  "downbeat_click_index": 0,
+  "source_samples": 10394624,
+  "output_samples": 10395320,
+  "drift_range_ms": [
+    -19.695041069695662,
+    3.2265720371240647
+  ],
+  "stems": {
+    "female_vocals": "female_lead_vocal",
+    "male_vocals": "male_lead_vocal",
+    "drums": "drums",
+    "bass": "bass",
+    "lead_guitars": "lead_guitars",
+    "rhythm_guitars": "rhythm_guitars",
+    "keys": "keys",
+    "other": "other",
+    "metronome": "metronome"
+  },
+  "count_in": "excluded from music; rendered by cue pipeline"
+}

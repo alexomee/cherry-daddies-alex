@@ -1,0 +1,11 @@
+{
+  "bpm": 130.6,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-drums": {"stems": ["drums"]},
+  "pb-bass": null,
+  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "cues": [
+    {"bar": 1, "text": "Ту-лу-ла all in", "abs_sec": 3.675, "snap_sec": 0.0}
+  ]
+}

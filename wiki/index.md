@@ -32,15 +32,15 @@
 10. [Heads Will Roll — Yeah Yeah Yeahs](songs/heads-will-roll.md) — JamZone-песня, СЕТ 2 #10, оригинальная тональность; 16 черновых ручных cue (не сверены), players на всех четверых, practice-миксы собраны, перкуссия исключена.
 11. [I Love It — Icona Pop &amp; Charli XCX](songs/i-love-it.md) — JamZone-песня, СЕТ 2 #11, 126 bpm, питч 0; 13 cue, live-партии по 4 участникам (alex — 2 синта + 2 гитар-синта), без layers/tempo_zone.
 
-### Tryout-батч (2026-07)
+### 28.10 new songs
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 15 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-09-02 бас в pb-bass заглушен с 135.3 (студийная фраза с 136.1 звучала после финального удара).
-3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — tryout 2026-09, YouTube-оригинал, 130.0 bpm (константа); только click + стартовый cue («Медведица … all in ready go»), плейбека нет; в риге click/cues, сет в MainStage не заведён.
+3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-09-29 импортированы 8 Moises-стемов из ZIP, общий warp на 130 BPM; локальный web: вокал/барабаны/клавиши/бас/гитары/other + click/cues; прежние 3 cue на тактах 1/3/19, плейбек не назначен; cues в риге обновлены.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, Moises-стемы, 148.6 bpm (D minor); pb-other (backing vocals + strings скрипка), pb-drums, бас живой; 3 cue (старт all in, bar 8 drums in, bar 17 verse in).
-5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — tryout 2026-09, YouTube-оригинал (альбом 2000), 130.6 bpm; только click + стартовый cue («Ту-лу-ла … all in ready go»); в риге click/cues, сет в MainStage не заведён.
-6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — tryout 2026-09, YouTube-оригинал, 141 bpm (живая запись, темп гуляет 138–145); только click + стартовый cue («Rock & Roll Queen … all in ready go»); в риге click/cues, сет в MainStage не заведён.
-7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — tryout 2026-09, Moises-стемы, 143 bpm (B minor); интро 3 такта отрезано под вход барабанов; pb-other (backing vocals), pb-drums (установка для репетиций), бас живой; cue «Pretty Fly … drums in ready go» на 1.1.
+5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm; 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; оригинальный хвост убран по выбору Alex; pb-drums, practice на четверых, локальный web и click/cues/pb-drums рига обновлены 2026-09-29.
+6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — JamZone cat_67531 выровнен RubberBand на 141 BPM; pb-other=backing vocals+lead guitar, бас живой (Рома на гитаре), practice-roma; 8 cue, финальный end in 3 + 3 2 1 на 93.1 / 2:40; arrangement-v4 в локальном web, cues в риге, новый pb-other подключить в MainStage вручную.
+7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — Moises, 143 BPM, A minor (pitch −2), pb-other=backing vocals, pb-drums, бас живой; 4 cue: drums 1.1, vocal 2.1 (первый бэк), all 10.1, bass verse 73.4 (вокальный затакт перед басом); practice для четверых.
 8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 3 cue (старт synth in, bar 9 drums in, bar 17 verse in).
 9. [Я буду — 5sta Family & 23:45](songs/ya-budu.md) — tryout 2026-09, Moises-стемы, 90 bpm (A minor); pb-other (backing vocals + piano), pb-other-keys, pb-drums, pb-bass; 3 cue (старт all in, bar 9 chorus in, bar 17 verse in).
 
