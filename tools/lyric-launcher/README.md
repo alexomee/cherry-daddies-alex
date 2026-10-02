@@ -1,4 +1,23 @@
-# lyric-launcher — synced lyrics on the stage monitor (POC)
+# lyric-launcher — synced lyrics on the stage monitor
+
+## Current workflow (2026-10-02)
+
+**Start with [the vocalist workflow](../../docs/vocalist-workflow.md).** It covers
+installation, JamZone, Russian transcription, actual stage preview, verification,
+commit/push and selected-song delivery to `basbit/cherry-daddies-2000`.
+
+`setup.command` installs the tools; `lyric_workflow.py --help` lists commands.
+`deploy_clips.sh --index NN` is now a **dry-run**; `--apply` commits and pushes
+that reviewed song only. The old bulk-copy interface has been retired.
+
+Current stage trigger: Program Change **arms** the selected song; MIDI Start
+(E1) **plays from zero**; MIDI Stop freezes. Launch LyricLauncher before MainStage.
+Use the virtual one-way port; see `wiki/pipelines/lyric-launcher.md` for production
+details. The POC notes below document historical experiments, not current setup.
+
+---
+
+## Historical POC notes
 
 Paint song lyrics on a stage monitor, frame-synced to the song, driven from
 the keyboardist's MainStage laptop. No second GUI app, no license.

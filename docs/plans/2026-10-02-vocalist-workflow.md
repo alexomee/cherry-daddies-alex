@@ -60,3 +60,21 @@ Files: create `AGENTS.md`, `docs/vocalist-workflow.md`,
    then push the full repository history and verify remote SHA if publication is clear.
 5. Review diff, run required checks, commit only task files. Preserve pre-existing
    user changes in the original working directory.
+
+## Verification / handover
+
+- 44 pytest checks passed (2026-10-02), including actual Git bare remotes, rejected
+  pushes/retries, another song's concurrent update, source changes during encoding,
+  stale rig audio at check/save/delivery, and the setup-Python shell entry point.
+- Actual ffmpeg/mpv preview contains video + audio at the expected duration.
+- MLX large-v3 transcribed a 20-second Russian vocal-stem excerpt successfully
+  using the cached environment/model (`uv --offline` after a network failure).
+  This verifies the backend integration, not the correctness of an entire song.
+- Checked 17 locally available JamZone songs through extraction/overrides and
+  timestamp ordering. t.A.T.u. tiles are not downloaded on this machine.
+- Actual reference/rig durations match for Better Off Alone, Солнышко, Beverly Hills.
+- Independent review found three issues (build-time input race, stale rig allowed
+  at save, system-Python wrapper); all reproduced in regression tests and fixed.
+- `tkozinets` invited with write permission to the main repo; invitation pending.
+  Rig write access must be granted by `basbit` (current operator is not its admin).
+- Media excluded by Git still needs downloading/transfer on Tatiana's machine.

@@ -3,6 +3,12 @@
 .claude/
 __pycache__/
 *.pyc
+.venv/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+tools/lyric-launcher/.local/
 
 # тяжёлое аудио/видео/изображения — живут в папках, но не в git
 *.m4a

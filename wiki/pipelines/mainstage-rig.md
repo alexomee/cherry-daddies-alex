@@ -1,6 +1,6 @@
 ---
 type: pipeline
-updated: 2026-07-10
+updated: 2026-10-02
 ---
 
 # MainStage-риг (боевой playback клавишника)
@@ -12,6 +12,13 @@ updated: 2026-07-10
 Пакет собирает [jamzone-render](jamzone-render.md) (`tools/jamzone/jamzone_render.py`), cue — по [cue-system](cue-system.md), тексты на монитор — по [lyric-launcher](lyric-launcher.md).
 
 ## Два репо
+
+GitHub основного полного репо — `alexomee/cherry-daddies-alex`, рига —
+`basbit/cherry-daddies-2000`. Самостоятельный lyrics-флоу Тани:
+[памятка](../../docs/vocalist-workflow.md). Доставка одной проверенной песни:
+`lyric_workflow.py deliver NN --apply` (перед этим `save NN`). Записывает source
+commit в `lyrics/deliveries/NN.json`; обновления аудио этой песни после ревью
+обнаруживаются по хешам. Push в GitHub рига ещё требует Pull на ноуте клавишника.
 
 - **Фабрика** — этот репо `/Users/alex/projects/cherry-daddies` (рендер в `music/songs/<Song>/auto-render/`).
 - **Риг** — отдельный репо `/Users/alex/projects/cherry-daddies-2000`, боевой MainStage-проект на ноуте клавишника. Сетлист-папка: `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/<NN Song>/`.

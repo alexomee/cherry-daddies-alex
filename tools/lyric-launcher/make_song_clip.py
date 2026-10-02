@@ -18,11 +18,12 @@ import json
 import os
 import subprocess
 import hashlib
+import math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-JAMS = os.path.expanduser(
+JAMS = os.path.expanduser(os.environ.get("JAMZONE_JAMS",
     "~/Library/Containers/com.recisio.jamzone.ios/Data/Library/"
-    "Application Support/com.recisio.jamzone.ios/jams")
+    "Application Support/com.recisio.jamzone.ios/jams"))
 W, H = 1280, 720
 
 
@@ -143,8 +144,15 @@ def parse_lines_table(path):
             line = raw.rstrip("\n")
             if not line.strip():
                 continue
-            time_s, _, text = line.partition("\t")
-            rows.append((parse_time(time_s), text.strip()))
+            time_s, sep, text = line.partition("\t")
+            st = parse_time(time_s)
+            if not sep or not text.strip() or not math.isfinite(st) or st < 0:
+                raise ValueError(f"invalid lyric row: {line!r}")
+            if rows and st <= rows[-1][0]:
+                raise ValueError(f"lyric times must strictly increase: {line!r}")
+            rows.append((st, text.strip()))
+    if not rows:
+        raise ValueError("lyrics table is empty")
     out = []
     for i, (st, tx) in enumerate(rows):
         en = rows[i + 1][0] if i + 1 < len(rows) else st + 3.0
@@ -300,6 +308,9 @@ def make_ass(path, title, lines, dur, offset, lead=5.0, max_gap=6.0):
     CUR_Y, NXT_Y = 285, 475          # vertical centres of the current / next-preview pairs
 
     def dlg(start, end, style, text, pos=None):
+        end = min(end, dur)
+        if start >= end:
+            return ""
         txt = esc(text)
         if pos:                      # \pos bypasses esc (esc would turn { } into ( ))
             txt = f"{{\\pos({pos[0]},{pos[1]})}}" + txt
@@ -336,13 +347,17 @@ def main():
     ap.add_argument("--song", required=True, help="song folder (for auto-render/timeline.json + length)")
     ap.add_argument("--title", required=True)
     ap.add_argument("--lines", help="manual <time>\\t<line> TSV; bypasses JamZone tiles (offset=0)")
+    ap.add_argument("--audio", help="explicit playback-frame reference audio (instead of auto-render/all.wav)")
+    ap.add_argument("--offset", type=float, help="JamZone stem-to-playback offset; otherwise read timeline.json")
     args = ap.parse_args()
     if not args.lines and not args.cat:
         ap.error("--cat is required unless --lines is given")
 
-    allwav = os.path.join(args.song, "auto-render", "all.wav")
+    allwav = args.audio or os.path.join(args.song, "auto-render", "all.wav")
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
-                                "-of", "csv=p=0", allwav], capture_output=True, text=True).stdout.strip())
+                                 "-of", "csv=p=0", allwav], capture_output=True, text=True, check=True).stdout.strip())
+    if not math.isfinite(dur) or dur <= 0:
+        ap.error("reference audio must have a finite positive duration")
 
     if args.lines:
         # Manual front-end: times are already playback-relative, so offset=0.
@@ -351,8 +366,11 @@ def main():
         print(f"manual lines: {len(lines)} lines (offset 0)")
         print(f"song length {dur:.2f}s")
     else:
-        tl = json.load(open(os.path.join(args.song, "auto-render", "timeline.json")))
-        offset = tl.get("offset_sec", 0.0)
+        if args.offset is None:
+            tl = json.load(open(os.path.join(args.song, "auto-render", "timeline.json")))
+            offset = tl["offset_sec"]
+        else:
+            offset = args.offset
         tiles = dj(args.cat, "tiles.json")
         words, cols = lead_words(tiles)
         lines = group_lines(words)
@@ -364,11 +382,20 @@ def main():
     ov = os.path.join(HERE, "overrides", f"{args.index:02d}.tsv")
     if os.path.exists(ov):
         lines = apply_overrides(lines, offset, ov)
+    if not math.isfinite(offset) or not lines:
+        ap.error("no lyrics or invalid offset")
+    previous = -1
+    for st, en, tx in lines:
+        start = st + offset
+        if not math.isfinite(start) or not math.isfinite(en) or not 0 <= start < dur or start <= previous or not tx.strip():
+            ap.error(f"invalid/out-of-range lyric @{start}: {tx!r}")
+        previous = start
     for st, en, tx in lines[:6]:
         print(f"  [{t(st+offset)}] {tx}")
 
     mp4 = os.path.join(HERE, "clips", f"{args.index:02d}.mp4")
     ass = os.path.join(HERE, "clips", f"{args.index:02d}.ass")
+    os.makedirs(os.path.dirname(mp4), exist_ok=True)
     make_black(mp4, dur)
     make_ass(ass, args.title, lines, dur, offset)
     print(f"wrote {mp4}")

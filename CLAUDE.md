@@ -127,15 +127,25 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 
 ## Тексты на сцене (lyric-launcher)
 
+**Актуальный самостоятельный флоу вокалистки (2026-10-02):** `AGENTS.md` и
+`docs/vocalist-workflow.md`. Полный этот репо → `alexomee/cherry-daddies-alex`;
+сценический риг → `basbit/cherry-daddies-2000`. «Сохрани» = проверка + commit/push
+сюда; «сохрани и отправь клавишнику» = также выбранный клип в риг. Использовать
+`lyric_workflow.py`: sync → build → review → approve → save → deliver.
+`deploy_clips.sh --index NN` теперь dry-run; `--apply` делает commit/push выбранной
+песни с проверкой review receipt. Массовое копирование старых клипов отменено.
+Аудио рига проверяется по хешам; после его изменения нужен новый просмотр.
+Наличие клипа в GitHub не подтверждает Pull/подключение в MainStage.
+
 Синхронные тексты на сценический монитор, гонится из MainStage клавишника. **Размазано по ДВУМ репам:** `tools/lyric-launcher/` ЗДЕСЬ = **фабрика** (генерация); деплой → `~/projects/cherry-daddies-2000/lyrics/` = **риг** (рантайм на ноуте клавишника) + `2000.concert`. Деплой клипов = как биды (`deploy_clips.sh`). Полная картина: `cherry-daddies-2000/lyrics/README.md` + `docs/plans/2026-06-18-lyric-launcher-handover*`.
 
-- **Два типа клипов** (оба = `clips/NN.mp4`+`NN.ass`, launcher играет одинаково): timed-караоке из JamZone `tiles.json` (`make_song_clip.py`, текущая+следующая строка); **static «весь текст на экране»** для не-JamZone (`make_static_clip.py`, колонки, повторы → `×N`). `NN` = номер сета = номер клипа.
+- **Источники клипов** (все = `clips/NN.mp4`+`NN.ass`): timed из JamZone `tiles.json`; dynamic из `lyrics-timed/NN.tsv` (транскрипция/ручные исправления, playback-время); static «весь текст на экране» из `lyrics-manual/NN.txt`. `NN` — стабильный clip-ID, существующие ID не перенумеровывать при перестановке сетлиста. В сценическом timed-дисплее текущая и следующая пары строк.
 - **Триггер MainStage — НЕ менять флоу клавишника:** PC на set-change **armит** клип (название, пауза); пэд **E1** (Play/Stop action глоб.транспорта) шлёт MIDI **Start/Stop** → roll/freeze. MainStage **позицию плейхеда не отдаёт** (нет SPP, Playback Play молчит) → scrub/авто-скролл невозможны, проверено — не пытаться.
 - **Порт:** виртуальный `LyricLauncher` (one-way, без петли), launcher сам ставит **стабильный CoreMIDI uniqueID 0x4C595243** (иначе MainStage теряет привязку на каждом рестарте). НЕ IAC (loopback → петля PC / играющее пианино). **Launcher запускать ДО MainStage** (порт существует только пока launcher жив).
 - **`.concert` = бинарные plist** (plutil/plistlib). Wiring = добавить `Lyrics.cst` External Instrument в `data.plist` `channels` (`MIDIOutputPort=LyricLauncher`+uniqueID, `programChangeNumber = clip`; UI-поле «Send Program Change» = clip+1, 1-based). Делает `wire_concert.py` идемпотентно — **только на копии, MainStage закрыт.** MainStage пере-сериализует ~470 файлов на каждый save → шумные коммиты, это норма. Дивергенция бинарников: **не мержить** — сбросить wiring-коммит → rebase lyrics-коммитов (они не пересекаются) → пере-запустить `wire_concert.py` поверх.
 - **РЕГРЕССИЯ-ГАРД: `wire_concert.py` НЕ затирает ручной фикс клавишника.** Дефолтно Lyrics-страйп — полнодиапазонный слой на ПЕРВОЙ клаве (Akai), он перехватывает игру и шлёт ноты в LyricLauncher. Клавишник правит это руками per-set: `Channel_outputIndex=-1` (No Output, в `data.plist`) + диапазон/зона слоя живёт в **OCuA-блобе `Lyrics.cst`** (где именно — НЕ в `data.plist`: проверено по 2149 патчам, нет ни одного key-range поля; после save MainStage делает каждый `Lyrics.cst` уникальным). Поэтому wire: (1) **никогда не перекопирует существующий `Lyrics.cst`** (только сидит новый сет; `--force-cst` чтобы силой) — иначе ревертит фикс; (2) трогает в `data.plist` ТОЛЬКО PC-проводку (output-port/PC/programChangeNumber), не output-routing/диапазон; (3) новый страйп рождается No-Output (`Channel_outputIndex=-1`), `.cst` для нового сета сидится из уже-фикснутого сета-донора. Проверка: повторный прогон по фикснутому концерту = **полный no-op** (deep-diff пустой, все `.cst` побайтно те же). Тест: `tests/test_wire_preserves_fix.py`. pb-апдейты (`sync_to_mainstage.sh`) и клипы (`deploy_clips.sh`) `.concert` НЕ трогают — там реверта нет.
 - **Маппинг сетов — из `web/songs.json`** (позиция в `sets[].songs[]` = номер сета), не из имён папок. `build_manifest.py` → `songs.tsv` (set·clip·pc·source·cat·factory_dir·bed_dir·concert_patch).
-- **Лирика русских/не-JamZone песен:** WebFetch/summarizer ОТКАЗЫВАЕТ (copyright) — брать `fetch_lyrics.py` (curl + extract сырого HTML), чистить, класть в `lyrics-manual/NN.txt`.
+- **Лирика русских/не-JamZone песен:** `transcribe_lyrics.py` получает черновой текст и тайминги из пользовательского аудио через локальный Whisper; `align_lyrics.py`/`auto_align.py` привязывают готовый текст к вокалу. Все повторы сверить по preview; offset в TSV уже учтён. Установка и команды — в `docs/vocalist-workflow.md`.
 
 ## Обновление playback/cue в риге (MainStage) после ре-рендера
 
