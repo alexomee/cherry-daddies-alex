@@ -1,5 +1,9 @@
 # Тексты песен: памятка Тане и инструкция ChatGPT
 
+**Первый раз? [Таня, начни здесь](tanya-start.md)** — как принять приглашения,
+попросить агента клонировать оба репозитория и запустить репозиторный скилл
+[`tanya-texts`](../.agents/skills/tanya-texts/SKILL.md).
+
 ## Что говорить приложению
 
 Открой **папку всего репозитория** `cherry-daddies-alex` в ChatGPT Desktop/Codex
@@ -31,11 +35,15 @@
 
 1. Войти на GitHub как `tkozinets`, принять приглашение в
    [cherry-daddies-alex](https://github.com/alexomee/cherry-daddies-alex/invitations).
-2. Попросить владельца `basbit` выдать `tkozinets` write-доступ к приватному
-   [cherry-daddies-2000](https://github.com/basbit/cherry-daddies-2000).
+2. Принять уже отправленное `basbit` приглашение в приватный
+   [cherry-daddies-2000](https://github.com/basbit/cherry-daddies-2000/invitations).
+   Затем агент проверяет реальные write-права вошедшего аккаунта `tkozinets`.
 3. Установить ChatGPT Desktop с режимом Codex/работы с локальной папкой.
    Простое подключение GitHub к обычному чату не заменяет локальную работу.
-4. На Mac установить Homebrew по [brew.sh](https://brew.sh), затем `brew install gh`.
+4. Если на Mac нет Git, агент помогает установить Apple Command Line Tools через
+   `xcode-select --install`; пользователь подтверждает системное окно. Дождаться
+   завершения и проверить `git --version`. Полный Xcode не требуется.
+   Затем установить Homebrew по [brew.sh](https://brew.sh) и `brew install gh`.
    Авторизоваться: `gh auth login --hostname github.com --git-protocol https --web`,
    затем `gh auth setup-git`. Браузерный вход делает сама Таня.
 5. Клонировать **оба** репозитория в соседние папки:

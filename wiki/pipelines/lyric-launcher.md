@@ -16,6 +16,11 @@ status: production
 Preview подмешивает реальные click/cues рига к playback-frame guide. Хеши
 связывают проверку с исходниками, клипом и версией аудио рига.
 
+Репозиторный скилл [tanya-texts](../../.agents/skills/tanya-texts/SKILL.md) знает
+весь процесс и ведёт Таню по одному шагу. [Старт с нуля](../../docs/tanya-start.md)
+содержит принятие обоих приглашений, готовый запрос агенту на клонирование
+репозиториев и запуск скилла. Приглашение в риг basbit уже отправил по сообщению Alex.
+
 **Изменение deploy:** `deploy_clips.sh --index NN` — dry-run,
 `--index NN --apply` — выбранный клип + строка манифеста + provenance, commit/push
 в риг. Предыдущие примеры голого `deploy_clips.sh` ниже исторические.
