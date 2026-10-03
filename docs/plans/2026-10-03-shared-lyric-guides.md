@@ -20,7 +20,7 @@ on Tanya's already-configured Intel Mac.
 
 ## 1. Catalogue and publication
 
-- Add `tools/guide_catalog.py`, share existing R2 credentials/uploader.
+- Add `tools/lyric-launcher/guide_audio.py`, share existing R2 credentials/uploader.
 - Enumerate all song directories with mix.json, report missing all.wav rather
   than omit a song silently. Include render click/playback fingerprints and
   timeline; keep audio URL immutable by SHA-256.
@@ -59,3 +59,16 @@ on Tanya's already-configured Intel Mac.
 - Leave approval empty; report software checks separately from human review.
 - Review diff; commit/push only task files in the main repository so Tanya can
   obtain the new process. Confirm remote commit. No rig commits or delivery.
+
+## Execution evidence
+
+- 37/37 WAVs uploaded to existing R2 and verified by public HTTP SHA-256, size
+  and audio/wav type. Repeat publication uploads zero unchanged files.
+- 24/24 selected stage songs pass render/rig audio fingerprint checks.
+- Clip 13 measured waveform alignment: zero lag in early/middle/late windows;
+  reconstruction correlation 0.9999999992. Evidence in
+  `wiki/pipelines/lyric-guide-library.md`.
+- Clean recipient smoke: real blob:none/sparse GitHub rig clone, one downloaded
+  guide, three selected stage WAVs, complete H.264/AAC review, no approval.
+- 58 pytest tests passed. Independent code review caught sparse staging and
+  prepared-ASS override cases; both fixed and regression-tested.

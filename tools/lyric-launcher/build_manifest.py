@@ -291,10 +291,10 @@ def _row(pos, title, source, cat, sid, bed, patch, issues):
     if source == "jamzone":
         cat_out = cat or ""
         fac_out = f"music/songs/{sid}"
-    elif source == "dynamic":
+    elif source in ("dynamic", "static"):
         cat_out = ""                    # no JamZone cat; timing from lyrics-timed/
         fac_out = f"music/songs/{sid}"  # has auto-render -> review-video finds audio
-    else:  # static / manual: static uses --song-dir, manual has no clip
+    else:  # manual has no prepared clip
         cat_out = ""
         fac_out = ""
     return {

@@ -9,6 +9,7 @@ const path = require("path");
 const AWS = require("aws-sdk");
 
 const CT = {
+  ".wav": "audio/wav",
   ".mp4": "video/mp4",
   ".html": "text/html; charset=utf-8",
   ".mp3": "audio/mpeg",

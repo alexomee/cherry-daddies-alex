@@ -33,6 +33,13 @@
 
 ## Первичная настройка (вместе с Alex или агентом)
 
+**Уже настроенная машина Тани:** Intel Mac; оба репо рядом в
+`~/Music/CherryDaddies`; риг — `blob:none` + sparse-checkout. Python 3.12, uv,
+ffmpeg, ffprobe, mpv и faster-whisper установлены. Homebrew недоступен и для
+проверки текстов не требуется. Использовать это окружение, не запускать
+Homebrew-установщик поверх него. Без `.venv` команды работают через
+`uv run --python 3.12 python tools/lyric-launcher/lyric_workflow.py ...`.
+
 1. Войти на GitHub как `tkozinets`, принять приглашение в
    [cherry-daddies-alex](https://github.com/alexomee/cherry-daddies-alex/invitations).
 2. Принять уже отправленное `basbit` приглашение в приватный
@@ -43,7 +50,8 @@
 4. Если на Mac нет Git, агент помогает установить Apple Command Line Tools через
    `xcode-select --install`; пользователь подтверждает системное окно. Дождаться
    завершения и проверить `git --version`. Полный Xcode не требуется.
-   Затем установить Homebrew по [brew.sh](https://brew.sh) и `brew install gh`.
+   Для нового Mac установить `gh` через Homebrew, если он доступен, или из
+   официального GitHub CLI release для нужной архитектуры.
    Авторизоваться: `gh auth login --hostname github.com --git-protocol https --web`,
    затем `gh auth setup-git`. Браузерный вход делает сама Таня.
 5. Клонировать **оба** репозитория в соседние папки:
@@ -52,10 +60,11 @@
    mkdir -p ~/Music/CherryDaddies
    cd ~/Music/CherryDaddies
    gh repo clone alexomee/cherry-daddies-alex
-   gh repo clone basbit/cherry-daddies-2000
+   git clone --filter=blob:none --sparse https://github.com/basbit/cherry-daddies-2000.git
    ```
 
-   Риг содержит аудио и историю — его первая загрузка может быть большой.
+   Workflow подгружает из partial/sparse-рига только файлы выбранной песни.
+   Не отключать sparse-checkout и не делать полную повторную загрузку рига.
 6. Настроить имя и GitHub email локально **в каждом репозитории** (агент спрашивает
    адрес, можно взять GitHub noreply из Settings → Emails). Пример:
 
@@ -66,7 +75,7 @@
    git -C ~/Music/CherryDaddies/cherry-daddies-2000 config user.email '<GitHub email>'
    ```
 
-7. Запустить двойным кликом `tools/lyric-launcher/setup.command` в основном репо.
+7. На новом Mac с Homebrew можно запустить `tools/lyric-launcher/setup.command`.
    Он установит нужные утилиты и Python-окружение. Локальная модель транскрипции
    скачивается при первом использовании; после загрузки работает без API-ключа.
 8. Открыть JamZone, скачать нужные песни. Затем попросить агента выполнить `doctor`.
@@ -82,8 +91,9 @@
 
 - JamZone: скачанная песня с `tiles.json`;
 - русская/внешняя песня: вокальный стем или запись для транскрипции (передаёт Alex);
-- музыкальный/вокальный **guide в таймлайне сценического плейбека** для превью
-  (обычно `<song>/auto-render/all.wav`, передаёт Alex или восстанавливает агент);
+- музыкальный/вокальный **guide в таймлайне сценического плейбека** для превью:
+  `<song>/auto-render/all.wav`, автоматически скачивается для выбранной песни
+  из R2 по `music/guide-catalog.json`;
 - актуальные click/cues и плейбек из Git-репозитория рига;
 - для исходного JamZone-времени — `auto-render/timeline.json` с `offset_sec`
   либо явно известное смещение.
@@ -92,6 +102,68 @@
 интро, перестановки секций требуют выравнивания. Одного offset для них недостаточно.
 Не использовать preview с уже подмешанными click/cues как чистый guide: они
 добавляются из рига при review, иначе прозвучат дважды.
+
+### Общая библиотека guide: постоянный процесс
+
+Все подготовленные песни публикуются в существующем R2 `releases.agentiqa.com`.
+Это **оригинальные чистые WAV**, не MP3 с кликом. Каталог
+`music/guide-catalog.json` живёт в этом основном репозитории; WAV — вне Git.
+Ключи R2 нужны только публикующему Alex. Таня скачивает по HTTPS без ключей.
+Доступ по ссылке согласован Alex 2026-10-03.
+
+**После создания/обновления рендера, на машине с исходниками:**
+
+1. Проверить `auto-render/all.wav`: полный музыкальный микс с ведущим вокалом,
+   без клика/cue, та же аранжировка, тональность и отсчёт, что у рига. Для нового
+   таймлайна измерить выравнивание музыкальных якорей в начале, середине и конце.
+   Одинаковая длительность сама по себе ничего не доказывает.
+2. Выполнить `python3 tools/sync_site.py --guides-only`. Обычный `sync_site.py`
+   также публикует WAV вместе с сайтом; `--guides-only` работает без деплоя сайта.
+   Обходятся **все** папки песен с `mix.json`, включая новые песни вне lyric-сетлиста.
+3. Команда загружает изменившиеся WAV под ключом с SHA-256, скачивает их для
+   проверки SHA-256/размера/Content-Type и лишь затем обновляет каталог. Пропуски
+   показываются явно. Не редактировать хеши/URL вручную, не переиспользовать URL
+   для другой версии. `--bootstrap` не публикует guide.
+4. Проверить diff, закоммитить и запушить каталог вместе с относящимися к версии
+   музыкальными конфигурациями. Проверить remote commit. На стороне Тани — `sync`.
+
+Каталог содержит длительность, offset и отпечатки render-аудио. Получатель проверяет
+клик и общие `pb-other`/`pb-bass` против рига. Если WAV отличаются только заголовками
+или шумом тишины ≤4 единиц 16-bit PCM (−78 dBFS), сравнивается нормализованный PCM
+без временного сдвига. Новый текст cue допустим: в review всегда берутся **реальные
+cue из рига**. Изменившаяся музыка/сетка блокирует старый guide; нужно выравнивание
+и новая публикация. Эти проверки не заменяют вокалистский просмотр.
+
+### Проверить готовый текст: одна песня по запросу
+
+Из корня основного репозитория, на Intel Mac Тани:
+
+```bash
+uv run --python 3.12 python tools/lyric-launcher/lyric_workflow.py sync
+uv run --python 3.12 python tools/lyric-launcher/lyric_workflow.py preview 13
+open tools/lyric-launcher/.local/13-review.mp4
+```
+
+`13` — «Про красивую жизнь». Для другой песни агент находит clip-ID в `songs.tsv`.
+`preview NN` получает guide, собирает клип и review. Только скачать/проверить WAV:
+`... lyric_workflow.py guide NN`. Можно раздельно выполнить `build NN` и `review NN`.
+Явный `build NN --audio ...` остаётся для специально подготовленного локального guide.
+
+Риг автоматически материализует только аудио выбранного `bed_dir`, свой манифест
+и выбранную пару ASS/MP4; остальные sparse-файлы не загружаются. WAV кэшируется в
+`tools/lyric-launcher/.local/guides/<sha256>/all.wav`, повторно не скачивается,
+если SHA верен. Вся библиотека (сейчас около 1.4 ГБ) на ноутбук Тани не нужна.
+Готовый JamZone ASS можно посмотреть без скачивания tiles; редактирование требует
+исходных tiles/overrides или `lyrics-timed/NN.tsv`. Существующий TSV пересобирается.
+
+При отсутствии guide агент сразу называет **точный** `<factory_dir>/auto-render/all.wav`
+и команду публикации для Alex. При сетевой ошибке — URL и повтор `guide NN`.
+`pb-other.wav`, practice без вокала и немой `clips/NN.mp4` не заменяют review.
+Не подставлять dashboard `all.mp3`: это `cue_preview.mp3` с уже добавленными cue.
+
+После завершения работы можно удалить только локальный guide/preview этой песни,
+если нужно место. Это не удаляет R2 или исходники, но делает старый локальный receipt
+непригодным: следующее подтверждение потребует нового build/review.
 
 ---
 
@@ -114,11 +186,12 @@ FLOW=tools/lyric-launcher/lyric_workflow.py
 ### A. JamZone
 
 ```bash
-"$PY" "$FLOW" build 14 --audio 'music/songs/Artist - Title/auto-render/all.wav'
+"$PY" "$FLOW" build 14
 ```
 
 Для строки `source=jamzone` берутся `cat` и локальный `tiles.json`, offset — из
-`timeline.json`. Можно передать `--offset ЧИСЛО`. Папка JamZone переопределяется
+каталога guide (или локального `timeline.json` при явном `--audio`). Можно передать
+`--offset ЧИСЛО`. Папка JamZone переопределяется
 через `JAMZONE_JAMS`. Если существует `lyrics-timed/NN.tsv`, он приоритетнее:
 это редактируемая playback-time версия, уже содержащая offset.
 
@@ -163,7 +236,7 @@ Apple Silicon (в setup это backend по умолчанию):
 ### C. Сборка, ревью, исправления
 
 ```bash
-"$PY" "$FLOW" build 14 --audio 'music/songs/Artist - Title/auto-render/all.wav'
+"$PY" "$FLOW" build 14
 "$PY" "$FLOW" review 14
 ```
 

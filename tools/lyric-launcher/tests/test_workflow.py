@@ -60,6 +60,7 @@ def env(tmp_path, monkeypatch):
     bed = rig / "beds/01"
     bed.mkdir(parents=True)
     (bed / "click.wav").write_bytes(audio.read_bytes())
+    (bed / "cues.wav").write_bytes(audio.read_bytes())
     (rig / "lyrics/clips").mkdir()
     (rig / "lyrics/clips/02.ass").write_text("colleague's current clip")
     timed = here / "lyrics-timed/01.tsv"
@@ -238,7 +239,8 @@ def test_review_mix_includes_actual_rig_click_when_guide_is_silent(tmp_path):
     bed.mkdir()
     guide = tmp_path / "guide.wav"
     for path, source in [(guide, "anullsrc=r=16000:cl=mono"),
-                         (bed / "click.wav", "sine=frequency=880:sample_rate=16000")]:
+                         (bed / "click.wav", "sine=frequency=880:sample_rate=16000"),
+                         (bed / "cues.wav", "sine=frequency=660:sample_rate=16000")]:
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "lavfi", "-i", source,
                         "-t", "2", str(path)], check=True)
     output = tmp_path / "mixed.wav"
@@ -302,3 +304,78 @@ def test_deploy_wrapper_uses_setup_python(tmp_path):
                             env=environ, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
     assert "--index" in result.stdout
+
+
+def test_review_requires_both_real_rig_click_and_cues(tmp_path):
+    workflow = importlib.import_module("lyric_workflow")
+    bed = tmp_path / "bed"
+    bed.mkdir()
+    guide = tmp_path / "guide.wav"
+    for path in (guide, bed / "click.wav"):
+        subprocess.run(["ffmpeg", "-v", "error", "-f", "lavfi", "-i",
+                        "sine=frequency=440:duration=1", str(path)], check=True)
+    with pytest.raises(ValueError, match="cues.wav"):
+        workflow.mix_review_audio(guide, bed, tmp_path / "out.wav")
+
+
+def test_sparse_rig_materializes_only_selected_song(env):
+    ws, _, rig, _, _ = env
+    other = rig / "beds/02"
+    other.mkdir()
+    (other / "click.wav").write_bytes((rig / "beds/01/click.wav").read_bytes())
+    git(rig, "add", ".")
+    git(rig, "commit", "-m", "other audio")
+    git(rig, "sparse-checkout", "set", "--cone", "empty-folder")
+    assert not (rig / "beds/01/click.wav").exists()
+    ws.prepare_rig(1)
+    assert (rig / "beds/01/click.wav").is_file()
+    assert (rig / "lyrics/songs.tsv").is_file()
+    assert not (rig / "beds/02/click.wav").exists()
+    assert not (rig / "lyrics/clips/02.ass").exists()
+    assert not git(rig, "status", "--porcelain")
+
+
+def test_ready_jamzone_ass_can_be_previewed_without_tiles(env, monkeypatch):
+    ws, _, _, _, audio = env
+    workflow = importlib.import_module("lyric_workflow")
+    rows = workflow.read_manifest(ws.here / "songs.tsv")
+    rows[0]["source"], rows[0]["cat"] = "jamzone", "not-downloaded"
+    workflow.write_manifest(ws.here / "songs.tsv", rows)
+    (ws.here / "lyrics-timed/01.tsv").unlink()
+    monkeypatch.setattr(workflow.maker, "JAMS", "/nonexistent-jamzone")
+    ass = ws.here / "clips/01.ass"
+    before = ass.read_bytes()
+    ws.build(1, audio, reuse_ass=True)
+    assert ass.read_bytes() == before
+    ws.review(1)
+    with pytest.raises(ValueError, match="human review"):
+        ws.check(1)
+
+
+def test_sparse_delivery_stages_only_the_selected_payload(env):
+    ws, _, rig, _, _ = env
+    ws.save(1, "save source")
+    git(rig, "sparse-checkout", "set", "--cone", "empty-folder")
+    ws.deliver(1, apply=True)
+    assert (rig / "lyrics/deliveries/01.json").is_file()
+    assert not (rig / "lyrics/clips/02.ass").exists()
+    assert not git(rig, "status", "--porcelain")
+
+
+def test_committed_ready_ass_with_unchanged_override_needs_no_tiles(env, monkeypatch):
+    ws, root, _, _, audio = env
+    workflow = importlib.import_module("lyric_workflow")
+    rows = workflow.read_manifest(ws.here / "songs.tsv")
+    rows[0]["source"], rows[0]["cat"] = "jamzone", "not-downloaded"
+    workflow.write_manifest(ws.here / "songs.tsv", rows)
+    (ws.here / "lyrics-timed/01.tsv").unlink()
+    override = ws.here / "overrides/01.tsv"
+    override.parent.mkdir()
+    override.write_text("replace\t1\tПервая строка\n")
+    git(root, "add", ".")
+    git(root, "commit", "-m", "prepared ASS incorporates override")
+    monkeypatch.setattr(workflow.maker, "JAMS", "/nonexistent-jamzone")
+    ws.build(1, audio, reuse_ass=True)
+    override.write_text("replace\t1\tНовая правка\n")
+    with pytest.raises(ValueError, match="override.*changed|changed.*override"):
+        ws.build(1, audio, reuse_ass=True)

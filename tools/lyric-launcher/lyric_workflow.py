@@ -17,6 +17,7 @@ import subprocess
 import tempfile
 
 import make_song_clip as maker
+import guide_audio
 from make_review_video import combined_ass, _maxvol
 
 FIELDS = "set song clip pc_field source cat factory_dir bed_dir concert_patch".split()
@@ -142,7 +143,7 @@ def no_staging(repo):
 
 def commit_paths(repo, paths, message):
     no_staging(repo)
-    git(repo, "add", "--", *paths)
+    git(repo, "add", "--sparse", "--", *paths)
     if git(repo, "diff", "--cached", "--name-only"):
         git(repo, "commit", "-m", message)
     return git(repo, "rev-parse", "HEAD")
@@ -164,11 +165,10 @@ def mix_review_audio(guide, bed, output):
     inputs, gains = [guide], [.85]
     for name, boost in [("click.wav", 10), ("cues.wav", 5)]:
         path = bed / name
-        if path.is_file() and path.resolve() != guide.resolve():
-            inputs.append(path)
-            gains.append(.85 * 10 ** (boost / 20))
-    if len(inputs) == 1:
-        raise ValueError("rig click/cues missing (or selected as guide); supply a music/vocal reference")
+        if not path.is_file() or path.resolve() == guide.resolve():
+            raise ValueError(f"rig {name} missing (or selected as guide): {path}; fetch this song's audio")
+        inputs.append(path)
+        gains.append(.85 * 10 ** (boost / 20))
     filters = ";".join(f"[{i}:a]volume={gain}[a{i}]" for i, gain in enumerate(gains)) + ";"
     filters += "".join(f"[a{i}]" for i in range(len(inputs)))
     filters += f"amix=inputs={len(inputs)}:duration=first:normalize=0"
@@ -210,13 +210,50 @@ class Workspace:
         if row["factory_dir"]:
             song = inside(self.root, row["factory_dir"])
             paths += [song / "mix.json", song / "auto-render/timeline.json"]
-        paths += [self.here / name for name in ["make_song_clip.py", "make_static_clip.py", "lyric_workflow.py"]]
+        paths += [self.here / name for name in ["make_song_clip.py", "make_static_clip.py", "lyric_workflow.py", "guide_audio.py"]]
         return {str(p.relative_to(self.root)): sha(p) for p in paths if p.is_file()}
 
     def clip_files(self, n):
         return {ext: sha(self.here / "clips" / f"{n:02}.{ext}") for ext in ["ass", "mp4"]}
 
+    def prepare_rig(self, n):
+        """Materialize only selected sparse paths, never restore a user's deletion."""
+        row = self.row(n)
+        inside(self.rig, row["bed_dir"])
+        wanted = [row["bed_dir"], "lyrics/songs.tsv", f"lyrics/clips/{n:02}.ass", f"lyrics/clips/{n:02}.mp4"]
+        entries = git(self.rig, "ls-files", "-t", "-z", "--", *wanted).split("\0")
+        missing = []
+        for item in entries:
+            if item.startswith("S "):
+                rel = item[2:]
+                p = inside(self.rig, rel)
+                if not p.exists() and (p.suffix.lower() in AUDIO_SUFFIXES or rel in wanted[1:]):
+                    missing.append(rel)
+        if missing:
+            if git(self.rig, "diff", "--cached", "--name-only", "--", *missing):
+                raise ValueError("selected rig files are staged; reconcile before fetching sparse audio")
+            git(self.rig, "restore", "--ignore-skip-worktree-bits", "--worktree", "--", *missing)
+
+    def guide(self, n):
+        row = self.row(n)
+        entry = guide_audio.lookup(self.root, row["factory_dir"])
+        self.prepare_rig(n)
+        guide_audio.validate_rig(entry, inside(self.rig, row["bed_dir"]))
+        local = inside(self.root, row["factory_dir"]) / "auto-render/all.wav"
+        if local.is_file() and sha(local) == entry["sha256"]:
+            audio = local
+        else:
+            try:
+                audio = guide_audio.download(entry, self.here / ".local/guides")
+            except (OSError, ValueError) as e:
+                raise ValueError(f"Cannot obtain {row['factory_dir']}/auto-render/all.wav from "
+                                 f"{entry['url']}: {e}. Retry guide {n:02}; "
+                                 "if unavailable ask Alex to run tools/sync_site.py --guides-only.") from e
+        print(f"Guide {n:02} {row['song']}: {audio}")
+        return audio, entry
+
     def rig_snapshot(self, n):
+        self.prepare_rig(n)
         row = self.row(n)
         rows = read_manifest(self.rig / "lyrics/songs.tsv")
         old = selected(rows, n)
@@ -231,7 +268,36 @@ class Workspace:
         files += [self.rig / "lyrics/clips" / f"{n:02}.{ext}" for ext in ["ass", "mp4"]]
         return {"row": old, "files": {str(p.relative_to(self.rig)): sha(p) if p.is_file() else None for p in files}}
 
-    def build(self, n, audio, offset=None):
+    def verify_prepared_override(self, n, previous):
+        """An existing override can be reused only with its corresponding ASS."""
+        override = self.here / "overrides" / f"{n:02}.tsv"
+        ass = self.here / "clips" / f"{n:02}.ass"
+        rel = str(override.relative_to(self.root))
+        current = sha(override) if override.is_file() else None
+        if previous:
+            old = previous["build"]
+            if old["clips"]["ass"] == sha(ass) and old["sources"].get(rel) == current:
+                return
+        if current is None and not git(self.root, "ls-files", "--", rel):
+            return
+        ass_rel = str(ass.relative_to(self.root))
+        commit = git(self.root, "log", "-1", "--format=%H", "--", ass_rel)
+        if commit:
+            archived = run(["git", "show", f"{commit}:{ass_rel}"], cwd=self.root)
+            try:
+                applied = run(["git", "show", f"{commit}:{rel}"], cwd=self.root)
+            except ValueError:
+                applied = None
+            now = override.read_text().strip() if current else None
+            if archived == ass.read_text().strip() and applied == now:
+                return
+        raise ValueError(f"override changed since prepared ASS: {override}; "
+                         "download JamZone tiles and run build, or edit a playback-time lyrics-timed TSV")
+
+    def build(self, n, audio=None, offset=None, reuse_ass=False):
+        entry = None
+        if audio is None:
+            audio, entry = self.guide(n)
         row, audio = self.row(n), Path(audio).expanduser().resolve()
         manifest_before = (self.here / "songs.tsv").read_bytes()
         sources_before, audio_before = self.source_files(n), sha(audio)
@@ -246,15 +312,29 @@ class Workspace:
         out = self.here / "clips"
         out.mkdir(parents=True, exist_ok=True)
         # Any interrupted/failed rebuild must not leave a usable old build receipt.
+        previous = read_json(self.local(n)) if self.local(n).is_file() else None
         self.local(n).unlink(missing_ok=True)
         tiles = None
         if timed.is_file():
             lines, offset = maker.parse_lines_table(timed), 0.0
             row["source"] = "dynamic"
+        elif reuse_ass and row["source"] == "jamzone" and (out / f"{n:02}.ass").is_file():
+            # Reviewing an existing stage text requires no JamZone download.
+            # Editing/rebuilding its text still requires tiles or a timed TSV.
+            self.verify_prepared_override(n, previous)
+            events = [line.split(",", 9) for line in (out / f"{n:02}.ass").read_text().splitlines()
+                      if line.startswith("Dialogue:")]
+            if not events:
+                raise ValueError("prepared ASS has no text; obtain lyric sources and build")
+            for event in events:
+                h, m, s = map(float, event[1].split(":"))
+                if not 0 <= h * 3600 + m * 60 + s < dur:
+                    raise ValueError("prepared ASS exceeds guide timeline; rebuild from lyric sources")
+            lines, offset = None, 0.0
         elif row["source"] == "jamzone":
             if offset is None:
                 timeline = inside(self.root, row["factory_dir"]) / "auto-render/timeline.json"
-                offset = read_json(timeline)["offset_sec"]
+                offset = (entry["timeline"] if entry else read_json(timeline))["offset_sec"]
             tiles_path = Path(maker.JAMS) / row["cat"] / "tiles.json"
             tiles = {"cat": row["cat"], "sha256": sha(tiles_path)}
             words, _ = maker.lead_words(maker.dj(row["cat"], "tiles.json"))
@@ -295,6 +375,8 @@ class Workspace:
         state = {"schema": 1, "row": row, "sources": sources_before, "clips": self.clip_files(n),
                  "audio_sha256": audio_before, "audio_duration": dur, "offset_sec": offset,
                  "jamzone": tiles, "rig": snapshot}
+        if entry is not None:
+            state["guide"] = entry
         write_json(self.local(n), {"audio_path": str(audio), "build": state})
         print(f"Built {n:02} {row['song']}; next: review")
         return state
@@ -302,6 +384,11 @@ class Workspace:
     def validate_build(self, n):
         local = read_json(self.local(n))
         state = local["build"]
+        if state.get("guide"):
+            current_guide = guide_audio.lookup(self.root, self.row(n)["factory_dir"])
+            if current_guide != state["guide"]:
+                raise ValueError("published guide changed: rebuild and review again")
+            guide_audio.validate_rig(current_guide, inside(self.rig, self.row(n)["bed_dir"]))
         if state["row"] != self.row(n) or state["sources"] != self.source_files(n) or state["clips"] != self.clip_files(n):
             raise ValueError("sources/clip changed: stale build; rebuild and review again")
         audio = Path(local["audio_path"])
@@ -484,11 +571,11 @@ def main():
     subs = ap.add_subparsers(dest="command", required=True)
     subs.add_parser("doctor")
     subs.add_parser("sync")
-    for cmd in ["build", "review", "approve", "check", "save", "deliver"]:
+    for cmd in ["guide", "preview", "build", "review", "approve", "check", "save", "deliver"]:
         sub = subs.add_parser(cmd)
         sub.add_argument("index", type=int)
         if cmd == "build":
-            sub.add_argument("--audio", type=Path, required=True)
+            sub.add_argument("--audio", type=Path, help="explicit aligned guide; default: published all.wav")
             sub.add_argument("--offset", type=float)
         if cmd == "approve":
             sub.add_argument("--reviewer", required=True)
@@ -505,6 +592,13 @@ def main():
             refresh(ws.root); refresh(ws.rig)
         elif args.command == "build":
             ws.build(args.index, args.audio, args.offset)
+        elif args.command == "guide":
+            refresh(ws.rig)
+            ws.guide(args.index)
+        elif args.command == "preview":
+            refresh(ws.rig)
+            ws.build(args.index, reuse_ass=True)
+            ws.review(args.index)
         elif args.command == "review":
             ws.review(args.index)
         elif args.command == "approve":

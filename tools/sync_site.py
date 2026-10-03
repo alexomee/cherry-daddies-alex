@@ -4,6 +4,7 @@
   python3 tools/sync_site.py              # regen songs.json -> upload ONLY changed mixes to R2 -> deploy
   python3 tools/sync_site.py --no-deploy  # regen + upload, skip vercel deploy
   python3 tools/sync_site.py --bootstrap  # seed upload-state from current R2 (no upload) + deploy
+  python3 tools/sync_site.py --guides-only # publish every clean all.wav + catalogue, no site deploy
 
 Change detection is by content hash (songs.json `versions`, written by setlist_dashboard.py).
 State of what's on R2 lives in web/.r2-uploaded.json (key -> hash). Only mixes whose hash
@@ -17,6 +18,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -28,6 +30,20 @@ STATE = WEB / ".r2-uploaded.json"
 AG = Path.home() / "projects" / "agentiqa"
 DOC = AG / "docs" / "plans" / "2026-03-09-preview-release.md"
 TMP_MANIFEST = "/tmp/r2_sync_manifest.json"
+
+
+def publish_guides():
+    sys.path.insert(0, str(TOOLS / "lyric-launcher"))
+    import guide_audio
+
+    def upload(items):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest = Path(tmp) / "guides.json"
+            manifest.write_text(json.dumps(items))
+            subprocess.run(["node", str(TOOLS / "r2_upload_files.cjs"), str(manifest)],
+                           env=creds_env(), cwd=str(REPO), check=True)
+
+    guide_audio.publish(REPO, guide_audio.discover(REPO), upload)
 
 
 def creds_env():
@@ -79,6 +95,9 @@ def desired():
 
 def main():
     args = sys.argv[1:]
+    if "--guides-only" in args:
+        publish_guides()
+        return
     subprocess.run([sys.executable, str(TOOLS / "setlist_dashboard.py")], check=True)
     want = desired()
     state = json.loads(STATE.read_text()) if STATE.exists() else {}
@@ -98,6 +117,11 @@ def main():
                 state[k] = v["ver"]
             STATE.write_text(json.dumps(state, indent=0))
             os.remove(TMP_MANIFEST)
+
+    # Clean full WAVs are part of the normal publication cycle, alongside the
+    # dashboard's cue_preview/practice MP3s. Bootstrap does not upload anything.
+    if "--bootstrap" not in args:
+        publish_guides()
 
     if "--no-deploy" in args:
         print("skipped deploy (--no-deploy)")
