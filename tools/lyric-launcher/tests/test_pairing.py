@@ -36,3 +36,14 @@ def test_gap_threshold_is_inclusive():
     off = (6.01, 7.0, "b")        # interval 6.01 > max_gap -> singleton
     assert texts(build_pairs([A, on])) == [["a", "b"]]
     assert texts(build_pairs([A, off])) == [["a"], ["b"]]
+
+
+def test_stanza_boundary_breaks_pair():
+    from make_song_clip import TimedLine
+    line_a = TimedLine(0.0, 1.0, "a", stanza=0)
+    line_b = TimedLine(1.5, 2.5, "b", stanza=0)
+    line_c = TimedLine(3.0, 4.0, "c", stanza=0)
+    line_d = TimedLine(4.0, 5.0, "d", stanza=1)
+    line_e = TimedLine(5.5, 6.5, "e", stanza=1)
+    assert texts(build_pairs([line_a, line_b, line_c, line_d, line_e])) == [["a", "b"], ["c"], ["d", "e"]]
+

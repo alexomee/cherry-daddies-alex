@@ -131,18 +131,27 @@ def parse_time(s):
     return float(s)
 
 
+class TimedLine(tuple):
+    def __new__(cls, start, end, text, stanza=0):
+        return super().__new__(cls, (start, end, text))
+    def __init__(self, start, end, text, stanza=0):
+        self.stanza = stanza
+
+
 def parse_lines_table(path):
     """Parse a manual '<time>\\t<line>' TSV into [(start, end, text), ...].
 
     time = 'm:ss.s' or plain seconds (playback seconds, used directly — no
     offset). Each line's end = the next line's start; the last line's end =
-    its own start + 3.0s. Blank lines are skipped.
+    its own start + 3.0s. Blank lines in TSV increment stanza to keep section boundaries.
     """
     rows = []
+    stanza_id = 0
     with open(path, encoding="utf-8") as f:
         for raw in f:
             line = raw.rstrip("\n")
             if not line.strip():
+                stanza_id += 1
                 continue
             time_s, sep, text = line.partition("\t")
             st = parse_time(time_s)
@@ -150,13 +159,13 @@ def parse_lines_table(path):
                 raise ValueError(f"invalid lyric row: {line!r}")
             if rows and st <= rows[-1][0]:
                 raise ValueError(f"lyric times must strictly increase: {line!r}")
-            rows.append((st, text.strip()))
+            rows.append((st, text.strip(), stanza_id))
     if not rows:
         raise ValueError("lyrics table is empty")
     out = []
-    for i, (st, tx) in enumerate(rows):
+    for i, (st, tx, sid) in enumerate(rows):
         en = rows[i + 1][0] if i + 1 < len(rows) else st + 3.0
-        out.append((st, en, tx))
+        out.append(TimedLine(st, en, tx, sid))
     return out
 
 
@@ -285,15 +294,13 @@ def esc(s):
 def build_pairs(lines, max_gap=6.0):
     """Page-flip pairing (vocalist asked for two lines at once, less eye-jumping):
     group consecutive lines two-at-a-time, but NEVER pair across an interval >
-    max_gap seconds to the next line (a section boundary / instrumental break) —
-    that line shows alone so the next pair starts clean on the new section. Odd
-    trailing line = singleton. The metric is the start-to-start interval, which
-    works for both the JamZone path (real syllable times) and the manual --lines
-    path (where each line's end is just the next line's start, so an end-based gap
-    would always be zero and never split)."""
+    max_gap seconds to the next line (a section boundary / instrumental break) or
+    across stanza boundaries — that line shows alone so the next pair starts clean
+    on the new section. Odd trailing line = singleton."""
     pairs, i, n = [], 0, len(lines)
     while i < n:
-        if i + 1 < n and (lines[i + 1][0] - lines[i][0]) <= max_gap:
+        same_stanza = getattr(lines[i], "stanza", 0) == getattr(lines[i + 1], "stanza", 0) if i + 1 < n else True
+        if i + 1 < n and same_stanza and (lines[i + 1][0] - lines[i][0]) <= max_gap:
             pairs.append([lines[i], lines[i + 1]]); i += 2
         else:
             pairs.append([lines[i]]); i += 1
