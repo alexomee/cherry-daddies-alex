@@ -289,15 +289,18 @@ def main():
 
         t0 = time.time()
         st_aligned = []
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as ex:
             futs = {
                 ex.submit(align_single_stanza, i, st, c_start, c_dur, c_mp3, args.model, key): i
                 for (i, st, c_start, c_dur, c_mp3) in chunk_tasks
             }
             for fut in concurrent.futures.as_completed(futs):
-                st_aligned.append(fut.result())
+                res = fut.result()
+                s_id = res[0]["stanza_idx"] if res else futs[fut]
+                print(f"  [Chunk {s_id + 1:02d}/{len(chunk_tasks):02d}] aligned ✓", flush=True)
+                st_aligned.append(res)
         st_aligned.sort(key=lambda x: x[0]["stanza_idx"] if x else 0)
-        print(f"Local chunk alignments finished in {time.time() - t0:.2f}s")
+        print(f"Local chunk alignments finished in {time.time() - t0:.2f}s", flush=True)
 
         # Flatten candidate lines grouped by stanza
         stanzas_with_times = []
@@ -305,7 +308,7 @@ def main():
             stanzas_with_times.append(lines_out)
 
         # Step 3: Automated Micro-Snippet Verification (The Guardrail)
-        print(f"\n[Step 3/3] Running automated micro-snippet verification on key audio snippets...")
+        print(f"\n[Step 3/3] Running automated micro-snippet verification on key audio snippets...", flush=True)
         lines_to_verify = []
         for s_idx, st_rows in enumerate(stanzas_with_times):
             for r_idx, row in enumerate(st_rows):
@@ -313,9 +316,9 @@ def main():
                 if r_idx < 2 or (r_idx > 0 and (row["abs_sec"] - st_rows[r_idx - 1]["abs_sec"] > 4.5)):
                     lines_to_verify.append((s_idx, r_idx, row["abs_sec"], row["line"]))
 
-        print(f"Verifying {len(lines_to_verify)} key line onsets on 4-second audio snippets...")
+        print(f"Verifying {len(lines_to_verify)} key line onsets on 4-second audio snippets...", flush=True)
         t0 = time.time()
-        with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:
             ver_futs = {
                 ex.submit(verify_line_snippet, args.audio, cand, line_tx, tmp_dir, args.model, key): (s_idx, r_idx)
                 for (s_idx, r_idx, cand, line_tx) in lines_to_verify
@@ -326,10 +329,10 @@ def main():
                 old_sec = stanzas_with_times[s_idx][r_idx]["abs_sec"]
                 line_tx = stanzas_with_times[s_idx][r_idx]["line"]
                 if abs(shift) > 0.15:
-                    print(f"  [Verified] \"{line_tx[:30]}\": {format_time_sec(old_sec)} -> {format_time_sec(ver_sec)} (shift {shift:+.2f}s) ✓")
+                    print(f"  [Verified] \"{line_tx[:30]}\": {format_time_sec(old_sec)} -> {format_time_sec(ver_sec)} (shift {shift:+.2f}s) ✓", flush=True)
                     stanzas_with_times[s_idx][r_idx]["abs_sec"] = ver_sec
 
-        print(f"Snippet verification guardrail finished in {time.time() - t0:.2f}s")
+        print(f"Snippet verification guardrail finished in {time.time() - t0:.2f}s", flush=True)
 
     # Step 4: Apply Stage Lead-In and enforce strictly increasing timestamps
     cur_sec = -1.0

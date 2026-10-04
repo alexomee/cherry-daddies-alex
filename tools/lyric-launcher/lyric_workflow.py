@@ -304,7 +304,12 @@ class Workspace:
         snapshot = self.rig_snapshot(n)
         dur = duration(audio)
         bed = inside(self.rig, row["bed_dir"])
-        rig_duration = max(duration(p) for p in bed.rglob("*") if p.is_file() and p.suffix.lower() in AUDIO_SUFFIXES)
+        click_path = bed / "click.wav"
+        if click_path.is_file():
+            rig_duration = duration(click_path)
+        else:
+            rig_duration = max(duration(p) for p in bed.rglob("*")
+                               if p.is_file() and p.suffix.lower() in AUDIO_SUFFIXES and p.name != "all.wav")
         if abs(dur - rig_duration) > .25:
             raise ValueError(f"reference audio ({dur:.2f}s) differs from rig playback ({rig_duration:.2f}s); align the reference first")
         timed = self.here / "lyrics-timed" / f"{n:02}.tsv"
