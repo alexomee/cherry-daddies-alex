@@ -1,0 +1,77 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 297.599977,
+    "audio_sha256": "158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534",
+    "clips": {
+      "ass": "b2092373d788223a6674c942a53dec3511f92c6d56adf2e4a01230aca12b3621",
+      "mp4": "3e4f7359654eccd24217e1ddcbb6070064548ead6e7488d13a38ccf8f8789efa"
+    },
+    "guide": {
+      "bytes": 52496754,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 297.599977,
+      "key": "cherry-dash/e773956ecaa6/guides/158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534/all.wav",
+      "mix_sha256": "47d9376c5c301675b4d1a715d627d3871bb60416d8dfd464b809475e7e548a19",
+      "render_audio": {
+        "click.wav": "74017c5b73cb229e97fc1d6f032be0d481234fa6c74b559dd2fc5153402102c3",
+        "cues.wav": "9f2a8e5d73451829038352c0857db756a0ba0ac320278945b2167cf73396d4ef",
+        "pb-bass.wav": "569985940f36ad5432d6be31b76fcafbc4280e57711a60103bc7f333d0594fa4",
+        "pb-drums.wav": "f12355e52b57ff5a876d25e6b686e7dd2c60f1fe6885201f5d59b3fbcd147fc3",
+        "pb-other.wav": "3121453d3da4ba8013fcc35d4154455c52ed2d429b1fe9788488f7f5fc5d280b"
+      },
+      "render_pcm": {
+        "click.wav": "cae602364f864cd89a25e915d837f284a0157ee7afc1c0369c10a082e8b9c683",
+        "pb-bass.wav": "7ce779e525bc35e8b93415529a93a68117466840cf61a100bad4c23808beddc4",
+        "pb-other.wav": "c5b628efafa1b5fbb10b57e7111afc2cca4f964ae036ec136718d2c5647d8edc"
+      },
+      "sample_rate": 44100,
+      "sha256": "158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.92,
+        "bpm": 125.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.774785
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Беги от меня/click.wav": "1ae46a3236456de89a3d3b9dca889db980cf18892b848e25944fcca21640c926",
+        "cherry-daddies-setlist-2026-06-16/Беги от меня/cues.wav": "84cc288b391fa6f16cdde6ffac8e7c5ac153d6efc908ea8557db46f7503d6a86",
+        "cherry-daddies-setlist-2026-06-16/Беги от меня/pb-bass.wav": "9f1a5a75a560ca4ffdd9630d06df8352bcf3a5aa4a0672f8810a21585445bc94",
+        "cherry-daddies-setlist-2026-06-16/Беги от меня/pb-drums.wav": "e59234dbf9991b895fa1b0bec8eb3122852d019cef72b818eda7a98dbd9d69fe",
+        "cherry-daddies-setlist-2026-06-16/Беги от меня/pb-other.wav": "c9d2564dfa2ccf58dd003bc981bfec34bcc3ae0491239fed66d7a840405ea4f6",
+        "lyrics/clips/25.ass": null,
+        "lyrics/clips/25.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Беги от меня",
+      "cat": "",
+      "clip": "25",
+      "concert_patch": "Беги от меня.patch",
+      "factory_dir": "music/songs/Беги от меня",
+      "pc_field": "26",
+      "set": "25",
+      "song": "Беги от меня",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Беги от меня/auto-render/timeline.json": "d88cb1614780239e3165f54fc5b158a3de8ec3475fb3ddd0cead000c2e425072",
+      "music/songs/Беги от меня/mix.json": "47d9376c5c301675b4d1a715d627d3871bb60416d8dfd464b809475e7e548a19",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "985d0f9af9d836b5494bb4dc64ae263b804c75819c8af81505054c5c69366370",
+      "tools/lyric-launcher/lyrics-timed/25.tsv": "36583e772059509721a18172a882243a4b5753e116f5e92c42585b6380ffaa9e",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "236c20664a30df35be382bcaed242fae1f8ed6ea7e7db137cedc84ef752553da"
+}
