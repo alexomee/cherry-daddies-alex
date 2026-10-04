@@ -1,0 +1,73 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 173.617007,
+    "audio_sha256": "270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f",
+    "clips": {
+      "ass": "9be29489a77cccd13067ca394f90005d2fab4711e06bb3885cadf9e9c6ca49a0",
+      "mp4": "1e1f52b45bbb3d121a55bf2e714f03c889675d933914559e4083ff238133a99b"
+    },
+    "guide": {
+      "bytes": 30626158,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 173.617007,
+      "key": "cherry-dash/305504ec84ac/guides/270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f/all.wav",
+      "mix_sha256": "ab8c518aef8c5ba31f613101cec2730c8d1ab29d90366d144c138ba1c633a56e",
+      "render_audio": {
+        "click.wav": "f0f7b4a5d1abf184b3a5e1637fe6665f8537ef710281bad94db891c20c6ce781",
+        "cues.wav": "0b5c7e64476e5215a9256fcb1bfb8731d34221bea8f8fe67a47a80f150341510",
+        "pb-other.wav": "cf72dd86ae822ec4a6238e8f40ac13afbc8fd3844ae6be5958001770488a9b6b"
+      },
+      "render_pcm": {
+        "click.wav": "e5d25b17f3504a8fa44dbe447aa879c5245e96f0385c262f065980a14a6bc54e",
+        "pb-other.wav": "976c48a08a3bd129a83c1ab3a811c5fa447defd1d82add6ad8f9652be940653d"
+      },
+      "sample_rate": 44100,
+      "sha256": "270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.702128,
+        "bpm": 141.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.015956
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/305504ec84ac/guides/270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f/all.wav"
+    },
+    "jamzone": {
+      "cat": "cat_67531",
+      "sha256": "e312d5242552365df656a6b11163234d8e202c8ca8fe6a435444d93c13adf09a"
+    },
+    "offset_sec": 3.015956,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Rock & Roll Queen/click.wav": "f0f7b4a5d1abf184b3a5e1637fe6665f8537ef710281bad94db891c20c6ce781",
+        "cherry-daddies-setlist-2026-06-16/Rock & Roll Queen/cues.wav": "0b5c7e64476e5215a9256fcb1bfb8731d34221bea8f8fe67a47a80f150341510",
+        "lyrics/clips/30.ass": null,
+        "lyrics/clips/30.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Rock & Roll Queen",
+      "cat": "cat_67531",
+      "clip": "30",
+      "concert_patch": "Rock & Roll Queen.patch",
+      "factory_dir": "music/songs/The Subways - Rock & Roll Queen",
+      "pc_field": "31",
+      "set": "30",
+      "song": "Rock & Roll Queen",
+      "source": "jamzone"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/The Subways - Rock & Roll Queen/auto-render/timeline.json": "85c60d5f6182810879fa43dd0d5129d6a351cf2e0af9aa52baaa3627331d42ef",
+      "music/songs/The Subways - Rock & Roll Queen/mix.json": "ab8c518aef8c5ba31f613101cec2730c8d1ab29d90366d144c138ba1c633a56e",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "875ce56a23c0997ed138b4d2eb1d701325c3d3ff6fabbf749ed78d3d1a28efcd"
+}

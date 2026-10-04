@@ -67,7 +67,7 @@
       "music/songs/Беги от меня/auto-render/timeline.json": "d88cb1614780239e3165f54fc5b158a3de8ec3475fb3ddd0cead000c2e425072",
       "music/songs/Беги от меня/mix.json": "47d9376c5c301675b4d1a715d627d3871bb60416d8dfd464b809475e7e548a19",
       "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
-      "tools/lyric-launcher/lyric_workflow.py": "985d0f9af9d836b5494bb4dc64ae263b804c75819c8af81505054c5c69366370",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
       "tools/lyric-launcher/lyrics-timed/25.tsv": "36583e772059509721a18172a882243a4b5753e116f5e92c42585b6380ffaa9e",
       "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
       "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"

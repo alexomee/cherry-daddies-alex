@@ -1,0 +1,74 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 187.972018,
+    "audio_sha256": "2304f9a020fa4a8c5871f04a6f71c50a14125aebebc068216abd539823b0f1eb",
+    "clips": {
+      "ass": "9de436d82dffdfd7848cb82a9b23f31e43a7e259b3a2d7717841f87a2a649aaf",
+      "mp4": "6bb51dfbf33164c95a5809a8303ee2afea9441e060dc707a2d282c1d6a5cf5ce"
+    },
+    "guide": {
+      "bytes": 33158382,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 187.972018,
+      "key": "cherry-dash/54244363ae3e/guides/2304f9a020fa4a8c5871f04a6f71c50a14125aebebc068216abd539823b0f1eb/all.wav",
+      "mix_sha256": "26da49103b60d11669d7447068da4b66eb24db04248b4eef927b20a287836cc9",
+      "render_audio": {
+        "click.wav": "8e0da423e39e6ab8968b338b2f31e4aa0925416a6c529e7db145b34f8225fa87",
+        "cues.wav": "7145bc4748cf4836b2c753a90f11f2499166e3b1edf673aa550731528d4a9dc8",
+        "pb-drums.wav": "f5066639398edf6530976c65fca3793aebedff95dc8ff15b848494e88b93f0fc",
+        "pb-other.wav": "9fac8c2f3cca2c7cc1ca16a1c41877de9116a10668dd9b8895c83aee49b3da3e"
+      },
+      "render_pcm": {
+        "click.wav": "d39f99a9163d2ee3464bfb1920cab7f809b1c5aa2fb737d99875949a958c2b35",
+        "pb-other.wav": "ab535ddecf8c2497bed340c532ab99edf6e4f55718f97f66bc10a7a0c3edccb1"
+      },
+      "sample_rate": 44100,
+      "sha256": "2304f9a020fa4a8c5871f04a6f71c50a14125aebebc068216abd539823b0f1eb",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.678322,
+        "bpm": 143.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 2.573877
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/54244363ae3e/guides/2304f9a020fa4a8c5871f04a6f71c50a14125aebebc068216abd539823b0f1eb/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Pretty Fly/click.wav": "2d4426757b7afcd993e2dab8e396d4cf2a16d27a67c60a9b937f36b8a7093508",
+        "cherry-daddies-setlist-2026-06-16/Pretty Fly/cues.wav": "7145bc4748cf4836b2c753a90f11f2499166e3b1edf673aa550731528d4a9dc8",
+        "cherry-daddies-setlist-2026-06-16/Pretty Fly/pb-drums.wav": "ce26a4612b683ef50e8cc87e45f453eb878d8e24352335c7d25f855100bd189e",
+        "cherry-daddies-setlist-2026-06-16/Pretty Fly/pb-other.wav": "9fac8c2f3cca2c7cc1ca16a1c41877de9116a10668dd9b8895c83aee49b3da3e",
+        "lyrics/clips/31.ass": null,
+        "lyrics/clips/31.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Pretty Fly",
+      "cat": "",
+      "clip": "31",
+      "concert_patch": "Pretty Fly.patch",
+      "factory_dir": "music/songs/The Offspring - Pretty Fly (For A White Guy)",
+      "pc_field": "32",
+      "set": "31",
+      "song": "Pretty Fly",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/The Offspring - Pretty Fly (For A White Guy)/auto-render/timeline.json": "2134d8ffa4d4f4cdd14e03e6edc763d1ea65e9a0800fca9479551a6a58e06fff",
+      "music/songs/The Offspring - Pretty Fly (For A White Guy)/mix.json": "26da49103b60d11669d7447068da4b66eb24db04248b4eef927b20a287836cc9",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/31.tsv": "00daa0ca8ad9750d81248b54f12a742547680c2953501a7a62cacc1d888f6655",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "cdeca0b4398a0d17233cd72c5f6984491e6e8896dbebe88e83226130d5cd921d"
+}

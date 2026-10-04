@@ -1,0 +1,79 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 269.714286,
+    "audio_sha256": "a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d",
+    "clips": {
+      "ass": "b93b2d311accd97b83fe4617ce86f4652cf96cd9687bd9657387008f66dd794e",
+      "mp4": "29e82a66f09eeb595f60eb28334d4a07ae2681b12feb67921575f49e7ed6884e"
+    },
+    "guide": {
+      "bytes": 47577718,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 269.714286,
+      "key": "cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav",
+      "mix_sha256": "7c3da9102014421c8c70c055a876cf3a6148865b18c56602264bb219b0515597",
+      "render_audio": {
+        "click.wav": "1e44ceed7a3a65ad0d8bbeefa0063a1ae4261a330f76f695e434c0269f250a41",
+        "cues.wav": "5412bc58597f58c241741f45885039b63df7dab1ebeff848df99c098804ab54c",
+        "pb-bass.wav": "1772cafa0c96a126d831281c9fa9ee8bcf4a051db8ed9cff479c93fadb46ee3e",
+        "pb-drums.wav": "cd5062d5299bf63586eb9b58a68092bbc86b3584fff58486d09388dfa4abd15c",
+        "pb-other-keys.wav": "a99fe0517c9f0a9c4b24da825a15159609fb078272f403395b9c91db0c630e18",
+        "pb-other.wav": "70b1fe2f2aab3f1e65133cbe9610b2027925e8f2349f05c5772ef97aa6a88884"
+      },
+      "render_pcm": {
+        "click.wav": "0476ce0edb51cf50ef2266f5101ff690497e758055aab8fcd7777f18f5b15fb0",
+        "pb-bass.wav": "47525e7955a9da09108a2ea41d0948d5aceb4454f69709c8f1286359b3fe4ed6",
+        "pb-other.wav": "37c3f619ca6eebb4ab6e1f89ba408dba6c022f93cfb856c202d246a8362076b9"
+      },
+      "sample_rate": 44100,
+      "sha256": "a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 2.285714,
+        "bpm": 105.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 4.229229
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Медляк/click.wav": "45f78b948fd699971b79c80217591beee04b2bc01a11b8f95a26b443f7675998",
+        "cherry-daddies-setlist-2026-06-16/Медляк/cues.wav": "d6139865e0e1b9ab016ee832c7d6a26380f25897e77bda7f97a850a6ed417c97",
+        "cherry-daddies-setlist-2026-06-16/Медляк/pb-bass.wav": "62f2e9fb5abfcdf79caf03235b4c104dad9d2e464d6fc0cd1e6605cd52a65e67",
+        "cherry-daddies-setlist-2026-06-16/Медляк/pb-drums.wav": "53d7bf484c5b79d65a0a12e462224bab90313fcd16e0be0e4eda5c57cc2fa73d",
+        "cherry-daddies-setlist-2026-06-16/Медляк/pb-other-keys.wav": "f863f26382eb08a2ac6fc4f450a7e52a84f40d943200bdbec04d1cfb42417290",
+        "cherry-daddies-setlist-2026-06-16/Медляк/pb-other.wav": "70b1fe2f2aab3f1e65133cbe9610b2027925e8f2349f05c5772ef97aa6a88884",
+        "lyrics/clips/32.ass": null,
+        "lyrics/clips/32.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Медляк",
+      "cat": "",
+      "clip": "32",
+      "concert_patch": "Медляк.patch",
+      "factory_dir": "music/songs/Mr. Credo - Медляк",
+      "pc_field": "33",
+      "set": "32",
+      "song": "Медляк",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Mr. Credo - Медляк/auto-render/timeline.json": "9aaa783d4dd0f1bcb2cb6b7c385e41d64189d047651ff8554ab1a55815842a7b",
+      "music/songs/Mr. Credo - Медляк/mix.json": "7c3da9102014421c8c70c055a876cf3a6148865b18c56602264bb219b0515597",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/32.tsv": "89d70c7ffadf9db9150b1af11b8a381723dd5842ac63ea9bf37cb6530efcc608",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "7d631811dec14de30254ae675fbe7059bceb8d2795ffb677b8244fbe77bf58d5"
+}

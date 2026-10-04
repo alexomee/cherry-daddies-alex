@@ -1,0 +1,66 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:07.97,Title,,0,0,0,,Pretty Fly
+Dialogue: 0,0:00:00.12,0:00:10.74,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NGive it to me baby, uh-huh, uh-huh
+Dialogue: 0,0:00:00.12,0:00:10.74,Next,,0,0,0,,{\pos(640,475)}Give it to me baby, uh-huh, uh-huh\NAnd all the girlies say I'm pretty fly for a white guy
+Dialogue: 0,0:00:10.74,0:00:28.20,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NAnd all the girlies say I'm pretty fly for a white guy
+Dialogue: 0,0:00:10.74,0:00:28.20,Next,,0,0,0,,{\pos(640,475)}Uno, dos, tres, cuatro, cinco, cinco, seis
+Dialogue: 0,0:00:28.20,0:00:31.70,Pair,,0,0,0,,{\pos(640,285)}Uno, dos, tres, cuatro, cinco, cinco, seis
+Dialogue: 0,0:00:28.20,0:00:31.70,Next,,0,0,0,,{\pos(640,475)}You know it's kind of hard just to get along today\NOur subject isn't cool, but he thinks it anyway
+Dialogue: 0,0:00:31.70,0:00:38.30,Pair,,0,0,0,,{\pos(640,285)}You know it's kind of hard just to get along today\NOur subject isn't cool, but he thinks it anyway
+Dialogue: 0,0:00:31.70,0:00:38.30,Next,,0,0,0,,{\pos(640,475)}He may not have a clue and he may not have style\NBut everything he lacks, well, he makes up in denial
+Dialogue: 0,0:00:38.30,0:00:43.60,Pair,,0,0,0,,{\pos(640,285)}He may not have a clue and he may not have style\NBut everything he lacks, well, he makes up in denial
+Dialogue: 0,0:00:38.30,0:00:43.60,Next,,0,0,0,,{\pos(640,475)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:00:43.60,0:00:51.10,Pair,,0,0,0,,{\pos(640,285)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:00:43.60,0:00:51.10,Next,,0,0,0,,{\pos(640,475)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:00:51.10,0:00:57.60,Pair,,0,0,0,,{\pos(640,285)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:00:51.10,0:00:57.60,Next,,0,0,0,,{\pos(640,475)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:00:57.60,0:01:05.10,Pair,,0,0,0,,{\pos(640,285)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:00:57.60,0:01:05.10,Next,,0,0,0,,{\pos(640,475)}The world needs wannabes\NHey, hey, do that brand new thing
+Dialogue: 0,0:01:05.10,0:01:11.48,Pair,,0,0,0,,{\pos(640,285)}The world needs wannabes\NHey, hey, do that brand new thing
+Dialogue: 0,0:01:05.10,0:01:11.48,Next,,0,0,0,,{\pos(640,475)}Give it to me baby, uh-huh, uh-huh\NGive it to me baby, uh-huh, uh-huh
+Dialogue: 0,0:01:11.48,0:01:17.80,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NGive it to me baby, uh-huh, uh-huh
+Dialogue: 0,0:01:11.48,0:01:17.80,Next,,0,0,0,,{\pos(640,475)}Give it to me baby, uh-huh, uh-huh\NAnd all the girlies say I'm pretty fly for a white guy
+Dialogue: 0,0:01:17.80,0:01:24.86,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NAnd all the girlies say I'm pretty fly for a white guy
+Dialogue: 0,0:01:17.80,0:01:24.86,Next,,0,0,0,,{\pos(640,475)}He needs some cool tunes, not just any will suffice\NBut they didn't have Ice Cube so he bought Vanilla Ice
+Dialogue: 0,0:01:24.86,0:01:32.00,Pair,,0,0,0,,{\pos(640,285)}He needs some cool tunes, not just any will suffice\NBut they didn't have Ice Cube so he bought Vanilla Ice
+Dialogue: 0,0:01:24.86,0:01:32.00,Next,,0,0,0,,{\pos(640,475)}Now cruising in his Pinto, he sees homies as he pass\NBut if he looks twice, they're gonna kick his lily ass
+Dialogue: 0,0:01:32.00,0:01:38.48,Pair,,0,0,0,,{\pos(640,285)}Now cruising in his Pinto, he sees homies as he pass\NBut if he looks twice, they're gonna kick his lily ass
+Dialogue: 0,0:01:32.00,0:01:38.48,Next,,0,0,0,,{\pos(640,475)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:01:38.48,0:01:45.60,Pair,,0,0,0,,{\pos(640,285)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:01:38.48,0:01:45.60,Next,,0,0,0,,{\pos(640,475)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:01:45.60,0:01:51.90,Pair,,0,0,0,,{\pos(640,285)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:01:45.60,0:01:51.90,Next,,0,0,0,,{\pos(640,475)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:01:51.90,0:01:58.90,Pair,,0,0,0,,{\pos(640,285)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:01:51.90,0:01:58.90,Next,,0,0,0,,{\pos(640,475)}The world needs wannabes\NHey, hey, do that brand new thing
+Dialogue: 0,0:01:58.90,0:02:05.18,Pair,,0,0,0,,{\pos(640,285)}The world needs wannabes\NHey, hey, do that brand new thing
+Dialogue: 0,0:01:58.90,0:02:05.18,Next,,0,0,0,,{\pos(640,475)}Now he's getting a tattoo, yeah, he's getting ink done\NHe asked for a 13, but they drew a 31
+Dialogue: 0,0:02:05.18,0:02:11.80,Pair,,0,0,0,,{\pos(640,285)}Now he's getting a tattoo, yeah, he's getting ink done\NHe asked for a 13, but they drew a 31
+Dialogue: 0,0:02:05.18,0:02:11.80,Next,,0,0,0,,{\pos(640,475)}Friends say he's trying too hard and he's not quite hip\NBut in his own mind, he's the, he's the dopest trip
+Dialogue: 0,0:02:11.80,0:02:18.80,Pair,,0,0,0,,{\pos(640,285)}Friends say he's trying too hard and he's not quite hip\NBut in his own mind, he's the, he's the dopest trip
+Dialogue: 0,0:02:11.80,0:02:18.80,Next,,0,0,0,,{\pos(640,475)}Give it to me baby, uh-huh, uh-huh\NGive it to me baby, uh-huh, uh-huh
+Dialogue: 0,0:02:18.80,0:02:25.60,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NGive it to me baby, uh-huh, uh-huh
+Dialogue: 0,0:02:18.80,0:02:25.60,Next,,0,0,0,,{\pos(640,475)}Give it to me baby, uh-huh, uh-huh\NUno, dos, tres, cuatro, cinco, cinco, seis
+Dialogue: 0,0:02:25.60,0:02:31.90,Pair,,0,0,0,,{\pos(640,285)}Give it to me baby, uh-huh, uh-huh\NUno, dos, tres, cuatro, cinco, cinco, seis
+Dialogue: 0,0:02:25.60,0:02:31.90,Next,,0,0,0,,{\pos(640,475)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:02:31.90,0:02:38.60,Pair,,0,0,0,,{\pos(640,285)}So, do the ditty, play it straight\NYou know he really doesn't get it anyway
+Dialogue: 0,0:02:31.90,0:02:38.60,Next,,0,0,0,,{\pos(640,475)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:02:38.60,0:02:45.10,Pair,,0,0,0,,{\pos(640,285)}Got to play the field, keep it real\NFor you, no way, for you, no way
+Dialogue: 0,0:02:38.60,0:02:45.10,Next,,0,0,0,,{\pos(640,475)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:02:45.10,0:02:52.10,Pair,,0,0,0,,{\pos(640,285)}So if you don't rate, just overcompensate\NAt least you know you can always go on Ricki Lake
+Dialogue: 0,0:02:45.10,0:02:52.10,Next,,0,0,0,,{\pos(640,475)}The world needs wannabes\NThe world loves wannabes
+Dialogue: 0,0:02:52.10,0:02:59.10,Pair,,0,0,0,,{\pos(640,285)}The world needs wannabes\NThe world loves wannabes
+Dialogue: 0,0:02:52.10,0:02:59.10,Next,,0,0,0,,{\pos(640,475)}Let's get another wannabe\NHey, hey, do that brand new thing
+Dialogue: 0,0:02:59.10,0:03:07.97,Pair,,0,0,0,,{\pos(640,285)}Let's get another wannabe\NHey, hey, do that brand new thing

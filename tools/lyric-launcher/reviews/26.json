@@ -1,0 +1,80 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 245.333333,
+    "audio_sha256": "a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542",
+    "clips": {
+      "ass": "44fdceb1f7b60cc1ffc4cb05dd691bd01316f98558748b8063205bed2ff45e23",
+      "mp4": "2024b765c29752aecdbbea90905dcb853977a454551d158c4d57499b0ca7b952"
+    },
+    "guide": {
+      "bytes": 43276918,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 245.333333,
+      "key": "cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav",
+      "mix_sha256": "7da0f2654fe0b13662235b943408c1dda9cfde30293e72e0f2ab7b44e70beb57",
+      "render_audio": {
+        "click.wav": "b96149fd22a0226fdf14057793015f95beb3205ba3a6ffaf9cf44506bf165a69",
+        "cues.wav": "3c40c7678bb02bd2f72ddaf8118d89522da64a2595a36364c8e8fdd99eacd2b0",
+        "pb-bass.wav": "c14fa8c2e783667081f2ea53b567a58ae0f36dabc01646ac15dd0a307683e45e",
+        "pb-drums.wav": "05ecb1236f71945177df69e8149126918af8459a3ed3f54ce877f20b4ae8535d",
+        "pb-other-keys.wav": "547213ba775ac01e2a2b73a42bdebbe203baa23f4972540b64a4436ef10d6a7b",
+        "pb-other.wav": "fff4ae585d39256ac7de5ce74826da5be1ef6032e276be585043013fbbef2692"
+      },
+      "render_pcm": {
+        "click.wav": "a0ca6a3daea81fe8ab4bf164a27b5cf381368ab5e9295c98628c774d8f855d3a",
+        "pb-bass.wav": "7c738f196631b8694b7dd2c99c90fada132470425604618f14e06310f718b16f",
+        "pb-other.wav": "a841ca8aff171b67405229fe2df657a31436c1b4a6eb368d44695a550e3817c4"
+      },
+      "sample_rate": 44100,
+      "sha256": "a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.777778,
+        "bpm": 135.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 2.99542
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/all.wav": "a52005b1fd2f00b07fef1421f3ffaf7d059692f2cd3b2f7dde3bef3f339b1308",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/click.wav": "8492e8ac14d8ce7dd45de88b11999cf153cc3841d8e7b1677c4c8a3efa82e4a1",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/cues.wav": "d3a3081eb64c0a8f0285889e7a0fe6da7107a022bc28735c40442932611cbb2f",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/pb-bass.wav": "c14fa8c2e783667081f2ea53b567a58ae0f36dabc01646ac15dd0a307683e45e",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/pb-drums.wav": "b301d54cdc121e3ae753d38845241a7a1e26af263c4a97a43af838fb19f97cfb",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/pb-other-keys.wav": "547213ba775ac01e2a2b73a42bdebbe203baa23f4972540b64a4436ef10d6a7b",
+        "cherry-daddies-setlist-2026-06-16/Такая любовь/pb-other.wav": "fff4ae585d39256ac7de5ce74826da5be1ef6032e276be585043013fbbef2692",
+        "lyrics/clips/26.ass": null,
+        "lyrics/clips/26.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Такая любовь",
+      "cat": "",
+      "clip": "26",
+      "concert_patch": "Такая любовь.patch",
+      "factory_dir": "music/songs/Такая любовь",
+      "pc_field": "27",
+      "set": "26",
+      "song": "Такая любовь",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Такая любовь/auto-render/timeline.json": "8fec7e9733e4d643bfd9d22b2570fceee96c84a7cf47888d7b8b5c4d0ac15607",
+      "music/songs/Такая любовь/mix.json": "7da0f2654fe0b13662235b943408c1dda9cfde30293e72e0f2ab7b44e70beb57",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/26.tsv": "91c3e53b98f1e16e290c3609991708ed1819e8199ee840dcacd08bd69e05fc35",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "6e56b968f105c1ece41bd9e977d33270ee4eb54b4256ca7b494d623d4f78bcc8"
+}

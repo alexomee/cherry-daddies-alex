@@ -1,0 +1,76 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 205.114399,
+    "audio_sha256": "302881f78f71433bff5542ae2c0dfeba1dfbaa98b3086ad846ad8f6125dfa216",
+    "clips": {
+      "ass": "875dcc902191232f05ed791438b3ff03b3187f7126be1c6422437e5adf19f637",
+      "mp4": "653044ee782abe06eb860169ffcf83d056dfeaf62b119538fc1f8be2d0d4f48c"
+    },
+    "guide": {
+      "bytes": 36182298,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 205.114399,
+      "key": "cherry-dash/ccbcf0c2cad9/guides/302881f78f71433bff5542ae2c0dfeba1dfbaa98b3086ad846ad8f6125dfa216/all.wav",
+      "mix_sha256": "18cfc666046df7e1522c5bd8c4ef274e1ddca14e0a0361482dbde80f231e365a",
+      "render_audio": {
+        "click.wav": "84fabe3d85a0eec01dd84d9ce2a76d2f9b8b25989321de247252eb5d5d1be33d",
+        "cues.wav": "8f9fb96322869ef8f8fd24a7eb6afff281f8de318e97dc6b34c6614d383e383b",
+        "pb-drums.wav": "42d7b5e02a270703827bcecb2a0431cf53c0424c9f4bd7234bf15e3b60247908",
+        "pb-other-keys.wav": "2af86eb6044a72b9b2b73fe3391cc20f44bda07a5909b3e05065f4fb23025dcc",
+        "pb-other.wav": "2f90d49f1a5db8d76455a0bcfd53cf409d1f036e9927a9ef593f1cd9d33c4536"
+      },
+      "render_pcm": {
+        "click.wav": "aab5c95204a70ed048818c5a88b5cda2306ebe726ed8a5b0bc6061c4b854c0c4",
+        "pb-other.wav": "d92281c21bafbae34e65201561187b6ae6788f53ab3dfe4c42fa9b71d4b8b766"
+      },
+      "sample_rate": 44100,
+      "sha256": "302881f78f71433bff5542ae2c0dfeba1dfbaa98b3086ad846ad8f6125dfa216",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.615074,
+        "bpm": 148.6,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.057926
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/ccbcf0c2cad9/guides/302881f78f71433bff5542ae2c0dfeba1dfbaa98b3086ad846ad8f6125dfa216/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Кукла колдуна/click.wav": "dfd7eb9b372c57b4391f6633385c6e796ce9e0fadd392f649627b92d372b6c82",
+        "cherry-daddies-setlist-2026-06-16/Кукла колдуна/cues.wav": "8f9fb96322869ef8f8fd24a7eb6afff281f8de318e97dc6b34c6614d383e383b",
+        "cherry-daddies-setlist-2026-06-16/Кукла колдуна/pb-drums.wav": "42d7b5e02a270703827bcecb2a0431cf53c0424c9f4bd7234bf15e3b60247908",
+        "cherry-daddies-setlist-2026-06-16/Кукла колдуна/pb-other-keys.wav": "2af86eb6044a72b9b2b73fe3391cc20f44bda07a5909b3e05065f4fb23025dcc",
+        "cherry-daddies-setlist-2026-06-16/Кукла колдуна/pb-other.wav": "2f90d49f1a5db8d76455a0bcfd53cf409d1f036e9927a9ef593f1cd9d33c4536",
+        "lyrics/clips/28.ass": null,
+        "lyrics/clips/28.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Кукла колдуна",
+      "cat": "",
+      "clip": "28",
+      "concert_patch": "Кукла колдуна.patch",
+      "factory_dir": "music/songs/Король и Шут - Кукла колдуна",
+      "pc_field": "29",
+      "set": "28",
+      "song": "Кукла колдуна",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Король и Шут - Кукла колдуна/auto-render/timeline.json": "efe939cfb0ebda9846d6264fa62052d086f278eff21e2fad8c370e7c6ffbea8a",
+      "music/songs/Король и Шут - Кукла колдуна/mix.json": "18cfc666046df7e1522c5bd8c4ef274e1ddca14e0a0361482dbde80f231e365a",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/28.tsv": "fcc4f70bd284404665ed30e104e647d860cad200211cf255ed8ad7130348e101",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "76d9a47c9be85d126f91b0c8f2b998705fa3e7f82b1efcc4a9b749149706b09f"
+}

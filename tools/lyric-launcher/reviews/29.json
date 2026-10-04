@@ -1,0 +1,71 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 145.1761,
+    "audio_sha256": "db21eac76a90fd5cfd90822e1e6ef5300966deba47779a966c558831205d28c8",
+    "clips": {
+      "ass": "af481bd46e13103f0d1358b4d572456ae318387d9abb31da88a0b2c38d15192b",
+      "mp4": "b6892197a75f27042e91dd1b37b26324be4b0cf7e0bde1e15903f596cbed605a"
+    },
+    "guide": {
+      "bytes": 25609182,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 145.1761,
+      "key": "cherry-dash/fb79a34f990d/guides/db21eac76a90fd5cfd90822e1e6ef5300966deba47779a966c558831205d28c8/all.wav",
+      "mix_sha256": "3c4a5c98a3f3b232f1ed6fc4c060a2d89ffda01770ce83fb6db6ea4c979b31be",
+      "render_audio": {
+        "click.wav": "a1b6f611f585e766546796fdb444dff902910e82a36a007b785f30fc86df5efc",
+        "cues.wav": "da151b3d56f37aab3c1694eaa362976ac6892448c85861a8410f8d70437f9258",
+        "pb-drums.wav": "4b6652f0befb03e39cd5f41538ef845ee04500e3b269b2ed315dd49ac292d569"
+      },
+      "render_pcm": {
+        "click.wav": "bda5bd9ecaca2a29d1c5c6fa7ff90bbd07144d77bc5b2fd9164aadf844104c8a"
+      },
+      "sample_rate": 44100,
+      "sha256": "db21eac76a90fd5cfd90822e1e6ef5300966deba47779a966c558831205d28c8",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.837672,
+        "bpm": 130.6,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.233145
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/fb79a34f990d/guides/db21eac76a90fd5cfd90822e1e6ef5300966deba47779a966c558831205d28c8/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Ту-лу-ла/click.wav": "a1b6f611f585e766546796fdb444dff902910e82a36a007b785f30fc86df5efc",
+        "cherry-daddies-setlist-2026-06-16/Ту-лу-ла/cues.wav": "da151b3d56f37aab3c1694eaa362976ac6892448c85861a8410f8d70437f9258",
+        "cherry-daddies-setlist-2026-06-16/Ту-лу-ла/pb-drums.wav": "4b6652f0befb03e39cd5f41538ef845ee04500e3b269b2ed315dd49ac292d569",
+        "lyrics/clips/29.ass": null,
+        "lyrics/clips/29.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Ту-лу-ла",
+      "cat": "",
+      "clip": "29",
+      "concert_patch": "Ту-лу-ла.patch",
+      "factory_dir": "music/songs/Чичерина - Ту-лу-ла",
+      "pc_field": "30",
+      "set": "29",
+      "song": "Ту-лу-ла",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Чичерина - Ту-лу-ла/auto-render/timeline.json": "3a8b084d8e525d29b7195560f5e176bf6e6c783ac68342edc03dba403ba20cdd",
+      "music/songs/Чичерина - Ту-лу-ла/mix.json": "3c4a5c98a3f3b232f1ed6fc4c060a2d89ffda01770ce83fb6db6ea4c979b31be",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/29.tsv": "3e86e124f84f78e2365c6221991baa4e45dba0a87bddc7305a3e116f00f7773d",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "ed290ecb6516b89179f0b9ed8aaf0ee9de7f6289340e77bbbd56ab6c7c140a4b"
+}
