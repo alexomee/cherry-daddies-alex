@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T18:39:04",
+  "generated": "2026-10-05T19:50:31",
   "counts": {
     "total": 37,
     "data": 37,
@@ -183,7 +183,18 @@
             "alex": "be8272c3c1",
             "steve": "fa13ff468e",
             "roma": "8d1a001468",
-            "tanya": "b57e044445"
+            "tanya": "b57e044445",
+            "pb-other": "76466a4547"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -338,7 +349,21 @@
             "alex": "cc78b136e9",
             "steve": "4bdd27aa4e",
             "roma": "ab221887e3",
-            "tanya": "9282c4f292"
+            "tanya": "9282c4f292",
+            "pb-other": "b7fc3c74f1",
+            "pb-bass": "6b5c920bcb"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -500,7 +525,22 @@
             "alex": "3446262f65",
             "steve": "160c81104d",
             "roma": "658631d740",
-            "tanya": "66fa60d3e0"
+            "tanya": "66fa60d3e0",
+            "pb-other": "8f83a38245",
+            "pb-bass": "bc0d71d7f0"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -674,7 +714,22 @@
             "alex": "8c5fa74486",
             "steve": "7283393907",
             "roma": "116f3a3232",
-            "tanya": "d5f4d105d1"
+            "tanya": "d5f4d105d1",
+            "pb-other": "6ff35e1e8a",
+            "pb-bass": "c7cec327cf"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -836,7 +891,21 @@
             "alex": "233ba87d48",
             "steve": "a5ff448644",
             "roma": "c5a28ef6c7",
-            "tanya": "d7a08ca47b"
+            "tanya": "d7a08ca47b",
+            "pb-other": "d770a5f7d7",
+            "pb-bass": "99acd1c1a2"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -1003,7 +1072,22 @@
             "alex": "0f4d3c35d3",
             "steve": "2cf4bac152",
             "roma": "fa6385daeb",
-            "tanya": "faf9682786"
+            "tanya": "faf9682786",
+            "pb-other": "05800889e6",
+            "pb-bass": "281517f1ac"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -1170,7 +1254,20 @@
             "all": "7429c91d8e",
             "alex": "edeb09d1ec",
             "steve": "37c2eb57e7",
-            "tanya": "891eff58a0"
+            "tanya": "891eff58a0",
+            "pb-other": "3b640a7cbb"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -1301,7 +1398,23 @@
             "all": "a8981ae470",
             "steve": "a1dbddbd9d",
             "roma": "b3b83684bb",
-            "tanya": "01ef9839ca"
+            "tanya": "01ef9839ca",
+            "pb-other": "bceb91647c",
+            "pb-bass": "703b6a5f4d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -1420,7 +1533,18 @@
             "alex": "fbeed8536b",
             "steve": "4b268f7e45",
             "roma": "0681d05c3f",
-            "tanya": "22cac472ce"
+            "tanya": "22cac472ce",
+            "pb-other": "83bd9c9248"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -1587,7 +1711,18 @@
             "all": "c38433c3ad",
             "steve": "3dc662ce79",
             "roma": "da02ad8e98",
-            "tanya": "3f4243c47a"
+            "tanya": "3f4243c47a",
+            "pb-bass": "fce0004740"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -1791,7 +1926,20 @@
             "drums": "49e23ac8dc",
             "alex": "d79e107fd1",
             "steve": "96ac3f22ca",
-            "tanya": "5ae547cdd0"
+            "tanya": "5ae547cdd0",
+            "pb-other": "2023e5a9d4"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         }
       ]
@@ -1992,7 +2140,18 @@
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
             "roma": "d5aa899bf0",
-            "tanya": "3db6c17760"
+            "tanya": "3db6c17760",
+            "pb-bass": "68f555b0b5"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -2133,7 +2292,18 @@
             "alex": "325065da6d",
             "steve": "6e37ba5873",
             "roma": "5c71bfe54e",
-            "tanya": "c5df2e6ba9"
+            "tanya": "c5df2e6ba9",
+            "pb-other": "db052d704b"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -2291,7 +2461,18 @@
             "alex": "ba213fb465",
             "steve": "2e89296029",
             "roma": "63c1875d1d",
-            "tanya": "698094df25"
+            "tanya": "698094df25",
+            "pb-bass": "2e71759b21"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -2438,7 +2619,19 @@
             "alex": "f16af22398",
             "steve": "401e46aed6",
             "roma": "38edd9cdb7",
-            "tanya": "f6b2995e20"
+            "tanya": "f6b2995e20",
+            "pb-other": "b8a688bb33",
+            "pb-bass": "801d22f781"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -2597,7 +2790,18 @@
             "alex": "9c339c1587",
             "steve": "ceb32d1346",
             "roma": "3e2da789df",
-            "tanya": "49e32e1ee9"
+            "tanya": "49e32e1ee9",
+            "pb-other": "b1e36bdb56"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -2758,7 +2962,22 @@
             "alex": "d12fbf402f",
             "steve": "0aa338f0a2",
             "roma": "0e66dc2716",
-            "tanya": "a2984faaf8"
+            "tanya": "a2984faaf8",
+            "pb-other": "1ee08ea287",
+            "pb-bass": "a6022769cb"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -2901,7 +3120,18 @@
             "all": "f35e69558c",
             "steve": "f949a30546",
             "roma": "3aeb63ddc0",
-            "tanya": "883b52fa78"
+            "tanya": "883b52fa78",
+            "pb-bass": "b41cdd9c1c"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -3071,7 +3301,21 @@
             "all": "9145c1be5b",
             "steve": "9cf05e65fe",
             "roma": "e3993c5ea6",
-            "tanya": "7c4593bddb"
+            "tanya": "7c4593bddb",
+            "pb-other": "1bb1127252",
+            "pb-bass": "8912dfcd4b"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -3235,7 +3479,20 @@
             "alex": "95e172c6b5",
             "steve": "b7586b8f83",
             "roma": "f16f81ec54",
-            "tanya": "439f0ce423"
+            "tanya": "439f0ce423",
+            "pb-other": "186f811a6b"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -3419,7 +3676,21 @@
             "alex": "f7bc939b4f",
             "steve": "9e3cd5a3b6",
             "roma": "1120da787c",
-            "tanya": "1f6efc1b02"
+            "tanya": "1f6efc1b02",
+            "pb-other": "89bcb2709a",
+            "pb-bass": "82e17774e7"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -3586,7 +3857,22 @@
             "alex": "c19ee8b2c3",
             "steve": "4c104e2c3e",
             "roma": "7f3d1fd4ba",
-            "tanya": "c60d694598"
+            "tanya": "c60d694598",
+            "pb-other": "8a1d49b3a5",
+            "pb-bass": "679df87b4f"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         }
       ]
@@ -3737,6 +4023,14 @@
             "steve": "7d078aeaba",
             "roma": "ade44592b7",
             "tanya": "64c3383844"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -3897,7 +4191,24 @@
           "versions": {
             "all": "4b738245c5",
             "steve": "add90d2cc9",
-            "tanya": "ff45541b81"
+            "tanya": "ff45541b81",
+            "pb-other": "ff66636534",
+            "pb-bass": "2cdd4793d5"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         }
       ]
@@ -4081,7 +4392,18 @@
             "steve": "0c054e399a",
             "roma": "206b64c511",
             "tanya": "3689e1bd3d",
-            "trio": "833b377f84"
+            "trio": "833b377f84",
+            "pb-bass": "a8306312e0"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -4289,6 +4611,14 @@
             "roma": "c4909dc30a",
             "tanya": "7070ec94c0",
             "trio": "2b25d108d8"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -4469,7 +4799,22 @@
             "steve": "2078c67c59",
             "roma": "4d99097022",
             "tanya": "55d86ba977",
-            "trio": "1330bf1817"
+            "trio": "1330bf1817",
+            "pb-other": "6300308b2e",
+            "pb-bass": "7b006a7cfc"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -4629,6 +4974,14 @@
             "roma": "f958c937f8",
             "tanya": "8f9adb8032",
             "trio": "ebb1de4309"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -4798,7 +5151,21 @@
             "all": "29e9ea729f",
             "drums": "694a8d9f0d",
             "steve": "f4e52fc3d8",
-            "tanya": "1dc67cbfb4"
+            "tanya": "1dc67cbfb4",
+            "pb-other": "5743c44d09",
+            "pb-bass": "5cf7497b08"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -4886,6 +5253,14 @@
           },
           "versions": {
             "all": "0ab30c4812"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -4923,10 +5298,9 @@
             "who": "Roma (real bass-guitar)"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "backing vocals",
-              "strings"
+              "kukla-pb-other-v1"
             ]
           },
           "practice": [
@@ -4992,7 +5366,19 @@
             "alex": "7f1aeaffd5",
             "steve": "25825a20c7",
             "roma": "d7a73d7dbf",
-            "tanya": "e09bb1cba0"
+            "tanya": "e09bb1cba0",
+            "pb-other": "268318b68d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -5122,6 +5508,14 @@
             "steve": "e6252174d6",
             "roma": "36d0e114dc",
             "tanya": "31b8bb162d"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -5239,7 +5633,19 @@
           },
           "versions": {
             "all": "f7f749329f",
-            "roma": "5e854372cd"
+            "roma": "5e854372cd",
+            "pb-other": "59db29cfbc"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -5341,7 +5747,18 @@
             "alex": "6cda40d1a3",
             "steve": "929337f9bd",
             "roma": "c8ec4f9c91",
-            "tanya": "e01df2f3a5"
+            "tanya": "e01df2f3a5",
+            "pb-other": "7d6f0da12d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -5441,7 +5858,22 @@
             "drums": "1701c403fc",
             "steve": "8f642dd2e8",
             "roma": "4c4c9b763f",
-            "tanya": "d9d72feac0"
+            "tanya": "d9d72feac0",
+            "pb-other": "bf401ea16d",
+            "pb-bass": "a59b608932"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -5481,7 +5913,6 @@
           "other": {
             "kind": "stems",
             "items": [
-              "backing vocals",
               "piano"
             ]
           },
@@ -5540,15 +5971,29 @@
             "guitars": "d5d92048eb",
             "other": "d2245b4ca7",
             "click": "9b088105d1",
-            "cues": "f49fdcf514"
+            "cues": "6dd9cd2eeb"
           },
           "versions": {
-            "all": "8f660f6f06",
-            "drums": "de79df1a6e",
+            "all": "a8c4b4df81",
+            "drums": "ed3a9d5ee6",
             "alex": "6912998dac",
             "steve": "4d9ca72fb6",
             "roma": "a814c08f9f",
-            "tanya": "7fb1eed995"
+            "tanya": "7fb1eed995",
+            "pb-other": "72527f06b5",
+            "pb-bass": "e4ca7958fb"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         }
       ]
@@ -5643,6 +6088,14 @@
             "alex": "e40c4f1999",
             "roma": "1c7758b13a",
             "trio": "bda94b715a"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         }
       ]

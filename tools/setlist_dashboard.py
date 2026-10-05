@@ -11,6 +11,7 @@ Out:  web/songs.json
 """
 import json
 import hashlib
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -164,7 +165,49 @@ BASS_ASSIGN = {
 def mix_file(p: str) -> str:
     """dashboard mix id -> file in auto-render/. 'all' = full mix, 'drums' = the pb-drums
     playback track (rehearsal without the drummer), anything else = that player's practice mix."""
-    return {"all": "cue_preview.mp3", "drums": "pb-drums.mp3"}.get(p, f"practice-{p}.mp3")
+    return {
+        "all": "cue_preview.mp3",
+        "drums": "pb-drums.mp3",
+        "pb-other": "pb-other.mp3",
+        "pb-bass": "pb-bass.mp3",
+    }.get(p, f"practice-{p}.mp3")
+
+
+CAT_RULES = [
+    ("back_vox", re.compile(r"back(ing)?.?vocals?|back.?vox", re.I)),
+    ("vocal", re.compile(r"lead.?vocal|^vocals?$", re.I)),
+    ("drums", re.compile(r"drum", re.I)),
+    ("bass", re.compile(r"bass", re.I)),
+    ("guitars", re.compile(r"guitar", re.I)),
+    ("keys", re.compile(r"keys|piano|organ|synth|clav|rhodes|accord|vibe", re.I)),
+]
+
+
+def item_category(name: str) -> str:
+    low = name.lower()
+    for cid, rx in CAT_RULES:
+        if rx.search(low):
+            return cid
+    return "other"
+
+
+def group_categories(group) -> list[str]:
+    """Map stems/layers in pb-other or pb-bass to multi-track stem IDs."""
+    if not group or not isinstance(group, dict):
+        return []
+    cats = set()
+    for st in group.get("stems", []):
+        cats.add(item_category(st))
+    for layer in group.get("layers", []):
+        if isinstance(layer, str):
+            cats.add(item_category(layer))
+        elif isinstance(layer, dict):
+            for r in layer.get("replaces", []):
+                cats.add(item_category(r))
+            if "file" in layer:
+                cats.add(item_category(layer["file"]))
+    order = ["vocal", "back_vox", "drums", "keys", "bass", "guitars", "other"]
+    return [c for c in order if c in cats]
 
 
 def clean_stem(name: str) -> str:
@@ -304,11 +347,36 @@ def build_data():
                 if v:
                     versions[p] = v
 
+            pbo_file = ar / "pb-other.mp3"
+            pbo_avail = bool(mix.get("pb-other") and pbo_file.is_file())
+            pbo_mutes = group_categories(mix.get("pb-other")) if pbo_avail else []
+            pb_other_data = {
+                "available": pbo_avail,
+                "mutes": [c for c in pbo_mutes if any(st["id"] == c for st in track_stems)],
+            }
+            if pbo_avail:
+                v = mix_version(pbo_file)
+                if v:
+                    versions["pb-other"] = v
+
+            pbb_file = ar / "pb-bass.mp3"
+            pbb_avail = bool(mix.get("pb-bass") and pbb_file.is_file())
+            pbb_mutes = group_categories(mix.get("pb-bass")) if pbb_avail else []
+            pb_bass_data = {
+                "available": pbb_avail,
+                "mutes": [c for c in pbb_mutes if any(st["id"] == c for st in track_stems)],
+            }
+            if pbb_avail:
+                v = mix_version(pbb_file)
+                if v:
+                    versions["pb-bass"] = v
+
             songs.append({
                 "sid": sid, "slug": slug_of(sid), "title": title, "artist": artist, "hasData": True,
                 "cues": {"ready": bool(cues), "count": len(cues), "list": cue_list},
                 "bass": bass, "other": other, "practice": practice, "stems": track_stems,
                 "stem_versions": stem_versions, "versions": versions,
+                "pb_other": pb_other_data, "pb_bass": pb_bass_data,
             })
         sets.append({
             "name": st["name"], "subtitle": st["subtitle"], "cls": st["cls"], "songs": songs,
