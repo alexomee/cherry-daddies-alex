@@ -58,11 +58,15 @@ const server = http.createServer(async (req, res) => {
       if (!/^[a-zA-Z0-9_-]+$/.test(stem)) return send(res, 400, "bad stem");
       fp = path.join(MUSIC, sid, "auto-render", "stems", `${stem}.mp3`);
     } else {
-      if (!/^(all|drums|alex|steve|roma|tanya|trio)$/.test(player)) return send(res, 400, "bad player");
+      if (!/^(all|drums|alex|steve|roma|tanya|trio|pb-other|pb-bass)$/.test(player)) return send(res, 400, "bad player");
       fp = player === "all"
         ? path.join(MUSIC, sid, "auto-render", "cue_preview.mp3")
         : player === "drums"                       // playback drum track (rehearsal без барабанщика)
         ? path.join(MUSIC, sid, "auto-render", "pb-drums.mp3")
+        : player === "pb-other"
+        ? path.join(MUSIC, sid, "auto-render", "pb-other.mp3")
+        : player === "pb-bass"
+        ? path.join(MUSIC, sid, "auto-render", "pb-bass.mp3")
         : path.join(MUSIC, sid, "auto-render", `practice-${player}.mp3`);
     }
     if (!fp.startsWith(MUSIC + path.sep)) return send(res, 403, "forbidden");

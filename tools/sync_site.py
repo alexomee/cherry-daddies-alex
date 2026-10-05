@@ -62,7 +62,12 @@ def creds_env():
 
 def mix_file(p):
     """same mapping the dashboard uses (kept in step with tools/setlist_dashboard.py)."""
-    return {"all": "cue_preview.mp3", "drums": "pb-drums.mp3"}.get(p, f"practice-{p}.mp3")
+    return {
+        "all": "cue_preview.mp3",
+        "drums": "pb-drums.mp3",
+        "pb-other": "pb-other.mp3",
+        "pb-bass": "pb-bass.mp3",
+    }.get(p, f"practice-{p}.mp3")
 
 
 def desired():
@@ -82,6 +87,16 @@ def desired():
                 ver = vers.get(p)
                 if ver and f.is_file():
                     out[f"cherry-dash/{s['slug']}/{out_name}"] = {"file": str(f), "ver": ver}
+            if s.get("pb_other", {}).get("available"):
+                pbo_f = ar / "pb-other.mp3"
+                ver = vers.get("pb-other")
+                if ver and pbo_f.is_file():
+                    out[f"cherry-dash/{s['slug']}/pb-other.mp3"] = {"file": str(pbo_f), "ver": ver}
+            if s.get("pb_bass", {}).get("available"):
+                pbb_f = ar / "pb-bass.mp3"
+                ver = vers.get("pb-bass")
+                if ver and pbb_f.is_file():
+                    out[f"cherry-dash/{s['slug']}/pb-bass.mp3"] = {"file": str(pbb_f), "ver": ver}
             svers = s.get("stem_versions") or {}
             sdir = ar / "stems"
             for st in s.get("stems", []):
