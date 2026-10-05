@@ -330,8 +330,8 @@ def build_data():
                 ("bass", "Бас"),
                 ("guitars", "Гитары"),
                 ("other", "Остальное"),
-                ("click", "Клик"),
-                ("cues", "Cues"),
+                ("click", "click"),
+                ("cues", "cues"),
             ]:
                 sf = stems_dir / f"{cid}.mp3"
                 if sf.is_file():

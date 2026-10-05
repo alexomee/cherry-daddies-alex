@@ -663,8 +663,9 @@
       var active = saved[st.id] !== false;
       var icon = stemIcons[st.id] || "🎵";
       var cls = "stem-btn " + st.id + (active ? " active" : " muted");
+      var lbl = (st.id === "click" || st.id === "cues") ? st.id : st.label;
       pbList.push('<button class="'+cls+'" type="button" data-stem="'+st.id+'">'
-           + icon + ' ' + esc(st.label) + '</button>');
+           + icon + ' ' + esc(lbl) + '</button>');
     });
 
     var pbRowHtml = pbList.length ? (
