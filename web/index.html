@@ -151,7 +151,10 @@
   .stem-btn.muted{background:#0e1015;border-color:#20232e;color:#4f5666;text-decoration:line-through;opacity:0.55}
 
   .mix-bus-group{display:flex;align-items:center;justify-content:flex-start;gap:7px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed #202636;width:100%;text-align:left}
-  .mix-bus-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;margin-right:2px}
+  .mix-row-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;margin-right:2px;min-width:68px;text-align:left;flex:none}
+  .stem-btn.mute-all-btn{margin-left:4px;border-color:#343b4d;background:#161922;color:#94a3b8;font-size:11.5px;padding:5px 11px}
+  .stem-btn.mute-all-btn:hover{border-color:var(--accent);color:#fff;background:#1e2433}
+  .stem-btn.mute-all-btn.all-muted{border-color:#eab308;color:#fef08a;background:#2a200d}
 
   .mix-badge{font-size:10.5px;padding:2px 6px;border-radius:5px;background:#1b202d;border:1px solid #2d354a;
     color:var(--dim);cursor:pointer;white-space:nowrap;margin-left:auto}
@@ -601,6 +604,18 @@
     return '<tr class="cuerow" hidden data-song="'+esc(s.sid)+'"><td colspan="7"><div class="cues-wrap">'+items+'</div></td></tr>';
   }
 
+  function updateMuteAllBtn(mrow, sid, prefs){
+    var s = SONGS[sid];
+    if(!s || !s.stems) return;
+    var musicStems = s.stems.filter(function(st){ return st.id !== "click" && st.id !== "cues"; });
+    var allMuted = musicStems.length > 0 && musicStems.every(function(st){ return prefs[st.id] === false; });
+    var maBtn = mrow && mrow.querySelector(".mute-all-btn");
+    if(maBtn){
+      maBtn.classList.toggle("all-muted", allMuted);
+      maBtn.textContent = allMuted ? "🔈 Unmute all stems" : "🔇 Mute all stems";
+    }
+  }
+
   function mixRowHtml(s){
     var stems = s.stems || [];
     if(!stems.length) return "";
@@ -612,7 +627,12 @@
       bass: "🎸", guitars: "🎸", other: "🎷", click: "⏱️", cues: "🗣️"
     };
 
-    var items = stems.map(function(st){
+    var musicStems = stems.filter(function(st){ return st.id !== "click" && st.id !== "cues"; });
+    var guideStems = stems.filter(function(st){ return st.id === "click" || st.id === "cues"; });
+
+    var allMusicMuted = musicStems.length > 0 && musicStems.every(function(st){ return saved[st.id] === false; });
+
+    var stemItems = musicStems.map(function(st){
       var active = saved[st.id] !== false;
       var icon = stemIcons[st.id] || "🎵";
       var cls = "stem-btn " + st.id + (active ? " active" : " muted");
@@ -620,29 +640,48 @@
            + icon + ' ' + esc(st.label) + '</button>';
     }).join("");
 
-    var busItems = "";
-    if((s.pb_other && s.pb_other.available) || (s.pb_bass && s.pb_bass.available)){
-      var bList = [];
-      if(s.pb_other && s.pb_other.available){
-        var oActive = !!saved.pb_other;
-        var oCls = "stem-btn bus-btn pb_other" + (oActive ? " active" : " muted");
-        var mutesLabels = (s.pb_other.mutes && s.pb_other.mutes.length)
-          ? " (" + s.pb_other.mutes.map(function(m){ return stemIcons[m] || m; }).join(" ") + ")"
-          : "";
-        bList.push('<button class="'+oCls+'" type="button" data-bus="pb_other" title="Шина pb-other'+esc(mutesLabels)+'">🎹 pb-other'+esc(mutesLabels)+'</button>');
-      }
-      if(s.pb_bass && s.pb_bass.available){
-        var bActive = !!saved.pb_bass;
-        var bCls = "stem-btn bus-btn pb_bass" + (bActive ? " active" : " muted");
-        bList.push('<button class="'+bCls+'" type="button" data-bus="pb_bass" title="Шина pb-bass (заменяет бас)">🎸 pb-bass</button>');
-      }
-      busItems = '<div class="mix-bus-group"><span class="mix-bus-label">Плейбек:</span>' + bList.join("") + '</div>';
+    var muteAllBtn = musicStems.length ? (
+      '<button class="stem-btn mute-all-btn'+(allMusicMuted ? ' all-muted' : '')+'" type="button" title="Заглушить/включить все стемы">'
+      + (allMusicMuted ? '🔈 Unmute all stems' : '🔇 Mute all stems') + '</button>'
+    ) : '';
+
+    var pbList = [];
+    if(s.pb_other && s.pb_other.available){
+      var oActive = !!saved.pb_other;
+      var oCls = "stem-btn bus-btn pb_other" + (oActive ? " active" : " muted");
+      var mutesLabels = (s.pb_other.mutes && s.pb_other.mutes.length)
+        ? " (" + s.pb_other.mutes.map(function(m){ return stemIcons[m] || m; }).join(" ") + ")"
+        : "";
+      pbList.push('<button class="'+oCls+'" type="button" data-bus="pb_other" title="Шина pb-other'+esc(mutesLabels)+'">🎹 pb-other'+esc(mutesLabels)+'</button>');
     }
+    if(s.pb_bass && s.pb_bass.available){
+      var bActive = !!saved.pb_bass;
+      var bCls = "stem-btn bus-btn pb_bass" + (bActive ? " active" : " muted");
+      pbList.push('<button class="'+bCls+'" type="button" data-bus="pb_bass" title="Шина pb-bass (заменяет бас)">🎸 pb-bass</button>');
+    }
+    guideStems.forEach(function(st){
+      var active = saved[st.id] !== false;
+      var icon = stemIcons[st.id] || "🎵";
+      var cls = "stem-btn " + st.id + (active ? " active" : " muted");
+      pbList.push('<button class="'+cls+'" type="button" data-stem="'+st.id+'">'
+           + icon + ' ' + esc(st.label) + '</button>');
+    });
+
+    var pbRowHtml = pbList.length ? (
+      '<div class="mix-bus-group">'
+      + '<span class="mix-row-label">ПЛЕЙБЕК:</span>'
+      + pbList.join("")
+      + '</div>'
+    ) : '';
 
     return '<tr class="mixrow" hidden data-song="'+sid+'"><td colspan="7">'
          + '<div class="mix-wrap">'
-         + '<div class="stem-buttons">'+items+'</div>'
-         + busItems
+         + '<div class="stem-buttons">'
+         + '<span class="mix-row-label">СТЕМЫ:</span>'
+         + stemItems
+         + muteAllBtn
+         + '</div>'
+         + pbRowHtml
          + '</div></td></tr>';
   }
 
@@ -695,6 +734,66 @@
         return;
       }
 
+      var muteAllBtn = e.target.closest(".mute-all-btn");
+      if(muteAllBtn){
+        var mrow = muteAllBtn.closest("tr.mixrow");
+        var sid = mrow && mrow.getAttribute("data-song");
+        var s = SONGS[sid];
+        if(!s || !s.stems) return;
+
+        var musicStems = s.stems.filter(function(st){ return st.id !== "click" && st.id !== "cues"; });
+        var prefs = getMixPref(sid, s.stems);
+        var anyActive = musicStems.some(function(st){ return prefs[st.id] !== false; });
+        var newActiveState = !anyActive;
+
+        var ctx = getAudioCtx();
+        musicStems.forEach(function(st){
+          prefs[st.id] = newActiveState;
+          var stBtn = mrow.querySelector('.stem-btn[data-stem="'+st.id+'"]');
+          if(stBtn){
+            stBtn.classList.toggle("active", newActiveState);
+            stBtn.classList.toggle("muted", !newActiveState);
+          }
+          if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[st.id]){
+            var sg = activePlayer.gains[st.id];
+            sg.gain.cancelScheduledValues(ctx.currentTime);
+            sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
+            sg.gain.setTargetAtTime(newActiveState ? 1.0 : 0.0, ctx.currentTime, 0.015);
+          }
+        });
+
+        if(newActiveState){
+          ["pb_other", "pb_bass"].forEach(function(busId){
+            if(s[busId] && s[busId].available && prefs[busId]){
+              var hasConflict = (s[busId].mutes || []).some(function(mId){
+                return musicStems.some(function(mst){ return mst.id === mId; });
+              });
+              if(hasConflict){
+                prefs[busId] = false;
+                var bBtn = mrow.querySelector('.bus-btn[data-bus="'+busId+'"]');
+                if(bBtn){
+                  bBtn.classList.remove("active");
+                  bBtn.classList.add("muted");
+                }
+                if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
+                  var bg = activePlayer.gains[busId];
+                  bg.gain.cancelScheduledValues(ctx.currentTime);
+                  bg.gain.setValueAtTime(bg.gain.value, ctx.currentTime);
+                  bg.gain.setTargetAtTime(0.0, ctx.currentTime, 0.015);
+                }
+              }
+            }
+          });
+        }
+
+        muteAllBtn.classList.toggle("all-muted", !newActiveState);
+        muteAllBtn.textContent = newActiveState ? "🔇 Mute all stems" : "🔈 Unmute all stems";
+
+        saveMixPref(sid, prefs);
+        updateMixBadge(sid);
+        return;
+      }
+
       var busBtn = e.target.closest(".bus-btn");
       if(busBtn){
         var busId = busBtn.getAttribute("data-bus");
@@ -737,12 +836,13 @@
           }
         });
 
+        updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
         return;
       }
 
-      var stemBtn = e.target.closest(".stem-btn:not(.bus-btn)");
+      var stemBtn = e.target.closest(".stem-btn[data-stem]");
       if(stemBtn){
         var stemId = stemBtn.getAttribute("data-stem");
         var mrow = stemBtn.closest("tr.mixrow");
@@ -783,6 +883,7 @@
           });
         }
 
+        updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
         return;
