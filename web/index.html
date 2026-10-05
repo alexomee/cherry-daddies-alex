@@ -129,9 +129,9 @@
   @keyframes cueNo{0%{border-color:var(--no);background:#2a1620}100%{border-color:#232838;background:#161a23}}
   .cueitem.cue-noaudio{animation:cueNo .6s ease-out}
 
-  tr.mixrow td{background:#0e1117 !important;padding:10px 14px 14px;border-bottom:1px solid var(--line)}
-  .mix-wrap{display:flex;align-items:center}
-  .stem-buttons{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  tr.mixrow td{background:#0e1117 !important;padding:10px 14px 14px;border-bottom:1px solid var(--line);text-align:left}
+  .mix-wrap{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;text-align:left;width:100%}
+  .stem-buttons{display:flex;align-items:center;justify-content:flex-start;gap:7px;flex-wrap:wrap;width:100%;text-align:left}
   .stem-btn{display:inline-flex;align-items:center;gap:6px;background:#151821;border:1px solid #2a3142;
     border-radius:7px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;color:var(--txt);
     transition:all 0.15s ease;letter-spacing:0.2px}
@@ -150,8 +150,7 @@
   .stem-btn.bus-btn{border-style:dashed}
   .stem-btn.muted{background:#0e1015;border-color:#20232e;color:#4f5666;text-decoration:line-through;opacity:0.55}
 
-  .mix-wrap{display:flex;flex-direction:column;gap:8px}
-  .mix-bus-group{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed #202636}
+  .mix-bus-group{display:flex;align-items:center;justify-content:flex-start;gap:7px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed #202636;width:100%;text-align:left}
   .mix-bus-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px;margin-right:2px}
 
   .mix-badge{font-size:10.5px;padding:2px 6px;border-radius:5px;background:#1b202d;border:1px solid #2d354a;
@@ -432,7 +431,12 @@
     pbtn.textContent = "⏳";
 
     var map = STEM_BUFFERS[s.sid];
-    if(!map){
+    var needsFetch = !map;
+    if(map){
+      if(s.pb_other && s.pb_other.available && !map["pb_other"]) needsFetch = true;
+      if(s.pb_bass && s.pb_bass.available && !map["pb_bass"]) needsFetch = true;
+    }
+    if(needsFetch){
       try {
         var itemsToFetch = s.stems.map(function(st){
           return { id: st.id, url: stemAudioSrc(s, st.id), required: true };
@@ -444,6 +448,7 @@
           itemsToFetch.push({ id: "pb_bass", url: audioSrc(s, "pb-bass"), required: false });
         }
         var fetches = itemsToFetch.map(async function(item){
+          if(map && map[item.id]) return { id: item.id, buf: map[item.id] };
           try {
             var r = await fetch(item.url);
             if(!r.ok) throw new Error("track " + item.id + " HTTP " + r.status);
@@ -457,7 +462,7 @@
           }
         });
         var loaded = await Promise.all(fetches);
-        map = {};
+        map = map || {};
         loaded.forEach(function(x){ if(x.buf) map[x.id] = x.buf; });
         STEM_BUFFERS[s.sid] = map;
       } catch(err){
@@ -701,7 +706,7 @@
         if(!busConfig || !busConfig.available) return;
 
         var prefs = getMixPref(sid, s.stems);
-        var isNowActive = !prefs[busId];
+        var isNowActive = !busBtn.classList.contains("active");
         prefs[busId] = isNowActive;
 
         busBtn.classList.toggle("active", isNowActive);
@@ -709,7 +714,10 @@
 
         var ctx = getAudioCtx();
         if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
-          activePlayer.gains[busId].gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+          var bg = activePlayer.gains[busId];
+          bg.gain.cancelScheduledValues(ctx.currentTime);
+          bg.gain.setValueAtTime(bg.gain.value, ctx.currentTime);
+          bg.gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
         }
 
         var mutes = busConfig.mutes || [];
@@ -722,7 +730,10 @@
             stBtn.classList.toggle("muted", !stActive);
           }
           if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[stId]){
-            activePlayer.gains[stId].gain.setTargetAtTime(stActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+            var sg = activePlayer.gains[stId];
+            sg.gain.cancelScheduledValues(ctx.currentTime);
+            sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
+            sg.gain.setTargetAtTime(stActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
           }
         });
 
@@ -739,7 +750,7 @@
         var s = SONGS[sid];
         if(!s || !s.stems) return;
         var prefs = getMixPref(sid, s.stems);
-        var isNowActive = !prefs[stemId];
+        var isNowActive = !stemBtn.classList.contains("active");
         prefs[stemId] = isNowActive;
 
         stemBtn.classList.toggle("active", isNowActive);
@@ -747,20 +758,26 @@
 
         var ctx = getAudioCtx();
         if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[stemId]){
-          activePlayer.gains[stemId].gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+          var sg = activePlayer.gains[stemId];
+          sg.gain.cancelScheduledValues(ctx.currentTime);
+          sg.gain.setValueAtTime(sg.gain.value, ctx.currentTime);
+          sg.gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
         }
 
         if(isNowActive){
           ["pb_other", "pb_bass"].forEach(function(busId){
-            if(prefs[busId] && s[busId] && s[busId].available && (s[busId].mutes || []).indexOf(stemId) >= 0){
-              prefs[busId] = false;
+            if(s[busId] && s[busId].available && (s[busId].mutes || []).indexOf(stemId) >= 0){
               var bBtn = mrow.querySelector('.bus-btn[data-bus="'+busId+'"]');
-              if(bBtn){
+              if(bBtn && bBtn.classList.contains("active")){
+                prefs[busId] = false;
                 bBtn.classList.remove("active");
                 bBtn.classList.add("muted");
-              }
-              if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
-                activePlayer.gains[busId].gain.setTargetAtTime(0.0, ctx.currentTime, 0.015);
+                if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
+                  var bg = activePlayer.gains[busId];
+                  bg.gain.cancelScheduledValues(ctx.currentTime);
+                  bg.gain.setValueAtTime(bg.gain.value, ctx.currentTime);
+                  bg.gain.setTargetAtTime(0.0, ctx.currentTime, 0.015);
+                }
               }
             }
           });
