@@ -145,7 +145,14 @@
   .stem-btn.active.other{border-color:#14b8a6;background:#0d2825;color:#99f6e4}
   .stem-btn.active.click{border-color:#64748b;background:#1c2536;color:#cbd5e1}
   .stem-btn.active.cues{border-color:#8b5cf6;background:#23173d;color:#ddd6fe}
+  .stem-btn.active.pb_other{border-color:#06b6d4;background:#082f49;color:#7dd3fc;border-style:solid}
+  .stem-btn.active.pb_bass{border-color:#c084fc;background:#3b0764;color:#f3e8ff;border-style:solid}
+  .stem-btn.bus-btn{border-style:dashed}
   .stem-btn.muted{background:#0e1015;border-color:#20232e;color:#4f5666;text-decoration:line-through;opacity:0.55}
+
+  .mix-wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .mix-bus-group{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding-left:12px;border-left:1px solid #232938}
+  .mix-bus-label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.5px}
 
   .mix-badge{font-size:10.5px;padding:2px 6px;border-radius:5px;background:#1b202d;border:1px solid #2d354a;
     color:var(--dim);cursor:pointer;white-space:nowrap;margin-left:auto}
@@ -213,6 +220,8 @@
     if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&p=" + player;
     var file = player === "all" ? "all.mp3"
              : player === "drums" ? "pb-drums.mp3"        // playback drum track, not a practice mix
+             : player === "pb-other" ? "pb-other.mp3"
+             : player === "pb-bass" ? "pb-bass.mp3"
              : "practice-" + player + ".mp3";
     var v = (s.versions && s.versions[player]) ? "?v=" + s.versions[player] : "";
     var sep = v ? "&" : "?";
@@ -329,6 +338,13 @@
     stems.forEach(function(st){
       res[st.id] = (saved[st.id] !== undefined) ? !!saved[st.id] : true;
     });
+    var s = SONGS[sid];
+    if(s && s.pb_other && s.pb_other.available){
+      res.pb_other = (saved.pb_other !== undefined) ? !!saved.pb_other : false;
+    }
+    if(s && s.pb_bass && s.pb_bass.available){
+      res.pb_bass = (saved.pb_bass !== undefined) ? !!saved.pb_bass : false;
+    }
     return res;
   }
 
@@ -347,9 +363,11 @@
     var total = s.stems.length;
     var onCount = 0;
     s.stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
-    var isCustom = onCount < total;
+    var busCount = (prefs.pb_other ? 1 : 0) + (prefs.pb_bass ? 1 : 0);
+    var isCustom = onCount < total || busCount > 0;
     b.className = "mix-badge" + (isCustom ? " custom" : "");
-    b.textContent = isCustom ? "🎛️ " + onCount + "/" + total : "🎛️ Все (" + total + ")";
+    var txt = isCustom ? "🎛️ " + onCount + "/" + total + (busCount ? " +PB" : "") : "🎛️ Все (" + total + ")";
+    b.textContent = txt;
   }
 
   function stopActivePlayer(resetPos){
@@ -416,17 +434,31 @@
     var map = STEM_BUFFERS[s.sid];
     if(!map){
       try {
-        var fetches = s.stems.map(async function(st){
-          var url = stemAudioSrc(s, st.id);
-          var r = await fetch(url);
-          if(!r.ok) throw new Error("stem " + st.id + " HTTP " + r.status);
-          var ab = await r.arrayBuffer();
-          var decoded = await ctx.decodeAudioData(ab);
-          return { id: st.id, buf: decoded };
+        var itemsToFetch = s.stems.map(function(st){
+          return { id: st.id, url: stemAudioSrc(s, st.id), required: true };
+        });
+        if(s.pb_other && s.pb_other.available){
+          itemsToFetch.push({ id: "pb_other", url: audioSrc(s, "pb-other"), required: false });
+        }
+        if(s.pb_bass && s.pb_bass.available){
+          itemsToFetch.push({ id: "pb_bass", url: audioSrc(s, "pb-bass"), required: false });
+        }
+        var fetches = itemsToFetch.map(async function(item){
+          try {
+            var r = await fetch(item.url);
+            if(!r.ok) throw new Error("track " + item.id + " HTTP " + r.status);
+            var ab = await r.arrayBuffer();
+            var decoded = await ctx.decodeAudioData(ab);
+            return { id: item.id, buf: decoded };
+          } catch(e){
+            if(item.required) throw e;
+            console.warn("Optional bus load failed:", item.id, e);
+            return { id: item.id, buf: null };
+          }
         });
         var loaded = await Promise.all(fetches);
         map = {};
-        loaded.forEach(function(x){ map[x.id] = x.buf; });
+        loaded.forEach(function(x){ if(x.buf) map[x.id] = x.buf; });
         STEM_BUFFERS[s.sid] = map;
       } catch(err){
         console.error("Stem load error for", s.sid, err);
@@ -464,6 +496,28 @@
       sources[st.id] = src;
       gains[st.id] = g;
     });
+
+    if(s.pb_other && s.pb_other.available && map["pb_other"]){
+      var srcO = ctx.createBufferSource();
+      srcO.buffer = map["pb_other"];
+      var gO = ctx.createGain();
+      gO.gain.value = prefs["pb_other"] ? 1.0 : 0.0;
+      srcO.connect(gO);
+      gO.connect(master);
+      sources["pb_other"] = srcO;
+      gains["pb_other"] = gO;
+    }
+
+    if(s.pb_bass && s.pb_bass.available && map["pb_bass"]){
+      var srcB = ctx.createBufferSource();
+      srcB.buffer = map["pb_bass"];
+      var gB = ctx.createGain();
+      gB.gain.value = prefs["pb_bass"] ? 1.0 : 0.0;
+      srcB.connect(gB);
+      gB.connect(master);
+      sources["pb_bass"] = srcB;
+      gains["pb_bass"] = gB;
+    }
 
     var startCtx = ctx.currentTime;
     Object.values(sources).forEach(function(src){
@@ -561,9 +615,29 @@
            + icon + ' ' + esc(st.label) + '</button>';
     }).join("");
 
+    var busItems = "";
+    if((s.pb_other && s.pb_other.available) || (s.pb_bass && s.pb_bass.available)){
+      var bList = [];
+      if(s.pb_other && s.pb_other.available){
+        var oActive = !!saved.pb_other;
+        var oCls = "stem-btn bus-btn pb_other" + (oActive ? " active" : " muted");
+        var mutesLabels = (s.pb_other.mutes && s.pb_other.mutes.length)
+          ? " (" + s.pb_other.mutes.map(function(m){ return stemIcons[m] || m; }).join(" ") + ")"
+          : "";
+        bList.push('<button class="'+oCls+'" type="button" data-bus="pb_other" title="Шина pb-other'+esc(mutesLabels)+'">🎹 pb-other'+esc(mutesLabels)+'</button>');
+      }
+      if(s.pb_bass && s.pb_bass.available){
+        var bActive = !!saved.pb_bass;
+        var bCls = "stem-btn bus-btn pb_bass" + (bActive ? " active" : " muted");
+        bList.push('<button class="'+bCls+'" type="button" data-bus="pb_bass" title="Шина pb-bass (заменяет бас)">🎸 pb-bass</button>');
+      }
+      busItems = '<div class="mix-bus-group"><span class="mix-bus-label">Плейбек:</span>' + bList.join("") + '</div>';
+    }
+
     return '<tr class="mixrow" hidden data-song="'+sid+'"><td colspan="7">'
          + '<div class="mix-wrap">'
          + '<div class="stem-buttons">'+items+'</div>'
+         + busItems
          + '</div></td></tr>';
   }
 
@@ -616,7 +690,48 @@
         return;
       }
 
-      var stemBtn = e.target.closest(".stem-btn");
+      var busBtn = e.target.closest(".bus-btn");
+      if(busBtn){
+        var busId = busBtn.getAttribute("data-bus");
+        var mrow = busBtn.closest("tr.mixrow");
+        var sid = mrow && mrow.getAttribute("data-song");
+        var s = SONGS[sid];
+        if(!s) return;
+        var busConfig = s[busId];
+        if(!busConfig || !busConfig.available) return;
+
+        var prefs = getMixPref(sid, s.stems);
+        var isNowActive = !prefs[busId];
+        prefs[busId] = isNowActive;
+
+        busBtn.classList.toggle("active", isNowActive);
+        busBtn.classList.toggle("muted", !isNowActive);
+
+        var ctx = getAudioCtx();
+        if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
+          activePlayer.gains[busId].gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+        }
+
+        var mutes = busConfig.mutes || [];
+        mutes.forEach(function(stId){
+          var stActive = !isNowActive;
+          prefs[stId] = stActive;
+          var stBtn = mrow.querySelector('.stem-btn[data-stem="'+stId+'"]');
+          if(stBtn){
+            stBtn.classList.toggle("active", stActive);
+            stBtn.classList.toggle("muted", !stActive);
+          }
+          if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[stId]){
+            activePlayer.gains[stId].gain.setTargetAtTime(stActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
+          }
+        });
+
+        saveMixPref(sid, prefs);
+        updateMixBadge(sid);
+        return;
+      }
+
+      var stemBtn = e.target.closest(".stem-btn:not(.bus-btn)");
       if(stemBtn){
         var stemId = stemBtn.getAttribute("data-stem");
         var mrow = stemBtn.closest("tr.mixrow");
@@ -626,16 +741,33 @@
         var prefs = getMixPref(sid, s.stems);
         var isNowActive = !prefs[stemId];
         prefs[stemId] = isNowActive;
-        saveMixPref(sid, prefs);
 
         stemBtn.classList.toggle("active", isNowActive);
         stemBtn.classList.toggle("muted", !isNowActive);
-        updateMixBadge(sid);
 
         var ctx = getAudioCtx();
-        if(activePlayer && activePlayer.sid === sid && activePlayer.gains[stemId]){
+        if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[stemId]){
           activePlayer.gains[stemId].gain.setTargetAtTime(isNowActive ? 1.0 : 0.0, ctx.currentTime, 0.015);
         }
+
+        if(isNowActive){
+          ["pb_other", "pb_bass"].forEach(function(busId){
+            if(prefs[busId] && s[busId] && s[busId].available && (s[busId].mutes || []).indexOf(stemId) >= 0){
+              prefs[busId] = false;
+              var bBtn = mrow.querySelector('.bus-btn[data-bus="'+busId+'"]');
+              if(bBtn){
+                bBtn.classList.remove("active");
+                bBtn.classList.add("muted");
+              }
+              if(activePlayer && activePlayer.sid === sid && activePlayer.gains && activePlayer.gains[busId]){
+                activePlayer.gains[busId].gain.setTargetAtTime(0.0, ctx.currentTime, 0.015);
+              }
+            }
+          });
+        }
+
+        saveMixPref(sid, prefs);
+        updateMixBadge(sid);
         return;
       }
     });
