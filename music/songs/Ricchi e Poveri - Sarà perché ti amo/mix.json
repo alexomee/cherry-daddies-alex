@@ -1,0 +1,22 @@
+{
+  "pb-other": {
+    "stems": [
+      "07_Piano",
+      "08_Synthesizer",
+      "09_Synth_Pad",
+      "10_String_Section"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["03_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["11_Lead_Vocal_Angela_Brambati", "12_Lead_Vocal_Angelo_Sotgiu"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Sarà perché ti amo all in", "abs_sec": 3.978, "snap_sec": 0.0}
+  ]
+}

@@ -62,6 +62,23 @@ def _save_hcache():
 # Setlist: display title/artist from here; `folder` = mix.json source (None => no data yet).
 SETS = [
     {
+        "name": "24.10 Lefkara",
+        "subtitle": "новый плейлист концерта в Лефкаре",
+        "cls": "lefkara",
+        "songs": [
+            ("Heart of Glass", "Blondie", "Blondie - Heart of Glass"),
+            ("Ghostbusters", "Ray Parker Jr.", "Ray Parker Jr. - Ghostbusters"),
+            ("Venus", "Shocking Blue", "Shocking Blue - Venus"),
+            ("Cheri, Cheri Lady", "Modern Talking", "Modern Talking - Cheri, Cheri Lady"),
+            ("Stumblin' In", "Chris Norman & Suzi Quatro", "Suzi Quatro & Chris Norman - Stumblin' In"),
+            ("Sarà perché ti amo", "Ricchi e Poveri", "Ricchi e Poveri - Sarà perché ti amo"),
+            ("Sweet Dreams (Are Made of This)", "Eurythmics", "Eurythmics - Sweet Dreams (Are Made of This)"),
+            ("Personal Jesus", "Depeche Mode", "Depeche Mode - Personal Jesus"),
+            ("Brother Louie", "Modern Talking", "Modern Talking - Brother Louie"),
+            ("Hot Stuff (12\" Version)", "Donna Summer", "Donna Summer - Hot Stuff"),
+        ],
+    },
+    {
         "name": "СЕТ 1",
         "subtitle": "Мировые танцевальные хиты",
         "cls": "set1",
@@ -159,6 +176,17 @@ BASS_ASSIGN = {
     "Елена Терлеева - Солнце": "Roma (real bass-guitar)",  # pb-bass removed, roma plays real bass
     "The Offspring - Pretty Fly (For A White Guy)": "Roma (real bass-guitar)",
     "Король и Шут - Кукла колдуна": "Roma (real bass-guitar)",
+    # 24.10 Lefkara
+    "Blondie - Heart of Glass": "Roma (real bass-guitar)",
+    "Ray Parker Jr. - Ghostbusters": "Roma (real bass-guitar)",
+    "Shocking Blue - Venus": "Roma (real bass-guitar)",
+    "Modern Talking - Cheri, Cheri Lady": "Roma (real bass-guitar)",
+    "Suzi Quatro & Chris Norman - Stumblin' In": "Roma (real bass-guitar)",
+    "Ricchi e Poveri - Sarà perché ti amo": "Roma (real bass-guitar)",
+    "Eurythmics - Sweet Dreams (Are Made of This)": "Roma (real bass-guitar)",
+    "Depeche Mode - Personal Jesus": "Roma (real bass-guitar)",
+    "Modern Talking - Brother Louie": "Roma (real bass-guitar)",
+    "Donna Summer - Hot Stuff": "Roma (real bass-guitar)",
 }
 
 

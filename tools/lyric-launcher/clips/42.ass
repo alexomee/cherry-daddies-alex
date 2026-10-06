@@ -1,0 +1,72 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:04:00.00,Title,,0,0,0,,Brother Louie
+Dialogue: 0,0:00:19.22,0:00:34.41,Pair,,0,0,0,,{\pos(640,285)}Deep love is a burnin' fire stay 'cos then the flame grows higher babe
+Dialogue: 0,0:00:19.22,0:00:34.41,Next,,0,0,0,,{\pos(640,475)}Don't let him steal your heart it's easy easy
+Dialogue: 0,0:00:34.41,0:00:41.84,Pair,,0,0,0,,{\pos(640,285)}Don't let him steal your heart it's easy easy
+Dialogue: 0,0:00:34.41,0:00:41.84,Next,,0,0,0,,{\pos(640,475)}Girl this game can't last forever why\NWe cannot live together try
+Dialogue: 0,0:00:41.84,0:00:52.02,Pair,,0,0,0,,{\pos(640,285)}Girl this game can't last forever why\NWe cannot live together try
+Dialogue: 0,0:00:41.84,0:00:52.02,Next,,0,0,0,,{\pos(640,475)}Don't let him take your love from me
+Dialogue: 0,0:00:52.02,0:00:58.90,Pair,,0,0,0,,{\pos(640,285)}Don't let him take your love from me
+Dialogue: 0,0:00:52.02,0:00:58.90,Next,,0,0,0,,{\pos(640,475)}You're no good can't you see brother\NLouie Louie
+Dialogue: 0,0:00:58.90,0:01:02.21,Pair,,0,0,0,,{\pos(640,285)}You're no good can't you see brother\NLouie Louie
+Dialogue: 0,0:00:58.90,0:01:02.21,Next,,0,0,0,,{\pos(640,475)}Louie I'm in love set you free oh she's only lookin' to me\NOnly love breaks her heart brother
+Dialogue: 0,0:01:02.21,0:01:10.46,Pair,,0,0,0,,{\pos(640,285)}Louie I'm in love set you free oh she's only lookin' to me\NOnly love breaks her heart brother
+Dialogue: 0,0:01:02.21,0:01:10.46,Next,,0,0,0,,{\pos(640,475)}Louie Louie\NLouie Only love's paradise oh she's only lookin' to me
+Dialogue: 0,0:01:10.46,0:01:16.52,Pair,,0,0,0,,{\pos(640,285)}Louie Louie\NLouie Only love's paradise oh she's only lookin' to me
+Dialogue: 0,0:01:10.46,0:01:16.52,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:01:16.52,0:01:20.92,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:01:16.52,0:01:20.92,Next,,0,0,0,,{\pos(640,475)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:01:20.92,0:01:25.33,Pair,,0,0,0,,{\pos(640,285)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:01:20.92,0:01:25.33,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:01:25.33,0:01:29.73,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:01:25.33,0:01:29.73,Next,,0,0,0,,{\pos(640,475)}So leave it\NLouie 'cos
+Dialogue: 0,0:01:29.73,0:01:32.34,Pair,,0,0,0,,{\pos(640,285)}So leave it\NLouie 'cos
+Dialogue: 0,0:01:29.73,0:01:32.34,Next,,0,0,0,,{\pos(640,475)}I'm her lover
+Dialogue: 0,0:01:32.34,0:01:52.30,Pair,,0,0,0,,{\pos(640,285)}I'm her lover
+Dialogue: 0,0:01:32.34,0:01:52.30,Next,,0,0,0,,{\pos(640,475)}Stay 'cos this boy wants to gamble stay\NLove's more than he can handle girl
+Dialogue: 0,0:01:52.30,0:02:02.48,Pair,,0,0,0,,{\pos(640,285)}Stay 'cos this boy wants to gamble stay\NLove's more than he can handle girl
+Dialogue: 0,0:01:52.30,0:02:02.48,Next,,0,0,0,,{\pos(640,475)}Oh come on stay by me forever ever
+Dialogue: 0,0:02:02.48,0:02:09.91,Pair,,0,0,0,,{\pos(640,285)}Oh come on stay by me forever ever
+Dialogue: 0,0:02:02.48,0:02:09.91,Next,,0,0,0,,{\pos(640,475)}Why does he go on pretendin' that\NHis love is never ending fade
+Dialogue: 0,0:02:09.91,0:02:20.10,Pair,,0,0,0,,{\pos(640,285)}Why does he go on pretendin' that\NHis love is never ending fade
+Dialogue: 0,0:02:09.91,0:02:20.10,Next,,0,0,0,,{\pos(640,475)}Don't let him steal your love from me
+Dialogue: 0,0:02:20.10,0:02:26.98,Pair,,0,0,0,,{\pos(640,285)}Don't let him steal your love from me
+Dialogue: 0,0:02:20.10,0:02:26.98,Next,,0,0,0,,{\pos(640,475)}You're no good can't you see brother\NLouie Louie
+Dialogue: 0,0:02:26.98,0:02:30.28,Pair,,0,0,0,,{\pos(640,285)}You're no good can't you see brother\NLouie Louie
+Dialogue: 0,0:02:26.98,0:02:30.28,Next,,0,0,0,,{\pos(640,475)}Louie I'm in love set you free oh she's only lookin' to me\NOnly love breaks her heart brother
+Dialogue: 0,0:02:30.28,0:02:38.54,Pair,,0,0,0,,{\pos(640,285)}Louie I'm in love set you free oh she's only lookin' to me\NOnly love breaks her heart brother
+Dialogue: 0,0:02:30.28,0:02:38.54,Next,,0,0,0,,{\pos(640,475)}Louie Louie\NLouie Only love's paradise oh she's only lookin' to me
+Dialogue: 0,0:02:38.54,0:02:44.59,Pair,,0,0,0,,{\pos(640,285)}Louie Louie\NLouie Only love's paradise oh she's only lookin' to me
+Dialogue: 0,0:02:38.54,0:02:44.59,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:02:44.59,0:02:49.00,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:02:44.59,0:02:49.00,Next,,0,0,0,,{\pos(640,475)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:02:49.00,0:02:53.40,Pair,,0,0,0,,{\pos(640,285)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:02:49.00,0:02:53.40,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:02:53.40,0:02:57.80,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:02:53.40,0:02:57.80,Next,,0,0,0,,{\pos(640,475)}So leave it\NLouie 'cos
+Dialogue: 0,0:02:57.80,0:03:00.42,Pair,,0,0,0,,{\pos(640,285)}So leave it\NLouie 'cos
+Dialogue: 0,0:02:57.80,0:03:00.42,Next,,0,0,0,,{\pos(640,475)}I'm her lover
+Dialogue: 0,0:03:00.42,0:03:19.82,Pair,,0,0,0,,{\pos(640,285)}I'm her lover
+Dialogue: 0,0:03:00.42,0:03:19.82,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:03:19.82,0:03:24.22,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh she's only lookin' to me
+Dialogue: 0,0:03:19.82,0:03:24.22,Next,,0,0,0,,{\pos(640,475)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:03:24.22,0:03:28.63,Pair,,0,0,0,,{\pos(640,285)}Oh let it\NLouie she's under cover
+Dialogue: 0,0:03:24.22,0:03:28.63,Next,,0,0,0,,{\pos(640,475)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:03:28.63,0:03:33.03,Pair,,0,0,0,,{\pos(640,285)}Brother Louie\NLouie Louie oh doin' what he's doin'
+Dialogue: 0,0:03:28.63,0:03:33.03,Next,,0,0,0,,{\pos(640,475)}So leave it\NLouie 'cos
+Dialogue: 0,0:03:33.03,0:03:35.65,Pair,,0,0,0,,{\pos(640,285)}So leave it\NLouie 'cos
+Dialogue: 0,0:03:33.03,0:03:35.65,Next,,0,0,0,,{\pos(640,475)}I'm her lover
+Dialogue: 0,0:03:35.65,0:03:39.89,Pair,,0,0,0,,{\pos(640,285)}I'm her lover

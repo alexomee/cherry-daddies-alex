@@ -1,14 +1,1162 @@
 {
-  "generated": "2026-10-06T10:19:27",
+  "generated": "2026-10-06T22:16:22",
   "counts": {
-    "total": 37,
-    "data": 37,
-    "cues": 37,
+    "total": 47,
+    "data": 47,
+    "cues": 47,
     "playback": 21,
-    "other": 26,
-    "practice": 36
+    "other": 36,
+    "practice": 46
   },
   "sets": [
+    {
+      "name": "24.10 Lefkara",
+      "subtitle": "новый плейлист концерта в Лефкаре",
+      "cls": "lefkara",
+      "songs": [
+        {
+          "sid": "Blondie - Heart of Glass",
+          "slug": "bfcf5ddf04bc",
+          "title": "Heart of Glass",
+          "artist": "Blondie",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 14,
+            "list": [
+              {
+                "t": 4.254,
+                "text": "Heart of Glass all in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 12.584,
+                "text": "verse in",
+                "bar": 6,
+                "snap": 8.431
+              },
+              {
+                "t": 29.334,
+                "text": "keep going",
+                "bar": 14,
+                "snap": 26.201
+              },
+              {
+                "t": 35.614,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 31.421
+              },
+              {
+                "t": 54.404,
+                "text": "chorus in",
+                "bar": 26,
+                "snap": 50.271
+              },
+              {
+                "t": 79.524,
+                "text": "verse in",
+                "bar": 38,
+                "snap": 75.371
+              },
+              {
+                "t": 98.384,
+                "text": "chorus in",
+                "bar": 47,
+                "snap": 94.221
+              },
+              {
+                "t": 115.124,
+                "text": "instrumental with-beat-offset ready go",
+                "bar": 55,
+                "snap": 110.431
+              },
+              {
+                "t": 147.094,
+                "text": "voice in ready go",
+                "bar": 70,
+                "snap": 142.901
+              },
+              {
+                "t": 163.804,
+                "text": "break in ready go",
+                "bar": 78,
+                "snap": 159.661
+              },
+              {
+                "t": 172.184,
+                "text": "guitar in ready go",
+                "bar": 82,
+                "snap": 168.011
+              },
+              {
+                "t": 180.564,
+                "text": "verse in",
+                "bar": 86,
+                "snap": 176.371
+              },
+              {
+                "t": 199.394,
+                "text": "chorus in",
+                "bar": 95,
+                "snap": 195.201
+              },
+              {
+                "t": 249.644,
+                "text": "end in",
+                "bar": 119,
+                "snap": 244.931
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Organ",
+              "Synth Pad",
+              "Synth Strings",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "30f2909167",
+            "back_vox": "d9b791e570",
+            "drums": "5b822c23d4",
+            "keys": "db3cba0b72",
+            "bass": "f4024b7fa9",
+            "guitars": "51bd42c647",
+            "click": "50c98294dd",
+            "cues": "615c743dc0"
+          },
+          "versions": {
+            "all": "936376aae8",
+            "drums": "5b822c23d4",
+            "steve": "650110d52b",
+            "roma": "e2b70c80c1",
+            "tanya": "09d48eea64",
+            "pb-other": "1a1c08c45b"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Ray Parker Jr. - Ghostbusters",
+          "slug": "5a15a70cbdbb",
+          "title": "Ghostbusters",
+          "artist": "Ray Parker Jr.",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.174,
+                "text": "Ghostbusters all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Digital Piano",
+              "Electric Piano (Clavinet)",
+              "Synth Strings",
+              "Synth Keys 1",
+              "Synth Keys 2",
+              "Synth Lead",
+              "Synth Brass",
+              "Brass section",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "11105da43f",
+            "back_vox": "d5731166ea",
+            "drums": "2814608f19",
+            "keys": "1c61deb571",
+            "bass": "9de1deb297",
+            "guitars": "48ea6e4d09",
+            "other": "4122df80ad",
+            "click": "64c1225897",
+            "cues": "1807089691"
+          },
+          "versions": {
+            "all": "5c7397a78c",
+            "drums": "4f14137c48",
+            "steve": "87b3e0a086",
+            "roma": "5dedb1be51",
+            "tanya": "4adf899d4c",
+            "pb-other": "60ff335643"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Shocking Blue - Venus",
+          "slug": "2515a3c01f07",
+          "title": "Venus",
+          "artist": "Shocking Blue",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.749,
+                "text": "Venus guitar in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Electric Piano (Wurlitzer)",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "fca7b81408",
+            "back_vox": "b6dff231cf",
+            "drums": "b7cd5c6418",
+            "keys": "2f8b32b655",
+            "bass": "250a1a4fb5",
+            "guitars": "cf7980fa88",
+            "click": "7f7624be1d",
+            "cues": "1fad1a8b74"
+          },
+          "versions": {
+            "all": "c942048bba",
+            "drums": "b7cd5c6418",
+            "steve": "e01b665d0b",
+            "roma": "cbbf37174d",
+            "tanya": "1d4a9b0ca7",
+            "pb-other": "1d0f31d161"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Modern Talking - Cheri, Cheri Lady",
+          "slug": "a243a76d7323",
+          "title": "Cheri, Cheri Lady",
+          "artist": "Modern Talking",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.211,
+                "text": "Cheri Cheri Lady all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Synth Pad",
+              "Synth Keys 1",
+              "Synth Keys 2",
+              "Synth Keys 3",
+              "Orchestra Hit",
+              "Synth Brass",
+              "Synth Flute",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "3c33311d6c",
+            "back_vox": "24ca66dd38",
+            "drums": "6f0e805be5",
+            "keys": "2011712a6e",
+            "bass": "7385f86192",
+            "guitars": "ef220b8c45",
+            "other": "a472b09116",
+            "click": "31b54d630c",
+            "cues": "857424c129"
+          },
+          "versions": {
+            "all": "f45058fd37",
+            "drums": "9601c70b9c",
+            "steve": "6fdd35d9fd",
+            "roma": "041ba36267",
+            "tanya": "cca02e734f",
+            "pb-other": "f662609181"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Suzi Quatro & Chris Norman - Stumblin' In",
+          "slug": "3a0153697414",
+          "title": "Stumblin' In",
+          "artist": "Chris Norman & Suzi Quatro",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.714,
+                "text": "Stumblin In all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Electric Piano (Rhodes)",
+              "String Section"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "cbb4f033ae",
+            "drums": "20747de7d6",
+            "keys": "3603b15ac4",
+            "bass": "f7e44a4c1f",
+            "guitars": "068979c530",
+            "other": "341794afc6",
+            "click": "05c0a47747",
+            "cues": "de4da3a0c8"
+          },
+          "versions": {
+            "all": "de0b0d628d",
+            "drums": "20747de7d6",
+            "steve": "05e25bc01b",
+            "roma": "50cc3343ce",
+            "tanya": "5c14cf5d71",
+            "pb-other": "f09d5208aa"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Ricchi e Poveri - Sarà perché ti amo",
+          "slug": "45d6f546a2e3",
+          "title": "Sarà perché ti amo",
+          "artist": "Ricchi e Poveri",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.978,
+                "text": "Sarà perché ti amo all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Piano",
+              "Synthesizer",
+              "Synth Pad",
+              "String Section"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "1e9a566c1a",
+            "drums": "2a6256505e",
+            "keys": "aacdb09a3a",
+            "bass": "93ccc21cd2",
+            "guitars": "d5d3255f30",
+            "other": "9ecd9a0c7f",
+            "click": "4c6cd428ad",
+            "cues": "2592e4b9b9"
+          },
+          "versions": {
+            "all": "8f19bcbfc4",
+            "drums": "2a6256505e",
+            "steve": "578f918fff",
+            "roma": "4d4803cc82",
+            "tanya": "650d8a3d70",
+            "pb-other": "7c8493e0cd"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Eurythmics - Sweet Dreams (Are Made of This)",
+          "slug": "e2d7c7c6348d",
+          "title": "Sweet Dreams (Are Made of This)",
+          "artist": "Eurythmics",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.834,
+                "text": "Sweet Dreams all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Piano",
+              "Synthesizer",
+              "Synth Pad",
+              "Synth Strings",
+              "Synth Lead",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "a674f40223",
+            "back_vox": "09a4ebe5b7",
+            "drums": "e696fbac43",
+            "keys": "cc631eb1d9",
+            "bass": "aa26098237",
+            "other": "d621615da3",
+            "click": "cab555dd06",
+            "cues": "78f920f547"
+          },
+          "versions": {
+            "all": "efbe0a4230",
+            "drums": "e696fbac43",
+            "steve": "836783c0f8",
+            "roma": "0bae714611",
+            "tanya": "1fd3bfb7f1",
+            "pb-other": "a8a53ca5e8"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Depeche Mode - Personal Jesus",
+          "slug": "0aca68e98890",
+          "title": "Personal Jesus",
+          "artist": "Depeche Mode",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Personal Jesus all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Sound effects Breath",
+              "Guitar Synth",
+              "Piano",
+              "Organ",
+              "Synth Pad",
+              "Synth Lead (beep)",
+              "Arpeggiator 1",
+              "Arpeggiator 2",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "92da73e3ad",
+            "back_vox": "0f289066f3",
+            "drums": "136bd31f67",
+            "keys": "2cfca33bde",
+            "bass": "e7bd02e8b2",
+            "guitars": "b6a0471af9",
+            "other": "8a4b7960c0",
+            "click": "0ef6e81ab0",
+            "cues": "0b888bcd0b"
+          },
+          "versions": {
+            "all": "9a8796cf25",
+            "drums": "0111115208",
+            "steve": "3d5ca4b4c2",
+            "roma": "e1f44c2269",
+            "tanya": "7a2dea0d6b",
+            "pb-other": "891e474deb"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Modern Talking - Brother Louie",
+          "slug": "d7d854b72c4b",
+          "title": "Brother Louie",
+          "artist": "Modern Talking",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.404,
+                "text": "Brother Louie all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Piano",
+              "Synthesizer 1",
+              "Synthesizer 2",
+              "Synth Pad",
+              "Synth Strings",
+              "Orchestra Hit",
+              "Synth Brass",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "6141a590bb",
+            "back_vox": "832daba8ee",
+            "drums": "472b110743",
+            "keys": "2ccb35918c",
+            "bass": "69e793a97e",
+            "guitars": "bddfe0911b",
+            "other": "dd2b72aaa5",
+            "click": "e7218d931f",
+            "cues": "2b5647f347"
+          },
+          "versions": {
+            "all": "b7e2945900",
+            "drums": "effb25b1f9",
+            "steve": "b8125ec59b",
+            "roma": "0f44c14f43",
+            "tanya": "e3f3e290e3",
+            "pb-other": "e7624540e5"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Donna Summer - Hot Stuff",
+          "slug": "51d6efe06e45",
+          "title": "Hot Stuff (12\" Version)",
+          "artist": "Donna Summer",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.988,
+                "text": "Hot Stuff all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Piano",
+              "Synthesizer",
+              "Synth Keys (theme)",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "2e93cc93c3",
+            "back_vox": "2c55699204",
+            "drums": "eaeb98402e",
+            "keys": "d7871b45b2",
+            "bass": "c21dddcf88",
+            "guitars": "b59b82c777",
+            "click": "513f61c5f7",
+            "cues": "ca973d63b7"
+          },
+          "versions": {
+            "all": "3945807b32",
+            "drums": "eaeb98402e",
+            "steve": "6bc0589b9d",
+            "roma": "c9b109d53b",
+            "tanya": "5278109d91",
+            "pb-other": "7312daf925"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        }
+      ]
+    },
     {
       "name": "СЕТ 1",
       "subtitle": "Мировые танцевальные хиты",

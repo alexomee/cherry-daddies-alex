@@ -740,15 +740,15 @@ def _metric_clips(metric, beat, squeeze=False):
     """clips for the counted block, as (clip, beats_before_event). Word i nominally lands on
     beat -(W-i). squeeze=True (fast breakdown cues) ALWAYS atempo-fits each word into its one
     slot — 'rushed' is acceptable when the slot is a fast subdiv tick and there's no room to
-    spread. Speed-up is capped at `say -r 200` — faster is unintelligible; past that a
+    spread. Speed-up is capped at `say -r 200` — faster is unintelligible; past that an
     overflow up to 0.35 beat is squeezed into the slot by atempo (<=~1.4x, still crisp — a short
     word like drums/vocal that runs ~1.1 beat should sit on ONE beat, not sprawl over two). A word
-    overflowing MORE STARTS whole beats earlier and spans them at natural pace (first word only —
-    the slot before it is free; e.g. instrumental, arpegiator, bass-n-beat): squeezing a genuinely
-    long word into one beat sounds rushed, an empty added beat sounds dead, so the 0.35-beat line
-    splits the two. Natural pace wins when it needs no more extra beats than the sped-up take."""
-    W = len(metric); out = []
+    overflowing MORE STARTS whole beats earlier and spans them at natural pace: squeezing a genuinely
+    long word into one beat sounds rushed, so it spans the whole beats it needs naturally (do not shrink)
+    and shifts earlier words back accordingly."""
+    W = len(metric)
     phrase_clips = _phrase_word_clips(metric) if (ELEVEN_KEY and ELEVEN_PHRASE) else None  # opt-in
+    word_info = []
     for i, w in enumerate(metric):
         v = RU_VOICE if _cyrillic(w) else EN_VOICE
         budget = 0.92*beat
@@ -756,20 +756,23 @@ def _metric_clips(metric, beat, squeeze=False):
             nat = fast = phrase_clips[i]                  # atempo handles any beat overflow below)
         else:
             nat, fast = _say(w, v), _say(w, v, 200)
-        clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None); extra = 0
-        if clip is None and squeeze:                            # fast cue: force into the one tick slot
-            clip = _atempo(fast, (len(fast)/SR)/budget)
-        elif clip is None and len(fast)/SR - budget < 0.35*beat:  # overflow up to ~1.4 beat: squeeze
-            clip = _atempo(fast, (len(fast)/SR)/budget)         # into the slot (<=1.4x, inaudible for a
-                                                                # short word like drums/vocal). A whole
-                                                                # added beat would
-        elif clip is None and i == 0:                           # sit mostly empty (solo/sax ~1.05x)
-            ex = lambda c: int(np.ceil((len(c)/SR - budget)/beat))
-            clip = nat if ex(nat) <= ex(fast) else fast
-            extra = ex(clip)
-        elif clip is None:                            # mid-phrase: no room to extend backwards
-            clip = _atempo(fast, (len(fast)/SR)/budget)
-        out.append((clip, (W-i) + extra))
+        clip = next((c for c in (nat, fast) if len(c)/SR <= budget), None)
+        if clip is not None:
+            word_info.append((clip, 1))
+        elif squeeze:
+            word_info.append((_atempo(fast, (len(fast)/SR)/budget), 1))
+        elif len(fast)/SR - budget < 0.35*beat:
+            word_info.append((_atempo(fast, (len(fast)/SR)/budget), 1))
+        else:
+            span = int(np.ceil((len(nat)/SR)/beat))
+            clip = nat if int(np.ceil((len(nat)/SR - budget)/beat)) <= int(np.ceil((len(fast)/SR - budget)/beat)) else fast
+            word_info.append((clip, span))
+    accum = 0
+    out = []
+    for clip, span in reversed(word_info):
+        accum += span
+        out.append((clip, accum))
+    out.reverse()
     return out
 
 def _vowel_onset(x):

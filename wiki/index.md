@@ -49,6 +49,19 @@
 1. [Мелом (Пропаганда)](songs/melom.md) — Единственная песня блока «на бис»; живой квартет без плейбека (только click+cues), Bb minor / 120 bpm, 10 cue, единственный static lyric-клип в риге.
 2. [t.A.T.u. — Я сошла с ума](songs/ya-soshla-s-uma.md) — На бис #2, JamZone-стемы (cat_54835), 90 bpm без питча; все секции входят на долю 3 (cue-гоча), перкуссия вычищена, дуэт-lyric-launcher две колонки.
 
+### 24.10 Lefkara
+
+1. [Blondie — Heart of Glass](songs/heart-of-glass.md) — JamZone-стемы (~114.7 bpm, click:follow); pb-other=Organ+Pad+Strings+Backing Vocals, живой бас (Рома), стартовый cue Heart of Glass all in.
+2. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — JamZone-стемы (115 bpm); pb-other=Piano+Clavinet+синты+Brass+бэки, живой бас (Рома), стартовый cue Ghostbusters all in.
+3. [Shocking Blue — Venus](songs/venus.md) — JamZone-стемы (~128 bpm, click:follow); pb-other=Wurlitzer+Backing Vocals, живой бас (Рома), стартовый cue Venus guitar in.
+4. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — JamZone-стемы (114 bpm); pb-other=все синты/hits/brass/flute/бэки, живой бас (Рома), стартовый cue Cheri Cheri Lady all in.
+5. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — JamZone-стемы (~129.3 bpm, click:follow); pb-other=Rhodes+Strings, живой бас (Рома), стартовый cue Stumblin In all in.
+6. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — JamZone-стемы (120.6 bpm); pb-other=Piano+Synth+Pad+Strings, живой бас (Рома), стартовый cue Sarà perché ti amo all in.
+7. [Eurythmics — Sweet Dreams (Are Made of This)](songs/sweet-dreams.md) — JamZone-стемы (~125.2 bpm); pb-other=Noise FX+Piano+синты+Strings+Lead+бэки, живой бас (Рома), стартовый cue Sweet Dreams all in.
+8. [Depeche Mode — Personal Jesus](songs/personal-jesus.md) — JamZone-стемы (130 bpm); pb-other=Breath FX+Guitar Synth+Piano+Organ+Pad+Lead+Arp 1/2+бэки, живой бас (Рома), стартовый cue Personal Jesus all in.
+9. [Modern Talking — Brother Louie](songs/brother-louie.md) — JamZone-стемы (109 bpm); pb-other=Piano+синты+Strings+Hit+Brass+бэки, живой бас (Рома), стартовый cue Brother Louie all in.
+10. [Donna Summer — Hot Stuff (12" Version)](songs/hot-stuff.md) — JamZone-стемы (~120.3 bpm, click:follow); перкуссия исключена, pb-other=Piano+Synthesizer+Synth Keys+бэки, живой бас (Рома), стартовый cue Hot Stuff all in.
+
 ## Пайплайны
 
 - [Контент-рилсы (смешные нарезки из реп-видео)](pipelines/content-reels.md) — Контент-пиллар: Gemini находит смешное по звуку, mlx-whisper таймит локально, нарезка; поза-синхрон под ноты (спектральный флакс + light-invariant motion); вкусы группы, версионирование, R2-галерея референсов.
@@ -70,6 +83,7 @@
 
 ## Гиги
 
+- [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; сборка нового сетлиста через дашборд.
 - [Концерт 2026-06-26 (мультикам-съёмка)](gigs/2026-06-26-multicam.md) — Концерт с двухкамерной съёмкой (IMG_2689/2690 + DIMAS оператор): сетлист из 24 песен, записанные Set-1 оператор-оффсеты; дата и площадка частично не подтверждены.
 
 ## Контент

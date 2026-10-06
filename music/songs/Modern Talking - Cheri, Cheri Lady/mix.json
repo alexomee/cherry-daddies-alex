@@ -1,0 +1,26 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Synth_Pad",
+      "06_Synth_Keys_1",
+      "07_Synth_Keys_2",
+      "08_Synth_Keys_3",
+      "09_Orchestra_Hit",
+      "10_Synth_Brass",
+      "11_Synth_Flute",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Electronic_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["03_Synth_Bass"],
+    "steve": ["02_Electronic_Drum_Kit"],
+    "tanya": ["13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Cheri Cheri Lady all in", "abs_sec": 4.211, "snap_sec": 0.0}
+  ]
+}

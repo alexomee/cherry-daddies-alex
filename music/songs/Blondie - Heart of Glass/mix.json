@@ -1,0 +1,36 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "09_Organ",
+      "10_Synth_Pad",
+      "11_Synth_Strings",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["04_Electric_Bass", "05_Synth_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 2, "text": "Heart of Glass all in", "abs_sec": 4.254, "snap_sec": 0.0},
+    {"bar": 6, "text": "verse in", "abs_sec": 12.584, "snap_sec": 8.431},
+    {"bar": 14, "text": "keep going", "raw": true, "abs_sec": 29.334, "snap_sec": 26.201},
+    {"bar": 17, "text": "verse in", "abs_sec": 35.614, "snap_sec": 31.421},
+    {"bar": 26, "text": "chorus in", "abs_sec": 54.404, "snap_sec": 50.271},
+    {"bar": 38, "text": "verse in", "abs_sec": 79.524, "snap_sec": 75.371},
+    {"bar": 47, "text": "chorus in", "abs_sec": 98.384, "snap_sec": 94.221},
+    {"bar": 55, "text": "instrumental with-beat-offset ready go", "raw": true, "abs_sec": 115.124, "snap_sec": 110.431},
+    {"bar": 70, "beat": 2, "text": "voice in ready go", "raw": true, "abs_sec": 147.094, "snap_sec": 142.901},
+    {"bar": 78, "beat": 2, "text": "break in ready go", "raw": true, "abs_sec": 163.804, "snap_sec": 159.661},
+    {"bar": 82, "beat": 2, "text": "guitar in ready go", "raw": true, "abs_sec": 172.184, "snap_sec": 168.011},
+    {"bar": 86, "beat": 2, "text": "verse in", "abs_sec": 180.564, "snap_sec": 176.371},
+    {"bar": 95, "beat": 2, "text": "chorus in", "abs_sec": 199.394, "snap_sec": 195.201},
+    {"bar": 119, "beat": 2, "text": "end in", "count": true, "abs_sec": 249.644, "snap_sec": 244.931}
+  ]
+}

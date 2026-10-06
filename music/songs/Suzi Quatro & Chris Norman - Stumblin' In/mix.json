@@ -1,0 +1,21 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "09_Electric_Piano_(Rhodes)",
+      "10_String_Section"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["03_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["04_Bass"],
+    "steve": ["03_Drum_Kit"],
+    "tanya": ["11_Lead_Vocal_Suzi_Quatro", "12_Lead_Vocal_Chris_Norman"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Stumblin In all in", "abs_sec": 3.714, "snap_sec": 0.0}
+  ]
+}

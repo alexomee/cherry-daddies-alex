@@ -1,0 +1,23 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "09_Piano",
+      "10_Synthesizer",
+      "11_Synth_Keys_(theme)",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["04_Bass", "05_Synth_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Hot Stuff all in", "abs_sec": 3.988, "snap_sec": 0.0}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Piano",
+      "06_Synthesizer_1",
+      "07_Synthesizer_2",
+      "08_Synth_Pad",
+      "09_Synth_Strings",
+      "10_Orchestra_Hit",
+      "11_Synth_Brass",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["03_Synth_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Brother Louie all in", "abs_sec": 4.404, "snap_sec": 0.0}
+  ]
+}

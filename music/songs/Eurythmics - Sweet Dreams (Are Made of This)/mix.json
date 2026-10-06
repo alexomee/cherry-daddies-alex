@@ -1,0 +1,25 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Noise_effects",
+      "06_Piano",
+      "07_Synthesizer",
+      "08_Synth_Pad",
+      "09_Synth_Strings",
+      "10_Synth_Lead",
+      "11_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drum_Kit"]
+  },
+  "players": {
+    "roma": ["05_Synth_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["12_Lead_Vocal_(ad_lib)", "13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Sweet Dreams all in", "abs_sec": 3.834, "snap_sec": 0.0}
+  ]
+}

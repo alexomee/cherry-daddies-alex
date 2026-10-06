@@ -1,0 +1,27 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Sound_effects_Breath",
+      "07_Guitar_Synth",
+      "08_Piano",
+      "09_Organ",
+      "10_Synth_Pad",
+      "11_Synth_Lead_(beep)",
+      "12_Arpeggiator_1",
+      "13_Arpeggiator_2",
+      "14_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": ["02_Drums_and_Percussion"]
+  },
+  "players": {
+    "roma": ["05_Synth_Bass"],
+    "steve": ["02_Drums_and_Percussion"],
+    "tanya": ["15_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 1, "text": "Personal Jesus all in", "abs_sec": 3.692, "snap_sec": 0.0}
+  ]
+}

@@ -196,3 +196,80 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - `drums`, `metronome`, `vocals`: из оригинального импорта.
 
 В `tools/jamzone/jamzone_render.py` убран баг подмешивания click/cues в `pb-*.mp3`. Выполнен переварп (`jamzone_warp_ext.py`) и полный рендер (`jamzone_render.py --practice`): `pb-other.{wav,mp3}`, `pb-bass.{wav,mp3}`, `all.wav`, practice-миксы и `web/songs.json` обновлены. В риг синхронизированы `pb-other.wav`, `pb-bass.wav`, `pb-drums.wav`. Скорректированы `wiki/songs/ya-budu.md` и `wiki/index.md`.
+
+## [2026-10-06] web | Раздел «24.10 lefkara» для сборки нового плейлиста
+
+По запросу Alex добавлен новый раздел/таб «24.10 lefkara» в веб-дашборд (`web/index.html` и `tools/setlist_dashboard.py`):
+- Вкладка «24.10 lefkara» выведена первой в навигации с фиолетовым акцентом (`--lefkara:#9d5bf0`) и выставлена активной по умолчанию.
+- Поддерживает отображение как единого списка (`cls: "lefkara"`), так и разбивки по сетам (`cls: "lefkara1"`, `"lefkara2"`).
+- При пустом списке корректно выводится плейсхолдер «Плейлист пока пуст — собираем треки».
+- Перегенерирован `web/songs.json`. Сетлист готов к наполнению треками.
+
+## [2026-10-06] render | 24.10 Lefkara: импорт 5 JamZone-треков, pb-other, живой бас Ромы, стартовые cues
+
+По предоставленному Alex списку из 10 песен проверена локальная библиотека JamZone:
+- 5 песен скачаны в JamZone и полностью собраны:
+  1. `Shocking Blue — Venus` (cat_12674, 128 BPM, `click: follow`): pb-other = Wurlitzer + Backing Vocals, стартовый cue `Venus guitar in ready go`.
+  2. `Modern Talking — Cheri, Cheri Lady` (cat_37357, 114 BPM): pb-other = все синты, Orchestra Hit, Synth Brass, Synth Flute, Backing Vocals; стартовый cue `Cheri Cheri Lady all in ready go`.
+  3. `Ricchi e Poveri — Sarà perché ti amo` (cat_18179, 120.6 BPM): pb-other = Piano, Synthesizer, Synth Pad, String Section; стартовый cue `Sarà perché ti amo all in ready go`.
+  4. `Modern Talking — Brother Louie` (cat_38978, 109 BPM): pb-other = Piano, Synthesizer 1/2, Synth Pad, Synth Strings, Orchestra Hit, Synth Brass, Backing Vocals; стартовый cue `Brother Louie all in ready go`.
+  5. `Donna Summer — Hot Stuff (12" Version)` (cat_5408, 120.3 BPM, `click: follow`): `03_Percussion` исключена (играет барабанщик), pb-other = Piano, Synthesizer, Synth Keys, Backing Vocals; стартовый cue `Hot Stuff all in ready go`.
+- Для всех 5 песен: бас живой (`pb-bass: null`, Рома на бас-гитаре), сгенерированы `all.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, practice-миксы на четверых и поканальные stems.
+- 5 остальных песен добавлены в список сетлиста `24.10 Lefkara` (Heart of Glass, Ghostbusters, Stumblin' In, Sweet Dreams, Personal Jesus) в статусе ожидания загрузки/источников.
+- `web/songs.json`, страницы `wiki/songs/`, `wiki/gigs/2026-10-24-lefkara.md` и `wiki/index.md` обновлены.
+
+## [2026-10-06] render | 24.10 Lefkara: остальные 5 треков скачаны в JamZone и собраны на 100%
+
+После докачки Alex недостающих треков в JamZone:
+- Извлечены HQ-стемы, настроен `mix.json`, собраны starter cues и practice-миксы для оставшихся 5 песен:
+  1. `Blondie — Heart of Glass` (cat_12447, ~114.7 BPM, `click: follow`): `03_Percussion` исключена, pb-other = Organ, Pad, Strings, Backing Vocals; стартовый cue `Heart of Glass all in ready go`.
+  2. `Ray Parker Jr. — Ghostbusters` (cat_11300, 115 BPM): pb-other = Piano, Clavinet, синты (Strings, Keys 1/2, Lead, Brass), Brass section, Backing Vocals; стартовый cue `Ghostbusters all in ready go`.
+  3. `Suzi Quatro & Chris Norman — Stumblin' In` (cat_22836, ~129.3 BPM, `click: follow`): `01_Intro_Count` отделен от основного `02_Click`, pb-other = Rhodes, String Section; стартовый cue `Stumblin In all in ready go`.
+  4. `Eurythmics — Sweet Dreams (Are Made of This)` (cat_69124, ~125.2 BPM): `03_Percussion` исключена, pb-other = Noise effects, Piano, синты, Strings, Lead, Backing Vocals; стартовый cue `Sweet Dreams all in ready go`.
+  5. `Depeche Mode — Personal Jesus` (cat_12804, 130 BPM): `03_Percussion` исключена, pb-other = Breath FX, Guitar Synth, Piano, Organ, Pad, Lead, Arp 1/2, Backing Vocals; стартовый cue `Personal Jesus all in ready go`.
+- Для всех 10 песен сета: бас играет Рома (`pb-bass: null`), сформированы `auto-render` (all, cue_preview, pb-other, pb-drums, practice, stems).
+- Все 10 песен в разделе `24.10 lefkara` на дашборде получили 10/10 готовность данных и полный интерактивный плеер.
+- Созданы страницы в `wiki/songs/` для всех 10 песен, обновлены `wiki/gigs/2026-10-24-lefkara.md` и `wiki/index.md`.
+
+## [2026-10-06] lyrics | 24.10 Lefkara: сценические тексты (клипы 34–43) для всех 10 песен
+
+По запросу Alex созданы сценические тексты и видеоклипы для сценического вокального монитора:
+- Сгенерированы сценические субтитры ASS с двухстрочным page-flip отображением (`clips/34.ass` .. `clips/43.ass`) и фоновые видео MP4 (`clips/34.mp4` .. `clips/43.mp4`).
+- Экспортированы тайм-кодированные TSV-таблицы в `tools/lyric-launcher/lyrics-timed/34.tsv` .. `43.tsv` с точным смещением `offset_sec` под финальный таймлайн плейбека.
+- В дуэтах (`Stumblin' In`, `Sarà perché ti amo`) учтены оба ведущих голоса.
+- В `tools/lyric-launcher/songs.tsv` зарегистрированы 10 новых строк: клипы 34–43, Program Change 35–44.
+
+## [2026-10-06] cues | Heart of Glass: фикс стартового кью + полный набор из 14 подсказок
+
+По замечаниям и таймкодам Alex:
+- **Причина раннего стартового кью:** в JamZone клике первый такт — прекаунт клика в тишине; барабаны и музыка на самом деле вступают на такте 2 (`bar 2.1`, 4.254 с). Стартовый cue переведён на `bar 2`: теперь «Heart of Glass all in ready go» идеально выровнен по входу барабанов.
+- Настроены все запрошенные подсказки (всего 14 cue):
+  - `bar 2.1` — `Heart of Glass all in ready go`
+  - `bar 6.1` — `verse in ready go` (вход куплета 1)
+  - `bar 14.1` — `keep going` (окончание куплета 1, сквозной ход к куплету 2)
+  - `bar 17.1` — `verse in ready go` (куплет 2)
+  - `bar 26.1` — `chorus in ready go` (припев 1)
+  - `bar 38.1` — `verse in ready go` (куплет 3, ~1:21)
+  - `bar 47.1` — `chorus in ready go` (припев 2, ~1:41)
+  - `bar 55.1` — `instrumental with-beat-offset ready go` (инструментал с 2-долевым оффсетом)
+  - `bar 70.2` — `voice in ready go` (вокал в бридже, ~2:29)
+  - `bar 78.2` — `break in ready go` (брейк, ~2:46)
+  - `bar 82.2` — `guitar in ready go` (гитара после брейка, ~2:54)
+  - `bar 86.1` — `verse in ready go` (куплет 4, ~3:02)
+  - `bar 95.1` — `chorus in ready go` (припев 3, ~3:21)
+  - `bar 119.2` — `end in` (`count: true` → «end in 3 · 3 2 1», финал ~4:12).
+- Выполнен перерендер: обновлены `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `pb-*.mp3`, practice-миксы и `web/songs.json`.
+- Пересобран сценический lyric-клип 34 (`clips/34.ass`, `clips/34.mp4`, `lyrics-timed/34.tsv`) под новый таймлайн.
+
+## [2026-10-06] cues | Heart of Glass: 5-дольный instrumental, точное выравнивание куплета 3:00 и припева 3:18
+
+По замечаниям Alex:
+1. `instrumental with-beat-offset ready go` развёрнут на 5 долей:
+   - `instrumental`: 1 доля (доля -5)
+   - `with-beat-offset`: 2 доли натуральным темпом без сжатия (доли -4 и -3)
+   - `ready`: 1 доля (доля -2)
+   - `go`: 1 доля (доля -1)
+   В `jamzone_render.py` (`_metric_clips`) добавлена поддержка натурального многодолевого растяжения для длинных слов внутри фразы без агрессивного `_atempo` сжатия.
+2. Куплет 4 (`verse in` около 3:00) сдвинут с доли 1 на долю 2 (`bar 86.2` = 180.564 с): точно под вход фразы «Once I had a love».
+3. Припев 3 (`chorus in` около 3:18) сдвинут с доли 1 на долю 2 (`bar 95.2` = 199.394 с): точно под вход фразы «In between...».
+4. Перерендер `all.wav`, `cue_preview.mp3`, `click.wav`, `cues.wav`, stems и `web/songs.json`.
