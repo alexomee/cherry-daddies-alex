@@ -1,0 +1,11 @@
+{
+  "bpm": 130.0,
+  "pitch_semitones": 0,
+  "pb-other": null,
+  "pb-bass": null,
+  "cues": [
+    {"bar": 1, "text": "Медведица drums in", "abs_sec": 3.692, "snap_sec": 0.0},
+    {"bar": 3, "text": "all in", "abs_sec": 7.385, "snap_sec": 3.692},
+    {"bar": 19, "text": "verse in", "abs_sec": 36.923, "snap_sec": 33.231}
+  ]
+}

@@ -823,9 +823,17 @@ def cue_words(text, kind):                                # already spans 2 fast
     natural speed as one phrase, ending just before the block. A PLAIN cue (the user typed the whole
     phrase, e.g. 'drum bass break ready go') has no title: EVERY word is metered on its own beat, so
     each is heard clearly (else the leading words get crammed into a fast intro and swallowed)."""
+    if "·" in text:
+        intro, rest = text.split("·", 1)
+        words = (rest.strip() + " ready go" if kind == "in" else rest.strip()).split()
+        return (intro.strip(), words)
     words = (text + " ready go" if kind == "in" else text).split()
     if kind == "in" and len(words) > 4:                   # title (natural) + '<x> in ready go' block
         return (" ".join(words[:-4]), words[-4:])
+    if len(words) > 3 and words[-2:] == ["ready", "go"] and _cyrillic(words[0]) and not _cyrillic(words[-3]):
+        for idx, w in enumerate(words):
+            if not _cyrillic(w):
+                return (" ".join(words[:idx]), words[idx:])
     return ("", words)                                    # plain: meter every word, one per beat
 
 def _cue_step(c, song_step, subdiv):
@@ -1394,12 +1402,11 @@ def main():
                        input=m.astype(np.float32).tobytes())
         extra = " + cue_preview.mp3"
 
-    for grp in pb_group_names(mix):                # audition mp3 per playback group: the group ALONE
-        if grp not in out: continue                # over click + cues, cue_preview levels. Lets a new
-        g = out[grp]*MIX_LVL + out["click"]*CLICK_LVL   # group (pb-drums = the kit for a rehearsal
-        if "cues" in out: g = g + out["cues"]*CUE_LVL   # without the drummer) be checked for level and
-        pk = float(np.abs(g).max())                     # tightness on the web dashboard BEFORE it is
-        if pk > 0.97: g *= 0.97/pk                      # wired into MainStage by hand.
+    for grp in pb_group_names(mix):                # clean mp3 per playback group (pb-other, pb-bass, pb-drums)
+        if grp not in out: continue                # for the web mixer bus and preview (never bake in click/cues)
+        g = out[grp]
+        pk = float(np.abs(g).max())
+        if pk > 0.97: g = g * (0.97 / pk)
         subprocess.run(["ffmpeg","-v","quiet","-y","-f","f32le","-ar",str(SR),"-ac","2","-i","-",
                         "-b:a","192k",os.path.join(adir, grp + ".mp3")],
                        input=g.astype(np.float32).tobytes())

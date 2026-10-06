@@ -1,0 +1,24 @@
+{
+  "source_sha256": "61fcf07be7370bc34a3b01fe609827a2e338f49af65ba40faef0dc8a1f0f5748",
+  "source_duration_s": 203.94086167800452,
+  "bpm": 148.6,
+  "render_offset_s": 3.057926,
+  "raw_notes": 2330,
+  "spectrally_filtered_candidates": 774,
+  "final_notes": 752,
+  "voice_notes": {
+    "1": 456,
+    "2": 296
+  },
+  "review_notes": 152,
+  "pitch_range_midi": [
+    60,
+    86
+  ],
+  "first_note_render_s": 3.247926,
+  "last_note_render_s": 202.817926,
+  "midi_roundtrip_max_error_s": 0.00045635833330948117,
+  "pitch_bends": 0,
+  "quantization": "none",
+  "verification": "spectral and MIDI structural; not a listening sign-off"
+}

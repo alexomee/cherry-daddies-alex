@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-09-02
+updated: 2026-10-05
 title: Такая любовь
 artist: 
 set: tryout batch 2026-07
@@ -8,7 +8,7 @@ set: tryout batch 2026-07
 
 # Такая любовь
 
-Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`).
+Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`). 2026-10-05: обновление cue (13 cue).
 
 ## Сводка
 
@@ -29,20 +29,18 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 
 ## Cue
 
-15 cue:
+13 cue:
 
-- bar 1 — «Такая любовь synth in» · 3.6с
+- bar 1 — «Такая любовь · synth fade-in ready go» · 3.6с
 - bar 5 — «chords in» · 10.7с
 - bar 9 — «verse in» · 17.8с
-- bar 21 — «strings in» · 39.1с
-- bar 27 — «drums in» · 49.8с
-- bar 43 — «solo in» · 78.2с
+- bar 26 — «drum fill ready go» · 48.0с
+- bar 43 — «synth solo ready go» · 78.2с
 - bar 51 — «soft verse ready go» · 92.4с
-- bar 59 — «light drums ready go» · 106.7с
-- bar 68 — «drums in» · 122.7с
-- bar 84 — «solo in» · 151.1с
-- bar 92 — «stop» · 165.3с
-- bar 93.4 — «guitar in» · 168.4с
+- bar 67 — «drum fill ready go» · 120.9с
+- bar 84 — «synth solo ready go» · 151.1с
+- bar 92 — «drum stop» («drum stop in 3 · 3 2 1») · 165.3с
+- bar 93.4 — «guitar solo ready go» · 168.4с
 - bar 100 — «verse in» · 179.6с
 - bar 111 — «chorus in» · 199.1с
 - bar 135 — «end in» (`count: true`) · 241.8с

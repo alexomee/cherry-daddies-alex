@@ -6,23 +6,22 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 189.333311,
-      "key": "cherry-dash/d039501d8749/guides/782383a1ddc08b3c7c5441d6daa7f42af87c565d45df4fe950d3dac482cfd2d2/all.wav",
-      "mix_sha256": "1d7d0e5e09466dde477b84b341533e3112f9f43831455d9a018a9d666deefeff",
+      "key": "cherry-dash/d039501d8749/guides/9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b/all.wav",
+      "mix_sha256": "f69aaa738c7c5d66822b9b716c9a722f51dbcffd5434d83e2cc515f84f35b609",
       "render_audio": {
         "click.wav": "8a46eb0f1d2e91e9e1e541f222d18b5588b15e47292d78e567341b87ed2b150c",
-        "cues.wav": "063370715cdcfe00acbf922be9a4660a320a33045432d39ba74eb29dcf1a0459",
-        "pb-bass.wav": "9290114e5896c21f1e2afef87185bd3a65ff18ef6bc323c42faae38c07e6f188",
-        "pb-drums.wav": "d71564712d87f870982db76ca6930fe16f472b83536ff4d53db150ea6c191baf",
-        "pb-other-keys.wav": "5a1e13f6da4e951022db903214a0711f2b9911390822e8ff07fd47ee40657270",
-        "pb-other.wav": "6bb9061835b956397288abc584b6aa89ec52af3b1933cdad4866d6fa4cc55c23"
+        "cues.wav": "6203960eeab39f46e84b087e03f52edf9bc81e8c3ddf1619b5baf29c057b272e",
+        "pb-bass.wav": "52155f25ca649e873f44735c420df3c80a944449517f47182ff7e92bf51ae3fb",
+        "pb-drums.wav": "f13fb2618dee27aee7efd2fc041d9e36569c5a0cf89b1da40f4c1c0f1cbf9780",
+        "pb-other.wav": "57ae8d1af29add96033ad19be1ea35d7a34af1bee70fb583c92f027d6fa9f1b3"
       },
       "render_pcm": {
         "click.wav": "7a36a9c4c209b5b8fc04a90b4b1db51acf7045819fcb92534077e82c75a6e749",
-        "pb-bass.wav": "b999191584334dc21ccb8ea574de4270c1a9382fea877416dd02717c2cafd9f9",
-        "pb-other.wav": "0ad206140e5f6e8b25f639ae65cd4a42f840a97a298e1d5389dfb79f3f50a7d4"
+        "pb-bass.wav": "bbb10401d98d0e61da3341220e5371ffed3e4965647652115fe55fdb098191a0",
+        "pb-other.wav": "7405cd1fd846975dc716fba0c49c6d25ed93de3e92376e0a63ecf1eac66a0559"
       },
       "sample_rate": 44100,
-      "sha256": "782383a1ddc08b3c7c5441d6daa7f42af87c565d45df4fe950d3dac482cfd2d2",
+      "sha256": "9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b",
       "status": "available",
       "timeline": {
         "bar_sec": 2.666667,
@@ -30,7 +29,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 5.241111
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d039501d8749/guides/782383a1ddc08b3c7c5441d6daa7f42af87c565d45df4fe950d3dac482cfd2d2/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d039501d8749/guides/9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b/all.wav"
     },
     "music/songs/A Touch of Class - Around the World (La La La La La)": {
       "bytes": 38808122,
@@ -515,21 +514,21 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 185.80644,
-      "key": "cherry-dash/cfc3bca52e8c/guides/e3732f8e99d5f33b8595cf68150a4385d34c80a285bd6b4741afe911460f2514/all.wav",
-      "mix_sha256": "d60ee5296c0a3975dc12ca0be73a0586f02dbd526b79e09203a035d14cdbfe8f",
+      "key": "cherry-dash/cfc3bca52e8c/guides/b7f061aaf92addf9105701afd1a37733f52080bda9a964cd4e4f884a26b37fd5/all.wav",
+      "mix_sha256": "63207173f42f35831330f6e8044ee3763e74bb2be494b73df512e015de158de3",
       "render_audio": {
         "click.wav": "31e1a17b6ccc6caf4209e4d035844ce6b2b3b81f846c1ca1c8a699d7c35bb032",
-        "cues.wav": "083c8bc55edc5e9cd05304759dfde4e8e00e2f7385b4fb3d21e0cde47a8d7f42",
+        "cues.wav": "2f3428d225bb6034ab500e66a38be6a202225ff3a1ffd7140661e1dbd7cac674",
         "pb-bass.wav": "ad5bb0470f1ee085256721e31655c2ad0be1ec7c29639e16c7a31cdf93db3a8c",
-        "pb-other.wav": "413c965dff497c3bab2119ea7c2a14727521f2ca26e9d39fc24dc39600e39b92"
+        "pb-other.wav": "3f108903c2d9aae2f936acdcc0b6fd433f9c235534b13530e854c7aec4128beb"
       },
       "render_pcm": {
         "click.wav": "dc87987f63b451e3a7d8c2f3f93a9897c58123861965d86934de2f79b675eb52",
         "pb-bass.wav": "17872f7dff642719062e9e1801cb590c848d080252a4ccbeed20c2ae993f7cd9",
-        "pb-other.wav": "ea94ffac69d4ca1ab27ecce40707cd58fae38c554edccf3f85c95f652dcf91b8"
+        "pb-other.wav": "3b518c07be37c41497d52a11a8627bdb6033b0e07f6f1455fcbbbf42528b2c30"
       },
       "sample_rate": 44100,
-      "sha256": "e3732f8e99d5f33b8595cf68150a4385d34c80a285bd6b4741afe911460f2514",
+      "sha256": "b7f061aaf92addf9105701afd1a37733f52080bda9a964cd4e4f884a26b37fd5",
       "status": "available",
       "timeline": {
         "bar_sec": 1.935484,
@@ -537,7 +536,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.706342
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/e3732f8e99d5f33b8595cf68150a4385d34c80a285bd6b4741afe911460f2514/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/b7f061aaf92addf9105701afd1a37733f52080bda9a964cd4e4f884a26b37fd5/all.wav"
     },
     "music/songs/Rihanna & Calvin Harris - We Found Love": {
       "bytes": 38367114,
@@ -995,10 +994,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 245.333333,
       "key": "cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav",
-      "mix_sha256": "7da0f2654fe0b13662235b943408c1dda9cfde30293e72e0f2ab7b44e70beb57",
+      "mix_sha256": "ee5756b56d1f51dfb6e07d33f30b85777aaa17d86d5b2d6f4c402f93f375d422",
       "render_audio": {
         "click.wav": "b96149fd22a0226fdf14057793015f95beb3205ba3a6ffaf9cf44506bf165a69",
-        "cues.wav": "3c40c7678bb02bd2f72ddaf8118d89522da64a2595a36364c8e8fdd99eacd2b0",
+        "cues.wav": "23d929aae221b469ad51a0cb1d62d0a3a7c9b9105c036ea6d01817cfe86191c5",
         "pb-bass.wav": "c14fa8c2e783667081f2ea53b567a58ae0f36dabc01646ac15dd0a307683e45e",
         "pb-drums.wav": "05ecb1236f71945177df69e8149126918af8459a3ed3f54ce877f20b4ae8535d",
         "pb-other-keys.wav": "547213ba775ac01e2a2b73a42bdebbe203baa23f4972540b64a4436ef10d6a7b",

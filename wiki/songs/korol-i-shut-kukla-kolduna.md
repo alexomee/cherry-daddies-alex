@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-09-12
+updated: 2026-10-01
 title: Кукла колдуна
 artist: Король и Шут
 set: tryout batch 2026-09
@@ -8,13 +8,13 @@ set: tryout batch 2026-09
 
 # Кукла колдуна (Король и Шут)
 
-Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). В плейбеке: `pb-other` (`backing_vocals` + `strings` со скрипичной темой), альтернативная дорожка `pb-other-keys` (включает `keys`), `pb-drums` (барабаны для репетиций), бас живой (`pb-bass: null`, Roma).
+Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). С 2026-10-01 `pb-other` — пользовательский bounce Alex (бэки, скрипки, гитары, −2.5 dB). Альтернативная дорожка `pb-other-keys` пока из старых стемов (включает `keys`), `pb-drums` — барабаны для репетиций, бас живой (`pb-bass: null`, Roma).
 
 ## Сводка
 
 - **bpm:** 148.6 — Moises стемы выровнены через `jamzone_warp_ext.py` (`--bpm 148.6`) с использованием RubberBand (timemap, engine R2). Ранее наивный линейный ресемпл (`np.interp`) вызывал varispeed-колебания высоты тона скрипки до ±60 центов из-за плавающего живого темпа записи 1999 года; после исправления RubberBand сохраняет оригинальную высоту нот без фальши.
 - **pitch_semitones:** 0 (D minor).
-- **pb-other:** `backing_vocals` (хор, подпевки) + `strings` (скрипка).
+- **pb-other:** `parts/kukla-pb-other-v1.wav` — полный пользовательский слой, render-frame; `replaces:["backing_vocals","strings"]`, роль musical, gain −2.5 dB уже внутри WAV.
 - **pb-other-keys:** `backing_vocals` + `strings` + `keys`.
 - **pb-drums:** `drums` (установка для репетиций без барабанщика).
 - **pb-bass:** null (живой бас, Roma).
@@ -35,3 +35,30 @@ Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). В плейбеке: `pb
 - `pb-other.wav`, `pb-other-keys.wav`, `pb-drums.wav`
 - `cue_preview.mp3`, `pb-drums.mp3`, `pb-other.mp3`, `pb-other-keys.mp3`
 - `practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`
+
+## Замена скрипок: MIDI-заготовка (2026-09-29)
+
+Alex хочет записать свои скрипки вместо автовырезанного `strings`. Подтверждён полифонический разбор WAV с двумя редактируемыми MIDI-голосами. Выдача: `music/songs/Король и Шут - Кукла колдуна/transcription/violin-v1/`.
+
+- Основной файл `kukla-violins-2voices.mid`: 148.6 BPM, 4/4, без квантизации/pitch-bend, **render-frame** (сдвиг +3.057926 с уже встроен); импорт от нуля, первая нота ~3.248 с.
+- Basic Pitch ONNX + проверка фундаменталов/гармоник, подавление октавных дублей и вибрато-фрагментов: 752 ноты (456/296), 152 помечены для ревью. Разделение голосов автоматическое; это **черновик, не слуховая приёмка**.
+- Отдельные MIDI каждого голоса, синтетический аудиогайд, сравнение source-left/MIDI-right, CSV нот и отчёт. Тихую зону/финал и неоднозначные октавы править в Logic.
+- Следующий шаг после редактирования/озвучивания — полный WAV с нуля проекта как `parts/violin.wav`, layer `frame:render`, `replaces:["strings"]`. Пока это план замены, не подключённый playback-layer.
+
+## Пользовательский pb-other: аудит громкости (2026-10-01)
+
+Alex сделал полный pb-other (по его описанию: бэк-вокал, скрипки, гитары): `/Users/alex/Documents/kukla_kolduna_pb_other.mp3`, stereo 48 kHz / 320 kbps, 206.784 с. Это полный групповой bounce, не отдельный violin-layer из предыдущего плана.
+
+Сравнение с 26 текущими `*/auto-render/pb-other.wav`: новый файл **−15.4 LUFS-I, −0.1 dBTP**, gated stereo RMS **−18.25 dBFS**, mono **−18.44 dBFS**. Плотные музыкальные референсы: Rock & Roll Queen −17.9 LUFS, Uptown Funk −18.0, Coldplay −18.1, t.A.T.u. −17.6. Прежняя Кукла −18.9 LUFS / −3.1 dBTP / stereo RMS −22.20. FX-only файлы не использованы как целевой уровень.
+
+**Рекомендация — trim −2.5 dB:** измерение через volume+ebur128 без записи файла дало **−17.9 LUFS / −2.6 dBTP**. Активный stereo RMS будет −20.75 dBFS — примерно на 0.7–1.9 dB выше t.A.T.u./Uptown/Subways, то есть соответствует пожеланию «может быть чуть громче». Компрессию ради уровня не предлагали; внутренний баланс стереобонса оценкой громкости не подтверждён. Исходник пока только измерен; коррекция, подключение в mix и sync рига не выполнялись.
+
+Рецепт и полный набор измерений: `analysis/2026-10-01-pb-other-loudness/{measure.py,measurements.json}` в папке песни. LUFS/true peak — ffmpeg EBU R128; gated RMS — 400 мс / hop 100 мс, gate max−20 dB.
+
+По следующей просьбе Alex коррекция выполнена: `/Users/alex/Documents/kukla_kolduna_pb_other_minus2p5dB.wav` — gain −2.5 dB, WAV PCM 24 bit / 48 kHz stereo, 206.784 с. Измерение готового WAV подтвердило **−17.9 LUFS / −2.6 dBTP**. Исходный MP3 сохранён; WAV готов для подключения, mix/риг ещё не обновлены.
+
+### Импорт в проект и риг
+
+2026-10-01 по отдельной просьбе Alex WAV скопирован в `parts/kukla-pb-other-v1.wav`, назначен единственным layer в `mix.json:pb-other`. `auto-render/pb-other.wav` получил идентичный PCM + прежнюю tempo-метку 148.6; прослушка `pb-other.mp3` пересобрана с click/cues. Предыдущий mix и pb-other сохранены в `versions/2026-10-01-before-custom-pb-other/`.
+
+`sync_to_mainstage.sh --apply "Кукла колдуна"`: изменён один `pb-other.wav`; SHA256 factory/риг совпадает (`2f90d49f…33c4536`). Риг-коммит `be489c2a` **запушен в origin/main**. Подробности источника, тайминга и состава будущего all-превью — `parts/README.md`.

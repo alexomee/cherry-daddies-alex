@@ -5,8 +5,8 @@
   "smoothing": "7-beat Hann",
   "first_raw_click_sec": 4.312199546485261,
   "downbeat_click_index": 0,
-  "source_samples": 10394623,
-  "output_samples": 10395319,
+  "source_samples": 10394624,
+  "output_samples": 10395320,
   "drift_range_ms": [
     -19.695041069695662,
     3.2265720371240647

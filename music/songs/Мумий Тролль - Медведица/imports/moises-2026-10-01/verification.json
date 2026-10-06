@@ -1,0 +1,69 @@
+{
+  "files": {
+    "female_lead_vocal.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "fd70a7484cad46718b57095bf3dbcfc44dee0ef25cbcacea89515c5d9d05100d"
+    },
+    "male_lead_vocal.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "ebaa65568d9fbfb41dab768839adbe5987ee2a8b7be75af242a6819c9c013374"
+    },
+    "drums.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "37651f1c9b860e68e241b2adfd58441f95985fc327bf5ed03436eaa15b424cc7"
+    },
+    "bass.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "47d5c0883b92a95d2820b074edab464a7dbe718582353a632460ab211bb7d61b"
+    },
+    "lead_guitars.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "30d288ac227e97c2d3eb3aeaa4a7019293042a3ef18d1668dd90a502d922fd32"
+    },
+    "rhythm_guitars.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "7c8bafeb751b067d84a3edd922ce4a5a695a81b0bf792a574e499bd38455bece"
+    },
+    "keys.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "1ecff9340ca7f72c8a8878bada5194430fb577090c02034ddc0bede81a3dbae4"
+    },
+    "other.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "9a8b421f05036379eda8b1bfdd72c039afc61ee5a06531c00a0c6cc2479eb7fc"
+    },
+    "metronome.wav": {
+      "samples": 10395319,
+      "sample_rate": 44100,
+      "channels": 2,
+      "sha256": "498e3709d2213f5783a41e88d7b092631b134b093c1b5264f889c2bd1e54f091"
+    }
+  },
+  "render_updated": false,
+  "web_updated": false,
+  "grid": {
+    "bpm_fit": 130.00002310461005,
+    "max_residual_ms": 15.037681753710785,
+    "clicks": 502,
+    "max_onset_change_vs_previous_ms": 0.022675736971677907,
+    "warp_map_identical_to_previous": true,
+    "note": "Prepared Moises metronome retains original onset quantization jitter after smoothing; this is not the synthetic rendered click."
+  },
+  "backup": "music/songs/Мумий Тролль - Медведица/versions/2026-10-01-before-stems-update"
+}

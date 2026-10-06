@@ -1,0 +1,61 @@
+{
+  "archive": "/Users/alex/Downloads/Мумии_ Тролль _ Медведица _3uDFkM8FH_E_-E minor-130bpm-443hz (1).zip",
+  "archive_sha256": "97e3d785605f9b8f2953adbbe5e72ecb217140d03c6984789439138af8e87c40",
+  "metadata": {
+    "key": "E minor",
+    "bpm": 130,
+    "tuning_label_hz": 443
+  },
+  "files": {
+    "female_vocals.mp3": {
+      "role": "Female Vocals",
+      "sha256": "8b8d97bcdaefd8845573a8005064b53c2825b1ea00ee20a5643e00f4c8365652",
+      "bytes": 9431085
+    },
+    "male_vocals.mp3": {
+      "role": "Male Vocals",
+      "sha256": "3fb0d124f5571f5c94301520be67340fc7f16bf9057aaeb34b8cec7b92ad7e90",
+      "bytes": 9431085
+    },
+    "drums.mp3": {
+      "role": "Drums",
+      "sha256": "e55291b11b84566b7540558bff7e63646cb6bf2f73a203a162fe303c5b367d61",
+      "bytes": 9431085
+    },
+    "bass.mp3": {
+      "role": "Bass",
+      "sha256": "422bd5ea7a7d2309549ebc2719ae65a08ae0994c4c77d9ce560d9c629ab901cd",
+      "bytes": 9431085
+    },
+    "lead_guitars.mp3": {
+      "role": "Lead Guitars",
+      "sha256": "d1ee2dcdb1cc02063ab836680d3321855d61cd5dfa38a1a03e05520100f2d3b0",
+      "bytes": 9431085
+    },
+    "rhythm_guitars.mp3": {
+      "role": "Rhythm Guitars",
+      "sha256": "fe21a1bdefb420e93f88221e0d6d177d94b888d17ea27e95d6b45b3fd86e7c83",
+      "bytes": 9431085
+    },
+    "keys.mp3": {
+      "role": "Keys",
+      "sha256": "c59ab63782163a9bb5225da869fe570b92558fcda457c7be7422bc4724bc7138",
+      "bytes": 9431085
+    },
+    "other.mp3": {
+      "role": "Other",
+      "sha256": "4db3ca6e67cd3bbdbfae2bc471ecaa019268e051823b70f3511c3d3beaefba41",
+      "bytes": 9431085
+    },
+    "metronome.mp3": {
+      "role": "Metronome",
+      "sha256": "551731d6cc6d4a3e4861fec2bb23d66007f6d1bc090ce2a91329adb6761da018",
+      "bytes": 9431085
+    },
+    "count-in.mp3": {
+      "role": "Count-in",
+      "sha256": "f503b52a3054c7d16583a0da1a97d313b70fc94959c591ef8253900d886cf9d3",
+      "bytes": 75885
+    }
+  }
+}

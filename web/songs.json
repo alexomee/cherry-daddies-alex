@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T20:32:54",
+  "generated": "2026-10-06T10:16:37",
   "counts": {
     "total": 37,
     "data": 37,
@@ -2560,7 +2560,8 @@
           "other": {
             "kind": "layers",
             "items": [
-              "backing-vocal"
+              "backing-vocal",
+              "other-breakdown"
             ]
           },
           "practice": [
@@ -2610,22 +2611,24 @@
             "keys": "dbd247820d",
             "bass": "8d26813cdb",
             "guitars": "198aab1af9",
-            "other": "31241fdd06",
+            "other": "59e60a74f9",
             "click": "cc62913998",
-            "cues": "5653daa25b"
+            "cues": "0cae32c162"
           },
           "versions": {
-            "all": "36d45109c4",
+            "all": "0042e86136",
             "alex": "f16af22398",
             "steve": "401e46aed6",
             "roma": "38edd9cdb7",
             "tanya": "f6b2995e20",
-            "pb-other": "b8a688bb33",
-            "pb-bass": "801d22f781"
+            "pb-other": "71ead0a7a2",
+            "pb-bass": "8d26813cdb"
           },
           "pb_other": {
             "available": true,
-            "mutes": []
+            "mutes": [
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -4629,11 +4632,11 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 15,
+            "count": 13,
             "list": [
               {
                 "t": 3.556,
-                "text": "Такая любовь synth in",
+                "text": "Такая любовь synth fade-in ready go",
                 "bar": 1,
                 "snap": 0.0
               },
@@ -4650,20 +4653,14 @@
                 "snap": 14.222
               },
               {
-                "t": 39.111,
-                "text": "strings in",
-                "bar": 21,
-                "snap": 35.556
-              },
-              {
-                "t": 49.778,
-                "text": "drums in",
-                "bar": 27,
-                "snap": 46.222
+                "t": 48.0,
+                "text": "drum fill ready go",
+                "bar": 26,
+                "snap": 44.444
               },
               {
                 "t": 78.222,
-                "text": "solo in",
+                "text": "synth solo ready go",
                 "bar": 43,
                 "snap": 74.667
               },
@@ -4674,32 +4671,26 @@
                 "snap": 88.889
               },
               {
-                "t": 106.667,
-                "text": "light drums ready go",
-                "bar": 59,
-                "snap": 103.111
-              },
-              {
-                "t": 122.667,
-                "text": "drums in",
-                "bar": 68,
-                "snap": 119.111
+                "t": 120.889,
+                "text": "drum fill ready go",
+                "bar": 67,
+                "snap": 117.333
               },
               {
                 "t": 151.111,
-                "text": "solo in",
+                "text": "synth solo ready go",
                 "bar": 84,
                 "snap": 147.556
               },
               {
                 "t": 165.333,
-                "text": "stop",
+                "text": "drum stop",
                 "bar": 92,
                 "snap": 161.333
               },
               {
                 "t": 168.444,
-                "text": "guitar in",
+                "text": "guitar solo ready go",
                 "bar": 93,
                 "snap": 164.889
               },
@@ -4790,18 +4781,18 @@
             "guitars": "9b5c85d652",
             "other": "29dee187b2",
             "click": "2c97676c66",
-            "cues": "d4356da84f"
+            "cues": "55f2a4a346"
           },
           "versions": {
-            "all": "06e0e1a066",
-            "drums": "cd2fb7ed90",
+            "all": "13128f173a",
+            "drums": "624fe451d9",
             "alex": "e01a7fb303",
             "steve": "2078c67c59",
             "roma": "4d99097022",
             "tanya": "55d86ba977",
             "trio": "1330bf1817",
-            "pb-other": "6300308b2e",
-            "pb-bass": "7b006a7cfc"
+            "pb-other": "d0cbc6e733",
+            "pb-bass": "88aef968b9"
           },
           "pb_other": {
             "available": true,
@@ -5913,7 +5904,11 @@
           "other": {
             "kind": "stems",
             "items": [
-              "piano"
+              "backing vocals",
+              "guitars",
+              "piano",
+              "keys",
+              "other"
             ]
           },
           "practice": [
@@ -5963,30 +5958,33 @@
             }
           ],
           "stem_versions": {
-            "vocal": "73c69089f0",
-            "back_vox": "8e1ce545e6",
-            "drums": "744fa33e00",
-            "keys": "3af98cc50c",
-            "bass": "f2de9bb633",
-            "guitars": "d5d92048eb",
-            "other": "d2245b4ca7",
+            "vocal": "4bb9c4713f",
+            "back_vox": "93a19e050e",
+            "drums": "3e16b7bba2",
+            "keys": "c2fd332f63",
+            "bass": "607ac05b87",
+            "guitars": "623aff0c1d",
+            "other": "cf2759a6b8",
             "click": "9b088105d1",
-            "cues": "6dd9cd2eeb"
+            "cues": "8c23a9e040"
           },
           "versions": {
-            "all": "a8c4b4df81",
-            "drums": "ed3a9d5ee6",
-            "alex": "6912998dac",
-            "steve": "4d9ca72fb6",
-            "roma": "a814c08f9f",
-            "tanya": "7fb1eed995",
-            "pb-other": "72527f06b5",
-            "pb-bass": "e4ca7958fb"
+            "all": "d266438fbd",
+            "drums": "aa9d120404",
+            "alex": "6402f32d51",
+            "steve": "05858ac6a8",
+            "roma": "47c8544c31",
+            "tanya": "eed65648c4",
+            "pb-other": "7b8e86fc9c",
+            "pb-bass": "607ac05b87"
           },
           "pb_other": {
             "available": true,
             "mutes": [
-              "keys"
+              "back_vox",
+              "keys",
+              "guitars",
+              "other"
             ]
           },
           "pb_bass": {

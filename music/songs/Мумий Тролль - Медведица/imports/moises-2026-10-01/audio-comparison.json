@@ -1,0 +1,52 @@
+{
+  "female_vocals.mp3": {
+    "previous_pcm_sha256": "SHA256=44b356777d7c4e7b81706fc609d127de0a0e18f577f7c13f86b5ada6a7a99842",
+    "new_pcm_sha256": "SHA256=522d7f7b115149b138610a27d4bb3c05dbeb6394bf3a8189aa1b30bc8e7b8c6f",
+    "identical_audio": false
+  },
+  "male_vocals.mp3": {
+    "previous_pcm_sha256": "SHA256=d3721dac966585a19fa060517fa1ba3f9930a30b19ad1bc45a91b758b5ac0a50",
+    "new_pcm_sha256": "SHA256=6a875798b3edcc97dd1a7d999550266d0292a6db5f6119fe68318470c6a8686a",
+    "identical_audio": false
+  },
+  "drums.mp3": {
+    "previous_pcm_sha256": "SHA256=de12ff02f4cb896fd341ab9004362b76579f3790051401b2302abf3a4dd7d8ac",
+    "new_pcm_sha256": "SHA256=9ea5a159d3bbd7eaa173e3dfb62a0cc10b7078bea10203760d938fdd562fdfff",
+    "identical_audio": false
+  },
+  "bass.mp3": {
+    "previous_pcm_sha256": "SHA256=d46c09707806d084cb2d9ff989b7c6f62c5ca210bc64f6c7a360fea398ec3d0d",
+    "new_pcm_sha256": "SHA256=da0be12060a46f0827196dcbcc2cc4d808b484a342560084426ae58021b7209d",
+    "identical_audio": false
+  },
+  "lead_guitars.mp3": {
+    "previous_pcm_sha256": "SHA256=e3119099a89ae2b97485c5e4f94cf7b994f352afacaa0637c85cf5d98e5dec3f",
+    "new_pcm_sha256": "SHA256=85548e7cc351d30b0575ed5a38470b335c0832c94389eb289349b7604900d500",
+    "identical_audio": false
+  },
+  "rhythm_guitars.mp3": {
+    "previous_pcm_sha256": "SHA256=1c8ef48e847e129c866ab2a04846f9689de2f9a809e548536ebf90e40764f3d7",
+    "new_pcm_sha256": "SHA256=632452884410fdda8483729295b2958e160d9b4ddbb19bbd21d8892f14aa1d4c",
+    "identical_audio": false
+  },
+  "keys.mp3": {
+    "previous_pcm_sha256": "SHA256=1fa2fd34d3821e6ae962fc59ee63a017547f3660c2dd8f279051eed2c2af0eb3",
+    "new_pcm_sha256": "SHA256=7a924212b445a108acce66dfefdfbe35c447c9584a089878d7426b165f80334c",
+    "identical_audio": false
+  },
+  "other.mp3": {
+    "previous_pcm_sha256": "SHA256=8bb3f820a92028e8b1fae68e369ac709ee9815148dcd5bbabb971fa6452abdbb",
+    "new_pcm_sha256": "SHA256=fd3f527a2bbeb80df31dfb77580d2c53ca6b440bb7ecab3263ea26d83b7b551f",
+    "identical_audio": false
+  },
+  "metronome.mp3": {
+    "previous_pcm_sha256": "SHA256=028f0c1d85bb82c240764ac7ffe230f5191214df8bd9040fb27184e26f67cc49",
+    "new_pcm_sha256": "SHA256=fe4396c9ee53b8b346fc6aa92900ce3508a427d0d1f8d077e1792beb7a810cc0",
+    "identical_audio": false
+  },
+  "count-in.mp3": {
+    "previous_pcm_sha256": "SHA256=796d4458ba9c15af3d857839c77ef224846dc4c7adf1b6160f1cd9fa838a9979",
+    "new_pcm_sha256": "SHA256=0bae9aeaa1cf41fbe152c35111edd1df85d2f59e1813c482cc8a17d1af9445a4",
+    "identical_audio": false
+  }
+}

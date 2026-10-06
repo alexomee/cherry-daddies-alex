@@ -1,7 +1,7 @@
 {
   "bpm": 90.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["backing_vocals", "guitars", "piano", "keys", "other"]},
+  "pb-other": {"stems": ["piano", "keys", "other"]},
   "pb-drums": {"stems": ["drums"]},
   "pb-bass": {"stems": ["bass"]},
   "players": {"alex": ["guitars"], "roma": ["keys"], "steve": ["drums"], "tanya": ["vocals"]},

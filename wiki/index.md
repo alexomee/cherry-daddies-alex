@@ -35,14 +35,14 @@
 ### 28.10 new songs
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
-2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 15 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-09-02 бас в pb-bass заглушен с 135.3 (студийная фраза с 136.1 звучала после финального удара).
-3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-09-29 импортированы 8 Moises-стемов из ZIP, общий warp на 130 BPM; локальный web: вокал/барабаны/клавиши/бас/гитары/other + click/cues; прежние 3 cue на тактах 1/3/19, плейбек не назначен; cues в риге обновлены.
-4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — tryout 2026-09, Moises-стемы, 148.6 bpm (D minor); pb-other (backing vocals + strings скрипка), pb-drums, бас живой; 3 cue (старт all in, bar 8 drums in, bar 17 verse in).
+2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 13 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-10-05 апдейт cue (старт «Такая любовь synth fade-in ready go», убраны strings in и light drums, drum fill на такт раньше, synth solo, drum stop 2:45, guitar solo).
+3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-10-01 корневые стемы обновлены из нового ZIP `(1)`, общий warp 130 BPM; две отдельные гитары `lead_guitars.wav` / `rhythm_guitars.wav`. По запросу только файлы; web/рендер от 2026-09-29, 3 cue на тактах 1/3/19, плейбек не назначен.
+4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; 3 cue. 2026-10-01: пользовательский pb-other (бэки/скрипки/гитары, −2.5 dB) импортирован как render-layer; −17.9 LUFS / −2.6 dBTP, обновлён в риге и запушен (`be489c2a`).
 5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm; 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; оригинальный хвост убран по выбору Alex; pb-drums, practice на четверых, локальный web и click/cues/pb-drums рига обновлены 2026-09-29.
 6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — JamZone cat_67531 выровнен RubberBand на 141 BPM; pb-other=backing vocals+lead guitar, бас живой (Рома на гитаре), practice-roma; 8 cue, финальный end in 3 + 3 2 1 на 93.1 / 2:40; arrangement-v4 в локальном web, cues в риге, новый pb-other подключить в MainStage вручную.
 7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — Moises, 143 BPM, A minor (pitch −2), pb-other=backing vocals, pb-drums, бас живой; 4 cue: drums 1.1, vocal 2.1 (первый бэк), all 10.1, bass verse 73.4 (вокальный затакт перед басом); practice для четверых.
 8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 3 cue (старт synth in, bar 9 drums in, bar 17 verse in).
-9. [Я буду — 5sta Family & 23:45](songs/ya-budu.md) — tryout 2026-09, Moises-стемы, 90 bpm (A minor); pb-other (backing vocals + piano), pb-other-keys, pb-drums, pb-bass; 3 cue (старт all in, bar 9 chorus in, bar 17 verse in).
+9. [Я буду — 5sta Family & 23:45](songs/ya-budu.md) — tryout 2026-09, Moises-стемы, 90 bpm (A minor); pb-other (backing_vocals [караоке redacted] + guitars + piano + keys + other [до 0:13] из оригинала), pb-bass (из караоке), pb-drums; pb-other-keys удалён; 3 cue (старт all in, bar 9 chorus in, bar 17 verse in).
 
 ### На бис
 

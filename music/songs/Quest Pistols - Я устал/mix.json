@@ -2,7 +2,12 @@
   "bpm": 124.0,
   "click": "follow",
   "tempo_zone": {"from_bar": 53, "from_beat": 3, "to_bar": 63, "to_beat": 2, "bpm": 89.919, "anchor_sec": 102.083742, "accent": 4, "accent_from": 211, "subdiv": 2, "return_sec": 131.766742},
-  "pb-other": {"layers": [{"file": "backing-vocal", "frame": "render", "gain_db": 0}]},
+  "pb-other": {
+    "layers": [
+      {"file": "backing-vocal", "frame": "render", "gain_db": 0},
+      {"file": "other-breakdown", "frame": "render", "gain_db": 0}
+    ]
+  },
   "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
   "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [
