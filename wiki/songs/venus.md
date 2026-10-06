@@ -19,4 +19,4 @@ set: "24.10 Lefkara #3"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** `08_Electric_Piano_(Wurlitzer)`, `09_Backing_Vocals`.
 - **players:** roma (`03_Bass`), steve (`02_Drum_Kit`), tanya (`10_Lead_Vocal`).
-- **Стартовый cue:** `bar 1` — `Venus guitar in` («Venus guitar in ready go»).
+- **Cues:** bar 9 — `Venus all in` («Venus · all in ready go»), bar 13 — `verse in`, bar 103 — `end in` («end in 3 · 3 2 1»).

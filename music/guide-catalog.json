@@ -367,88 +367,88 @@
       "url": "https://releases.agentiqa.com/cherry-dash/c1b741b6747a/guides/a309ad63b607bf69b0e124284e59d339ab0d67c81c638b930a54cbcf28d2e887/all.wav"
     },
     "music/songs/Depeche Mode - Personal Jesus": {
-      "bytes": 39730822,
+      "bytes": 39079502,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 225.230748,
-      "key": "cherry-dash/0aca68e98890/guides/f9144a139c0dbef0769081e8227f45211e34995f9581bad18882ae37532c74dc/all.wav",
-      "mix_sha256": "fe15a3c7192959dad2d9bf85d92dd4473145533d2dc4c61e936defb277d1a54e",
+      "duration_sec": 221.538458,
+      "key": "cherry-dash/0aca68e98890/guides/cd1893462e2ac53a35df515d67020c8c1bb3c3467352944a4e61450d118671ed/all.wav",
+      "mix_sha256": "fcac9860acacb30e205b3f2e0dc6ab7c242ceabb8bd6dff2c4c4cb6cf3523378",
       "render_audio": {
-        "click.wav": "e5ac083bc4533d91a41149137e90185e71e3cd0750574871960f1830fec3ab91",
-        "cues.wav": "ccc41ae967315c58a5d1204ac41da73acbb059c68712548e71549996745c97e9",
-        "pb-drums.wav": "96941622ba6112a31c4fed8f436a4e5ce4457e05637edf9efa7dbd72b03b7abc",
-        "pb-other.wav": "8df7b91b863b478f3e77316cb8578fe4e85a0da134e6cdcf3707c11c87ff1241"
+        "click.wav": "c55f0d734c0d633a8875a3b6d83cfaff7078278e2a5d7b1783233a7451c71090",
+        "cues.wav": "0550851fa505b4888c8d30b18173d2a18ddf6dff82e92d192ae907a246304585",
+        "pb-drums.wav": "48593f74501159d81082168eff77e3dd91af042435316049d1786391d8dca2c1",
+        "pb-other.wav": "48fe7af2243bcda6e815d4ed54c85bb9dcb19099e93adbb65e8c03e6344e1603"
       },
       "render_pcm": {
-        "click.wav": "afa27bdeaf2cca8267c51dc9978e7dbe7816924447dfe54b918d1f24642e2c15",
-        "pb-other.wav": "fd2c0d3a54ca12f9f371caf470b6b06e7e797ddff69f0d785a72008dff1949f0"
+        "click.wav": "e3caa5e172dc8153193249df64c24cc44dbf8fc9d1ec5a5c8ba0ae4273f106d7",
+        "pb-other.wav": "0c214eafa10d964d6a7f58eeb930910aeb297c1af155a88a64092949165256d3"
       },
       "sample_rate": 44100,
-      "sha256": "f9144a139c0dbef0769081e8227f45211e34995f9581bad18882ae37532c74dc",
+      "sha256": "cd1893462e2ac53a35df515d67020c8c1bb3c3467352944a4e61450d118671ed",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.395309
+        "offset_sec": -0.296999
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/0aca68e98890/guides/f9144a139c0dbef0769081e8227f45211e34995f9581bad18882ae37532c74dc/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/0aca68e98890/guides/cd1893462e2ac53a35df515d67020c8c1bb3c3467352944a4e61450d118671ed/all.wav"
     },
     "music/songs/Donna Summer - Hot Stuff": {
       "bytes": 57341078,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 325.062132,
-      "key": "cherry-dash/51d6efe06e45/guides/f1b659ccf3979f6a3e2a4a3ae7482640c7be1e1af76608c938766e150dc5f1d1/all.wav",
-      "mix_sha256": "143fe858018db28695b9382297a9d6e666148ef0998492f5cbf776b3ed9018b5",
+      "key": "cherry-dash/51d6efe06e45/guides/f01e800d903c852171587d71f7bfeaa5f4dcd8bf28a7c1f300a67496ef7afa60/all.wav",
+      "mix_sha256": "cf9a567f10e1b679d3c55e3df96cbb26c4c0904dfde1ca56a9e30d250557fd56",
       "render_audio": {
-        "click.wav": "d8d359efad86a0642a25fff8a9de8bde3f9aab866866a69fc79d4087968d38f1",
-        "cues.wav": "97d20e64b6b524f58452750e4537f43b24e68706fda8b4ed214b060931f7566c",
-        "pb-drums.wav": "cf1b434a89eb66c485c24a651d5026aafa5ad49554db388cc3c139bc0c533512",
-        "pb-other.wav": "bfbc4f1bf48cd50c04df923a0faead8bc7398439b2cd745e8c402984bb4ce922"
+        "click.wav": "8b79d2eb1918298e0ac041e036f771ca0e0e91a80c077a8afefdb6389e9917d7",
+        "cues.wav": "b10ecc1edeb4b5c99194210e838aba2463fa181630457a8d2144960b8371ef6a",
+        "pb-drums.wav": "659b8acd48f7c9f65065527a5527f3dfd08398453769e0184e2568b51c39bb06",
+        "pb-other.wav": "0a5ec1c7580c3545a9fa5db742ce3a484d8bc43e006e5beb76078bb5d48d6a7e"
       },
       "render_pcm": {
-        "click.wav": "1dd7508f8a1752f86b77140715183012630bb7bba4db20339357cc2e12dbee1a",
-        "pb-other.wav": "9eb0ee2082a93ea1c91a6730a9edf62252b8ab0dd0ef118ed9caa5c94931d4aa"
+        "click.wav": "82491951a78b65a24236ac888d48c1ea6e0815a25dea6ec2526dbbb2741e04be",
+        "pb-other.wav": "e64d44a9230a3fefcead89be3a70d19ccf5f2a3c1905939c032d9bf34c64003e"
       },
       "sample_rate": 44100,
-      "sha256": "f1b659ccf3979f6a3e2a4a3ae7482640c7be1e1af76608c938766e150dc5f1d1",
+      "sha256": "f01e800d903c852171587d71f7bfeaa5f4dcd8bf28a7c1f300a67496ef7afa60",
       "status": "available",
       "timeline": {
         "bar_sec": 1.994246,
         "bpm": 120.3462,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.689581
+        "offset_sec": 1.695335
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/51d6efe06e45/guides/f1b659ccf3979f6a3e2a4a3ae7482640c7be1e1af76608c938766e150dc5f1d1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/51d6efe06e45/guides/f01e800d903c852171587d71f7bfeaa5f4dcd8bf28a7c1f300a67496ef7afa60/all.wav"
     },
     "music/songs/Eurythmics - Sweet Dreams (Are Made of This)": {
-      "bytes": 39565658,
+      "bytes": 38889322,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 224.294444,
-      "key": "cherry-dash/e2d7c7c6348d/guides/68acd9f8b9554fa77b31ba420001951c39d97893b3b5e9e846c75fce0178b8da/all.wav",
-      "mix_sha256": "05182f42951d91811b46ba7219bfda5c86e0be923dca65e9afc460ffaafa74fc",
+      "duration_sec": 220.46034,
+      "key": "cherry-dash/e2d7c7c6348d/guides/5f7a90265ca8a551eba6274556d47af1cba4d176397b61744a295440aad85d71/all.wav",
+      "mix_sha256": "bdeceb82308cff0c441fc381d3735e58392aee15f8781a4ce65ab91534f4a655",
       "render_audio": {
-        "click.wav": "719094b6fb154fe64b11f48a2edd17dfa3699e834047c7b33439d7abe6cd6257",
-        "cues.wav": "046e4e4a2f98f9e2258aee080ec1f29d9eb5ab3cc510c80c1447b89cf87418a9",
-        "pb-drums.wav": "43b26c838427de0454aee80b08670e2e3163cc52a31ad1c1f45a2f19f99b2ebb",
-        "pb-other.wav": "74aac83e689e47c827eb4c19727bc6bf6599c4b852a32edf66ff3910e52bbfc3"
+        "click.wav": "d0d118f0694b9e196c0f444276816308b57f92d3e87a3b8877945c6a1d2c7f6b",
+        "cues.wav": "20e6c33bb099cb611d01f94cf41d2df6acf141e159e26882a91d39bac57848e1",
+        "pb-drums.wav": "b29a0cfa085f5eb709fdecdbe19517c67b33c74f4829a2fa8c95c4f4240ac156",
+        "pb-other.wav": "a4c0dad0f60a9e6603420ab74c2100f2b35686924d104c5d2dddb7f4db7955a1"
       },
       "render_pcm": {
-        "click.wav": "f0ec098db7702024b5e96b1623c3769bc22c8a46dceb206fe55ecefd061431c8",
-        "pb-other.wav": "2b6591ed5a25a96524915448e670818c3ea77b5b36147e16114c05d43711b9ff"
+        "click.wav": "8c91f5820876e63131890a93d79f31b8847c8b272dd623eaee17ca4a7f442e9e",
+        "pb-other.wav": "72a0a67ab50c33c44560e0b847a8a8c6f42818c956937633c26c04cf3ef9047f"
       },
       "sample_rate": 44100,
-      "sha256": "68acd9f8b9554fa77b31ba420001951c39d97893b3b5e9e846c75fce0178b8da",
+      "sha256": "5f7a90265ca8a551eba6274556d47af1cba4d176397b61744a295440aad85d71",
       "status": "available",
       "timeline": {
         "bar_sec": 1.917047,
         "bpm": 125.1926,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.521224
+        "offset_sec": -0.31287
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/e2d7c7c6348d/guides/68acd9f8b9554fa77b31ba420001951c39d97893b3b5e9e846c75fce0178b8da/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/e2d7c7c6348d/guides/5f7a90265ca8a551eba6274556d47af1cba4d176397b61744a295440aad85d71/all.wav"
     },
     "music/songs/Eva 2.0": {
       "bytes": 37525206,
@@ -591,60 +591,60 @@
       "url": "https://releases.agentiqa.com/cherry-dash/39c9137c546c/guides/629ad768c122f41dd3f3b1ff21bb639fcaa626cb1d9c855f311dbb4a7557ee50/all.wav"
     },
     "music/songs/Modern Talking - Brother Louie": {
-      "bytes": 42336114,
+      "bytes": 41947710,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 239.999977,
-      "key": "cherry-dash/d7d854b72c4b/guides/f39165b6e3d323194fca05365299b88089c96701ed56e749a3f48c639188dff9/all.wav",
-      "mix_sha256": "87699e1e9cfb4ea995aa1732acb95f6dc9f5e1612e61c8500d39a17cba9e521a",
+      "duration_sec": 237.798141,
+      "key": "cherry-dash/d7d854b72c4b/guides/be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40/all.wav",
+      "mix_sha256": "fd8f04a1fff46da11197d70df6ed4777a2223f80a7654e85d2430eba47453cbd",
       "render_audio": {
-        "click.wav": "d6bd2d98fa65993c2acb2dcd4fc3d7a146fb7f3c1d89a33f8317d43d4684b675",
-        "cues.wav": "4a874f6e9ee6e51036d1b478d0753a0fee4c22d2a79da557a13ce26d31f30e3c",
-        "pb-drums.wav": "88d5f0cf8eb2f40fe486018152ae5b29c8d596374e8f0c4994707870ba03e4d4",
-        "pb-other.wav": "a983b655400311e1203604ef5bc41bd11a06815185ba6f218aff662fcc2c7121"
+        "click.wav": "4021ad7b77afa9323b98ef0fe36d15607c6f212b5e03f9cde617a2adc0dd454c",
+        "cues.wav": "efe19b6ef3e9815101a15bed43def5b41c483021d7e0637bd9e9f049e0c2001d",
+        "pb-drums.wav": "9fbc231a9d0fccc24ea101e979fe7256efb7c90c56964c6907c6497609e558c9",
+        "pb-other.wav": "076ff7ef23b8639209a39cf208e035f25199bf39a9ede68065253c6f80e2e70c"
       },
       "render_pcm": {
-        "click.wav": "d0dc8f89682d53525a84b9b4cbb33ae219ea5a76fe02c7c4cf264670afa3b20d",
-        "pb-other.wav": "303121012c288ce611feb59a5e08e48fe3b79704d6c28b76ad3f61f028937783"
+        "click.wav": "c6ff553bf9839f3e0a1207d0934555af3a5c5704662120ad1e635826e8b176b2",
+        "pb-other.wav": "b8a235707271a05408a3c6f26c55008ae86ba060caa6cafb8c383b902caa9271"
       },
       "sample_rate": 44100,
-      "sha256": "f39165b6e3d323194fca05365299b88089c96701ed56e749a3f48c639188dff9",
+      "sha256": "be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40",
       "status": "available",
       "timeline": {
         "bar_sec": 2.201835,
         "bpm": 109.0,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 4.106717
+        "offset_sec": 1.904882
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d7d854b72c4b/guides/f39165b6e3d323194fca05365299b88089c96701ed56e749a3f48c639188dff9/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d7d854b72c4b/guides/be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40/all.wav"
     },
     "music/songs/Modern Talking - Cheri, Cheri Lady": {
-      "bytes": 41593390,
+      "bytes": 39736546,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 235.789524,
-      "key": "cherry-dash/a243a76d7323/guides/9334227de88e397cecd0f318e713db2aea85e2547a4c27eb62e2ee80c0631bdb/all.wav",
-      "mix_sha256": "0dacca439f73c4d36d2dcd862d47d9d2c90a9832008b65fc0e7dbac8ec7377e9",
+      "duration_sec": 225.263197,
+      "key": "cherry-dash/a243a76d7323/guides/7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0/all.wav",
+      "mix_sha256": "fa1e5f6c503530e451c1c5587064ba0521fc94c7913532230bd551b078e2f5e2",
       "render_audio": {
-        "click.wav": "a49c49e1b9582bc45a5e061e734c60bfdf102e6f1387de27fd8ac2ab1589764c",
-        "cues.wav": "d7c0f1170a67512a26459110f196ab6b76988753713c9e47ba5672e85aec69ab",
-        "pb-drums.wav": "001155b9ec6f1485837793a59154d583fb83e0dde9fa27de4ac16e80a2d24aec",
-        "pb-other.wav": "b94ee66d9919d925ecbecb118c641f0cfc297d9b0a27acbc4590f35746c1a71e"
+        "click.wav": "1e23d5c9f51b9f2edf869f6758633160e00c7a24d846ec5995bc5ca5bdab0ecd",
+        "cues.wav": "080d140d663ea4c3d2fcc936470e044c2aa77bcbe28ca3b6d6e76d6ecdc3a2be",
+        "pb-drums.wav": "22383074defe36d28364b931f10fba6e03d7d1333bd9cc762301cf9f5bb09379",
+        "pb-other.wav": "5a6e1a1f5960636a6b9153b3ebba42f9780d48eef09ffc35537eff88a8ed64f0"
       },
       "render_pcm": {
-        "click.wav": "0c9e04f35d23bef9cc7c0aa3ec0555c57525844d1e9be816581b2399a7dd0a9b",
-        "pb-other.wav": "8ab0dcc4a3df4b1eec1b7d3e907971af767d510cd48e27fa09c73a45efff5f88"
+        "click.wav": "87fdb846771eb055600ec42745f2f836f86f8748293d9d69c4aefad47885ea58",
+        "pb-other.wav": "d002047c9cadbd8d246fdde79da29b38f394b58ae23e478aecd29799ac1a41b5"
       },
       "sample_rate": 44100,
-      "sha256": "9334227de88e397cecd0f318e713db2aea85e2547a4c27eb62e2ee80c0631bdb",
+      "sha256": "7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0",
       "status": "available",
       "timeline": {
         "bar_sec": 2.105264,
         "bpm": 114.0,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.913532
+        "offset_sec": 1.80826
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/a243a76d7323/guides/9334227de88e397cecd0f318e713db2aea85e2547a4c27eb62e2ee80c0631bdb/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/a243a76d7323/guides/7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0/all.wav"
     },
     "music/songs/Mr. Credo - Медляк": {
       "bytes": 47577718,
@@ -707,24 +707,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/b7f061aaf92addf9105701afd1a37733f52080bda9a964cd4e4f884a26b37fd5/all.wav"
     },
     "music/songs/Ray Parker Jr. - Ghostbusters": {
-      "bytes": 47858190,
+      "bytes": 48226330,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 271.304263,
-      "key": "cherry-dash/5a15a70cbdbb/guides/7682bce0e1731439f85c97dd3277f12aaf9d0efe2c8b60d76d4f582dbe6e9dae/all.wav",
-      "mix_sha256": "3c95541d5d4ba559f11a4a33c81031636d1c3ccecd573d7db2445b2789e77c25",
+      "duration_sec": 273.391224,
+      "key": "cherry-dash/5a15a70cbdbb/guides/a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e/all.wav",
+      "mix_sha256": "296c76a8c447e3a102dcd1a74f4dd04a59046a68cd853a05d271a71ee94562e7",
       "render_audio": {
-        "click.wav": "ca063ddf42b26029dcdb6e14281b979b27b38799bb472ef9b6de8ca68ecf14f4",
-        "cues.wav": "3987d064a9d3105d7d845ba4793b56f3ff6de734178033649ed39924e093e23f",
-        "pb-drums.wav": "b1000553e645aa77bc6aba94c3c4bf3d90fbeb3dac82b11b69de2856fe0067f4",
-        "pb-other.wav": "aa66464da35aaef1131edf5b13af0c61a96e0ea5067d092cb271e7f5dccbea2f"
+        "click.wav": "1cc9c8b0c2070d661842e5d03053496dff28496ac3aaeaa8e38be1edc43405f6",
+        "cues.wav": "31a4151e4832916c94ba4bd2097d0bae3f7e9d11d81324999994ac0a8fda0a9d",
+        "pb-drums.wav": "1f6032c1a74f0516824ba0988153af34ee0eac7f6b1486a8f2be38556d9c26bd",
+        "pb-other.wav": "c0d6052acb5b616c2aeac9cf0252aeb0e86ff5f0d6d3587b46c58be0e36b5f63"
       },
       "render_pcm": {
-        "click.wav": "6366dae5300f3fff734be9dcd27e601314eafc926274e4b2e18e7accc8e21805",
-        "pb-other.wav": "1964338b39a823a1eb9a3e0a6c25625823de3cf7fa4f5f2fc5309871501fe029"
+        "click.wav": "f8b3fd390b29b16d09f36c51997d493d1af60115361f48af5695cc866067389e",
+        "pb-other.wav": "4f8bb2638da53baf06bcc1c5b37dd2f9ee5b98d2703b973582a68dae117264a1"
       },
       "sample_rate": 44100,
-      "sha256": "7682bce0e1731439f85c97dd3277f12aaf9d0efe2c8b60d76d4f582dbe6e9dae",
+      "sha256": "a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e",
       "status": "available",
       "timeline": {
         "bar_sec": 2.086956,
@@ -732,35 +732,35 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.723841
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/7682bce0e1731439f85c97dd3277f12aaf9d0efe2c8b60d76d4f582dbe6e9dae/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e/all.wav"
     },
     "music/songs/Ricchi e Poveri - Sarà perché ti amo": {
-      "bytes": 33334166,
+      "bytes": 32632398,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 188.968526,
-      "key": "cherry-dash/45d6f546a2e3/guides/f6a03f835f5bd26a07d7c0527e6ddb64b326f6abed3cc7f8fa1dd9ed023357f4/all.wav",
-      "mix_sha256": "03e1b291ba6f2dea759d8cd5ee0974b9b5227576f94408d141f0effddc2f6bbc",
+      "duration_sec": 184.990249,
+      "key": "cherry-dash/45d6f546a2e3/guides/a11d84080d9977fecbd102a4fa76cd8dc7b4cc7c2021c94bd208c5fca18ca2ff/all.wav",
+      "mix_sha256": "5b0702dbc7b81dd180c75bfbeb50909fd34860ea179c2e2abcde7c127a804336",
       "render_audio": {
-        "click.wav": "0a8202d10e39508a9579e5f877899c0ba3c9d29bb48a79e74deb63a46e6d9f80",
-        "cues.wav": "847e2ed3a3b5fd3ab2f1bbab97da06b73588ce82f6c4110212483e6025ec1001",
-        "pb-drums.wav": "d28079afa3bae4a4d0cdadbc736620edc2572c0969e1dd6aeb2bbc10026c813b",
-        "pb-other.wav": "984fc0049ae7a015cac2bb99b25c5ae0c8205577815c68ceb8ba628dbc884d3a"
+        "click.wav": "4950d99a11ca1cedb7066c2347160e3e94d0b2f76ecb7ae183909cf146c5d4fc",
+        "cues.wav": "faae2df0f9a4da8dc87081ae9aafd902f97ad48b111aabf35a6595f1013aca49",
+        "pb-drums.wav": "8819c141ddd84635a59cc16d2c19ee3cf91beffe90edc73834a42bfedd62b40f",
+        "pb-other.wav": "50355e40ede31bdb4a6e2eeb47894622c2661a3c43fc8d36debf4d7b4d128c7b"
       },
       "render_pcm": {
-        "click.wav": "bbe4bf12167b36c08466811e758ecbc99480d815488ea1cee28c6caf5022f86c",
-        "pb-other.wav": "3e5ccc6138dbbc5a62235efb427a9d7965c32c8bce900417a822c0db2f521cf3"
+        "click.wav": "5cc2417aa6129fcbee7b597bf211a5304c9f3c33b5da9440d0b2f6c328b8321b",
+        "pb-other.wav": "b84ec4bb3c37773d47121df0a45c11b03dc8d9a533d9da36f34384008b69cb3a"
       },
       "sample_rate": 44100,
-      "sha256": "f6a03f835f5bd26a07d7c0527e6ddb64b326f6abed3cc7f8fa1dd9ed023357f4",
+      "sha256": "a11d84080d9977fecbd102a4fa76cd8dc7b4cc7c2021c94bd208c5fca18ca2ff",
       "status": "available",
       "timeline": {
         "bar_sec": 1.989143,
         "bpm": 120.655,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.681365
+        "offset_sec": -0.29692
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/45d6f546a2e3/guides/f6a03f835f5bd26a07d7c0527e6ddb64b326f6abed3cc7f8fa1dd9ed023357f4/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/45d6f546a2e3/guides/a11d84080d9977fecbd102a4fa76cd8dc7b4cc7c2021c94bd208c5fca18ca2ff/all.wav"
     },
     "music/songs/Rihanna & Calvin Harris - We Found Love": {
       "bytes": 38367114,
@@ -883,10 +883,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 204.338005,
       "key": "cherry-dash/2515a3c01f07/guides/b541e65f510f8f80c0abc258b9acaa04c2bc2129d816ef6309a365b3900247fb/all.wav",
-      "mix_sha256": "d77171e04026a1fcfe0ffdd2819f943043f55c4b08e7b50dfe23c2970866c39b",
+      "mix_sha256": "3fd489ab690fe0953c2e12f509f78fc2472d59e82cdd6f8c2966d7a038864ccb",
       "render_audio": {
         "click.wav": "a15896b1ea94971c1b16237f897709e050954c624100ebe4eaf792a8936a936f",
-        "cues.wav": "c4f1a5d1a346bc8279280da8e7825e53ff796caf6a895ec2f5e630af42691900",
+        "cues.wav": "1de5865f0108bf9f108c4a1df8266c452aed34543bf512babbab3122ea8dcb34",
         "pb-drums.wav": "10207255e5b59a727143b711e401f30e8899a2f05930d3e8b09ca64260812dc4",
         "pb-other.wav": "98854ae8307e1719e79a5fe0c8eaeceba6ac666fcc8d7eac43f43cccd6d66d7c"
       },
@@ -911,10 +911,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 246.94941,
       "key": "cherry-dash/3a0153697414/guides/be15a1241b5761b8cc9d1517708b3cacec6f800553c2f67c3b225a88bf6ef4ab/all.wav",
-      "mix_sha256": "c1721cb87b8e02e96b8cba7c0c3462611bf5fdcb7f6b658475716b157a7d0b85",
+      "mix_sha256": "4d20e8509c5782df8987e6de65af67fb01229ff569ce1cb8762e2aca619df77c",
       "render_audio": {
         "click.wav": "6b408a51ec07b1594d17e4efbae04a392208e43dd20d6bfb3dc094228aaf2566",
-        "cues.wav": "38041d3455918e496fda1eba1ceda4b954c31fea621a2f9e4722e43d583eec9b",
+        "cues.wav": "5f441bef47cbd64f904c653f3165c8ec14682a3e61b7e159eaebb91d3abed5bb",
         "pb-drums.wav": "ddbde53ba556afa76c867a666e78cdfdeda06eb3bf0975b40ab582e8080b94bc",
         "pb-other.wav": "1be62d158540f6a489f50a5cf91cf5a4099a2ec12fe2ef6ce3d6c7af53175e64"
       },

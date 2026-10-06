@@ -20,4 +20,6 @@ set: "24.10 Lefkara #8"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** FX дыхания, синты, орган, пианино, арпеджиаторы и бэки: `04_Sound_effects_Breath`, `07_Guitar_Synth`, `08_Piano`, `09_Organ`, `10_Synth_Pad`, `11_Synth_Lead_(beep)`, `12_Arpeggiator_1`, `13_Arpeggiator_2`, `14_Backing_Vocals`.
 - **players:** roma (`05_Synth_Bass`), steve (`02_Drums_and_Percussion`), tanya (`15_Lead_Vocal`).
-- **Стартовый cue:** `bar 1` — `Personal Jesus all in` («Personal Jesus all in ready go»).
+- **cues:**
+  - `bar 3.1` — `Personal Jesus guitar in` («Personal Jesus guitar in ready go») — вступление гитары после 2 тактов precount.
+  - `bar 117.4` — `end in` («end in 3 · 3 2 1») — последний удар барабанов перед хвостом.

@@ -21,6 +21,7 @@
     "tanya": ["13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 1, "text": "Brother Louie all in", "abs_sec": 4.404, "snap_sec": 0.0}
+    {"bar": 1, "beat": 3, "text": "Brother Louie playback in", "abs_sec": 3.303, "snap_sec": 0.0},
+    {"bar": 105, "beat": 4, "text": "end in", "count": true, "abs_sec": 232.844, "snap_sec": 227.89}
   ]
 }

@@ -20,7 +20,9 @@
     "steve": ["02_Electronic_Drum_Kit"],
     "tanya": ["13_Lead_Vocal"]
   },
+  "cut_bars": [2, 6],
   "cues": [
-    {"bar": 1, "text": "Cheri Cheri Lady all in", "abs_sec": 4.211, "snap_sec": 0.0}
+    {"bar": 2, "text": "Cheri Cheri Lady all in", "abs_sec": 4.211, "snap_sec": 0.0},
+    {"bar": 105, "beat": 1, "text": "end fill in", "count": true, "abs_sec": 221.053, "snap_sec": 216.316}
   ]
 }

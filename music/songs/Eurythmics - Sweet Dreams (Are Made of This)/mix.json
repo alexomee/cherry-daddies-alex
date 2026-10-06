@@ -20,6 +20,7 @@
     "tanya": ["12_Lead_Vocal_(ad_lib)", "13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 1, "text": "Sweet Dreams all in", "abs_sec": 3.834, "snap_sec": 0.0}
+    {"bar": 3, "text": "Sweet Dreams all in", "abs_sec": 3.834, "snap_sec": 0.0},
+    {"bar": 113, "beat": 1, "text": "end in", "count": true, "abs_sec": 214.709, "snap_sec": 210.396}
   ]
 }

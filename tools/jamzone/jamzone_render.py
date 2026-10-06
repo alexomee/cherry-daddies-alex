@@ -1037,6 +1037,17 @@ def main():
                 sys.exit(f"mix.json: player '{who}' lists unknown stem/layer '{nm}'")
 
     click_st = decode(stems[click_name])
+    cut_bars = mix.get("cut_bars")
+    if cut_bars:
+        fr_b, to_b = cut_bars
+        cl_ons = onsets(click_st.mean(1))
+        t_fr = float(cl_ons[(fr_b - 1)*4])
+        t_to = float(cl_ons[(to_b - 1)*4])
+        s0, s1 = round(t_fr * SR), round(t_to * SR)
+        fade_len = int(0.005 * SR)
+        print(f"cut_bars: cutting bars {fr_b} to {to_b} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
+        click_st = np.concatenate([click_st[:s0], click_st[s1:]])
+
     beat, db0, resid, n_on = fit_grid(click_st.mean(1))  # fit_grid uses lstsq = span-average
     if external:
         db0 = float(onsets(click_st.mean(1))[0])  # first click = downbeat (user-specified)
@@ -1068,8 +1079,23 @@ def main():
     perc = [n for n in stems if n != click_name and is_percussion(n)]
     if perc: print(f"percussion dropped (live drummer plays it, never in playback): {sorted(perc)}")
     music = [n for n in stems if n != click_name and n not in perc]
-    audio = {n: decode(stems[n]) for n in music}
+    audio = {}
+    for n in music:
+        buf = decode(stems[n])
+        if cut_bars:
+            b_pre = buf[:s0].copy()
+            b_post = buf[s1:].copy()
+            if len(b_pre) >= fade_len:
+                b_pre[-fade_len:] *= np.linspace(1, 0, fade_len)[:, None]
+            if len(b_post) >= fade_len:
+                b_post[:fade_len] *= np.linspace(0, 1, fade_len)[:, None]
+            buf = np.concatenate([b_pre, b_post])
+        audio[n] = buf
     cue_st = decode(cue_p) if os.path.exists(cue_p) else None
+    if cue_st is not None and cut_bars:
+        c_pre = cue_st[:s0].copy()
+        c_post = cue_st[s1:].copy()
+        cue_st = np.concatenate([c_pre, c_post])
 
     # t=0 = bar line at/before all content, stem downbeat lands on a bar line
     srcs = list(audio.values()) + ([cue_st] if cue_st is not None else [])

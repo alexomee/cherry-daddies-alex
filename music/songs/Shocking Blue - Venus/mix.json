@@ -15,7 +15,10 @@
     "steve": ["02_Drum_Kit"],
     "tanya": ["10_Lead_Vocal"]
   },
+  "count_in": 2,
   "cues": [
-    {"bar": 1, "text": "Venus guitar in", "abs_sec": 3.749, "snap_sec": 0.0}
+    {"bar": 9, "text": "Venus all in", "abs_sec": 19.066, "snap_sec": 14.746},
+    {"bar": 13, "text": "verse in", "abs_sec": 26.656, "snap_sec": 22.901},
+    {"bar": 103, "beat": 1, "text": "end in", "count": true, "abs_sec": 195.666, "snap_sec": 191.431}
   ]
 }

@@ -22,6 +22,16 @@
     "tanya": ["15_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 1, "text": "Ghostbusters all in", "abs_sec": 4.174, "snap_sec": 0.0}
+    {"bar": 1, "text": "Ghostbuster playback in", "abs_sec": 4.174, "snap_sec": 0.0},
+    {"bar": 2, "text": "guitar bass ready go", "raw": true, "abs_sec": 6.261, "snap_sec": 2.087},
+    {"bar": 6, "text": "drums in", "abs_sec": 14.609, "snap_sec": 10.435},
+    {"bar": 7, "text": "main in", "abs_sec": 16.696, "snap_sec": 12.522},
+    {"bar": 59, "text": "break-one in", "abs_sec": 125.217, "snap_sec": 121.043},
+    {"bar": 75, "text": "break-two in", "abs_sec": 158.609, "snap_sec": 154.435},
+    {"bar": 83, "text": "chorus in", "abs_sec": 175.304, "snap_sec": 171.13},
+    {"bar": 103, "text": "keep going", "raw": true, "abs_sec": 217.043, "snap_sec": 213.913},
+    {"bar": 115, "text": "keep going", "raw": true, "abs_sec": 242.087, "snap_sec": 238.956},
+    {"bar": 123, "text": "keep going", "raw": true, "abs_sec": 258.783, "snap_sec": 255.652},
+    {"bar": 128, "text": "end in", "count": true, "abs_sec": 269.217, "snap_sec": 264.522}
   ]
 }

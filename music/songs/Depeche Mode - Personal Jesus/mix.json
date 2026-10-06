@@ -22,6 +22,7 @@
     "tanya": ["15_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 1, "text": "Personal Jesus all in", "abs_sec": 3.692, "snap_sec": 0.0}
+    {"bar": 3, "text": "Personal Jesus guitar in", "abs_sec": 3.692, "snap_sec": 0.0},
+    {"bar": 117, "beat": 4, "text": "end in", "count": true, "abs_sec": 215.538, "snap_sec": 211.385}
   ]
 }

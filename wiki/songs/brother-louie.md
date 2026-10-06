@@ -19,4 +19,6 @@ set: "24.10 Lefkara #9"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** клавиши, синты, FX, духовые и бэки: `05_Piano`, `06_Synthesizer_1`, `07_Synthesizer_2`, `08_Synth_Pad`, `09_Synth_Strings`, `10_Orchestra_Hit`, `11_Synth_Brass`, `12_Backing_Vocals`.
 - **players:** roma (`03_Synth_Bass`), steve (`02_Drum_Kit`), tanya (`13_Lead_Vocal`).
-- **Стартовый cue:** `bar 1` — `Brother Louie all in` («Brother Louie all in ready go»).
+- **cues:**
+  - `bar 1.3` — `Brother Louie playback in` («Brother Louie playback in ready go») — первая нота клавиш (lead +1 такт count-in).
+  - `bar 105.4` — `end in` («end in 3 · 3 2 1») — финальный orchestra hit / последний удар барабанов.

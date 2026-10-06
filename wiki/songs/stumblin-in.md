@@ -19,4 +19,4 @@ set: "24.10 Lefkara #5"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** `09_Electric_Piano_(Rhodes)`, `10_String_Section`.
 - **players:** roma (`04_Bass`), steve (`03_Drum_Kit`), tanya (`11_Lead_Vocal_Suzi_Quatro`, `12_Lead_Vocal_Chris_Norman`).
-- **Стартовый cue:** `bar 1` — `Stumblin In all in` («Stumblin In all in ready go»).
+- **Cues:** 13 cues (стартовый bar 1.3 `Stumblin In vocal in`, переклички Alex / Tanya, стопы барабанов bar 37.2 и 81.2, гитарное соло bar 54.1, финальный хит bar 128.1 `end in`).

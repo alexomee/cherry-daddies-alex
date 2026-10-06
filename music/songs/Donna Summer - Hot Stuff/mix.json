@@ -18,6 +18,7 @@
     "tanya": ["13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 1, "text": "Hot Stuff all in", "abs_sec": 3.988, "snap_sec": 0.0}
+    {"bar": 2, "text": "Hot Stuff all in", "abs_sec": 4.114, "snap_sec": 0.0},
+    {"bar": 160, "beat": 1, "text": "end in", "count": true, "abs_sec": 319.254, "snap_sec": 314.78}
   ]
 }

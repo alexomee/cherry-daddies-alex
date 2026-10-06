@@ -19,4 +19,6 @@ set: "24.10 Lefkara #6"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** клавиши, синты и струнные: `07_Piano`, `08_Synthesizer`, `09_Synth_Pad`, `10_String_Section`.
 - **players:** roma (`03_Bass`), steve (`02_Drum_Kit`), tanya (`11_Lead_Vocal_Angela_Brambati`, `12_Lead_Vocal_Angelo_Sotgiu`).
-- **Стартовый cue:** `bar 1` — `Sarà perché ti amo all in` («Sarà perché ti amo all in ready go»).
+- **cues:**
+  - `bar 3.1` — `Sarà perché ti amo all in` («Sarà perché ti amo all in ready go») — вступление группы после 2 тактов precount.
+  - `bar 91.2` — `end in` («end in 3 · 3 2 1») — финальный удар барабанов/группы.

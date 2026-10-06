@@ -12,35 +12,35 @@ Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100
 Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:03:08.97,Title,,0,0,0,,Sarà perché ti amo
-Dialogue: 0,0:00:19.12,0:00:32.08,Pair,,0,0,0,,{\pos(640,285)}Che confusione sarà perché ti amo\NÈ un'emozione che cresce piano piano
-Dialogue: 0,0:00:19.12,0:00:32.08,Next,,0,0,0,,{\pos(640,475)}Stringimi forte e stammi piu vicino\NSe ci sto bene sarà perché ti amo
-Dialogue: 0,0:00:32.08,0:00:40.03,Pair,,0,0,0,,{\pos(640,285)}Stringimi forte e stammi piu vicino\NSe ci sto bene sarà perché ti amo
-Dialogue: 0,0:00:32.08,0:00:40.03,Next,,0,0,0,,{\pos(640,475)}Lo canto al ritmo del dolce tuo respiro\NÈ primavera sarà perché ti amo
-Dialogue: 0,0:00:40.03,0:00:47.99,Pair,,0,0,0,,{\pos(640,285)}Lo canto al ritmo del dolce tuo respiro\NÈ primavera sarà perché ti amo
-Dialogue: 0,0:00:40.03,0:00:47.99,Next,,0,0,0,,{\pos(640,475)}Cade una stella ma dimmi dove siamo\NChe te ne frega sarà perché ti amo
-Dialogue: 0,0:00:47.99,0:00:55.70,Pair,,0,0,0,,{\pos(640,285)}Cade una stella ma dimmi dove siamo\NChe te ne frega sarà perché ti amo
-Dialogue: 0,0:00:47.99,0:00:55.70,Next,,0,0,0,,{\pos(640,475)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:00:55.70,0:01:03.66,Pair,,0,0,0,,{\pos(640,285)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:00:55.70,0:01:03.66,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è c'e basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:01:03.66,0:01:11.61,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è c'e basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:01:03.66,0:01:11.61,Next,,0,0,0,,{\pos(640,475)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:01:11.61,0:01:19.57,Pair,,0,0,0,,{\pos(640,285)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:01:11.61,0:01:19.57,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:01:19.57,0:01:27.77,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:01:19.57,0:01:27.77,Next,,0,0,0,,{\pos(640,475)}Ma dopo tutto che cosa c'è di strano\NÈ una canzone sarà perché ti amo
-Dialogue: 0,0:01:27.77,0:01:35.73,Pair,,0,0,0,,{\pos(640,285)}Ma dopo tutto che cosa c'è di strano\NÈ una canzone sarà perché ti amo
-Dialogue: 0,0:01:27.77,0:01:35.73,Next,,0,0,0,,{\pos(640,475)}Se cade il mondo allora ci spostiamo\NSe cade il mondo sara perché ti amo
-Dialogue: 0,0:01:35.73,0:01:43.69,Pair,,0,0,0,,{\pos(640,285)}Se cade il mondo allora ci spostiamo\NSe cade il mondo sara perché ti amo
-Dialogue: 0,0:01:35.73,0:01:43.69,Next,,0,0,0,,{\pos(640,475)}Stringimi forte e stammi piu vicino\NE cosi bello che non mi sembra vero
-Dialogue: 0,0:01:43.69,0:01:51.64,Pair,,0,0,0,,{\pos(640,285)}Stringimi forte e stammi piu vicino\NE cosi bello che non mi sembra vero
-Dialogue: 0,0:01:43.69,0:01:51.64,Next,,0,0,0,,{\pos(640,475)}Se il mondo è matto che cosa c'è di strano\NMatto per matto almeno noi ci amiamo
-Dialogue: 0,0:01:51.64,0:02:15.27,Pair,,0,0,0,,{\pos(640,285)}Se il mondo è matto che cosa c'è di strano\NMatto per matto almeno noi ci amiamo
-Dialogue: 0,0:01:51.64,0:02:15.27,Next,,0,0,0,,{\pos(640,475)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:02:15.27,0:02:23.22,Pair,,0,0,0,,{\pos(640,285)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:02:15.27,0:02:23.22,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:02:23.22,0:02:31.18,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
-Dialogue: 0,0:02:23.22,0:02:31.18,Next,,0,0,0,,{\pos(640,475)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:02:31.18,0:02:39.13,Pair,,0,0,0,,{\pos(640,285)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
-Dialogue: 0,0:02:31.18,0:02:39.13,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è ma dimmi dove siamo\NChe confusione sarà perché ti amo
-Dialogue: 0,0:02:39.13,0:02:50.10,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è ma dimmi dove siamo\NChe confusione sarà perché ti amo
+Dialogue: 0,0:00:00.00,0:03:04.99,Title,,0,0,0,,Sarà perché ti amo
+Dialogue: 0,0:00:15.14,0:00:28.10,Pair,,0,0,0,,{\pos(640,285)}Che confusione sarà perché ti amo\NÈ un'emozione che cresce piano piano
+Dialogue: 0,0:00:15.14,0:00:28.10,Next,,0,0,0,,{\pos(640,475)}Stringimi forte e stammi piu vicino\NSe ci sto bene sarà perché ti amo
+Dialogue: 0,0:00:28.10,0:00:36.05,Pair,,0,0,0,,{\pos(640,285)}Stringimi forte e stammi piu vicino\NSe ci sto bene sarà perché ti amo
+Dialogue: 0,0:00:28.10,0:00:36.05,Next,,0,0,0,,{\pos(640,475)}Lo canto al ritmo del dolce tuo respiro\NÈ primavera sarà perché ti amo
+Dialogue: 0,0:00:36.05,0:00:44.01,Pair,,0,0,0,,{\pos(640,285)}Lo canto al ritmo del dolce tuo respiro\NÈ primavera sarà perché ti amo
+Dialogue: 0,0:00:36.05,0:00:44.01,Next,,0,0,0,,{\pos(640,475)}Cade una stella ma dimmi dove siamo\NChe te ne frega sarà perché ti amo
+Dialogue: 0,0:00:44.01,0:00:51.72,Pair,,0,0,0,,{\pos(640,285)}Cade una stella ma dimmi dove siamo\NChe te ne frega sarà perché ti amo
+Dialogue: 0,0:00:44.01,0:00:51.72,Next,,0,0,0,,{\pos(640,475)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:00:51.72,0:00:59.68,Pair,,0,0,0,,{\pos(640,285)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:00:51.72,0:00:59.68,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è c'e basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:00:59.68,0:01:07.63,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è c'e basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:00:59.68,0:01:07.63,Next,,0,0,0,,{\pos(640,475)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:01:07.63,0:01:15.59,Pair,,0,0,0,,{\pos(640,285)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:01:07.63,0:01:15.59,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:01:15.59,0:01:23.79,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:01:15.59,0:01:23.79,Next,,0,0,0,,{\pos(640,475)}Ma dopo tutto che cosa c'è di strano\NÈ una canzone sarà perché ti amo
+Dialogue: 0,0:01:23.79,0:01:31.75,Pair,,0,0,0,,{\pos(640,285)}Ma dopo tutto che cosa c'è di strano\NÈ una canzone sarà perché ti amo
+Dialogue: 0,0:01:23.79,0:01:31.75,Next,,0,0,0,,{\pos(640,475)}Se cade il mondo allora ci spostiamo\NSe cade il mondo sara perché ti amo
+Dialogue: 0,0:01:31.75,0:01:39.71,Pair,,0,0,0,,{\pos(640,285)}Se cade il mondo allora ci spostiamo\NSe cade il mondo sara perché ti amo
+Dialogue: 0,0:01:31.75,0:01:39.71,Next,,0,0,0,,{\pos(640,475)}Stringimi forte e stammi piu vicino\NE cosi bello che non mi sembra vero
+Dialogue: 0,0:01:39.71,0:01:47.66,Pair,,0,0,0,,{\pos(640,285)}Stringimi forte e stammi piu vicino\NE cosi bello che non mi sembra vero
+Dialogue: 0,0:01:39.71,0:01:47.66,Next,,0,0,0,,{\pos(640,475)}Se il mondo è matto che cosa c'è di strano\NMatto per matto almeno noi ci amiamo
+Dialogue: 0,0:01:47.66,0:02:11.29,Pair,,0,0,0,,{\pos(640,285)}Se il mondo è matto che cosa c'è di strano\NMatto per matto almeno noi ci amiamo
+Dialogue: 0,0:01:47.66,0:02:11.29,Next,,0,0,0,,{\pos(640,475)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:02:11.29,0:02:19.24,Pair,,0,0,0,,{\pos(640,285)}E vola vola si sa sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:02:11.29,0:02:19.24,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:02:19.24,0:02:27.20,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è basta una sola canzone\NPer far confusione fuori e dentro di te
+Dialogue: 0,0:02:19.24,0:02:27.20,Next,,0,0,0,,{\pos(640,475)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:02:27.20,0:02:35.15,Pair,,0,0,0,,{\pos(640,285)}E vola vola si va sempre più in alto si va\NE vola vola con me il mondo è matto perché
+Dialogue: 0,0:02:27.20,0:02:35.15,Next,,0,0,0,,{\pos(640,475)}E se l'amore non c'è ma dimmi dove siamo\NChe confusione sarà perché ti amo
+Dialogue: 0,0:02:35.15,0:02:46.12,Pair,,0,0,0,,{\pos(640,285)}E se l'amore non c'è ma dimmi dove siamo\NChe confusione sarà perché ti amo

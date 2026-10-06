@@ -52,15 +52,15 @@
 ### 24.10 Lefkara
 
 1. [Blondie — Heart of Glass](songs/heart-of-glass.md) — JamZone-стемы (~114.7 bpm, click:follow); pb-other=Organ+Pad+Strings+Backing Vocals, живой бас (Рома), стартовый cue Heart of Glass all in.
-2. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — JamZone-стемы (115 bpm); pb-other=Piano+Clavinet+синты+Brass+бэки, живой бас (Рома), стартовый cue Ghostbusters all in.
-3. [Shocking Blue — Venus](songs/venus.md) — JamZone-стемы (~128 bpm, click:follow); pb-other=Wurlitzer+Backing Vocals, живой бас (Рома), стартовый cue Venus guitar in.
-4. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — JamZone-стемы (114 bpm); pb-other=все синты/hits/brass/flute/бэки, живой бас (Рома), стартовый cue Cheri Cheri Lady all in.
-5. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — JamZone-стемы (~129.3 bpm, click:follow); pb-other=Rhodes+Strings, живой бас (Рома), стартовый cue Stumblin In all in.
-6. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — JamZone-стемы (120.6 bpm); pb-other=Piano+Synth+Pad+Strings, живой бас (Рома), стартовый cue Sarà perché ti amo all in.
-7. [Eurythmics — Sweet Dreams (Are Made of This)](songs/sweet-dreams.md) — JamZone-стемы (~125.2 bpm); pb-other=Noise FX+Piano+синты+Strings+Lead+бэки, живой бас (Рома), стартовый cue Sweet Dreams all in.
-8. [Depeche Mode — Personal Jesus](songs/personal-jesus.md) — JamZone-стемы (130 bpm); pb-other=Breath FX+Guitar Synth+Piano+Organ+Pad+Lead+Arp 1/2+бэки, живой бас (Рома), стартовый cue Personal Jesus all in.
-9. [Modern Talking — Brother Louie](songs/brother-louie.md) — JamZone-стемы (109 bpm); pb-other=Piano+синты+Strings+Hit+Brass+бэки, живой бас (Рома), стартовый cue Brother Louie all in.
-10. [Donna Summer — Hot Stuff (12" Version)](songs/hot-stuff.md) — JamZone-стемы (~120.3 bpm, click:follow); перкуссия исключена, pb-other=Piano+Synthesizer+Synth Keys+бэки, живой бас (Рома), стартовый cue Hot Stuff all in.
+2. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — JamZone-стемы (115 bpm); pb-other=Piano+Clavinet+синты+Brass+бэки, живой бас (Рома), 11 cues (Ghostbuster playback in, guitar bass ready go, drums/main in, break-one/two in, chorus in, keep going x3, end in).
+3. [Shocking Blue — Venus](songs/venus.md) — JamZone-стемы (~128 bpm, click:follow); pb-other=Wurlitzer+Backing Vocals, живой бас (Рома), 3 cues (all in 19s, verse in 26s, end in 3:16).
+4. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — JamZone-стемы (114 bpm); pb-other=все синты/hits/brass/flute/бэки, живой бас (Рома), вырезано 4 такта интро флейты, старт сразу с клавишной темы (bar 2), end fill in (bar 105).
+5. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — JamZone-стемы (~129.3 bpm, click:follow); pb-other=Rhodes+Strings, живой бас (Рома), 13 cues (vocal in, переклички Alex/Tanya, соло, стопы, финал).
+6. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — JamZone-стемы (120.6 bpm); pb-other=Piano+Synth+Pad+Strings, живой бас (Рома), 2 cues (all in bar 3, end in bar 91.2).
+7. [Eurythmics — Sweet Dreams (Are Made of This)](songs/sweet-dreams.md) — JamZone-стемы (~125.2 bpm); pb-other=Noise FX+Piano+синты+Strings+Lead+бэки, живой бас (Рома), 2 cues (all in bar 3, end in bar 113.1).
+8. [Depeche Mode — Personal Jesus](songs/personal-jesus.md) — JamZone-стемы (130 bpm); pb-other=Breath FX+Guitar Synth+Piano+Organ+Pad+Lead+Arp 1/2+бэки, живой бас (Рома), 2 cues (guitar in bar 3, end in bar 117.4).
+9. [Modern Talking — Brother Louie](songs/brother-louie.md) — JamZone-стемы (109 bpm); pb-other=Piano+синты+Strings+Hit+Brass+бэки, живой бас (Рома), 2 cues (playback in bar 1.3, end in bar 105.4).
+10. [Donna Summer — Hot Stuff (12" Version)](songs/hot-stuff.md) — JamZone-стемы (~120.3 bpm, click:follow); перкуссия исключена, pb-other=Piano+Synthesizer+Synth Keys+бэки, живой бас (Рома), 2 cues (all in bar 2, end in bar 160.1).
 
 ## Пайплайны
 

@@ -20,4 +20,6 @@ set: "24.10 Lefkara #10"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** `09_Piano`, `10_Synthesizer`, `11_Synth_Keys_(theme)`, `12_Backing_Vocals`.
 - **players:** roma (`04_Bass`, `05_Synth_Bass`), steve (`02_Drum_Kit`), tanya (`13_Lead_Vocal`).
-- **Стартовый cue:** `bar 1` — `Hot Stuff all in` («Hot Stuff all in ready go»).
+- **cues:**
+  - `bar 2.1` — `Hot Stuff all in` («Hot Stuff all in ready go») — вступление всей банды на 2 такт (lead +1 такт count-in).
+  - `bar 160.1` — `end in` («end in 3 · 3 2 1») — финальный удар барабанов.

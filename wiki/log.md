@@ -273,3 +273,81 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 2. Куплет 4 (`verse in` около 3:00) сдвинут с доли 1 на долю 2 (`bar 86.2` = 180.564 с): точно под вход фразы «Once I had a love».
 3. Припев 3 (`chorus in` около 3:18) сдвинут с доли 1 на долю 2 (`bar 95.2` = 199.394 с): точно под вход фразы «In between...».
 4. Перерендер `all.wav`, `cue_preview.mp3`, `click.wav`, `cues.wav`, stems и `web/songs.json`.
+
+## [2026-10-06] cues | Ghostbusters: добавлены 11 cue по сетке песни
+
+По запросу Alex сформирован и добавлен полный набор cue для `Ray Parker Jr. — Ghostbusters`:
+- `bar 1.1` (4.174s) — `Ghostbuster playback in` («Ghostbuster · playback in ready go»)
+- `bar 2.1` (6.261s) — `guitar bass ready go` (вступление живой гитары и баса, 0:06)
+- `bar 6.1` (14.609s) — `drums in` («drums in ready go», барабанный грув, 0:14)
+- `bar 7.1` (16.696s) — `main in` («main in ready go», главная тема, 0:17)
+- `bar 59.1` (125.217s) — `break-one in` («break-one in ready go», первый брейк, 2:05)
+- `bar 75.1` (158.609s) — `break-two in` («break-two in ready go», второй брейк, 2:38)
+- `bar 83.1` (175.304s) — `chorus in` («chorus in ready go», припев / главная тема, 2:55)
+- `bar 103.1` (217.043s) — `keep going` (звучит на 3:36 перед новым 4-тактовым циклом)
+- `bar 115.1` (242.087s) — `keep going` (звучит на 4:02 перед новым 4-тактовым циклом)
+- `bar 123.1` (258.783s) — `keep going` (звучит на 4:18 перед новым 4-тактовым циклом)
+- `bar 128.1` (269.217s) — `end in` («end in 3 · 3 2 1», финальный удар барабанов на 4:29)
+
+Выполнен локальный рендер через `jamzone_render.py "Ghostbusters"`: обновлены `mix.json`, `click.wav`, `cues.wav`, `all.wav`, `cue_preview.mp3`, `pb-*.wav`, `pb-*.mp3`, `timeline.json` и `web/songs.json`.
+
+## [2026-10-06] cues | Venus, Cheri Cheri Lady, Stumblin' In: обновление подсказок и обрезка интро Cheri
+
+По запросу Alex обновлены cue и таймлайны трёх песен:
+1. **Venus (Shocking Blue):**
+   - Ранний стартовый cue на 1-м такте удалён.
+   - `bar 9.1` (19.066s) — `Venus all in` («Venus · all in ready go», вступление банды).
+   - `bar 13.1` (26.656s) — `verse in` («verse in ready go», вступление вокала на даунбит).
+   - `bar 103.1` (195.666s = 3:15.7) — `end in` (`count: true` → «end in 3 · 3 2 1» на последний барабанный удар).
+   - Зафиксирован `count_in: 2` для сохранения стабильного таймлайна (+3.450с).
+
+2. **Cheri, Cheri Lady (Modern Talking):**
+   - В `jamzone_render.py` добавлена поддержка `cut_bars`: физическая вырезка диапазона тактов из стемов и клика с de-click фейдами.
+   - Вырезаны 4 вступительных такта флейты (`cut_bars: [2, 6]`), трек начинается сразу с главной темы клавиш:
+     - `bar 2.1` (4.211s) — `Cheri Cheri Lady all in` («Cheri Cheri Lady · all in ready go» на вступление клавишной темы).
+     - `bar 105.1` (221.053s = 3:41.1) — `end fill in` (`count: true` → «end fill in 3 · 3 2 1» под финальную сбивку барабанов).
+   - Таймлайн сценических lyrics пересчитан под новый трек: `37.tsv` сдвинут на 5 тактов (-10.53с), перегенерированы `clips/37.ass` и `clips/37.mp4`.
+
+3. **Stumblin' In (Suzi Quatro & Chris Norman):**
+   - Добавлены 13 cue строго под вокал, соло и стопы барабанов:
+     - `bar 1.3` (4.654s) — `Stumblin In vocal in` («Stumblin In · vocal in ready go» под вступление голосов на 3-й доле).
+     - `bar 17.3` (34.414s) — `alex sing ready go` (вход Alex «Wherever you go»).
+     - `bar 25.3` (49.214s) — `tanya sing ready go` (вход Tanya «I'm fallin' for you»).
+     - `bar 37.2` (70.994s = 1:11.0) — `stop` («stop in 3 · 3 2 1» на стоп барабанов).
+     - `bar 54.1` (102.094s = 1:42.1) — `guitar solo ready go` (гитарное соло).
+     - `bar 61.3` (116.014s = 1:56.0) — `alex sing ready go` (Alex «You were so young»).
+     - `bar 65.2` (123.034s = 2:03.0) — `tanya sing ready go` (Tanya «I may have been young»).
+     - `bar 69.3` (130.914s = 2:10.9) — `alex sing ready go` (Alex «Well you were the one»).
+     - `bar 81.2` (152.734s = 2:32.7) — `stop` («stop in 3 · 3 2 1» на стоп барабанов).
+     - `bar 105.2` (197.314s = 3:17.3) — `alex sing ready go` (Alex «Oh stumblin' in»).
+     - `bar 113.2` (212.154s = 3:32.2) — `tanya sing ready go` (Tanya «Oh stumblin' in»).
+     - `bar 121.1` (226.494s = 3:46.5) — `tanya sasha sing go` (дуэт Tanya & Sasha).
+     - `bar 128.1` (239.414s = 3:59.4) — `end in` (`count: true` → «end in 3 · 3 2 1» на финальный удар).
+
+Выполнены рендеры всех трёх песен в `auto-render/` (`all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `pb-*.wav`, `pb-*.mp3`), обновлён `web/songs.json`.
+
+## [2026-10-06] cues | Sarà perché ti amo, Sweet Dreams, Personal Jesus, Brother Louie, Hot Stuff: фикс ранних стартовых cue и добавление "end in 3 2 1"
+
+По замечаниям Alex обновлены стартовые и финальные кью для 5 песен сетлиста Lefkara:
+
+1. **Ricchi e Poveri — Sarà perché ti amo:**
+   - Стартовый cue перенесён с `bar 1` на `bar 3.1` (3.978s): `Sarà perché ti amo all in` («Sarà perché ti amo · all in ready go»); 2 такта precount теперь корректно содержат объявление и отсчёт перед вступлением всей банды на такте 3.
+   - Добавлен финальный cue на последний барабанный удар: `bar 91.2` (179.520s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
+
+2. **Eurythmics — Sweet Dreams (Are Made of This):**
+   - Стартовый cue перенесён с `bar 1` на `bar 3.1` (3.834s): `Sweet Dreams all in` («Sweet Dreams · all in ready go»); музыка вступает на такте 3 после 2 тактов precount.
+   - Добавлен финальный cue на последний барабанный удар: `bar 113.1` (214.709s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
+
+3. **Depeche Mode — Personal Jesus:**
+   - Стартовый cue перенесён с `bar 1` на `bar 3.1` (3.692s) и заменён на гитару: `Personal Jesus guitar in` («Personal Jesus · guitar in ready go») — вступление гитары на такте 3 после 2 тактов precount.
+   - Добавлен финальный cue на последний барабанный удар перед клавишным хвостом: `bar 117.4` (215.538s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
+
+4. **Modern Talking — Brother Louie:**
+   - Стартовый cue перенесён с `bar 1.1` на первую ноту клавиш `bar 1.3` (3.303s): `Brother Louie playback in` («Brother Louie · playback in ready go»); автоматически добавлен 1 такт count-in lead, чтобы фраза чисто отзвучала перед нотой.
+   - Добавлен финальный cue на orchestra hit и финальный удар барабанов: `bar 105.4` (232.844s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
+
+5. **Donna Summer — Hot Stuff (12" Version):**
+   - Стартовый cue перенесён с `bar 1` на `bar 2.1` (4.114s): `Hot Stuff all in` («Hot Stuff · all in ready go»); вся банда вступает на такте 2 (lead +1 такт count-in для чистого звучания).
+   - Добавлен финальный cue на последний барабанный удар: `bar 160.1` (319.254s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
+
+Для всех 5 песен выполнен локальный рендер через `jamzone_render.py` (`mix.json`, `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `pb-*.wav`, `pb-*.mp3`, `timeline.json`), актуализирован `web/songs.json`.
