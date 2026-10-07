@@ -18,6 +18,6 @@
   },
   "cues": [
     {"bar": 3, "text": "Sarà perché ti amo all in", "abs_sec": 3.978, "snap_sec": 0.0},
-    {"bar": 91, "beat": 2, "text": "end in", "count": true, "abs_sec": 179.52, "snap_sec": 175.045}
+    {"bar": 91, "text": "end fill in", "count": true, "abs_sec": 179.023, "snap_sec": 174.547}
   ]
 }

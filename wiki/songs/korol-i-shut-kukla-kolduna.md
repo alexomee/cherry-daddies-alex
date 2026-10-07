@@ -8,13 +8,13 @@ set: tryout batch 2026-09
 
 # Кукла колдуна (Король и Шут)
 
-Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). С 2026-10-01 `pb-other` — пользовательский bounce Alex (бэки, скрипки, гитары, −2.5 dB). Альтернативная дорожка `pb-other-keys` пока из старых стемов (включает `keys`), `pb-drums` — барабаны для репетиций, бас живой (`pb-bass: null`, Roma).
+Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). С 2026-10-01 `pb-other` — пользовательский bounce Alex (бэки, скрипки, гитары); с 2026-10-07 обновлён на более громкую версию v2 (−14.9 LUFS, без трима), т.к. на репетиции −17.9 LUFS оказался слишком тихим. Альтернативная дорожка `pb-other-keys` пока из старых стемов (включает `keys`), `pb-drums` — барабаны для репетиций, бас живой (`pb-bass: null`, Roma).
 
 ## Сводка
 
 - **bpm:** 148.6 — Moises стемы выровнены через `jamzone_warp_ext.py` (`--bpm 148.6`) с использованием RubberBand (timemap, engine R2). Ранее наивный линейный ресемпл (`np.interp`) вызывал varispeed-колебания высоты тона скрипки до ±60 центов из-за плавающего живого темпа записи 1999 года; после исправления RubberBand сохраняет оригинальную высоту нот без фальши.
 - **pitch_semitones:** 0 (D minor).
-- **pb-other:** `parts/kukla-pb-other-v1.wav` — полный пользовательский слой, render-frame; `replaces:["backing_vocals","strings"]`, роль musical, gain −2.5 dB уже внутри WAV.
+- **pb-other:** `parts/kukla-pb-other-v2.wav` — полный пользовательский слой (2026-10-07), render-frame; `replaces:["backing_vocals","strings"]`, роль musical, −14.9 LUFS-I / −0.1 dBTP.
 - **pb-other-keys:** `backing_vocals` + `strings` + `keys`.
 - **pb-drums:** `drums` (установка для репетиций без барабанщика).
 - **pb-bass:** null (живой бас, Roma).
@@ -62,3 +62,19 @@ Alex сделал полный pb-other (по его описанию: бэк-в
 2026-10-01 по отдельной просьбе Alex WAV скопирован в `parts/kukla-pb-other-v1.wav`, назначен единственным layer в `mix.json:pb-other`. `auto-render/pb-other.wav` получил идентичный PCM + прежнюю tempo-метку 148.6; прослушка `pb-other.mp3` пересобрана с click/cues. Предыдущий mix и pb-other сохранены в `versions/2026-10-01-before-custom-pb-other/`.
 
 `sync_to_mainstage.sh --apply "Кукла колдуна"`: изменён один `pb-other.wav`; SHA256 factory/риг совпадает (`2f90d49f…33c4536`). Риг-коммит `be489c2a` **запушен в origin/main**. Подробности источника, тайминга и состава будущего all-превью — `parts/README.md`.
+
+## Обновление pb-other после репетиции: v2 без трима (2026-10-07)
+
+На репетиции 2026-10-07 выяснилось, что предыдущая версия с тримом −2.5 dB (−17.9 LUFS) звучит слишком тихо в пачке бэнда. Alex подготовил новый рендер из Logic: `/Users/alex/Downloads/кукла колдуна other.mp3` (48 kHz / 320 kbps stereo, 206.784 с).
+
+Измерения нового файла:
+- **−14.9 LUFS-I / −0.1 dBTP** (~+3.0 LUFS громче v1)
+- Gated stereo RMS: **−18.22 dBFS**, gated mono RMS: **−19.19 dBFS**
+- Loudness Range (LRA): **8.6 LU**
+- Тайминг: посемпловое совпадение с v1 (лаг 0 мс, 9 925 632 семплов при 48 kHz).
+
+Файл сконвертирован 1:1 в `parts/kukla-pb-other-v2.wav` (PCM 24 bit / 48 kHz stereo).
+В `mix.json` слой обновлён на `kukla-pb-other-v2`. Прежний v1 сохранён в `versions/2026-10-07-before-louder-pb-other/`.
+`auto-render/pb-other.wav` получил tempo-метку 148.6 (SHA256: `95220a9f10812855e9a3ff2c672638f8fb60280f1d1d9713761d6416b5c7b7fa`).
+Прослушка `auto-render/pb-other.mp3` пересобрана с click/cues.
+`sync_to_mainstage.sh --apply "Кукла колдуна"` обновил `pb-other.wav` в риге.

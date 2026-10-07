@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-06
+updated: 2026-10-07
 title: Brother Louie
 artist: Modern Talking
 set: "24.10 Lefkara #9"
@@ -21,4 +21,4 @@ set: "24.10 Lefkara #9"
 - **players:** roma (`03_Synth_Bass`), steve (`02_Drum_Kit`), tanya (`13_Lead_Vocal`).
 - **cues:**
   - `bar 1.3` — `Brother Louie playback in` («Brother Louie playback in ready go») — первая нота клавиш (lead +1 такт count-in).
-  - `bar 105.4` — `end in` («end in 3 · 3 2 1») — финальный orchestra hit / последний удар барабанов.
+  - `bar 105.3` — `end fill in` («end fill in 3 · 3 2 1») — отсчёт перед финальными orchestra hit / ударами барабанов (232.294s, такт 105 доли 3 и 4).

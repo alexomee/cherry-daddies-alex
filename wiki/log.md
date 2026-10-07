@@ -351,3 +351,76 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Добавлен финальный cue на последний барабанный удар: `bar 160.1` (319.254s) — `end in` (`count: true` → «end in 3 · 3 2 1»).
 
 Для всех 5 песен выполнен локальный рендер через `jamzone_render.py` (`mix.json`, `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `pb-*.wav`, `pb-*.mp3`, `timeline.json`), актуализирован `web/songs.json`.
+
+## [2026-10-07] fix | Stumblin' In: стартовый cue сдвинут на «&» (bar 1 beat 2&, 4.419s)
+
+- В `jamzone_render.py` добавлена поддержка дробных долей `beat: 2.5` и `"2&"` (парсинг `_parse_beat`, формат отображения `_disp_beat`).
+- **Синкопированный вход:** вокальная фраза «Our love is alive» начинается со слова «Our» на синкопе 2& (4.419s). Чтобы подсказка звучала в том же синкопированном ритме и приходила точно в долю:
+  - `vocal` на 2& прекаунта (2.55s)
+  - `in` на 3& прекаунта (3.02s)
+  - `ready` на 4& прекаунта (3.48s)
+  - `go` на 1& такта 1 (3.95s)
+  - ровно через 1 долю (на 2&, 4.419s) чисто и в ритме вступает голос: «Our» (2&) → «love» (доля 3, 4.65s).
+- **Стопы барабанов (bar 37 и 81):** оба cue были сдвинуты на 1 долю позже (`beat 2`). Исправлено на `bar 37 beat 1` (70.514s) и `bar 81 beat 1` (152.254s) — отсчёт «3 2 1» теперь звучит на долях 2, 3, 4 предыдущего такта, и стоп приходится точно на сильную долю 1.
+- **Гитарное соло (bar 53):** соло начиналось на `bar 53 beat 3` (во время прежнего «ready»), а cue целился в `bar 54 beat 1`. Cue перенесён на `bar 53 beat 3` (101.174s) — теперь «ready» на 53.1, «go» на 53.2, и соло начинается ровно на следующей доле после «go».
+- Выполнен перерендер `jamzone_render.py`, обновлены `auto-render/*`, `mix.json`, `web/songs.json`, `wiki/songs/stumblin-in.md`.
+
+## [2026-10-07] web | Добавлен сет «07.10 rehearsal» (10 песен) в веб-дашборд
+
+- По запросу Alex сформирован репетиционный список на 7 октября 2026:
+  1. `Smells Like Teen Spirit — Nirvana` (черновой слот без папки / hasData: false)
+  2. `Кукла колдуна — Король и Шут`
+  3. `Pretty Fly (For A White Guy) — The Offspring`
+  4. `Rock & Roll Queen — The Subways`
+  5. `Heads Will Roll — Yeah Yeah Yeahs`
+  6. `I Love It — Icona Pop`
+  7. `Медведица — Мумий Тролль`
+  8. `Мелом — Пропаганда`
+  9. `Я сошла с ума — ТАТУ`
+  10. `Мама Люба — SEREBRO`
+- Создана выделенная вкладка «07.10 rehearsal» в `web/index.html` с акцентным цветом `--rehearsal:#38bdf8`.
+- В `tools/setlist_dashboard.py` добавлен блок сета `07.10 rehearsal`, перегенерирован `web/songs.json`.
+- Существующие заметки и todo для всех 9 готовых треков сохранены и подтянуты по `sid` без дублирования.
+- Создана страница `wiki/gigs/2026-10-07-rehearsal.md`, обновлён `wiki/index.md`.
+
+## [2026-10-07] cues | Sarà perché ti amo: финальный cue перенесён на такт 91.1 ("end fill in 3 · 3 2 1")
+
+- Финальный cue перенесён с `bar 91.2` (179.520s, последний удар) на 1 долю раньше: `bar 91.1` (179.023s = 2:59.02).
+- Текст изменён на `end fill in` (`count: true` → «end fill in 3 · 3 2 1»):
+  - Анонс «end fill in 3» звучит в конце такта 89 / начале такта 90 (~2:56.2 – 2:57.1s).
+  - Отсчёт «3» (2:57.5s, такт 90.2), «2» (2:58.0s, такт 90.3), «1» (2:58.5s, такт 90.4) звучит во время барабанной сбивки.
+  - На 2:59.02s (такт 91.1) отсчёт завершён, и точно в долю звучат три финальных акцента keys: «pa pa pa» (такт 91 доли 1, 1-и, 2 с финальным крэшем).
+- Выполнен перерендер `jamzone_render.py` (`mix.json`, `cues.wav`, `cue_preview.mp3`, `all.wav`, стемы), обновлены `web/songs.json`, `wiki/index.md`, `wiki/songs/sara-perche-ti-amo.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-07] cues | Brother Louie: финальный cue перенесён на такт 105.3 ("end fill in 3 · 3 2 1")
+
+- Финальный cue перенесён с `bar 105.4` (232.844s) на 1 долю раньше: `bar 105.3` (232.294s = 3:52.29).
+- Текст изменён на `end fill in` (`count: true` → «end fill in 3 · 3 2 1»):
+  - Анонс «end fill in 3» звучит в конце такта 104 (~3:49.3 – 3:50.2s).
+  - Отсчёт «3» (3:50.6s, такт 104.4), «2» (3:51.2s, такт 105.1), «1» (3:51.7s, такт 105.2).
+  - На 232.294s (такт 105.3) отсчёт завершён, и точно в долю звучат финальные удары orchestra hit / барабанов (такт 105 доли 3 и 4).
+- Выполнен перерендер `jamzone_render.py` (`mix.json`, `cues.wav`, `cue_preview.mp3`, `all.wav`, стемы), обновлены `web/songs.json`, `wiki/index.md`, `wiki/songs/brother-louie.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-07] level | Кукла колдуна: замена pb-other на более громкий рендер v2 без трима
+
+На репетиции выяснилось, что предыдущая версия с тримом −2.5 dB (−17.9 LUFS) звучала слишком тихо.
+По запросу Alex получен новый файл `/Users/alex/Downloads/кукла колдуна other.mp3` (Logic Pro bounce, 48 kHz / 320 kbps stereo, 206.784 с).
+- **Уровни:** −14.9 LUFS-I, −0.1 dBTP, активный stereo RMS −18.22 dBFS, mono −19.19 dBFS, LRA 8.6 LU (на ~3 dB громче прежнего v1).
+- **Тайминг:** точное посемпловое совпадение с v1 (лаг 0 мс, 9 925 632 семплов при 48 kHz).
+- **Пайплайн:** файл импортирован в `parts/kukla-pb-other-v2.wav` (PCM 24 bit / 48 kHz stereo); в `mix.json` обновлена привязка на `kukla-pb-other-v2`. В canonical `auto-render/pb-other.wav` добавлена tempo-метка 148.6 (SHA256: `95220a9f10812855e9a3ff2c672638f8fb60280f1d1d9713761d6416b5c7b7fa`). Обновлена прослушка `auto-render/pb-other.mp3` (pb-other + click + cues) и `web/songs.json`.
+- Предыдущая версия сохранена в `versions/2026-10-07-before-louder-pb-other/`.
+- Выполнен `sync_to_mainstage.sh --apply "Кукла колдуна"`: обновлён `pb-other.wav` в риге `cherry-daddies-2000`.
+
+## [2026-10-07] ingest | Smells Like Teen Spirit: базовый плейбек (intro cue + click) из JamZone
+
+- По запросу Alex подготовлен базовый плейбек для репетиции (`07.10 rehearsal`).
+- Исходник: JamZone **cat_11775**, 13 HQ M4A-стемов распакованы через `jamzone_extract.py`.
+- **Сетка и темп:** в оригинальной дорожке темп интро ~110–111 BPM, с такта 5 (вход барабанов) ускоряется до ~117.6 BPM. Использован `"click": "follow"` (BPM 118.0) — рендер следует реальной сетке клика с максимальной ошибкой <4.2 мс.
+- **Плейбек:** базовый живой состав (`pb-other: null`, `pb-bass: null`). Стволы распределены по игрокам в `players`: Alex (все электрогитары), Roma (бас), Steve (барабаны), Tanya (вокал).
+- **Cue:** 1 стартовая подсказка `bar 2.1` (4.221s) — `"Smells Like Teen Spirit guitar in"`:
+  - Lead-такт 0 (0.00–2.03s, JZ count-in сэмплы клика): название песни **«Smells Like Teen Spirit»** в естественном темпе.
+  - Такт 1 (2.03–4.22s, прекаунт JamZone): слова **«guitar in ready go»** точно на долях клика.
+  - Такт 2.1 (4.221s): вступает гитарный рифф Курта Кобейна (`05_Electric_Guitar_(intro)`).
+- Выполнен рендер через `jamzone_render.py` с флагом `--practice`: сгенерированы `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `timeline.json`, раздельные mp3 в `stems/`, а также practice-миксы для всех 4 участников.
+- Обновлён `tools/setlist_dashboard.py` (привязка к папке `Nirvana - Smells Like Teen Spirit`), перегенерирован `web/songs.json` (57/57 песен с данными, hasData: true).
+- Создана страница `wiki/songs/nirvana-smells-like-teen-spirit.md`, обновлены `wiki/gigs/2026-10-07-rehearsal.md` и `wiki/index.md`.

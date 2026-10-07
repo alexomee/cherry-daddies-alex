@@ -804,9 +804,22 @@ def _cyrillic(s):
     import re
     return bool(re.search("[а-яёА-ЯЁ]", s))
 
+def _parse_beat(v):
+    if v is None: return 1.0
+    if isinstance(v, (int, float)): return float(v)
+    s = str(v).strip()
+    if s.endswith('&'):
+        return float(s[:-1]) + 0.5
+    return float(s)
+
+def _disp_beat(b):
+    bv = _parse_beat(b)
+    if bv % 1 == 0.5: return f"{int(bv)}&"
+    return str(int(bv)) if bv.is_integer() else f"{bv:g}"
+
 def cue_beat_index(c):
-    """beat index from the downbeat (bar 1 beat 1 = 0); beat defaults to 1."""
-    return 4*(int(c["bar"])-1) + (int(c.get("beat", 1))-1)
+    """beat index from the downbeat (bar 1 beat 1 = 0); beat defaults to 1. Supports fractional/& beats (e.g. 2.5 or '2&')."""
+    return 4*(float(c["bar"])-1) + (_parse_beat(c.get("beat", 1))-1.0)
 
 # Cue placement runs on a beat GRID, not a constant beat: relt(i) = seconds of beat index i
 # from the downbeat (constant songs: i*beat; tempo-follow songs: the metronome's own map, so a
@@ -954,7 +967,7 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
             ext = clips[0][1] - len(metric)
             phrase = (f"♪{'+'.join(chord)}♪ · " if chord else "") + (intro + " · " if intro else "") \
                      + " ".join(metric) + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
-        rep.append((int(c["bar"]), int(c.get("beat", 1)), phrase, t_event))
+        rep.append((int(c["bar"]), _disp_beat(c.get("beat", 1)), phrase, t_event))
     return buf, rep
 
 def write_cue_abs_times(mix_path, times, snaps=None):
@@ -1167,8 +1180,13 @@ def main():
     #           --logic B[.beat] a Logic-ruler spot  -> the mix.json "bar" to write
     #           --bar  N[.beat]  a mix.json bar       -> render sec + where it shows on Logic's ruler
     #           --at   SEC       a render/SMPTE second-> mix.json "bar"
-    def idx_to_barbeat(i): i = int(round(i)); return i//4 + 1, i % 4 + 1
-    def mixbar_to_idx(b, bt_=1): return 4*(int(b)-1) + (int(bt_)-1)
+    def idx_to_barbeat(i):
+        i = round(i*2)/2
+        b = int(i//4) + 1
+        rem = i % 4
+        be = rem + 1
+        return b, be
+    def mixbar_to_idx(b, bt_=1): return 4*(float(b)-1) + (_parse_beat(bt_)-1.0)
     def render_sec(i): return cue_base + relt(i)
     def sec_to_idx(t):                                  # inverse of render_sec (tempo-follow aware)
         if not follow: return (t - cue_base)/beat
@@ -1182,7 +1200,7 @@ def main():
     def sec_of_logic(bn, be=1): return ((bn-1) + (be-1)/4)*bar
     def report(t, src):
         mb, mbe = idx_to_barbeat(sec_to_idx(t)); lb, lbe = logic_of_sec(t)
-        write = f'"bar": {mb}' if mbe == 1 else f'"bar": {mb}, "beat": {mbe}'
+        write = f'"bar": {mb}' if mbe == 1 else f'"bar": {mb}, "beat": {_disp_beat(mbe)}'
         print(f'  {src:>18} | render {t:8.3f}s | mix.json {{{write}}} | Logic ruler {lb}.{round(lbe)}')
     def _qval(flag): return sys.argv[sys.argv.index(flag)+1]
     q = False
@@ -1191,7 +1209,7 @@ def main():
         print("cue map — mix.json bar  ->  render sec  ->  Logic ruler bar.beat:")
         for c in mix.get("cues", []):
             i = cue_beat_index(c); t = render_sec(i); lb, lbe = logic_of_sec(t)
-            print(f"  bar {int(c['bar']):>3} beat {int(c.get('beat',1))} | {t:8.3f}s "
+            print(f"  bar {int(c['bar']):>3} beat {_disp_beat(c.get('beat',1)):>3} | {t:8.3f}s "
                   f"| Logic {lb}.{round(lbe)} | {c['text']}")
     for flag, mk in (("--logic", lambda v: sec_of_logic(int(v.split('.')[0]), int((v.split('.')+['1'])[1]))),
                      ("--bar",   lambda v: render_sec(mixbar_to_idx(int(v.split('.')[0]), int((v.split('.')+['1'])[1])))),

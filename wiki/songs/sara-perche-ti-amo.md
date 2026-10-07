@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-06
+updated: 2026-10-07
 title: Sarà perché ti amo
 artist: Ricchi e Poveri
 set: "24.10 Lefkara #6"
@@ -21,4 +21,4 @@ set: "24.10 Lefkara #6"
 - **players:** roma (`03_Bass`), steve (`02_Drum_Kit`), tanya (`11_Lead_Vocal_Angela_Brambati`, `12_Lead_Vocal_Angelo_Sotgiu`).
 - **cues:**
   - `bar 3.1` — `Sarà perché ti amo all in` («Sarà perché ti amo all in ready go») — вступление группы после 2 тактов precount.
-  - `bar 91.2` — `end in` («end in 3 · 3 2 1») — финальный удар барабанов/группы.
+  - `bar 91.1` — `end fill in` («end fill in 3 · 3 2 1») — отсчёт перед финальными акцентами keys («pa pa pa» на 179.023s: такт 91 доли 1, 1-и, 2).

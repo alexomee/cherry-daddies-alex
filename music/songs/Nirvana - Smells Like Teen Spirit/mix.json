@@ -1,0 +1,26 @@
+{
+  "bpm": 118.0,
+  "pitch_semitones": 0,
+  "click": "follow",
+  "pb-other": null,
+  "pb-bass": null,
+  "players": {
+    "alex": [
+      "04_Electric_Guitar_(feedback)",
+      "05_Electric_Guitar_(intro)",
+      "06_Rhythm_Electric_Guitar_(left_1)",
+      "07_Rhythm_Electric_Guitar_(left_2)",
+      "08_Rhythm_Electric_Guitar_(right_1)",
+      "09_Rhythm_Electric_Guitar_(right_2)",
+      "10_Lead_Electric_Guitar",
+      "11_Arr._Electric_Guitar_1",
+      "12_Arr._Electric_Guitar_2"
+    ],
+    "roma": ["03_Bass"],
+    "steve": ["02_Drum_Kit"],
+    "tanya": ["13_Lead_Vocal"]
+  },
+  "cues": [
+    {"bar": 2, "text": "Smells Like Teen Spirit guitar in", "abs_sec": 4.221, "snap_sec": 0.0}
+  ]
+}

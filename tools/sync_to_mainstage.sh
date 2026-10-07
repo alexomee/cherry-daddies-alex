@@ -65,6 +65,7 @@ MAP=(
   "Pretty Fly|||The Offspring - Pretty Fly (For A White Guy)"
   "Медляк|||Mr. Credo - Медляк"
   "Я буду|||5sta Family & 23:45 - Я буду"
+  "Smells Like Teen Spirit|||Nirvana - Smells Like Teen Spirit"
 )
 
 # Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,

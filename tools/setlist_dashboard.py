@@ -62,6 +62,23 @@ def _save_hcache():
 # Setlist: display title/artist from here; `folder` = mix.json source (None => no data yet).
 SETS = [
     {
+        "name": "07.10 rehearsal",
+        "subtitle": "список на репетицию",
+        "cls": "rehearsal",
+        "songs": [
+            ("Smells Like Teen Spirit", "Nirvana", "Nirvana - Smells Like Teen Spirit"),
+            ("Кукла колдуна", "Король и Шут", "Король и Шут - Кукла колдуна"),
+            ("Pretty Fly (For A White Guy)", "The Offspring", "The Offspring - Pretty Fly (For A White Guy)"),
+            ("Rock & Roll Queen", "The Subways", "The Subways - Rock & Roll Queen"),
+            ("Heads Will Roll", "Yeah Yeah Yeahs", "Yeah Yeah Yeahs - Heads Will Roll"),
+            ("I Love It", "Icona Pop", "Icona Pop & Charli XCX - I Love It"),
+            ("Медведица", "Мумий Тролль", "Мумий Тролль - Медведица"),
+            ("Мелом", "Пропаганда", "Мелом"),
+            ("Я сошла с ума", "ТАТУ", "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"),
+            ("Мама Люба", "SEREBRO", "Мама Люба"),
+        ],
+    },
+    {
         "name": "24.10 Lefkara",
         "subtitle": "новый плейлист концерта в Лефкаре",
         "cls": "lefkara",
@@ -176,6 +193,8 @@ BASS_ASSIGN = {
     "Елена Терлеева - Солнце": "Roma (real bass-guitar)",  # pb-bass removed, roma plays real bass
     "The Offspring - Pretty Fly (For A White Guy)": "Roma (real bass-guitar)",
     "Король и Шут - Кукла колдуна": "Roma (real bass-guitar)",
+    "The Subways - Rock & Roll Queen": "Roma",
+    "Nirvana - Smells Like Teen Spirit": "Roma (real bass-guitar)",
     # 24.10 Lefkara
     "Blondie - Heart of Glass": "Roma (real bass-guitar)",
     "Ray Parker Jr. - Ghostbusters": "Roma (real bass-guitar)",

@@ -10,7 +10,7 @@
 <style>
   :root{
     --bg:#0e0f13; --panel:#16181f; --row2:#171a22; --txt:#e8eaf0; --dim:#9aa0b0;
-    --line:#262a36; --set1:#3a6df0; --set2:#e0457b; --bis:#f0a93a; --try:#39b57a; --arch:#5b6172; --lefkara:#9d5bf0;
+    --line:#262a36; --set1:#3a6df0; --set2:#e0457b; --bis:#f0a93a; --try:#39b57a; --arch:#5b6172; --lefkara:#9d5bf0; --rehearsal:#38bdf8;
     --ok:#3ad29f; --no:#ff5d6c; --accent:#6c8cff;
   }
   *{box-sizing:border-box}
@@ -27,6 +27,7 @@
     padding:6px 16px;font-size:13.5px;font-weight:600;cursor:pointer;letter-spacing:.2px}
   .tab:hover{color:var(--txt);border-color:#39415a}
   .tab.active{background:var(--try);border-color:var(--try);color:#03150d}
+  .tab.trehearsal.active{background:var(--rehearsal);border-color:var(--rehearsal);color:#021e2f}
   .tab.tlefkara.active{background:var(--lefkara);border-color:var(--lefkara);color:#fff}
   .tab.tnew.active{background:var(--try);border-color:var(--try);color:#03150d}
   .tab.t2606.active{background:var(--set1);border-color:var(--set1);color:#fff}
@@ -62,6 +63,7 @@
   tr.tryout .setname{background:var(--try);color:#03150d}
   tr.archived .setname{background:var(--arch);color:#e8eaf0}
   tr.lefkara .setname{background:var(--lefkara);color:#fff}
+  tr.rehearsal .setname{background:var(--rehearsal);color:#021e2f}
   tr.sec .sub{color:var(--dim);font-size:13px;margin-left:8px}
   .num{color:var(--dim);width:30px;text-align:right;font-variant-numeric:tabular-nums}
   .song{min-width:160px}.title{font-weight:600}.artist{color:var(--dim);font-size:12.5px}
@@ -427,7 +429,8 @@
     <span class="sync" id="sync">…</span>
   </div>
   <div class="tabs" id="tabs">
-    <button class="tab tlefkara active" data-tab="lefkara">24.10 lefkara</button>
+    <button class="tab trehearsal active" data-tab="rehearsal">07.10 rehearsal</button>
+    <button class="tab tlefkara" data-tab="lefkara">24.10 lefkara</button>
     <button class="tab tnew" data-tab="new">28.10 new songs</button>
     <button class="tab t2606" data-tab="old">26.06</button>
     <button class="tab tarch" data-tab="arch">Архив</button>
@@ -1457,19 +1460,20 @@
     });
   }
 
-  // ---- setlist tabs: "24.10 lefkara" / "New" (tryout) / "26.06" (shipped СЕТ 1/2/бис) / "Архив" (archived) ----
+  // ---- setlist tabs: "07.10 rehearsal" / "24.10 lefkara" / "New" (tryout) / "26.06" (shipped СЕТ 1/2/бис) / "Архив" (archived) ----
   var ALLDATA = null;                        // full songs.json, kept so tab switches re-filter
   var TABLS = "cd-settab";
   var TAB_CLS = {
+    rehearsal: ["rehearsal"],
     lefkara: ["lefkara", "lefkara1", "lefkara2", "lefkara_bis"],
     new: ["tryout"],
     old: ["set1", "set2", "bis"],
     arch: ["archived"],
   };
-  var currentTab = "lefkara";
+  var currentTab = "rehearsal";
   try { var _tb = localStorage.getItem(TABLS); if(_tb && TAB_CLS[_tb]) currentTab = _tb; } catch(e){}
   function setsForTab(tab){
-    var allow = TAB_CLS[tab] || TAB_CLS.lefkara;
+    var allow = TAB_CLS[tab] || TAB_CLS.rehearsal;
     return (ALLDATA.sets || []).filter(function(st){ return allow.indexOf(st.cls) !== -1; });
   }
   function countsOf(sets){                    // mirror setlist_dashboard.py counts, for the visible tab
@@ -1486,7 +1490,7 @@
     return c;
   }
   function applyTab(tab){
-    if(!TAB_CLS[tab]) tab = "lefkara";
+    if(!TAB_CLS[tab]) tab = "rehearsal";
     currentTab = tab;
     try { localStorage.setItem(TABLS, tab); } catch(e){}
     document.querySelectorAll("#tabs .tab").forEach(function(b){

@@ -1,14 +1,1457 @@
 {
-  "generated": "2026-10-06T23:54:08",
+  "generated": "2026-10-07T16:59:13",
   "counts": {
-    "total": 47,
-    "data": 47,
-    "cues": 47,
-    "playback": 21,
-    "other": 36,
-    "practice": 46
+    "total": 57,
+    "data": 57,
+    "cues": 57,
+    "playback": 25,
+    "other": 42,
+    "practice": 55
   },
   "sets": [
+    {
+      "name": "07.10 rehearsal",
+      "subtitle": "список на репетицию",
+      "cls": "rehearsal",
+      "songs": [
+        {
+          "sid": "Nirvana - Smells Like Teen Spirit",
+          "slug": "53a4ff952038",
+          "title": "Smells Like Teen Spirit",
+          "artist": "Nirvana",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.221,
+                "text": "Smells Like Teen Spirit guitar in",
+                "bar": 2,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "23233b5767",
+            "drums": "9f7358063c",
+            "bass": "052b9637fb",
+            "guitars": "ac5cb0a984",
+            "click": "0683a8a44e",
+            "cues": "2784c92e20"
+          },
+          "versions": {
+            "all": "2cbc4373db",
+            "alex": "28932ab543",
+            "steve": "3702c0bce1",
+            "roma": "e32e7921ef",
+            "tanya": "35ae349fd0"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Король и Шут - Кукла колдуна",
+          "slug": "ccbcf0c2cad9",
+          "title": "Кукла колдуна",
+          "artist": "Король и Шут",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 3,
+            "list": [
+              {
+                "t": 3.23,
+                "text": "Кукла колдуна strings in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 14.536,
+                "text": "drums in",
+                "bar": 8,
+                "snap": 11.306
+              },
+              {
+                "t": 29.071,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 25.841
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "kukla-pb-other-v2"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "9659bea991",
+            "back_vox": "3bbbdef298",
+            "drums": "bd9138b2db",
+            "keys": "bb02c35350",
+            "bass": "e22132c75d",
+            "guitars": "70888629d7",
+            "other": "77ec73fb05",
+            "click": "eb545ae26c",
+            "cues": "76daa09aa3"
+          },
+          "versions": {
+            "all": "b50593b8a8",
+            "drums": "c5068d456e",
+            "alex": "7f1aeaffd5",
+            "steve": "25825a20c7",
+            "roma": "d7a73d7dbf",
+            "tanya": "e09bb1cba0",
+            "pb-other": "a8297ece72"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "The Offspring - Pretty Fly (For A White Guy)",
+          "slug": "54244363ae3e",
+          "title": "Pretty Fly (For A White Guy)",
+          "artist": "The Offspring",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 4,
+            "list": [
+              {
+                "t": 3.357,
+                "text": "Pretty Fly drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 5.035,
+                "text": "vocal in",
+                "bar": 2,
+                "snap": 1.678
+              },
+              {
+                "t": 18.462,
+                "text": "all in",
+                "bar": 10,
+                "snap": 15.105
+              },
+              {
+                "t": 125.455,
+                "text": "bass verse ready go",
+                "bar": 73,
+                "snap": 122.098
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "backing vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "630f598456",
+            "back_vox": "8e993690b4",
+            "drums": "e3e29bc0d3",
+            "bass": "7c3632a7f2",
+            "guitars": "688e111c9e",
+            "click": "fb1e8291df",
+            "cues": "8558b90fa2"
+          },
+          "versions": {
+            "all": "e108082b82",
+            "drums": "11bd061dff",
+            "alex": "6cda40d1a3",
+            "steve": "929337f9bd",
+            "roma": "c8ec4f9c91",
+            "tanya": "e01df2f3a5",
+            "pb-other": "7d6f0da12d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "The Subways - Rock & Roll Queen",
+          "slug": "305504ec84ac",
+          "title": "Rock & Roll Queen",
+          "artist": "The Subways",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 8,
+            "list": [
+              {
+                "t": 3.404,
+                "text": "Rock & Roll Queen guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 23.83,
+                "text": "all in",
+                "bar": 13,
+                "snap": 20.426
+              },
+              {
+                "t": 57.872,
+                "text": "verse in",
+                "bar": 33,
+                "snap": 54.468
+              },
+              {
+                "t": 98.723,
+                "text": "guitar only ready go",
+                "bar": 57,
+                "snap": 95.319
+              },
+              {
+                "t": 105.532,
+                "text": "verse in",
+                "bar": 61,
+                "snap": 102.128
+              },
+              {
+                "t": 119.149,
+                "text": "solo in",
+                "bar": 69,
+                "snap": 115.745
+              },
+              {
+                "t": 132.766,
+                "text": "chorus in",
+                "bar": 77,
+                "snap": 129.362
+              },
+              {
+                "t": 160.0,
+                "text": "end in",
+                "bar": 93,
+                "snap": 156.17
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Lead Electric Guitar"
+            ]
+          },
+          "practice": [
+            "all",
+            "roma"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "7b0f15f2d0",
+            "back_vox": "c693c3200e",
+            "drums": "c7ee8583b0",
+            "bass": "71842772a9",
+            "guitars": "85316f9cf0",
+            "click": "4b29dccd45",
+            "cues": "5d47a44aa0"
+          },
+          "versions": {
+            "all": "f7f749329f",
+            "roma": "5e854372cd",
+            "pb-other": "59db29cfbc"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Yeah Yeah Yeahs - Heads Will Roll",
+          "slug": "38c4670831f0",
+          "title": "Heads Will Roll",
+          "artist": "Yeah Yeah Yeahs",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 3.637,
+                "text": "Heads will roll synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 18.184,
+                "text": "vocal in",
+                "bar": 11,
+                "snap": 14.547
+              },
+              {
+                "t": 32.731,
+                "text": "drums in",
+                "bar": 19,
+                "snap": 29.095
+              },
+              {
+                "t": 35.914,
+                "text": "bass in",
+                "bar": 20,
+                "snap": 32.277
+              },
+              {
+                "t": 61.826,
+                "text": "guitar in",
+                "bar": 35,
+                "snap": 58.189
+              },
+              {
+                "t": 72.736,
+                "text": "bass in",
+                "bar": 41,
+                "snap": 69.1
+              },
+              {
+                "t": 76.373,
+                "text": "main in",
+                "bar": 43,
+                "snap": 72.736
+              },
+              {
+                "t": 90.466,
+                "text": "vocal in",
+                "bar": 50,
+                "snap": 86.829
+              },
+              {
+                "t": 105.468,
+                "text": "bridge in",
+                "bar": 59,
+                "snap": 101.831
+              },
+              {
+                "t": 134.562,
+                "text": "guitar break ready go",
+                "bar": 75,
+                "snap": 130.926
+              },
+              {
+                "t": 149.11,
+                "text": "all in",
+                "bar": 83,
+                "snap": 145.473
+              },
+              {
+                "t": 167.294,
+                "text": "solo in",
+                "bar": 93,
+                "snap": 163.657
+              },
+              {
+                "t": 180.932,
+                "text": "vocal in",
+                "bar": 100,
+                "snap": 177.295
+              },
+              {
+                "t": 196.388,
+                "text": "guitar solo ready go",
+                "bar": 109,
+                "snap": 192.752
+              },
+              {
+                "t": 210.936,
+                "text": "drums only ready go",
+                "bar": 117,
+                "snap": 207.299
+              },
+              {
+                "t": 221.846,
+                "text": "end stop",
+                "bar": 123,
+                "snap": 217.755
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "830e0be6e8",
+            "back_vox": "48bb88bae4",
+            "drums": "c2f9cc866c",
+            "keys": "d59c1a8726",
+            "bass": "daa29196e1",
+            "guitars": "dd5b539df6",
+            "other": "fcd35f8f0c",
+            "click": "42216dda5e",
+            "cues": "1e3a341238"
+          },
+          "versions": {
+            "all": "d5488f9336",
+            "drums": "062ecb1621",
+            "alex": "f7bc939b4f",
+            "steve": "9e3cd5a3b6",
+            "roma": "1120da787c",
+            "tanya": "1f6efc1b02",
+            "pb-other": "89bcb2709a",
+            "pb-bass": "82e17774e7"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          }
+        },
+        {
+          "sid": "Icona Pop & Charli XCX - I Love It",
+          "slug": "278090c6fbe3",
+          "title": "I Love It",
+          "artist": "Icona Pop",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 3.81,
+                "text": "I Love It synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.429,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 7.619
+              },
+              {
+                "t": 24.762,
+                "text": "all stop",
+                "bar": 14,
+                "snap": 20.476
+              },
+              {
+                "t": 26.667,
+                "text": "main in",
+                "bar": 15,
+                "snap": 22.857
+              },
+              {
+                "t": 34.286,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 30.476
+              },
+              {
+                "t": 56.19,
+                "text": "bridge in",
+                "bar": 30,
+                "snap": 52.381
+              },
+              {
+                "t": 72.381,
+                "text": "main in",
+                "bar": 39,
+                "snap": 68.571
+              },
+              {
+                "t": 87.619,
+                "text": "verse in",
+                "bar": 47,
+                "snap": 83.81
+              },
+              {
+                "t": 101.905,
+                "text": "chorus in",
+                "bar": 54,
+                "snap": 98.095
+              },
+              {
+                "t": 117.143,
+                "text": "bridge in",
+                "bar": 62,
+                "snap": 113.333
+              },
+              {
+                "t": 129.524,
+                "text": "keep going",
+                "bar": 69,
+                "snap": 126.667
+              },
+              {
+                "t": 133.333,
+                "text": "main in",
+                "bar": 71,
+                "snap": 129.524
+              },
+              {
+                "t": 156.19,
+                "text": "end stop",
+                "bar": 83,
+                "snap": 151.905
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Noise effects"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "f023446d7d",
+            "back_vox": "be95a19fe8",
+            "drums": "62b01e50dd",
+            "keys": "df67f8b856",
+            "bass": "f7f6dc791f",
+            "guitars": "75cbb63f53",
+            "other": "5cc0dcb0c3",
+            "click": "1f1f0905c8",
+            "cues": "4e831c9cac"
+          },
+          "versions": {
+            "all": "1f2325e61c",
+            "drums": "fc84d8ad83",
+            "alex": "c19ee8b2c3",
+            "steve": "4c104e2c3e",
+            "roma": "7f3d1fd4ba",
+            "tanya": "c60d694598",
+            "pb-other": "8a1d49b3a5",
+            "pb-bass": "679df87b4f"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          }
+        },
+        {
+          "sid": "Мумий Тролль - Медведица",
+          "slug": "42a10b949a41",
+          "title": "Медведица",
+          "artist": "Мумий Тролль",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 3,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Медведица drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 7.385,
+                "text": "all in",
+                "bar": 3,
+                "snap": 3.692
+              },
+              {
+                "t": 36.923,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 33.231
+              }
+            ]
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "5f6d4552ce",
+            "drums": "e8c4ca658c",
+            "keys": "319cc3015e",
+            "bass": "43fa282052",
+            "guitars": "6d0cc27304",
+            "other": "645d59f777",
+            "click": "76a8740645",
+            "cues": "f13e9b3389"
+          },
+          "versions": {
+            "all": "0ab30c4812"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Мелом",
+          "slug": "b581fa388c98",
+          "title": "Мелом",
+          "artist": "Пропаганда",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 4.0,
+                "text": "Мелом guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 60.0,
+                "text": "drums stop",
+                "bar": 29,
+                "snap": 55.5
+              },
+              {
+                "t": 84.0,
+                "text": "bass-only in",
+                "bar": 41,
+                "snap": 80.0
+              },
+              {
+                "t": 92.0,
+                "text": "all in",
+                "bar": 45,
+                "snap": 88.0
+              },
+              {
+                "t": 108.0,
+                "text": "drums stop",
+                "bar": 53,
+                "snap": 103.5
+              },
+              {
+                "t": 124.0,
+                "text": "drums in",
+                "bar": 61,
+                "snap": 120.0
+              },
+              {
+                "t": 140.0,
+                "text": "drums stop",
+                "bar": 69,
+                "snap": 135.5
+              },
+              {
+                "t": 148.0,
+                "text": "drums in",
+                "bar": 73,
+                "snap": 144.0
+              },
+              {
+                "t": 164.0,
+                "text": "keep going",
+                "bar": 81,
+                "snap": 161.0
+              },
+              {
+                "t": 180.0,
+                "text": "guitar only ready go",
+                "bar": 89,
+                "snap": 176.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "bab0def37b",
+            "back_vox": "cd6367a675",
+            "drums": "3ed2807cad",
+            "keys": "023be18a0a",
+            "bass": "4a87f173a8",
+            "guitars": "c071861b58",
+            "other": "e86a486e6c",
+            "click": "8a76014776",
+            "cues": "74dd01dd5f"
+          },
+          "versions": {
+            "all": "7542bb32a5",
+            "alex": "f9ee2b9781",
+            "steve": "7d078aeaba",
+            "roma": "ade44592b7",
+            "tanya": "64c3383844"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+          "slug": "fde163f34bf4",
+          "title": "Я сошла с ума",
+          "artist": "ТАТУ",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 2.964,
+                "text": "pad in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 14.964,
+                "text": "chorus in",
+                "bar": 6,
+                "snap": 9.63
+              },
+              {
+                "t": 36.297,
+                "text": "verse in",
+                "bar": 14,
+                "snap": 30.964
+              },
+              {
+                "t": 60.297,
+                "text": "chorus in",
+                "bar": 23,
+                "snap": 54.964
+              },
+              {
+                "t": 81.63,
+                "text": "drums stop",
+                "bar": 31,
+                "snap": 75.63
+              },
+              {
+                "t": 86.964,
+                "text": "instrumental in",
+                "bar": 33,
+                "snap": 81.63
+              },
+              {
+                "t": 108.297,
+                "text": "all stop",
+                "bar": 41,
+                "snap": 102.297
+              },
+              {
+                "t": 129.63,
+                "text": "chorus in",
+                "bar": 49,
+                "snap": 124.297
+              },
+              {
+                "t": 161.63,
+                "text": "all stop",
+                "bar": 61,
+                "snap": 155.63
+              },
+              {
+                "t": 172.297,
+                "text": "drums in",
+                "bar": 65,
+                "snap": 166.964
+              },
+              {
+                "t": 182.964,
+                "text": "chorus in",
+                "bar": 69,
+                "snap": 177.63
+              },
+              {
+                "t": 204.297,
+                "text": "all stop",
+                "bar": 77,
+                "snap": 198.297
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Noise effects (Wind)",
+              "Acoustic Guitar",
+              "Synth Pad",
+              "Synth Voice",
+              "Synth Lead",
+              "String Section",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "266278a1ea",
+            "back_vox": "56edf7fd9e",
+            "drums": "c4deacd97c",
+            "keys": "713ace4b71",
+            "bass": "7e96fa9b34",
+            "guitars": "8310e8cbcb",
+            "other": "a512dc7ff9",
+            "click": "48aa8ed4ce",
+            "cues": "267ce4d4b2"
+          },
+          "versions": {
+            "all": "4b738245c5",
+            "steve": "add90d2cc9",
+            "tanya": "ff45541b81",
+            "pb-other": "ff66636534",
+            "pb-bass": "2cdd4793d5"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          }
+        },
+        {
+          "sid": "Мама Люба",
+          "slug": "bfc10db79749",
+          "title": "Мама Люба",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 15,
+            "list": [
+              {
+                "t": 3.765,
+                "text": "Мама Люба all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 20.706,
+                "text": "keep going",
+                "bar": 10,
+                "snap": 17.882
+              },
+              {
+                "t": 24.471,
+                "text": "verse-instrumental ready go",
+                "bar": 12,
+                "snap": 20.706
+              },
+              {
+                "t": 39.529,
+                "text": "verse in ready go",
+                "bar": 20,
+                "snap": 35.765
+              },
+              {
+                "t": 69.647,
+                "text": "chorus in ready go",
+                "bar": 36,
+                "snap": 65.882
+              },
+              {
+                "t": 99.765,
+                "text": "soft verse ready go",
+                "bar": 52,
+                "snap": 96.0
+              },
+              {
+                "t": 129.882,
+                "text": "guitar break ready go",
+                "bar": 68,
+                "snap": 126.118
+              },
+              {
+                "t": 133.176,
+                "text": "stop-n-chorus in",
+                "bar": 69,
+                "snap": 128.941
+              },
+              {
+                "t": 163.765,
+                "text": "synth solo ready go",
+                "bar": 86,
+                "snap": 160.0
+              },
+              {
+                "t": 178.824,
+                "text": "kick stop",
+                "bar": 94,
+                "snap": 174.588
+              },
+              {
+                "t": 193.882,
+                "text": "chorus variation ready go",
+                "bar": 102,
+                "snap": 190.118
+              },
+              {
+                "t": 205.176,
+                "text": "build up ready go",
+                "bar": 108,
+                "snap": 201.412
+              },
+              {
+                "t": 208.471,
+                "text": "stop-n-chorus ready stop",
+                "bar": 109,
+                "snap": 204.706
+              },
+              {
+                "t": 224.0,
+                "text": "solo in ready go",
+                "bar": 118,
+                "snap": 220.235
+              },
+              {
+                "t": 239.059,
+                "text": "end in",
+                "bar": 126,
+                "snap": 234.824
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "roma",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "4cb30e44c2",
+            "back_vox": "7343e4ad3a",
+            "drums": "c2341b2b90",
+            "keys": "cbb0cca3b5",
+            "bass": "5afda2fdde",
+            "guitars": "e23f73271e",
+            "other": "af570a6489",
+            "click": "49b2efe365",
+            "cues": "bc1c7809ef"
+          },
+          "versions": {
+            "all": "6fe4c556af",
+            "drums": "c50d60bc35",
+            "alex": "3a7ac7ac27",
+            "steve": "0c054e399a",
+            "roma": "206b64c511",
+            "tanya": "3689e1bd3d",
+            "trio": "833b377f84",
+            "pb-bass": "a8306312e0"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          }
+        }
+      ]
+    },
     {
       "name": "24.10 Lefkara",
       "subtitle": "новый плейлист концерта в Лефкаре",
@@ -608,10 +2051,10 @@
             "count": 13,
             "list": [
               {
-                "t": 4.654,
+                "t": 4.419,
                 "text": "Stumblin In vocal in",
                 "bar": 1,
-                "snap": 0.126
+                "snap": 0.0
               },
               {
                 "t": 34.414,
@@ -626,16 +2069,16 @@
                 "snap": 45.517
               },
               {
-                "t": 70.994,
+                "t": 70.514,
                 "text": "stop",
                 "bar": 37,
-                "snap": 66.797
+                "snap": 66.337
               },
               {
-                "t": 102.094,
+                "t": 101.174,
                 "text": "guitar solo ready go",
-                "bar": 54,
-                "snap": 98.397
+                "bar": 53,
+                "snap": 97.457
               },
               {
                 "t": 116.014,
@@ -656,10 +2099,10 @@
                 "snap": 127.217
               },
               {
-                "t": 152.734,
+                "t": 152.254,
                 "text": "stop",
                 "bar": 81,
-                "snap": 148.537
+                "snap": 148.077
               },
               {
                 "t": 197.314,
@@ -747,10 +2190,10 @@
             "guitars": "068979c530",
             "other": "341794afc6",
             "click": "05c0a47747",
-            "cues": "2abe65a823"
+            "cues": "30de22ce05"
           },
           "versions": {
-            "all": "9bd56f6c35",
+            "all": "ee8b6bc2c0",
             "drums": "20747de7d6",
             "steve": "05e25bc01b",
             "roma": "50cc3343ce",
@@ -786,10 +2229,10 @@
                 "snap": 0.0
               },
               {
-                "t": 179.52,
-                "text": "end in",
+                "t": 179.023,
+                "text": "end fill in",
                 "bar": 91,
-                "snap": 175.045
+                "snap": 174.547
               }
             ]
           },
@@ -855,10 +2298,10 @@
             "guitars": "908e092b61",
             "other": "f57def3e10",
             "click": "da6e741a85",
-            "cues": "6fcf6b4521"
+            "cues": "82ecccfebe"
           },
           "versions": {
-            "all": "ee608fd408",
+            "all": "5e80c9cada",
             "drums": "7fce40ba47",
             "steve": "578f918fff",
             "roma": "4d4803cc82",
@@ -1126,10 +2569,10 @@
                 "snap": 0.0
               },
               {
-                "t": 232.844,
-                "text": "end in",
+                "t": 232.294,
+                "text": "end fill in",
                 "bar": 105,
-                "snap": 227.89
+                "snap": 227.339
               }
             ]
           },
@@ -1204,10 +2647,10 @@
             "guitars": "28973dfb7f",
             "other": "b2086bba2c",
             "click": "3df6be77bb",
-            "cues": "7bbbb142e4"
+            "cues": "7275755daa"
           },
           "versions": {
-            "all": "256b3687fd",
+            "all": "3551ae8b2e",
             "drums": "329ce2a3bb",
             "steve": "b8125ec59b",
             "roma": "0f44c14f43",
@@ -6619,7 +8062,7 @@
           "other": {
             "kind": "layers",
             "items": [
-              "kukla-pb-other-v1"
+              "kukla-pb-other-v2"
             ]
           },
           "practice": [
@@ -6686,7 +8129,7 @@
             "steve": "25825a20c7",
             "roma": "d7a73d7dbf",
             "tanya": "e09bb1cba0",
-            "pb-other": "268318b68d"
+            "pb-other": "a8297ece72"
           },
           "pb_other": {
             "available": true,
@@ -6898,7 +8341,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "assign",
+            "who": "Roma"
           },
           "other": {
             "kind": "stems",
