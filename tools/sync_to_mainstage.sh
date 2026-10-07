@@ -66,6 +66,17 @@ MAP=(
   "Медляк|||Mr. Credo - Медляк"
   "Я буду|||5sta Family & 23:45 - Я буду"
   "Smells Like Teen Spirit|||Nirvana - Smells Like Teen Spirit"
+  # 24.10 Lefkara batch
+  "Heart of Glass|||Blondie - Heart of Glass"
+  "Ghostbusters|||Ray Parker Jr. - Ghostbusters"
+  "Venus|||Shocking Blue - Venus"
+  "Cheri, Cheri Lady|||Modern Talking - Cheri, Cheri Lady"
+  "Stumblin' In|||Suzi Quatro & Chris Norman - Stumblin' In"
+  "Sarà perché ti amo|||Ricchi e Poveri - Sarà perché ti amo"
+  "Sweet Dreams|||Eurythmics - Sweet Dreams (Are Made of This)"
+  "Personal Jesus|||Depeche Mode - Personal Jesus"
+  "Brother Louie|||Modern Talking - Brother Louie"
+  "Hot Stuff|||Donna Summer - Hot Stuff"
 )
 
 # Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,
