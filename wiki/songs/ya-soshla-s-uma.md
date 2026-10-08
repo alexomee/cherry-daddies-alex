@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-10-08
 title: Я сошла с ума
 artist: t.A.T.u.
 set: на бис #2
@@ -16,13 +16,13 @@ set: на бис #2
 - **bpm:** 90.0
 - **pitch_semitones:** нет (JamZone-стемы уже в ключе группы — не питчатся).
 - **Источник:** JamZone (не Moises), `cat_54835`. См. [moises-import.md](../pipelines/moises-import.md) для общего пайплайна стемов.
-- Особых полей mix.json нет: `cue_step`, `count_in`, `tempo_zone`, `"click": "follow"` — отсутствуют. Клик берётся из стема `01_Click.m4a`.
-- timeline.json (`auto-render/`): `offset_sec` 2.369571, `bar_sec` 2.666667.
+- `mix.json`: `daw_align: true`, `pb-other.fade_out: {"from_bar": 77, "from_beat": 1, "to_bar": 77, "to_beat": 3}` (фейд-аут в 0 за 2 доли перед финальным ударом 3:24.3, после него полная тишина).
+- timeline.json (`auto-render/`): `offset_sec` 0.0, `bar_sec` 2.666667.
 
 ## Плейбек и рендер
 
 `mix.json`:
-- **pb-other:** `04_Noise_effects`, `05_Noise_effects_(Wind)`, `07_Acoustic_Guitar`, `09_Synth_Pad`, `10_Synth_Voice`, `11_Synth_Lead`, `12_String_Section`, `13_Backing_Vocals`.
+- **pb-other:** `04_Noise_effects`, `05_Noise_effects_(Wind)`, `07_Acoustic_Guitar`, `09_Synth_Pad`, `10_Synth_Voice`, `11_Synth_Lead`, `12_String_Section`, `13_Backing_Vocals`. `fade_out`: bar 77.1 → 77.3 (202.964с → 204.297с).
 - **pb-bass:** `06_Bass`.
 - **layers:** нет.
 - **players:** `steve` → `02_Drum_Kit`; `tanya` → `15_Lead_Vocal_Lena`, `14_Lead_Vocal_Julia`.
@@ -58,6 +58,7 @@ set: на бис #2
 - **2026-06-19** — `jamzone_render` стал выкидывать перкуссию (кроме drum kit) из music/all/pb/preview/practice.
 - **2026-06-20** — cleanup t.A.T.u. + финализация Мелом (на бис).
 - **2026-06-21** — cue `drums stop` поставлен на долю 31.3 (драм-брейк перед instrumental).
+- **2026-10-08** — добавлен `fade_out` на `pb-other` (bar 77.1 → 77.3, 202.964с → 204.297с, 2 доли до «all stop», дальше в ноль); поддержан `fade_out` в `jamzone_render.py` для групп/стемов. Перерендерены `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, practice-миксы, multi-track стемы.
 
 Гочи:
 - **Все секции входят на долю 3, не на барлайн** (chorus/verse/instrumental/pre/bridge/end). Per-bar RMS округляет границу к соседнему такту и промахивается в обе стороны (громкий фил впереди → cue на 2 доли рано; тихий переход → на 2 доли поздно). Мерить надо онсеты на уровне доли, а не по тактам. (память: cue-sections-beat-resolution)

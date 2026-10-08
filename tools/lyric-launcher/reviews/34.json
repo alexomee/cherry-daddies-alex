@@ -1,0 +1,84 @@
+{
+  "approved_by": null,
+  "build": {
+    "audio_duration": 263.723673,
+    "audio_sha256": "b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e",
+    "clips": {
+      "ass": "67cee4602c77158a9af857fa864d39aaa86d1780179b17e7a660e5c39d6b97dd",
+      "mp4": "87e6d2b6c5eef4193d26a23f63e8c335ce838b5d4af10bc9b3ee77be5638026b"
+    },
+    "guide": {
+      "bytes": 46520974,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 263.723673,
+      "key": "cherry-dash/bfcf5ddf04bc/guides/b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e/all.wav",
+      "mix_sha256": "043820462f0f722353db5aac22b5736e0c3facaa06751b7641c7e3c70bec3648",
+      "render_audio": {
+        "click.wav": "71979a288cfbf1d3d4502ec175e0fcc00b6da01ffb0979b8a5e627beaa4883a3",
+        "cues.wav": "8b5ebfad52b984a2779af20375c11299dde542fcbfb0caf0f647344917180628",
+        "pb-drums.wav": "69a9cb3230a86a857b31fa6d297d2181755d4b41936d3b9b139ecacfeee34f3e",
+        "pb-other.wav": "e64f724a9c9073d500ac44b102d726dc56dfee2e7740d74871cfbe669fee5b01"
+      },
+      "render_pcm": {
+        "click.wav": "68a5207cddd99acb24e184cf4e61b377ba7831f8309cb21403dc673fa1a35eaf",
+        "pb-other.wav": "6ea427d140820dd71fa40411adefa8662e5790ca5454282aaffc4052d98d3540"
+      },
+      "sample_rate": 44100,
+      "sha256": "b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 2.093045,
+        "bpm": 114.6655,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 1.794134
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/bfcf5ddf04bc/guides/b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Heart of Glass/click.wav": "71979a288cfbf1d3d4502ec175e0fcc00b6da01ffb0979b8a5e627beaa4883a3",
+        "cherry-daddies-setlist-2026-06-16/Heart of Glass/cues.wav": "8b5ebfad52b984a2779af20375c11299dde542fcbfb0caf0f647344917180628",
+        "cherry-daddies-setlist-2026-06-16/Heart of Glass/pb-drums.wav": "69a9cb3230a86a857b31fa6d297d2181755d4b41936d3b9b139ecacfeee34f3e",
+        "cherry-daddies-setlist-2026-06-16/Heart of Glass/pb-other.wav": "e64f724a9c9073d500ac44b102d726dc56dfee2e7740d74871cfbe669fee5b01",
+        "lyrics/clips/34.ass": "2c26f00426c31beb7adecc1db53951d49e360f0551cfea897ae074ef9261b002",
+        "lyrics/clips/34.mp4": "72a42034b0095712714156a9d8893bad33e01432eb21cd48ee59bcc8dbe16e36"
+      },
+      "row": {
+        "bed_dir": "cherry-daddies-setlist-2026-06-16/Heart of Glass",
+        "cat": "cat_12447",
+        "clip": "34",
+        "concert_patch": "Heart of Glass.patch",
+        "factory_dir": "music/songs/Blondie - Heart of Glass",
+        "pc_field": "35",
+        "set": "34",
+        "song": "Heart of Glass",
+        "source": "jamzone"
+      }
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Heart of Glass",
+      "cat": "cat_12447",
+      "clip": "34",
+      "concert_patch": "Heart of Glass.patch",
+      "factory_dir": "music/songs/Blondie - Heart of Glass",
+      "pc_field": "35",
+      "set": "34",
+      "song": "Heart of Glass",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Blondie - Heart of Glass/auto-render/timeline.json": "1f08132fa8fb28dc6423999fe3fd92690829f68db7eb68353eeeb312f8ca6bf6",
+      "music/songs/Blondie - Heart of Glass/mix.json": "043820462f0f722353db5aac22b5736e0c3facaa06751b7641c7e3c70bec3648",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/34.tsv": "a598ae2c5a1186716fc1669912377e0660fc17735feba5534beb41c280a72062",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "7a4e2a2eca9735a36d51985a084a4d1b6371151bf0dc54779151d5d7df73ec31"
+}

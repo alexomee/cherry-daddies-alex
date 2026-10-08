@@ -1,0 +1,84 @@
+{
+  "approved_by": null,
+  "build": {
+    "audio_duration": 204.338005,
+    "audio_sha256": "b541e65f510f8f80c0abc258b9acaa04c2bc2129d816ef6309a365b3900247fb",
+    "clips": {
+      "ass": "93a74b2198fb3b0bddd1c7e58ef955d117dbf0818f783f2298dd2a74adfabf0d",
+      "mp4": "a4083904797f8ee9aa88ec2dda5a32d390db706fa2cf5b20a73f0e6b7651923b"
+    },
+    "guide": {
+      "bytes": 36045342,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 204.338005,
+      "key": "cherry-dash/2515a3c01f07/guides/b541e65f510f8f80c0abc258b9acaa04c2bc2129d816ef6309a365b3900247fb/all.wav",
+      "mix_sha256": "3fd489ab690fe0953c2e12f509f78fc2472d59e82cdd6f8c2966d7a038864ccb",
+      "render_audio": {
+        "click.wav": "a15896b1ea94971c1b16237f897709e050954c624100ebe4eaf792a8936a936f",
+        "cues.wav": "1de5865f0108bf9f108c4a1df8266c452aed34543bf512babbab3122ea8dcb34",
+        "pb-drums.wav": "10207255e5b59a727143b711e401f30e8899a2f05930d3e8b09ca64260812dc4",
+        "pb-other.wav": "98854ae8307e1719e79a5fe0c8eaeceba6ac666fcc8d7eac43f43cccd6d66d7c"
+      },
+      "render_pcm": {
+        "click.wav": "60f4b02c7da29c57792733fb965e6ecf6adfc6f0d3cbb9f4a2155f8adc1ce324",
+        "pb-other.wav": "53fce2a04925d799471042ddbd639f59b31afc8cc54ec7c47d30e38ad5a2bae0"
+      },
+      "sample_rate": 44100,
+      "sha256": "b541e65f510f8f80c0abc258b9acaa04c2bc2129d816ef6309a365b3900247fb",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.874661,
+        "bpm": 128.0232,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.45041
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/2515a3c01f07/guides/b541e65f510f8f80c0abc258b9acaa04c2bc2129d816ef6309a365b3900247fb/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Venus/click.wav": "a15896b1ea94971c1b16237f897709e050954c624100ebe4eaf792a8936a936f",
+        "cherry-daddies-setlist-2026-06-16/Venus/cues.wav": "1de5865f0108bf9f108c4a1df8266c452aed34543bf512babbab3122ea8dcb34",
+        "cherry-daddies-setlist-2026-06-16/Venus/pb-drums.wav": "10207255e5b59a727143b711e401f30e8899a2f05930d3e8b09ca64260812dc4",
+        "cherry-daddies-setlist-2026-06-16/Venus/pb-other.wav": "98854ae8307e1719e79a5fe0c8eaeceba6ac666fcc8d7eac43f43cccd6d66d7c",
+        "lyrics/clips/36.ass": "4837c33de01f66d81374680b96f302e6fc6d64f8b038c1a32fd3a8e5547788dc",
+        "lyrics/clips/36.mp4": "a4083904797f8ee9aa88ec2dda5a32d390db706fa2cf5b20a73f0e6b7651923b"
+      },
+      "row": {
+        "bed_dir": "cherry-daddies-setlist-2026-06-16/Venus",
+        "cat": "cat_12674",
+        "clip": "36",
+        "concert_patch": "Venus.patch",
+        "factory_dir": "music/songs/Shocking Blue - Venus",
+        "pc_field": "37",
+        "set": "36",
+        "song": "Venus",
+        "source": "jamzone"
+      }
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Venus",
+      "cat": "cat_12674",
+      "clip": "36",
+      "concert_patch": "Venus.patch",
+      "factory_dir": "music/songs/Shocking Blue - Venus",
+      "pc_field": "37",
+      "set": "36",
+      "song": "Venus",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Shocking Blue - Venus/auto-render/timeline.json": "067075856437d0e0257cd64e324f6a56c05a7dc12484fe87b7ca5e6a684dc0b8",
+      "music/songs/Shocking Blue - Venus/mix.json": "ffb249d9eab494b79c09bb8cd50502a31e78f5f1bc4b9426995434e6dabfcd01",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/36.tsv": "7a17dbc4ffc8bde2f97a43d14b19d1d43fdd17fe4dd53a15d4725c8dfd723b72",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "8f8ffa18f4e4b24cbcabbd075b0868772259a0b2d3ea06151ae377a28d5fca2f"
+}

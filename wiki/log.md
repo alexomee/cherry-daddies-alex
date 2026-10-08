@@ -424,3 +424,67 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Выполнен рендер через `jamzone_render.py` с флагом `--practice`: сгенерированы `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `timeline.json`, раздельные mp3 в `stems/`, а также practice-миксы для всех 4 участников.
 - Обновлён `tools/setlist_dashboard.py` (привязка к папке `Nirvana - Smells Like Teen Spirit`), перегенерирован `web/songs.json` (57/57 песен с данными, hasData: true).
 - Создана страница `wiki/songs/nirvana-smells-like-teen-spirit.md`, обновлены `wiki/gigs/2026-10-07-rehearsal.md` и `wiki/index.md`.
+
+## [2026-10-08] cue | Кукла колдуна: добавлен финальный cue «end in 3 3 2 1»
+
+- По запросу Alex добавлен финальный cue на такт 124.1 (201.884 с / 3:21.88): `{"bar": 124, "text": "end in", "count": true}`.
+- Голосовой движок объявляет «end in 3», затем отсчитывает «3 2 1» на долях 2, 3, 4 такта 123 (200.67s, 201.08s, 201.48s), после чего на 124.1 звучит сильная доля финального аккорда, переходящая в сценический end fill.
+- Выполнен перерендер через `jamzone_render.py` (`cues.wav`, `cue_preview.mp3`, practice-миксы, `web/songs.json`), сохранён оригинальный 24-bit/48kHz `auto-render/pb-other.wav` v2 (`95220a9f...`). Обновлены `wiki/songs/korol-i-shut-kukla-kolduna.md` и `wiki/index.md`.
+
+## [2026-10-08] cue | Pretty Fly: добавлен финальный cue «end fill in 3 3 2 1» на 108.1 (3:02.94s / ~3:03 даунбит)
+
+- По запросу Alex добавлен финальный cue на такт 108.1 (182.937 с / 3:02.937 ≈ 3:03): `{"bar": 108, "text": "end fill in", "count": true}`.
+- Голосовой движок объявляет «end fill in 3» в конце такта 106 (~3:00.0s), затем отсчитывает «3 2 1» на долях 107.2, 107.3, 107.4 (3:01.68s, 3:02.10s, 3:02.52s).
+- На 108.1 (даунбит ~3:03) в cue-треке тишина — начинается сбивка барабанщика, завершающаяся финальным хитом на 109.1 (3:04.62s).
+- Выполнен перерендер `jamzone_render.py` с `--practice` (`cues.wav`, `cue_preview.mp3`, practice-миксы для Alex/Roma/Steve/Tanya, web-стемы). Музыкальный `all.wav`, `click.wav`, `pb-other.wav`, `pb-drums.wav`, `timeline.json` побайтно идентичны предыдущей версии.
+- Версия с 4 cue сохранена в `versions/2026-09-29-cues-v2/`, актуальная версия с 5 cue сохранена в `versions/2026-10-08-cues-v3/`.
+- Риг MainStage синхронизирован через `sync_to_mainstage.sh --apply "Pretty Fly"` (`cues.wav`). Обновлены `wiki/songs/pretty-fly.md`, `wiki/index.md` и `web/songs.json`.
+
+## [2026-10-08] render | Я сошла с ума: fade-out pb-other в 0 за 2 доли до финального удара (3:24.3)
+
+- По запросу Alex `pb-other` в «Я сошла с ума» (ТАТУ) зафейжен в ноль к финальной доле около 3:24 (bar 77.3, 204.297 с, cue «all stop»).
+- В `tools/jamzone/jamzone_render.py` добавлена поддержка параметра `fade_out` для групп плейбека (`mixdown`, `placed_layers`, `render_cat_stem`, `--practice`): плавный линейный спад `fs0..fs1`, после чего строго тишина (0.0) до конца трека.
+- В `music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)/mix.json` в `pb-other` добавлен `"fade_out": {"from_bar": 77, "from_beat": 1, "to_bar": 77, "to_beat": 3}` (2 доли = 1.333 с, с 202.964 с до 204.297 с).
+- До 202.964 с трек звучит без изменений; за 2 доли плавно спадает (-21.9 dBFS → 0.0); с 204.297 с до конца трека (14.37 с) в `pb-other.wav`, `pb-other.mp3` и соответствующих stems (`keys.mp3`, `other.mp3`, `back_vox.mp3`) абсолютный ноль (вычищены остаточные шумы дождя `04_Noise_effects` и шепчущие синты `10_Synth_Voice`).
+- Выполнен перерендер с `--practice`: обновлены `auto-render/` (`pb-other.{wav,mp3}`, `all.wav`, `cue_preview.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`, `stems/*.mp3`), обновлены `web/songs.json`, `wiki/songs/ya-soshla-s-uma.md` и `wiki/index.md`.
+
+## [2026-10-08] cues & render | Venus: фикс стартового интро-кью на бар 3.1 («Venus guitar in»), сохранение «all in» на бар 9.1, подсказки «guitar solo ready go» на оба соло (такты 33.1 и 95.1), удаление лишних пустых тактов (count_in: 2), акустическая гитара в pb-other на обоих соло
+
+- **Интро-кью и удаление лишних пустых тактов:**
+  - Реальный вход гитары в треке Shocking Blue — Venus находится на сильной доле 3-го такта (`bar 3.1`, 3.876s без искусственного каунт-ина).
+  - Удалена директива `"count_in": 2`, которая принудительно добавляла 2 пустых такта клика в тишине перед началом трека.
+  - Трек теперь начинается сразу с 2 встроенных тактов прекаунта JamZone:
+    - `bar 1.1` (0.000s) — клик 1, 2, 3 → анонс «Venus» на естественной скорости (1.32s) → клик 4;
+    - `bar 2.1` (1.938s) — размеренный отсчёт «guitar in ready go» на 4 долях;
+    - `bar 3.1` (3.876s) — точно в долю вступает акустическая гитара интро.
+  - Cue на такте 9 сохранён как `"all in"` (`bar 9.1`, 15.316s = «all in ready go») на вступление всей банды (барабаны, бас, электропиано).
+  - Cue на такте 13 (`verse in`, 22.906s) и на такте 103 (`end in`, 191.917s = «end in 3 · 3 2 1») сохранены.
+  - Добавлены cue на старт обоих гитарных соло:
+    - `bar 33.1` (60.356s) — `"guitar solo ready go"`: отсчёт «guitar solo ready go» на 4 долях такта 32 (58.52s – 59.91s), на 60.36s начинается соло 1;
+    - `bar 95.1` (176.816s) — `"guitar solo ready go"`: отсчёт «guitar solo ready go» на 4 долях такта 94 (174.93s – 176.35s), на 176.82s начинается аутро-соло 2.
+  - Сценические субтитры пересинхронизированы под новый таймлайн (-3.75с): обновлены `tools/lyric-launcher/lyrics-timed/36.tsv` (первая строка «A goddess on a mountain top...» теперь на 0:22.67), пересобраны `clips/36.ass` и `clips/36.mp4`.
+- **Акустическая гитара в pb-other во время обоих гитарных соло:**
+  - Семы Venus получены из JamZone (cat_12674) — они изначально являются изолированными студийными дорожками (в отличие от смешанных Moises-стэмов). Дорожка `04_Acoustic_Guitar.m4a` полностью отделена от `07_Lead_Electric_Guitar.m4a` (соло) и `05_Rhythm_Electric_Guitar.m4a`.
+  - В `pb-other` добавлена `04_Acoustic_Guitar` с секцией `"mute": {"04_Acoustic_Guitar": [[1, 33], [41, 95], [103, 109]]}`.
+  - Акустическая гитара звучит в плейбеке строго во время обоих гитарных соло (такты 33–40, 60.36s – 75.15s и такты 95–102, 176.82s – 191.92s), когда живой гитарист Alex занят соло-партией, и абсолютно бесшумна во всех остальных частях песни (куплеты, припевы, интро, аутро).
+  - В `tools/jamzone/jamzone_render.py` добавлен 15мс fade-out перед началом mute-диапазонов, исключающий щелчки при мьютировании.
+- **Рендер:**
+  - Выполнен перерендер с `--practice`: обновлены `auto-render/*` (`click.wav`, `all.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `cue_preview.mp3`, `pb-other.mp3`, practice-миксы для Ромы, Стива и Тани, стемы), обновлены `web/songs.json`, `wiki/songs/venus.md`, `wiki/index.md`.
+
+## [2026-10-08] arrangement & cues | Heart of Glass: 4-тактовое барабанное интро перед стартом трека, стартовый cue «drums in», «all in» на бар 6.1
+
+- По запросу Alex добавлено пространство для вступительного соло живого барабанщика Стива перед стартом песни Heart of Glass (Blondie):
+  - Стартовый cue изменён на `"Heart of Glass drums in"` на такте 2 (`bar 2.1`, 4.239s): «Heart of Glass» звучит в lead-такте, «drums in ready go» — на такте 1, и на 4.239s вступает живой барабанщик.
+  - Затем следуют 4 пустых такта (такты 2, 3, 4, 5) без плейбека, в течение которых звучит только клик и играет барабанщик.
+  - В такте 5 звучит cue `"all in"` («all in ready go» на долях 1, 2, 3, 4), и на `bar 6.1` (12.626s) вступает вся группа и оригинальный плейбек трека.
+- В `tools/jamzone/jamzone_render.py` добавлена поддержка `"insert_bars": {"at_bar": 2, "bars": 4}` (также в формате списка `[at_bar, count]`):
+  - Точный сплит в точке межтактовой тишины (между долей 4 такта 1 и долей 1 такта 2).
+  - Генерация 16 кликов JamZone (`jdb` на сильных долях каждого такта, `jbt` на долях 2, 3, 4) в темпе трека (114.66 BPM).
+  - Вставка эквивалентного времени тишины (8.372 с) во все музыкальные стемы плейбека и превью.
+  - Исправлен `jamzone_render.py` для использования модифицированного `click_st` вместо повторного декодирования файла с диска.
+  - Добавлен автоматический тест `tools/jamzone/tests/test_insert_bars.py` (20/20 тестов зелёные).
+- Все 13 последующих cue сдвинуты на +4 такта (всего 15 cue, финал `end in 3 · 3 2 1` на такте 123.2, 258.016s).
+- Сценические lyrics: `lyrics-timed/34.tsv` сдвинут на +8.372s (первая строка «Once I had a love» теперь на 0:20.96 под новый вход вокала на такте 10), пересобраны `clips/34.ass` и `clips/34.mp4` через `lyric_workflow.py build 34`.
+- Выполнен перерендер с `--practice`: обновлены `auto-render/*` (`click.wav`, `all.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya).
+- Выполнен синк в риг: `sync_to_mainstage.sh --apply "Heart of Glass"` обновил `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Heart of Glass/`.
+- Обновлены `web/songs.json`, `music/guide-catalog.json`, `wiki/songs/heart-of-glass.md`, `wiki/index.md`.

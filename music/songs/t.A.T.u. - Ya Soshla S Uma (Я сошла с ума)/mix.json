@@ -1,7 +1,10 @@
 {
   "bpm": 90.0,
   "daw_align": true,
-  "pb-other": {"stems": ["04_Noise_effects", "05_Noise_effects_(Wind)", "07_Acoustic_Guitar", "09_Synth_Pad", "10_Synth_Voice", "11_Synth_Lead", "12_String_Section", "13_Backing_Vocals"]},
+  "pb-other": {
+    "stems": ["04_Noise_effects", "05_Noise_effects_(Wind)", "07_Acoustic_Guitar", "09_Synth_Pad", "10_Synth_Voice", "11_Synth_Lead", "12_String_Section", "13_Backing_Vocals"],
+    "fade_out": {"from_bar": 77, "from_beat": 1, "to_bar": 77, "to_beat": 3}
+  },
   "pb-bass": {"stems": ["06_Bass"]},
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["15_Lead_Vocal_Lena", "14_Lead_Vocal_Julia"]},
   "cues": [

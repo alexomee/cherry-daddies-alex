@@ -1,5 +1,6 @@
 {
   "click": "follow",
+  "insert_bars": {"at_bar": 2, "bars": 4},
   "pb-other": {
     "stems": [
       "09_Organ",
@@ -18,19 +19,20 @@
     "tanya": ["13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 2, "text": "Heart of Glass all in", "abs_sec": 4.254, "snap_sec": 0.0},
-    {"bar": 6, "text": "verse in", "abs_sec": 12.584, "snap_sec": 8.431},
-    {"bar": 14, "text": "keep going", "raw": true, "abs_sec": 29.334, "snap_sec": 26.201},
-    {"bar": 17, "text": "verse in", "abs_sec": 35.614, "snap_sec": 31.421},
-    {"bar": 26, "text": "chorus in", "abs_sec": 54.404, "snap_sec": 50.271},
-    {"bar": 38, "text": "verse in", "abs_sec": 79.524, "snap_sec": 75.371},
-    {"bar": 47, "text": "chorus in", "abs_sec": 98.384, "snap_sec": 94.221},
-    {"bar": 55, "text": "instrumental with-beat-offset ready go", "raw": true, "abs_sec": 115.124, "snap_sec": 110.431},
-    {"bar": 70, "beat": 2, "text": "voice in ready go", "raw": true, "abs_sec": 147.094, "snap_sec": 142.901},
-    {"bar": 78, "beat": 2, "text": "break in ready go", "raw": true, "abs_sec": 163.804, "snap_sec": 159.661},
-    {"bar": 82, "beat": 2, "text": "guitar in ready go", "raw": true, "abs_sec": 172.184, "snap_sec": 168.011},
-    {"bar": 86, "beat": 2, "text": "verse in", "abs_sec": 180.564, "snap_sec": 176.371},
-    {"bar": 95, "beat": 2, "text": "chorus in", "abs_sec": 199.394, "snap_sec": 195.201},
-    {"bar": 119, "beat": 2, "text": "end in", "count": true, "abs_sec": 249.644, "snap_sec": 244.931}
+    {"bar": 2, "text": "Heart of Glass drums in", "abs_sec": 4.239, "snap_sec": 0.0},
+    {"bar": 6, "text": "all in", "abs_sec": 12.626, "snap_sec": 8.425},
+    {"bar": 10, "text": "verse in", "abs_sec": 20.956, "snap_sec": 16.803},
+    {"bar": 18, "text": "keep going", "raw": true, "abs_sec": 37.706, "snap_sec": 34.573},
+    {"bar": 21, "text": "verse in", "abs_sec": 43.986, "snap_sec": 39.793},
+    {"bar": 30, "text": "chorus in", "abs_sec": 62.776, "snap_sec": 58.643},
+    {"bar": 42, "text": "verse in", "abs_sec": 87.896, "snap_sec": 83.743},
+    {"bar": 51, "text": "chorus in", "abs_sec": 106.756, "snap_sec": 102.593},
+    {"bar": 59, "text": "instrumental with-beat-offset ready go", "raw": true, "abs_sec": 123.496, "snap_sec": 118.803},
+    {"bar": 74, "beat": 2, "text": "voice in ready go", "raw": true, "abs_sec": 155.466, "snap_sec": 151.273},
+    {"bar": 82, "beat": 2, "text": "break in ready go", "raw": true, "abs_sec": 172.176, "snap_sec": 168.033},
+    {"bar": 86, "beat": 2, "text": "guitar in ready go", "raw": true, "abs_sec": 180.556, "snap_sec": 176.383},
+    {"bar": 90, "beat": 2, "text": "verse in", "abs_sec": 188.936, "snap_sec": 184.743},
+    {"bar": 99, "beat": 2, "text": "chorus in", "abs_sec": 207.766, "snap_sec": 203.573},
+    {"bar": 123, "beat": 2, "text": "end in", "count": true, "abs_sec": 258.016, "snap_sec": 253.303}
   ]
 }

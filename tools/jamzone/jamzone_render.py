@@ -1061,6 +1061,55 @@ def main():
         print(f"cut_bars: cutting bars {fr_b} to {to_b} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
         click_st = np.concatenate([click_st[:s0], click_st[s1:]])
 
+    insert_bars = mix.get("insert_bars")
+    if insert_bars:
+        if isinstance(insert_bars, dict):
+            ins_bar = int(insert_bars.get("at_bar", insert_bars.get("bar", 1)))
+            ins_count = int(insert_bars.get("bars", insert_bars.get("count", 1)))
+        elif isinstance(insert_bars, (list, tuple)):
+            ins_bar, ins_count = int(insert_bars[0]), int(insert_bars[1])
+        else:
+            ins_bar, ins_count = 1, int(insert_bars)
+
+        cl_ons = onsets(click_st.mean(1))
+        idx_ins = (ins_bar - 1) * 4
+        b_seed, _, _, _ = fit_grid(click_st.mean(1))
+        bpm_val = mix.get("bpm") or (60.0 / b_seed)
+        ins_beat = 60.0 / bpm_val
+        ins_bar_dur = 4.0 * ins_beat
+        ins_samples = round(ins_count * ins_bar_dur * SR)
+
+        if idx_ins > 0:
+            t_prev = float(cl_ons[idx_ins - 1])
+            t_next = float(cl_ons[idx_ins])
+            t_split = (t_prev + t_next) / 2.0
+            dt_left = t_split - t_prev
+        else:
+            t_next = float(cl_ons[0])
+            t_split = max(0.0, t_next - ins_beat / 2.0)
+            t_prev = t_next - ins_beat
+            dt_left = t_split - t_prev
+
+        s_ins_split = round(t_split * SR)
+
+        import jamzone_click as JC
+        jdb = JC.wav_read(JC.DB); jdb = jdb / (np.max(np.abs(jdb)) or 1)
+        jbt = JC.wav_read(JC.BT); jbt = jbt / (np.max(np.abs(jbt)) or 1)
+        g = float(np.abs(click_st).max())
+
+        inserted_click = np.zeros((ins_samples, 2), np.float32)
+        for k in range(ins_count * 4):
+            rel_t = (k + 1) * ins_beat - dt_left
+            s = round(rel_t * SR)
+            hit = (jdb if k % 4 == 0 else jbt * 0.5) * g
+            n = min(len(hit), ins_samples - s)
+            if s >= 0 and n > 0:
+                inserted_click[s:s+n, 0] += hit[:n]
+                inserted_click[s:s+n, 1] += hit[:n]
+
+        print(f"insert_bars: inserting {ins_count} bars at bar {ins_bar} ({ins_count * ins_bar_dur:.3f}s)")
+        click_st = np.concatenate([click_st[:s_ins_split], inserted_click, click_st[s_ins_split:]])
+
     beat, db0, resid, n_on = fit_grid(click_st.mean(1))  # fit_grid uses lstsq = span-average
     if external:
         db0 = float(onsets(click_st.mean(1))[0])  # first click = downbeat (user-specified)
@@ -1103,12 +1152,16 @@ def main():
             if len(b_post) >= fade_len:
                 b_post[:fade_len] *= np.linspace(0, 1, fade_len)[:, None]
             buf = np.concatenate([b_pre, b_post])
+        if insert_bars:
+            buf = np.concatenate([buf[:s_ins_split], np.zeros((ins_samples, 2), np.float32), buf[s_ins_split:]])
         audio[n] = buf
     cue_st = decode(cue_p) if os.path.exists(cue_p) else None
     if cue_st is not None and cut_bars:
         c_pre = cue_st[:s0].copy()
         c_post = cue_st[s1:].copy()
         cue_st = np.concatenate([c_pre, c_post])
+    if cue_st is not None and insert_bars:
+        cue_st = np.concatenate([cue_st[:s_ins_split], np.zeros((ins_samples, 2), np.float32), cue_st[s_ins_split:]])
 
     # t=0 = bar line at/before all content, stem downbeat lands on a bar line
     srcs = list(audio.values()) + ([cue_st] if cue_st is not None else [])
@@ -1218,22 +1271,31 @@ def main():
             q = True; v = _qval(flag); report(mk(v), f"{flag[2:]} {v}")
     if q: return
 
-    def mixdown(names, gains, mutes=None):
+    def mixdown(names, gains, mutes=None, fades=None):
         mutes = mutes or {}                            # {stem: [[from_bar, to_bar], ...]}: silence the
+        fades = fades or {}                            # {stem: (s0, s1)}: linear fade to 0 between s0..s1, 0 after s1
         buf = np.zeros((total, 2), np.float32)         # stem from from_bar downbeat to to_bar downbeat
         for n in names:                                # (1-indexed bars, to_bar exclusive). Per-stem so
             g = 10**(gains.get(n, 0)/20)               # one stem can drop out of a section (e.g. backing
-            if n in mutes:                             # vocals off in the verse) without touching others.
+            if n in mutes or n in fades:               # vocals off in the verse) without touching others.
                 sb = np.zeros((total, 2), np.float32)
                 place(sb, audio[n]*g, off_samp)
-                for fr, to in mutes[n]:                # fr/to in bars (fractional ok: 18.2 = bar18 beat1.8)
-                    s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
-                    s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
-                    if s1 > s0:
-                        sb[s0:s1] = 0
-                        f = int(0.015*SR)              # 15ms fade-in at the un-mute edge so a hard cut
-                        if s1+f <= total:              # landing mid-note doesn't click
-                            sb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
+                if n in mutes:
+                    for fr, to in mutes[n]:            # fr/to in bars (fractional ok: 18.2 = bar18 beat1.8)
+                        s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
+                        s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
+                        if s1 > s0:
+                            f = int(0.015*SR)          # 15ms cross-fade at mute edges so cuts don't click
+                            if s0 >= f:
+                                sb[s0-f:s0] *= np.linspace(1, 0, f)[:, None]
+                            sb[s0:s1] = 0
+                            if s1+f <= total:          # landing mid-note doesn't click
+                                sb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
+                if n in fades:
+                    fs0, fs1 = fades[n]
+                    if fs1 > fs0:
+                        sb[fs0:fs1] *= np.linspace(1.0, 0.0, fs1 - fs0, dtype=np.float32)[:, None]
+                    sb[fs1:] = 0.0
                 buf += sb
             else:
                 place(buf, audio[n]*g, off_samp)
@@ -1287,7 +1349,7 @@ def main():
     elif external:                                 # built clean click, downbeat on every bar line
         out = {"click": build_click(60/beat, total, off_samp, bar)}
     else:                                           # JamZone: the click stem itself, aligned
-        cbuf = np.zeros((total, 2), np.float32); place(cbuf, decode(stems[click_name]), off_samp)
+        cbuf = np.zeros((total, 2), np.float32); place(cbuf, click_st, off_samp)
         t0c = first_sound(cbuf)                     # added front bars (lead/offset) must tick too:
         if t0c and t0c > beat/2:                    # fill them with JZ samples, accent on bar
             import jamzone_click as JC              # lines, at the stem click's level
@@ -1300,10 +1362,64 @@ def main():
                 cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
             print(f"click: front {t0c/bar:.0f} bar(s) filled with JZ count-in")
         out = {"click": cbuf}
+    def parse_fade_range(spec):
+        if not spec: return None
+        def to_time(val, beat_val=1):
+            if isinstance(val, (list, tuple)):
+                b = float(val[0])
+                bt = _parse_beat(val[1]) if len(val) > 1 else 1.0
+            elif isinstance(val, dict):
+                b = float(val.get("bar", 1))
+                bt = _parse_beat(val.get("beat", 1))
+            else:
+                b = float(val)
+                bt = _parse_beat(beat_val)
+            idx = 4.0 * (b - 1.0) + (bt - 1.0)
+            return cue_base + relt(idx)
+
+        t0, t1 = None, None
+        if isinstance(spec, dict):
+            if "from_sec" in spec and "to_sec" in spec:
+                t0, t1 = float(spec["from_sec"]), float(spec["to_sec"])
+            elif any(k in spec for k in ("from_bar", "to_bar", "from", "to")):
+                fb = spec.get("from_bar", spec.get("from", 1))
+                fbt = spec.get("from_beat", 1)
+                tb = spec.get("to_bar", spec.get("to", 1))
+                tbt = spec.get("to_beat", 1)
+                t0 = to_time(fb, fbt)
+                t1 = to_time(tb, tbt)
+        elif isinstance(spec, (list, tuple)) and len(spec) == 2:
+            t0 = to_time(spec[0])
+            t1 = to_time(spec[1])
+
+        if t0 is None or t1 is None: return None
+        s0 = max(0, min(total, round(t0 * SR)))
+        s1 = max(s0, min(total, round(t1 * SR)))
+        return (s0, s1, t0, t1)
+
+    all_fades = {}
+    for grp in pb_group_names(mix):
+        m = mix.get(grp) or {}
+        fspec = m.get("fade_out")
+        if not fspec: continue
+        gstems = [s for s in m.get("stems", []) if s not in perc]
+        if isinstance(fspec, dict) and any(k in audio for k in fspec):
+            for st, st_spec in fspec.items():
+                fr = parse_fade_range(st_spec)
+                if fr:
+                    all_fades[st] = (fr[0], fr[1])
+                    print(f"  fade_out {grp}/{st}: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
+        else:
+            fr = parse_fade_range(fspec)
+            if fr:
+                print(f"  fade_out {grp}: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
+                for st in gstems:
+                    all_fades[st] = (fr[0], fr[1])
+
     replaced = {r for grp in pb_group_names(mix)              # a layer that RE-RECORDS a Moises stem
                 for ent in (mix.get(grp) or {}).get("layers", []) if isinstance(ent, dict)
                 for r in ent.get("replaces", [])}             # (live bass for studio bass) -> drop that
-    out["all"] = mixdown([n for n in music if n not in replaced], {})   # stem from `all` so it isn't doubled
+    out["all"] = mixdown([n for n in music if n not in replaced], {}, fades=all_fades)   # stem from `all` so it isn't doubled
     if replaced: print(f"all: Moises stems replaced by a layer, excluded: {sorted(replaced)}")
     crep = None
     if mix.get("cues"):                            # authored bar/beat cue list (preferred)
@@ -1347,7 +1463,8 @@ def main():
                 tr = f" + trim {trim:+g}" if trim else ""
                 print(f"  level {grp}/{n}: {role}  measured {loud:+.1f}dBFS vs ceiling "
                       f"{ROLE_CEILING[role]:+.0f}  gain {ag:+.1f}dB{tr} = {eff[n]:+.1f}dB{note}")
-        out[grp] = mixdown(gstems, eff, m.get("mute"))
+        grp_fades = {s: all_fades[s] for s in gstems if s in all_fades}
+        out[grp] = mixdown(gstems, eff, m.get("mute"), fades=grp_fades)
 
     semi = mix.get("pitch_semitones", 0)
     if semi:
@@ -1369,6 +1486,7 @@ def main():
     placed_layers = []                             # (name, placed band-key buffer) for practice minus
     for grp in pb_group_names(mix):                # layers added AFTER pitch (band key -> NEVER pitched),
         m = mix.get(grp)                           # BEFORE headroom (catch peaks); each folded into `all`.
+        fo = parse_fade_range((m or {}).get("fade_out"))
         for ent in (m or {}).get("layers", []):    # entry: "name" (render-frame) | {file, frame, offset_ms}
             ent = ent if isinstance(ent, dict) else {"file": ent}
             nm, frame = ent["file"], ent.get("frame", "render")   # render-frame = cut vs auto-render
@@ -1380,6 +1498,11 @@ def main():
             if loud is not None: autoleveled.add(grp)
             trim = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
             lb = lbuf * 10**((ag + trim)/20)
+            if fo:
+                fs0, fs1 = fo[0], fo[1]
+                if fs1 > fs0:
+                    lb[fs0:fs1] *= np.linspace(1.0, 0.0, fs1 - fs0, dtype=np.float32)[:, None]
+                lb[fs1:] = 0.0
             placed_layers.append((nm, lb))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             out["all"] = out["all"] + lb
@@ -1481,7 +1604,7 @@ def main():
 
     def render_cat_stem(item):
         cid, st_list = item
-        buf = mixdown([n for n in st_list if n not in replaced], {})
+        buf = mixdown([n for n in st_list if n not in replaced], {}, fades=all_fades)
         if semi and cid != "drums": buf = pitch_shift(buf, semi)
         for lnm, lb in placed_layers:
             matched_l = "other"
@@ -1518,7 +1641,7 @@ def main():
     if "--practice" in sys.argv:
         for who, owned in players.items():             # practice mix: all MINUS this member's stems,
             owned = set(owned)                          # pitched to band key, + click + cues (cue_preview
-            minus = mixdown([n for n in music if n not in replaced and n not in owned], {})
+            minus = mixdown([n for n in music if n not in replaced and n not in owned], {}, fades=all_fades)
             if semi: minus = pitch_shift(minus, semi)   # member plays in band key -> minus is pitched;
             for nm, lb in placed_layers:                # layers are already band-key (never pitched): add
                 if nm not in owned: minus = minus + lb  # back the ones this member does NOT play live

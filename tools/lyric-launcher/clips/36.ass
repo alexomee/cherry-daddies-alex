@@ -13,32 +13,32 @@ Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:00.00,0:03:24.34,Title,,0,0,0,,Venus
-Dialogue: 0,0:00:21.42,0:00:33.96,Pair,,0,0,0,,{\pos(640,285)}A goddess on a mountain top was burning like a silver flame
-Dialogue: 0,0:00:21.42,0:00:33.96,Next,,0,0,0,,{\pos(640,475)}The summit of beauty and love and\NVenus was her name
-Dialogue: 0,0:00:33.96,0:00:41.46,Pair,,0,0,0,,{\pos(640,285)}The summit of beauty and love and\NVenus was her name
-Dialogue: 0,0:00:33.96,0:00:41.46,Next,,0,0,0,,{\pos(640,475)}She's got it\NYeah baby she's got it
-Dialogue: 0,0:00:41.46,0:00:48.73,Pair,,0,0,0,,{\pos(640,285)}She's got it\NYeah baby she's got it
-Dialogue: 0,0:00:41.46,0:00:48.73,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:00:48.73,0:00:56.21,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:00:48.73,0:00:56.21,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:00:56.21,0:01:18.67,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:00:56.21,0:01:18.67,Next,,0,0,0,,{\pos(640,475)}Her weapons were her crystal eyes making every man mad
-Dialogue: 0,0:01:18.67,0:01:26.40,Pair,,0,0,0,,{\pos(640,285)}Her weapons were her crystal eyes making every man mad
-Dialogue: 0,0:01:18.67,0:01:26.40,Next,,0,0,0,,{\pos(640,475)}Black as a dark night she was got what no one else had
-Dialogue: 0,0:01:26.40,0:01:32.45,Pair,,0,0,0,,{\pos(640,285)}Black as a dark night she was got what no one else had
-Dialogue: 0,0:01:26.40,0:01:32.45,Next,,0,0,0,,{\pos(640,475)}Woah She's got it\NYeah baby she's got it
-Dialogue: 0,0:01:32.45,0:01:40.82,Pair,,0,0,0,,{\pos(640,285)}Woah She's got it\NYeah baby she's got it
-Dialogue: 0,0:01:32.45,0:01:40.82,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:01:40.82,0:01:48.26,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:01:40.82,0:01:48.26,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:01:48.26,0:02:00.08,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:01:48.26,0:02:00.08,Next,,0,0,0,,{\pos(640,475)}Aah aah aah aah aah aah aah
-Dialogue: 0,0:02:00.08,0:02:07.59,Pair,,0,0,0,,{\pos(640,285)}Aah aah aah aah aah aah aah
-Dialogue: 0,0:02:00.08,0:02:07.59,Next,,0,0,0,,{\pos(640,475)}Aah aah aah aah aah aah aah
-Dialogue: 0,0:02:07.59,0:02:14.87,Pair,,0,0,0,,{\pos(640,285)}Aah aah aah aah aah aah aah
-Dialogue: 0,0:02:07.59,0:02:14.87,Next,,0,0,0,,{\pos(640,475)}She's got it\NYeah baby she's got it
-Dialogue: 0,0:02:14.87,0:02:22.10,Pair,,0,0,0,,{\pos(640,285)}She's got it\NYeah baby she's got it
-Dialogue: 0,0:02:14.87,0:02:22.10,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:02:22.10,0:02:29.56,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:02:22.10,0:02:29.56,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
-Dialogue: 0,0:02:29.56,0:02:37.93,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:00:17.67,0:00:30.21,Pair,,0,0,0,,{\pos(640,285)}A goddess on a mountain top was burning like a silver flame
+Dialogue: 0,0:00:17.67,0:00:30.21,Next,,0,0,0,,{\pos(640,475)}The summit of beauty and love and\NVenus was her name
+Dialogue: 0,0:00:30.21,0:00:37.71,Pair,,0,0,0,,{\pos(640,285)}The summit of beauty and love and\NVenus was her name
+Dialogue: 0,0:00:30.21,0:00:37.71,Next,,0,0,0,,{\pos(640,475)}She's got it\NYeah baby she's got it
+Dialogue: 0,0:00:37.71,0:00:44.98,Pair,,0,0,0,,{\pos(640,285)}She's got it\NYeah baby she's got it
+Dialogue: 0,0:00:37.71,0:00:44.98,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:00:44.98,0:00:52.46,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:00:44.98,0:00:52.46,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:00:52.46,0:01:14.92,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:00:52.46,0:01:14.92,Next,,0,0,0,,{\pos(640,475)}Her weapons were her crystal eyes making every man mad
+Dialogue: 0,0:01:14.92,0:01:22.65,Pair,,0,0,0,,{\pos(640,285)}Her weapons were her crystal eyes making every man mad
+Dialogue: 0,0:01:14.92,0:01:22.65,Next,,0,0,0,,{\pos(640,475)}Black as a dark night she was got what no one else had
+Dialogue: 0,0:01:22.65,0:01:28.70,Pair,,0,0,0,,{\pos(640,285)}Black as a dark night she was got what no one else had
+Dialogue: 0,0:01:22.65,0:01:28.70,Next,,0,0,0,,{\pos(640,475)}Woah She's got it\NYeah baby she's got it
+Dialogue: 0,0:01:28.70,0:01:37.07,Pair,,0,0,0,,{\pos(640,285)}Woah She's got it\NYeah baby she's got it
+Dialogue: 0,0:01:28.70,0:01:37.07,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:01:37.07,0:01:44.51,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:01:37.07,0:01:44.51,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:01:44.51,0:01:56.33,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:01:44.51,0:01:56.33,Next,,0,0,0,,{\pos(640,475)}Aah aah aah aah aah aah aah
+Dialogue: 0,0:01:56.33,0:02:03.84,Pair,,0,0,0,,{\pos(640,285)}Aah aah aah aah aah aah aah
+Dialogue: 0,0:01:56.33,0:02:03.84,Next,,0,0,0,,{\pos(640,475)}Aah aah aah aah aah aah aah
+Dialogue: 0,0:02:03.84,0:02:11.12,Pair,,0,0,0,,{\pos(640,285)}Aah aah aah aah aah aah aah
+Dialogue: 0,0:02:03.84,0:02:11.12,Next,,0,0,0,,{\pos(640,475)}She's got it\NYeah baby she's got it
+Dialogue: 0,0:02:11.12,0:02:18.35,Pair,,0,0,0,,{\pos(640,285)}She's got it\NYeah baby she's got it
+Dialogue: 0,0:02:11.12,0:02:18.35,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:02:18.35,0:02:25.81,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:02:18.35,0:02:25.81,Next,,0,0,0,,{\pos(640,475)}Well I'm your\NVenus I'm your fire at your desire
+Dialogue: 0,0:02:25.81,0:02:33.22,Pair,,0,0,0,,{\pos(640,285)}Well I'm your\NVenus I'm your fire at your desire

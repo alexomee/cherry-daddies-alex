@@ -2,23 +2,41 @@
   "click": "follow",
   "pb-other": {
     "stems": [
+      "04_Acoustic_Guitar",
       "08_Electric_Piano_(Wurlitzer)",
       "09_Backing_Vocals"
-    ]
+    ],
+    "mute": {
+      "04_Acoustic_Guitar": [
+        [1, 33],
+        [41, 95],
+        [103, 109]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
-    "stems": ["02_Drum_Kit"]
+    "stems": [
+      "02_Drum_Kit"
+    ]
   },
   "players": {
-    "roma": ["03_Bass"],
-    "steve": ["02_Drum_Kit"],
-    "tanya": ["10_Lead_Vocal"]
+    "roma": [
+      "03_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "10_Lead_Vocal"
+    ]
   },
-  "count_in": 2,
   "cues": [
-    {"bar": 9, "text": "Venus all in", "abs_sec": 19.066, "snap_sec": 14.746},
-    {"bar": 13, "text": "verse in", "abs_sec": 26.656, "snap_sec": 22.901},
-    {"bar": 103, "beat": 1, "text": "end in", "count": true, "abs_sec": 195.666, "snap_sec": 191.431}
+    {"bar": 3, "text": "Venus guitar in", "abs_sec": 3.876, "snap_sec": 0.0},
+    {"bar": 9, "text": "all in", "abs_sec": 15.316, "snap_sec": 11.612},
+    {"bar": 13, "text": "verse in", "abs_sec": 22.906, "snap_sec": 19.152},
+    {"bar": 33, "text": "guitar solo ready go", "abs_sec": 60.356, "snap_sec": 56.642},
+    {"bar": 95, "text": "guitar solo ready go", "abs_sec": 176.816, "snap_sec": 173.052},
+    {"bar": 103, "beat": 1, "text": "end in", "count": true, "abs_sec": 191.917, "snap_sec": 187.682}
   ]
 }

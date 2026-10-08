@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "songs": {
-    "music/songs/5sta Family & 23:45 - Я буду": {
+    "music/songs/5sta Family & 23:45 - \u042f \u0431\u0443\u0434\u0443": {
       "bytes": 33398512,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -229,32 +229,32 @@
       "url": "https://releases.agentiqa.com/cherry-dash/06185b95940b/guides/bde65353a9166209eb4db03f92dbbe67d92969492322c0e2de36a1a96945d1fe/all.wav"
     },
     "music/songs/Blondie - Heart of Glass": {
-      "bytes": 45044886,
+      "status": "available",
+      "key": "cherry-dash/bfcf5ddf04bc/guides/b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e/all.wav",
+      "url": "https://releases.agentiqa.com/cherry-dash/bfcf5ddf04bc/guides/b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e/all.wav",
+      "sha256": "b8782eb399b2dda7f6fac1b3444da6b7c5a069d480326072cd2c24b62863237e",
+      "bytes": 46520974,
+      "duration_sec": 263.723673,
+      "sample_rate": 44100,
       "channels": 2,
-      "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 255.355828,
-      "key": "cherry-dash/bfcf5ddf04bc/guides/e9204b6eeee87556745f2d8471decd75671e56239646e96e34276bc281a10d09/all.wav",
-      "mix_sha256": "fcd041fdc5ef1bdc74166d8af80f2d63c9becc83a1cfd57eb4e27335935ca065",
+      "timeline": {
+        "offset_sec": 1.794134,
+        "bar_sec": 2.093045,
+        "bpm": 114.6655,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line"
+      },
+      "mix_sha256": "043820462f0f722353db5aac22b5736e0c3facaa06751b7641c7e3c70bec3648",
       "render_audio": {
-        "click.wav": "3a313678d9673262db188fd7124375237dda76179716870f013f660bb939674c",
-        "cues.wav": "b6a1bbc9b2ed367ad9d2fb5b75a8c9c943a9bd015050b3eaf81f1fafddf06c37",
-        "pb-drums.wav": "dfe42677fbaed8e4c7830414c8d137f13dcd679552ccbfa8263582ffb17ed7c6",
-        "pb-other.wav": "f39d3016455ac55790db778e529bff481c443ab4556fadf35ba655ab7808d379"
+        "click.wav": "71979a288cfbf1d3d4502ec175e0fcc00b6da01ffb0979b8a5e627beaa4883a3",
+        "cues.wav": "8b5ebfad52b984a2779af20375c11299dde542fcbfb0caf0f647344917180628",
+        "pb-drums.wav": "69a9cb3230a86a857b31fa6d297d2181755d4b41936d3b9b139ecacfeee34f3e",
+        "pb-other.wav": "e64f724a9c9073d500ac44b102d726dc56dfee2e7740d74871cfbe669fee5b01"
       },
       "render_pcm": {
-        "click.wav": "02bd52b15f6c57dd4461e6c0f1bc6d72c633d2390dd0fb76bcd801c598edb354",
-        "pb-other.wav": "dc82d1b6403b8f100a120683c7ad76a80d1d681954c78a6a61733423bf8c002e"
+        "click.wav": "68a5207cddd99acb24e184cf4e61b377ba7831f8309cb21403dc673fa1a35eaf",
+        "pb-other.wav": "6ea427d140820dd71fa40411adefa8662e5790ca5454282aaffc4052d98d3540"
       },
-      "sample_rate": 44100,
-      "sha256": "e9204b6eeee87556745f2d8471decd75671e56239646e96e34276bc281a10d09",
-      "status": "available",
-      "timeline": {
-        "bar_sec": 2.093081,
-        "bpm": 114.6635,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.794169
-      },
-      "url": "https://releases.agentiqa.com/cherry-dash/bfcf5ddf04bc/guides/e9204b6eeee87556745f2d8471decd75671e56239646e96e34276bc281a10d09/all.wav"
+      "content": "clean full music/vocal render; no added click or cues"
     },
     "music/songs/Bruno Mars & Mark Ronson - Uptown Funk": {
       "bytes": 48594482,
@@ -646,7 +646,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/a243a76d7323/guides/7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0/all.wav"
     },
-    "music/songs/Mr. Credo - Медляк": {
+    "music/songs/Mr. Credo - \u041c\u0435\u0434\u043b\u044f\u043a": {
       "bytes": 47577718,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -677,7 +677,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav"
     },
-    "music/songs/Quest Pistols - Я устал": {
+    "music/songs/Quest Pistols - \u042f \u0443\u0441\u0442\u0430\u043b": {
       "bytes": 32776374,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -734,7 +734,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e/all.wav"
     },
-    "music/songs/Ricchi e Poveri - Sarà perché ti amo": {
+    "music/songs/Ricchi e Poveri - Sar\u00e0 perch\u00e9 ti amo": {
       "bytes": 32632398,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1047,7 +1047,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/38c4670831f0/guides/9a8ba97172c1eede63384d56659d78c5c1da2ce565bdc203d72f9269c3c9f82a/all.wav"
     },
-    "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)": {
+    "music/songs/t.A.T.u. - Ya Soshla S Uma (\u042f \u0441\u043e\u0448\u043b\u0430 \u0441 \u0443\u043c\u0430)": {
       "bytes": 38572916,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1076,7 +1076,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/fde163f34bf4/guides/8328e5b83afdc6b1d16f9608d712ef06525ef394734f8362c11bcad7778c1859/all.wav"
     },
-    "music/songs/Беги от меня": {
+    "music/songs/\u0411\u0435\u0433\u0438 \u043e\u0442 \u043c\u0435\u043d\u044f": {
       "bytes": 52496754,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1106,7 +1106,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534/all.wav"
     },
-    "music/songs/Елена Терлеева - Солнце": {
+    "music/songs/\u0415\u043b\u0435\u043d\u0430 \u0422\u0435\u0440\u043b\u0435\u0435\u0432\u0430 - \u0421\u043e\u043b\u043d\u0446\u0435": {
       "bytes": 38753838,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1133,7 +1133,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/a3fe405d614eaec53b592f4b87586b67f04dbf137235691cb282965c8500d9c6/all.wav"
     },
-    "music/songs/Кислотный DJ": {
+    "music/songs/\u041a\u0438\u0441\u043b\u043e\u0442\u043d\u044b\u0439 DJ": {
       "bytes": 41731318,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1161,7 +1161,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/ac49a7ae0639bf5f8c6d804ace8b6ad9b5062d67cd1adb6cc6b84df45239c3d6/all.wav"
     },
-    "music/songs/Король и Шут - Кукла колдуна": {
+    "music/songs/\u041a\u043e\u0440\u043e\u043b\u044c \u0438 \u0428\u0443\u0442 - \u041a\u0443\u043a\u043b\u0430 \u043a\u043e\u043b\u0434\u0443\u043d\u0430": {
       "bytes": 36182298,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1190,7 +1190,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/ccbcf0c2cad9/guides/302881f78f71433bff5542ae2c0dfeba1dfbaa98b3086ad846ad8f6125dfa216/all.wav"
     },
-    "music/songs/Мама Люба": {
+    "music/songs/\u041c\u0430\u043c\u0430 \u041b\u044e\u0431\u0430": {
       "bytes": 43498282,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1218,7 +1218,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/bfc10db79749/guides/0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553/all.wav"
     },
-    "music/songs/Мелом": {
+    "music/songs/\u041c\u0435\u043b\u043e\u043c": {
       "bytes": 33163318,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1243,7 +1243,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/b581fa388c98/guides/c7e689eebd6c6b2f35f4d4bedd44c31e2836701aab1cff4ee2d5cb1124ac2fe6/all.wav"
     },
-    "music/songs/Мумий Тролль - Медведица": {
+    "music/songs/\u041c\u0443\u043c\u0438\u0439 \u0422\u0440\u043e\u043b\u043b\u044c - \u041c\u0435\u0434\u0432\u0435\u0434\u0438\u0446\u0430": {
       "bytes": 41684794,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1268,7 +1268,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/42a10b949a41/guides/25bef486ac130a0faab8ff666642b9fde50c52cb6acef1c76768f7e852f499c2/all.wav"
     },
-    "music/songs/Такая любовь": {
+    "music/songs/\u0422\u0430\u043a\u0430\u044f \u043b\u044e\u0431\u043e\u0432\u044c": {
       "bytes": 43276918,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
@@ -1299,7 +1299,7 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav"
     },
-    "music/songs/Чичерина - Ту-лу-ла": {
+    "music/songs/\u0427\u0438\u0447\u0435\u0440\u0438\u043d\u0430 - \u0422\u0443-\u043b\u0443-\u043b\u0430": {
       "bytes": 25609182,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
