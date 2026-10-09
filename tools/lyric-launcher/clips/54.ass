@@ -1,0 +1,56 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:58.62,Title,,0,0,0,,What a Feeling
+Dialogue: 0,0:00:10.09,0:00:35.18,Pair,,0,0,0,,{\pos(640,285)}First when there's nothing but a slow glowing dream that your fear seems to hide deep inside your mind
+Dialogue: 0,0:00:10.09,0:00:35.18,Next,,0,0,0,,{\pos(640,475)}All alone\NI have cried silent tears full of pride in a world made of steel made of stone
+Dialogue: 0,0:00:35.18,0:00:58.50,Pair,,0,0,0,,{\pos(640,285)}All alone\NI have cried silent tears full of pride in a world made of steel made of stone
+Dialogue: 0,0:00:35.18,0:00:58.50,Next,,0,0,0,,{\pos(640,475)}Well I hear the music close my eyes, feel the rhythm
+Dialogue: 0,0:00:58.50,0:01:06.49,Pair,,0,0,0,,{\pos(640,285)}Well I hear the music close my eyes, feel the rhythm
+Dialogue: 0,0:00:58.50,0:01:06.49,Next,,0,0,0,,{\pos(640,475)}Wrap around take a hold of my heart
+Dialogue: 0,0:01:06.49,0:01:14.01,Pair,,0,0,0,,{\pos(640,285)}Wrap around take a hold of my heart
+Dialogue: 0,0:01:06.49,0:01:14.01,Next,,0,0,0,,{\pos(640,475)}What a feeling being's believing
+Dialogue: 0,0:01:14.01,0:01:21.52,Pair,,0,0,0,,{\pos(640,285)}What a feeling being's believing
+Dialogue: 0,0:01:14.01,0:01:21.52,Next,,0,0,0,,{\pos(640,475)}I can have it all now\NI'm dancing for my life
+Dialogue: 0,0:01:21.52,0:01:29.27,Pair,,0,0,0,,{\pos(640,285)}I can have it all now\NI'm dancing for my life
+Dialogue: 0,0:01:21.52,0:01:29.27,Next,,0,0,0,,{\pos(640,475)}Take your passion and make it happen
+Dialogue: 0,0:01:29.27,0:01:37.03,Pair,,0,0,0,,{\pos(640,285)}Take your passion and make it happen
+Dialogue: 0,0:01:29.27,0:01:37.03,Next,,0,0,0,,{\pos(640,475)}Pictures come alive you can dance\NRight through your life
+Dialogue: 0,0:01:37.03,0:02:00.53,Pair,,0,0,0,,{\pos(640,285)}Pictures come alive you can dance\NRight through your life
+Dialogue: 0,0:01:37.03,0:02:00.53,Next,,0,0,0,,{\pos(640,475)}Now I hear the music\NClose my eyes,
+Dialogue: 0,0:02:00.53,0:02:06.47,Pair,,0,0,0,,{\pos(640,285)}Now I hear the music\NClose my eyes,
+Dialogue: 0,0:02:00.53,0:02:06.47,Next,,0,0,0,,{\pos(640,475)}I am rhythm\NIn a flash it takes hold of my heart
+Dialogue: 0,0:02:06.47,0:02:16.05,Pair,,0,0,0,,{\pos(640,285)}I am rhythm\NIn a flash it takes hold of my heart
+Dialogue: 0,0:02:06.47,0:02:16.05,Next,,0,0,0,,{\pos(640,475)}What a feeling being's believing
+Dialogue: 0,0:02:16.05,0:02:23.55,Pair,,0,0,0,,{\pos(640,285)}What a feeling being's believing
+Dialogue: 0,0:02:16.05,0:02:23.55,Next,,0,0,0,,{\pos(640,475)}I can have it all now\NI'm dancing for my life
+Dialogue: 0,0:02:23.55,0:02:31.31,Pair,,0,0,0,,{\pos(640,285)}I can have it all now\NI'm dancing for my life
+Dialogue: 0,0:02:23.55,0:02:31.31,Next,,0,0,0,,{\pos(640,475)}Take your passion and make it happen
+Dialogue: 0,0:02:31.31,0:02:39.06,Pair,,0,0,0,,{\pos(640,285)}Take your passion and make it happen
+Dialogue: 0,0:02:31.31,0:02:39.06,Next,,0,0,0,,{\pos(640,475)}Pictures come alive now\NI'm dancing
+Dialogue: 0,0:02:39.06,0:02:42.71,Pair,,0,0,0,,{\pos(640,285)}Pictures come alive now\NI'm dancing
+Dialogue: 0,0:02:39.06,0:02:42.71,Next,,0,0,0,,{\pos(640,475)}Through my life\NWhat a feeling
+Dialogue: 0,0:02:42.71,0:03:02.57,Pair,,0,0,0,,{\pos(640,285)}Through my life\NWhat a feeling
+Dialogue: 0,0:02:42.71,0:03:02.57,Next,,0,0,0,,{\pos(640,475)}What a feeling being's believing
+Dialogue: 0,0:03:02.57,0:03:10.08,Pair,,0,0,0,,{\pos(640,285)}What a feeling being's believing
+Dialogue: 0,0:03:02.57,0:03:10.08,Next,,0,0,0,,{\pos(640,475)}Pictures come alive you can dance\NRight through your life
+Dialogue: 0,0:03:10.08,0:03:18.08,Pair,,0,0,0,,{\pos(640,285)}Pictures come alive you can dance\NRight through your life
+Dialogue: 0,0:03:10.08,0:03:18.08,Next,,0,0,0,,{\pos(640,475)}What a feeling\NWhat a feeling
+Dialogue: 0,0:03:18.08,0:03:25.59,Pair,,0,0,0,,{\pos(640,285)}What a feeling\NWhat a feeling
+Dialogue: 0,0:03:18.08,0:03:25.59,Next,,0,0,0,,{\pos(640,475)}I can have it all\NHave it all oh oh oh ooh oh oh
+Dialogue: 0,0:03:25.59,0:03:37.46,Pair,,0,0,0,,{\pos(640,285)}I can have it all\NHave it all oh oh oh ooh oh oh
+Dialogue: 0,0:03:25.59,0:03:37.46,Next,,0,0,0,,{\pos(640,475)}What a feeling being's believing
+Dialogue: 0,0:03:37.46,0:03:43.81,Pair,,0,0,0,,{\pos(640,285)}What a feeling being's believing
+Dialogue: 0,0:03:37.46,0:03:43.81,Next,,0,0,0,,{\pos(640,475)}Hey hey hey hey hey hey \NWhat a feeling
+Dialogue: 0,0:03:43.81,0:03:53.82,Pair,,0,0,0,,{\pos(640,285)}Hey hey hey hey hey hey \NWhat a feeling

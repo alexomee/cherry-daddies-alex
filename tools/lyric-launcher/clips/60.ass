@@ -1,0 +1,60 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:11.38,Title,,0,0,0,,Money, Money, Money
+Dialogue: 0,0:00:10.80,0:00:18.77,Pair,,0,0,0,,{\pos(640,285)}I work all night\NI work all day to pay the bills
+Dialogue: 0,0:00:10.80,0:00:18.77,Next,,0,0,0,,{\pos(640,475)}I have to pay ain't it sad\NAnd still there never seems to be a single penny left for me that's too bad
+Dialogue: 0,0:00:18.77,0:00:31.92,Pair,,0,0,0,,{\pos(640,285)}I have to pay ain't it sad\NAnd still there never seems to be a single penny left for me that's too bad
+Dialogue: 0,0:00:18.77,0:00:31.92,Next,,0,0,0,,{\pos(640,475)}In my dreams\NI have a plan
+Dialogue: 0,0:00:31.92,0:00:36.17,Pair,,0,0,0,,{\pos(640,285)}In my dreams\NI have a plan
+Dialogue: 0,0:00:31.92,0:00:36.17,Next,,0,0,0,,{\pos(640,475)}If I got me a wealthy man\NI wouldn't have to work at all
+Dialogue: 0,0:00:36.17,0:00:41.61,Pair,,0,0,0,,{\pos(640,285)}If I got me a wealthy man\NI wouldn't have to work at all
+Dialogue: 0,0:00:36.17,0:00:41.61,Next,,0,0,0,,{\pos(640,475)}I'd fool around and have a ball
+Dialogue: 0,0:00:41.61,0:00:50.53,Pair,,0,0,0,,{\pos(640,285)}I'd fool around and have a ball
+Dialogue: 0,0:00:41.61,0:00:50.53,Next,,0,0,0,,{\pos(640,475)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:00:50.53,0:00:58.54,Pair,,0,0,0,,{\pos(640,285)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:00:50.53,0:00:58.54,Next,,0,0,0,,{\pos(640,475)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:00:58.54,0:01:06.01,Pair,,0,0,0,,{\pos(640,285)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:00:58.54,0:01:06.01,Next,,0,0,0,,{\pos(640,475)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:01:06.01,0:01:11.73,Pair,,0,0,0,,{\pos(640,285)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:01:06.01,0:01:11.73,Next,,0,0,0,,{\pos(640,475)}I could do if\NI had a little money it's a rich man's world
+Dialogue: 0,0:01:11.73,0:01:22.92,Pair,,0,0,0,,{\pos(640,285)}I could do if\NI had a little money it's a rich man's world
+Dialogue: 0,0:01:11.73,0:01:22.92,Next,,0,0,0,,{\pos(640,475)}It's a rich man's world\NA man like that is hard to find but
+Dialogue: 0,0:01:22.92,0:01:30.37,Pair,,0,0,0,,{\pos(640,285)}It's a rich man's world\NA man like that is hard to find but
+Dialogue: 0,0:01:22.92,0:01:30.37,Next,,0,0,0,,{\pos(640,475)}I can't get him off my mind ain't it sad\NAnd if he happens to be free
+Dialogue: 0,0:01:30.37,0:01:38.11,Pair,,0,0,0,,{\pos(640,285)}I can't get him off my mind ain't it sad\NAnd if he happens to be free
+Dialogue: 0,0:01:30.37,0:01:38.11,Next,,0,0,0,,{\pos(640,475)}I bet he wouldn't fancy me that's too bad
+Dialogue: 0,0:01:38.11,0:01:44.13,Pair,,0,0,0,,{\pos(640,285)}I bet he wouldn't fancy me that's too bad
+Dialogue: 0,0:01:38.11,0:01:44.13,Next,,0,0,0,,{\pos(640,475)}So I must leave\NI'll have to go to
+Dialogue: 0,0:01:44.13,0:01:48.86,Pair,,0,0,0,,{\pos(640,285)}So I must leave\NI'll have to go to
+Dialogue: 0,0:01:44.13,0:01:48.86,Next,,0,0,0,,{\pos(640,475)}Las Vegas or\NMonaco And win a fortune in a game my life will never be the same
+Dialogue: 0,0:01:48.86,0:02:00.30,Pair,,0,0,0,,{\pos(640,285)}Las Vegas or\NMonaco And win a fortune in a game my life will never be the same
+Dialogue: 0,0:01:48.86,0:02:00.30,Next,,0,0,0,,{\pos(640,475)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:02:00.30,0:02:08.25,Pair,,0,0,0,,{\pos(640,285)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:02:00.30,0:02:08.25,Next,,0,0,0,,{\pos(640,475)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:02:08.25,0:02:15.73,Pair,,0,0,0,,{\pos(640,285)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:02:08.25,0:02:15.73,Next,,0,0,0,,{\pos(640,475)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:02:15.73,0:02:21.46,Pair,,0,0,0,,{\pos(640,285)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:02:15.73,0:02:21.46,Next,,0,0,0,,{\pos(640,475)}I could do if\NI had a little money it's a rich man's world
+Dialogue: 0,0:02:21.46,0:02:32.18,Pair,,0,0,0,,{\pos(640,285)}I could do if\NI had a little money it's a rich man's world
+Dialogue: 0,0:02:21.46,0:02:32.18,Next,,0,0,0,,{\pos(640,475)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:02:32.18,0:02:40.20,Pair,,0,0,0,,{\pos(640,285)}Money, money, money must be funny in the rich man's world
+Dialogue: 0,0:02:32.18,0:02:40.20,Next,,0,0,0,,{\pos(640,475)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:02:40.20,0:02:47.72,Pair,,0,0,0,,{\pos(640,285)}Money, money, money always sunny in the rich man's world
+Dialogue: 0,0:02:40.20,0:02:47.72,Next,,0,0,0,,{\pos(640,475)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:02:47.72,0:02:53.46,Pair,,0,0,0,,{\pos(640,285)}Ah ah ah ah ah ah\NAll the things
+Dialogue: 0,0:02:47.72,0:02:53.46,Next,,0,0,0,,{\pos(640,475)}I could do if\NI had a little money
+Dialogue: 0,0:02:53.46,0:02:58.65,Pair,,0,0,0,,{\pos(640,285)}I could do if\NI had a little money
+Dialogue: 0,0:02:53.46,0:02:58.65,Next,,0,0,0,,{\pos(640,475)}It's a rich man's world\NIt's a rich man's world
+Dialogue: 0,0:02:58.65,0:03:09.52,Pair,,0,0,0,,{\pos(640,285)}It's a rich man's world\NIt's a rich man's world

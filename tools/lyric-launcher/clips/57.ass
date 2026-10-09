@@ -1,0 +1,90 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:04:58.92,Title,,0,0,0,,I Wanna Dance with Somebody (Who Loves Me)
+Dialogue: 0,0:00:04.34,0:00:15.66,Pair,,0,0,0,,{\pos(640,285)}Huh\NYeah
+Dialogue: 0,0:00:04.34,0:00:15.66,Next,,0,0,0,,{\pos(640,475)}Wooh\NHey yeah
+Dialogue: 0,0:00:15.66,0:00:21.97,Pair,,0,0,0,,{\pos(640,285)}Wooh\NHey yeah
+Dialogue: 0,0:00:15.66,0:00:21.97,Next,,0,0,0,,{\pos(640,475)}Huh Ooh yeah\NUh huh
+Dialogue: 0,0:00:21.97,0:00:28.03,Pair,,0,0,0,,{\pos(640,285)}Huh Ooh yeah\NUh huh
+Dialogue: 0,0:00:21.97,0:00:28.03,Next,,0,0,0,,{\pos(640,475)}Yeah\NI want to dance
+Dialogue: 0,0:00:28.03,0:00:36.87,Pair,,0,0,0,,{\pos(640,285)}Yeah\NI want to dance
+Dialogue: 0,0:00:28.03,0:00:36.87,Next,,0,0,0,,{\pos(640,475)}Clock strikes upon the hour and the sun begins to fade
+Dialogue: 0,0:00:36.87,0:00:44.95,Pair,,0,0,0,,{\pos(640,285)}Clock strikes upon the hour and the sun begins to fade
+Dialogue: 0,0:00:36.87,0:00:44.95,Next,,0,0,0,,{\pos(640,475)}Still enough time to figure out how to chase my blues away
+Dialogue: 0,0:00:44.95,0:00:52.77,Pair,,0,0,0,,{\pos(640,285)}Still enough time to figure out how to chase my blues away
+Dialogue: 0,0:00:44.95,0:00:52.77,Next,,0,0,0,,{\pos(640,475)}I've done alright up 'till now it's the light of day that shows me how
+Dialogue: 0,0:00:52.77,0:01:00.34,Pair,,0,0,0,,{\pos(640,285)}I've done alright up 'till now it's the light of day that shows me how
+Dialogue: 0,0:00:52.77,0:01:00.34,Next,,0,0,0,,{\pos(640,475)}And when the night falls the loneliness calls
+Dialogue: 0,0:01:00.34,0:01:07.16,Pair,,0,0,0,,{\pos(640,285)}And when the night falls the loneliness calls
+Dialogue: 0,0:01:00.34,0:01:07.16,Next,,0,0,0,,{\pos(640,475)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:01:07.16,0:01:15.24,Pair,,0,0,0,,{\pos(640,285)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:01:07.16,0:01:15.24,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:01:15.24,0:01:23.31,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:01:15.24,0:01:23.31,Next,,0,0,0,,{\pos(640,475)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:01:23.31,0:01:31.40,Pair,,0,0,0,,{\pos(640,285)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:01:23.31,0:01:31.40,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:01:31.40,0:01:43.27,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:01:31.40,0:01:43.27,Next,,0,0,0,,{\pos(640,475)}I've been in love and lost my senses spinning through the town
+Dialogue: 0,0:01:43.27,0:01:51.35,Pair,,0,0,0,,{\pos(640,285)}I've been in love and lost my senses spinning through the town
+Dialogue: 0,0:01:43.27,0:01:51.35,Next,,0,0,0,,{\pos(640,475)}Sooner or later the fever ends and\NI wind up feeling down
+Dialogue: 0,0:01:51.35,0:01:59.42,Pair,,0,0,0,,{\pos(640,285)}Sooner or later the fever ends and\NI wind up feeling down
+Dialogue: 0,0:01:51.35,0:01:59.42,Next,,0,0,0,,{\pos(640,475)}I need a man who'll take a chance on a love that burns hot enough to last
+Dialogue: 0,0:01:59.42,0:02:06.99,Pair,,0,0,0,,{\pos(640,285)}I need a man who'll take a chance on a love that burns hot enough to last
+Dialogue: 0,0:01:59.42,0:02:06.99,Next,,0,0,0,,{\pos(640,475)}So when the night falls my lonely heart calls
+Dialogue: 0,0:02:06.99,0:02:13.81,Pair,,0,0,0,,{\pos(640,285)}So when the night falls my lonely heart calls
+Dialogue: 0,0:02:06.99,0:02:13.81,Next,,0,0,0,,{\pos(640,475)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:02:13.81,0:02:21.89,Pair,,0,0,0,,{\pos(640,285)}Oh I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:02:13.81,0:02:21.89,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:02:21.89,0:02:29.97,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:02:21.89,0:02:29.97,Next,,0,0,0,,{\pos(640,475)}Oh I wanna dance with somebody\NI wanna feel the heat
+Dialogue: 0,0:02:29.97,0:02:38.03,Pair,,0,0,0,,{\pos(640,285)}Oh I wanna dance with somebody\NI wanna feel the heat
+Dialogue: 0,0:02:29.97,0:02:38.03,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:02:38.03,0:02:50.17,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:02:38.03,0:02:50.17,Next,,0,0,0,,{\pos(640,475)}Somebody who loves me yeah
+Dialogue: 0,0:02:50.17,0:02:58.25,Pair,,0,0,0,,{\pos(640,285)}Somebody who loves me yeah
+Dialogue: 0,0:02:50.17,0:02:58.25,Next,,0,0,0,,{\pos(640,475)}To hold me in his arms, oh\NI need a man who'll take a chance
+Dialogue: 0,0:02:58.25,0:03:05.07,Pair,,0,0,0,,{\pos(640,285)}To hold me in his arms, oh\NI need a man who'll take a chance
+Dialogue: 0,0:02:58.25,0:03:05.07,Next,,0,0,0,,{\pos(640,475)}On a love that burns hot enough to last\NSo when the night falls my lonely heart calls
+Dialogue: 0,0:03:05.07,0:03:16.43,Pair,,0,0,0,,{\pos(640,285)}On a love that burns hot enough to last\NSo when the night falls my lonely heart calls
+Dialogue: 0,0:03:05.07,0:03:16.43,Next,,0,0,0,,{\pos(640,475)}I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:03:16.43,0:03:24.50,Pair,,0,0,0,,{\pos(640,285)}I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:03:16.43,0:03:24.50,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:03:24.50,0:03:32.59,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:03:24.50,0:03:32.59,Next,,0,0,0,,{\pos(640,475)}I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:03:32.59,0:03:40.67,Pair,,0,0,0,,{\pos(640,285)}I wanna dance with somebody\NI wanna feel the heat with somebody
+Dialogue: 0,0:03:32.59,0:03:40.67,Next,,0,0,0,,{\pos(640,475)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:03:40.67,0:03:48.49,Pair,,0,0,0,,{\pos(640,285)}Yeah I wanna dance with somebody with somebody who loves me
+Dialogue: 0,0:03:40.67,0:03:48.49,Next,,0,0,0,,{\pos(640,475)}Ooh ooh, ooh\NCome on, baby, ha-ha-ha-ha
+Dialogue: 0,0:03:48.49,0:03:55.93,Pair,,0,0,0,,{\pos(640,285)}Ooh ooh, ooh\NCome on, baby, ha-ha-ha-ha
+Dialogue: 0,0:03:48.49,0:03:55.93,Next,,0,0,0,,{\pos(640,475)}Ooh, yeah\NNow get with this, ha-ha-ha
+Dialogue: 0,0:03:55.93,0:04:02.36,Pair,,0,0,0,,{\pos(640,285)}Ooh, yeah\NNow get with this, ha-ha-ha
+Dialogue: 0,0:03:55.93,0:04:02.36,Next,,0,0,0,,{\pos(640,475)}Whoa oh oh oh oh\NDon't you wanna dance with me baby?
+Dialogue: 0,0:04:02.36,0:04:08.31,Pair,,0,0,0,,{\pos(640,285)}Whoa oh oh oh oh\NDon't you wanna dance with me baby?
+Dialogue: 0,0:04:02.36,0:04:08.31,Next,,0,0,0,,{\pos(640,475)}Don't you wanna dance with me boy?\NOh, don't you wanna dance with me baby?
+Dialogue: 0,0:04:08.31,0:04:17.53,Pair,,0,0,0,,{\pos(640,285)}Don't you wanna dance with me boy?\NOh, don't you wanna dance with me baby?
+Dialogue: 0,0:04:08.31,0:04:17.53,Next,,0,0,0,,{\pos(640,475)}With somebody who loves me\NDon't you wanna dance?
+Dialogue: 0,0:04:17.53,0:04:21.45,Pair,,0,0,0,,{\pos(640,285)}With somebody who loves me\NDon't you wanna dance?
+Dialogue: 0,0:04:17.53,0:04:21.45,Next,,0,0,0,,{\pos(640,475)}Say you wanna dance?\NDon't you wanna dance?
+Dialogue: 0,0:04:21.45,0:04:24.46,Pair,,0,0,0,,{\pos(640,285)}Say you wanna dance?\NDon't you wanna dance?
+Dialogue: 0,0:04:21.45,0:04:24.46,Next,,0,0,0,,{\pos(640,475)}Don't you wanna dance?\NSay you wanna dance?
+Dialogue: 0,0:04:24.46,0:04:26.49,Pair,,0,0,0,,{\pos(640,285)}Don't you wanna dance?\NSay you wanna dance?
+Dialogue: 0,0:04:24.46,0:04:26.49,Next,,0,0,0,,{\pos(640,475)}Don't you wanna dance?\NDon't you wanna dance?
+Dialogue: 0,0:04:26.49,0:04:29.53,Pair,,0,0,0,,{\pos(640,285)}Don't you wanna dance?\NDon't you wanna dance?
+Dialogue: 0,0:04:26.49,0:04:29.53,Next,,0,0,0,,{\pos(640,475)}Say you wanna dance?\NUh-huh
+Dialogue: 0,0:04:29.53,0:04:33.69,Pair,,0,0,0,,{\pos(640,285)}Say you wanna dance?\NUh-huh
+Dialogue: 0,0:04:29.53,0:04:33.69,Next,,0,0,0,,{\pos(640,475)}With somebody who loves me\NOoh ooh ooh
+Dialogue: 0,0:04:33.69,0:04:42.00,Pair,,0,0,0,,{\pos(640,285)}With somebody who loves me\NOoh ooh ooh
+Dialogue: 0,0:04:33.69,0:04:42.00,Next,,0,0,0,,{\pos(640,475)}Ooh ooh ooh
+Dialogue: 0,0:04:42.00,0:04:46.52,Pair,,0,0,0,,{\pos(640,285)}Ooh ooh ooh

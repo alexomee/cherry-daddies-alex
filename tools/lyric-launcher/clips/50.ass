@@ -1,0 +1,68 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:12.55,Title,,0,0,0,,Mamma María
+Dialogue: 0,0:00:05.92,0:00:16.27,Pair,,0,0,0,,{\pos(640,285)}Un gatto bianco con gli occhi blu\NUn vecchio vaso sulla
+Dialogue: 0,0:00:05.92,0:00:16.27,Next,,0,0,0,,{\pos(640,475)}TV Nell'aria il fumo delle candele\NDue guance rosse
+Dialogue: 0,0:00:16.27,0:00:22.94,Pair,,0,0,0,,{\pos(640,285)}TV Nell'aria il fumo delle candele\NDue guance rosse
+Dialogue: 0,0:00:16.27,0:00:22.94,Next,,0,0,0,,{\pos(640,475)}Rosse come mele\NHa un filtro contro la gelosia
+Dialogue: 0,0:00:22.94,0:00:28.74,Pair,,0,0,0,,{\pos(640,285)}Rosse come mele\NHa un filtro contro la gelosia
+Dialogue: 0,0:00:22.94,0:00:28.74,Next,,0,0,0,,{\pos(640,475)}Una ricetta per l'allegria\NLegge il destino ma nelle stelle
+Dialogue: 0,0:00:28.74,0:00:35.88,Pair,,0,0,0,,{\pos(640,285)}Una ricetta per l'allegria\NLegge il destino ma nelle stelle
+Dialogue: 0,0:00:28.74,0:00:35.88,Next,,0,0,0,,{\pos(640,475)}E poi ti dice solo cose belle\NMa-ma-ma Mamma
+Dialogue: 0,0:00:35.88,0:00:41.67,Pair,,0,0,0,,{\pos(640,285)}E poi ti dice solo cose belle\NMa-ma-ma Mamma
+Dialogue: 0,0:00:35.88,0:00:41.67,Next,,0,0,0,,{\pos(640,475)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:41.67,0:00:45.24,Pair,,0,0,0,,{\pos(640,285)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:41.67,0:00:45.24,Next,,0,0,0,,{\pos(640,475)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:45.24,0:00:48.81,Pair,,0,0,0,,{\pos(640,285)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:45.24,0:00:48.81,Next,,0,0,0,,{\pos(640,475)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:48.81,0:00:52.37,Pair,,0,0,0,,{\pos(640,285)}Maria ma\NMa-ma-ma Mamma
+Dialogue: 0,0:00:48.81,0:00:52.37,Next,,0,0,0,,{\pos(640,475)}Maria ma\NNel mio futuro che cosa c'è
+Dialogue: 0,0:00:52.37,0:00:57.28,Pair,,0,0,0,,{\pos(640,285)}Maria ma\NNel mio futuro che cosa c'è
+Dialogue: 0,0:00:52.37,0:00:57.28,Next,,0,0,0,,{\pos(640,475)}Sarebbe bello se fossi un re\NCosì la bionda americana
+Dialogue: 0,0:00:57.28,0:01:04.41,Pair,,0,0,0,,{\pos(640,285)}Sarebbe bello se fossi un re\NCosì la bionda americana
+Dialogue: 0,0:00:57.28,0:01:04.41,Next,,0,0,0,,{\pos(640,475)}O si innamora o la trasformo in rana\NIo muoio dalla curiosità
+Dialogue: 0,0:01:04.41,0:01:11.55,Pair,,0,0,0,,{\pos(640,285)}O si innamora o la trasformo in rana\NIo muoio dalla curiosità
+Dialogue: 0,0:01:04.41,0:01:11.55,Next,,0,0,0,,{\pos(640,475)}Ma dimmi un po' la verità\NVoglio sapere se questo amore
+Dialogue: 0,0:01:11.55,0:01:18.67,Pair,,0,0,0,,{\pos(640,285)}Ma dimmi un po' la verità\NVoglio sapere se questo amore
+Dialogue: 0,0:01:11.55,0:01:18.67,Next,,0,0,0,,{\pos(640,475)}Sarà sincero\NSarà con tutto il cuore
+Dialogue: 0,0:01:18.67,0:01:22.01,Pair,,0,0,0,,{\pos(640,285)}Sarà sincero\NSarà con tutto il cuore
+Dialogue: 0,0:01:18.67,0:01:22.01,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:22.01,0:01:25.58,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:22.01,0:01:25.58,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:25.58,0:01:29.14,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:25.58,0:01:29.14,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:29.14,0:01:32.71,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:29.14,0:01:32.71,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:32.71,0:01:57.89,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:01:32.71,0:01:57.89,Next,,0,0,0,,{\pos(640,475)}Non ho una lira però vorrei\NComprare il cielo per darlo a lei
+Dialogue: 0,0:01:57.89,0:02:05.03,Pair,,0,0,0,,{\pos(640,285)}Non ho una lira però vorrei\NComprare il cielo per darlo a lei
+Dialogue: 0,0:01:57.89,0:02:05.03,Next,,0,0,0,,{\pos(640,475)}Ci devi dare un po' di fortuna\NE insieme al cielo compriamo anche la luna
+Dialogue: 0,0:02:05.03,0:02:11.93,Pair,,0,0,0,,{\pos(640,285)}Ci devi dare un po' di fortuna\NE insieme al cielo compriamo anche la luna
+Dialogue: 0,0:02:05.03,0:02:11.93,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:11.93,0:02:15.50,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:11.93,0:02:15.50,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:15.50,0:02:19.06,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:15.50,0:02:19.06,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:19.06,0:02:22.63,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:19.06,0:02:22.63,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:22.63,0:02:26.19,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:22.63,0:02:26.19,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:26.19,0:02:29.76,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:26.19,0:02:29.76,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:29.76,0:02:33.33,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:29.76,0:02:33.33,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:33.33,0:02:36.89,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:33.33,0:02:36.89,Next,,0,0,0,,{\pos(640,475)}Ma-ma-ma Mamma\NMaria ma
+Dialogue: 0,0:02:36.89,0:02:43.59,Pair,,0,0,0,,{\pos(640,285)}Ma-ma-ma Mamma\NMaria ma

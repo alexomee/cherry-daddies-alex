@@ -1,0 +1,100 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:38.78,Title,,0,0,0,,I Will Survive
+Dialogue: 0,0:00:05.26,0:00:11.81,Pair,,0,0,0,,{\pos(640,285)}At first\NI was afraid
+Dialogue: 0,0:00:05.26,0:00:11.81,Next,,0,0,0,,{\pos(640,475)}I was petrified\NKept thinking
+Dialogue: 0,0:00:11.81,0:00:14.14,Pair,,0,0,0,,{\pos(640,285)}I was petrified\NKept thinking
+Dialogue: 0,0:00:11.81,0:00:14.14,Next,,0,0,0,,{\pos(640,475)}I could never live without you by my side\NBut then
+Dialogue: 0,0:00:14.14,0:00:18.13,Pair,,0,0,0,,{\pos(640,285)}I could never live without you by my side\NBut then
+Dialogue: 0,0:00:14.14,0:00:18.13,Next,,0,0,0,,{\pos(640,475)}I spent so many nights thinking how you did me wrong\NAnd I grew strong
+Dialogue: 0,0:00:18.13,0:00:23.96,Pair,,0,0,0,,{\pos(640,285)}I spent so many nights thinking how you did me wrong\NAnd I grew strong
+Dialogue: 0,0:00:18.13,0:00:23.96,Next,,0,0,0,,{\pos(640,475)}And I learned how to get along\NAnd so you're back from outer space
+Dialogue: 0,0:00:23.96,0:00:30.12,Pair,,0,0,0,,{\pos(640,285)}And I learned how to get along\NAnd so you're back from outer space
+Dialogue: 0,0:00:23.96,0:00:30.12,Next,,0,0,0,,{\pos(640,475)}I just walked in to find you here with that sad look upon your face\NI should have changed that stupid lock
+Dialogue: 0,0:00:30.12,0:00:36.32,Pair,,0,0,0,,{\pos(640,285)}I just walked in to find you here with that sad look upon your face\NI should have changed that stupid lock
+Dialogue: 0,0:00:30.12,0:00:36.32,Next,,0,0,0,,{\pos(640,475)}I should have made you leave your key\NIf I had known for just one second you'd be back to bother me
+Dialogue: 0,0:00:36.32,0:00:42.51,Pair,,0,0,0,,{\pos(640,285)}I should have made you leave your key\NIf I had known for just one second you'd be back to bother me
+Dialogue: 0,0:00:36.32,0:00:42.51,Next,,0,0,0,,{\pos(640,475)}Go on now go walk out the door\NJust turn around now 'cos you're not welcome anymore
+Dialogue: 0,0:00:42.51,0:00:51.80,Pair,,0,0,0,,{\pos(640,285)}Go on now go walk out the door\NJust turn around now 'cos you're not welcome anymore
+Dialogue: 0,0:00:42.51,0:00:51.80,Next,,0,0,0,,{\pos(640,475)}Weren't you the one who tried to hurt me with goodbye?\NDid you think
+Dialogue: 0,0:00:51.80,0:00:55.28,Pair,,0,0,0,,{\pos(640,285)}Weren't you the one who tried to hurt me with goodbye?\NDid you think
+Dialogue: 0,0:00:51.80,0:00:55.28,Next,,0,0,0,,{\pos(640,475)}I'd crumble?\NDid you think
+Dialogue: 0,0:00:55.28,0:00:57.35,Pair,,0,0,0,,{\pos(640,285)}I'd crumble?\NDid you think
+Dialogue: 0,0:00:55.28,0:00:57.35,Next,,0,0,0,,{\pos(640,475)}I'd lay down and die?\NOh no not
+Dialogue: 0,0:00:57.35,0:00:59.67,Pair,,0,0,0,,{\pos(640,285)}I'd lay down and die?\NOh no not
+Dialogue: 0,0:00:57.35,0:00:59.67,Next,,0,0,0,,{\pos(640,475)}I, I will survive\NOh as long as
+Dialogue: 0,0:00:59.67,0:01:04.44,Pair,,0,0,0,,{\pos(640,285)}I, I will survive\NOh as long as
+Dialogue: 0,0:00:59.67,0:01:04.44,Next,,0,0,0,,{\pos(640,475)}I know how to love\NI know
+Dialogue: 0,0:01:04.44,0:01:06.25,Pair,,0,0,0,,{\pos(640,285)}I know how to love\NI know
+Dialogue: 0,0:01:04.44,0:01:06.25,Next,,0,0,0,,{\pos(640,475)}I'll stay alive\NI've got all my life to live and
+Dialogue: 0,0:01:06.25,0:01:09.60,Pair,,0,0,0,,{\pos(640,285)}I'll stay alive\NI've got all my life to live and
+Dialogue: 0,0:01:06.25,0:01:09.60,Next,,0,0,0,,{\pos(640,475)}I've got all my love to give\NAnd I'll survive
+Dialogue: 0,0:01:09.60,0:01:13.47,Pair,,0,0,0,,{\pos(640,285)}I've got all my love to give\NAnd I'll survive
+Dialogue: 0,0:01:09.60,0:01:13.47,Next,,0,0,0,,{\pos(640,475)}I will survive, hey hey
+Dialogue: 0,0:01:13.47,0:01:32.31,Pair,,0,0,0,,{\pos(640,285)}I will survive, hey hey
+Dialogue: 0,0:01:13.47,0:01:32.31,Next,,0,0,0,,{\pos(640,475)}It took all the strength\NI had not to fall apart
+Dialogue: 0,0:01:32.31,0:01:36.18,Pair,,0,0,0,,{\pos(640,285)}It took all the strength\NI had not to fall apart
+Dialogue: 0,0:01:32.31,0:01:36.18,Next,,0,0,0,,{\pos(640,475)}Kept trying hard to mend the pieces of my broken heart\NAnd I spent oh so many nights just feeling sorry for myself
+Dialogue: 0,0:01:36.18,0:01:44.43,Pair,,0,0,0,,{\pos(640,285)}Kept trying hard to mend the pieces of my broken heart\NAnd I spent oh so many nights just feeling sorry for myself
+Dialogue: 0,0:01:36.18,0:01:44.43,Next,,0,0,0,,{\pos(640,475)}I used to cry but now\NI hold my head up high
+Dialogue: 0,0:01:44.43,0:01:48.56,Pair,,0,0,0,,{\pos(640,285)}I used to cry but now\NI hold my head up high
+Dialogue: 0,0:01:44.43,0:01:48.56,Next,,0,0,0,,{\pos(640,475)}And you see me somebody new\NI'm not that chained up little person still in love with you
+Dialogue: 0,0:01:48.56,0:01:56.82,Pair,,0,0,0,,{\pos(640,285)}And you see me somebody new\NI'm not that chained up little person still in love with you
+Dialogue: 0,0:01:48.56,0:01:56.82,Next,,0,0,0,,{\pos(640,475)}And so you felt like dropping in and just expect me to be free\NWell now
+Dialogue: 0,0:01:56.82,0:02:01.46,Pair,,0,0,0,,{\pos(640,285)}And so you felt like dropping in and just expect me to be free\NWell now
+Dialogue: 0,0:01:56.82,0:02:01.46,Next,,0,0,0,,{\pos(640,475)}I'm saving all my lovin' for someone who's loving me\NGo on now go walk out the door
+Dialogue: 0,0:02:01.46,0:02:09.20,Pair,,0,0,0,,{\pos(640,285)}I'm saving all my lovin' for someone who's loving me\NGo on now go walk out the door
+Dialogue: 0,0:02:01.46,0:02:09.20,Next,,0,0,0,,{\pos(640,475)}Just turn around now 'cos you're not welcome anymore\NWeren't you the one who tried to break me with goodbye?
+Dialogue: 0,0:02:09.20,0:02:17.46,Pair,,0,0,0,,{\pos(640,285)}Just turn around now 'cos you're not welcome anymore\NWeren't you the one who tried to break me with goodbye?
+Dialogue: 0,0:02:09.20,0:02:17.46,Next,,0,0,0,,{\pos(640,475)}Did you think\NI'd crumble?
+Dialogue: 0,0:02:17.46,0:02:19.53,Pair,,0,0,0,,{\pos(640,285)}Did you think\NI'd crumble?
+Dialogue: 0,0:02:17.46,0:02:19.53,Next,,0,0,0,,{\pos(640,475)}Did you think\NI'd lay down and die?
+Dialogue: 0,0:02:19.53,0:02:21.59,Pair,,0,0,0,,{\pos(640,285)}Did you think\NI'd lay down and die?
+Dialogue: 0,0:02:19.53,0:02:21.59,Next,,0,0,0,,{\pos(640,475)}Oh no, not\NI, I will survive
+Dialogue: 0,0:02:21.59,0:02:25.72,Pair,,0,0,0,,{\pos(640,285)}Oh no, not\NI, I will survive
+Dialogue: 0,0:02:21.59,0:02:25.72,Next,,0,0,0,,{\pos(640,475)}Oh as long as\NI know how to love
+Dialogue: 0,0:02:25.72,0:02:28.17,Pair,,0,0,0,,{\pos(640,285)}Oh as long as\NI know how to love
+Dialogue: 0,0:02:25.72,0:02:28.17,Next,,0,0,0,,{\pos(640,475)}I know\NI'll stay alive
+Dialogue: 0,0:02:28.17,0:02:30.11,Pair,,0,0,0,,{\pos(640,285)}I know\NI'll stay alive
+Dialogue: 0,0:02:28.17,0:02:30.11,Next,,0,0,0,,{\pos(640,475)}I've got all my life to live and\NI've got all my love to give
+Dialogue: 0,0:02:30.11,0:02:34.11,Pair,,0,0,0,,{\pos(640,285)}I've got all my life to live and\NI've got all my love to give
+Dialogue: 0,0:02:30.11,0:02:34.11,Next,,0,0,0,,{\pos(640,475)}And I'll survive\NI will survive, oh
+Dialogue: 0,0:02:34.11,0:02:42.19,Pair,,0,0,0,,{\pos(640,285)}And I'll survive\NI will survive, oh
+Dialogue: 0,0:02:34.11,0:02:42.19,Next,,0,0,0,,{\pos(640,475)}Go on now go walk out the door\NJust turn around now 'cos you're not welcome anymore
+Dialogue: 0,0:02:42.19,0:02:51.48,Pair,,0,0,0,,{\pos(640,285)}Go on now go walk out the door\NJust turn around now 'cos you're not welcome anymore
+Dialogue: 0,0:02:42.19,0:02:51.48,Next,,0,0,0,,{\pos(640,475)}Weren't you the one who tried to break me with goodbye\NDid you think
+Dialogue: 0,0:02:51.48,0:02:54.97,Pair,,0,0,0,,{\pos(640,285)}Weren't you the one who tried to break me with goodbye\NDid you think
+Dialogue: 0,0:02:51.48,0:02:54.97,Next,,0,0,0,,{\pos(640,475)}I'd crumble?\NDid you think
+Dialogue: 0,0:02:54.97,0:02:57.04,Pair,,0,0,0,,{\pos(640,285)}I'd crumble?\NDid you think
+Dialogue: 0,0:02:54.97,0:02:57.04,Next,,0,0,0,,{\pos(640,475)}I'd lay down and die?\NOh no not
+Dialogue: 0,0:02:57.04,0:02:59.36,Pair,,0,0,0,,{\pos(640,285)}I'd lay down and die?\NOh no not
+Dialogue: 0,0:02:57.04,0:02:59.36,Next,,0,0,0,,{\pos(640,475)}I, I will survive\NOh as long as
+Dialogue: 0,0:02:59.36,0:03:04.15,Pair,,0,0,0,,{\pos(640,285)}I, I will survive\NOh as long as
+Dialogue: 0,0:02:59.36,0:03:04.15,Next,,0,0,0,,{\pos(640,475)}I know how to love\NI know
+Dialogue: 0,0:03:04.15,0:03:05.96,Pair,,0,0,0,,{\pos(640,285)}I know how to love\NI know
+Dialogue: 0,0:03:04.15,0:03:05.96,Next,,0,0,0,,{\pos(640,475)}I'll stay alive\NI've got all my life to live and
+Dialogue: 0,0:03:05.96,0:03:09.32,Pair,,0,0,0,,{\pos(640,285)}I'll stay alive\NI've got all my life to live and
+Dialogue: 0,0:03:05.96,0:03:09.32,Next,,0,0,0,,{\pos(640,475)}I've got all my love to give\NAnd I'll survive
+Dialogue: 0,0:03:09.32,0:03:13.19,Pair,,0,0,0,,{\pos(640,285)}I've got all my love to give\NAnd I'll survive
+Dialogue: 0,0:03:09.32,0:03:13.19,Next,,0,0,0,,{\pos(640,475)}I will survive,\NI will survive
+Dialogue: 0,0:03:13.19,0:03:19.40,Pair,,0,0,0,,{\pos(640,285)}I will survive,\NI will survive
+Dialogue: 0,0:03:13.19,0:03:19.40,Next,,0,0,0,,{\pos(640,475)}Oh as long as\NI know how to love
+Dialogue: 0,0:03:19.40,0:03:21.85,Pair,,0,0,0,,{\pos(640,285)}Oh as long as\NI know how to love
+Dialogue: 0,0:03:19.40,0:03:21.85,Next,,0,0,0,,{\pos(640,475)}I know\NI'll stay alive
+Dialogue: 0,0:03:21.85,0:03:23.79,Pair,,0,0,0,,{\pos(640,285)}I know\NI'll stay alive
+Dialogue: 0,0:03:21.85,0:03:23.79,Next,,0,0,0,,{\pos(640,475)}I've got all my life to live and\NI've got all my love to give
+Dialogue: 0,0:03:23.79,0:03:27.80,Pair,,0,0,0,,{\pos(640,285)}I've got all my life to live and\NI've got all my love to give
+Dialogue: 0,0:03:23.79,0:03:27.80,Next,,0,0,0,,{\pos(640,475)}And I'll survive\NI will survive, hey hey
+Dialogue: 0,0:03:27.80,0:03:36.08,Pair,,0,0,0,,{\pos(640,285)}And I'll survive\NI will survive, hey hey

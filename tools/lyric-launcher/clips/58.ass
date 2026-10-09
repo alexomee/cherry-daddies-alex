@@ -1,0 +1,64 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:04:16.45,Title,,0,0,0,,The Best
+Dialogue: 0,0:00:08.65,0:00:22.94,Pair,,0,0,0,,{\pos(640,285)}I call you when\NI need you my heart's on fire
+Dialogue: 0,0:00:08.65,0:00:22.94,Next,,0,0,0,,{\pos(640,475)}You come to me come to me wild and wired
+Dialogue: 0,0:00:22.94,0:00:31.11,Pair,,0,0,0,,{\pos(640,285)}You come to me come to me wild and wired
+Dialogue: 0,0:00:22.94,0:00:31.11,Next,,0,0,0,,{\pos(640,475)}Ooh you come to me\NGive me everything
+Dialogue: 0,0:00:31.11,0:00:36.60,Pair,,0,0,0,,{\pos(640,285)}Ooh you come to me\NGive me everything
+Dialogue: 0,0:00:31.11,0:00:36.60,Next,,0,0,0,,{\pos(640,475)}I need\NGive me a lifetime of promises and a world of dreams
+Dialogue: 0,0:00:36.60,0:00:50.19,Pair,,0,0,0,,{\pos(640,285)}I need\NGive me a lifetime of promises and a world of dreams
+Dialogue: 0,0:00:36.60,0:00:50.19,Next,,0,0,0,,{\pos(640,475)}Speak a language of love like you know what it means
+Dialogue: 0,0:00:50.19,0:00:58.55,Pair,,0,0,0,,{\pos(640,285)}Speak a language of love like you know what it means
+Dialogue: 0,0:00:50.19,0:00:58.55,Next,,0,0,0,,{\pos(640,475)}Mmm and it can't be wrong\NTake my heart and make it strong
+Dialogue: 0,0:00:58.55,0:01:07.78,Pair,,0,0,0,,{\pos(640,285)}Mmm and it can't be wrong\NTake my heart and make it strong
+Dialogue: 0,0:00:58.55,0:01:07.78,Next,,0,0,0,,{\pos(640,475)}You're simply the best\NBetter than all the rest
+Dialogue: 0,0:01:07.78,0:01:17.33,Pair,,0,0,0,,{\pos(640,285)}You're simply the best\NBetter than all the rest
+Dialogue: 0,0:01:07.78,0:01:17.33,Next,,0,0,0,,{\pos(640,475)}Better than anyone\NAnyone I've ever met
+Dialogue: 0,0:01:17.33,0:01:26.27,Pair,,0,0,0,,{\pos(640,285)}Better than anyone\NAnyone I've ever met
+Dialogue: 0,0:01:17.33,0:01:26.27,Next,,0,0,0,,{\pos(640,475)}I'm stuck on your heart\NI hang on every word you say
+Dialogue: 0,0:01:26.27,0:01:35.80,Pair,,0,0,0,,{\pos(640,285)}I'm stuck on your heart\NI hang on every word you say
+Dialogue: 0,0:01:26.27,0:01:35.80,Next,,0,0,0,,{\pos(640,475)}Tear us apart\NBaby I would rather be dead
+Dialogue: 0,0:01:35.80,0:01:45.62,Pair,,0,0,0,,{\pos(640,285)}Tear us apart\NBaby I would rather be dead
+Dialogue: 0,0:01:35.80,0:01:45.62,Next,,0,0,0,,{\pos(640,475)}In your heart\NI see the start of every night and every day
+Dialogue: 0,0:01:45.62,0:01:54.88,Pair,,0,0,0,,{\pos(640,285)}In your heart\NI see the start of every night and every day
+Dialogue: 0,0:01:45.62,0:01:54.88,Next,,0,0,0,,{\pos(640,475)}In your eyes\NI get lost
+Dialogue: 0,0:01:54.88,0:01:57.39,Pair,,0,0,0,,{\pos(640,285)}In your eyes\NI get lost
+Dialogue: 0,0:01:54.88,0:01:57.39,Next,,0,0,0,,{\pos(640,475)}I get washed away
+Dialogue: 0,0:01:57.39,0:02:03.82,Pair,,0,0,0,,{\pos(640,285)}I get washed away
+Dialogue: 0,0:01:57.39,0:02:03.82,Next,,0,0,0,,{\pos(640,475)}Just as long as\NI'm here in your arms
+Dialogue: 0,0:02:03.82,0:02:07.38,Pair,,0,0,0,,{\pos(640,285)}Just as long as\NI'm here in your arms
+Dialogue: 0,0:02:03.82,0:02:07.38,Next,,0,0,0,,{\pos(640,475)}I could be in no better place\NYou're simply the best
+Dialogue: 0,0:02:07.38,0:02:17.40,Pair,,0,0,0,,{\pos(640,285)}I could be in no better place\NYou're simply the best
+Dialogue: 0,0:02:07.38,0:02:17.40,Next,,0,0,0,,{\pos(640,475)}Better than all the rest\NBetter than anyone
+Dialogue: 0,0:02:17.40,0:02:26.65,Pair,,0,0,0,,{\pos(640,285)}Better than all the rest\NBetter than anyone
+Dialogue: 0,0:02:17.40,0:02:26.65,Next,,0,0,0,,{\pos(640,475)}Anyone I've ever met ooh\NI'm stuck on your heart
+Dialogue: 0,0:02:26.65,0:02:35.61,Pair,,0,0,0,,{\pos(640,285)}Anyone I've ever met ooh\NI'm stuck on your heart
+Dialogue: 0,0:02:26.65,0:02:35.61,Next,,0,0,0,,{\pos(640,475)}I hang on every word you say\NTear us apart no, no, no baby
+Dialogue: 0,0:02:35.61,0:02:45.73,Pair,,0,0,0,,{\pos(640,285)}I hang on every word you say\NTear us apart no, no, no baby
+Dialogue: 0,0:02:35.61,0:02:45.73,Next,,0,0,0,,{\pos(640,475)}I would rather be dead\NEach time you leave me
+Dialogue: 0,0:02:45.73,0:02:52.60,Pair,,0,0,0,,{\pos(640,285)}I would rather be dead\NEach time you leave me
+Dialogue: 0,0:02:45.73,0:02:52.60,Next,,0,0,0,,{\pos(640,475)}I start losing control\NYou're walking away with my heart and my soul
+Dialogue: 0,0:02:52.60,0:03:00.70,Pair,,0,0,0,,{\pos(640,285)}I start losing control\NYou're walking away with my heart and my soul
+Dialogue: 0,0:02:52.60,0:03:00.70,Next,,0,0,0,,{\pos(640,475)}I can feel you even when\NI'm alone oh baby don't let go
+Dialogue: 0,0:03:00.70,0:03:26.28,Pair,,0,0,0,,{\pos(640,285)}I can feel you even when\NI'm alone oh baby don't let go
+Dialogue: 0,0:03:00.70,0:03:26.28,Next,,0,0,0,,{\pos(640,475)}Ooh you're the best, ooh better than all the rest
+Dialogue: 0,0:03:26.28,0:03:35.95,Pair,,0,0,0,,{\pos(640,285)}Ooh you're the best, ooh better than all the rest
+Dialogue: 0,0:03:26.28,0:03:35.95,Next,,0,0,0,,{\pos(640,475)}Better than anyone\NAnyone I've ever met ooh
+Dialogue: 0,0:03:35.95,0:03:44.91,Pair,,0,0,0,,{\pos(640,285)}Better than anyone\NAnyone I've ever met ooh
+Dialogue: 0,0:03:35.95,0:03:44.91,Next,,0,0,0,,{\pos(640,475)}I'm stuck on your heart\NI hang on every word you say
+Dialogue: 0,0:03:44.91,0:03:54.44,Pair,,0,0,0,,{\pos(640,285)}I'm stuck on your heart\NI hang on every word you say
+Dialogue: 0,0:03:44.91,0:03:54.44,Next,,0,0,0,,{\pos(640,475)}Tear us apart, no, no baby\NI would rather be dead oh you're the best
+Dialogue: 0,0:03:54.44,0:04:08.72,Pair,,0,0,0,,{\pos(640,285)}Tear us apart, no, no baby\NI would rather be dead oh you're the best

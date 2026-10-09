@@ -1,0 +1,56 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:03:20.74,Title,,0,0,0,,Felicità
+Dialogue: 0,0:00:08.39,0:00:19.71,Pair,,0,0,0,,{\pos(640,285)}Felicità è tenersi per mano andare lontano la felicità
+Dialogue: 0,0:00:08.39,0:00:19.71,Next,,0,0,0,,{\pos(640,475)}E il tuo sguardo innocente\NIn mezzo alla gente la felicità
+Dialogue: 0,0:00:19.71,0:00:24.17,Pair,,0,0,0,,{\pos(640,285)}E il tuo sguardo innocente\NIn mezzo alla gente la felicità
+Dialogue: 0,0:00:19.71,0:00:24.17,Next,,0,0,0,,{\pos(640,475)}E restare vicini come bambini la felicità felicità
+Dialogue: 0,0:00:24.17,0:00:31.23,Pair,,0,0,0,,{\pos(640,285)}E restare vicini come bambini la felicità felicità
+Dialogue: 0,0:00:24.17,0:00:31.23,Next,,0,0,0,,{\pos(640,475)}Felicità è un cuscino di piume l'acqua del fiume che passa e che va
+Dialogue: 0,0:00:31.23,0:00:37.55,Pair,,0,0,0,,{\pos(640,285)}Felicità è un cuscino di piume l'acqua del fiume che passa e che va
+Dialogue: 0,0:00:31.23,0:00:37.55,Next,,0,0,0,,{\pos(640,475)}E' la pioggia che scende dietro le tende la felicità e abbassare la luce\NPer fare pace la felicità felicità
+Dialogue: 0,0:00:37.55,0:00:49.08,Pair,,0,0,0,,{\pos(640,285)}E' la pioggia che scende dietro le tende la felicità e abbassare la luce\NPer fare pace la felicità felicità
+Dialogue: 0,0:00:37.55,0:00:49.08,Next,,0,0,0,,{\pos(640,475)}Felicità è un bicchiere di vino con un panino la felicità
+Dialogue: 0,0:00:49.08,0:00:55.40,Pair,,0,0,0,,{\pos(640,285)}Felicità è un bicchiere di vino con un panino la felicità
+Dialogue: 0,0:00:49.08,0:00:55.40,Next,,0,0,0,,{\pos(640,475)}E' lasciarti un biglietto\NDentro al cassetto la felicità è cantare a due voci quanto mi piaci la felicità felicità
+Dialogue: 0,0:00:55.40,0:01:06.36,Pair,,0,0,0,,{\pos(640,285)}E' lasciarti un biglietto\NDentro al cassetto la felicità è cantare a due voci quanto mi piaci la felicità felicità
+Dialogue: 0,0:00:55.40,0:01:06.36,Next,,0,0,0,,{\pos(640,475)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:01:06.36,0:01:15.28,Pair,,0,0,0,,{\pos(640,285)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:01:06.36,0:01:15.28,Next,,0,0,0,,{\pos(640,475)}Come un pensiero che sa di felicità
+Dialogue: 0,0:01:15.28,0:01:24.20,Pair,,0,0,0,,{\pos(640,285)}Come un pensiero che sa di felicità
+Dialogue: 0,0:01:15.28,0:01:24.20,Next,,0,0,0,,{\pos(640,475)}Senti nell'aria c'è già un raggio di sole più caldo che va
+Dialogue: 0,0:01:24.20,0:01:33.12,Pair,,0,0,0,,{\pos(640,285)}Senti nell'aria c'è già un raggio di sole più caldo che va
+Dialogue: 0,0:01:24.20,0:01:33.12,Next,,0,0,0,,{\pos(640,475)}Come un sorriso che sa di felicità
+Dialogue: 0,0:01:33.12,0:01:46.51,Pair,,0,0,0,,{\pos(640,285)}Come un sorriso che sa di felicità
+Dialogue: 0,0:01:33.12,0:01:46.51,Next,,0,0,0,,{\pos(640,475)}Felicità è una sera a sorpresa la luna accesa e la radio che va è un biglietto d'auguri pieno
+Dialogue: 0,0:01:46.51,0:01:54.68,Pair,,0,0,0,,{\pos(640,285)}Felicità è una sera a sorpresa la luna accesa e la radio che va è un biglietto d'auguri pieno
+Dialogue: 0,0:01:46.51,0:01:54.68,Next,,0,0,0,,{\pos(640,475)}Di cuori la felicità e una telefonata non aspettata la felicità felicità
+Dialogue: 0,0:01:54.68,0:02:04.35,Pair,,0,0,0,,{\pos(640,285)}Di cuori la felicità e una telefonata non aspettata la felicità felicità
+Dialogue: 0,0:01:54.68,0:02:04.35,Next,,0,0,0,,{\pos(640,475)}Felicità è una spiaggia di notte l'onda che batte la felicità e una mano sul cuore
+Dialogue: 0,0:02:04.35,0:02:12.16,Pair,,0,0,0,,{\pos(640,285)}Felicità è una spiaggia di notte l'onda che batte la felicità e una mano sul cuore
+Dialogue: 0,0:02:04.35,0:02:12.16,Next,,0,0,0,,{\pos(640,475)}Piena d'amore la felicità e aspettare l'aurora per farlo ancora la felicità felicità
+Dialogue: 0,0:02:12.16,0:02:21.64,Pair,,0,0,0,,{\pos(640,285)}Piena d'amore la felicità e aspettare l'aurora per farlo ancora la felicità felicità
+Dialogue: 0,0:02:12.16,0:02:21.64,Next,,0,0,0,,{\pos(640,475)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:02:21.64,0:02:30.56,Pair,,0,0,0,,{\pos(640,285)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:02:21.64,0:02:30.56,Next,,0,0,0,,{\pos(640,475)}Come un pensiero che sa di felicità
+Dialogue: 0,0:02:30.56,0:02:39.48,Pair,,0,0,0,,{\pos(640,285)}Come un pensiero che sa di felicità
+Dialogue: 0,0:02:30.56,0:02:39.48,Next,,0,0,0,,{\pos(640,475)}Senti nell'aria c'è già un raggio di sole più caldo che va
+Dialogue: 0,0:02:39.48,0:02:48.40,Pair,,0,0,0,,{\pos(640,285)}Senti nell'aria c'è già un raggio di sole più caldo che va
+Dialogue: 0,0:02:39.48,0:02:48.40,Next,,0,0,0,,{\pos(640,475)}Come un sorriso che sa di felicità
+Dialogue: 0,0:02:48.40,0:02:57.32,Pair,,0,0,0,,{\pos(640,285)}Come un sorriso che sa di felicità
+Dialogue: 0,0:02:48.40,0:02:57.32,Next,,0,0,0,,{\pos(640,475)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:02:57.32,0:03:06.24,Pair,,0,0,0,,{\pos(640,285)}Senti nell'aria c'è già la nostra canzone d'amore che va
+Dialogue: 0,0:02:57.32,0:03:06.24,Next,,0,0,0,,{\pos(640,475)}Come un pensiero che sa di felicità
+Dialogue: 0,0:03:06.24,0:03:15.75,Pair,,0,0,0,,{\pos(640,285)}Come un pensiero che sa di felicità

@@ -1,0 +1,108 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:05:31.12,Title,,0,0,0,,It's Raining Men
+Dialogue: 0,0:00:30.35,0:00:37.74,Pair,,0,0,0,,{\pos(640,285)}Hi Hi\NWe're your weather girls
+Dialogue: 0,0:00:30.35,0:00:37.74,Next,,0,0,0,,{\pos(640,475)}Huh huh and have we got news for you\NYou better listen
+Dialogue: 0,0:00:37.74,0:00:42.44,Pair,,0,0,0,,{\pos(640,285)}Huh huh and have we got news for you\NYou better listen
+Dialogue: 0,0:00:37.74,0:00:42.44,Next,,0,0,0,,{\pos(640,475)}Get ready all you lonely girls\NAnd leave those umbrellas at home
+Dialogue: 0,0:00:42.44,0:00:47.62,Pair,,0,0,0,,{\pos(640,285)}Get ready all you lonely girls\NAnd leave those umbrellas at home
+Dialogue: 0,0:00:42.44,0:00:47.62,Next,,0,0,0,,{\pos(640,475)}Alright\NMmh rising
+Dialogue: 0,0:00:47.62,0:00:54.39,Pair,,0,0,0,,{\pos(640,285)}Alright\NMmh rising
+Dialogue: 0,0:00:47.62,0:00:54.39,Next,,0,0,0,,{\pos(640,475)}How low girl\NWhat sources now
+Dialogue: 0,0:00:54.39,0:01:01.09,Pair,,0,0,0,,{\pos(640,285)}How low girl\NWhat sources now
+Dialogue: 0,0:00:54.39,0:01:01.09,Next,,0,0,0,,{\pos(640,475)}We better hurry up for the first time just about half-past ten
+Dialogue: 0,0:01:01.09,0:01:09.87,Pair,,0,0,0,,{\pos(640,285)}We better hurry up for the first time just about half-past ten
+Dialogue: 0,0:01:01.09,0:01:09.87,Next,,0,0,0,,{\pos(640,475)}For the first time in history it's gonna start raining men
+Dialogue: 0,0:01:09.87,0:01:17.78,Pair,,0,0,0,,{\pos(640,285)}For the first time in history it's gonna start raining men
+Dialogue: 0,0:01:09.87,0:01:17.78,Next,,0,0,0,,{\pos(640,475)}It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:01:17.78,0:01:23.66,Pair,,0,0,0,,{\pos(640,285)}It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:01:17.78,0:01:23.66,Next,,0,0,0,,{\pos(640,475)}Amen I'm gonna go out to run and let myself get\NAbsolutely soaking wet
+Dialogue: 0,0:01:23.66,0:01:33.56,Pair,,0,0,0,,{\pos(640,285)}Amen I'm gonna go out to run and let myself get\NAbsolutely soaking wet
+Dialogue: 0,0:01:23.66,0:01:33.56,Next,,0,0,0,,{\pos(640,475)}It's raining\NMen Hallelujah
+Dialogue: 0,0:01:33.56,0:01:35.96,Pair,,0,0,0,,{\pos(640,285)}It's raining\NMen Hallelujah
+Dialogue: 0,0:01:33.56,0:01:35.96,Next,,0,0,0,,{\pos(640,475)}Halleluja it's raining men\NEvery specimen
+Dialogue: 0,0:01:35.96,0:01:41.88,Pair,,0,0,0,,{\pos(640,285)}Halleluja it's raining men\NEvery specimen
+Dialogue: 0,0:01:35.96,0:01:41.88,Next,,0,0,0,,{\pos(640,475)}Tall, blonde\NDark and lean
+Dialogue: 0,0:01:41.88,0:01:45.38,Pair,,0,0,0,,{\pos(640,285)}Tall, blonde\NDark and lean
+Dialogue: 0,0:01:41.88,0:01:45.38,Next,,0,0,0,,{\pos(640,475)}Rough and tough and strong and mean
+Dialogue: 0,0:01:45.38,0:01:54.61,Pair,,0,0,0,,{\pos(640,285)}Rough and tough and strong and mean
+Dialogue: 0,0:01:45.38,0:01:54.61,Next,,0,0,0,,{\pos(640,475)}She's a single woman too\NShe took off to heaven
+Dialogue: 0,0:01:54.61,0:02:01.19,Pair,,0,0,0,,{\pos(640,285)}She's a single woman too\NShe took off to heaven
+Dialogue: 0,0:01:54.61,0:02:01.19,Next,,0,0,0,,{\pos(640,475)}And she did what she had to do\NShe bought every angel and rearranged the sky
+Dialogue: 0,0:02:01.19,0:02:11.05,Pair,,0,0,0,,{\pos(640,285)}And she did what she had to do\NShe bought every angel and rearranged the sky
+Dialogue: 0,0:02:01.19,0:02:11.05,Next,,0,0,0,,{\pos(640,475)}So that each and every woman could find her perfect guy
+Dialogue: 0,0:02:11.05,0:02:20.91,Pair,,0,0,0,,{\pos(640,285)}So that each and every woman could find her perfect guy
+Dialogue: 0,0:02:11.05,0:02:20.91,Next,,0,0,0,,{\pos(640,475)}It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:02:20.91,0:02:26.83,Pair,,0,0,0,,{\pos(640,285)}It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:02:20.91,0:02:26.83,Next,,0,0,0,,{\pos(640,475)}Amen It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:02:26.83,0:02:33.83,Pair,,0,0,0,,{\pos(640,285)}Amen It's raining men\NHallelujah it's raining men
+Dialogue: 0,0:02:26.83,0:02:33.83,Next,,0,0,0,,{\pos(640,475)}Amen\NAmen Amen
+Dialogue: 0,0:02:33.83,0:02:41.54,Pair,,0,0,0,,{\pos(640,285)}Amen\NAmen Amen
+Dialogue: 0,0:02:33.83,0:02:41.54,Next,,0,0,0,,{\pos(640,475)}I feel stormy weather moving in 'Bout to begin
+Dialogue: 0,0:02:41.54,0:02:53.54,Pair,,0,0,0,,{\pos(640,285)}I feel stormy weather moving in 'Bout to begin
+Dialogue: 0,0:02:41.54,0:02:53.54,Next,,0,0,0,,{\pos(640,475)}About to begin\NHear the thunder
+Dialogue: 0,0:02:53.54,0:02:59.02,Pair,,0,0,0,,{\pos(640,285)}About to begin\NHear the thunder
+Dialogue: 0,0:02:53.54,0:02:59.02,Next,,0,0,0,,{\pos(640,475)}Don't you lose your head
+Dialogue: 0,0:02:59.02,0:03:06.03,Pair,,0,0,0,,{\pos(640,285)}Don't you lose your head
+Dialogue: 0,0:02:59.02,0:03:06.03,Next,,0,0,0,,{\pos(640,475)}Rip off the roof and stay in bed\NOh
+Dialogue: 0,0:03:06.03,0:03:16.99,Pair,,0,0,0,,{\pos(640,285)}Rip off the roof and stay in bed\NOh
+Dialogue: 0,0:03:06.03,0:03:16.99,Next,,0,0,0,,{\pos(640,475)}She's a single woman too\NShe took off to heaven
+Dialogue: 0,0:03:16.99,0:03:24.00,Pair,,0,0,0,,{\pos(640,285)}She's a single woman too\NShe took off to heaven
+Dialogue: 0,0:03:16.99,0:03:24.00,Next,,0,0,0,,{\pos(640,475)}And she did what she had to do\NShe bought every angel
+Dialogue: 0,0:03:24.00,0:03:30.56,Pair,,0,0,0,,{\pos(640,285)}And she did what she had to do\NShe bought every angel
+Dialogue: 0,0:03:24.00,0:03:30.56,Next,,0,0,0,,{\pos(640,475)}She rearranged the sky\NSo that each and every woman could find her perfect guy
+Dialogue: 0,0:03:30.56,0:03:42.80,Pair,,0,0,0,,{\pos(640,285)}She rearranged the sky\NSo that each and every woman could find her perfect guy
+Dialogue: 0,0:03:30.56,0:03:42.80,Next,,0,0,0,,{\pos(640,475)}Ho oh it's raining men yeah\NAnd just
+Dialogue: 0,0:03:42.80,0:03:49.63,Pair,,0,0,0,,{\pos(640,285)}Ho oh it's raining men yeah\NAnd just
+Dialogue: 0,0:03:42.80,0:03:49.63,Next,,0,0,0,,{\pos(640,475)}Humidity's rising\NOh oh yes rising
+Dialogue: 0,0:03:49.63,0:03:56.61,Pair,,0,0,0,,{\pos(640,285)}Humidity's rising\NOh oh yes rising
+Dialogue: 0,0:03:49.63,0:03:56.61,Next,,0,0,0,,{\pos(640,475)}Is getting low, low, low, low\NLow, low, low, low, is low getting low
+Dialogue: 0,0:03:56.61,0:04:04.06,Pair,,0,0,0,,{\pos(640,285)}Is getting low, low, low, low\NLow, low, low, low, is low getting low
+Dialogue: 0,0:03:56.61,0:04:04.06,Next,,0,0,0,,{\pos(640,475)}According to all sources\NOh to all
+Dialogue: 0,0:04:04.06,0:04:07.51,Pair,,0,0,0,,{\pos(640,285)}According to all sources\NOh to all
+Dialogue: 0,0:04:04.06,0:04:07.51,Next,,0,0,0,,{\pos(640,475)}Yeah sources 'Cos tonight for the first time
+Dialogue: 0,0:04:07.51,0:04:16.09,Pair,,0,0,0,,{\pos(640,285)}Yeah sources 'Cos tonight for the first time
+Dialogue: 0,0:04:07.51,0:04:16.09,Next,,0,0,0,,{\pos(640,475)}Just about half-past ten\NHo oh ho ho
+Dialogue: 0,0:04:16.09,0:04:19.12,Pair,,0,0,0,,{\pos(640,285)}Just about half-past ten\NHo oh ho ho
+Dialogue: 0,0:04:16.09,0:04:19.12,Next,,0,0,0,,{\pos(640,475)}For the first time in history it's gonna start raining men
+Dialogue: 0,0:04:19.12,0:04:28.34,Pair,,0,0,0,,{\pos(640,285)}For the first time in history it's gonna start raining men
+Dialogue: 0,0:04:19.12,0:04:28.34,Next,,0,0,0,,{\pos(640,475)}Oh It's raining men\NWooh hallelujah it's raining men
+Dialogue: 0,0:04:28.34,0:04:34.69,Pair,,0,0,0,,{\pos(640,285)}Oh It's raining men\NWooh hallelujah it's raining men
+Dialogue: 0,0:04:28.34,0:04:34.69,Next,,0,0,0,,{\pos(640,475)}Amen It's raining men\NHallelujah it's
+Dialogue: 0,0:04:34.69,0:04:39.72,Pair,,0,0,0,,{\pos(640,285)}Amen It's raining men\NHallelujah it's
+Dialogue: 0,0:04:34.69,0:04:39.72,Next,,0,0,0,,{\pos(640,475)}Raining men\NAmen It's raining men
+Dialogue: 0,0:04:39.72,0:04:44.32,Pair,,0,0,0,,{\pos(640,285)}Raining men\NAmen It's raining men
+Dialogue: 0,0:04:39.72,0:04:44.32,Next,,0,0,0,,{\pos(640,475)}Oh it's raining\NHallelujah it's raining men
+Dialogue: 0,0:04:44.32,0:04:47.86,Pair,,0,0,0,,{\pos(640,285)}Oh it's raining\NHallelujah it's raining men
+Dialogue: 0,0:04:44.32,0:04:47.86,Next,,0,0,0,,{\pos(640,475)}Dark and lean\NIt's raining men
+Dialogue: 0,0:04:47.86,0:04:51.52,Pair,,0,0,0,,{\pos(640,285)}Dark and lean\NIt's raining men
+Dialogue: 0,0:04:47.86,0:04:51.52,Next,,0,0,0,,{\pos(640,475)}Strong and mean\NHo oh woah woah woah
+Dialogue: 0,0:04:51.52,0:04:54.76,Pair,,0,0,0,,{\pos(640,285)}Strong and mean\NHo oh woah woah woah
+Dialogue: 0,0:04:51.52,0:04:54.76,Next,,0,0,0,,{\pos(640,475)}Hang woah on\NWoah men woah woah woah
+Dialogue: 0,0:04:54.76,0:04:56.56,Pair,,0,0,0,,{\pos(640,285)}Hang woah on\NWoah men woah woah woah
+Dialogue: 0,0:04:54.76,0:04:56.56,Next,,0,0,0,,{\pos(640,475)}It's woah raining oh men\NTall, I blonde can't believe
+Dialogue: 0,0:04:56.56,0:04:59.85,Pair,,0,0,0,,{\pos(640,285)}It's woah raining oh men\NTall, I blonde can't believe
+Dialogue: 0,0:04:56.56,0:04:59.85,Next,,0,0,0,,{\pos(640,475)}Dark and lean\NDon't run away
+Dialogue: 0,0:04:59.85,0:05:01.60,Pair,,0,0,0,,{\pos(640,285)}Dark and lean\NDon't run away
+Dialogue: 0,0:04:59.85,0:05:01.60,Next,,0,0,0,,{\pos(640,475)}Rough and tough\NRough and strong tough and strong and mean and mean
+Dialogue: 0,0:05:01.60,0:05:07.05,Pair,,0,0,0,,{\pos(640,285)}Rough and tough\NRough and strong tough and strong and mean and mean
+Dialogue: 0,0:05:01.60,0:05:07.05,Next,,0,0,0,,{\pos(640,475)}No no no no no\NAnd no
+Dialogue: 0,0:05:07.05,0:05:09.01,Pair,,0,0,0,,{\pos(640,285)}No no no no no\NAnd no
+Dialogue: 0,0:05:07.05,0:05:09.01,Next,,0,0,0,,{\pos(640,475)}I know no\NHow Wooh can
+Dialogue: 0,0:05:09.01,0:05:10.94,Pair,,0,0,0,,{\pos(640,285)}I know no\NHow Wooh can
+Dialogue: 0,0:05:09.01,0:05:10.94,Next,,0,0,0,,{\pos(640,475)}I see you men\NAmen Uh rearranged the sky
+Dialogue: 0,0:05:10.94,0:05:18.86,Pair,,0,0,0,,{\pos(640,285)}I see you men\NAmen Uh rearranged the sky
+Dialogue: 0,0:05:10.94,0:05:18.86,Next,,0,0,0,,{\pos(640,475)}You don't know\NOh me men
+Dialogue: 0,0:05:18.86,0:05:24.01,Pair,,0,0,0,,{\pos(640,285)}You don't know\NOh me men
