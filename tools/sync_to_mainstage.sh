@@ -66,7 +66,7 @@ MAP=(
   "Медляк|||Mr. Credo - Медляк"
   "Я буду|||5sta Family & 23:45 - Я буду"
   "Smells Like Teen Spirit|||Nirvana - Smells Like Teen Spirit"
-  # 24.10 Lefkara batch
+  # 24.10 Lefkara batch (27 songs)
   "Heart of Glass|||Blondie - Heart of Glass"
   "Ghostbusters|||Ray Parker Jr. - Ghostbusters"
   "Venus|||Shocking Blue - Venus"
@@ -77,6 +77,24 @@ MAP=(
   "Personal Jesus|||Depeche Mode - Personal Jesus"
   "Brother Louie|||Modern Talking - Brother Louie"
   "Hot Stuff|||Donna Summer - Hot Stuff"
+  "Stayin' Alive|||Bee Gees - Stayin' Alive"
+  "I Will Survive|||Gloria Gaynor - I Will Survive"
+  "YMCA|||Village People - Y.M.C.A."
+  "Gimme! Gimme! Gimme!|||ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)"
+  "I Love Rock 'n' Roll|||Joan Jett - I Love Rock 'n' Roll"
+  "Felicità|||Al Bano & Romina Power - Felicità"
+  "Mamma María|||Ricchi e Poveri - Mamma María"
+  "It's Raining Men|||Weather Girls - It's Raining Men"
+  "Maniac|||Flashdance (Michael Sembello) - Maniac"
+  "Girls Just Want to Have Fun|||Cyndi Lauper - Girls Just Want to Have Fun"
+  "What a Feeling|||Flashdance (Irene Cara) - What a Feeling"
+  "You're My Heart, You're My Soul|||Modern Talking - You're My Heart, You're My Soul (Mix '98)"
+  "Holding Out for a Hero|||Footloose (1984 film) - Holding Out for a Hero"
+  "I Wanna Dance with Somebody|||Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)"
+  "The Best|||Tina Turner - The Best"
+  "Sunny|||Boney M. - Sunny"
+  "Money, Money, Money|||ABBA - Money, Money, Money"
+  "What Is Love|||Haddaway - What Is Love"
 )
 
 # Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,
@@ -89,18 +107,20 @@ while IFS= read -r f; do STEMS+=("$f"); done < <(
 APPLY=0
 COMMIT_MSG=""
 FILTER=""
+CREATE_MISSING=0
 while [ $# -gt 0 ]; do
   case "$1" in
-    --apply)  APPLY=1; shift ;;
-    --commit) COMMIT_MSG="${2:-}"; shift 2 ;;
-    *)        FILTER="$1"; shift ;;
+    --apply)           APPLY=1; shift ;;
+    --create-missing)  CREATE_MISSING=1; shift ;;
+    --commit)          COMMIT_MSG="${2:-}"; shift 2 ;;
+    *)                 FILTER="$1"; shift ;;
   esac
 done
 
 [ -d "$SETLIST_DIR" ] || { echo "ERROR: setlist dir not found: $SETLIST_DIR" >&2; exit 1; }
 
 copied=0; skipped=0; missing=0; songs=0
-echo "mode: $([ $APPLY -eq 1 ] && echo APPLY || echo DRY-RUN)${FILTER:+   filter=\"$FILTER\"}"
+echo "mode: $([ $APPLY -eq 1 ] && echo APPLY || echo DRY-RUN)${FILTER:+   filter=\"$FILTER\"}$([ $CREATE_MISSING -eq 1 ] && echo "   [create-missing]")"
 echo
 
 for entry in "${MAP[@]}"; do
@@ -111,16 +131,26 @@ for entry in "${MAP[@]}"; do
   fi
   dst="$SETLIST_DIR/$dst_name"
   src="$SRC_ROOT/$src_name/auto-render"
-  [ -d "$dst" ] || { echo "!! target missing, skip: $dst_name"; continue; }
+  if [ ! -d "$dst" ]; then
+    if [ $CREATE_MISSING -eq 1 ]; then
+      [ $APPLY -eq 1 ] && mkdir -p "$dst"
+      echo "▸ created target dir: $dst_name"
+    else
+      echo "!! target missing, skip: $dst_name (pass --create-missing to create)"
+      continue
+    fi
+  fi
   [ -d "$src" ] || { echo "!! no auto-render, skip:  $src_name"; continue; }
 
   songs=$((songs+1))
   echo "▸ $dst_name  ←  $src_name"
   for stem in "${STEMS[@]}"; do
-    [ -f "$dst/$stem" ] || continue          # only overwrite stems MainStage already references
+    if [ ! -f "$dst/$stem" ] && [ $CREATE_MISSING -ne 1 ]; then
+      continue          # only overwrite stems MainStage already references unless create-missing
+    fi
     if [ ! -f "$src/$stem" ]; then
-      echo "    MISSING in render: $stem  (target has it — re-render or fix mix.json)"
-      missing=$((missing+1)); continue
+      [ -f "$dst/$stem" ] && { echo "    MISSING in render: $stem  (target has it — re-render or fix mix.json)"; missing=$((missing+1)); }
+      continue
     fi
     if cmp -s "$src/$stem" "$dst/$stem"; then
       echo "    = $stem  (identical, skip)"

@@ -600,3 +600,18 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Для остальных 17 песен (clips 45–61) тексты и тайминги извлечены напрямую из JamZone `tiles.json`.
 - В `tools/lyric-launcher/songs.tsv` зарегистрированы 18 новых строк (клипы 44–61, Program Change 45–62).
 - Все клипы (ASS, MP4) и обновлённый манифест доставлены в репозиторий рига (`cherry-daddies-2000`).
+
+## [2026-10-09] sync & rules | 24.10 Lefkara: синхронизация аудио-плейбеков (18 песен) в риг и фиксация правила синка
+
+По запросу Alex:
+- **Все 18 недостающих песен программы Лефкары скопированы и запушены в репо рига (`cherry-daddies-2000`):**
+  - Папки в `cherry-daddies-setlist-2026-06-16/` (`Stayin' Alive`, `I Will Survive`, `YMCA`, `Gimme! Gimme! Gimme!`, `I Love Rock 'n' Roll`, `Felicità`, `Mamma María`, `It's Raining Men`, `Maniac`, `Girls Just Want to Have Fun`, `What a Feeling`, `You're My Heart, You're My Soul`, `Holding Out for a Hero`, `I Wanna Dance with Somebody`, `The Best`, `Sunny`, `Money, Money, Money`, `What Is Love`).
+  - Для каждой песни скопированы боевые стемы: `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav`.
+  - Все изменения закоммичены и отправлены в remote `origin/main` рига. Теперь **все 27 песен Лефкары имеют полные плейбеки в риге**.
+  - Дополнительно через `tools/sync_to_mainstage.sh --apply` синхронизированы свежие рендеры для ранее загруженных песен (*Ghostbusters, Cheri Cheri Lady, Stumblin' In, Sarà perché ti amo, Brother Louie, Rock & Roll Queen*).
+- **Обновлён `tools/sync_to_mainstage.sh`:**
+  - В таблицу `MAP` добавлены все 18 новых песен Лефкары (всего 65 песен в маппинге).
+  - Добавлен флаг `--create-missing` для инициализации папок новых песен при необходимости.
+- **Зафиксировано железное правило группы в `CLAUDE.md` и `AGENTS.md`:**
+  - **«Синк песен в риг» ВСЕГДА означает, что аудио-рендеры (плейбеки/стемы) скопированы, закоммичены и ЗАПУШЕНЫ в origin/main рига.**
+  - Отправка одних только lyrics без аудио-плейбеков никогда не считается синком песни в риг.

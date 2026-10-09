@@ -183,6 +183,18 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 
 ## Обновление playback/cue в риге (MainStage) после ре-рендера
 
+### ЖЕЛЕЗНОЕ ПРАВИЛО: «СИНК ПЕСЕН В РИГ» = РЕНДЕРЫ (ПЛЕЙБЕКИ/СТЕМЫ) ТАМ ЗАГРУЖЕНЫ
+
+**«Синк песен в риг» (`cherry-daddies-2000`) ВСЕГДА И БЕЗ ИСКЛЮЧЕНИЙ означает, что аудио-рендеры (плейбеки/стемы) скопированы, закоммичены и ЗАПУШЕНЫ в origin/main рига.**
+- **НИКОГДА** не заявлять и не рапортовать, что «песни засинканы в риг», если отправлены только lyrics (клипы `.ass`/`.mp4`, манифест `lyrics/songs.tsv`), а стемы (`click.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`/`pb-bass.wav`) не скопированы или не запушены в риг!
+- Полный синк песни = текст (ASS/MP4) + аудио-плейбеки (`click.wav`, `cues.wav`, `pb-*.wav`), всё в git и **запушено в remote `basbit/cherry-daddies-2000`**.
+- Для каждой песни программы папка в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/<Song>/` ОБЯЗАНА содержать все рабочие стемы.
+- Процедура синка:
+  1. Отрендерить стемы в `cherry-daddies` (`jamzone_render.py`).
+  2. Запустить `tools/sync_to_mainstage.sh --apply` (при необходимости `--create-missing`).
+  3. Закоммитить в `cherry-daddies-2000`.
+  4. **ОБЯЗАТЕЛЬНО выполнить `git push origin main`** в репо рига и проверить `git status` (branch is up to date with origin/main).
+
 Перерендерил песню (`jamzone_render.py` → новые `click/cues/pb-other/pb-bass.wav` в `auto-render/`) → стемы в боевом MainStage-проекте (`cherry-daddies-2000`) **НЕ обновятся сами**. Накатывает `tools/sync_to_mainstage.sh`.
 
 - **Что делает:** для каждой песни сетлиста копирует из `<song>/auto-render/` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/<NN Song>/` **только те стемы, что УЖЕ лежат в целевой папке** (`click/cues/pb-other/pb-bass.wav`), перезаписывая на месте. `all.wav`/`cue_preview.mp3`/`timeline.json` — пайплайн-внутренние, не копируются. MainStage ссылается на аудио ПО ПУТИ → перезапись 1:1 = плагин видит новый звук без правок.
