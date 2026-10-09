@@ -1,0 +1,41 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "07_Piano",
+      "08_Brass_section",
+      "09_French_Horn",
+      "10_String_Section",
+      "11_Harp"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "04_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "12_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Electric_Guitar_(left)",
+      "06_Electric_Guitar_(right)"
+    ]
+  },
+  "cues": [
+    {"bar": 2, "text": "I Will Survive piano in", "abs_sec": 4.113, "snap_sec": 0.0},
+    {"bar": 5, "text": "drums in", "abs_sec": 10.263, "snap_sec": 6.149},
+    {"bar": 13, "text": "verse in", "abs_sec": 26.773, "snap_sec": 22.66},
+    {"bar": 37, "text": "main in ready go", "abs_sec": 76.313, "snap_sec": 72.185},
+    {"bar": 45, "text": "verse in ready go", "abs_sec": 92.827, "snap_sec": 88.699},
+    {"bar": 103, "text": "end in", "count": true, "abs_sec": 212.583, "snap_sec": 207.934}
+  ]
+}

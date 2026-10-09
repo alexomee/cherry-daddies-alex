@@ -1,0 +1,41 @@
+{
+  "pb-other": {
+    "stems": [
+      "06_Organ",
+      "07_Synth_Pad",
+      "08_Synth_Strings",
+      "09_Synth_Keys_1",
+      "10_Synth_Keys_2",
+      "11_Arpeggiator",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "03_Electronic_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "03_Electronic_Drum_Kit"
+    ],
+    "roma": [
+      "05_Synth_Bass_1"
+    ],
+    "tanya": [
+      "13_Lead_Vocal"
+    ]
+  },
+  "cat": "cat_19903",
+  "cues": [
+    {"bar": 1, "text": "What Is Love playback in", "abs_sec": 3.871, "snap_sec": 0.0},
+    {"bar": 5, "text": "all in", "abs_sec": 11.613, "snap_sec": 7.742},
+    {"bar": 22, "beat": 2, "text": "verse in", "abs_sec": 45.002, "snap_sec": 41.131},
+    {"bar": 38, "beat": 2, "text": "main in ready go", "abs_sec": 75.971, "snap_sec": 72.099},
+    {"bar": 46, "beat": 2, "text": "chorus in ready go", "abs_sec": 91.455, "snap_sec": 87.584},
+    {"bar": 93, "beat": 4, "text": "break in ready go", "abs_sec": 183.394, "snap_sec": 179.523},
+    {"bar": 97, "beat": 4, "text": "bridge in ready go", "abs_sec": 191.136, "snap_sec": 187.265},
+    {"bar": 129, "beat": 3, "text": "end in", "count": true, "abs_sec": 252.59, "snap_sec": 248.235}
+  ]
+}

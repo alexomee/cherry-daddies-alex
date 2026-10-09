@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-07
+updated: 2026-10-08
 title: Brother Louie
 artist: Modern Talking
 set: "24.10 Lefkara #9"
@@ -21,4 +21,6 @@ set: "24.10 Lefkara #9"
 - **players:** roma (`03_Synth_Bass`), steve (`02_Drum_Kit`), tanya (`13_Lead_Vocal`).
 - **cues:**
   - `bar 1.3` — `Brother Louie playback in` («Brother Louie playback in ready go») — первая нота клавиш (lead +1 такт count-in).
+  - `bar 50.1` — `verse in` («verse in ready go») — вступление куплета 2 («Stay, 'cause this boy wants to gamble…», 110.092s).
+  - `bar 89.4` — `short chorus ready go` — вступление перед вокальным затактом «Bro-ther» (197.615s, такт 89 доля 4), припев «Louie Louie…» на даунбите 90.1.
   - `bar 105.3` — `end fill in` («end fill in 3 · 3 2 1») — отсчёт перед финальными orchestra hit / ударами барабанов (232.294s, такт 105 доли 3 и 4).

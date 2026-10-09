@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-06
+updated: 2026-10-08
 title: Cheri, Cheri Lady
 artist: Modern Talking
 set: "24.10 Lefkara #4"
@@ -20,4 +20,4 @@ set: "24.10 Lefkara #4"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** клавиши, синты, FX, духовые и бэки: `05_Synth_Pad`, `06_Synth_Keys_1`, `07_Synth_Keys_2`, `08_Synth_Keys_3`, `09_Orchestra_Hit`, `10_Synth_Brass`, `11_Synth_Flute`, `12_Backing_Vocals`.
 - **players:** roma (`03_Synth_Bass`), steve (`02_Electronic_Drum_Kit`), tanya (`13_Lead_Vocal`).
-- **Cues:** bar 2 — `Cheri Cheri Lady all in` («Cheri Cheri Lady · all in ready go»), bar 105 — `end fill in` («end fill in 3 · 3 2 1»).
+- **Cues:** bar 2 — `Cheri Cheri Lady all in` («Cheri Cheri Lady · all in ready go»), bar 5.4 — `verse in` («verse in ready go» под вокальный затакт на 4-й доле), bar 105 — `end fill in` («end fill in 3 · 3 2 1»).

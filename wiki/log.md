@@ -488,3 +488,105 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Выполнен перерендер с `--practice`: обновлены `auto-render/*` (`click.wav`, `all.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya).
 - Выполнен синк в риг: `sync_to_mainstage.sh --apply "Heart of Glass"` обновил `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Heart of Glass/`.
 - Обновлены `web/songs.json`, `music/guide-catalog.json`, `wiki/songs/heart-of-glass.md`, `wiki/index.md`.
+
+## [2026-10-08] cues & render | Лефкара Сет 2: извлечение 7 песен, базовые стартовые/финальные cue, полный рендер и practice-миксы
+
+- Извлечены и подготовлены все 7 новых треков 2 сета Лефкары из JamZone:
+  1. `Village People - Y.M.C.A.` (cat_6926, ~127 BPM): стартовый cue `YMCA all in` (bar 3.1, 3.920s), финальный cue `end in` (bar 155.1, 291.400s).
+  2. `Gloria Gaynor - I Will Survive` (cat_5921, ~116.3 BPM): стартовый cue `I Will Survive piano in` (bar 2.1, 4.113s), финальный cue `end in` (bar 103.1, 212.583s).
+  3. `Bee Gees - Stayin' Alive` (cat_5447, 105 BPM): стартовый cue `Stayin Alive all in` (bar 2.1, 4.571s), финальный cue `end in` (bar 125.1, 285.714s).
+  4. `Flashdance (Michael Sembello) - Maniac` (cat_7662, ~159 BPM, `cue_step: 2`): стартовый cue `Maniac all in` (bar 3.1, 4.549s), финальный cue `end in` (bar 171.1, 258.129s).
+  5. `Modern Talking - You're My Heart, You're My Soul (Mix '98)` (cat_14066, ~117.5 BPM): стартовый cue `You're My Heart all in` (bar 2.1, 4.085s), финальный cue `end in` (bar 111.1, 226.703s).
+  6. `Ricky Martin - Livin' La Vida Loca` (cat_8526, ~177.7 BPM, `cue_step: 2`): стартовый cue `Livin La Vida Loca all in` (bar 3.1, 4.052s), финальный cue `end in` (bar 180.1, 243.102s).
+  7. `Weather Girls - It's Raining Men` (cat_13536, ~137 BPM): стартовый cue `It's Raining Men all in` (bar 3.1, 5.192s), финальный cue `end in` (bar 185.1, 324.332s).
+  (8-й трек сета, `Gala - Freed from Desire`, был подготовлен ранее с 16 cue).
+- Во всех треках исключена перкуссия под живого барабанщика (Стива), назначен живой бас Ромы (`pb-bass: null`), собраны `pb-other`, `pb-drums` и practice-миксы для Roma, Steve, Tanya и Alex.
+- Выполнен полный рендер через `jamzone_render.py` с флагом `--practice` для всех треков (сгенерированы `click.wav`, `all.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, practice-миксы и web-стемы).
+- Созданы 7 wiki-страниц в `wiki/songs/`: `ymca.md`, `i-will-survive.md`, `stayin-alive.md`, `maniac.md`, `youre-my-heart-youre-my-soul.md`, `livin-la-vida-loca.md`, `its-raining-men.md`.
+- Обновлены `wiki/gigs/2026-10-24-lefkara.md`, `wiki/index.md` и `web/songs.json` (65/65 песен с полными данными, 65 cues, 63 с practice-миксами).
+
+## [2026-10-08] cues | Cheri, Cheri Lady: добавлен cue "verse in ready go" на первый куплет
+
+- По запросу добавлен cue на первый куплет песни `Modern Talking — Cheri, Cheri Lady`:
+  - `bar 5.4` (12.105s, snap 7.895s) — `verse in` («verse in ready go» под вокальный затакт «Oh I» на 4-й доле 5-го такта, вступающий ровно после слова «go»).
+  - Сетка cues теперь содержит 3 подсказки:
+    1. `bar 2.1` (4.211s) — `Cheri Cheri Lady all in` («Cheri Cheri Lady · all in ready go»)
+    2. `bar 5.4` (12.105s) — `verse in` («verse in ready go»)
+    3. `bar 105.1` (221.053s) — `end fill in` (`count: true` → «end fill in 3 · 3 2 1»)
+- Выполнен рендер через `jamzone_render.py --practice`:
+  - Обновлены `cues.wav`, `cue_preview.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya.
+  - Музыкальные стемы (`all.wav`, `pb-other.wav`, `pb-drums.wav`) не затронуты.
+- Актуализирован `web/songs.json`.
+- Синхронизированы обновлённые `click.wav` и `cues.wav` в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Cheri, Cheri Lady/`).
+- Обновлены `wiki/songs/cheri-cheri-lady.md`, `wiki/gigs/2026-10-24-lefkara.md`, `wiki/index.md`.
+
+## [2026-10-08] cues & tooling | Brother Louie: cues "verse in" на куплет 2 и "short chorus ready go" на Chorus 3 + инструмент расчёта секций JamZone
+
+1. **Brother Louie — Cues на Verse 2 и Chorus 3:**
+   - По запросу Alex рассчитаны и добавлены две подсказки:
+     1. `{"bar": 50, "text": "verse in"}` (render 110.092s, snap 105.688s) — вступление куплета 2 («Stay, 'cause this boy wants to gamble…»).
+     2. `{"bar": 89, "beat": 4, "text": "short chorus ready go"}` (render 197.615s, snap 193.211s) — вступление перед затактом укороченного припева Chorus 3: сдвинуто на 1 долю раньше (такт 89 доля 4 вместо 90.1), так что слова «short» (88.4), «chorus» (89.1), «ready» (89.2), «go» (89.3) звучат ДО затакта «Bro-ther» (89.4), а на 90.1 вступает даунбит припева «Louie, Louie…».
+   - Выполнен перерендер через `jamzone_render.py "Brother Louie"`: обновлены `mix.json`, `cues.wav`, `cue_preview.mp3`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, practice-миксы, web-стемы и `web/songs.json`.
+   - Обновлены `wiki/songs/brother-louie.md` и `wiki/index.md`.
+
+2. **Инструмент мгновенного расчёта секций JamZone (`jamzone_sections.py` / `--sections`):**
+   - Чтобы не тратить время на написание разовых скриптов расшифровки метаданных JamZone, в `tools/jamzone/jamzone_render.py` добавлен флаг `--sections`, а также создан CLI-хелпер `tools/jamzone/jamzone_sections.py "<song>"`.
+   - Мгновенно (<0.2с) расшифровывает `structure.json` и `tiles.json`, сопоставляет с сеткой песни и выводит единую таблицу:
+     - `stem_t` — секунды исходных стемов JamZone;
+     - `render_t` (`abs_sec`) — **точное время в отрендеренном аудио** с автоматическим учётом оффсета клика (`OFF` / count-in lead из `timeline.json`);
+     - `Logic ruler` — позиция такт.доля на линейке Logic Pro;
+     - `mix.json` — точные `bar` и `beat` от сильной доли ($t=0$ стемов);
+     - готовый сниппет cue для вставки в `mix.json` (`{"bar": N, "text": "..."}`);
+     - превью первой вокальной фразы секции из `tiles.json`.
+   - Правила зафиксированы в `CLAUDE.md` и `AGENTS.md`.
+
+## [2026-10-09] setlist & render | 24.10 Lefkara: расширение программы до 27 песен, распаковка 12 новых треков из JamZone, секционные cues и полный рендер
+
+- **Обновление сетлиста Лефкары:** список утверждён в едином порядке из 27 песен:
+  1. Stayin’ Alive (Bee Gees, 1977)
+  2. Heart of Glass (Blondie, 1978)
+  3. I Will Survive (Gloria Gaynor, 1978)
+  4. YMCA (Village People, 1978)
+  5. Hot Stuff (Donna Summer, 1979)
+  6. Gimme! Gimme! Gimme! (ABBA, 1979)
+  7. Sarà perché ti amo (Ricchi e Poveri, 1981)
+  8. I Love Rock ‘n’ Roll (Joan Jett, 1981)
+  9. Felicità (Al Bano & Romina Power, 1982)
+  10. Mamma Maria (Ricchi e Poveri, 1982)
+  11. It’s Raining Men (The Weather Girls, 1982)
+  12. Maniac (Michael Sembello, 1983)
+  13. Sweet Dreams (Eurythmics, 1983)
+  14. Girls Just Want to Have Fun (Cyndi Lauper, 1983)
+  15. What a Feeling (Irene Cara, 1983)
+  16. Ghostbusters (Ray Parker Jr., 1984)
+  17. You’re My Heart, You’re My Soul (Modern Talking, 1984)
+  18. Holding Out for a Hero (Bonnie Tyler, 1984)
+  19. Cheri Cheri Lady (Modern Talking, 1985)
+  20. Brother Louie (Modern Talking, 1986)
+  21. Venus (Shocking Blue, 1986 — подтверждена готовая версия)
+  22. I Wanna Dance with Somebody (Whitney Houston, 1987)
+  23. The Best (Tina Turner, 1989)
+  24. Sunny (Boney M., 1976)
+  25. Money, Money, Money (ABBA, 1976)
+  26. Stumblin’ In (Chris Norman & Suzi Quatro, 1978)
+  27. What Is Love (Haddaway, 1993)
+
+- **12 новых треков извлечены из JamZone HQ:**
+  `Gimme! Gimme! Gimme!`, `I Love Rock 'n' Roll`, `Felicità`, `Mamma María`, `Girls Just Want to Have Fun`, `What a Feeling`, `Holding Out for a Hero`, `I Wanna Dance with Somebody`, `The Best`, `Sunny`, `Money, Money, Money`, `What Is Love`.
+  Для каждого трека:
+  - Исключена перкуссия (Claps, Tambourines, Congas, Timpani, Marimba и т.д.) — играет барабанщик Стив.
+  - Бас живой (`pb-bass: null`) — играет Рома.
+  - Собраны `pb-other` (клавиши, синты, FX, духовые, струнные, бэк-вокал), назначены `players`.
+  - При дрейфе сетки >8мс автоматически включён `"click": "follow"`.
+
+- **Секционные подсказки (Cues) расставлены по правилам группы:**
+  - Интро: `playback in` при игре плейбека без бэнда (*What a Feeling, Gimme Gimme Gimme, Money Money Money, What Is Love, It's Raining Men, You're My Heart, Maniac, Sweet Dreams, Sara perche*).
+  - Первые куплеты: `verse in` выставлен строго на долю затакта (pickup) там, где фраза идёт из-за такта (*Stayin' Alive bar 7.4, Gimme Gimme Gimme bar 19.4, Felicità bar 13.4, Mamma Maria bar 6.4, Sunny bar 13.4, The Best bar 5.4, Money Money Money bar 7.4, What a Feeling bar 7.4, Maniac bar 18.4, Hot Stuff bar 17.4*).
+  - Инструменталы и брейки: `{section} in ready go` и обязательный cue на следующую секцию при выходе из них.
+  - Финалы: `end in` / `end fill in` (`count: true` $\to$ «end in 3 · 3 2 1»).
+  - Существующие песни с >2 подсказками (*Heart of Glass, Ghostbusters, Venus, Stumblin' In, Cheri Cheri Lady, Brother Louie*) сохранены без изменений.
+
+- **Рендер и синхронизация:**
+  - Все 27 песен полностью отрендерены через `jamzone_render.py` (`click.wav`, `cues.wav`, `all.wav`, `cue_preview.mp3`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, practice-миксы, web-стемы).
+  - Обновлён `tools/setlist_dashboard.py` (единый сет Лефкары из 27 треков в точном порядке), перегенерирован `web/songs.json` (74 трека с полными данными и плеером).
+  - Созданы 12 wiki-страниц в `wiki/songs/`, обновлены `wiki/gigs/2026-10-24-lefkara.md` и `wiki/index.md`.

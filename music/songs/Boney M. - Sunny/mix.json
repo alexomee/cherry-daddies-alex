@@ -1,0 +1,41 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Electric_Guitar",
+      "05_Piano",
+      "06_Synth_Pad",
+      "07_Brass_section",
+      "08_String_Section",
+      "09_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "03_Bass"
+    ],
+    "tanya": [
+      "10_Lead_Vocal"
+    ],
+    "alex": [
+      "04_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_5568",
+  "cues": [
+    {"bar": 2, "text": "Sunny playback in", "abs_sec": 4.068, "snap_sec": 0.0},
+    {"bar": 6, "text": "all in", "abs_sec": 12.203, "snap_sec": 8.136},
+    {"bar": 13, "beat": 4, "text": "verse in", "abs_sec": 27.966, "snap_sec": 23.898},
+    {"bar": 62, "text": "main in ready go", "abs_sec": 126.102, "snap_sec": 122.034},
+    {"bar": 78, "text": "verse in ready go", "abs_sec": 158.644, "snap_sec": 154.576},
+    {"bar": 92, "text": "end in", "count": true, "abs_sec": 187.119, "snap_sec": 182.542}
+  ]
+}

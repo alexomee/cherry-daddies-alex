@@ -50,11 +50,12 @@ Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
        --bpm N = force tempo (external songs; overrides measured)
    position converter (writes nothing; pick where to add a cue without bar-grid guessing):
        --map           list every cue in mix.json bar / render sec / Logic-ruler bar.beat
+       --sections      list all JamZone sections mapped to mix.json bar, render sec & Logic ruler
        --logic B[.bt]  a spot on Logic's ruler (over the loaded render) -> the mix.json "bar" to write
        --bar  N[.bt]   a mix.json bar -> render sec + where it lands on Logic's ruler
        --at   SEC      a render second / Logic SMPTE -> the mix.json "bar" to write
 """
-import os, sys, glob, json, re, subprocess
+import os, sys, glob, json, re, subprocess, hashlib
 import numpy as np
 
 SR = 44100
@@ -1000,6 +1001,97 @@ def write_cue_abs_times(mix_path, times, snaps=None):
     open(mix_path, "w", encoding="utf-8").write("\n".join(lines))
     return None
 
+def _find_jamzone_cat(folder, mix):
+    if mix.get("cat"): return mix["cat"]
+    if mix.get("jamzone_cat"): return mix["jamzone_cat"]
+    tsv = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lyric-launcher", "songs.tsv")
+    if os.path.exists(tsv):
+        base_f = os.path.basename(folder)
+        for line in open(tsv, encoding="utf-8"):
+            parts = line.strip().split("\t")
+            if len(parts) >= 7 and (parts[6] in folder or base_f in parts[6]) and parts[5].startswith("cat_"):
+                return parts[5]
+    jams = os.path.expanduser("~/Library/Containers/com.recisio.jamzone.ios/Data/Library/Application Support/com.recisio.jamzone.ios/jams")
+    if os.path.isdir(jams):
+        base = re.sub(r"^[^a-zA-Z0-9]+", "", os.path.basename(folder).lower())
+        for cat in sorted(os.listdir(jams)):
+            sj = os.path.join(jams, cat, "song.json")
+            if not os.path.isfile(sj): continue
+            key = hashlib.md5(cat.encode()).hexdigest().encode().hex()
+            d = open(sj, "rb").read()
+            out = subprocess.run(["openssl","enc","-aes-256-cbc","-d","-K",key,"-iv",d[:16].hex()],
+                                 input=d[16:], capture_output=True).stdout
+            try:
+                m = json.loads(out)
+                t = (m.get("title") or "").lower()
+                if t and (t in base or base in t):
+                    return cat
+            except Exception: pass
+    return None
+
+def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat):
+    cat = _find_jamzone_cat(folder, mix)
+    if not cat:
+        print(f"JamZone catalog ID not found for {os.path.basename(folder)}")
+        return
+    jams = os.path.expanduser("~/Library/Containers/com.recisio.jamzone.ios/Data/Library/Application Support/com.recisio.jamzone.ios/jams")
+    cat_dir = os.path.join(jams, cat)
+    sj_path = os.path.join(cat_dir, "structure.json")
+    if not os.path.exists(sj_path):
+        print(f"structure.json not found in {cat_dir}")
+        return
+    key = hashlib.md5(cat.encode()).hexdigest().encode().hex()
+    d = open(sj_path, "rb").read()
+    st = json.loads(subprocess.run(["openssl","enc","-aes-256-cbc","-d","-K",key,"-iv",d[:16].hex()],
+                                   input=d[16:], capture_output=True).stdout)
+    lyrics = {}
+    tj_path = os.path.join(cat_dir, "tiles.json")
+    if os.path.exists(tj_path):
+        td = open(tj_path, "rb").read()
+        try:
+            tiles = json.loads(subprocess.run(["openssl","enc","-aes-256-cbc","-d","-K",key,"-iv",td[:16].hex()],
+                                              input=td[16:], capture_output=True).stdout)
+            curr = ""
+            for t in tiles:
+                sc = t.get("sectionCaption")
+                if sc: curr = sc
+                w = t.get("words")
+                if isinstance(w, dict) and curr not in lyrics:
+                    words_txt = []
+                    for col, wl in w.items():
+                        for item in wl:
+                            syls = item.get("syllabes")
+                            if syls:
+                                words_txt.append("".join(s.get("text", "") for s in syls))
+                    if words_txt:
+                        lyrics[curr] = " ".join(words_txt)[:45]
+        except Exception: pass
+
+    print(f"\nJamZone sections for {os.path.basename(folder)} ({cat}):")
+    print(f"  {'Section':15s} | {'stem_t':8s} | {'render_t':9s} | {'Logic':6s} | {'mix.json cue snippet':34s} | {'Lyrics preview'}")
+    print("  " + "-" * 105)
+    for s in st:
+        cap = s.get("caption", "")
+        b = s.get("begin", 0.0)
+        idx = (b - db0) / beat
+        mb, mbe = idx_to_barbeat(idx)
+        t_rend = render_sec(idx)
+        lb, lbe = logic_of_sec(t_rend)
+        c_lower = cap.lower()
+        if "precount" in c_lower: c_txt = "precount"
+        elif "intro" in c_lower: c_txt = "all in"
+        elif "verse" in c_lower: c_txt = "verse in"
+        elif "chorus" in c_lower: c_txt = "chorus in"
+        elif "solo" in c_lower: c_txt = "solo in"
+        elif "instrumental" in c_lower: c_txt = "main in"
+        elif "outro" in c_lower: c_txt = "end in"
+        else: c_txt = f"{c_lower} in"
+        b_part = f'"bar": {mb}' if mbe == 1 else f'"bar": {mb}, "beat": {_disp_beat(mbe)}'
+        snippet = f'{{{b_part}, "text": "{c_txt}"}}'
+        lyr = f'"{lyrics[cap]}..."' if cap in lyrics else ""
+        print(f"  {cap:15s} | {b:7.3f}s | {t_rend:8.3f}s | {lb:2d}.{round(lbe)}  | {snippet:34s} | {lyr}")
+    print()
+
 def main():
     if "--levels" in sys.argv:                         # dry-run loudness report (all songs, or one
         args = [a for a in sys.argv[1:] if not a.startswith("--")]   # if a song query is given); writes
@@ -1264,6 +1356,9 @@ def main():
             i = cue_beat_index(c); t = render_sec(i); lb, lbe = logic_of_sec(t)
             print(f"  bar {int(c['bar']):>3} beat {_disp_beat(c.get('beat',1)):>3} | {t:8.3f}s "
                   f"| Logic {lb}.{round(lbe)} | {c['text']}")
+    if "--sections" in sys.argv or "-s" in sys.argv:
+        q = True
+        _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat)
     for flag, mk in (("--logic", lambda v: sec_of_logic(int(v.split('.')[0]), int((v.split('.')+['1'])[1]))),
                      ("--bar",   lambda v: render_sec(mixbar_to_idx(int(v.split('.')[0]), int((v.split('.')+['1'])[1])))),
                      ("--at",    lambda v: float(v))):

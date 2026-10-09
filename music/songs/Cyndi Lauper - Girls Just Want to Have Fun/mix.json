@@ -1,0 +1,43 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Rhythm_Electric_Guitar",
+      "05_Electric_Guitar_(muted)",
+      "06_Organ",
+      "07_Synth_Pad",
+      "08_Synth_Keys",
+      "10_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "03_Bass"
+    ],
+    "tanya": [
+      "11_Lead_Vocal"
+    ],
+    "alex": [
+      "04_Rhythm_Electric_Guitar",
+      "05_Electric_Guitar_(muted)"
+    ]
+  },
+  "cat": "cat_8231",
+  "cues": [
+    {"bar": 3, "text": "Girls Just Want to Have Fun all in", "abs_sec": 3.986, "snap_sec": 0.0},
+    {"bar": 11, "beat": 2, "text": "verse in", "abs_sec": 20.43, "snap_sec": 16.444},
+    {"bar": 20, "text": "break in ready go", "abs_sec": 37.871, "snap_sec": 33.884},
+    {"bar": 24, "text": "verse in ready go", "abs_sec": 45.843, "snap_sec": 41.857},
+    {"bar": 45, "beat": 4, "text": "main in ready go", "abs_sec": 89.195, "snap_sec": 85.209},
+    {"bar": 53, "beat": 4, "text": "verse in ready go", "abs_sec": 105.141, "snap_sec": 101.154},
+    {"bar": 75, "beat": 4, "text": "end in", "count": true, "abs_sec": 148.991, "snap_sec": 144.506}
+  ]
+}

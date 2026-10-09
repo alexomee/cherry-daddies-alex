@@ -1,0 +1,47 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Electric_Guitar_(left)",
+      "06_Electric_Guitar_(right)",
+      "07_Electric_Guitar",
+      "08_Piano",
+      "09_Synth_Strings",
+      "10_Arpeggiator",
+      "11_Brass_section",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Electronic_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Electronic_Drum_Kit"
+    ],
+    "roma": [
+      "03_Synth_Bass_1",
+      "04_Synth_Bass_2"
+    ],
+    "tanya": [
+      "13_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Electric_Guitar_(left)",
+      "06_Electric_Guitar_(right)",
+      "07_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_13868",
+  "click": "follow",
+  "cues": [
+    {"bar": 3, "text": "Holding Out for a Hero all in", "abs_sec": 3.208, "snap_sec": 0.0},
+    {"bar": 23, "text": "verse in", "abs_sec": 35.282, "snap_sec": 32.076},
+    {"bar": 39, "text": "chorus in", "abs_sec": 60.942, "snap_sec": 57.736},
+    {"bar": 101, "beat": 2, "text": "main in ready go", "abs_sec": 160.775, "snap_sec": 157.569},
+    {"bar": 117, "beat": 2, "text": "bridge in ready go", "abs_sec": 186.348, "snap_sec": 183.145},
+    {"bar": 170, "beat": 2, "text": "end in", "count": true, "abs_sec": 271.248, "snap_sec": 267.635}
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "pb-other": {
+    "stems": [
+      "06_Electric_Guitar",
+      "07_Piano",
+      "08_Organ",
+      "09_Digital_Piano",
+      "10_Synthesizer_(Mellotron)",
+      "11_Synthesizer",
+      "12_Synth_Strings",
+      "14_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "05_Bass"
+    ],
+    "tanya": [
+      "15_Lead_Vocal"
+    ],
+    "alex": [
+      "06_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_5459",
+  "click": "follow",
+  "cues": [
+    {"bar": 2, "text": "Money Money Money playback in", "abs_sec": 4.131, "snap_sec": 0.0},
+    {"bar": 6, "text": "drums in", "abs_sec": 12.191, "snap_sec": 8.238},
+    {"bar": 7, "beat": 4, "text": "verse in", "abs_sec": 15.561, "snap_sec": 11.648},
+    {"bar": 25, "beat": 2, "text": "chorus in", "abs_sec": 51.031, "snap_sec": 47.048},
+    {"bar": 90, "text": "end in", "count": true, "abs_sec": 180.131, "snap_sec": 175.678}
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Electric_Guitar",
+      "06_Synthesizer",
+      "07_Synth_Voice",
+      "08_Synth_Keys_1",
+      "09_Synth_Keys_2",
+      "10_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "04_Synth_Bass"
+    ],
+    "tanya": [
+      "11_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_10091",
+  "click": "follow",
+  "cues": [
+    {"bar": 2, "text": "What a Feeling playback in", "abs_sec": 4.597, "snap_sec": 0.0},
+    {"bar": 7, "beat": 4, "text": "verse in", "abs_sec": 19.597, "snap_sec": 15.0},
+    {"bar": 26, "text": "all in ready go", "abs_sec": 63.109, "snap_sec": 59.182},
+    {"bar": 54, "beat": 2, "text": "main in ready go", "abs_sec": 117.875, "snap_sec": 113.948},
+    {"bar": 62, "beat": 2, "text": "verse in ready go", "abs_sec": 133.384, "snap_sec": 129.456},
+    {"bar": 101, "beat": 4, "text": "end in", "count": true, "abs_sec": 209.959, "snap_sec": 205.547}
+  ]
+}

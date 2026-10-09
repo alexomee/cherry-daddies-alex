@@ -23,6 +23,7 @@
   "cut_bars": [2, 6],
   "cues": [
     {"bar": 2, "text": "Cheri Cheri Lady all in", "abs_sec": 4.211, "snap_sec": 0.0},
+    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 12.105, "snap_sec": 7.895},
     {"bar": 105, "beat": 1, "text": "end fill in", "count": true, "abs_sec": 221.053, "snap_sec": 216.316}
   ]
 }

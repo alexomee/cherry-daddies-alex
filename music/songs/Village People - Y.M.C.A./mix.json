@@ -1,0 +1,40 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "08_Electric_Piano_(Rhodes)",
+      "09_Brass_section",
+      "10_String_Section",
+      "11_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "05_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "12_Lead_Vocal"
+    ],
+    "alex": [
+      "06_Distorted_Electric_Guitar",
+      "07_Electric_Guitar"
+    ]
+  },
+  "cues": [
+    {"bar": 3, "text": "YMCA all in", "abs_sec": 3.92, "snap_sec": 0.0},
+    {"bar": 17, "beat": 2, "text": "verse in", "abs_sec": 31.19, "snap_sec": 27.43},
+    {"bar": 35, "beat": 2, "text": "chorus in", "abs_sec": 65.18, "snap_sec": 61.39},
+    {"bar": 119, "beat": 2, "text": "main in ready go", "abs_sec": 224.0, "snap_sec": 220.22},
+    {"bar": 127, "beat": 2, "text": "chorus in ready go", "abs_sec": 239.12, "snap_sec": 235.35},
+    {"bar": 155, "text": "end in", "count": true, "abs_sec": 291.4, "snap_sec": 287.17}
+  ]
+}

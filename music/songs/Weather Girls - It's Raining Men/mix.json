@@ -1,0 +1,43 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "04_Sound_effects",
+      "07_Piano",
+      "08_Synth_Keys",
+      "09_Arpeggiator",
+      "10_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "05_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "11_Lead_Vocal_Izora_Armstead",
+      "12_Lead_Vocal_Martha_Wash_(ad_lib)",
+      "13_Lead_Vocal_Martha_Wash"
+    ],
+    "alex": [
+      "06_Electric_Guitar"
+    ]
+  },
+  "cues": [
+    {"bar": 1, "text": "It's Raining Men playback in", "abs_sec": 3.504, "snap_sec": 0.0},
+    {"bar": 3, "text": "all in", "abs_sec": 6.944, "snap_sec": 3.472},
+    {"bar": 19, "text": "main in ready go", "abs_sec": 35.104, "snap_sec": 31.582},
+    {"bar": 26, "beat": 4, "text": "verse in", "abs_sec": 48.724, "snap_sec": 45.212},
+    {"bar": 91, "text": "break in ready go", "abs_sec": 161.494, "snap_sec": 157.992},
+    {"bar": 109, "text": "bridge in ready go", "abs_sec": 193.034, "snap_sec": 189.532},
+    {"bar": 185, "text": "end in", "count": true, "abs_sec": 326.084, "snap_sec": 322.142}
+  ]
+}

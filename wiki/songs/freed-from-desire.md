@@ -3,7 +3,7 @@ type: song
 updated: 2026-07-10
 title: Freed From Desire
 artist: Gala
-set: СЕТ 1 #10
+set: СЕТ 1 #10 / 24.10 Lefkara Сет 2 #6
 ---
 
 # Gala — Freed from Desire

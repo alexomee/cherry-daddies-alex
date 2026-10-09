@@ -1,0 +1,46 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "05_ARP",
+      "06_Electric_Guitar_(clean)",
+      "07_Electric_Guitar",
+      "08_CP",
+      "09_Synthesizer_Mellotron",
+      "10_Synth_Pad",
+      "11_Synth_Lead",
+      "12_String_Section",
+      "13_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "04_Electric_Bass"
+    ],
+    "tanya": [
+      "14_Lead_Vocal"
+    ],
+    "alex": [
+      "06_Electric_Guitar_(clean)",
+      "07_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_9159",
+  "cues": [
+    {"bar": 2, "text": "Gimme Gimme Gimme playback in", "abs_sec": 4.245, "snap_sec": 0.0},
+    {"bar": 11, "text": "drums in", "abs_sec": 23.045, "snap_sec": 18.976},
+    {"bar": 19, "beat": 4, "text": "verse in", "abs_sec": 40.655, "snap_sec": 36.616},
+    {"bar": 88, "text": "main in ready go", "abs_sec": 178.065, "snap_sec": 174.046},
+    {"bar": 118, "text": "chorus in ready go", "abs_sec": 238.245, "snap_sec": 234.206},
+    {"bar": 134, "text": "end in", "count": true, "abs_sec": 270.115, "snap_sec": 265.616}
+  ]
+}

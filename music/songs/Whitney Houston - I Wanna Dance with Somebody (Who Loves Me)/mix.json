@@ -1,0 +1,41 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Electric_Guitar",
+      "06_Electric_Piano_(Rhodes)",
+      "07_Synth_Keys_(Bells)",
+      "08_Synth_Brass",
+      "10_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "04_Synth_Bass"
+    ],
+    "tanya": [
+      "11_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_5468",
+  "click": "follow",
+  "cues": [
+    {"bar": 2, "text": "I Wanna Dance all in", "abs_sec": 4.06, "snap_sec": 0.0},
+    {"bar": 4, "beat": 4, "text": "vocal in", "abs_sec": 9.59, "snap_sec": 5.56},
+    {"bar": 18, "text": "verse in", "abs_sec": 36.35, "snap_sec": 32.32},
+    {"bar": 113, "beat": 2, "text": "break in ready go", "abs_sec": 228.74, "snap_sec": 224.69},
+    {"bar": 121, "beat": 2, "text": "bridge in ready go", "abs_sec": 244.9, "snap_sec": 240.84},
+    {"bar": 137, "beat": 2, "text": "end in", "count": true, "abs_sec": 277.22, "snap_sec": 272.67}
+  ]
+}

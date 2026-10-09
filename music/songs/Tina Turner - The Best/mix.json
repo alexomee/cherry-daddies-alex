@@ -1,0 +1,50 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Acoustic_Guitar_(clean)",
+      "05_Rhythm_Electric_Guitar_(muted)",
+      "06_Rhythm_Electric_Guitar",
+      "07_Arr._Electric_Guitar",
+      "08_Distorted_Electric_Guitar",
+      "09_Digital_Piano",
+      "10_Hammond_(Hammond)",
+      "11_Synth_Keys",
+      "12_Tenor_Saxophone",
+      "13_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "03_Electric_Bass"
+    ],
+    "tanya": [
+      "14_Lead_Vocal"
+    ],
+    "alex": [
+      "04_Acoustic_Guitar_(clean)",
+      "05_Rhythm_Electric_Guitar_(muted)",
+      "06_Rhythm_Electric_Guitar",
+      "07_Arr._Electric_Guitar",
+      "08_Distorted_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_5519",
+  "click": "follow",
+  "cues": [
+    {"bar": 2, "text": "The Best all in", "abs_sec": 4.591, "snap_sec": 0.0},
+    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 13.221, "snap_sec": 8.62},
+    {"bar": 30, "text": "chorus in", "abs_sec": 69.221, "snap_sec": 64.61},
+    {"bar": 82, "text": "sax solo ready go", "abs_sec": 189.401, "snap_sec": 184.78},
+    {"bar": 90, "text": "chorus in ready go", "abs_sec": 207.841, "snap_sec": 203.26},
+    {"bar": 98, "text": "end in", "count": true, "abs_sec": 226.351, "snap_sec": 221.16}
+  ]
+}

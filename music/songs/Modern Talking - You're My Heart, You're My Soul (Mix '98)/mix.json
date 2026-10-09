@@ -1,0 +1,42 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "09_Piano",
+      "10_Synth_Pad",
+      "11_Synth_Keys_1",
+      "12_Synth_Keys_2",
+      "13_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "04_Synth_Bass_1",
+      "05_Synth_Bass_2"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "14_Lead_Vocal"
+    ],
+    "alex": [
+      "06_Electric_Guitar",
+      "07_Rhythm_Electric_Guitar",
+      "08_Lead_Electric_Guitar"
+    ]
+  },
+  "cues": [
+    {"bar": 2, "text": "You're My Heart playback in", "abs_sec": 4.085, "snap_sec": 0.0},
+    {"bar": 10, "beat": 3, "text": "verse in", "abs_sec": 21.435, "snap_sec": 17.362},
+    {"bar": 44, "beat": 3, "text": "main in ready go", "abs_sec": 90.882, "snap_sec": 86.797},
+    {"bar": 61, "text": "verse in ready go", "abs_sec": 124.575, "snap_sec": 120.499},
+    {"bar": 111, "text": "end in", "count": true, "abs_sec": 226.703, "snap_sec": 222.107}
+  ]
+}

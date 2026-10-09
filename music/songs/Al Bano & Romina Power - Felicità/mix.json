@@ -1,0 +1,42 @@
+{
+  "pb-other": {
+    "stems": [
+      "04_Piano",
+      "05_Electric_Piano_(CP)",
+      "06_Synth_Pad",
+      "07_Synth_Keys",
+      "08_Synth_Brass",
+      "09_String_Section",
+      "10_Cello",
+      "11_French_Horn",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "03_Synth_Bass"
+    ],
+    "tanya": [
+      "13_Lead_Vocal_Romina_Power",
+      "14_Lead_Vocal_Al_Bano"
+    ]
+  },
+  "cat": "cat_16687",
+  "cues": [
+    {"bar": 2, "text": "Felicita all in", "abs_sec": 4.461, "snap_sec": 0.0},
+    {"bar": 13, "beat": 4, "text": "verse in", "abs_sec": 30.668, "snap_sec": 26.207},
+    {"bar": 29, "beat": 3, "text": "chorus in", "abs_sec": 65.797, "snap_sec": 61.336},
+    {"bar": 45, "beat": 3, "text": "main in ready go", "abs_sec": 101.483, "snap_sec": 97.022},
+    {"bar": 47, "beat": 3, "text": "verse in ready go", "abs_sec": 105.944, "snap_sec": 101.483},
+    {"bar": 79, "text": "end in", "count": true, "abs_sec": 176.201, "snap_sec": 171.183}
+  ]
+}

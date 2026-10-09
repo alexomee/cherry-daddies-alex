@@ -12,15 +12,28 @@
   },
   "pb-bass": null,
   "pb-drums": {
-    "stems": ["02_Drum_Kit"]
+    "stems": [
+      "02_Drum_Kit"
+    ]
   },
   "players": {
-    "roma": ["05_Synth_Bass"],
-    "steve": ["02_Drum_Kit"],
-    "tanya": ["12_Lead_Vocal_(ad_lib)", "13_Lead_Vocal"]
+    "roma": [
+      "05_Synth_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "12_Lead_Vocal_(ad_lib)",
+      "13_Lead_Vocal"
+    ]
   },
   "cues": [
-    {"bar": 3, "text": "Sweet Dreams all in", "abs_sec": 3.834, "snap_sec": 0.0},
-    {"bar": 113, "beat": 1, "text": "end in", "count": true, "abs_sec": 214.709, "snap_sec": 210.396}
+    {"bar": 3, "text": "Sweet Dreams playback in", "abs_sec": 3.834, "snap_sec": 0.0},
+    {"bar": 7, "text": "chorus in", "abs_sec": 11.502, "snap_sec": 7.668},
+    {"bar": 15, "text": "verse in", "abs_sec": 26.839, "snap_sec": 23.005},
+    {"bar": 51, "text": "break in ready go", "abs_sec": 95.852, "snap_sec": 92.018},
+    {"bar": 59, "text": "verse in ready go", "abs_sec": 111.189, "snap_sec": 107.355},
+    {"bar": 113, "text": "end in", "count": true, "abs_sec": 214.709, "snap_sec": 210.396}
   ]
 }

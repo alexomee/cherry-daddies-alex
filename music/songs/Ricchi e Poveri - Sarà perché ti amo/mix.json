@@ -9,15 +9,27 @@
   },
   "pb-bass": null,
   "pb-drums": {
-    "stems": ["02_Drum_Kit"]
+    "stems": [
+      "02_Drum_Kit"
+    ]
   },
   "players": {
-    "roma": ["03_Bass"],
-    "steve": ["02_Drum_Kit"],
-    "tanya": ["11_Lead_Vocal_Angela_Brambati", "12_Lead_Vocal_Angelo_Sotgiu"]
+    "roma": [
+      "03_Bass"
+    ],
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "tanya": [
+      "11_Lead_Vocal_Angela_Brambati",
+      "12_Lead_Vocal_Angelo_Sotgiu"
+    ]
   },
   "cues": [
-    {"bar": 3, "text": "Sarà perché ti amo all in", "abs_sec": 3.978, "snap_sec": 0.0},
-    {"bar": 91, "text": "end fill in", "count": true, "abs_sec": 179.023, "snap_sec": 174.547}
+    {"bar": 3, "text": "Sara perche playback in", "abs_sec": 3.978, "snap_sec": 0.0},
+    {"bar": 11, "text": "verse in", "abs_sec": 19.891, "snap_sec": 15.913},
+    {"bar": 59, "text": "main in ready go", "abs_sec": 115.37, "snap_sec": 111.392},
+    {"bar": 67, "text": "chorus in ready go", "abs_sec": 131.283, "snap_sec": 127.305},
+    {"bar": 91, "beat": 1, "text": "end fill in", "count": true, "abs_sec": 179.023, "snap_sec": 174.547}
   ]
 }

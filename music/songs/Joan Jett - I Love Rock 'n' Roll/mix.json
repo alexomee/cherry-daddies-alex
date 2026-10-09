@@ -1,0 +1,45 @@
+{
+  "pb-other": {
+    "stems": [
+      "05_Electric_Guitar",
+      "06_Electric_Guitar_(left)",
+      "07_Electric_Guitar_(right)",
+      "08_Lead_Electric_Guitar",
+      "09_Electric_Piano_(Rhodes)",
+      "10_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Drum_Kit"
+    ]
+  },
+  "players": {
+    "steve": [
+      "02_Drum_Kit"
+    ],
+    "roma": [
+      "04_Bass"
+    ],
+    "tanya": [
+      "11_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Electric_Guitar",
+      "06_Electric_Guitar_(left)",
+      "07_Electric_Guitar_(right)",
+      "08_Lead_Electric_Guitar"
+    ]
+  },
+  "cat": "cat_9455",
+  "click": "follow",
+  "cues": [
+    {"bar": 2, "text": "I Love Rock n Roll guitar in", "abs_sec": 5.062, "snap_sec": 0.0},
+    {"bar": 7, "beat": 3, "text": "verse in", "abs_sec": 18.592, "snap_sec": 13.57},
+    {"bar": 18, "text": "chorus in", "abs_sec": 45.172, "snap_sec": 40.07},
+    {"bar": 40, "beat": 2, "text": "guitar solo ready go", "abs_sec": 101.672, "snap_sec": 96.62},
+    {"bar": 51, "text": "bridge in ready go", "abs_sec": 129.242, "snap_sec": 124.12},
+    {"bar": 55, "text": "end in", "count": true, "abs_sec": 139.532, "snap_sec": 133.79}
+  ]
+}

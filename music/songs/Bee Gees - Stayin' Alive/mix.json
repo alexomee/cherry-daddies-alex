@@ -1,0 +1,43 @@
+{
+  "click": "follow",
+  "pb-other": {
+    "stems": [
+      "08_Electric_Piano_(Rhodes)",
+      "09_Synth_Pad",
+      "10_Brass_section",
+      "11_String_Section",
+      "12_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Acoustic_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "04_Bass"
+    ],
+    "steve": [
+      "02_Acoustic_Drum_Kit"
+    ],
+    "tanya": [
+      "13_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Acoustic_Guitar",
+      "06_Lead_Electric_Guitar_theme",
+      "07_Rhythm_Electric_Guitar"
+    ]
+  },
+  "cues": [
+    {"bar": 2, "text": "Stayin Alive all in", "abs_sec": 4.571, "snap_sec": 0.0},
+    {"bar": 7, "beat": 4, "text": "verse in", "abs_sec": 17.714, "snap_sec": 13.143},
+    {"bar": 27, "text": "main in ready go", "abs_sec": 61.714, "snap_sec": 57.143},
+    {"bar": 29, "text": "verse in ready go", "abs_sec": 66.286, "snap_sec": 61.714},
+    {"bar": 48, "text": "main in ready go", "abs_sec": 109.714, "snap_sec": 105.143},
+    {"bar": 50, "text": "bridge in ready go", "abs_sec": 114.286, "snap_sec": 109.714},
+    {"bar": 125, "text": "end in", "count": true, "abs_sec": 285.714, "snap_sec": 280.571}
+  ]
+}

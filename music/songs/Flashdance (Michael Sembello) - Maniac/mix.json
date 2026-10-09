@@ -1,0 +1,41 @@
+{
+  "click": "follow",
+  "cue_step": 2,
+  "pb-other": {
+    "stems": [
+      "06_Electric_Piano_(Rhodes)",
+      "07_Synthesizer_(disto)",
+      "08_Synth_Keys_1",
+      "09_Synth_Keys_2",
+      "10_String_Section",
+      "11_Backing_Vocals"
+    ]
+  },
+  "pb-bass": null,
+  "pb-drums": {
+    "stems": [
+      "02_Electronic_Drum_Kit"
+    ]
+  },
+  "players": {
+    "roma": [
+      "04_Synth_Bass"
+    ],
+    "steve": [
+      "02_Electronic_Drum_Kit"
+    ],
+    "tanya": [
+      "12_Lead_Vocal"
+    ],
+    "alex": [
+      "05_Lead_Electric_Guitar"
+    ]
+  },
+  "cues": [
+    {"bar": 3, "text": "Maniac playback in", "abs_sec": 4.549, "snap_sec": 0.0},
+    {"bar": 18, "beat": 4, "text": "verse in", "abs_sec": 28.369, "snap_sec": 23.82},
+    {"bar": 117, "text": "guitar solo ready go", "abs_sec": 176.629, "snap_sec": 172.08},
+    {"bar": 141, "text": "chorus in ready go", "abs_sec": 212.879, "snap_sec": 208.35},
+    {"bar": 171, "text": "end in", "count": true, "abs_sec": 258.129, "snap_sec": 252.85}
+  ]
+}
