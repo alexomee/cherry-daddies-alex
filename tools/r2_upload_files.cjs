@@ -31,19 +31,28 @@ const s3 = new AWS.S3({
 
 (async () => {
   let done = 0, fail = 0;
-  for (const it of manifest) {
-    const ct = CT[path.extname(it.key).toLowerCase()] || "application/octet-stream";
-    try {
-      await s3.putObject({
-        Bucket, Key: it.key, Body: fs.readFileSync(it.file), ContentType: ct,
-      }).promise();
-      done++;
-      console.log(`✓ ${done}/${manifest.length} ${it.key} [${ct}]`);
-    } catch (e) {
-      fail++;
-      console.error(`✗ ${it.key}: ${e.message}`);
+  const CONCURRENCY = 4;
+  let idx = 0;
+
+  async function worker() {
+    while (idx < manifest.length) {
+      const it = manifest[idx++];
+      if (!it) break;
+      const ct = CT[path.extname(it.key).toLowerCase()] || "application/octet-stream";
+      try {
+        await s3.putObject({
+          Bucket, Key: it.key, Body: fs.readFileSync(it.file), ContentType: ct,
+        }).promise();
+        done++;
+        console.log(`✓ ${done}/${manifest.length} ${it.key} [${ct}]`);
+      } catch (e) {
+        fail++;
+        console.error(`✗ ${it.key}: ${e.message}`);
+      }
     }
   }
+
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, manifest.length || 1) }, () => worker()));
   console.log(`DONE: ${done} ok, ${fail} fail of ${manifest.length}`);
   process.exit(fail ? 1 : 0);
 })();

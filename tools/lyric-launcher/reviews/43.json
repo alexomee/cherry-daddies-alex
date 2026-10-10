@@ -1,0 +1,56 @@
+{
+  "approved_by": null,
+  "build": {
+    "audio_duration": 295.132222,
+    "audio_sha256": "4a421926336dfc6b76c50b3e14db28cd4d8bbf1ef6be60073fc135ffd86f7675",
+    "clips": {
+      "ass": "b5c918651f1de4de1afd3e10d891a0c683440ed60bdbb6e522c3d218ffe9cc38",
+      "mp4": "aae585e7555ae6e81ac6398e49334daecec0b642db4c8eeccf3975c85f8b8c78"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Hot Stuff/click.wav": "1bb19dee4c7da1835f3bc3ecd3270380fa5abbee27fa0844730d77a10b93790c",
+        "cherry-daddies-setlist-2026-06-16/Hot Stuff/cues.wav": "4f6422affbb4a7e526d35f1b264e5e48f4989f859f332aedeb729a2b807c3027",
+        "cherry-daddies-setlist-2026-06-16/Hot Stuff/pb-drums.wav": "cfd027628f97d2fe2781bc2958ef9a76c38b6456927b55e27c3fb5315017ef62",
+        "cherry-daddies-setlist-2026-06-16/Hot Stuff/pb-other.wav": "06cefef1e09a3ee785db9849c3159d1e9dd62b9898646a81cdb42b0a1b50ffb8",
+        "lyrics/clips/43.ass": "7afb2a7894b0c5b27d5013269633bec5feb2d7e3a6bff218624447db023a9f9a",
+        "lyrics/clips/43.mp4": "04e5f8a3a56185b7c54f05d672cc68ff32ce13cf82a86b51d1453ae0be7b1b24"
+      },
+      "row": {
+        "bed_dir": "cherry-daddies-setlist-2026-06-16/Hot Stuff",
+        "cat": "cat_5408",
+        "clip": "43",
+        "concert_patch": "Hot Stuff.patch",
+        "factory_dir": "music/songs/Donna Summer - Hot Stuff",
+        "pc_field": "44",
+        "set": "43",
+        "song": "Hot Stuff",
+        "source": "jamzone"
+      }
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Hot Stuff",
+      "cat": "cat_5408",
+      "clip": "43",
+      "concert_patch": "Hot Stuff.patch",
+      "factory_dir": "music/songs/Donna Summer - Hot Stuff",
+      "pc_field": "44",
+      "set": "43",
+      "song": "Hot Stuff",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Donna Summer - Hot Stuff/auto-render/timeline.json": "0035a6540c2681579bcce8b221257f7fef916cea2c35351abcc3395db3778c23",
+      "music/songs/Donna Summer - Hot Stuff/mix.json": "d6e5be5d5df468233bee2d16ef114058117fa3ebec5682c88260e73dadd599ff",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/43.tsv": "af07e6bfdaac9f9f5cf2f517a637b78d512bf5dd16cb6f3192e490784522e483",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "6daacfeb9c73c8213381171bb978832e1f5323f4ac3483efa1e5d2a53a68231d"
+}

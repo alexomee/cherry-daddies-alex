@@ -77,22 +77,22 @@ save_mix("Bee Gees - Stayin' Alive", [
 
 # 3. Gloria Gaynor - I Will Survive
 save_mix("Gloria Gaynor - I Will Survive", [
-    {"bar": 2, "text": "I Will Survive piano in"},
-    {"bar": 5, "text": "drums in"},
-    {"bar": 13, "text": "verse in"},
-    {"bar": 37, "text": "main in ready go"},
+    {"bar": 2, "text": "I Will Survive playback in"},
+    {"bar": 5, "text": "guitars in"},
+    {"bar": 13, "text": "all in"},
     {"bar": 45, "text": "verse in ready go"},
+    {"bar": 76, "text": "music stop"},
+    {"bar": 78, "beat": 4, "text": "voice in ready go"},
     {"bar": 103, "text": "end in", "count": True}
 ])
 
 # 4. Village People - Y.M.C.A.
 save_mix("Village People - Y.M.C.A.", [
     {"bar": 3, "text": "YMCA all in"},
-    {"bar": 17, "beat": 2, "text": "verse in"},
-    {"bar": 35, "beat": 2, "text": "chorus in"},
-    {"bar": 119, "beat": 2, "text": "main in ready go"},
-    {"bar": 127, "beat": 2, "text": "chorus in ready go"},
-    {"bar": 155, "text": "end in", "count": True}
+    {"bar": 9, "beat": 1, "text": "verse in"},
+    {"bar": 111, "beat": 1, "text": "instrumental in ready go"},
+    {"bar": 119, "beat": 1, "text": "chorus in ready go"},
+    {"bar": 147, "text": "end in", "count": True}
 ])
 
 # 5. Donna Summer - Hot Stuff
@@ -106,9 +106,11 @@ save_mix("Donna Summer - Hot Stuff", [
 
 # 7. Ricchi e Poveri - Sarà perché ti amo
 save_mix("Ricchi e Poveri - Sarà perché ti amo", [
-    {"bar": 3, "text": "Sara perche playback in"},
-    {"bar": 11, "text": "verse in"},
-    {"bar": 59, "text": "main in ready go"},
+    {"bar": 3, "text": "Ti amo all in ready go"},
+    {"bar": 11, "text": "voice-only verse ready go"},
+    {"bar": 17, "text": "kick in ready go"},
+    {"bar": 19, "text": "all in ready go"},
+    {"bar": 59, "text": "instrumental in ready go"},
     {"bar": 67, "text": "chorus in ready go"},
     {"bar": 91, "beat": 1, "text": "end fill in", "count": True}
 ])
@@ -126,10 +128,13 @@ save_mix("Weather Girls - It's Raining Men", [
 
 # 12. Flashdance (Michael Sembello) - Maniac
 save_mix("Flashdance (Michael Sembello) - Maniac", [
-    {"bar": 3, "text": "Maniac playback in"},
+    {"bar": 3, "text": "Maniac drums in"},
+    {"bar": 11, "text": "main in ready go"},
     {"bar": 18, "beat": 4, "text": "verse in"},
+    {"bar": 101, "text": "bridge in"},
     {"bar": 117, "text": "guitar solo ready go"},
-    {"bar": 141, "text": "chorus in ready go"},
+    {"bar": 133, "text": "prechorus in"},
+    {"bar": 140, "beat": 4, "text": "chorus in ready go"},
     {"bar": 171, "text": "end in", "count": True}
 ])
 
@@ -145,11 +150,11 @@ save_mix("Eurythmics - Sweet Dreams (Are Made of This)", [
 
 # 17. Modern Talking - You're My Heart, You're My Soul (Mix '98)
 save_mix("Modern Talking - You're My Heart, You're My Soul (Mix '98)", [
-    {"bar": 2, "text": "You're My Heart playback in"},
+    {"bar": 2, "text": "You're My Heart all in"},
     {"bar": 10, "beat": 3, "text": "verse in"},
-    {"bar": 44, "beat": 3, "text": "main in ready go"},
+    {"bar": 44, "beat": 3, "text": "melody in ready go"},
     {"bar": 61, "text": "verse in ready go"},
-    {"bar": 111, "text": "end in", "count": True}
+    {"bar": 111, "text": "end fill in", "count": True}
 ])
 
 # -------------------------------------------------------------
@@ -189,11 +194,11 @@ save_mix("Al Bano & Romina Power - Felicità", [
 # 10. Ricchi e Poveri - Mamma María
 save_mix("Ricchi e Poveri - Mamma María", [
     {"bar": 3, "text": "Mamma Maria all in"},
-    {"bar": 6, "beat": 4, "text": "verse in"},
-    {"bar": 23, "text": "chorus in"},
-    {"bar": 54, "beat": 4, "text": "main in ready go"},
-    {"bar": 66, "beat": 4, "text": "verse in ready go"},
-    {"bar": 90, "beat": 3, "text": "end in", "count": True}
+    {"bar": 7, "text": "verse in"},
+    {"bar": 55, "text": "instrumental in ready go"},
+    {"bar": 67, "text": "verse in ready go"},
+    {"bar": 83, "text": "keep going"},
+    {"bar": 107, "text": "end in", "count": True}
 ], cat="cat_82836")
 
 # 14. Cyndi Lauper - Girls Just Want to Have Fun
@@ -209,22 +214,32 @@ save_mix("Cyndi Lauper - Girls Just Want to Have Fun", [
 
 # 15. Flashdance (Irene Cara) - What a Feeling
 save_mix("Flashdance (Irene Cara) - What a Feeling", [
-    {"bar": 2, "text": "What a Feeling playback in"},
-    {"bar": 7, "beat": 4, "text": "verse in"},
-    {"bar": 26, "text": "all in ready go"},
-    {"bar": 54, "beat": 2, "text": "main in ready go"},
-    {"bar": 62, "beat": 2, "text": "verse in ready go"},
-    {"bar": 101, "beat": 4, "text": "end in", "count": True}
+    {"bar": 2, "text": "What a Feeling guitars in"},
+    {"bar": 6, "text": "verse in"},
+    {"bar": 20, "text": "all in"},
+    {"bar": 48, "text": "solo in ready go"},
+    {"bar": 55, "beat": 4, "text": "vocal in"},
+    {"bar": 80, "text": "bridge in"},
+    {"bar": 88, "text": "chorus variation ready go"},
+    {"bar": 96, "text": "outro in ready go"},
+    {"bar": 104, "text": "keep going"},
+    {"bar": 114, "text": "end in", "count": True}
 ], click_mode="follow", cat="cat_10091")
 
 # 18. Footloose (1984 film) - Holding Out for a Hero
 save_mix("Footloose (1984 film) - Holding Out for a Hero", [
-    {"bar": 3, "text": "Holding Out for a Hero all in"},
+    {"bar": 3, "text": "Holding Out for a Hero drum-base in"},
     {"bar": 23, "text": "verse in"},
-    {"bar": 39, "text": "chorus in"},
-    {"bar": 101, "beat": 2, "text": "main in ready go"},
-    {"bar": 117, "beat": 2, "text": "bridge in ready go"},
-    {"bar": 170, "beat": 2, "text": "end in", "count": True}
+    {"bar": 38, "beat": 3, "text": "chorus in"},
+    {"bar": 55, "text": "intro in"},
+    {"bar": 63, "text": "verse in"},
+    {"bar": 101, "text": "bridge in"},
+    {"bar": 117, "text": "voice in"},
+    {"bar": 137, "beat": 4, "text": "chorus in"},
+    {"bar": 153, "text": "keep going"},
+    {"bar": 170, "text": "outro in ready go"},
+    {"bar": 194, "text": "keep going"},
+    {"bar": 206, "text": "end in", "count": True}
 ], click_mode="follow", cat="cat_13868")
 
 # 22. Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)
@@ -249,12 +264,13 @@ save_mix("Tina Turner - The Best", [
 
 # 24. Boney M. - Sunny
 save_mix("Boney M. - Sunny", [
-    {"bar": 2, "text": "Sunny playback in"},
-    {"bar": 6, "text": "all in"},
-    {"bar": 13, "beat": 4, "text": "verse in"},
-    {"bar": 62, "text": "main in ready go"},
-    {"bar": 78, "text": "verse in ready go"},
-    {"bar": 92, "text": "end in", "count": True}
+    {"bar": 2, "text": "Sunny, all in ready go"},
+    {"bar": 10, "text": "verse in"},
+    {"bar": 42, "text": "modulation in"},
+    {"bar": 58, "text": "instrumental in"},
+    {"bar": 74, "text": "modulation in"},
+    {"bar": 88, "text": "outro in"},
+    {"bar": 96, "text": "end in", "count": True}
 ], cat="cat_5568")
 
 # 25. ABBA - Money, Money, Money

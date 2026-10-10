@@ -5,8 +5,36 @@
       "05_Electric_Guitar_(right)",
       "06_Synth_Strings",
       "07_Synth_Keys",
-      "08_Synth_Keys"
-    ]
+      "08_Synth_Keys",
+      "09_Lead_Vocal_Angela_Brambati",
+      "10_Lead_Vocal_Angelo_Sotgiu",
+      "11_Lead_Vocal_Franco_Gatti"
+    ],
+    "roles": {
+      "09_Lead_Vocal_Angela_Brambati": "back-vox",
+      "10_Lead_Vocal_Angelo_Sotgiu": "back-vox",
+      "11_Lead_Vocal_Franco_Gatti": "back-vox"
+    },
+    "mute": {
+      "09_Lead_Vocal_Angela_Brambati": [
+        [1, 23],
+        [31, 47],
+        [55, 75],
+        [91, 109]
+      ],
+      "10_Lead_Vocal_Angelo_Sotgiu": [
+        [1, 23],
+        [31, 47],
+        [55, 75],
+        [91, 109]
+      ],
+      "11_Lead_Vocal_Franco_Gatti": [
+        [1, 23],
+        [31, 47],
+        [55, 75],
+        [91, 109]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -34,10 +62,10 @@
   "cat": "cat_82836",
   "cues": [
     {"bar": 3, "text": "Mamma Maria all in", "abs_sec": 3.566, "snap_sec": 0.0},
-    {"bar": 6, "beat": 4, "text": "verse in", "abs_sec": 10.251, "snap_sec": 6.686},
-    {"bar": 23, "text": "chorus in", "abs_sec": 39.223, "snap_sec": 35.657},
-    {"bar": 54, "beat": 4, "text": "main in ready go", "abs_sec": 95.829, "snap_sec": 92.263},
-    {"bar": 66, "beat": 4, "text": "verse in ready go", "abs_sec": 117.223, "snap_sec": 113.657},
-    {"bar": 90, "beat": 3, "text": "end in", "count": true, "abs_sec": 159.566, "snap_sec": 155.555}
+    {"bar": 7, "text": "verse in", "abs_sec": 10.697, "snap_sec": 7.131},
+    {"bar": 55, "text": "instrumental in ready go", "abs_sec": 96.275, "snap_sec": 92.709},
+    {"bar": 67, "text": "verse in ready go", "abs_sec": 117.669, "snap_sec": 114.103},
+    {"bar": 83, "text": "keep going", "abs_sec": 146.195, "snap_sec": 143.52},
+    {"bar": 107, "text": "end in", "count": true, "abs_sec": 188.983, "snap_sec": 184.972}
   ]
 }

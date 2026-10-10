@@ -24,6 +24,11 @@
   "cues": [
     {"bar": 2, "text": "Cheri Cheri Lady all in", "abs_sec": 4.211, "snap_sec": 0.0},
     {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 12.105, "snap_sec": 7.895},
+    {"bar": 35, "text": "melody in", "abs_sec": 73.684, "snap_sec": 69.474},
+    {"bar": 42, "beat": 4, "text": "verse in", "abs_sec": 90.0, "snap_sec": 85.789},
+    {"bar": 74, "text": "melody in", "abs_sec": 155.79, "snap_sec": 151.579},
+    {"bar": 81, "beat": 3, "text": "chorus in", "abs_sec": 171.579, "snap_sec": 167.368},
+    {"bar": 98, "text": "melody in", "abs_sec": 206.316, "snap_sec": 202.105},
     {"bar": 105, "beat": 1, "text": "end fill in", "count": true, "abs_sec": 221.053, "snap_sec": 216.316}
   ]
 }

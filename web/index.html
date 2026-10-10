@@ -76,7 +76,17 @@
   .c-bass{width:112px;max-width:112px;white-space:normal}
   .c-other{width:152px;max-width:152px}
   .c-mix{width:330px}
-  .player{display:flex;align-items:center;gap:8px;margin:5px 0}
+  .player{display:flex;flex-direction:column;gap:5px;margin:5px 0}
+  .player-top{display:flex;align-items:center;gap:8px;width:100%}
+  .player-sub{display:flex;align-items:center;gap:6px;padding-left:36px}
+  .player-skip-group{display:inline-flex;align-items:center;gap:4px}
+  .skip-btn{background:#151822;border:1px solid #282f42;color:var(--dim);
+    border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;cursor:pointer;
+    display:inline-flex;align-items:center;gap:4px;line-height:1.3;
+    transition:all 0.15s ease;user-select:none;-webkit-user-select:none}
+  .skip-btn:hover{border-color:var(--accent);color:var(--txt);background:#1c2233}
+  .skip-btn:active{transform:scale(0.96);background:#222a3d}
+  .skip-icon{flex:none}
   .mix-lbl{font-size:11px;width:40px;flex:none;font-weight:600;color:var(--dim)}
   .mix-lbl.alex{color:#ff9ecb} .mix-lbl.roma{color:#9cc0ff}
   .mix-lbl.steve{color:#f0a93a} .mix-lbl.tanya{color:#7fe8c6} .mix-lbl.all{color:#cdd3e0}
@@ -890,6 +900,60 @@
     activePlayer = null;
   }
 
+  function skipPlayer(s, plEl, delta){
+    var ctx = getAudioCtx();
+    var seek = plEl.querySelector(".seek");
+    var time = plEl.querySelector(".time");
+    var audio = plEl.querySelector(".mixaudio");
+    var isStemPlayer = !!(s.stems && s.stems.length);
+    var isPlaying = false;
+    var currentPos = 0;
+    var dur = 0;
+
+    if(activePlayer && activePlayer.sid === s.sid){
+      dur = activePlayer.duration || parseFloat(seek.max) || 0;
+      if(!activePlayer.paused){
+        isPlaying = true;
+        currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
+      } else {
+        currentPos = activePlayer.pausedAt !== undefined ? activePlayer.pausedAt : (parseFloat(seek.value) || 0);
+      }
+    } else if(audio && (!audio.paused || (audio.currentTime > 0 && !audio.ended))){
+      dur = audio.duration || parseFloat(seek.max) || 0;
+      currentPos = audio.currentTime;
+      isPlaying = !audio.paused;
+    } else {
+      dur = (audio && audio.duration) || parseFloat(seek.max) || 0;
+      currentPos = parseFloat(seek.value) || 0;
+    }
+
+    var target = currentPos + delta;
+    if(dur > 0){
+      target = Math.max(0, Math.min(dur, target));
+    } else {
+      target = Math.max(0, target);
+    }
+
+    if(isPlaying){
+      if(isStemPlayer){
+        playOrToggle(s, plEl, target);
+      } else if(audio){
+        audio.currentTime = target;
+        seek.value = target;
+        time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
+      }
+    } else {
+      if(activePlayer && activePlayer.sid === s.sid){
+        activePlayer.pausedAt = target;
+      }
+      if(audio){
+        try { audio.currentTime = target; } catch(e){}
+      }
+      seek.value = target;
+      time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
+    }
+  }
+
   async function playOrToggle(s, plEl, seekTime){
     var ctx = getAudioCtx();
     var pbtn = plEl.querySelector(".pbtn");
@@ -909,6 +973,8 @@
       startOffset = seekTime;
     } else if(activePlayer && activePlayer.sid === s.sid && activePlayer.pausedAt !== undefined){
       startOffset = activePlayer.pausedAt;
+    } else {
+      startOffset = parseFloat(seek.value) || 0;
     }
 
     stopActivePlayer(false);
@@ -916,9 +982,13 @@
     if(!s.stems || !s.stems.length){
       var audio = plEl.querySelector(".mixaudio");
       if(audio){
-        if(seekTime !== undefined) audio.currentTime = seekTime;
+        if(seekTime !== undefined){
+          audio.currentTime = seekTime;
+          if(audio.paused) audio.play();
+        } else {
+          if(audio.paused) audio.play(); else audio.pause();
+        }
         audio.playbackRate = currentSpeed;
-        if(audio.paused) audio.play(); else audio.pause();
       }
       return;
     }
@@ -1101,10 +1171,24 @@
       badge = '<span class="'+badgeCls+'" title="клик — открыть микс дорожек">'+badgeTxt+'</span>';
     }
     return '<div class="player" data-sid="'+sid+'">'
+         + '<div class="player-top">'
          + '<button class="pbtn" aria-label="play/pause">▶</button>'
          + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'
          + '<span class="time">0:00</span>'
          + badge
+         + '</div>'
+         + '<div class="player-sub">'
+         + '<div class="player-skip-group">'
+         + '<button class="skip-btn" type="button" data-skip="-10" title="Назад на 10 сек (Shift+Left / ←)">'
+         + '<svg class="skip-icon" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>'
+         + '<span>-10s</span>'
+         + '</button>'
+         + '<button class="skip-btn" type="button" data-skip="10" title="Вперёд на 10 сек (Shift+Right / →)">'
+         + '<span>+10s</span>'
+         + '<svg class="skip-icon" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>'
+         + '</button>'
+         + '</div>'
+         + '</div>'
          + '<audio class="mixaudio" preload="metadata" src="'+(hasStems ? "" : audioSrc(s, "all"))+'"></audio>'
          + '</div>';
   }
@@ -1209,6 +1293,18 @@
 
   function setupToggles(){
     document.getElementById("tbody").addEventListener("click", function(e){
+      var skipBtn = e.target.closest(".skip-btn");
+      if(skipBtn){
+        var pl = skipBtn.closest(".player");
+        var sid = pl && pl.getAttribute("data-sid");
+        var s = sid && SONGS[sid];
+        var delta = parseFloat(skipBtn.getAttribute("data-skip")) || 0;
+        if(s && pl && delta){
+          skipPlayer(s, pl, delta);
+        }
+        return;
+      }
+
       var cueBtn = e.target.closest(".cuebtn");
       if(cueBtn){
         var srow = cueBtn.closest("tr[data-song]");
@@ -1457,6 +1553,14 @@
         pl.scrubbing = false;
         playOrToggle(s, pl, targetT);
       };
+
+      pl.querySelectorAll(".skip-btn").forEach(function(sb){
+        sb.onclick = function(e){
+          e.stopPropagation();
+          var delta = parseFloat(sb.getAttribute("data-skip")) || 0;
+          if(delta) skipPlayer(s, pl, delta);
+        };
+      });
     });
   }
 
@@ -1586,6 +1690,26 @@
     });
   }
 
+  function setupKeyboardShortcuts(){
+    document.addEventListener("keydown", function(e){
+      var tag = document.activeElement && document.activeElement.tagName;
+      if(tag === "INPUT" || tag === "TEXTAREA" || (document.activeElement && document.activeElement.isContentEditable)) return;
+      if(!activePlayer || !activePlayer.plEl) return;
+      var s = SONGS[activePlayer.sid];
+      if(!s) return;
+      if(e.key === "ArrowLeft" || e.key === "j" || e.key === "J"){
+        e.preventDefault();
+        skipPlayer(s, activePlayer.plEl, -10);
+      } else if(e.key === "ArrowRight" || e.key === "l" || e.key === "L"){
+        e.preventDefault();
+        skipPlayer(s, activePlayer.plEl, 10);
+      } else if(e.key === " "){
+        e.preventDefault();
+        playOrToggle(s, activePlayer.plEl);
+      }
+    });
+  }
+
   // ---- boot ----
   (async function(){
     document.body.classList.toggle("hosted", !LOCAL);
@@ -1599,6 +1723,7 @@
     setupToggles();                          // delegated on persistent #tbody — attach once
     setupTabs();
     setupSettingsPanel();
+    setupKeyboardShortcuts();
     applyTab(currentTab);                    // renders the active tab's sets (+ hydrate when LOCAL)
   })();
 })();

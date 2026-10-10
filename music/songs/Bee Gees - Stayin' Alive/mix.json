@@ -38,6 +38,12 @@
     {"bar": 29, "text": "verse in ready go", "abs_sec": 66.286, "snap_sec": 61.714},
     {"bar": 48, "text": "main in ready go", "abs_sec": 109.714, "snap_sec": 105.143},
     {"bar": 50, "text": "bridge in ready go", "abs_sec": 114.286, "snap_sec": 109.714},
-    {"bar": 125, "text": "end in", "count": true, "abs_sec": 285.714, "snap_sec": 280.571}
+    {"bar": 60, "text": "verse in ready go", "abs_sec": 137.143, "snap_sec": 132.571},
+    {"bar": 79, "text": "main in ready go", "abs_sec": 180.571, "snap_sec": 176.0},
+    {"bar": 81, "text": "bridge-2 in ready go", "abs_sec": 185.143, "snap_sec": 180.571},
+    {"bar": 92, "text": "bridge-3 in ready go", "abs_sec": 210.286, "snap_sec": 205.714},
+    {"bar": 103, "text": "bridge-4 in ready go", "abs_sec": 235.429, "snap_sec": 230.857},
+    {"bar": 114, "text": "bridge-5 in ready go", "abs_sec": 260.571, "snap_sec": 256.0},
+    {"bar": 124, "beat": 2, "text": "end in", "count": true, "abs_sec": 284.0, "snap_sec": 278.857}
   ]
 }

@@ -31,12 +31,19 @@
     ]
   },
   "cat": "cat_16687",
+  "fade_out": {
+    "from_bar": 88,
+    "from_beat": 1,
+    "to_bar": 88,
+    "to_beat": 3
+  },
   "cues": [
-    {"bar": 2, "text": "Felicita all in", "abs_sec": 4.461, "snap_sec": 0.0},
-    {"bar": 13, "beat": 4, "text": "verse in", "abs_sec": 30.668, "snap_sec": 26.207},
-    {"bar": 29, "beat": 3, "text": "chorus in", "abs_sec": 65.797, "snap_sec": 61.336},
-    {"bar": 45, "beat": 3, "text": "main in ready go", "abs_sec": 101.483, "snap_sec": 97.022},
-    {"bar": 47, "beat": 3, "text": "verse in ready go", "abs_sec": 105.944, "snap_sec": 101.483},
-    {"bar": 79, "text": "end in", "count": true, "abs_sec": 176.201, "snap_sec": 171.183}
+    {"bar": 2, "text": "Felichita all in ready go", "abs_sec": 4.461, "snap_sec": 0.0},
+    {"bar": 6, "text": "verse in ready go", "abs_sec": 13.382, "snap_sec": 8.922},
+    {"bar": 29, "beat": 4, "text": "chorus in ready go", "abs_sec": 66.354, "snap_sec": 61.894},
+    {"bar": 45, "beat": 4, "text": "intro in ready go", "abs_sec": 102.041, "snap_sec": 97.58},
+    {"bar": 47, "beat": 4, "text": "verse in ready go", "abs_sec": 106.502, "snap_sec": 102.041},
+    {"bar": 79, "beat": 3, "text": "D modulation chorus in", "count": true, "abs_sec": 177.317, "snap_sec": 172.298},
+    {"bar": 87, "beat": 3, "text": "end in", "count": true, "abs_sec": 195.16, "snap_sec": 190.141}
   ]
 }

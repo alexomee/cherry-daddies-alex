@@ -29,12 +29,12 @@
       "07_Electric_Guitar"
     ]
   },
+  "cut_bars": [3, 11],
   "cues": [
     {"bar": 3, "text": "YMCA all in", "abs_sec": 3.92, "snap_sec": 0.0},
-    {"bar": 17, "beat": 2, "text": "verse in", "abs_sec": 31.19, "snap_sec": 27.43},
-    {"bar": 35, "beat": 2, "text": "chorus in", "abs_sec": 65.18, "snap_sec": 61.39},
-    {"bar": 119, "beat": 2, "text": "main in ready go", "abs_sec": 224.0, "snap_sec": 220.22},
-    {"bar": 127, "beat": 2, "text": "chorus in ready go", "abs_sec": 239.12, "snap_sec": 235.35},
-    {"bar": 155, "text": "end in", "count": true, "abs_sec": 291.4, "snap_sec": 287.17}
+    {"bar": 9, "beat": 1, "text": "verse in", "abs_sec": 15.37, "snap_sec": 11.62},
+    {"bar": 111, "beat": 1, "text": "instrumental in ready go", "abs_sec": 208.18, "snap_sec": 204.41},
+    {"bar": 119, "beat": 1, "text": "chorus in ready go", "abs_sec": 223.31, "snap_sec": 219.54},
+    {"bar": 147, "text": "end in", "count": true, "abs_sec": 276.06, "snap_sec": 271.83}
   ]
 }

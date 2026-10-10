@@ -21,5 +21,10 @@ set: "24.10 Lefkara Сет 2 #2"
 - **pb-other:** фортепиано, духовые, струнные и арфа: `07_Piano`, `08_Brass_section`, `09_French_Horn`, `10_String_Section`, `11_Harp`.
 - **players:** roma (`04_Bass`), steve (`02_Drum_Kit`), tanya (`12_Lead_Vocal`), alex (`05_Electric_Guitar_(left)`, `06_Electric_Guitar_(right)`).
 - **cues:**
-  - `bar 2.1` (4.113s) — `I Will Survive piano in` («I Will Survive piano in ready go») — вступление фортепиано/рубато-интро.
+  - `bar 2.1` (4.113s) — `I Will Survive playback in` («I Will Survive playback in ready go») — вступление фортепиано/рубато-интро из плейбека.
+  - `bar 5.1` (10.263s) — `guitars in` («guitars in ready go»)
+  - `bar 13.1` (26.773s) — `all in` («all in ready go»)
+  - `bar 45.1` (92.827s) — `verse in ready go` («verse in ready go»)
+  - `bar 76.1` (156.813s) — `music stop` («music stop in 3 · 3 2 1») — стоп пачки.
+  - `bar 78.4` (162.444s) — `voice in ready go` («voice in ready go») — затакт вокала «Go on now».
   - `bar 103.1` (212.583s) — `end in` («end in 3 · 3 2 1») — финальный аккорд.

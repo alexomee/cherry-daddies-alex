@@ -12,83 +12,83 @@ Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100
 Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:04:56.75,Title,,0,0,0,,YMCA
-Dialogue: 0,0:00:25.71,0:00:37.60,Pair,,0,0,0,,{\pos(640,285)}Young man there's no need to feel down\NI said young man pick yourself off the ground
-Dialogue: 0,0:00:25.71,0:00:37.60,Next,,0,0,0,,{\pos(640,475)}I said young man 'cos you're in a new town\NThere's no need to be unhappy
-Dialogue: 0,0:00:37.60,0:00:45.78,Pair,,0,0,0,,{\pos(640,285)}I said young man 'cos you're in a new town\NThere's no need to be unhappy
-Dialogue: 0,0:00:37.60,0:00:45.78,Next,,0,0,0,,{\pos(640,475)}Young man there's a place you can go\NI said young man when you're short on your dough
-Dialogue: 0,0:00:45.78,0:00:52.74,Pair,,0,0,0,,{\pos(640,285)}Young man there's a place you can go\NI said young man when you're short on your dough
-Dialogue: 0,0:00:45.78,0:00:52.74,Next,,0,0,0,,{\pos(640,475)}You can stay there and\NI'm sure you will find many ways to have a good time
-Dialogue: 0,0:00:52.74,0:01:03.05,Pair,,0,0,0,,{\pos(640,285)}You can stay there and\NI'm sure you will find many ways to have a good time
-Dialogue: 0,0:00:52.74,0:01:03.05,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:03.05,0:01:06.85,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:03.05,0:01:06.85,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:06.85,0:01:11.82,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:06.85,0:01:11.82,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:01:11.82,0:01:18.17,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:01:11.82,0:01:18.17,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:18.17,0:01:21.94,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:18.17,0:01:21.94,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:21.94,0:01:26.90,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:01:21.94,0:01:26.90,Next,,0,0,0,,{\pos(640,475)}You can get yourself clean\NYou can have a good meal
-Dialogue: 0,0:01:26.90,0:01:30.65,Pair,,0,0,0,,{\pos(640,285)}You can get yourself clean\NYou can have a good meal
-Dialogue: 0,0:01:26.90,0:01:30.65,Next,,0,0,0,,{\pos(640,475)}You can do whatever you feel\NYoung man
-Dialogue: 0,0:01:30.65,0:01:36.29,Pair,,0,0,0,,{\pos(640,285)}You can do whatever you feel\NYoung man
-Dialogue: 0,0:01:30.65,0:01:36.29,Next,,0,0,0,,{\pos(640,475)}Are you listenin' to me?\NI said young man
-Dialogue: 0,0:01:36.29,0:01:40.09,Pair,,0,0,0,,{\pos(640,285)}Are you listenin' to me?\NI said young man
-Dialogue: 0,0:01:36.29,0:01:40.09,Next,,0,0,0,,{\pos(640,475)}What do you wanna be?\NI said young man you can make clear your dreams
-Dialogue: 0,0:01:40.09,0:01:45.57,Pair,,0,0,0,,{\pos(640,285)}What do you wanna be?\NI said young man you can make clear your dreams
-Dialogue: 0,0:01:40.09,0:01:45.57,Next,,0,0,0,,{\pos(640,475)}But you've got to know this one thing\NNo man does it all by himself
-Dialogue: 0,0:01:45.57,0:01:53.14,Pair,,0,0,0,,{\pos(640,285)}But you've got to know this one thing\NNo man does it all by himself
-Dialogue: 0,0:01:45.57,0:01:53.14,Next,,0,0,0,,{\pos(640,475)}I said young man put your pride on the shelf\NAnd just go there to the
-Dialogue: 0,0:01:53.14,0:01:59.58,Pair,,0,0,0,,{\pos(640,285)}I said young man put your pride on the shelf\NAnd just go there to the
-Dialogue: 0,0:01:53.14,0:01:59.58,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A. I'm sure they can help you today
-Dialogue: 0,0:01:59.58,0:02:07.31,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A. I'm sure they can help you today
-Dialogue: 0,0:01:59.58,0:02:07.31,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:07.31,0:02:11.08,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:07.31,0:02:11.08,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:11.08,0:02:16.07,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:11.08,0:02:16.07,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:02:16.07,0:02:22.44,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:02:16.07,0:02:22.44,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:22.44,0:02:26.24,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:22.44,0:02:26.24,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:26.24,0:02:31.21,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:02:26.24,0:02:31.21,Next,,0,0,0,,{\pos(640,475)}You can get yourself clean\NYou can have a good meal
-Dialogue: 0,0:02:31.21,0:02:34.99,Pair,,0,0,0,,{\pos(640,285)}You can get yourself clean\NYou can have a good meal
-Dialogue: 0,0:02:31.21,0:02:34.99,Next,,0,0,0,,{\pos(640,475)}You can do whatever you feel\NYoung man
-Dialogue: 0,0:02:34.99,0:02:40.66,Pair,,0,0,0,,{\pos(640,285)}You can do whatever you feel\NYoung man
-Dialogue: 0,0:02:34.99,0:02:40.66,Next,,0,0,0,,{\pos(640,475)}I was once in your shoes\NI said
-Dialogue: 0,0:02:40.66,0:02:43.03,Pair,,0,0,0,,{\pos(640,285)}I was once in your shoes\NI said
-Dialogue: 0,0:02:40.66,0:02:43.03,Next,,0,0,0,,{\pos(640,475)}I was down and out with the blues\NI felt no man cared if
-Dialogue: 0,0:02:43.03,0:02:48.73,Pair,,0,0,0,,{\pos(640,285)}I was down and out with the blues\NI felt no man cared if
-Dialogue: 0,0:02:43.03,0:02:48.73,Next,,0,0,0,,{\pos(640,475)}I were alive\NI felt the whole world was so jive
-Dialogue: 0,0:02:48.73,0:02:54.37,Pair,,0,0,0,,{\pos(640,285)}I were alive\NI felt the whole world was so jive
-Dialogue: 0,0:02:48.73,0:02:54.37,Next,,0,0,0,,{\pos(640,475)}That's when someone came up to me\NAnd said young man take a walk up the street
-Dialogue: 0,0:02:54.37,0:03:01.29,Pair,,0,0,0,,{\pos(640,285)}That's when someone came up to me\NAnd said young man take a walk up the street
-Dialogue: 0,0:02:54.37,0:03:01.29,Next,,0,0,0,,{\pos(640,475)}There's a place there called the\NY.M.C.A. They can start you back on your way
-Dialogue: 0,0:03:01.29,0:03:11.59,Pair,,0,0,0,,{\pos(640,285)}There's a place there called the\NY.M.C.A. They can start you back on your way
-Dialogue: 0,0:03:01.29,0:03:11.59,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:03:11.59,0:03:15.39,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:03:11.59,0:03:15.39,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:03:15.39,0:03:20.37,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:03:15.39,0:03:20.37,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:03:20.37,0:03:28.43,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
-Dialogue: 0,0:03:20.37,0:03:28.43,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A.\NIt's fun to stay at the
-Dialogue: 0,0:03:28.43,0:03:32.21,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A.\NIt's fun to stay at the
-Dialogue: 0,0:03:28.43,0:03:32.21,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A.\NYoung man, young man there's no need to feel down
-Dialogue: 0,0:03:32.21,0:03:39.76,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A.\NYoung man, young man there's no need to feel down
-Dialogue: 0,0:03:32.21,0:03:39.76,Next,,0,0,0,,{\pos(640,475)}Young man, young man pick yourself off the ground
-Dialogue: 0,0:03:39.76,0:04:00.77,Pair,,0,0,0,,{\pos(640,285)}Young man, young man pick yourself off the ground
-Dialogue: 0,0:03:39.76,0:04:00.77,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:04:00.77,0:04:06.21,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
-Dialogue: 0,0:04:00.77,0:04:06.21,Next,,0,0,0,,{\pos(640,475)}Young man, young man\NAre you listening to me?
-Dialogue: 0,0:04:06.21,0:04:09.98,Pair,,0,0,0,,{\pos(640,285)}Young man, young man\NAre you listening to me?
-Dialogue: 0,0:04:06.21,0:04:09.98,Next,,0,0,0,,{\pos(640,475)}Young man, young man\NWhat do you wanna be?
-Dialogue: 0,0:04:09.98,0:04:15.87,Pair,,0,0,0,,{\pos(640,285)}Young man, young man\NWhat do you wanna be?
-Dialogue: 0,0:04:09.98,0:04:15.87,Next,,0,0,0,,{\pos(640,475)}You'll find it at the\NY.M.C.A.
-Dialogue: 0,0:04:15.87,0:04:21.29,Pair,,0,0,0,,{\pos(640,285)}You'll find it at the\NY.M.C.A.
-Dialogue: 0,0:04:15.87,0:04:21.29,Next,,0,0,0,,{\pos(640,475)}No man, no man does it all by himself\NYoung man, young man put your pride on the shelf
-Dialogue: 0,0:04:21.29,0:04:30.92,Pair,,0,0,0,,{\pos(640,285)}No man, no man does it all by himself\NYoung man, young man put your pride on the shelf
-Dialogue: 0,0:04:21.29,0:04:30.92,Next,,0,0,0,,{\pos(640,475)}And just go to the\NY.M.C.A.
-Dialogue: 0,0:04:30.92,0:04:37.70,Pair,,0,0,0,,{\pos(640,285)}And just go to the\NY.M.C.A.
+Dialogue: 0,0:00:00.00,0:04:41.63,Title,,0,0,0,,YMCA
+Dialogue: 0,0:00:10.37,0:00:22.26,Pair,,0,0,0,,{\pos(640,285)}Young man there's no need to feel down\NI said young man pick yourself off the ground
+Dialogue: 0,0:00:10.37,0:00:22.26,Next,,0,0,0,,{\pos(640,475)}I said young man 'cos you're in a new town\NThere's no need to be unhappy
+Dialogue: 0,0:00:22.26,0:00:30.44,Pair,,0,0,0,,{\pos(640,285)}I said young man 'cos you're in a new town\NThere's no need to be unhappy
+Dialogue: 0,0:00:22.26,0:00:30.44,Next,,0,0,0,,{\pos(640,475)}Young man there's a place you can go\NI said young man when you're short on your dough
+Dialogue: 0,0:00:30.44,0:00:37.40,Pair,,0,0,0,,{\pos(640,285)}Young man there's a place you can go\NI said young man when you're short on your dough
+Dialogue: 0,0:00:30.44,0:00:37.40,Next,,0,0,0,,{\pos(640,475)}You can stay there and\NI'm sure you will find many ways to have a good time
+Dialogue: 0,0:00:37.40,0:00:47.71,Pair,,0,0,0,,{\pos(640,285)}You can stay there and\NI'm sure you will find many ways to have a good time
+Dialogue: 0,0:00:37.40,0:00:47.71,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:00:47.71,0:00:51.51,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:00:47.71,0:00:51.51,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:00:51.51,0:00:56.48,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:00:51.51,0:00:56.48,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:00:56.48,0:01:02.83,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:00:56.48,0:01:02.83,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:02.83,0:01:06.60,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:02.83,0:01:06.60,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:06.60,0:01:11.56,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:06.60,0:01:11.56,Next,,0,0,0,,{\pos(640,475)}You can get yourself clean\NYou can have a good meal
+Dialogue: 0,0:01:11.56,0:01:15.31,Pair,,0,0,0,,{\pos(640,285)}You can get yourself clean\NYou can have a good meal
+Dialogue: 0,0:01:11.56,0:01:15.31,Next,,0,0,0,,{\pos(640,475)}You can do whatever you feel\NYoung man
+Dialogue: 0,0:01:15.31,0:01:20.95,Pair,,0,0,0,,{\pos(640,285)}You can do whatever you feel\NYoung man
+Dialogue: 0,0:01:15.31,0:01:20.95,Next,,0,0,0,,{\pos(640,475)}Are you listenin' to me?\NI said young man
+Dialogue: 0,0:01:20.95,0:01:24.75,Pair,,0,0,0,,{\pos(640,285)}Are you listenin' to me?\NI said young man
+Dialogue: 0,0:01:20.95,0:01:24.75,Next,,0,0,0,,{\pos(640,475)}What do you wanna be?\NI said young man you can make clear your dreams
+Dialogue: 0,0:01:24.75,0:01:30.23,Pair,,0,0,0,,{\pos(640,285)}What do you wanna be?\NI said young man you can make clear your dreams
+Dialogue: 0,0:01:24.75,0:01:30.23,Next,,0,0,0,,{\pos(640,475)}But you've got to know this one thing\NNo man does it all by himself
+Dialogue: 0,0:01:30.23,0:01:37.80,Pair,,0,0,0,,{\pos(640,285)}But you've got to know this one thing\NNo man does it all by himself
+Dialogue: 0,0:01:30.23,0:01:37.80,Next,,0,0,0,,{\pos(640,475)}I said young man put your pride on the shelf\NAnd just go there to the
+Dialogue: 0,0:01:37.80,0:01:44.24,Pair,,0,0,0,,{\pos(640,285)}I said young man put your pride on the shelf\NAnd just go there to the
+Dialogue: 0,0:01:37.80,0:01:44.24,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A. I'm sure they can help you today
+Dialogue: 0,0:01:44.24,0:01:51.97,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A. I'm sure they can help you today
+Dialogue: 0,0:01:44.24,0:01:51.97,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:51.97,0:01:55.74,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:51.97,0:01:55.74,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:55.74,0:02:00.73,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:01:55.74,0:02:00.73,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:02:00.73,0:02:07.10,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:02:00.73,0:02:07.10,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:07.10,0:02:10.90,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:07.10,0:02:10.90,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:10.90,0:02:15.87,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:10.90,0:02:15.87,Next,,0,0,0,,{\pos(640,475)}You can get yourself clean\NYou can have a good meal
+Dialogue: 0,0:02:15.87,0:02:19.65,Pair,,0,0,0,,{\pos(640,285)}You can get yourself clean\NYou can have a good meal
+Dialogue: 0,0:02:15.87,0:02:19.65,Next,,0,0,0,,{\pos(640,475)}You can do whatever you feel\NYoung man
+Dialogue: 0,0:02:19.65,0:02:25.32,Pair,,0,0,0,,{\pos(640,285)}You can do whatever you feel\NYoung man
+Dialogue: 0,0:02:19.65,0:02:25.32,Next,,0,0,0,,{\pos(640,475)}I was once in your shoes\NI said
+Dialogue: 0,0:02:25.32,0:02:27.69,Pair,,0,0,0,,{\pos(640,285)}I was once in your shoes\NI said
+Dialogue: 0,0:02:25.32,0:02:27.69,Next,,0,0,0,,{\pos(640,475)}I was down and out with the blues\NI felt no man cared if
+Dialogue: 0,0:02:27.69,0:02:33.39,Pair,,0,0,0,,{\pos(640,285)}I was down and out with the blues\NI felt no man cared if
+Dialogue: 0,0:02:27.69,0:02:33.39,Next,,0,0,0,,{\pos(640,475)}I were alive\NI felt the whole world was so jive
+Dialogue: 0,0:02:33.39,0:02:39.03,Pair,,0,0,0,,{\pos(640,285)}I were alive\NI felt the whole world was so jive
+Dialogue: 0,0:02:33.39,0:02:39.03,Next,,0,0,0,,{\pos(640,475)}That's when someone came up to me\NAnd said young man take a walk up the street
+Dialogue: 0,0:02:39.03,0:02:45.95,Pair,,0,0,0,,{\pos(640,285)}That's when someone came up to me\NAnd said young man take a walk up the street
+Dialogue: 0,0:02:39.03,0:02:45.95,Next,,0,0,0,,{\pos(640,475)}There's a place there called the\NY.M.C.A. They can start you back on your way
+Dialogue: 0,0:02:45.95,0:02:56.25,Pair,,0,0,0,,{\pos(640,285)}There's a place there called the\NY.M.C.A. They can start you back on your way
+Dialogue: 0,0:02:45.95,0:02:56.25,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:56.25,0:03:00.05,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:02:56.25,0:03:00.05,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:03:00.05,0:03:05.03,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:03:00.05,0:03:05.03,Next,,0,0,0,,{\pos(640,475)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:03:05.03,0:03:13.09,Pair,,0,0,0,,{\pos(640,285)}They have everything for young men to enjoy\NYou can hang out with all the boys
+Dialogue: 0,0:03:05.03,0:03:13.09,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A.\NIt's fun to stay at the
+Dialogue: 0,0:03:13.09,0:03:16.87,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A.\NIt's fun to stay at the
+Dialogue: 0,0:03:13.09,0:03:16.87,Next,,0,0,0,,{\pos(640,475)}Y.M.C.A.\NYoung man, young man there's no need to feel down
+Dialogue: 0,0:03:16.87,0:03:24.42,Pair,,0,0,0,,{\pos(640,285)}Y.M.C.A.\NYoung man, young man there's no need to feel down
+Dialogue: 0,0:03:16.87,0:03:24.42,Next,,0,0,0,,{\pos(640,475)}Young man, young man pick yourself off the ground
+Dialogue: 0,0:03:24.42,0:03:45.43,Pair,,0,0,0,,{\pos(640,285)}Young man, young man pick yourself off the ground
+Dialogue: 0,0:03:24.42,0:03:45.43,Next,,0,0,0,,{\pos(640,475)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:03:45.43,0:03:50.87,Pair,,0,0,0,,{\pos(640,285)}It's fun to stay at the\NY.M.C.A.
+Dialogue: 0,0:03:45.43,0:03:50.87,Next,,0,0,0,,{\pos(640,475)}Young man, young man\NAre you listening to me?
+Dialogue: 0,0:03:50.87,0:03:54.64,Pair,,0,0,0,,{\pos(640,285)}Young man, young man\NAre you listening to me?
+Dialogue: 0,0:03:50.87,0:03:54.64,Next,,0,0,0,,{\pos(640,475)}Young man, young man\NWhat do you wanna be?
+Dialogue: 0,0:03:54.64,0:04:00.53,Pair,,0,0,0,,{\pos(640,285)}Young man, young man\NWhat do you wanna be?
+Dialogue: 0,0:03:54.64,0:04:00.53,Next,,0,0,0,,{\pos(640,475)}You'll find it at the\NY.M.C.A.
+Dialogue: 0,0:04:00.53,0:04:05.95,Pair,,0,0,0,,{\pos(640,285)}You'll find it at the\NY.M.C.A.
+Dialogue: 0,0:04:00.53,0:04:05.95,Next,,0,0,0,,{\pos(640,475)}No man, no man does it all by himself\NYoung man, young man put your pride on the shelf
+Dialogue: 0,0:04:05.95,0:04:15.58,Pair,,0,0,0,,{\pos(640,285)}No man, no man does it all by himself\NYoung man, young man put your pride on the shelf
+Dialogue: 0,0:04:05.95,0:04:15.58,Next,,0,0,0,,{\pos(640,475)}And just go to the\NY.M.C.A.
+Dialogue: 0,0:04:15.58,0:04:23.25,Pair,,0,0,0,,{\pos(640,285)}And just go to the\NY.M.C.A.

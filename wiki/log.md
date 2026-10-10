@@ -2,6 +2,15 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-10] fix | Tina Turner — The Best: правки cue, мьют гитар вне Instrumental, саксофон убран из pb-other
+
+1. Саксофон `12_Tenor_Saxophone` удалён из `pb-other` (партия играется вживую).
+2. Все 5 гитар в `pb-other` (`04`..`08`) заглушены вне секции Instrumental (`mute: [[1, 82], [90, 115]]`). В секции Instrumental (такты 82–89) гитары в плейбеке звучат.
+3. Cue саксофонного соло передвинут с `bar 82.1` на `bar 81 beat 3&` (188.51с) под точную первую ноту саксофона (188.54с).
+4. Cue припева передвинут на 1 долю раньше: `bar 90.1` → `bar 89 beat 4` (207.24с) под вокальный затакт.
+5. Финальный cue `end in` передвинут с ошибочного `bar 98.1` на `bar 106.1` (244.79с, ~4:05), где звучит финальный аккорд/хит банды.
+6. Выполнен полный рендер (`jamzone_render.py "Tina Turner - The Best"`).
+
 ## [2026-07-10] init | Схема и каркас вики
 
 Заведена вики по Karpathy LLM-wiki паттерну. Решения: скоуп — весь бэнд-опс (песни+гиги+контент+риг), живёт в репо `wiki/`, линки — стандартный markdown (GitHub-читаемо). Схема: `wiki/SCHEMA.md`.
@@ -615,3 +624,294 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - **Зафиксировано железное правило группы в `CLAUDE.md` и `AGENTS.md`:**
   - **«Синк песен в риг» ВСЕГДА означает, что аудио-рендеры (плейбеки/стемы) скопированы, закоммичены и ЗАПУШЕНЫ в origin/main рига.**
   - Отправка одних только lyrics без аудио-плейбеков никогда не считается синком песни в риг.
+
+## [2026-10-10] setlist | 24.10 Lefkara: исключение Joan Jett, Cyndi Lauper, What Is Love и Sweet Dreams из программы (23 песни)
+
+По результатам ревью репертуара и задач из локального дашборда:
+- Из сетлиста Лефкары исключены 4 песни:
+  1. `Joan Jett — I Love Rock 'n' Roll` (задача `убрать`)
+  2. `Cyndi Lauper — Girls Just Want to Have Fun` (задача `remove song`)
+  3. `Haddaway — What Is Love`
+  4. `Eurythmics — Sweet Dreams (Are Made of This)`
+- В локальной базе веб-дашборда (`web/data/dashboard.db` через `/api/state`) задачи отмечены как выполненные (`done: true`).
+- Обновлён `tools/setlist_dashboard.py` (программа уменьшена до 23 треков), перегенерирован `web/songs.json`.
+- Обновлены `wiki/gigs/2026-10-24-lefkara.md` и `wiki/index.md`.
+
+## [2026-10-10] cues & mix | Maniac: уточнение cues и мьют synth keys 2 до Chorus 3
+
+По запросу Alex выполнен рефайн аранжировки и подсказок в `Michael Sembello — Maniac`:
+1. **Мьют `09_Synth_Keys_2` в `pb-other` до Chorus 3:**
+   - В `mix.json` добавлена секция `"mute": {"09_Synth_Keys_2": [[1, 141]]}`.
+   - Лид-партию синта до такта 141 играет гитара (Alex); на Chorus 3 (такт 141) гитара продолжает играть соло, и `09_Synth_Keys_2` вступает в плейбеке с такта 141 до конца песни.
+2. **Первый cue изменён на барабаны:**
+   - `"Maniac drums in"` на `bar 3.1` (3.040s) вместо `playback in`, точно совпадает с первым ударом кика барабанов (3.044s в `pb-drums`).
+3. **Нормализация темпа cue («verse in goes too slow»):**
+   - Убран глобальный `"cue_step": 2`, возвращён дефолтный темп 1 слово на долю (`step: 1`).
+   - Блок «verse in ready go» звучит в ровном темпе (по слову на четверть), событие строго на 4-й доле 18 такта (`bar 18 beat 4`, 26.860s), куда попадает вокальный вход Тани («Just a...»).
+4. **Добавлен cue для секции Bridge JamZone:**
+   - `"bridge in"` на `bar 101.1` (150.970s).
+5. **Добавлен cue для секции Pre chorus 3 JamZone:**
+   - `"prechorus in"` на `bar 133.1` (199.270s, ~3:15–3:20 JZ time).
+6. **Полный ре-рендер трека:**
+   - `python3 tools/jamzone/jamzone_render.py "Flashdance (Michael Sembello) - Maniac"` перегенерировал `click.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `all.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, practice-миксы.
+   - Обновлены `web/songs.json`, `wiki/songs/maniac.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
+- Суммарная длительность чистых плейбеков программы Лефкары теперь составляет **1ч 37м 11с** (5,830.85 с).
+
+## [2026-10-10] cues | It's Raining Men: обновление подсказок по JamZone сетке (15 cues)
+
+По запросу Alex актуализирован набор cue для `The Weather Girls — It's Raining Men`:
+- Сохранены стартовые подсказки: `bar 1.1` (3.440s, `It's Raining Men playback in`) и `bar 3.1` (6.880s, `all in`).
+- `0:35 cue`: заменён на `bar 19.1` (35.040s) — `pre-verse in` («pre-verse in ready go»).
+- `JZ section Verse`: добавлен `bar 27.1` (49.100s) — `verse in` («verse in ready go»).
+- `JZ 01:14 (down beat)`: добавлен `bar 43.1` (77.270s, stem 74.49s) — `stop` («stop in 3 · 3 2 1») перед а капелла фразой «It's raining men».
+- `JZ section Bridge`: добавлен `bar 62.1` (110.580s) — `bridge in` («bridge in ready go»).
+- `JZ 02:18 (C chord)`: добавлен `bar 79.1` (140.400s, stem 137.62s) — `stop` («stop in 3 · 3 2 1») на аккорд C.
+- `JZ Break section`: добавлен `bar 91.1` (161.430s) — `break in ready go`.
+- `JZ section Bridge 2`: добавлен `bar 109.1` (192.970s) — `bridge-2 in` («bridge-2 in ready go»).
+- `JZ ~03:40 (C chord)`: добавлен `bar 126.1` (222.730s, stem 219.95s) — `stop` («stop in 3 · 3 2 1») на аккорд C.
+- `JZ section Verse 2`: добавлен `bar 129.1` (227.990s) — `verse in` («verse in ready go»).
+- `JZ ~04:25 (C chord)`: добавлен `bar 152.1` (268.270s, stem 265.49s) — `stop` («stop in 3 · 3 2 1») на аккорд C.
+- `JZ 04:51`: добавлен `bar 167.1` (294.520s, stem 291.74s) — `keep going` (raw).
+- `JZ section Outro`: добавлен `bar 177.1` (312.000s) — `outro in` («outro in ready go»).
+- `JZ 05:23 down beat`: добавлен `bar 185.1` (326.020s, stem 323.24s) — `end in` (`count: true` → «end in 3 · 3 2 1») на финальный удар.
+Выполнен локальный рендер через `jamzone_render.py "It's Raining Men"`: обновлены `mix.json`, `click.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`, `all.wav`, `cue_preview.mp3`, `pb-other.mp3`, `pb-drums.mp3`, practice-миксы, стемы и `web/songs.json`.
+
+## [2026-10-10] cues | Stayin' Alive: добавлены секционные подсказки (Verse 3, Instrumental 3, Bridge-2..5) и исправлен финал (на 2 доли раньше)
+
+По запросу Alex обновлены cues для `Bee Gees — Stayin' Alive` (cat_5447):
+- Добавлены недостающие подсказки по секциям JamZone и аутро-циклам:
+  - `bar 60.1` (137.143s, snap 132.571s) — `verse in ready go` (куплет 3, JamZone секция Verse 3, ~02:16);
+  - `bar 79.1` (180.571s, snap 176.000s) — `main in ready go` (главная гитарная тема 3, JamZone секция Instrumental 3, ~02:56);
+  - `bar 81.1` (185.143s, snap 180.571s) — `bridge-2 in ready go` (JamZone секция Outro, вход бриджа 2 «Life goin' nowhere...», ~03:02);
+  - `bar 92.1` (210.286s, snap 205.714s) — `bridge-3 in ready go` (бридж 3, +11 тактов от bridge-2, ~03:28);
+  - `bar 103.1` (235.429s, snap 230.857s) — `bridge-4 in ready go` (бридж 4, +11 тактов от bridge-3, ~03:53);
+  - `bar 114.1` (260.571s, snap 256.000s) — `bridge-5 in ready go` (бридж 5, +11 тактов от bridge-4, ~04:18);
+- Исправлен финальный cue: сдвинут строго на 2 доли раньше с такта 125.1 на сильный хит такта 124.3:
+  - `bar 124.2` (284.000s, snap 278.857s) — `end in` (`count: true` $\to$ «end in 3 · 3 2 1»); отсчёт звучит на 123.3 (3), 123.4 (2), 124.1 (1), на 124.2 отсчёт завершён на финальный крэш/аккорд.
+- Всего 13 cue. Выполнен полный локальный рендер через `jamzone_render.py "Stayin' Alive"`:
+  - Обновлены `mix.json`, `click.wav`, `cues.wav`, `all.wav`, `cue_preview.mp3`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, practice-миксы, web-стемы.
+  - Актуализирован `web/songs.json`, обновлены `wiki/songs/stayin-alive.md`, `wiki/index.md`.
+
+## [2026-10-10] edit | YMCA: вырезано всё ритмическое интро до вступления духовых (cut_bars [3, 11]), трек начинается сразу с темы духовых
+
+По запросу Alex для `Village People — YMCA` (cat_6926):
+- В `music/songs/Village People - Y.M.C.A./mix.json` установлен параметр `"cut_bars": [3, 11]`:
+  - Физически вырезаны 8 вступительных тактов ритм-секции (такты 3–10, 15.34 с) до вступления духовых;
+  - Теперь после 2 тактов прекаунта банда на 3 такте (`YMCA all in`) вступает сразу с культовой темы духовых (`09_Brass_section`), без предварительного гитарного грува.
+- Актуализирован список подсказок в `mix.json`:
+  - `bar 3.1` (3.920s) — `YMCA all in` («YMCA all in ready go», вступление банды сразу с духовыми);
+  - `bar 9.1` (15.370s) — `verse in` («verse in ready go», куплет 1, сдвинут на 1 долю раньше под затакт вокала);
+  - подсказки на 0:49 (припев 1) удалена по запросу;
+  - `bar 111.1` (208.180s = 03:28) — `instrumental in ready go` (секция Instrumental JamZone, с учётом вырезки 8 тактов интро, на 1 долю раньше на даунбит такта 111);
+  - `bar 119.1` (223.310s = 03:43) — `chorus in ready go` (секция Chorus 4 JamZone, с учётом вырезки 8 тактов интро, на 1 долю раньше на даунбит такта 119);
+  - `bar 147.1` (276.060s) — `end in` (`count: true` → «end in 3 · 3 2 1», финал).
+- Выполнен полный рендер через `jamzone_render.py --practice`:
+  - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya, Alex и web-стемы.
+  - Длина рендера сократилась с 296.75 с до 281.63 с (149 тактов).
+- Синхронизированы сценические lyrics:
+  - `tools/lyric-launcher/lyrics-timed/46.tsv` сдвинут на -15.34 с под новый таймлайн;
+  - Пересобраны `clips/46.ass` и `clips/46.mp4`.
+- Рендеры синхронизированы в риг MainStage (`cherry-daddies-2000`):
+  - `cherry-daddies-setlist-2026-06-16/YMCA/`: `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav`;
+  - `lyrics/clips/`: `46.ass`, `46.mp4`.
+- Актуализирован `web/songs.json`, обновлены страницы вики `wiki/songs/ymca.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-10] cues & edit | Gimme! Gimme! Gimme!: рефайн подсказок, вырезка соло (такты 87–132, переход из Chorus 3 сразу в Outro)
+
+По запросу Alex для `ABBA — Gimme! Gimme! Gimme! (A Man After Midnight)` (cat_9159):
+- Выполнен рефайн подсказок:
+  - Стартовый cue: заменён с «playback in» на `Gimme Gimme Gimme guitar in` (`bar 2.1`, 4.250s);
+  - `drums in`: перенесён раньше на такт `10.2` (21.500s) — привязан строго к первому удару барабанного сбива Стива;
+  - `verse in`: сдвинут на 1 долю раньше с 19.4 на `19.3` (40.130s) — ровно под вокальный затакт Тани «Half past twelve»;
+  - Добавлен cue на секцию Intro 2: `bar 43.1` (87.600s) — `intro in ready go` (точно в сильную долю синтезаторного риффа, на 2 с раньше задержки JamZone);
+  - Добавлен cue на секцию Verse 2: `bar 53.3` (108.520s) — `verse in ready go` (ровно под затакт «Movie stars», на 3.16 с раньше задержки JamZone);
+  - Добавлен cue на стыке припевов: `bar 77.1` (155.990s, ~02:32 JamZone) — `keep going`;
+  - Финальный cue: `bar 99.1` (199.740s) — `end in` (`count: true` $\to$ «end in 3 · 3 2 1»).
+- Вырезка середины песни (`cut_bars: [63, 111]`):
+  - По скриншоту из JamZone из трека вырезан весь выделенный блок (48 тактов, 96.38 с): Pre-chorus 2, Chorus 2, Chorus 3 и Instrumental;
+  - После Verse 2 («...no one in sight») трек сразу переходит в Pre-chorus 3 («There's not a soul out there...»), далее звучат финальные Chorus 4 и Chorus 5 и нативное Outro;
+  - В результате нет затянутости (устранены 4 припева подряд), идеальная песенная форма (2 куплета, 2 припевных блока) и естественный финальный fade/рифф;
+  - Длина рендера составляет 201.08 с (3:21, 100 тактов).
+- Синхронизированы сценические lyrics:
+  - В `tools/lyric-launcher/lyrics-timed/47.tsv` удалены вырезанные Pre-chorus 2 и Choruses 2-3, финальные секции сдвинуты на -96.38 с;
+  - Пересобраны `clips/47.ass` и `clips/47.mp4`.
+- Выполнен полный рендер через `jamzone_render.py --practice`:
+  - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya, Alex и web-стемы.
+  - Рендеры синхронизированы в риг MainStage (`cherry-daddies-2000`).
+- В локальной базе веб-дашборда (`web/data/dashboard.db`) закрыты соответствующие задачи по Gimme (`remove solo part`, `end cue is not right`).
+- Актуализирован `web/songs.json`, обновлены `wiki/songs/abba-gimme-gimme-gimme.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-10] cues | Cheri, Cheri Lady: добавлены 5 подсказок ("verse in", "melody in" ×3, "chorus in")
+
+По запросу Alex для `Modern Talking — Cheri, Cheri Lady` (cat_37357, 114 BPM) добавлены 5 подсказок:
+- `bar 35.1` (73.684s, snap 69.474s, Logic 36.1) — `melody in` («melody in ready go» на клавишную тему `10_Synth_Brass` на 01:20 в JamZone);
+- `bar 42.4` (90.000s, snap 85.789s, Logic 43.4) — `verse in` («verse in ready go» под вокальный затакт «I get up» на 4-й доле перед Verse 2 на 01:37 в JamZone);
+- `bar 74.1` (155.790s, snap 151.579s, Logic 74.5) — `melody in` («melody in ready go» на клавишную тему `10_Synth_Brass` / `08_Synth_Keys_3` на 02:42 в JamZone);
+- `bar 81.3` (171.579s, snap 167.368s, Logic 82.3) — `chorus in` («chorus in ready go» под вокальный затакт «Che-ri» на 3-й доле перед Chorus 3 на ~2:58 в JamZone);
+- `bar 98.1` (206.316s, snap 202.105s, Logic 99.1) — `melody in` («melody in ready go» на клавишную тему на Outro на 03:32 в JamZone).
+
+Итого в сетке 8 cues:
+1. `bar 2.1` (4.211s) — `Cheri Cheri Lady all in`
+2. `bar 5.4` (12.105s) — `verse in`
+3. `bar 35.1` (73.684s) — `melody in`
+4. `bar 42.4` (90.000s) — `verse in`
+5. `bar 74.1` (155.790s) — `melody in`
+6. `bar 81.3` (171.579s) — `chorus in`
+7. `bar 98.1` (206.316s) — `melody in`
+8. `bar 105.1` (221.053s) — `end fill in` (`count: true`)
+
+В `tools/jamzone/jamzone_render.py` исправлен расчёт секций JamZone (`_dump_jamzone_sections` / `--sections`): теперь смещение `cut_bars` корректно учитывается при сопоставлении секций с таймлайном рендера и нумерацией тактов.
+Выполнен полный рендер через `jamzone_render.py --practice`, обновлены `cues.wav`, `cue_preview.mp3`, `timeline.json`, practice-миксы и `web/songs.json`.
+Обновлённые `click.wav` и `cues.wav` синхронизированы в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Cheri, Cheri Lady/`).
+
+## [2026-10-10] cues | Sarà perché ti amo: рефайн подсказок
+
+По запросу Alex для `Ricchi e Poveri — Sarà perché ti amo` (cat_18179):
+- Обновлены голосовые подсказки (cues):
+  - Интро: заменён с «Sara perche playback in» на `Ti amo all in ready go` (`bar 3.1`, 3.978s) — вступление группы после 2 тактов precount;
+  - Куплет: заменён с «verse in» на `voice-only verse ready go` (`bar 11.1`, 19.891s) — вход в куплет без ударных и баса;
+  - Добавлен cue на первый drum kick: `kick in ready go` (`bar 17.1`, 31.826s, ~00:32) — привязан строго к первому удару бочки на такте 17;
+  - Добавлен cue на вступление ритм-секции: `all in ready go` (`bar 19.1`, 35.805s, ~00:36) — вход в Verse 2 («Lo canto al ritmo...»);
+  - JamZone Intro 2: заменён с «main in ready go» на `instrumental in ready go` (`bar 59.1`, 115.370s);
+  - Сохранены `chorus in ready go` (`bar 67.1`, 131.283s) и финальный `end fill in` (`bar 91.1`, 179.023s, «end fill in 3 · 3 2 1»).
+- Выполнен рендер через `jamzone_render.py --practice`:
+  - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, practice-миксы (roma, steve, tanya) и web-стемы.
+- Актуализированы `tools/jamzone/setup_lefkara_27.py`, `web/songs.json`, `wiki/songs/sara-perche-ti-amo.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-10] cues & playback | Mamma María: рефайн подсказок и бэк-вокалы в припевах
+
+По запросу Alex для `Ricchi e Poveri — Mamma María` (cat_82836):
+- Обновлены голосовые подсказки (cues):
+  - Verse 1: сдвинут на 1 долю позже — с `bar 6.4` (10.251s) на `bar 7.1` (10.697s, `verse in ready go`);
+  - Припев 0:39: удалён cue припева (`bar 23.1`, 39.223s, `chorus in`);
+  - JamZone Instrumental: привязан строго к даунбиту секции `bar 55.1` (96.275s) с текстом `instrumental in ready go` (вместо старого «main in ready go» на 54.4);
+  - JamZone Verse 3 (после Instrumental): привязан к даунбиту секции `bar 67.1` (117.669s) с текстом `verse in ready go` (вместо старого 66.4);
+  - На стыке Chorus 3 → Chorus 4 (~02:25 JamZone): добавлен cue `bar 83.1` (146.195s) — `keep going`;
+  - Финальный cue: исправлен с ложного 02:39 (bar 90.3 перед аутро) на реальный финал трека `bar 107.1` (188.983s, ~03:09 JamZone) — `end in` (`count: true` → «end in 3 · 3 2 1» с ударом на 03:09).
+- Добавлены бэк-вокалы в плейбек (`pb-other`):
+  - JamZone не экспортирует отдельную дорожку бэк-вокала, но содержит 3 дорожки лид-вокала оригинального состава (`09_Lead_Vocal_Angela_Brambati`, `10_Lead_Vocal_Angelo_Sotgiu`, `11_Lead_Vocal_Franco_Gatti`);
+  - Все 3 вокальные дорожки подключены в `pb-other` с ролью `back-vox` (автоуровень по целевому потолку -23 dBFS: Angela -5.6dB, Angelo -5.7dB, Franco 0.0dB) и мьютом вне припевов JamZone: `mute: [[1, 23], [31, 47], [55, 75], [91, 109]]`;
+  - В куплетах (Verse 1, Verse 2, Verse 3), интро, инструментале и аутро вокал в плейбеке полностью заглушен (поёт вживую вокалистка Таня), а в припевах (Chorus 1, Chorus 2, Chorus 3, Chorus 4) звучит полноценная 3-голосная вокальная пачка.
+- Выполнен рендер через `jamzone_render.py --practice`:
+  - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `timeline.json`, practice-миксы (steve, roma, tanya, alex) и web-стемы.
+- Актуализированы `tools/jamzone/setup_lefkara_27.py`, `web/songs.json`, `wiki/songs/ricchi-e-poveri-mamma-maria.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-10] cues & mix | Maniac: cue main in (0:15), мьют ведущего синта в pre-chorus, chorus in на 1 долю раньше (3:31)
+
+По запросу Alex выполнен второй цикл рефайна `Michael Sembello — Maniac`:
+1. **Добавлен cue `main in ready go` на ~0:15:**
+   - `bar 11.1` (15.120s, snap 12.101s) — вход основного грува (Rhodes, бас, синт) после драм-интро.
+2. **Заглушен ведущий синт (`08_Synth_Keys_1`) во всех секциях pre-chorus:**
+   - В `pb-other.mute` добавлено заглушение `08_Synth_Keys_1`: `[[35, 43], [77, 85], [133, 141]]` (Pre-chorus 1, Pre-chorus 2, Pre-chorus 3).
+   - Теперь лидирующий синт не звучит в предприпевах и не дублирует партию гитары. В секции Bridge (такты 101–117) синт сохранён.
+3. **Сдвинут cue припева Chorus 3 (~3:31) на 1 долю раньше:**
+   - Перенесён с `bar 141.1` на `bar 140.4` (210.990s, snap 207.971s) ровно под вокальный затакт Тани («She's a...»);
+   - Сам синт `09_Synth_Keys_2` вступает со 141 такта (211.28s, даунбит Chorus 3) и звучит до конца песни.
+4. **Ре-рендер и синк:**
+   - Выполнен полный рендер через `jamzone_render.py "Flashdance (Michael Sembello) - Maniac"`.
+   - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `web/songs.json`.
+762:    - Свежие `cues.wav` и `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Maniac"`.
+763:    - Обновлены `wiki/songs/maniac.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
+764: 
+765: ## [2026-10-10] cues & click | What a Feeling: выравнивание темпа клика интро (92 BPM) и полный рефайн подсказок
+766: 
+767: По запросу Alex для `Irene Cara — What a Feeling` (cat_10091):
+768: 1. **Выравнивание темпа клика интро:**
+769:    - Ранее synthetic count-in клики спереди генерировались по глобальному усреднённому темпу `beat = 120.7 BPM`, тогда как реальное интро песни идёт в медленном темпе 92.0 BPM (`bt[1] - bt[0] = 0.652s`), из-за чего клик интро казался неестественно быстрым до вступления стемов.
+770:    - В `tools/jamzone/jamzone_render.py` для `follow` режима введено отсчитывание `b_intro` (темп вступительных тактов) для шага pre-lead кликов, расчета `lead` и `sec_to_idx`: клики спереди теперь тикают строго назад от даунбита на тех же 92.0 BPM с акцентом на сильную долю.
+771:    - Также в `_dump_jamzone_sections` добавлена поддержка `sec_to_idx` для точного маппинга секций переменного темпа на реальные такты.
+772: 2. **Обновление подсказок (cues):**
+773:    - Первый cue: заменён с «playback in» на `"What a Feeling guitars in"` (`bar 2.1`, 5.218s);
+774:    - Verse 1: сдвинут с 0:19 (`bar 7.4`) на точный даунбит секции Verse в JamZone `bar 6.1` (15.652s, ~0:13 JZ time, «First when there's nothing...»);
+775:    - Вход барабанов / разгон темпа: добавлен `"all in"` на `bar 20.1` (52.098s, ~0:51 render time, первый кик на click #76);
+776:    - Удалены старые ошибочные cues: `1:03 all in` (старый bar 26.1), `1:57 main` (старый bar 54.2), `2:13 verse in` (старый bar 62.2), `3:29 end in` (старый bar 101.4);
+777:    - Первая секция Instrumental JamZone: добавлен `"solo in ready go"` на `bar 48.1` (106.379s, соло гитары Alex);
+778:    - Вокал под затакт «Now» (~1:58 JZ time): добавлен `"vocal in"` на 4-ю долю такта 55 (`bar 55.4`, 121.403s), «ready go» звучит до слова «Now»;
+779:    - Вторая секция Instrumental JamZone: добавлен `"bridge in"` на `bar 80.1` (168.414s);
+780:    - Последний припев Chorus 3 (~03:02 JZ time): добавлен `"chorus variation ready go"` на `bar 88.1` (183.923s);
+781:    - Секция Outro JamZone: добавлен `"outro in ready go"` на `bar 96.1` (199.432s);
+782:    - Аутро ~3:33 JZ time: добавлен cue продолжения `"keep going"` на `bar 104.1` (214.941s);
+783:    - Финал трека ~03:52 JZ time: добавлен `"end in"` (`count: true` $\to$ «end in 3 · 3 2 1») на финальный аккорд Gm на `bar 114.1` (234.327s).
+784: 3. **Ре-рендер трека:**
+785:    - Выполнен полный рендер через `jamzone_render.py "Flashdance (Irene Cara) - What a Feeling"`.
+786:    - Обновлены `mix.json`, `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `web/songs.json`.
+787:    - Обновлены `wiki/songs/what-a-feeling.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
+
+## [2026-10-10] setlist | 24.10 Lefkara: исключение Whitney Houston и Money, Money, Money из программы (21 песня)
+
+По запросу Alex из сетлиста Лефкары исключены 2 песни:
+1. `Whitney Houston — I Wanna Dance with Somebody (Who Loves Me)`
+2. `ABBA — Money, Money, Money`
+
+- Обновлён `tools/setlist_dashboard.py` (программа сокращена до 21 трека).
+- Перегенерирован `web/songs.json` (`python3 tools/setlist_dashboard.py`).
+- Обновлены страницы `wiki/gigs/2026-10-24-lefkara.md`, `wiki/index.md`, а также `wiki/songs/whitney-houston-i-wanna-dance-with-somebody.md`, `wiki/songs/abba-money-money-money.md`, `wiki/songs/tina-turner-the-best.md`, `wiki/songs/boney-m-sunny.md`, `wiki/songs/stumblin-in.md`.
+
+## [2026-10-10] cues & playback | Holding Out for a Hero: убраны гитары из pb-other, полный рефайн cues (12 подсказок)
+
+По запросу Alex для `Bonnie Tyler — Holding Out for a Hero` (cat_13868):
+1. **Гитары убраны из плейбека (`pb-other`):**
+   - Дорожки `05_Electric_Guitar_(left)` и `06_Electric_Guitar_(right)` удалены из `pb-other.stems` — Alex играет их вживую на гитаре.
+   - В `pb-other` оставлены: `07_Electric_Guitar`, `08_Piano`, `09_Synth_Strings`, `10_Arpeggiator`, `11_Brass_section`, `12_Backing_Vocals`.
+2. **Обновлены голосовые подсказки (cues):**
+   - Стартовый cue (`bar 3.1`, 3.208s): заменён на `"Holding Out for a Hero drum-base in"` («Holding Out for a Hero drum-base in ready go»). Слово «drum-base» ровно укладывается в 1 долю (в отличие от «drum-n-bass», растягивавшегося на 3 доли), что убрало лишний пустой pre-lead такт и вернуло чистый таймлайн;
+   - Секция Intro 2 (JamZone): добавлен cue `"intro in"` на `bar 55.1` (88.206s);
+   - Секция Verse 2 (~1:40 JZ time): добавлен cue `"verse in"` на `bar 63.1` (101.036s);
+   - Старый ошибочный cue `2:40 main in ready go` на такте 101.2 удалён;
+   - Секция Instrumental (JamZone): добавлен cue `"bridge in"` на `bar 101.1` (161.978s);
+   - Секция Bridge (JamZone): добавлен cue `"voice in"` на `bar 117.1` (187.551s) ровно на вход вокала Тани («Up where the mountains...»);
+   - Секция Chorus 1 (1:00): сдвинут на 2 доли раньше с такта 39 на `bar 38 beat 3` (`bar 38.3`, 60.140s), чтобы отсчёт завершался точно перед затактом «I need a hero» (60.5s);
+   - Секция Chorus 4 (~03:39 JZ time): сдвинут на 2 доли позже с такта 137.2 на `bar 137 beat 4` (`bar 137.4`, 219.128s), слово «go» звучит на 03:39.04 точно на слове «I» лид-вокала во фразе «I need a hero»;
+   - Переход в Chorus 5 (~4:04 JZ time): добавлен cue `"keep going"` на `bar 153.1` (243.568s, сдвинут на 1.5 с раньше с такта 154 ровно на 153 такт);
+   - Секция Outro (JamZone): заменён старый countdown на `"outro in ready go"` на `bar 170.1` (272.451s);
+   - Четвёртый цикл аутро (~05:08 JZ time): добавлен cue `"keep going"` на `bar 194.1` (310.951s, фраза звучит на такте 193 в 05:08 JZ time);
+   - Финальный аккорд (~05:29 JZ time): добавлен счётный финал `"end in"` (`count: true` $\to$ «end in 3 · 3 2 1») на `bar 206.1` (330.201s, финальный удар на 05:29 JZ time).
+3. **Ре-рендер трека:**
+   - Выполнен полный рендер через `jamzone_render.py --practice`:
+     - Сгенерированы `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, practice-миксы (roma, steve, tanya, alex) и web-стемы.
+     - Актуализированы `mix.json`, `web/songs.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/holding-out-for-a-hero.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-10] cues & playback | You're My Heart, You're My Soul: cues all in / melody in / end fill in, lead guitar и lead vocal на припевах в плейбек
+
+По запросу Alex для `Modern Talking — You're My Heart, You're My Soul (Mix '98)` (cat_14066):
+1. **Обновлены cues:**
+   - Стартовый cue (`bar 2.1`, 4.085s): заменено слово «playback» на «all» $\to$ `You're My Heart · all in ready go` («You're My Heart all in ready go»);
+   - На такте `44.3` (90.882s) подсказка изменена с «main in» на `melody in ready go` («melody in ready go», вход мелодической темы синта/инструментала);
+   - Финальный cue (`bar 111.1`, 226.703s): изменён с «end in» на `end fill in` (`count: true` $\to$ «end fill in 3 · 3 2 1»).
+2. **Лид-электрогитара добавлена в плейбек (`pb-other`):**
+   - Дорожка `08_Lead_Electric_Guitar` добавлена в `pb-other.stems` (звучит в Verse 2 и переходе в припев 2);
+   - Убрана из партий `players.alex` (`alex` теперь играет живьём `06_Electric_Guitar` и `07_Rhythm_Electric_Guitar`, а в `practice-alex.mp3` слышит лид-гитару плейбека).
+3. **Лид-вокал добавлен в плейбек только на припевах:**
+   - Дорожка `14_Lead_Vocal` подключена в `pb-other.stems`;
+   - Назначена роль `"roles": {"14_Lead_Vocal": "back-vox"}` с автоуровнем по целевому потолку -23 dBFS (-5.1 dB) для идеального баланса с `13_Backing_Vocals`;
+   - Настроен мьют вне припевов: `"mute": {"14_Lead_Vocal": [[1, 26], [44, 76], [103, 115]]}`;
+   - В куплетах (Verse 1, Verse 2), интро, инструментале и аутро вокал в плейбеке полностью заглушен (поёт живьём Таня), а на припевах (Chorus 1, Chorus 2, Chorus 3) звучит оригинальный мужской голос в пачке с бэками.
+4. **Ре-рендер трека:**
+   - Выполнен полный рендер через `jamzone_render.py --practice`:
+     - Сгенерированы `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, practice-миксы (roma, steve, tanya, alex) и web-стемы.
+     - Актуализированы `mix.json`, `web/songs.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/youre-my-heart-youre-my-soul.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+   - Свежие `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "You're My Heart"`.
+
+## [2026-10-10] cues & playback | Sunny: вырезано интро плейбека (cut_bars [2, 6]), refine cues, сдвиг lyrics (-8.14s)
+
+По запросу Alex для `Boney M. — Sunny` (cat_5568):
+1. **Вырезано плейбек-интро (первые 10 секунд):**
+   - Добавлен `"cut_bars": [2, 6]` — вырезаны 4 пустых такта плейбека (8.136s).
+   - Трек начинается прямо с отсчёта и стартовой голосовой подсказки `"Sunny, all in ready go"` на `bar 2.1` (4.068s), после чего сразу вступает вся группа.
+2. **Обновлены голосовые подсказки (cues) с учётом сдвига тактов (-4 такта):**
+   - Стартовый cue: `"Sunny, all in ready go"` на `bar 2.1` (4.068s);
+   - Куплет 1 (`verse in`): сильная доля куплета на `bar 10.1` (20.339s);
+   - Старые cues удалены: `2:06` (`main in ready go`), `2:38` (`verse in ready go`), `3:07` (`end in`);
+   - Секция Verse 3 (01:31 JZ time): добавлен даунбит-cue `"modulation in ready go"` на `bar 42.1` (85.424s);
+   - Секция Instrumental (02:04 JZ time): добавлен cue `"instrumental in ready go"` на `bar 58.1` (117.966s);
+   - Секция Verse 4 (02:37 JZ time): добавлен cue `"modulation in ready go"` на `bar 74.1` (150.508s);
+   - Секция Outro (JamZone): добавлен cue `"outro in ready go"` на `bar 88.1` (178.983s);
+   - Финал трека (03:21 JZ time): добавлен счётный финал `"end in"` (`count: true` $\to$ «end in 3 · 3 2 1») на `bar 96.1` (195.254s).
+3. **Обновлены тайминги lyrics и видео-клип:**
+   - Все строки в `tools/lyric-launcher/lyrics-timed/59.tsv` сдвинуты на -8.14s (4 такта).
+   - Пересобран титровый клип: `clips/59.ass` и `clips/59.mp4`.
+4. **Ре-рендер трека:**
+   - Выполнен полный рендер через `jamzone_render.py "Boney M. - Sunny" --practice`.
+   - Обновлены `mix.json`, `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
+   - Актуализированы `wiki/songs/boney-m-sunny.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
+   - Новые плейбеки скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Sunny"`.

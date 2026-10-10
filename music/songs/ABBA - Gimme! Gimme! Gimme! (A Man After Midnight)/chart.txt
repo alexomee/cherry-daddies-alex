@@ -1,0 +1,13 @@
+ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)    Dm / 120 bpm
+I-V-PC-Ch-I2-V2-PC3-Ch4-Ch5-O
+
+I   : D5 A# C D5 A# D5 C D5 A# C D5 A# D5 C Dm C F Am Dm C F Am Dm
+V   : (Gm Dm) x2
+PC  : A# Gm7 Dm A7
+Ch  : Dm A# C Dm A# Dm C Dm A# C Dm A# Dm C Dm
+I2  : Dm C F Am Dm C F Am Dm
+V2  : (Gm Dm) x2
+PC3 : A# Gm7 Dm A7
+Ch4 : Dm A# C Dm A# Dm C Dm A# C Dm A# Dm C Dm
+Ch5 : Dm A# C Dm A# Dm C Dm A# C Dm A# Dm C Dm
+O   : Dm C F Am Dm C F Am Dm C F Am Dm

@@ -32,12 +32,20 @@
     ]
   },
   "cues": [
-    {"bar": 1, "text": "It's Raining Men playback in", "abs_sec": 3.504, "snap_sec": 0.0},
-    {"bar": 3, "text": "all in", "abs_sec": 6.944, "snap_sec": 3.472},
-    {"bar": 19, "text": "main in ready go", "abs_sec": 35.104, "snap_sec": 31.582},
-    {"bar": 26, "beat": 4, "text": "verse in", "abs_sec": 48.724, "snap_sec": 45.212},
-    {"bar": 91, "text": "break in ready go", "abs_sec": 161.494, "snap_sec": 157.992},
-    {"bar": 109, "text": "bridge in ready go", "abs_sec": 193.034, "snap_sec": 189.532},
-    {"bar": 185, "text": "end in", "count": true, "abs_sec": 326.084, "snap_sec": 322.142}
+    {"bar": 1, "text": "It's Raining Men playback in", "abs_sec": 3.44, "snap_sec": 0.0},
+    {"bar": 3, "text": "all in", "abs_sec": 6.88, "snap_sec": 3.408},
+    {"bar": 19, "text": "pre-verse in", "abs_sec": 35.04, "snap_sec": 31.518},
+    {"bar": 27, "text": "verse in", "abs_sec": 49.1, "snap_sec": 45.588},
+    {"bar": 43, "text": "stop", "abs_sec": 77.27, "snap_sec": 73.308},
+    {"bar": 62, "text": "bridge in", "abs_sec": 110.58, "snap_sec": 107.078},
+    {"bar": 79, "text": "stop", "abs_sec": 140.4, "snap_sec": 136.448},
+    {"bar": 91, "text": "break in ready go", "abs_sec": 161.43, "snap_sec": 157.928},
+    {"bar": 109, "text": "bridge-2 in", "abs_sec": 192.97, "snap_sec": 189.468},
+    {"bar": 126, "text": "stop", "abs_sec": 222.73, "snap_sec": 218.798},
+    {"bar": 129, "text": "verse in", "abs_sec": 227.99, "snap_sec": 224.478},
+    {"bar": 152, "text": "stop", "abs_sec": 268.27, "snap_sec": 264.328},
+    {"bar": 167, "text": "keep going", "raw": true, "abs_sec": 294.52, "snap_sec": 291.898},
+    {"bar": 177, "text": "outro in", "abs_sec": 312.0, "snap_sec": 308.498},
+    {"bar": 185, "text": "end in", "count": true, "abs_sec": 326.02, "snap_sec": 322.078}
   ]
 }

@@ -2,12 +2,24 @@
   "click": "follow",
   "pb-other": {
     "stems": [
+      "08_Lead_Electric_Guitar",
       "09_Piano",
       "10_Synth_Pad",
       "11_Synth_Keys_1",
       "12_Synth_Keys_2",
-      "13_Backing_Vocals"
-    ]
+      "13_Backing_Vocals",
+      "14_Lead_Vocal"
+    ],
+    "roles": {
+      "14_Lead_Vocal": "back-vox"
+    },
+    "mute": {
+      "14_Lead_Vocal": [
+        [1, 26],
+        [44, 76],
+        [103, 115]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -28,15 +40,14 @@
     ],
     "alex": [
       "06_Electric_Guitar",
-      "07_Rhythm_Electric_Guitar",
-      "08_Lead_Electric_Guitar"
+      "07_Rhythm_Electric_Guitar"
     ]
   },
   "cues": [
-    {"bar": 2, "text": "You're My Heart playback in", "abs_sec": 4.085, "snap_sec": 0.0},
+    {"bar": 2, "text": "You're My Heart all in", "abs_sec": 4.085, "snap_sec": 0.0},
     {"bar": 10, "beat": 3, "text": "verse in", "abs_sec": 21.435, "snap_sec": 17.362},
-    {"bar": 44, "beat": 3, "text": "main in ready go", "abs_sec": 90.882, "snap_sec": 86.797},
+    {"bar": 44, "beat": 3, "text": "melody in ready go", "abs_sec": 90.882, "snap_sec": 86.797},
     {"bar": 61, "text": "verse in ready go", "abs_sec": 124.575, "snap_sec": 120.499},
-    {"bar": 111, "text": "end in", "count": true, "abs_sec": 226.703, "snap_sec": 222.107}
+    {"bar": 111, "text": "end fill in", "count": true, "abs_sec": 226.703, "snap_sec": 222.107}
   ]
 }

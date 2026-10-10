@@ -1,15 +1,15 @@
 ---
 type: song
-updated: 2026-10-09
+updated: 2026-10-10
 title: I Wanna Dance with Somebody (Who Loves Me)
 artist: Whitney Houston
-set: "24.10 Lefkara #22"
+set: "— (исключена из 24.10 Lefkara)"
 ---
 
 # Whitney Houston — I Wanna Dance with Somebody (Who Loves Me)
 
 Папка: `/Users/alex/projects/cherry-daddies/music/songs/Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)/`
-Позиция в сетлисте: 24.10 Lefkara, песня #22 (`web/songs.json`).
+Позиция в сетлисте: исключена из программы 24.10 Lefkara по итогам ревью (ранее #22 / #19).
 
 ## Сводка
 

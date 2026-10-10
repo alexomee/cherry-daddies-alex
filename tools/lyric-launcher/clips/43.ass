@@ -12,7 +12,7 @@ Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100
 Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:05:25.06,Title,,0,0,0,,Hot Stuff
+Dialogue: 0,0:00:00.00,0:04:55.13,Title,,0,0,0,,Hot Stuff
 Dialogue: 0,0:00:31.06,0:00:44.07,Pair,,0,0,0,,{\pos(640,285)}Sittin' here eatin' my heart out waitin' waiting for some lover to call
 Dialogue: 0,0:00:31.06,0:00:44.07,Next,,0,0,0,,{\pos(640,475)}Dialed about a thousand numbers lately\NAlmost rang the phone off the wall
 Dialogue: 0,0:00:44.07,0:00:51.04,Pair,,0,0,0,,{\pos(640,285)}Dialed about a thousand numbers lately\NAlmost rang the phone off the wall
@@ -43,20 +43,14 @@ Dialogue: 0,0:03:34.59,0:04:03.49,Pair,,0,0,0,,{\pos(640,285)}I need hot love lo
 Dialogue: 0,0:03:34.59,0:04:03.49,Next,,0,0,0,,{\pos(640,475)}Sittin' here eating my heart, no reason\NWon't spend another night on my own
 Dialogue: 0,0:04:03.49,0:04:11.23,Pair,,0,0,0,,{\pos(640,285)}Sittin' here eating my heart, no reason\NWon't spend another night on my own
 Dialogue: 0,0:04:03.49,0:04:11.23,Next,,0,0,0,,{\pos(640,475)}I dialed about a hundred numbers lately\NI'm bound to find somebody home
-Dialogue: 0,0:04:11.23,0:04:18.45,Pair,,0,0,0,,{\pos(640,285)}I dialed about a hundred numbers lately\NI'm bound to find somebody home
-Dialogue: 0,0:04:11.23,0:04:18.45,Next,,0,0,0,,{\pos(640,475)}Gonna have some hot stuff baby this evenin'\NI need some hot stuff baby tonight
-Dialogue: 0,0:04:18.45,0:04:26.43,Pair,,0,0,0,,{\pos(640,285)}Gonna have some hot stuff baby this evenin'\NI need some hot stuff baby tonight
-Dialogue: 0,0:04:18.45,0:04:26.43,Next,,0,0,0,,{\pos(640,475)}Looking for my hot stuff baby this evenin'\NNeed some loving baby
-Dialogue: 0,0:04:26.43,0:04:33.17,Pair,,0,0,0,,{\pos(640,285)}Looking for my hot stuff baby this evenin'\NNeed some loving baby
-Dialogue: 0,0:04:26.43,0:04:33.17,Next,,0,0,0,,{\pos(640,475)}Gonna need your love tonight
-Dialogue: 0,0:04:33.17,0:04:39.37,Pair,,0,0,0,,{\pos(640,285)}Gonna need your love tonight
-Dialogue: 0,0:04:33.17,0:04:39.37,Next,,0,0,0,,{\pos(640,475)}Hot stuff baby this evening\NI need some hot stuff baby tonight, yeah yeah
-Dialogue: 0,0:04:39.37,0:04:46.38,Pair,,0,0,0,,{\pos(640,285)}Hot stuff baby this evening\NI need some hot stuff baby tonight, yeah yeah
-Dialogue: 0,0:04:39.37,0:04:46.38,Next,,0,0,0,,{\pos(640,475)}I want some hot stuff baby this evenin'\NI want some hot stuff baby tonight
-Dialogue: 0,0:04:46.38,0:04:53.59,Pair,,0,0,0,,{\pos(640,285)}I want some hot stuff baby this evenin'\NI want some hot stuff baby tonight
-Dialogue: 0,0:04:46.38,0:04:53.59,Next,,0,0,0,,{\pos(640,475)}Yeah hey hey hey now hot love, baby\NI need your hot stuff baby tonight
-Dialogue: 0,0:04:53.59,0:05:02.58,Pair,,0,0,0,,{\pos(640,285)}Yeah hey hey hey now hot love, baby\NI need your hot stuff baby tonight
-Dialogue: 0,0:04:53.59,0:05:02.58,Next,,0,0,0,,{\pos(640,475)}I want your hot stuff baby this evenin'\NHot stuff baby
-Dialogue: 0,0:05:02.58,0:05:09.06,Pair,,0,0,0,,{\pos(640,285)}I want your hot stuff baby this evenin'\NHot stuff baby
-Dialogue: 0,0:05:02.58,0:05:09.06,Next,,0,0,0,,{\pos(640,475)}Gonna need your love tonight
-Dialogue: 0,0:05:09.06,0:05:16.29,Pair,,0,0,0,,{\pos(640,285)}Gonna need your love tonight
+Dialogue: 0,0:04:11.23,0:04:19.40,Pair,,0,0,0,,{\pos(640,285)}I dialed about a hundred numbers lately\NI'm bound to find somebody home
+Dialogue: 0,0:04:11.23,0:04:19.40,Next,,0,0,0,,{\pos(640,475)}Hot stuff baby this evening\NI need some hot stuff baby tonight, yeah yeah
+Dialogue: 0,0:04:19.40,0:04:26.41,Pair,,0,0,0,,{\pos(640,285)}Hot stuff baby this evening\NI need some hot stuff baby tonight, yeah yeah
+Dialogue: 0,0:04:19.40,0:04:26.41,Next,,0,0,0,,{\pos(640,475)}I want some hot stuff baby this evenin'\NI want some hot stuff baby tonight
+Dialogue: 0,0:04:26.41,0:04:33.62,Pair,,0,0,0,,{\pos(640,285)}I want some hot stuff baby this evenin'\NI want some hot stuff baby tonight
+Dialogue: 0,0:04:26.41,0:04:33.62,Next,,0,0,0,,{\pos(640,475)}Yeah hey hey hey now hot love, baby\NI need your hot stuff baby tonight
+Dialogue: 0,0:04:33.62,0:04:42.61,Pair,,0,0,0,,{\pos(640,285)}Yeah hey hey hey now hot love, baby\NI need your hot stuff baby tonight
+Dialogue: 0,0:04:33.62,0:04:42.61,Next,,0,0,0,,{\pos(640,475)}I want your hot stuff baby this evenin'\NHot stuff baby
+Dialogue: 0,0:04:42.61,0:04:49.09,Pair,,0,0,0,,{\pos(640,285)}I want your hot stuff baby this evenin'\NHot stuff baby
+Dialogue: 0,0:04:42.61,0:04:49.09,Next,,0,0,0,,{\pos(640,475)}Gonna need your love tonight
+Dialogue: 0,0:04:49.09,0:04:55.09,Pair,,0,0,0,,{\pos(640,285)}Gonna need your love tonight

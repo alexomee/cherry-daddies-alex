@@ -1,15 +1,15 @@
 ---
 type: song
-updated: 2026-10-09
+updated: 2026-10-10
 title: Sunny
 artist: Boney M.
-set: "24.10 Lefkara #24"
+set: "24.10 Lefkara #20"
 ---
 
 # Boney M. — Sunny
 
 Папка: `/Users/alex/projects/cherry-daddies/music/songs/Boney M. - Sunny/`
-Позиция в сетлисте: 24.10 Lefkara, песня #24 (`web/songs.json`).
+Позиция в сетлисте: 24.10 Lefkara, песня #20 (`web/songs.json`).
 
 ## Сводка
 
@@ -18,10 +18,12 @@ set: "24.10 Lefkara #24"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **Перкуссия:** ручная перкуссия исключена из плейбека (играет барабанщик Стив).
 - **pb-other:** 04_Electric_Guitar, 05_Piano, 06_Synth_Pad, 07_Brass_section, 08_String_Section, 09_Backing_Vocals.
+- **cut_bars:** `[2, 6]` (первые 4 такта плейбек-интро вырезаны, трек стартует сразу со стартовой подсказки `Sunny, all in ready go`).
 - **cues:**
-  - `bar 2.1` — `Sunny playback in` (4.068s)
-  - `bar 6.1` — `all in` (12.203s)
-  - `bar 13.4` — `verse in` (27.966s)
-  - `bar 62.1` — `main in ready go` (126.102s)
-  - `bar 78.1` — `verse in ready go` (158.644s)
-  - `bar 92.1` — `end in` (187.119s)
+  - `bar 2.1` — `Sunny, all in ready go` (4.068s)
+  - `bar 10.1` — `verse in` (20.339s)
+  - `bar 42.1` — `modulation in` (85.424s)
+  - `bar 58.1` — `instrumental in` (117.966s)
+  - `bar 74.1` — `modulation in` (150.508s)
+  - `bar 88.1` — `outro in` (178.983s)
+  - `bar 96.1` — `end in` (195.254s)

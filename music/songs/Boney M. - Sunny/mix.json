@@ -30,12 +30,14 @@
     ]
   },
   "cat": "cat_5568",
+  "cut_bars": [2, 6],
   "cues": [
-    {"bar": 2, "text": "Sunny playback in", "abs_sec": 4.068, "snap_sec": 0.0},
-    {"bar": 6, "text": "all in", "abs_sec": 12.203, "snap_sec": 8.136},
-    {"bar": 13, "beat": 4, "text": "verse in", "abs_sec": 27.966, "snap_sec": 23.898},
-    {"bar": 62, "text": "main in ready go", "abs_sec": 126.102, "snap_sec": 122.034},
-    {"bar": 78, "text": "verse in ready go", "abs_sec": 158.644, "snap_sec": 154.576},
-    {"bar": 92, "text": "end in", "count": true, "abs_sec": 187.119, "snap_sec": 182.542}
+    {"bar": 2, "text": "Sunny, all in ready go", "abs_sec": 4.068, "snap_sec": 0.0},
+    {"bar": 10, "text": "verse in", "abs_sec": 20.339, "snap_sec": 16.271},
+    {"bar": 42, "text": "modulation in", "abs_sec": 85.424, "snap_sec": 81.356},
+    {"bar": 58, "text": "instrumental in", "abs_sec": 117.966, "snap_sec": 113.898},
+    {"bar": 74, "text": "modulation in", "abs_sec": 150.508, "snap_sec": 146.441},
+    {"bar": 88, "text": "outro in", "abs_sec": 178.983, "snap_sec": 174.915},
+    {"bar": 96, "text": "end in", "count": true, "abs_sec": 195.254, "snap_sec": 190.678}
   ]
 }

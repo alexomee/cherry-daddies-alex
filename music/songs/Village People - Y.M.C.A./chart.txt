@@ -1,0 +1,13 @@
+Village People - Y.M.C.A.    F# / 127 bpm
+I-V-Ch-V2-Ch2-V3-Ch3-Ins-Ch4-O
+
+I   : Bmaj7
+V   : F# Ebm B C# B C#7 B7 F# C# F# Ebm B C# B C#7 B7 F# C# B
+Ch  : F# Ebm G#m7 B F# Ebm G#m7 B C#7 B C#7
+V2  : F# Ebm B C# B C#7 B7 F# C# F# Ebm B C# B C#7 B7 F# C# B
+Ch2 : F# Ebm G#m7 B F# Ebm G#m7 B C#m
+V3  : F# Ebm B C# B C#7 B7 F# C# F# Ebm B C# B C#7 B7 F# C# B
+Ch3 : F# Ebm G#m7 B C#7 Bmaj7 C#7 F# Ebm G#m7 B C#7 B
+Ins : F# Ebm G#m7 B C#7 Bmaj7
+Ch4 : F# Ebm G#m7 B C#7 B F# Ebm G#m7 B C#7 Bmaj7
+O   : F# Ebm G#m7 Bmaj7 F#

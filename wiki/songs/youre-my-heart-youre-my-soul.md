@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-08
+updated: 2026-10-10
 title: "You're My Heart, You're My Soul"
 artist: Modern Talking
 set: "24.10 Lefkara Сет 2 #5"
@@ -18,8 +18,11 @@ set: "24.10 Lefkara Сет 2 #5"
 - **Источник стемов:** JamZone HQ-стемы (14 дорожек).
 - **Перкуссия:** `03_Percussion` исключена из плейбека (играет живой барабанщик).
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
-- **pb-other:** фортепиано, синты, пэд и бэки: `09_Piano`, `10_Synth_Pad`, `11_Synth_Keys_1`, `12_Synth_Keys_2`, `13_Backing_Vocals`.
-- **players:** roma (`04_Synth_Bass_1`, `05_Synth_Bass_2`), steve (`02_Drum_Kit`), tanya (`14_Lead_Vocal`), alex (`06_Electric_Guitar`, `07_Rhythm_Electric_Guitar`, `08_Lead_Electric_Guitar`).
+- **pb-other:** 08_Lead_Electric_Guitar, 09_Piano, 10_Synth_Pad, 11_Synth_Keys_1, 12_Synth_Keys_2, 13_Backing_Vocals, 14_Lead_Vocal с автоуровнем `back-vox` (-23 dBFS) и мьютом вне припевов JamZone (`mute: [[1, 26], [44, 76], [103, 115]]`).
+- **players:** roma (`04_Synth_Bass_1`, `05_Synth_Bass_2`), steve (`02_Drum_Kit`), tanya (`14_Lead_Vocal`), alex (`06_Electric_Guitar`, `07_Rhythm_Electric_Guitar`).
 - **cues:**
   - `bar 2.1` (4.085s) — `You're My Heart all in` («You're My Heart all in ready go») — вступление на 2 такт.
-  - `bar 111.1` (226.703s) — `end in` («end in 3 · 3 2 1») — финальный аккорд.
+  - `bar 10.3` (21.435s) — `verse in` («verse in ready go»).
+  - `bar 44.3` (90.882s) — `melody in ready go` («melody in ready go»).
+  - `bar 61.1` (124.575s) — `verse in ready go` («verse in ready go»).
+  - `bar 111.1` (226.703s) — `end fill in` («end fill in 3 · 3 2 1») — финальный сбив и аккорд.

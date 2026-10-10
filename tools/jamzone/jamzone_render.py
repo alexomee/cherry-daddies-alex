@@ -1029,7 +1029,7 @@ def _find_jamzone_cat(folder, mix):
             except Exception: pass
     return None
 
-def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat):
+def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat, sec_to_idx=None, OFF=0.0, cut_range=None):
     cat = _find_jamzone_cat(folder, mix)
     if not cat:
         print(f"JamZone catalog ID not found for {os.path.basename(folder)}")
@@ -1070,10 +1070,18 @@ def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec
     print(f"\nJamZone sections for {os.path.basename(folder)} ({cat}):")
     print(f"  {'Section':15s} | {'stem_t':8s} | {'render_t':9s} | {'Logic':6s} | {'mix.json cue snippet':34s} | {'Lyrics preview'}")
     print("  " + "-" * 105)
+    t_fr, t_to = cut_range if cut_range else (None, None)
     for s in st:
         cap = s.get("caption", "")
         b = s.get("begin", 0.0)
-        idx = (b - db0) / beat
+        b_eff = b
+        if t_fr is not None and t_to is not None:
+            if b >= t_to:
+                b_eff = b - (t_to - t_fr)
+            elif b >= t_fr:
+                b_eff = t_fr
+        t_rend = b_eff + OFF
+        idx = sec_to_idx(t_rend) if sec_to_idx else (b_eff - db0) / beat
         mb, mbe = idx_to_barbeat(idx)
         t_rend = render_sec(idx)
         lb, lbe = logic_of_sec(t_rend)
@@ -1122,6 +1130,12 @@ def main():
     else:
         stems = jz_stems
         click_name = next((n for n in stems if "click" in n.lower()), None) or sys.exit("no Click stem")
+    drop = set(mix.get("exclude_stems") or mix.get("drop_stems") or [])
+    if drop:
+        dropped = [n for n in stems if n in drop]
+        stems = {n: p for n, p in stems.items() if n not in drop}
+        if dropped:
+            print(f"stems dropped (mix.json exclude_stems): {sorted(dropped)}")
     cue_p = os.path.join(folder, "cue_track.wav")
 
     for grp in pb_group_names(mix):
@@ -1212,16 +1226,19 @@ def main():
     if follow:
         bt, beatB, finfo = build_follow_grid(click_st.mean(1), mix, beat, external)
         db0 = float(bt[0])                        # downbeat = first metronome onset
+        b_intro = float(bt[1] - bt[0]) if len(bt) > 1 else beat
         def relt(i):                              # seconds of beat index i from the downbeat
             i = float(i)
-            if i <= 0:            return i*beat                          # before downbeat: main tempo
+            if i <= 0:            return i*b_intro                          # before downbeat: intro tempo
             if i >= len(bt)-1:    return (bt[-1]-bt[0]) + (i-(len(bt)-1))*beatB   # past last onset
             lo = int(np.floor(i)); return (bt[lo]-bt[0]) + (i-lo)*(bt[lo+1]-bt[lo])
         def bdur(i):                              # local beat duration around index i
-            i = int(i); return float(bt[i]-bt[i-1]) if 0 < i < len(bt) else beat
+            i = int(i); return float(bt[i]-bt[i-1]) if 0 < i < len(bt) else b_intro
     else:
+        b_intro = beat
         def relt(i): return i*beat
         def bdur(i): return beat
+    bar_intro = 4*b_intro
     cue_subdiv = int(finfo.get("subdiv", 1)) if follow else 1   # 'fast' cues space words by ticks
     cue_step = mix.get("cue_step")                # song-level beats-per-word (>1 spreads on fast songs)
     tag = (f" (tempo-follow: {finfo['n']} onsets, zone {finfo['zone_t'][0]:.1f}-{finfo['zone_t'][1]:.1f}s "
@@ -1259,8 +1276,8 @@ def main():
     srcs = list(audio.values()) + ([cue_st] if cue_st is not None else [])
     OFF = -db0
     earliest = min(t for a in srcs if (t := first_sound(a)) is not None)
-    if earliest + OFF < 0:
-        OFF += np.ceil(-(earliest+OFF)/bar)*bar
+    if earliest + OFF < -0.010:
+        OFF += np.ceil(-(earliest+OFF)/bar_intro)*bar_intro
     # front lead: whole extra bars so the longest cue phrase (e.g. song-title start cue) fits
     # before its event instead of clipping off the front. Shifts music + cues + click together.
     # Counted from the PRE-LEAD cue base (OFF+db0): bars the earliest-sound fix already added
@@ -1270,8 +1287,8 @@ def main():
     if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
         min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv, cue_step) for c in mix["cues"])  # song
         if min_word < 0.05:                        # only when the cue would actually clip the front
-            lead = np.ceil((0.05 - min_word)/bar)*bar   # (0.05s onset clearance). A cue that fits
-            print(f"lead: +{lead/bar:.0f} bar(s) so the longest cue fits the front")  # gets no
+            lead = np.ceil((0.05 - min_word)/bar_intro)*bar_intro   # (0.05s onset clearance). A cue that fits
+            print(f"lead: +{lead/bar_intro:.0f} bar(s) so the longest cue fits the front")  # gets no
             #                                            wasted count-in bar — the silent intro bars
             #                                            already carry the click before the music.
     # forced count-in: songs whose music's own intro starts under the start cue (no clean
@@ -1280,7 +1297,7 @@ def main():
     # click together; cue stays anchored to its music bar.
     ci = int(mix.get("count_in", 0) or 0)
     if ci and not daw:
-        lead = max(lead, ci * bar)
+        lead = max(lead, ci * bar_intro)
         print(f"count_in: forced +{ci} bar(s) of front count-in")
     OFF += lead
     if daw:                                        # render time == stem time (no offset/count-in);
@@ -1301,11 +1318,11 @@ def main():
     # N bars let the final hit ring; the output is faded at the cut so the hard stop doesn't click.
     # (true -> 2 bars.) Absent -> normal: extend to the last real sound, +2 bars of cue-tail room.
     cut = mix.get("cut_after_last_cue")
-    cut_bars = (2.0 if cut is True else float(cut)) if (cut is not None and mix.get("cues")) else None
-    if cut_bars is not None:
+    cut_tail_bars = (2.0 if cut is True else float(cut)) if (cut is not None and mix.get("cues")) else None
+    if cut_tail_bars is not None:
         last_ev = max(cue_event_time(c, cue_base, relt) for c in mix["cues"])
-        end = int((last_ev + cut_bars*bar)*SR)
-        print(f"cut: render ends {cut_bars:g} bar(s) after the last cue event — song tail dropped")
+        end = int((last_ev + cut_tail_bars*bar)*SR)
+        print(f"cut: render ends {cut_tail_bars:g} bar(s) after the last cue event — song tail dropped")
     else:
         end = max(last_sound(a) for a in srcs) + off_samp
         if mix.get("cues"):
@@ -1336,7 +1353,7 @@ def main():
     def sec_to_idx(t):                                  # inverse of render_sec (tempo-follow aware)
         if not follow: return (t - cue_base)/beat
         rel = t - cue_base
-        if rel <= 0: return rel/beat
+        if rel <= 0: return rel/b_intro
         span = bt - bt[0]
         if rel >= span[-1]: return (len(bt)-1) + (rel-span[-1])/beatB
         j = max(0, min(int(np.searchsorted(span, rel)) - 1, len(span)-2))
@@ -1358,7 +1375,8 @@ def main():
                   f"| Logic {lb}.{round(lbe)} | {c['text']}")
     if "--sections" in sys.argv or "-s" in sys.argv:
         q = True
-        _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat)
+        cut_range = (t_fr, t_to) if cut_bars else None
+        _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat, sec_to_idx, OFF, cut_range)
     for flag, mk in (("--logic", lambda v: sec_of_logic(int(v.split('.')[0]), int((v.split('.')+['1'])[1]))),
                      ("--bar",   lambda v: render_sec(mixbar_to_idx(int(v.split('.')[0]), int((v.split('.')+['1'])[1])))),
                      ("--at",    lambda v: float(v))):
@@ -1445,17 +1463,20 @@ def main():
         out = {"click": build_click(60/beat, total, off_samp, bar)}
     else:                                           # JamZone: the click stem itself, aligned
         cbuf = np.zeros((total, 2), np.float32); place(cbuf, click_st, off_samp)
-        t0c = first_sound(cbuf)                     # added front bars (lead/offset) must tick too:
-        if t0c and t0c > beat/2:                    # fill them with JZ samples, accent on bar
+        t0c = cue_base                              # stem downbeat in cbuf
+        if t0c > b_intro/2:                         # fill front lead with JZ samples, accent on bar
             import jamzone_click as JC              # lines, at the stem click's level
             jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)
             jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)
             g = float(np.abs(cbuf).max())
-            for k in range(int(round(t0c/beat))):
+            k = 1
+            while t0c - k*b_intro >= -0.005:
                 hit = (jdb if k % 4 == 0 else jbt*0.5)*g
-                s = round(k*beat*SR); n = min(len(hit), total-s)
-                cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
-            print(f"click: front {t0c/bar:.0f} bar(s) filled with JZ count-in")
+                s = round((t0c - k*b_intro)*SR); n = min(len(hit), total-s)
+                if s >= 0 and n > 0:
+                    cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
+                k += 1
+            print(f"click: front {k-1} beat(s) filled with JZ count-in at {60/b_intro:.1f} bpm")
         out = {"click": cbuf}
     def parse_fade_range(spec):
         if not spec: return None
@@ -1493,6 +1514,13 @@ def main():
         return (s0, s1, t0, t1)
 
     all_fades = {}
+    song_fspec = mix.get("fade_out")
+    if song_fspec:
+        fr = parse_fade_range(song_fspec)
+        if fr:
+            print(f"  fade_out all music stems: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
+            for st in music:
+                all_fades[st] = (fr[0], fr[1])
     for grp in pb_group_names(mix):
         m = mix.get(grp) or {}
         fspec = m.get("fade_out")
@@ -1613,7 +1641,7 @@ def main():
                    if n in autoleveled else ""
             print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> normalized to -0.4dBFS{warn}")
 
-    if cut_bars is not None:                        # soften the hard truncation so the dropped-tail
+    if cut_tail_bars is not None:                        # soften the hard truncation so the dropped-tail
         fade = min(int(0.08*SR), total)             # cut ends on a clean ramp, not a click
         ramp = np.linspace(1.0, 0.0, fade, dtype=np.float32)[:, None]
         for n in out:

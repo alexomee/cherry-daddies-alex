@@ -1,12 +1,31 @@
 {
   "click": "follow",
+  "exclude_stems": [
+    "05_Synth_Bass"
+  ],
+  "cut_bars": [130, 140],
+  "cut_after_last_cue": 1,
+  "fade_out": {
+    "from_bar": 146,
+    "from_beat": 3.5,
+    "to_bar": 147,
+    "to_beat": 1
+  },
   "pb-other": {
     "stems": [
       "09_Piano",
       "10_Synthesizer",
       "11_Synth_Keys_(theme)",
       "12_Backing_Vocals"
-    ]
+    ],
+    "fade_out": {
+      "10_Synthesizer": {
+        "from_bar": 145,
+        "from_beat": 4.5,
+        "to_bar": 146,
+        "to_beat": 1
+      }
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -16,8 +35,7 @@
   },
   "players": {
     "roma": [
-      "04_Bass",
-      "05_Synth_Bass"
+      "04_Bass"
     ],
     "steve": [
       "02_Drum_Kit"
@@ -31,6 +49,6 @@
     {"bar": 17, "beat": 4, "text": "verse in", "abs_sec": 35.574, "snap_sec": 31.6},
     {"bar": 74, "text": "guitar solo ready go", "abs_sec": 147.764, "snap_sec": 143.79},
     {"bar": 98, "text": "chorus in ready go", "abs_sec": 195.624, "snap_sec": 191.64},
-    {"bar": 160, "text": "end in", "count": true, "abs_sec": 319.254, "snap_sec": 314.78}
+    {"bar": 146, "text": "end in", "count": true, "abs_sec": 291.324, "snap_sec": 286.83}
   ]
 }

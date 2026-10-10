@@ -9,9 +9,30 @@
       "09_Digital_Piano",
       "10_Hammond_(Hammond)",
       "11_Synth_Keys",
-      "12_Tenor_Saxophone",
       "13_Backing_Vocals"
-    ]
+    ],
+    "mute": {
+      "04_Acoustic_Guitar_(clean)": [
+        [1, 82],
+        [90, 115]
+      ],
+      "05_Rhythm_Electric_Guitar_(muted)": [
+        [1, 82],
+        [90, 115]
+      ],
+      "06_Rhythm_Electric_Guitar": [
+        [1, 82],
+        [90, 115]
+      ],
+      "07_Arr._Electric_Guitar": [
+        [1, 82],
+        [90, 115]
+      ],
+      "08_Distorted_Electric_Guitar": [
+        [1, 82],
+        [90, 115]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -40,11 +61,11 @@
   "cat": "cat_5519",
   "click": "follow",
   "cues": [
-    {"bar": 2, "text": "The Best all in", "abs_sec": 4.591, "snap_sec": 0.0},
-    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 13.221, "snap_sec": 8.62},
-    {"bar": 30, "text": "chorus in", "abs_sec": 69.221, "snap_sec": 64.61},
-    {"bar": 82, "text": "sax solo ready go", "abs_sec": 189.401, "snap_sec": 184.78},
-    {"bar": 90, "text": "chorus in ready go", "abs_sec": 207.841, "snap_sec": 203.26},
-    {"bar": 98, "text": "end in", "count": true, "abs_sec": 226.351, "snap_sec": 221.16}
+    {"bar": 2, "text": "The Best all in", "abs_sec": 4.561, "snap_sec": 0.0},
+    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 13.191, "snap_sec": 8.59},
+    {"bar": 30, "text": "chorus in", "abs_sec": 69.191, "snap_sec": 64.58},
+    {"bar": 81, "beat": "3&", "text": "sax solo ready go", "abs_sec": 188.506, "snap_sec": 183.88},
+    {"bar": 89, "beat": 4, "text": "chorus in ready go", "abs_sec": 207.241, "snap_sec": 202.66},
+    {"bar": 106, "text": "end in", "count": true, "abs_sec": 244.791, "snap_sec": 239.59}
   ]
 }

@@ -1,15 +1,15 @@
 ---
 type: song
-updated: 2026-10-07
+updated: 2026-10-10
 title: "Stumblin' In"
 artist: "Chris Norman & Suzi Quatro"
-set: "24.10 Lefkara #5"
+set: "24.10 Lefkara #21"
 ---
 
 # Chris Norman & Suzi Quatro — Stumblin' In
 
 Папка: `/Users/alex/projects/cherry-daddies/music/songs/Suzi Quatro & Chris Norman - Stumblin' In/`
-Позиция в сетлисте: 24.10 Lefkara, песня #5 (`web/songs.json`).
+Позиция в сетлисте: 24.10 Lefkara, песня #21 (`web/songs.json`).
 
 ## Сводка
 

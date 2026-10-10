@@ -52,30 +52,30 @@
 
 ### 24.10 Lefkara (27 песен)
 
-1. [Bee Gees — Stayin' Alive](songs/stayin-alive.md) — 105 BPM; 7 cues (all in, verse in 7.4, main in x2, bridge in, end in).
+1. [Bee Gees — Stayin' Alive](songs/stayin-alive.md) — 105 BPM; 13 cues (all in, verse in 7.4/29/60, main in x3, bridge in, bridge-2..5 in, end in 124.2).
 2. [Blondie — Heart of Glass](songs/heart-of-glass.md) — ~114.7 BPM; 15 cues (4 такта барабанного интро, drums in, all in, verse in, solo/break).
-3. [Gloria Gaynor — I Will Survive](songs/i-will-survive.md) — ~116.3 BPM; 6 cues (piano in, drums in, verse in, main in, verse in, end in).
-4. [Village People — YMCA](songs/ymca.md) — ~127 BPM; 6 cues (all in, verse in 17.2, chorus in, main in, chorus in, end in).
+3. [Gloria Gaynor — I Will Survive](songs/i-will-survive.md) — ~116.3 BPM; 7 cues (playback in, guitars in, all in, verse in, music stop, voice in, end in).
+4. [Village People — YMCA](songs/ymca.md) — ~127 BPM; 5 cues (all in, verse in 9.1, instrumental in 111.1, chorus in 119.1, end in). cut_bars [3, 11] (старт сразу с темы духовых).
 5. [Donna Summer — Hot Stuff](songs/hot-stuff.md) — ~120.3 BPM; 5 cues (all in, verse in 17.4, guitar solo, chorus in, end in).
-6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — 120 BPM; 6 cues (playback in, drums in, verse in 19.4, main in, chorus in, end in).
-7. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — 120.6 BPM; 5 cues (playback in, verse in, main in, chorus in, end fill in).
+6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — ~119.4 BPM; 7 cues (guitar in, drums in 10.2, verse in 19.3, intro in 43, verse in 53.3, chorus in 69, end in 97). Вырезаны Pre-chorus 2, Chorus 2, Chorus 3 и Instrumental (48 тактов); 2 куплета, 2 блока припевов, нативное Outro (3:21).
+7. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — 120.6 BPM; 7 cues (Ti amo all in, voice-only verse, kick in, all in, instrumental in, chorus in, end fill in).
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
-9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 6 cues (all in, verse in 13.4, chorus in, main in, verse in, end in).
-10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 6 cues (all in, verse in 6.4, chorus in, main in, verse in, end in).
-11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 7 cues (playback in, all in, main in, verse in 26.4, break in, bridge in, end in).
-12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 5 cues (playback in, verse in 18.4, guitar solo, chorus in, end in).
+9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 7 cues (all in, verse in 6.1, chorus in, intro in, verse in, D mod chorus in, end in).
+10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 6 cues (all in, verse in 7.1, instrumental in, verse in, keep going, end in).
+11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 15 cues (playback in, all in, pre-verse in, verse in, stop x4, bridge in, break in, bridge-2 in, keep going, outro in, end in).
+12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 8 cues (drums in 3.1, main in 11.1, verse in 18.4, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3, mute synth keys 1 в pre-chorus.
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).
-15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123 BPM; 6 cues (playback in, verse in 7.4, all in, main in, verse in, end in).
+15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in).
 16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; 11 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, end in).
-17. [Modern Talking — You're My Heart, You're My Soul](songs/youre-my-heart-youre-my-soul.md) — ~117.5 BPM; 5 cues (playback in, verse in 10.3, main in, verse in, end in).
-18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 6 cues (all in, verse in, chorus in, main in, bridge in, end in).
-19. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — 114 BPM; 3 cues (all in bar 2, verse in bar 5.4, end fill in bar 105).
+17. [Modern Talking — You're My Heart, You're My Soul](songs/youre-my-heart-youre-my-soul.md) — ~117.5 BPM; 5 cues (all in, verse in 10.3, melody in, verse in, end fill in).
+18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 12 cues (drum-base in, verse in, chorus in, intro in, bridge in, voice in, keep going, outro in, end in).
+19. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — 114 BPM; 8 cues (all in, verse in ×2, melody in ×3, chorus in, end fill in).
 20. [Modern Talking — Brother Louie](songs/brother-louie.md) — 109 BPM; 4 cues (playback in bar 1.3, verse in bar 50.1, short chorus ready go bar 89.4, end fill in bar 105.3).
 21. [Shocking Blue — Venus](songs/venus.md) — 128 BPM; 6 cues (guitar in bar 3, all in bar 9, verse in bar 13, guitar solo x2, end in).
 22. [Whitney Houston — I Wanna Dance with Somebody](songs/whitney-houston-i-wanna-dance-with-somebody.md) — 119 BPM; 6 cues (all in, vocal in 4.4, verse in, break in, bridge in, end in).
 23. [Tina Turner — The Best](songs/tina-turner-the-best.md) — 104 BPM; 6 cues (all in, verse in 5.4, chorus in, sax solo, chorus in, end in).
-24. [Boney M. — Sunny](songs/boney-m-sunny.md) — 118 BPM; 6 cues (playback in, all in, verse in 13.4, main in, verse in, end in).
+24. [Boney M. — Sunny](songs/boney-m-sunny.md) — 118 BPM; 7 cues (Sunny all in, verse in 10.1, modulation in, instrumental in, modulation in, outro in, end in). cut_bars [2, 6].
 25. [ABBA — Money, Money, Money](songs/abba-money-money-money.md) — 120 BPM; 5 cues (playback in, drums in, verse in 7.4, chorus in, end in).
 26. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — ~129.3 BPM; 13 cues (vocal in на 1.2&, переклички Alex/Tanya, solo, stops, end in).
 27. [Haddaway — What Is Love](songs/haddaway-what-is-love.md) — 123 BPM; 8 cues (playback in, all in, verse in, main in, chorus in, break in, bridge in, end in).
@@ -102,7 +102,7 @@
 ## Гиги
 
 - [Репетиция 2026-10-07](gigs/2026-10-07-rehearsal.md) — Сетлист репетиции (10 песен); дашборд-вкладка «07.10 rehearsal».
-- [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; сборка сетлиста через дашборд (Сет 1 — 10 песен, Сет 2 — 8 песен).
+- [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; программа из 21 песни через веб-дашборд (вкладка «24.10 lefkara»).
 - [Концерт 2026-06-26 (мультикам-съёмка)](gigs/2026-06-26-multicam.md) — Концерт с двухкамерной съёмкой (IMG_2689/2690 + DIMAS оператор): сетлист из 24 песен, записанные Set-1 оператор-оффсеты; дата и площадка частично не подтверждены.
 
 ## Контент

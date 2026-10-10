@@ -16,6 +16,7 @@ const MIME = {
   ".js": "text/javascript; charset=utf-8",
   ".css": "text/css; charset=utf-8",
   ".svg": "image/svg+xml",
+  ".png": "image/png",
 };
 
 function send(res, code, body, ct = "text/plain; charset=utf-8") {
@@ -75,6 +76,7 @@ const server = http.createServer(async (req, res) => {
     const total = st.size;
     res.setHeader("content-type", "audio/mpeg");
     res.setHeader("accept-ranges", "bytes");
+    res.setHeader("cache-control", "no-cache");
     const range = req.headers.range;
     if (range) {
       const m = /bytes=(\d*)-(\d*)/.exec(range) || [];

@@ -1,0 +1,22 @@
+Donna Summer - Hot Stuff    Gm / 120 bpm
+I-V-Ch-Br-I2-V2-Ch2-Br2-Ins-Ins2-Ch3-Br3-Ins3-V3-Ch4-Ins4-Ch5-Ch6-O
+
+I    : Gm F Gm F Gm F Gm F Gm A# F
+V    : Gm F Gm A# F Gm F Gm
+Ch   : Cm Dm Gm Cm Dm Gm Cm Dm Gm F Gm Cm Dm
+Br   : (Gm A# C D5 Gm A# Cm D5) x2
+I2   : Gm F Gm A# F Gm F Gm A#
+V2   : Gm F Gm A# F Gm F Gm
+Ch2  : Cm Dm Gm Cm Dm Gm Cm Dm Gm F Gm Cm Dm
+Br2  : Gm A# C D5 Gm A# Cm D5 Gm A# Cm D5 Gm A# Cm D5
+Ins  : Gm D# F Gm D# F Gm
+Ins2 : F Gm A# F Gm F Gm
+Ch3  : Cm Dm Gm Cm Dm Gm Cm Dm Gm F Gm Cm Dm
+Br3  : Gm A# C D5 Gm A# Cm D5 Gm A# Cm D5 Gm A# Cm D5
+Ins3 : Gm F Gm A# F Gm F Gm A# Gm
+V3   : (F Gm) x2
+Ch4  : Cm Dm Gm Cm Dm Gm Cm Dm Gm Cm Dm
+Ins4 : Gm
+Ch5  : (Cm Dm Gm) x4
+Ch6  : Cm Dm Gm Cm Dm Gm Cm Dm Gm Cm Dm
+O    : G5 D5 Gm

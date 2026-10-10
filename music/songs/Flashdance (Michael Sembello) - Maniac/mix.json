@@ -1,6 +1,5 @@
 {
   "click": "follow",
-  "cue_step": 2,
   "pb-other": {
     "stems": [
       "06_Electric_Piano_(Rhodes)",
@@ -9,7 +8,17 @@
       "09_Synth_Keys_2",
       "10_String_Section",
       "11_Backing_Vocals"
-    ]
+    ],
+    "mute": {
+      "08_Synth_Keys_1": [
+        [35, 43],
+        [77, 85],
+        [133, 141]
+      ],
+      "09_Synth_Keys_2": [
+        [1, 141]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -32,10 +41,13 @@
     ]
   },
   "cues": [
-    {"bar": 3, "text": "Maniac playback in", "abs_sec": 4.549, "snap_sec": 0.0},
-    {"bar": 18, "beat": 4, "text": "verse in", "abs_sec": 28.369, "snap_sec": 23.82},
-    {"bar": 117, "text": "guitar solo ready go", "abs_sec": 176.629, "snap_sec": 172.08},
-    {"bar": 141, "text": "chorus in ready go", "abs_sec": 212.879, "snap_sec": 208.35},
-    {"bar": 171, "text": "end in", "count": true, "abs_sec": 258.129, "snap_sec": 252.85}
+    {"bar": 3, "text": "Maniac drums in", "abs_sec": 3.04, "snap_sec": 0.0},
+    {"bar": 11, "text": "main in ready go", "abs_sec": 15.12, "snap_sec": 12.101},
+    {"bar": 18, "beat": 4, "text": "verse in", "abs_sec": 26.86, "snap_sec": 23.841},
+    {"bar": 101, "text": "bridge in", "abs_sec": 150.97, "snap_sec": 147.961},
+    {"bar": 117, "text": "guitar solo ready go", "abs_sec": 175.12, "snap_sec": 172.091},
+    {"bar": 133, "text": "prechorus in", "abs_sec": 199.27, "snap_sec": 195.871},
+    {"bar": 140, "beat": 4, "text": "chorus in ready go", "abs_sec": 210.99, "snap_sec": 207.971},
+    {"bar": 171, "text": "end in", "count": true, "abs_sec": 256.62, "snap_sec": 253.221}
   ]
 }

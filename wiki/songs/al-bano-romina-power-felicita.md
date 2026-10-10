@@ -19,9 +19,11 @@ set: "24.10 Lefkara #9"
 - **Перкуссия:** ручная перкуссия исключена из плейбека (играет барабанщик Стив).
 - **pb-other:** 04_Piano, 05_Electric_Piano_(CP), 06_Synth_Pad, 07_Synth_Keys, 08_Synth_Brass, 09_String_Section, 10_Cello, 11_French_Horn, 12_Backing_Vocals.
 - **cues:**
-  - `bar 2.1` — `Felicita all in` (4.461s)
-  - `bar 13.4` — `verse in` (30.668s)
-  - `bar 29.3` — `chorus in` (65.797s)
-  - `bar 45.3` — `main in ready go` (101.483s)
-  - `bar 47.3` — `verse in ready go` (105.944s)
-  - `bar 79.1` — `end in` (176.201s)
+  - `bar 2.1` — `Felichita all in ready go` (4.461s)
+  - `bar 6.1` — `verse in ready go` (13.382s)
+  - `bar 29.4` — `chorus in ready go` (66.354s)
+  - `bar 45.4` — `intro in ready go` (102.041s)
+  - `bar 47.4` — `verse in ready go` (106.502s)
+  - `bar 79.3` — `D modulation chorus in 3 · 3 2 1` (177.317s)
+  - `bar 87.3` — `end in 3 · 3 2 1` (195.160s)
+- **fade_out:** bar 88.1 → 88.3 (196.275s → 197.390s, 1.12s ramp): затухание после 2-й доли финального аккорда.

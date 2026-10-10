@@ -31,11 +31,12 @@
     ]
   },
   "cues": [
-    {"bar": 2, "text": "I Will Survive piano in", "abs_sec": 4.113, "snap_sec": 0.0},
-    {"bar": 5, "text": "drums in", "abs_sec": 10.263, "snap_sec": 6.149},
-    {"bar": 13, "text": "verse in", "abs_sec": 26.773, "snap_sec": 22.66},
-    {"bar": 37, "text": "main in ready go", "abs_sec": 76.313, "snap_sec": 72.185},
+    {"bar": 2, "text": "I Will Survive playback in", "abs_sec": 4.113, "snap_sec": 0.0},
+    {"bar": 5, "text": "guitars in", "abs_sec": 10.263, "snap_sec": 6.149},
+    {"bar": 13, "text": "all in", "abs_sec": 26.773, "snap_sec": 22.66},
     {"bar": 45, "text": "verse in ready go", "abs_sec": 92.827, "snap_sec": 88.699},
+    {"bar": 76, "text": "music stop", "abs_sec": 156.813, "snap_sec": 152.171},
+    {"bar": 78, "beat": 4, "text": "voice in ready go", "abs_sec": 162.444, "snap_sec": 158.33},
     {"bar": 103, "text": "end in", "count": true, "abs_sec": 212.583, "snap_sec": 207.934}
   ]
 }

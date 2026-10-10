@@ -26,9 +26,11 @@
     ]
   },
   "cues": [
-    {"bar": 3, "text": "Sara perche playback in", "abs_sec": 3.978, "snap_sec": 0.0},
-    {"bar": 11, "text": "verse in", "abs_sec": 19.891, "snap_sec": 15.913},
-    {"bar": 59, "text": "main in ready go", "abs_sec": 115.37, "snap_sec": 111.392},
+    {"bar": 3, "text": "Ti amo all in ready go", "abs_sec": 3.978, "snap_sec": 0.0},
+    {"bar": 11, "text": "voice-only verse ready go", "abs_sec": 19.891, "snap_sec": 15.913},
+    {"bar": 17, "text": "kick in ready go", "abs_sec": 31.826, "snap_sec": 27.848},
+    {"bar": 19, "text": "all in ready go", "abs_sec": 35.805, "snap_sec": 31.826},
+    {"bar": 59, "text": "instrumental in ready go", "abs_sec": 115.37, "snap_sec": 111.392},
     {"bar": 67, "text": "chorus in ready go", "abs_sec": 131.283, "snap_sec": 127.305},
     {"bar": 91, "beat": 1, "text": "end fill in", "count": true, "abs_sec": 179.023, "snap_sec": 174.547}
   ]

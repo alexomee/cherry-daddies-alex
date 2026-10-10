@@ -1,15 +1,15 @@
 ---
 type: song
-updated: 2026-10-09
+updated: 2026-10-10
 title: Money, Money, Money
 artist: ABBA
-set: "24.10 Lefkara #25"
+set: "— (исключена из 24.10 Lefkara)"
 ---
 
 # ABBA — Money, Money, Money
 
 Папка: `/Users/alex/projects/cherry-daddies/music/songs/ABBA - Money, Money, Money/`
-Позиция в сетлисте: 24.10 Lefkara, песня #25 (`web/songs.json`).
+Позиция в сетлисте: исключена из программы 24.10 Lefkara по итогам ревью (ранее #25 / #22).
 
 ## Сводка
 
