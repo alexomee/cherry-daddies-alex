@@ -430,6 +430,165 @@
       width:220px;
     }
   }
+
+  /* Floating Audio Loading Window */
+  .loading-float{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(30px);
+    opacity:0;
+    pointer-events:none;
+    z-index:99999;
+    min-width:320px;
+    max-width:calc(100vw - 32px);
+    background:rgba(18,22,31,0.96);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid #333d54;
+    border-radius:14px;
+    box-shadow:0 14px 40px rgba(0,0,0,0.65), 0 0 24px rgba(108,140,255,0.22);
+    overflow:hidden;
+    transition:transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family:inherit;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  .loading-float.visible{
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .loading-float.success{
+    border-color:var(--ok);
+    box-shadow:0 14px 40px rgba(0,0,0,0.65), 0 0 24px rgba(58,210,159,0.25);
+  }
+  .loading-float.error{
+    border-color:var(--no);
+    box-shadow:0 14px 40px rgba(0,0,0,0.65), 0 0 24px rgba(255,93,108,0.25);
+  }
+  .loading-float-content{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px 10px;
+  }
+  .loading-float-icon{
+    flex:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    height:28px;
+  }
+  .loading-spinner-svg{
+    animation:loadSpin 0.9s linear infinite;
+  }
+  @keyframes loadSpin{
+    100%{transform:rotate(360deg)}
+  }
+  .loading-spinner-track{
+    stroke:rgba(255,255,255,0.12);
+  }
+  .loading-spinner-head{
+    stroke:var(--accent);
+    stroke-linecap:round;
+    stroke-dasharray:45;
+    stroke-dashoffset:25;
+  }
+  .loading-float.success .loading-spinner-head{
+    stroke:var(--ok);
+  }
+  .loading-float.error .loading-spinner-head{
+    stroke:var(--no);
+  }
+  .loading-float-body{
+    flex:1;
+    min-width:0;
+  }
+  .loading-float-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:2px;
+  }
+  .loading-float-title{
+    font-size:13.5px;
+    font-weight:700;
+    color:#fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .loading-float-pct{
+    font-size:11.5px;
+    font-weight:700;
+    color:var(--accent);
+    flex:none;
+    font-variant-numeric:tabular-nums;
+  }
+  .loading-float.success .loading-float-pct{
+    color:var(--ok);
+  }
+  .loading-float.error .loading-float-pct{
+    color:var(--no);
+  }
+  .loading-float-detail{
+    font-size:11.5px;
+    color:var(--dim);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .loading-float-close{
+    flex:none;
+    background:transparent;
+    border:none;
+    color:var(--dim);
+    font-size:14px;
+    cursor:pointer;
+    padding:4px;
+    line-height:1;
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.15s ease;
+  }
+  .loading-float-close:hover{
+    color:#fff;
+    background:rgba(255,255,255,0.08);
+  }
+  .loading-progress-bar{
+    height:4px;
+    background:rgba(255,255,255,0.08);
+    position:relative;
+    overflow:hidden;
+  }
+  .loading-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--accent), var(--ok));
+    transition:width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .loading-progress-fill.indeterminate{
+    width:35%;
+    position:absolute;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation:loadShimmer 1.2s infinite ease-in-out;
+  }
+  @keyframes loadShimmer{
+    0%{left:-35%}
+    100%{left:100%}
+  }
+  @media(max-width:600px){
+    .loading-float{
+      bottom:16px;
+      min-width:auto;
+      width:calc(100vw - 24px);
+    }
+  }
 </style>
 </head>
 <body>
@@ -497,6 +656,29 @@
     <span>⚡</span>
     <span class="settings-pill-val" id="pillSpeedVal">1x</span>
   </button>
+</div>
+
+<!-- Floating Audio Loading Window -->
+<div class="loading-float" id="loadingFloat" aria-live="polite">
+  <div class="loading-float-content">
+    <div class="loading-float-icon">
+      <svg class="loading-spinner-svg" viewBox="0 0 24 24" width="22" height="22">
+        <circle class="loading-spinner-track" cx="12" cy="12" r="9" fill="none" stroke-width="2.5"></circle>
+        <circle class="loading-spinner-head" cx="12" cy="12" r="9" fill="none" stroke-width="2.5"></circle>
+      </svg>
+    </div>
+    <div class="loading-float-body">
+      <div class="loading-float-head">
+        <span class="loading-float-title" id="loadingFloatTitle">Загрузка</span>
+        <span class="loading-float-pct" id="loadingFloatPct"></span>
+      </div>
+      <div class="loading-float-detail" id="loadingFloatDetail">Подготовка аудио...</div>
+    </div>
+    <button type="button" class="loading-float-close" id="loadingFloatClose" title="Скрыть панель">✕</button>
+  </div>
+  <div class="loading-progress-bar">
+    <div class="loading-progress-fill" id="loadingProgressFill"></div>
+  </div>
 </div>
 
 <script>
@@ -826,6 +1008,67 @@
   var activePlayer = null;
   var animFrameId = null;
 
+  // ---- Floating Audio Loading Indicator ----
+  var loadingFloatEl = document.getElementById("loadingFloat");
+  var loadingTitleEl = document.getElementById("loadingFloatTitle");
+  var loadingPctEl = document.getElementById("loadingFloatPct");
+  var loadingDetailEl = document.getElementById("loadingFloatDetail");
+  var loadingFillEl = document.getElementById("loadingProgressFill");
+  var loadingCloseEl = document.getElementById("loadingFloatClose");
+  var loadingHideTimer = null;
+
+  if(loadingCloseEl){
+    loadingCloseEl.onclick = function(){ hideLoadingFloat(0); };
+  }
+
+  function showLoadingFloat(title, detail, pct){
+    if(!loadingFloatEl) return;
+    if(loadingHideTimer){ clearTimeout(loadingHideTimer); loadingHideTimer = null; }
+    loadingFloatEl.classList.remove("success", "error");
+    loadingFloatEl.classList.add("visible");
+    if(loadingTitleEl) loadingTitleEl.textContent = title || "Загрузка аудио";
+    if(loadingDetailEl) loadingDetailEl.textContent = detail || "";
+    if(loadingPctEl && loadingFillEl){
+      if(pct === null || pct === undefined || isNaN(pct)){
+        loadingPctEl.textContent = "";
+        loadingFillEl.classList.add("indeterminate");
+        loadingFillEl.style.width = "";
+      } else {
+        var clamped = Math.max(0, Math.min(100, Math.round(pct)));
+        loadingPctEl.textContent = clamped + "%";
+        loadingFillEl.classList.remove("indeterminate");
+        loadingFillEl.style.width = clamped + "%";
+      }
+    }
+  }
+
+  function hideLoadingFloat(delayMs){
+    if(!loadingFloatEl) return;
+    if(loadingHideTimer) clearTimeout(loadingHideTimer);
+    if(delayMs){
+      loadingHideTimer = setTimeout(function(){
+        if(loadingFloatEl) loadingFloatEl.classList.remove("visible", "success", "error");
+        loadingHideTimer = null;
+      }, delayMs);
+    } else {
+      loadingFloatEl.classList.remove("visible", "success", "error");
+    }
+  }
+
+  function successLoadingFloat(title, detail){
+    if(!loadingFloatEl) return;
+    showLoadingFloat(title, detail || "Готово", 100);
+    loadingFloatEl.classList.add("success");
+    hideLoadingFloat(1800);
+  }
+
+  function errorLoadingFloat(title, errText){
+    if(!loadingFloatEl) return;
+    showLoadingFloat(title, errText || "Ошибка загрузки", 100);
+    loadingFloatEl.classList.add("error");
+    hideLoadingFloat(4500);
+  }
+
   function isCustomMix(sid, stems){
     if(!stems || !stems.length) return false;
     var prefs = getMixPref(sid, stems);
@@ -896,6 +1139,7 @@
   }
 
   function stopActivePlayer(resetPos){
+    hideLoadingFloat(0);
     if(!activePlayer) return;
     if(animFrameId) cancelAnimationFrame(animFrameId);
     try {
@@ -1012,9 +1256,16 @@
         }
         audio.playbackRate = currentSpeed;
         if(audio.paused){
-          audio.play().catch(function(e){ console.error("Audio playback failed:", e); });
+          if(audio.readyState < 3){
+            showLoadingFloat(s.title || s.sid, "Загрузка плейбека...", null);
+          }
+          audio.play().catch(function(e){
+            console.error("Audio playback failed:", e);
+            errorLoadingFloat(s.title || s.sid, "Ошибка воспроизведения");
+          });
         } else {
           audio.pause();
+          hideLoadingFloat(0);
         }
       }
       return;
@@ -1037,25 +1288,38 @@
     if(needsFetch){
       try {
         var itemsToFetch = s.stems.map(function(st){
-          return { id: st.id, url: stemAudioSrc(s, st.id), required: true };
+          return { id: st.id, label: st.label, url: stemAudioSrc(s, st.id), required: true };
         });
         if(prefs.pb_other){
-          itemsToFetch.push({ id: "pb_other", url: audioSrc(s, "pb-other"), required: false });
+          itemsToFetch.push({ id: "pb_other", label: "pb-other", url: audioSrc(s, "pb-other"), required: false });
         }
         if(prefs.pb_bass){
-          itemsToFetch.push({ id: "pb_bass", url: audioSrc(s, "pb-bass"), required: false });
+          itemsToFetch.push({ id: "pb_bass", label: "pb-bass", url: audioSrc(s, "pb-bass"), required: false });
         }
+
+        var total = itemsToFetch.length;
+        var completed = 0;
+        showLoadingFloat(s.title || s.sid, "Загрузка дорожек (0/" + total + ")...", 0);
+
         var fetches = itemsToFetch.map(async function(item){
-          if(map && map[item.id]) return { id: item.id, buf: map[item.id] };
+          if(map && map[item.id]){
+            completed++;
+            showLoadingFloat(s.title || s.sid, "Загрузка дорожек (" + completed + "/" + total + ")...", (completed / total) * 100);
+            return { id: item.id, buf: map[item.id] };
+          }
           try {
             var r = await fetch(item.url);
             if(!r.ok) throw new Error("track " + item.id + " HTTP " + r.status);
             var ab = await r.arrayBuffer();
             var decoded = await ctx.decodeAudioData(ab);
+            completed++;
+            showLoadingFloat(s.title || s.sid, "Загрузка: " + (item.label || item.id) + " (" + completed + "/" + total + ")...", (completed / total) * 100);
             return { id: item.id, buf: decoded };
           } catch(e){
             if(item.required) throw e;
             console.warn("Optional bus load failed:", item.id, e);
+            completed++;
+            showLoadingFloat(s.title || s.sid, "Загрузка дорожек (" + completed + "/" + total + ")...", (completed / total) * 100);
             return { id: item.id, buf: null };
           }
         });
@@ -1063,10 +1327,12 @@
         map = map || {};
         loaded.forEach(function(x){ if(x.buf) map[x.id] = x.buf; });
         STEM_BUFFERS[s.sid] = map;
+        successLoadingFloat(s.title || s.sid, "Все дорожки готовы ✓");
       } catch(err){
         console.error("Stem load error for", s.sid, err);
         STEM_LOADING[s.sid] = false;
         pbtn.textContent = "▶";
+        errorLoadingFloat(s.title || s.sid, "Сбой загрузки стемов, переключаем на общий микс");
         if(audio){
           if(!audio.src || audio.src === window.location.href) audio.src = audioSrc(s, "all");
           audio.currentTime = startOffset;
@@ -1075,6 +1341,8 @@
         }
         return;
       }
+    } else {
+      hideLoadingFloat(0);
     }
     STEM_LOADING[s.sid] = false;
 
@@ -1579,9 +1847,23 @@
             paused: false,
             playbackRate: currentSpeed
           };
+          if(audio.readyState < 3){
+            showLoadingFloat(s.title || s.sid, "Буферизация аудио...", null);
+          }
+        });
+        audio.addEventListener("playing", function(){
+          btn.textContent = "⏸";
+          hideLoadingFloat(0);
+        });
+        audio.addEventListener("waiting", function(){
+          showLoadingFloat(s.title || s.sid, "Буферизация аудио...", null);
+        });
+        audio.addEventListener("canplay", function(){
+          hideLoadingFloat(0);
         });
         audio.addEventListener("pause", function(){
           btn.textContent = "▶";
+          hideLoadingFloat(0);
           if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
             activePlayer.paused = true;
             activePlayer.pausedAt = audio.currentTime;
@@ -1590,10 +1872,15 @@
         audio.addEventListener("ended", function(){
           btn.textContent = "▶";
           seek.value = 0;
+          hideLoadingFloat(0);
           if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
             activePlayer.paused = true;
             activePlayer.pausedAt = 0;
           }
+        });
+        audio.addEventListener("error", function(){
+          btn.textContent = "▶";
+          errorLoadingFloat(s.title || s.sid, "Не удалось загрузить аудио");
         });
       }
 

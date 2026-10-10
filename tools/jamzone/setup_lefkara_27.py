@@ -131,6 +131,7 @@ save_mix("Flashdance (Michael Sembello) - Maniac", [
     {"bar": 3, "text": "Maniac drums in"},
     {"bar": 11, "text": "main in ready go"},
     {"bar": 18, "beat": 4, "text": "verse in"},
+    {"bar": 59, "text": "longer here"},
     {"bar": 101, "text": "bridge in"},
     {"bar": 117, "text": "guitar solo ready go"},
     {"bar": 133, "text": "prechorus in"},

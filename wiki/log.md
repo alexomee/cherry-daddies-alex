@@ -806,7 +806,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 3. **Сдвинут cue припева Chorus 3 (~3:31) на 1 долю раньше:**
    - Перенесён с `bar 141.1` на `bar 140.4` (210.990s, snap 207.971s) ровно под вокальный затакт Тани («She's a...»);
    - Сам синт `09_Synth_Keys_2` вступает со 141 такта (211.28s, даунбит Chorus 3) и звучит до конца песни.
-4. **Ре-рендер и синк:**
+4. **Добавлен cue `longer here` на ~1:27:**
+   - `bar 59.1` (87.590s, snap 84.571s) — 2-тактовый инструментальный тернараунд после Chorus 1 перед Verse 2.
+5. **Ре-рендер и синк:**
    - Выполнен полный рендер через `jamzone_render.py "Flashdance (Michael Sembello) - Maniac"`.
    - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `web/songs.json`.
 762:    - Свежие `cues.wav` и `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Maniac"`.

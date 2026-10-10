@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T21:21:19",
+  "generated": "2026-10-10T21:27:33",
   "counts": {
     "total": 68,
     "data": 68,
@@ -3003,7 +3003,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 8,
+            "count": 9,
             "list": [
               {
                 "t": 3.04,
@@ -3022,6 +3022,12 @@
                 "text": "verse in",
                 "bar": 18,
                 "snap": 23.841
+              },
+              {
+                "t": 87.59,
+                "text": "longer here",
+                "bar": 59,
+                "snap": 85.321
               },
               {
                 "t": 150.97,
@@ -3124,10 +3130,10 @@
             "guitars": "819346b24e",
             "other": "a4954e1599",
             "click": "ce280b83f1",
-            "cues": "df32b53d78"
+            "cues": "24bbdf0d96"
           },
           "versions": {
-            "all": "8317ad89a4",
+            "all": "e5bce815c6",
             "drums": "b2dca56a5c",
             "alex": "7e2f6d2ce3",
             "steve": "4bf7319f4a",

@@ -39,6 +39,7 @@
     {"bar": 3, "text": "Maniac drums in", "abs_sec": 3.04, "snap_sec": 0.0},
     {"bar": 11, "text": "main in ready go", "abs_sec": 15.12, "snap_sec": 12.101},
     {"bar": 18, "beat": 4, "text": "verse in", "abs_sec": 26.86, "snap_sec": 23.841},
+    {"bar": 59, "text": "longer here", "abs_sec": 87.59, "snap_sec": 85.321},
     {"bar": 101, "text": "bridge in", "abs_sec": 150.97, "snap_sec": 147.961},
     {"bar": 117, "text": "guitar solo ready go", "abs_sec": 175.12, "snap_sec": 172.091},
     {"bar": 133, "text": "prechorus in", "abs_sec": 199.27, "snap_sec": 195.871},
