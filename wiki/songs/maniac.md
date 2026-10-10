@@ -19,7 +19,7 @@ set: "24.10 Lefkara Сет 2 #4"
 - **Перкуссия:** `03_Percussion` исключена из плейбека (играет живой барабанщик).
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** клавиши, синты, струнные и бэки: `06_Electric_Piano_(Rhodes)`, `07_Synthesizer_(disto)`, `08_Synth_Keys_1`, `09_Synth_Keys_2`, `10_String_Section`, `11_Backing_Vocals`.
-  - `08_Synth_Keys_1` заглушен в моменты pre-chorus (`"mute": {"08_Synth_Keys_1": [[35, 43], [77, 85], [133, 141]]}`), чтобы лидирующий синт не дублировал гитару. В Bridge (такты 101–117) звучит в плейбеке.
+  - `08_Synth_Keys_1` звучит в плейбеке (в т.ч. в предприпевах и секции Bridge).
   - `09_Synth_Keys_2` заглушен в `pb-other` с такта 1 до такта 141 (`"mute": {"09_Synth_Keys_2": [[1, 141]]}`): лид-партию играет гитара (Alex); на Chorus 3 (такт 141) гитара продолжает играть соло, поэтому `09_Synth_Keys_2` вступает в плейбеке с 141 такта и звучит до конца.
 - **players:** roma (`04_Synth_Bass`), steve (`02_Electronic_Drum_Kit`), tanya (`12_Lead_Vocal`), alex (`05_Lead_Electric_Guitar`).
 

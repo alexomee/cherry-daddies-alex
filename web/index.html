@@ -822,8 +822,19 @@
   }
 
   var STEM_BUFFERS = {};
+  var STEM_LOADING = {};
   var activePlayer = null;
   var animFrameId = null;
+
+  function isCustomMix(sid, stems){
+    if(!stems || !stems.length) return false;
+    var prefs = getMixPref(sid, stems);
+    var total = stems.length;
+    var onCount = 0;
+    stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
+    var busCount = (prefs.pb_other ? 1 : 0) + (prefs.pb_bass ? 1 : 0);
+    return onCount < total || busCount > 0;
+  }
 
   function getMixPref(sid, stems){
     var key = "cd-mix-stems:" + sid;
@@ -865,6 +876,25 @@
     b.textContent = txt;
   }
 
+  function syncPlaybackMode(sid){
+    var s = SONGS[sid];
+    if(!s || !activePlayer || activePlayer.sid !== sid) return;
+    var custom = isCustomMix(sid, s.stems);
+    var srow = findByAttr("tr:not(.cuerow):not(.mixrow)", "data-song", sid);
+    var pl = srow && srow.querySelector(".player");
+    if(!pl) return;
+    var ctx = getAudioCtx();
+
+    if(activePlayer.isAudioTag && custom){
+      var curPos = activePlayer.audio.currentTime;
+      playOrToggle(s, pl, curPos);
+    } else if(!activePlayer.isAudioTag && !custom){
+      var curPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
+      stopActivePlayer(false);
+      playOrToggle(s, pl, curPos);
+    }
+  }
+
   function stopActivePlayer(resetPos){
     if(!activePlayer) return;
     if(animFrameId) cancelAnimationFrame(animFrameId);
@@ -881,6 +911,10 @@
       if(activePlayer.master){
         try { activePlayer.master.disconnect(); } catch(e){}
         activePlayer.master = null;
+      }
+      if(activePlayer.audio){
+        activePlayer.audio.pause();
+        if(resetPos) activePlayer.audio.currentTime = 0;
       }
       if(activePlayer.plEl){
         var b = activePlayer.plEl.querySelector(".pbtn");
@@ -905,50 +939,28 @@
     var seek = plEl.querySelector(".seek");
     var time = plEl.querySelector(".time");
     var audio = plEl.querySelector(".mixaudio");
-    var isStemPlayer = !!(s.stems && s.stems.length);
-    var isPlaying = false;
-    var currentPos = 0;
-    var dur = 0;
+    var isStemMode = activePlayer && activePlayer.sources && !activePlayer.isAudioTag && activePlayer.sid === s.sid;
 
-    if(activePlayer && activePlayer.sid === s.sid){
-      dur = activePlayer.duration || parseFloat(seek.max) || 0;
+    if(isStemMode){
+      var dur = activePlayer.duration || parseFloat(seek.max) || 0;
+      var currentPos = !activePlayer.paused
+        ? activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0)
+        : (activePlayer.pausedAt !== undefined ? activePlayer.pausedAt : (parseFloat(seek.value) || 0));
+      var target = currentPos + delta;
+      target = dur > 0 ? Math.max(0, Math.min(dur, target)) : Math.max(0, target);
       if(!activePlayer.paused){
-        isPlaying = true;
-        currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
-      } else {
-        currentPos = activePlayer.pausedAt !== undefined ? activePlayer.pausedAt : (parseFloat(seek.value) || 0);
-      }
-    } else if(audio && (!audio.paused || (audio.currentTime > 0 && !audio.ended))){
-      dur = audio.duration || parseFloat(seek.max) || 0;
-      currentPos = audio.currentTime;
-      isPlaying = !audio.paused;
-    } else {
-      dur = (audio && audio.duration) || parseFloat(seek.max) || 0;
-      currentPos = parseFloat(seek.value) || 0;
-    }
-
-    var target = currentPos + delta;
-    if(dur > 0){
-      target = Math.max(0, Math.min(dur, target));
-    } else {
-      target = Math.max(0, target);
-    }
-
-    if(isPlaying){
-      if(isStemPlayer){
         playOrToggle(s, plEl, target);
-      } else if(audio){
-        audio.currentTime = target;
+      } else {
+        activePlayer.pausedAt = target;
         seek.value = target;
         time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
       }
-    } else {
-      if(activePlayer && activePlayer.sid === s.sid){
-        activePlayer.pausedAt = target;
-      }
-      if(audio){
-        try { audio.currentTime = target; } catch(e){}
-      }
+    } else if(audio){
+      var dur = audio.duration || parseFloat(seek.max) || 0;
+      var currentPos = audio.currentTime || 0;
+      var target = currentPos + delta;
+      target = dur > 0 ? Math.max(0, Math.min(dur, target)) : Math.max(0, target);
+      audio.currentTime = target;
       seek.value = target;
       time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
     }
@@ -959,11 +971,18 @@
     var pbtn = plEl.querySelector(".pbtn");
     var seek = plEl.querySelector(".seek");
     var time = plEl.querySelector(".time");
+    var audio = plEl.querySelector(".mixaudio");
+
+    var isStemMode = isCustomMix(s.sid, s.stems);
 
     if(activePlayer && activePlayer.sid === s.sid && seekTime === undefined && !activePlayer.paused){
-      var currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
-      stopActivePlayer(false);
-      activePlayer = { sid: s.sid, pausedAt: currentPos, duration: s.duration || 0, plEl: plEl, paused: true, playbackRate: currentSpeed };
+      if(activePlayer.isAudioTag){
+        if(audio) audio.pause();
+      } else {
+        var currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
+        stopActivePlayer(false);
+        activePlayer = { sid: s.sid, pausedAt: currentPos, duration: activePlayer.duration || 0, plEl: plEl, paused: true, playbackRate: currentSpeed };
+      }
       pbtn.textContent = "▶";
       return;
     }
@@ -973,43 +992,57 @@
       startOffset = seekTime;
     } else if(activePlayer && activePlayer.sid === s.sid && activePlayer.pausedAt !== undefined){
       startOffset = activePlayer.pausedAt;
+    } else if(audio && audio.currentTime > 0){
+      startOffset = audio.currentTime;
     } else {
       startOffset = parseFloat(seek.value) || 0;
     }
 
+    // Stop whatever else was playing
     stopActivePlayer(false);
 
-    if(!s.stems || !s.stems.length){
-      var audio = plEl.querySelector(".mixaudio");
+    // 1. FAST PATH: Default mix (not custom) -> instant HTML5 <audio> streaming!
+    if(!isStemMode){
       if(audio){
-        if(seekTime !== undefined){
-          audio.currentTime = seekTime;
-          if(audio.paused) audio.play();
-        } else {
-          if(audio.paused) audio.play(); else audio.pause();
+        if(!audio.src || audio.src === window.location.href){
+          audio.src = audioSrc(s, "all");
+        }
+        if(seekTime !== undefined || startOffset > 0){
+          audio.currentTime = startOffset;
         }
         audio.playbackRate = currentSpeed;
+        if(audio.paused){
+          audio.play().catch(function(e){ console.error("Audio playback failed:", e); });
+        } else {
+          audio.pause();
+        }
       }
       return;
     }
 
-    pbtn.textContent = "⏳";
+    // 2. STEM MODE: Custom mix with muted/soloed stems
+    if(STEM_LOADING[s.sid]) return; // Guard against rapid duplicate clicks
 
+    pbtn.textContent = "⏳";
+    STEM_LOADING[s.sid] = true;
+
+    var prefs = getMixPref(s.sid, s.stems);
     var map = STEM_BUFFERS[s.sid];
     var needsFetch = !map;
     if(map){
-      if(s.pb_other && s.pb_other.available && !map["pb_other"]) needsFetch = true;
-      if(s.pb_bass && s.pb_bass.available && !map["pb_bass"]) needsFetch = true;
+      if(prefs.pb_other && !map["pb_other"]) needsFetch = true;
+      if(prefs.pb_bass && !map["pb_bass"]) needsFetch = true;
     }
+
     if(needsFetch){
       try {
         var itemsToFetch = s.stems.map(function(st){
           return { id: st.id, url: stemAudioSrc(s, st.id), required: true };
         });
-        if(s.pb_other && s.pb_other.available){
+        if(prefs.pb_other){
           itemsToFetch.push({ id: "pb_other", url: audioSrc(s, "pb-other"), required: false });
         }
-        if(s.pb_bass && s.pb_bass.available){
+        if(prefs.pb_bass){
           itemsToFetch.push({ id: "pb_bass", url: audioSrc(s, "pb-bass"), required: false });
         }
         var fetches = itemsToFetch.map(async function(item){
@@ -1032,17 +1065,18 @@
         STEM_BUFFERS[s.sid] = map;
       } catch(err){
         console.error("Stem load error for", s.sid, err);
+        STEM_LOADING[s.sid] = false;
         pbtn.textContent = "▶";
-        var audio = plEl.querySelector(".mixaudio");
         if(audio){
-          if(!audio.src) audio.src = audioSrc(s, "all");
-          if(seekTime !== undefined) audio.currentTime = seekTime;
+          if(!audio.src || audio.src === window.location.href) audio.src = audioSrc(s, "all");
+          audio.currentTime = startOffset;
           audio.playbackRate = currentSpeed;
           audio.play().catch(function(e){ console.error("Audio playback fallback failed", e); });
         }
         return;
       }
     }
+    STEM_LOADING[s.sid] = false;
 
     var firstBuf = map[s.stems[0].id];
     var dur = firstBuf ? firstBuf.duration : 0;
@@ -1189,7 +1223,7 @@
          + '</button>'
          + '</div>'
          + '</div>'
-         + '<audio class="mixaudio" preload="metadata" src="'+(hasStems ? "" : audioSrc(s, "all"))+'"></audio>'
+         + '<audio class="mixaudio" preload="metadata" src="'+audioSrc(s, "all")+'"></audio>'
          + '</div>';
   }
 
@@ -1409,6 +1443,7 @@
 
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
+        syncPlaybackMode(sid);
         return;
       }
 
@@ -1457,6 +1492,7 @@
         updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
+        syncPlaybackMode(sid);
         return;
       }
 
@@ -1504,6 +1540,7 @@
         updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
+        syncPlaybackMode(sid);
         return;
       }
     });
@@ -1533,9 +1570,31 @@
         audio.addEventListener("play", function(){
           audio.playbackRate = currentSpeed;
           btn.textContent = "⏸";
+          activePlayer = {
+            sid: s.sid,
+            plEl: pl,
+            audio: audio,
+            isAudioTag: true,
+            duration: audio.duration || parseFloat(seek.max) || 0,
+            paused: false,
+            playbackRate: currentSpeed
+          };
         });
-        audio.addEventListener("pause", function(){ btn.textContent = "▶"; });
-        audio.addEventListener("ended", function(){ btn.textContent = "▶"; seek.value = 0; });
+        audio.addEventListener("pause", function(){
+          btn.textContent = "▶";
+          if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
+            activePlayer.paused = true;
+            activePlayer.pausedAt = audio.currentTime;
+          }
+        });
+        audio.addEventListener("ended", function(){
+          btn.textContent = "▶";
+          seek.value = 0;
+          if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
+            activePlayer.paused = true;
+            activePlayer.pausedAt = 0;
+          }
+        });
       }
 
       btn.onclick = function(){
