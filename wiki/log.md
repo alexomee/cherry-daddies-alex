@@ -784,6 +784,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Обновлены голосовые подсказки (cues):
   - Verse 1: сдвинут на 1 долю позже — с `bar 6.4` (10.251s) на `bar 7.1` (10.697s, `verse in ready go`);
   - Припев 0:39: удалён cue припева (`bar 23.1`, 39.223s, `chorus in`);
+  - Модуляция в D (~01:08 JamZone): добавлен cue на даунбит аккорда D `bar 39.1` (67.749s, `modulation in ready go`);
   - JamZone Instrumental: привязан строго к даунбиту секции `bar 55.1` (96.275s) с текстом `instrumental in ready go` (вместо старого «main in ready go» на 54.4);
   - JamZone Verse 3 (после Instrumental): привязан к даунбиту секции `bar 67.1` (117.669s) с текстом `verse in ready go` (вместо старого 66.4);
   - На стыке Chorus 3 → Chorus 4 (~02:25 JamZone): добавлен cue `bar 83.1` (146.195s) — `keep going`;
@@ -791,10 +792,13 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Добавлены бэк-вокалы в плейбек (`pb-other`):
   - JamZone не экспортирует отдельную дорожку бэк-вокала, но содержит 3 дорожки лид-вокала оригинального состава (`09_Lead_Vocal_Angela_Brambati`, `10_Lead_Vocal_Angelo_Sotgiu`, `11_Lead_Vocal_Franco_Gatti`);
   - Все 3 вокальные дорожки подключены в `pb-other` с ролью `back-vox` (автоуровень по целевому потолку -23 dBFS: Angela -5.6dB, Angelo -5.7dB, Franco 0.0dB) и мьютом вне припевов JamZone: `mute: [[1, 23], [31, 47], [55, 75], [91, 109]]`;
-  - В куплетах (Verse 1, Verse 2, Verse 3), интро, инструментале и аутро вокал в плейбеке полностью заглушен (поёт вживую вокалистка Таня), а в припевах (Chorus 1, Chorus 2, Chorus 3, Chorus 4) звучит полноценная 3-голосная вокальная пачка.
+  - В куплетах (Verse 1, Verse 2, Verse 3), интро, инструментале и аутро вокал в плейбеке полностью заглушен (поёт вживую вокалистка Таня), а в припевах (Chorus 1, Chorus 2, Chorus 3, Chorus 4) звучит полноценная 3-голосная вокальная пачка;
+  - Электрогитары (`04_Electric_Guitar_(left)`, `05_Electric_Guitar_(right)`) убраны из плейбека `pb-other` (играет Алекс вживую).
 - Выполнен рендер через `jamzone_render.py --practice`:
   - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `timeline.json`, practice-миксы (steve, roma, tanya, alex) и web-стемы.
 - Актуализированы `tools/jamzone/setup_lefkara_27.py`, `web/songs.json`, `wiki/songs/ricchi-e-poveri-mamma-maria.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+- Свежие рендеры синхронизированы и запушены в риг MainStage (`cherry-daddies-2000`): `Mamma María` (`cues.wav`, `pb-other.wav`), `Maniac` и `Holding Out for a Hero`.
+- Выполнен деплой дашборда на Vercel (`https://web-ten-psi-12.vercel.app`) и R2-синк обновлённых аудио.
 
 ## [2026-10-10] cues & mix | Maniac: cue main in (0:15), мьют ведущего синта в pre-chorus, chorus in на 1 долю раньше (3:31)
 
@@ -808,13 +812,16 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Сам синт `09_Synth_Keys_2` вступает со 141 такта (211.28s, даунбит Chorus 3) и звучит до конца песни.
 4. **Добавлен cue `longer here` на ~1:27:**
    - `bar 59.1` (87.590s, snap 84.571s) — 2-тактовый инструментальный тернараунд после Chorus 1 перед Verse 2.
-5. **Ре-рендер и синк:**
+5. **Fade out плейбека за 4 доли после финального удара:**
+   - В `mix.json` настроен `"fade_out": {"from_bar": 171, "from_beat": 1, "to_bar": 172, "to_beat": 1}` — плавное линейное затухание за 4 доли (1.51 с) с 256.620s до 258.129s.
+   - Задействован `"cut_after_last_cue": 2`, убирающий лишний хвост тишины после завершения фейда.
+6. **Ре-рендер и синк:**
    - Выполнен полный рендер через `jamzone_render.py "Flashdance (Michael Sembello) - Maniac"`.
    - Обновлены `mix.json`, `cues.wav`, `click.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `web/songs.json`.
-762:    - Свежие `cues.wav` и `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Maniac"`.
-763:    - Обновлены `wiki/songs/maniac.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
-764: 
-765: ## [2026-10-10] cues & click | What a Feeling: выравнивание темпа клика интро (92 BPM) и полный рефайн подсказок
+   - Свежие `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Maniac"`.
+   - Обновлены `wiki/songs/maniac.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
+
+## [2026-10-10] cues & click | What a Feeling: выравнивание темпа клика интро (92 BPM) и полный рефайн подсказок
 766: 
 767: По запросу Alex для `Irene Cara — What a Feeling` (cat_10091):
 768: 1. **Выравнивание темпа клика интро:**
@@ -916,3 +923,19 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Обновлены `mix.json`, `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
    - Актуализированы `wiki/songs/boney-m-sunny.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
    - Новые плейбеки скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Sunny"`.
+
+## [2026-10-10] cues & playback | Holding Out for a Hero: cue "guitar in", обрезка до 5:30, cue "chorus variation" на 02:32
+
+По запросу Alex для `Bonnie Tyler — Holding Out for a Hero` (cat_13868):
+1. **Добавлен голосовой cue для входа гитары:**
+   - На сильную долю 7 такта (`bar 7.1`, 9.622s render time) добавлен cue `"guitar in"` («guitar in ready go»), предваряющий вступление гитарных дорожек (отсчёт на 6 такте, вход на даунбит bar 7).
+2. **Обрезка всех дорожек до 5:30:**
+   - Лишний аутро-хвост после финального удара на такте 206.1 сброшен через `"cut_after_last_cue": 0.85` (длина трека сокращена с 5:51 до ровно 5:30 / 330.1s, 206 тактов).
+   - Настроен `"fade_out": {"from_bar": 206, "to_bar": 207}` (1.60s ramp) под финальный удар.
+3. **Добавлен cue "chorus variation" на 02:32:**
+   - На сильную долю 96 такта (`bar 96.1`, 152.356s render time, ~02:32) добавлен cue `"chorus variation ready go"`, предваряющий переходную вариацию припева (Chorus 2 tag / Chorus 3) перед Instrumental.
+4. **Ре-рендер трека:**
+   - Выполнен полный рендер через `jamzone_render.py "Holding Out for a Hero" --practice`.
+   - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-drums.wav`, `pb-other.wav`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
+   - Актуализированы `mix.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/holding-out-for-a-hero.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
+   - Свежие `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Holding Out for a Hero"`.

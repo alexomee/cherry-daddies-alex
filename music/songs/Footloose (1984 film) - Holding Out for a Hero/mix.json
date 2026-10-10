@@ -34,12 +34,21 @@
   },
   "cat": "cat_13868",
   "click": "follow",
+  "cut_after_last_cue": 0.85,
+  "fade_out": {
+    "from_bar": 206,
+    "from_beat": 1,
+    "to_bar": 207,
+    "to_beat": 1
+  },
   "cues": [
     {"bar": 3, "text": "Holding Out for a Hero drum-base in", "abs_sec": 3.208, "snap_sec": 0.0},
+    {"bar": 7, "text": "guitar in", "abs_sec": 9.622, "snap_sec": 6.416},
     {"bar": 23, "text": "verse in", "abs_sec": 35.282, "snap_sec": 32.076},
     {"bar": 38, "beat": 3, "text": "chorus in", "abs_sec": 60.14, "snap_sec": 56.934},
     {"bar": 55, "text": "intro in", "abs_sec": 86.602, "snap_sec": 83.396},
     {"bar": 63, "text": "verse in", "abs_sec": 99.432, "snap_sec": 96.226},
+    {"bar": 96, "text": "chorus variation ready go", "abs_sec": 152.356, "snap_sec": 148.748},
     {"bar": 101, "text": "bridge in", "abs_sec": 160.374, "snap_sec": 157.168},
     {"bar": 117, "text": "voice in", "abs_sec": 185.948, "snap_sec": 182.745},
     {"bar": 137, "beat": 4, "text": "chorus in", "abs_sec": 219.128, "snap_sec": 215.925},

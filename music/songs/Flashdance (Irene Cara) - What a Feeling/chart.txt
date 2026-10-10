@@ -1,0 +1,13 @@
+Flashdance (Irene Cara) - What a Feeling    Bb / 123 bpm
+I-V-V2-Ch-Ins-V3-Ch2-Ins2-Ch3-O
+
+I    : A# F Cm Gm
+V    : A# F Cm Gm D# A# Ab Fm A# F Cm Gm D# A# Ab D# Ab D# F D# F
+V2   : A# F Cm Gm D# A# Ab Fm
+Ch   : (Gm F D# F Gm F D# F A# Cm7 A# D# Fm) x2
+Ins  : A# F Cm Gm D# A# Ab Fm
+V3   : A# F Cm Gm D# A# Ab Fm
+Ch2  : (Gm F D# F Gm F D# F A# Cm7 A# D# Fm) x2
+Ins2 : (Ab5 F5) x2
+Ch3  : Gm F D# F Gm F D# F A# Cm7 A# D# Fm
+O    : Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm F D# F Gm

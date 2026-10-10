@@ -1,0 +1,15 @@
+Footloose (1984 film) - Holding Out for a Hero    Am / 150 bpm
+I-V-Ch-I2-V2-Ch2-Ch3-Ins-Bri-Ch4-Ch5-O
+
+I   : F5 Am Fmaj7 E Am E Am E Am Fmaj7 E Am E Am E
+V   : Am G7 F Em Am Em Dm F E5
+Ch  : (Am Em F C G) x2
+I2  : Am Fmaj7 E Am E Am E
+V2  : Am G7 F Em Am Em Dm Em
+Ch2 : Am Em F C G Am Em F Dm C G Am
+Ch3 : Em Dm C G
+Ins : Am F Dm Bdim Am F Dm Bdim C Am
+Bri : F Dm E7 Am F Dm E7 Am Ebm F#m Am Cm Am E
+Ch4 : (Am Em F C G) x2
+Ch5 : (Am Em F C G) x2
+O   : Am Em F C G Am Em F C G Am Em F C G Am Em F C G Am Em A5

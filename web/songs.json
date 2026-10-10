@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T21:27:33",
+  "generated": "2026-10-10T23:49:26",
   "counts": {
     "total": 68,
     "data": 68,
@@ -2676,7 +2676,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 6,
+            "count": 7,
             "list": [
               {
                 "t": 3.566,
@@ -2689,6 +2689,12 @@
                 "text": "verse in",
                 "bar": 7,
                 "snap": 7.131
+              },
+              {
+                "t": 67.749,
+                "text": "modulation in",
+                "bar": 39,
+                "snap": 64.183
               },
               {
                 "t": 96.275,
@@ -2722,8 +2728,6 @@
           "other": {
             "kind": "stems",
             "items": [
-              "Electric Guitar (left)",
-              "Electric Guitar (right)",
               "Synth Strings",
               "Synth Keys",
               "Synth Keys",
@@ -2777,23 +2781,22 @@
             "bass": "eb14cef4ac",
             "guitars": "35baaf7271",
             "click": "b6007de9d6",
-            "cues": "ba91e607c9"
+            "cues": "66531b00f1"
           },
           "versions": {
-            "all": "f77cbe1b8c",
+            "all": "117d6459a0",
             "drums": "c4f720eb70",
-            "alex": "b2e257a0bf",
-            "steve": "94631da837",
-            "roma": "7681496d83",
-            "tanya": "d5f045c7cc",
-            "pb-other": "818eb6a5ed"
+            "alex": "e94a675092",
+            "steve": "416ffff31f",
+            "roma": "c60ea7cbc3",
+            "tanya": "3eac1f4b7a",
+            "pb-other": "5aae5c9926"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "vocal",
-              "keys",
-              "guitars"
+              "keys"
             ]
           },
           "pb_bass": {
@@ -3122,24 +3125,24 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e56d1129d7",
-            "back_vox": "40655d15ea",
-            "drums": "84fa08d8b3",
-            "keys": "dc9ec4173a",
-            "bass": "18082ffe30",
-            "guitars": "819346b24e",
-            "other": "a4954e1599",
-            "click": "ce280b83f1",
-            "cues": "24bbdf0d96"
+            "vocal": "8233c80ef4",
+            "back_vox": "bc05808e8f",
+            "drums": "279d22b04b",
+            "keys": "5a177e396c",
+            "bass": "2e1e8df789",
+            "guitars": "fa88df35d0",
+            "other": "05797a9abe",
+            "click": "6e19490415",
+            "cues": "d2d196420b"
           },
           "versions": {
-            "all": "e5bce815c6",
-            "drums": "b2dca56a5c",
+            "all": "355f897fd9",
+            "drums": "ee8576b516",
             "alex": "7e2f6d2ce3",
             "steve": "4bf7319f4a",
             "roma": "e6a0548213",
             "tanya": "b25593e3b0",
-            "pb-other": "f53a02b1d7"
+            "pb-other": "82dae66b4a"
           },
           "pb_other": {
             "available": true,
@@ -3619,13 +3622,19 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12,
+            "count": 14,
             "list": [
               {
                 "t": 3.208,
                 "text": "Holding Out for a Hero drum-base in",
                 "bar": 3,
                 "snap": 0.0
+              },
+              {
+                "t": 9.622,
+                "text": "guitar in",
+                "bar": 7,
+                "snap": 6.416
               },
               {
                 "t": 35.282,
@@ -3650,6 +3659,12 @@
                 "text": "verse in",
                 "bar": 63,
                 "snap": 96.226
+              },
+              {
+                "t": 152.356,
+                "text": "chorus variation ready go",
+                "bar": 96,
+                "snap": 148.748
               },
               {
                 "t": 160.374,
@@ -3756,24 +3771,24 @@
             }
           ],
           "stem_versions": {
-            "vocal": "b1ae676896",
-            "back_vox": "897855bef7",
-            "drums": "f0b1421385",
-            "keys": "15765800d3",
-            "bass": "27cce5c683",
-            "guitars": "bde622dfa8",
-            "other": "f29209069b",
-            "click": "8a55332e51",
-            "cues": "477c0d6e0b"
+            "vocal": "903344a6cf",
+            "back_vox": "f0ad8261c5",
+            "drums": "e9b5864dd7",
+            "keys": "2053132f5d",
+            "bass": "816d788ea6",
+            "guitars": "c08d0be696",
+            "other": "85f9a3cad5",
+            "click": "d1eba7fbc0",
+            "cues": "760bb2ad0a"
           },
           "versions": {
-            "all": "e3fb2d167d",
-            "drums": "f0b1421385",
-            "alex": "0f7d7e8b84",
-            "steve": "af1639c4ce",
-            "roma": "102fafdf4a",
-            "tanya": "ea5c176d29",
-            "pb-other": "082435a553"
+            "all": "f8a2fec3fb",
+            "drums": "a4391f9234",
+            "alex": "c36a598292",
+            "steve": "1bb922dcf9",
+            "roma": "ebc15f1d7e",
+            "tanya": "d64fd95ef6",
+            "pb-other": "a1caf38fbe"
           },
           "pb_other": {
             "available": true,

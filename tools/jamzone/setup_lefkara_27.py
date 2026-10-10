@@ -196,6 +196,7 @@ save_mix("Al Bano & Romina Power - Felicità", [
 save_mix("Ricchi e Poveri - Mamma María", [
     {"bar": 3, "text": "Mamma Maria all in"},
     {"bar": 7, "text": "verse in"},
+    {"bar": 39, "text": "modulation in"},
     {"bar": 55, "text": "instrumental in ready go"},
     {"bar": 67, "text": "verse in ready go"},
     {"bar": 83, "text": "keep going"},
@@ -230,10 +231,12 @@ save_mix("Flashdance (Irene Cara) - What a Feeling", [
 # 18. Footloose (1984 film) - Holding Out for a Hero
 save_mix("Footloose (1984 film) - Holding Out for a Hero", [
     {"bar": 3, "text": "Holding Out for a Hero drum-base in"},
+    {"bar": 7, "text": "guitar in"},
     {"bar": 23, "text": "verse in"},
     {"bar": 38, "beat": 3, "text": "chorus in"},
     {"bar": 55, "text": "intro in"},
     {"bar": 63, "text": "verse in"},
+    {"bar": 96, "text": "chorus variation ready go"},
     {"bar": 101, "text": "bridge in"},
     {"bar": 117, "text": "voice in"},
     {"bar": 137, "beat": 4, "text": "chorus in"},

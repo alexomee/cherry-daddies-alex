@@ -14,16 +14,20 @@ set: "24.10 Lefkara #15"
 ## Сводка
 
 - **bpm:** 149.8 BPM.
+- **Длительность:** обрезано до 5:30 (330.1s, 206 тактов; `cut_after_last_cue: 0.85`).
+- **fade_out:** плавное затухание за 4 доли с такта 206.1 до 207.1 (`from_bar: 206, to_bar: 207`, 1.60s ramp) под финальный удар.
 - **Источник стемов:** JamZone HQ-стемы (`cat_13868`).
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **Перкуссия:** ручная перкуссия исключена из плейбека (играет барабанщик Стив).
 - **pb-other:** 07_Electric_Guitar, 08_Piano, 09_Synth_Strings, 10_Arpeggiator, 11_Brass_section, 12_Backing_Vocals (гитары 05_Electric_Guitar_(left) и 06_Electric_Guitar_(right) убраны из плейбека — играются Алексом вживую).
-- **cues:**
+- **cues:** (14 cues)
   - `bar 3.1` — `Holding Out for a Hero drum-base in` (3.208s)
+  - `bar 7.1` — `guitar in` (9.622s)
   - `bar 23.1` — `verse in` (35.282s)
   - `bar 38.3` — `chorus in` (60.140s)
   - `bar 55.1` — `intro in` (86.602s)
   - `bar 63.1` — `verse in` (99.432s)
+  - `bar 96.1` — `chorus variation ready go` (152.356s)
   - `bar 101.1` — `bridge in` (160.374s)
   - `bar 117.1` — `voice in` (185.948s)
   - `bar 137.4` — `chorus in` (219.128s)

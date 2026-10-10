@@ -35,6 +35,13 @@
       "05_Lead_Electric_Guitar"
     ]
   },
+  "fade_out": {
+    "from_bar": 171,
+    "from_beat": 1,
+    "to_bar": 172,
+    "to_beat": 1
+  },
+  "cut_after_last_cue": 2,
   "cues": [
     {"bar": 3, "text": "Maniac drums in", "abs_sec": 3.04, "snap_sec": 0.0},
     {"bar": 11, "text": "main in ready go", "abs_sec": 15.12, "snap_sec": 12.101},
