@@ -65,4 +65,4 @@ Dialogue: 0,0:03:13.27,0:03:19.40,Pair,,0,0,0,,{\pos(640,285)}You're my soul\NYe
 Dialogue: 0,0:03:13.27,0:03:19.40,Next,,0,0,0,,{\pos(640,475)}You're my heart\NYou're my soul
 Dialogue: 0,0:03:19.40,0:03:23.48,Pair,,0,0,0,,{\pos(640,285)}You're my heart\NYou're my soul
 Dialogue: 0,0:03:19.40,0:03:23.48,Next,,0,0,0,,{\pos(640,475)}That's the only thing\NI really know
-Dialogue: 0,0:03:23.48,0:03:31.08,Pair,,0,0,0,,{\pos(640,285)}That's the only thing\NI really know
+Dialogue: 0,0:03:23.48,0:03:31.01,Pair,,0,0,0,,{\pos(640,285)}That's the only thing\NI really know

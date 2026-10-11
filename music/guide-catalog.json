@@ -674,24 +674,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/b8302f019fa7/guides/7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1/all.wav"
     },
     "music/songs/Flashdance (Michael Sembello) - Maniac": {
-      "bytes": 47119806,
+      "bytes": 46054954,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 267.118413,
-      "key": "cherry-dash/321ef16c254c/guides/30754e4e8f4a27a388d7234bf1a05c799f9dbe10b199407d11ae022098b6ffce/all.wav",
-      "mix_sha256": "6056c77322bd919e02f9ddab40219b4f61eee97f142459d10f5485a7f57a6037",
+      "duration_sec": 261.081837,
+      "key": "cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav",
+      "mix_sha256": "f231a3f4ed3c66e7836e8bf435cbb2f05325b56ae9d0b6f0054448ceede36d4c",
       "render_audio": {
-        "click.wav": "20f39d4b903be67b11e7efc3cc61e5619313b42543be697d234ec75a772fe839",
-        "cues.wav": "5004ee3f7a0d14ed3a05f04739c0f4dcd85143c3a25f6edbfc2c2cd647ccd1f3",
-        "pb-drums.wav": "cab807a7ad929837ceda508dcf1e150e7a1c4929d9f64c1bccb1b59c8ddcf488",
-        "pb-other.wav": "306c961205081152a3d8d5e1803caa5a144978cb0aa077a8e693914a46c1b4b5"
+        "click.wav": "fa72d9d271d25d9dd92bf7018c68ccd8d3a024e5b95c49990ccb7d35b27d5fbb",
+        "cues.wav": "fac7d64f7d9a2af4c3cb31327b858598166b336aa184b36dead9cb424542e95e",
+        "pb-drums.wav": "44cd6aba732cceab2e3b6542dd275519d8cea418fafde8c6ada1a374d3f9ab3b",
+        "pb-other.wav": "f9127cae728e8a8d90304e356b8c60f452ea58d2dd1524dcfc04c3b363aa5c70"
       },
       "render_pcm": {
-        "click.wav": "3d5f3e567749c0ee45f70c599acc89fb6672f169593d6a121dfbea3b62246c52",
-        "pb-other.wav": "f788d890560fb1a0066ad4d63fbf7436f1b8edafb16b97f23cd7f90825a77ed3"
+        "click.wav": "9feb54b88fa29f157e9bac5f23ab4872cc997bc5fcc6ea8bb5f258097fa6e7d8",
+        "pb-other.wav": "818c83467f1aeae5c07359967590814f98f8cc26ecc2f29ecbc7c8eaac93c688"
       },
       "sample_rate": 44100,
-      "sha256": "30754e4e8f4a27a388d7234bf1a05c799f9dbe10b199407d11ae022098b6ffce",
+      "sha256": "c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27",
       "status": "available",
       "timeline": {
         "bar_sec": 1.509144,
@@ -699,27 +699,27 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": -0.300794
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/321ef16c254c/guides/30754e4e8f4a27a388d7234bf1a05c799f9dbe10b199407d11ae022098b6ffce/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav"
     },
     "music/songs/Footloose (1984 film) - Holding Out for a Hero": {
-      "bytes": 61907630,
+      "bytes": 58232754,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 350.949615,
-      "key": "cherry-dash/b2705ef3b0bb/guides/9d3b6b1b4d93e3f54ce7fc726ac15c55ec949066751a237469b9c65007571d15/all.wav",
-      "mix_sha256": "2d35c418b2170c01ef61414ed7450579c685a865caabe475c577c6fc02d694f2",
+      "duration_sec": 330.116984,
+      "key": "cherry-dash/b2705ef3b0bb/guides/a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923/all.wav",
+      "mix_sha256": "77ec6c9ab2952e163fca748407522e2baacc4ad7251f1213d0c073f6156391a6",
       "render_audio": {
-        "click.wav": "fb8e775581e69c94f3a657145ee3d4749fc7a25a5ec1ca77c6f83c49a16563cd",
-        "cues.wav": "e34757bb9ad694c49b938b5cce1bd6339ee74ba638accaa1d6936122a44ede39",
-        "pb-drums.wav": "6e5593e6ad75551a0e93d9eb89f2a67f3cdd9d035093737fd4399b1cc8b33c44",
-        "pb-other.wav": "51e85abeee78e310c9406292b245952dfedef40f1f0e57891f50a3275d3d1390"
+        "click.wav": "b09661e8ab675e1b3a04e39a43da10a74e7153276b7bf919461d0a45374f1ab2",
+        "cues.wav": "b782610bf94879e92135a97125ab487d8790cf9c42ac146a03754cdf9830de54",
+        "pb-drums.wav": "78ed4f7dcfcbd62c74c27e90baa34ae9a911f96125da5b8eb4942f647fe31a9c",
+        "pb-other.wav": "ecc22c6193e5a89624d453f00267249587ffdb1503690268bbc9167cbae2fffc"
       },
       "render_pcm": {
-        "click.wav": "f3b4cd4e9d73219eca6e1c1ea91e6ba7b60fafdc1c0e31478eae96fd7429f139",
-        "pb-other.wav": "a947d124947adf14054a678bb9fad1df5c4b806c7aba83cd888da1903b14ff25"
+        "click.wav": "54830cf1e0bf2c2a4de1e103f7f31f158d15e9853b72dccc9ea4b008756cace8",
+        "pb-other.wav": "3dc12c53f0a87f9591cdb93d7099f3b8113446adac8fcfdf9de6e2d09b3f364c"
       },
       "sample_rate": 44100,
-      "sha256": "9d3b6b1b4d93e3f54ce7fc726ac15c55ec949066751a237469b9c65007571d15",
+      "sha256": "a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923",
       "status": "available",
       "timeline": {
         "bar_sec": 1.60251,
@@ -727,7 +727,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": -0.298912
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/9d3b6b1b4d93e3f54ce7fc726ac15c55ec949066751a237469b9c65007571d15/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923/all.wav"
     },
     "music/songs/Gala - Freed from Desire": {
       "bytes": 38069694,
@@ -1129,16 +1129,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 192.549138,
       "key": "cherry-dash/435296700537/guides/72941687bcf9062b72e6fd50221c0a30830b5322bd7d5cc514b660621ee0eb45/all.wav",
-      "mix_sha256": "b1afc596ed241d8e8f9238de06e6161c2fb109435384b148ca58e758330f3f6c",
+      "mix_sha256": "764c00b55b393286c020fa3130efb1f6e5c8d1d58b209dd0b27b77f8ecc3ce3f",
       "render_audio": {
         "click.wav": "2c103c2cf2ac572448ce2f19ac273bf8b1a5ce0de8e79d0cc864e9d68362edd4",
-        "cues.wav": "e1cefb5f72f5c556f37e52c56eb42d566f4a282e6447448f4585e612f84d1a1a",
+        "cues.wav": "be7c70092a609c92e870db365657b370d78c75fd899c108fc46e78276ea70c39",
         "pb-drums.wav": "5003728761e1fe2cce2f611f4cb039f433f9d2323480deb8fa0227943fcc9ff1",
-        "pb-other.wav": "4897c8a4712d3668087993763683b5789c6719e2f3440d409fdcc67788097bb0"
+        "pb-other.wav": "d5a85172a36d448df2d94c5f293533d5d522eaf6590d8e5a12df873d6d56e705"
       },
       "render_pcm": {
         "click.wav": "093674a603ba61451620c8cb5ea9f8288de4b1ed1f96e6920a435431b4414021",
-        "pb-other.wav": "e24c13f1ec18dae7ae58d2a74dee0d727a8a819adea52eade8a50b47707c905c"
+        "pb-other.wav": "60fd1f0b4e297144de257d50a09e5439aa24d44eb6b1ee690aa5c374bd9d1061"
       },
       "sample_rate": 44100,
       "sha256": "72941687bcf9062b72e6fd50221c0a30830b5322bd7d5cc514b660621ee0eb45",
