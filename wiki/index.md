@@ -62,8 +62,8 @@
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
 9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 7 cues (all in, verse in 6.1, chorus in, intro in, verse in, D mod chorus in, end in).
 10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 7 cues (all in, verse in 7.1, modulation in 39.1, instrumental in, verse in, keep going, end in).
-11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 15 cues (playback in, all in, pre-verse in, verse in, stop x4, bridge in, break in, bridge-2 in, keep going, outro in, end in).
-12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, main in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.
+11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 16 cues (playback in, all in, pre-verse in, verse in, stop x5, bridge in, break in, bridge-2 in, keep going, outro in, end in).
+12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, guitar in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).
 15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in).
@@ -77,7 +77,7 @@
 23. [Tina Turner — The Best](songs/tina-turner-the-best.md) — 104 BPM; 6 cues (all in, verse in 5.4, chorus in, sax solo, chorus in, end in).
 24. [Boney M. — Sunny](songs/boney-m-sunny.md) — 118 BPM; 7 cues (Sunny all in, verse in 10.1, modulation in, instrumental in, modulation in, outro in, end in). cut_bars [2, 6].
 25. [ABBA — Money, Money, Money](songs/abba-money-money-money.md) — 120 BPM; 5 cues (playback in, drums in, verse in 7.4, chorus in, end in).
-26. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — ~129.3 BPM; 13 cues (vocal in на 1.2&, переклички Alex/Tanya, solo, stops, end in).
+26. [Chris Norman & Suzi Quatro — Stumblin' In](songs/stumblin-in.md) — ~129.3 BPM; 13 cues (intro guitar tone + vocal in на 1.3, переклички Alex/Tanya, solo, stops, end in).
 27. [Haddaway — What Is Love](songs/haddaway-what-is-love.md) — 123 BPM; 8 cues (playback in, all in, verse in, main in, chorus in, break in, bridge in, end in).
 
 ## Пайплайны

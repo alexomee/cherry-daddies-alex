@@ -27,7 +27,7 @@ set: "24.10 Lefkara Сет 2 #4"
 ## Cues
 
 - `bar 3.1` (3.040s) — `Maniac drums in` («Maniac drums in ready go») — вступление барабанов на 1 долю 3 такта.
-- `bar 11.1` (15.120s) — `main in ready go` — вступление синтов, Rhodes и баса (~0:15).
+- `bar 11.1` (15.120s) — `guitar in` («guitar in ready go») — вступление соло/лид-гитары Alex (~0:15).
 - `bar 18.4` (26.860s) — `verse in` («verse in ready go», шаг 1 слово/доля) — вокальный вход Тани из-за такта на 4 долю («Just a...»).
 - `bar 59.1` (87.590s) — `longer here` (~1:27) — подсказка на 2-тактовом инструментальном тернараунде после Chorus 1 перед Verse 2.
 - `bar 101.1` (150.970s) — `bridge in` («bridge in ready go») — секция Bridge JamZone.

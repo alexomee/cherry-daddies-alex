@@ -129,7 +129,7 @@ save_mix("Weather Girls - It's Raining Men", [
 # 12. Flashdance (Michael Sembello) - Maniac
 save_mix("Flashdance (Michael Sembello) - Maniac", [
     {"bar": 3, "text": "Maniac drums in"},
-    {"bar": 11, "text": "main in ready go"},
+    {"bar": 11, "text": "guitar in"},
     {"bar": 18, "beat": 4, "text": "verse in"},
     {"bar": 59, "text": "longer here"},
     {"bar": 101, "text": "bridge in"},

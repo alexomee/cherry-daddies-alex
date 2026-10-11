@@ -75,13 +75,24 @@
     border-radius:6px;padding:1px 7px;margin:2px 4px 2px 0;font-size:11.5px;white-space:nowrap}
   .c-bass{width:112px;max-width:112px;white-space:normal}
   .c-other{width:152px;max-width:152px}
-  .c-mix{width:330px}
-  .player{display:flex;flex-direction:column;gap:5px;margin:5px 0}
-  .player-top{display:flex;align-items:center;gap:8px;width:100%}
-  .player-sub{display:flex;align-items:center;gap:6px;padding-left:36px}
+  tbody tr.songrow{cursor:pointer;transition:background 0.12s ease;user-select:none;-webkit-user-select:none}
+  tbody tr.songrow:hover td{background:#1a1e2b !important}
+  tbody tr.songrow.expanded td{background:#161924 !important}
+
+  tr.playerrow td{
+    background:#12151e !important;
+    padding:10px 14px;
+    border-bottom:1px solid #1e2230;
+    position:sticky;
+    left:0;
+    max-width:calc(100vw - 40px);
+  }
+  .player{display:flex;align-items:center;gap:10px;width:100%;margin:2px 0}
+  .player-controls{display:flex;align-items:center;gap:6px;flex:none}
+  .player-scrub{display:flex;align-items:center;gap:10px;flex:1;min-width:140px}
   .player-skip-group{display:inline-flex;align-items:center;gap:4px}
   .skip-btn{background:#151822;border:1px solid #282f42;color:var(--dim);
-    border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;cursor:pointer;
+    border-radius:6px;padding:3px 9px;font-size:11px;font-weight:600;cursor:pointer;
     display:inline-flex;align-items:center;gap:4px;line-height:1.3;
     transition:all 0.15s ease;user-select:none;-webkit-user-select:none}
   .skip-btn:hover{border-color:var(--accent);color:var(--txt);background:#1c2233}
@@ -91,7 +102,6 @@
   .mix-lbl.alex{color:#ff9ecb} .mix-lbl.roma{color:#9cc0ff}
   .mix-lbl.steve{color:#f0a93a} .mix-lbl.tanya{color:#7fe8c6} .mix-lbl.all{color:#cdd3e0}
   .mix-lbl.trio{color:#c9a6ff} .mix-lbl.drums{color:#ffc46b;width:56px}
-  .mixhead{vertical-align:middle}
   .mixsel{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
   .mixsel-lbl{font-size:11px;color:var(--dim);margin-right:2px;text-transform:none}
   .psel{border:1px solid var(--line);background:#13151c;color:var(--dim);border-radius:6px;
@@ -104,15 +114,17 @@
   .psel.tanya.active{background:#1f4038;border-color:#7fe8c6;color:#c4f5e6}
   .psel.trio.active{background:#3a2d55;border-color:#c9a6ff;color:#e7dbff}
   .psel.drums.active{background:#4a3312;border-color:#ffc46b;color:#ffe4b8}
-  .pbtn{flex:none;width:28px;height:28px;border-radius:50%;border:none;background:var(--accent);
-    color:#fff;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center}
-  .pbtn:hover{filter:brightness(1.1)}
-  .seek{flex:1;min-width:110px;height:5px;-webkit-appearance:none;appearance:none;
-    background:#2a2f3d;border-radius:3px;cursor:pointer}
+  .pbtn{flex:none;width:32px;height:32px;border-radius:50%;border:none;background:var(--accent);
+    color:#fff;cursor:pointer;font-size:13px;line-height:1;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(108,140,255,0.35);transition:transform 0.15s ease, filter 0.15s ease}
+  .pbtn:hover{filter:brightness(1.15);transform:scale(1.05)}
+  .pbtn:active{transform:scale(0.96)}
+  .seek{flex:1;min-width:120px;height:6px;-webkit-appearance:none;appearance:none;
+    background:#232836;border-radius:3px;cursor:pointer}
   .seek::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;
-    border-radius:50%;background:var(--accent);cursor:pointer}
+    border-radius:50%;background:var(--accent);cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,0.5)}
   .seek::-moz-range-thumb{width:14px;height:14px;border:none;border-radius:50%;background:var(--accent);cursor:pointer}
-  .time{flex:none;font-size:11px;color:var(--dim);width:32px;text-align:right;font-variant-numeric:tabular-nums}
+  .time{flex:none;font-size:11.5px;color:var(--dim);min-width:76px;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   .who{display:inline-block;padding:2px 9px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:normal}
   .who-roma{background:#23304f;color:#9cc0ff}
   .who-roma-g{background:#1f4038;color:#7fe8c6}
@@ -123,17 +135,18 @@
   .c-todo .todo-add input{padding:6px 8px;font-size:12.5px}
   .c-todo .btn{padding:0 9px;font-size:15px}
   .notes-area{width:100%;min-height:42px;background:#0e1016;border:1px solid var(--line);
-    color:var(--txt);border-radius:8px;padding:7px 9px;font:13px/1.4 inherit;resize:vertical}
+    color:var(--txt);border-radius:8px;padding:7px 9px;font:13px/1.4 inherit;resize:vertical;
+    overflow-y:hidden;field-sizing:content}
   .notes-area:focus{outline:none;border-color:var(--accent)}
   .notes-area::placeholder{color:#4a5060}
-  .sub-btns{display:flex;align-items:center;gap:5px;margin-top:6px;flex-wrap:wrap}
-  .cuebtn,.mixbtn{background:#1a1e29;border:1px solid var(--line);color:var(--dim);
-    border-radius:7px;padding:3px 9px;font-size:11.5px;cursor:pointer;display:inline-flex;
-    align-items:center;gap:5px;font-weight:600;white-space:nowrap}
-  .cuebtn:hover,.mixbtn:hover{border-color:var(--accent);color:var(--txt)}
-  .cuebtn.open,.mixbtn.open{border-color:var(--accent);color:var(--txt);background:#1e2433}
-  .cuebtn .cv,.mixbtn .mv{font-size:10px;color:var(--accent)}
-  tr.cuerow td{background:#101218 !important;padding:8px 12px 12px}
+  tr.cuerow td{
+    background:#101218 !important;
+    padding:8px 14px 12px;
+    border-bottom:1px solid #1a1e2b;
+    position:sticky;
+    left:0;
+    max-width:calc(100vw - 40px);
+  }
   .cues-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:5px}
   .cueitem{display:flex;align-items:baseline;gap:8px;background:#161a23;border:1px solid #232838;
     border-radius:7px;padding:5px 9px;cursor:pointer;text-align:left;color:var(--txt);
@@ -145,7 +158,15 @@
   @keyframes cueNo{0%{border-color:var(--no);background:#2a1620}100%{border-color:#232838;background:#161a23}}
   .cueitem.cue-noaudio{animation:cueNo .6s ease-out}
 
-  tr.mixrow td{background:#0e1117 !important;padding:10px 14px 14px;border-bottom:1px solid var(--line);text-align:left}
+  tr.mixrow td{
+    background:#0e1117 !important;
+    padding:10px 14px 14px;
+    border-bottom:1px solid var(--line);
+    text-align:left;
+    position:sticky;
+    left:0;
+    max-width:calc(100vw - 40px);
+  }
   .mix-wrap{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;text-align:left;width:100%}
   .stem-buttons{display:flex;align-items:center;justify-content:flex-start;gap:7px;flex-wrap:wrap;width:100%;text-align:left}
   .stem-btn{display:inline-flex;align-items:center;gap:6px;background:#151821;border:1px solid #2a3142;
@@ -619,10 +640,9 @@
   <table>
     <thead><tr>
       <th class="num">#</th><th>Песня</th>
-      <th class="mixhead">Микс / Плеер</th>
       <th>bass</th><th>pb-other (stems)</th><th class="h-todo">Todo</th><th class="h-notes">Заметки</th>
     </tr></thead>
-    <tbody id="tbody"><tr><td class="loading" colspan="7">загрузка…</td></tr></tbody>
+    <tbody id="tbody"><tr><td class="loading" colspan="6">загрузка…</td></tr></tbody>
   </table>
 </div>
 
@@ -729,10 +749,6 @@
     try { localStorage.setItem(SPEED_LS, String(speed)); } catch(e){}
 
     updateSpeedUI();
-
-    document.querySelectorAll(".mixaudio").forEach(function(a){
-      a.playbackRate = currentSpeed;
-    });
 
     if(activePlayer){
       if(!activePlayer.paused && activePlayer.sources){
@@ -1113,29 +1129,10 @@
     var onCount = 0;
     s.stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
     var busCount = (prefs.pb_other ? 1 : 0) + (prefs.pb_bass ? 1 : 0);
-    var isCustom = onCount < total || busCount > 0;
+    var isCustom = isCustomMix(sid, s.stems);
     b.className = "mix-badge" + (isCustom ? " custom" : "");
     var txt = isCustom ? "🎛️ " + onCount + "/" + total + (busCount ? " +PB" : "") : "🎛️ Все (" + total + ")";
     b.textContent = txt;
-  }
-
-  function syncPlaybackMode(sid){
-    var s = SONGS[sid];
-    if(!s || !activePlayer || activePlayer.sid !== sid) return;
-    var custom = isCustomMix(sid, s.stems);
-    var srow = findByAttr("tr:not(.cuerow):not(.mixrow)", "data-song", sid);
-    var pl = srow && srow.querySelector(".player");
-    if(!pl) return;
-    var ctx = getAudioCtx();
-
-    if(activePlayer.isAudioTag && custom){
-      var curPos = activePlayer.audio.currentTime;
-      playOrToggle(s, pl, curPos);
-    } else if(!activePlayer.isAudioTag && !custom){
-      var curPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
-      stopActivePlayer(false);
-      playOrToggle(s, pl, curPos);
-    }
   }
 
   function stopActivePlayer(resetPos){
@@ -1156,10 +1153,6 @@
         try { activePlayer.master.disconnect(); } catch(e){}
         activePlayer.master = null;
       }
-      if(activePlayer.audio){
-        activePlayer.audio.pause();
-        if(resetPos) activePlayer.audio.currentTime = 0;
-      }
       if(activePlayer.plEl){
         var b = activePlayer.plEl.querySelector(".pbtn");
         if(b) b.textContent = "▶";
@@ -1171,10 +1164,6 @@
         }
       }
     } catch(e){}
-    document.querySelectorAll(".mixaudio").forEach(function(a){
-      a.pause();
-      if(resetPos) a.currentTime = 0;
-    });
     activePlayer = null;
   }
 
@@ -1182,10 +1171,9 @@
     var ctx = getAudioCtx();
     var seek = plEl.querySelector(".seek");
     var time = plEl.querySelector(".time");
-    var audio = plEl.querySelector(".mixaudio");
-    var isStemMode = activePlayer && activePlayer.sources && !activePlayer.isAudioTag && activePlayer.sid === s.sid;
+    var isCurrent = activePlayer && activePlayer.sources && activePlayer.sid === s.sid;
 
-    if(isStemMode){
+    if(isCurrent){
       var dur = activePlayer.duration || parseFloat(seek.max) || 0;
       var currentPos = !activePlayer.paused
         ? activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0)
@@ -1199,12 +1187,11 @@
         seek.value = target;
         time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
       }
-    } else if(audio){
-      var dur = audio.duration || parseFloat(seek.max) || 0;
-      var currentPos = audio.currentTime || 0;
+    } else {
+      var currentPos = parseFloat(seek.value) || 0;
+      var dur = parseFloat(seek.max) || 0;
       var target = currentPos + delta;
       target = dur > 0 ? Math.max(0, Math.min(dur, target)) : Math.max(0, target);
-      audio.currentTime = target;
       seek.value = target;
       time.textContent = fmtTime(target) + (dur > 0 ? " / " + fmtTime(dur) : "");
     }
@@ -1215,18 +1202,11 @@
     var pbtn = plEl.querySelector(".pbtn");
     var seek = plEl.querySelector(".seek");
     var time = plEl.querySelector(".time");
-    var audio = plEl.querySelector(".mixaudio");
-
-    var isStemMode = isCustomMix(s.sid, s.stems);
 
     if(activePlayer && activePlayer.sid === s.sid && seekTime === undefined && !activePlayer.paused){
-      if(activePlayer.isAudioTag){
-        if(audio) audio.pause();
-      } else {
-        var currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
-        stopActivePlayer(false);
-        activePlayer = { sid: s.sid, pausedAt: currentPos, duration: activePlayer.duration || 0, plEl: plEl, paused: true, playbackRate: currentSpeed };
-      }
+      var currentPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
+      stopActivePlayer(false);
+      activePlayer = { sid: s.sid, pausedAt: currentPos, duration: activePlayer.duration || 0, plEl: plEl, paused: true, playbackRate: currentSpeed };
       pbtn.textContent = "▶";
       return;
     }
@@ -1236,8 +1216,6 @@
       startOffset = seekTime;
     } else if(activePlayer && activePlayer.sid === s.sid && activePlayer.pausedAt !== undefined){
       startOffset = activePlayer.pausedAt;
-    } else if(audio && audio.currentTime > 0){
-      startOffset = audio.currentTime;
     } else {
       startOffset = parseFloat(seek.value) || 0;
     }
@@ -1245,33 +1223,6 @@
     // Stop whatever else was playing
     stopActivePlayer(false);
 
-    // 1. FAST PATH: Default mix (not custom) -> instant HTML5 <audio> streaming!
-    if(!isStemMode){
-      if(audio){
-        if(!audio.src || audio.src === window.location.href){
-          audio.src = audioSrc(s, "all");
-        }
-        if(seekTime !== undefined || startOffset > 0){
-          audio.currentTime = startOffset;
-        }
-        audio.playbackRate = currentSpeed;
-        if(audio.paused){
-          if(audio.readyState < 3){
-            showLoadingFloat(s.title || s.sid, "Загрузка плейбека...", null);
-          }
-          audio.play().catch(function(e){
-            console.error("Audio playback failed:", e);
-            errorLoadingFloat(s.title || s.sid, "Ошибка воспроизведения");
-          });
-        } else {
-          audio.pause();
-          hideLoadingFloat(0);
-        }
-      }
-      return;
-    }
-
-    // 2. STEM MODE: Custom mix with muted/soloed stems
     if(STEM_LOADING[s.sid]) return; // Guard against rapid duplicate clicks
 
     pbtn.textContent = "⏳";
@@ -1280,6 +1231,11 @@
     var prefs = getMixPref(s.sid, s.stems);
     var map = STEM_BUFFERS[s.sid];
     var needsFetch = !map;
+    if(!needsFetch && s.stems){
+      for(var i = 0; i < s.stems.length; i++){
+        if(!map[s.stems[i].id]){ needsFetch = true; break; }
+      }
+    }
     if(map){
       if(prefs.pb_other && !map["pb_other"]) needsFetch = true;
       if(prefs.pb_bass && !map["pb_bass"]) needsFetch = true;
@@ -1287,7 +1243,7 @@
 
     if(needsFetch){
       try {
-        var itemsToFetch = s.stems.map(function(st){
+        var itemsToFetch = (s.stems || []).map(function(st){
           return { id: st.id, label: st.label, url: stemAudioSrc(s, st.id), required: true };
         });
         if(prefs.pb_other){
@@ -1332,13 +1288,7 @@
         console.error("Stem load error for", s.sid, err);
         STEM_LOADING[s.sid] = false;
         pbtn.textContent = "▶";
-        errorLoadingFloat(s.title || s.sid, "Сбой загрузки стемов, переключаем на общий микс");
-        if(audio){
-          if(!audio.src || audio.src === window.location.href) audio.src = audioSrc(s, "all");
-          audio.currentTime = startOffset;
-          audio.playbackRate = currentSpeed;
-          audio.play().catch(function(e){ console.error("Audio playback fallback failed", e); });
-        }
+        errorLoadingFloat(s.title || s.sid, "Сбой загрузки стемов");
         return;
       }
     } else {
@@ -1457,8 +1407,8 @@
     updateLoop();
   }
 
-  function mixCellFor(s){
-    if(!s.hasData) return '<span class="dash">—</span>';
+  function playerRowHtml(s){
+    if(!s.hasData) return "";
     var sid = esc(s.sid);
     var hasStems = s.stems && s.stems.length;
     var badge = "";
@@ -1467,19 +1417,16 @@
       var total = s.stems.length;
       var onCount = 0;
       s.stems.forEach(function(st){ if(prefs[st.id] !== false) onCount++; });
-      var isCustom = onCount < total;
+      var busCount = (prefs.pb_other ? 1 : 0) + (prefs.pb_bass ? 1 : 0);
+      var isCustom = isCustomMix(s.sid, s.stems);
       var badgeCls = "mix-badge" + (isCustom ? " custom" : "");
-      var badgeTxt = isCustom ? "🎛️ " + onCount + "/" + total : "🎛️ Все (" + total + ")";
-      badge = '<span class="'+badgeCls+'" title="клик — открыть микс дорожек">'+badgeTxt+'</span>';
+      var badgeTxt = isCustom ? "🎛️ " + onCount + "/" + total + (busCount ? " +PB" : "") : "🎛️ Все (" + total + ")";
+      badge = '<span class="'+badgeCls+'" title="клик — скрыть/показать микс дорожек">'+badgeTxt+'</span>';
     }
-    return '<div class="player" data-sid="'+sid+'">'
-         + '<div class="player-top">'
+    return '<tr class="playerrow" hidden data-song="'+sid+'"><td colspan="6">'
+         + '<div class="player" data-sid="'+sid+'">'
+         + '<div class="player-controls">'
          + '<button class="pbtn" aria-label="play/pause">▶</button>'
-         + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'
-         + '<span class="time">0:00</span>'
-         + badge
-         + '</div>'
-         + '<div class="player-sub">'
          + '<div class="player-skip-group">'
          + '<button class="skip-btn" type="button" data-skip="-10" title="Назад на 10 сек (Shift+Left / ←)">'
          + '<svg class="skip-icon" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>'
@@ -1491,8 +1438,13 @@
          + '</button>'
          + '</div>'
          + '</div>'
-         + '<audio class="mixaudio" preload="metadata" src="'+audioSrc(s, "all")+'"></audio>'
-         + '</div>';
+         + '<div class="player-scrub">'
+         + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'
+         + '<span class="time">0:00</span>'
+         + '</div>'
+         + badge
+         + '</div>'
+         + '</td></tr>';
   }
 
   function fmtTime(t){ if(!isFinite(t) || t < 0) t = 0; t = Math.floor(t);
@@ -1508,7 +1460,7 @@
            + '<span class="cuetime">'+fmtTime(c.t)+'</span>'
            + '<span class="cuetext">'+esc(c.text || "")+'</span>'+bar+'</button>';
     }).join("");
-    return '<tr class="cuerow" hidden data-song="'+esc(s.sid)+'"><td colspan="7"><div class="cues-wrap">'+items+'</div></td></tr>';
+    return '<tr class="cuerow" hidden data-song="'+esc(s.sid)+'"><td colspan="6"><div class="cues-wrap">'+items+'</div></td></tr>';
   }
 
   function updateMuteAllBtn(mrow, sid, prefs){
@@ -1582,7 +1534,7 @@
       + '</div>'
     ) : '';
 
-    return '<tr class="mixrow" hidden data-song="'+sid+'"><td colspan="7">'
+    return '<tr class="mixrow" hidden data-song="'+sid+'"><td colspan="6">'
          + '<div class="mix-wrap">'
          + '<div class="stem-buttons">'
          + '<span class="mix-row-label">СТЕМЫ:</span>'
@@ -1607,19 +1559,6 @@
         return;
       }
 
-      var cueBtn = e.target.closest(".cuebtn");
-      if(cueBtn){
-        var srow = cueBtn.closest("tr[data-song]");
-        var sid = srow ? srow.getAttribute("data-song") : "";
-        var crow = findByAttr("tr.cuerow", "data-song", sid);
-        if(crow){
-          var open = crow.hidden; crow.hidden = !open;
-          cueBtn.classList.toggle("open", open);
-          var cv = cueBtn.querySelector(".cv"); if(cv) cv.textContent = open ? "▾" : "▸";
-        }
-        return;
-      }
-
       var mixBtn = e.target.closest(".mixbtn") || e.target.closest(".mix-badge");
       if(mixBtn){
         var srow = mixBtn.closest("tr[data-song]");
@@ -1628,11 +1567,6 @@
           var mrow = findByAttr("tr.mixrow", "data-song", sid);
           if(mrow){
             var open = mrow.hidden; mrow.hidden = !open;
-            var mb = srow.querySelector(".mixbtn");
-            if(mb){
-              mb.classList.toggle("open", open);
-              var mv = mb.querySelector(".mv"); if(mv) mv.textContent = open ? "▾" : "▸";
-            }
           }
         }
         return;
@@ -1642,13 +1576,12 @@
       if(item){
         var crow = item.closest("tr.cuerow");
         var sid = crow && crow.getAttribute("data-song");
-        var srow = findByAttr("tr:not(.cuerow):not(.mixrow)", "data-song", sid);
         var s = SONGS[sid];
         var t = parseFloat(item.getAttribute("data-t"));
         var snap = parseFloat(item.getAttribute("data-snap"));
         var seekTo = isFinite(snap) ? snap : t;
-        if(s && srow){
-          var pl = srow.querySelector(".player");
+        if(s){
+          var pl = findByAttr(".player", "data-sid", sid);
           if(pl) playOrToggle(s, pl, seekTo);
         }
         return;
@@ -1711,7 +1644,6 @@
 
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
-        syncPlaybackMode(sid);
         return;
       }
 
@@ -1760,7 +1692,14 @@
         updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
-        syncPlaybackMode(sid);
+
+        if(isNowActive && activePlayer && activePlayer.sid === sid && (!activePlayer.gains || !activePlayer.gains[busId])){
+          var pl = findByAttr(".player", "data-sid", sid);
+          if(pl){
+            var curPos = activePlayer.offset + (ctx.currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0);
+            playOrToggle(s, pl, curPos);
+          }
+        }
         return;
       }
 
@@ -1808,10 +1747,38 @@
         updateMuteAllBtn(mrow, sid, prefs);
         saveMixPref(sid, prefs);
         updateMixBadge(sid);
-        syncPlaybackMode(sid);
+        return;
+      }
+
+      var songRow = e.target.closest("tr.songrow");
+      if(songRow){
+        if(e.target.closest("input, textarea, button, a, label, .todolist, .todo-add")){
+          return;
+        }
+        var sid = songRow.getAttribute("data-song");
+        toggleSongExpand(sid);
         return;
       }
     });
+  }
+
+  function toggleSongExpand(sid){
+    var srow = findByAttr("tr.songrow", "data-song", sid);
+    if(!srow) return;
+    var s = SONGS[sid];
+    if(!s || !s.hasData) return;
+
+    var prow = findByAttr("tr.playerrow", "data-song", sid);
+    var crow = findByAttr("tr.cuerow", "data-song", sid);
+    var mrow = findByAttr("tr.mixrow", "data-song", sid);
+
+    var isExpanded = srow.classList.contains("expanded");
+    var willExpand = !isExpanded;
+
+    srow.classList.toggle("expanded", willExpand);
+    if(prow) prow.hidden = !willExpand;
+    if(crow) crow.hidden = !willExpand;
+    if(mrow) mrow.hidden = !willExpand;
   }
 
   function wirePlayers(){
@@ -1822,66 +1789,21 @@
       var btn = pl.querySelector(".pbtn");
       var seek = pl.querySelector(".seek");
       var time = pl.querySelector(".time");
-      var audio = pl.querySelector(".mixaudio");
 
-      if(audio){
-        audio.addEventListener("loadedmetadata", function(){
-          seek.max = audio.duration || 0;
-          time.textContent = fmtTime(0) + " / " + fmtTime(audio.duration);
-        });
-        audio.addEventListener("timeupdate", function(){
-          if(!audio.paused && !pl.scrubbing){
-            seek.value = audio.currentTime;
-            time.textContent = fmtTime(audio.currentTime) + " / " + fmtTime(audio.duration);
-          }
-        });
-        audio.addEventListener("play", function(){
-          audio.playbackRate = currentSpeed;
-          btn.textContent = "⏸";
-          activePlayer = {
-            sid: s.sid,
-            plEl: pl,
-            audio: audio,
-            isAudioTag: true,
-            duration: audio.duration || parseFloat(seek.max) || 0,
-            paused: false,
-            playbackRate: currentSpeed
-          };
-          if(audio.readyState < 3){
-            showLoadingFloat(s.title || s.sid, "Буферизация аудио...", null);
-          }
-        });
-        audio.addEventListener("playing", function(){
-          btn.textContent = "⏸";
-          hideLoadingFloat(0);
-        });
-        audio.addEventListener("waiting", function(){
-          showLoadingFloat(s.title || s.sid, "Буферизация аудио...", null);
-        });
-        audio.addEventListener("canplay", function(){
-          hideLoadingFloat(0);
-        });
-        audio.addEventListener("pause", function(){
-          btn.textContent = "▶";
-          hideLoadingFloat(0);
-          if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
-            activePlayer.paused = true;
-            activePlayer.pausedAt = audio.currentTime;
-          }
-        });
-        audio.addEventListener("ended", function(){
-          btn.textContent = "▶";
-          seek.value = 0;
-          hideLoadingFloat(0);
-          if(activePlayer && activePlayer.sid === s.sid && activePlayer.isAudioTag){
-            activePlayer.paused = true;
-            activePlayer.pausedAt = 0;
-          }
-        });
-        audio.addEventListener("error", function(){
-          btn.textContent = "▶";
-          errorLoadingFloat(s.title || s.sid, "Не удалось загрузить аудио");
-        });
+      if(activePlayer && activePlayer.sid === sid){
+        activePlayer.plEl = pl;
+        btn.textContent = activePlayer.paused ? "▶" : "⏸";
+        seek.max = activePlayer.duration || 100;
+        var cur = activePlayer.paused ? (activePlayer.pausedAt || 0) : (activePlayer.offset + (getAudioCtx().currentTime - activePlayer.startCtx) * (activePlayer.playbackRate || 1.0));
+        seek.value = cur;
+        time.textContent = fmtTime(cur) + (activePlayer.duration ? " / " + fmtTime(activePlayer.duration) : "");
+      } else {
+        var cachedMap = STEM_BUFFERS[s.sid];
+        if(cachedMap && s.stems && s.stems.length && cachedMap[s.stems[0].id]){
+          var dur = cachedMap[s.stems[0].id].duration;
+          seek.max = dur;
+          time.textContent = "0:00 / " + fmtTime(dur);
+        }
       }
 
       btn.onclick = function(){
@@ -1890,7 +1812,7 @@
 
       seek.oninput = function(){
         pl.scrubbing = true;
-        var maxDur = (activePlayer && activePlayer.sid === s.sid) ? activePlayer.duration : (audio ? audio.duration : parseFloat(seek.max));
+        var maxDur = (activePlayer && activePlayer.sid === s.sid) ? activePlayer.duration : parseFloat(seek.max);
         time.textContent = fmtTime(parseFloat(seek.value)) + " / " + fmtTime(maxDur || 0);
       };
 
@@ -1959,35 +1881,26 @@
     var html = "";
     data.sets.forEach(function(st){
       var sub = st.subtitle ? ' <span class="sub">'+esc(st.subtitle)+'</span>' : "";
-      html += '<tr class="sec '+esc(st.cls)+'"><td colspan="7"><span class="setname">'+esc(st.name)+'</span>'+sub+'</td></tr>';
+      html += '<tr class="sec '+esc(st.cls)+'"><td colspan="6"><span class="setname">'+esc(st.name)+'</span>'+sub+'</td></tr>';
       if(!st.songs || !st.songs.length){
-        html += '<tr class="nodata alt"><td class="empty" colspan="7" style="padding:18px 12px;text-align:center">Плейлист пока пуст — собираем треки</td></tr>';
+        html += '<tr class="nodata alt"><td class="empty" colspan="6" style="padding:18px 12px;text-align:center">Плейлист пока пуст — собираем треки</td></tr>';
         return;
       }
       st.songs.forEach(function(s, idx){
         SONGS[s.sid] = s;
         var sid = esc(s.sid), n = idx+1;
         var altCls = (idx % 2) ? " alt" : "";   // explicit zebra (cue sub-rows break nth-child parity)
-        // count drives off the SAME list the sub-row renders, so button and row never disagree
-        var cueN = (s.cues && s.cues.list) ? s.cues.list.length : 0;
-        var cueBtn = cueN ? '<button class="cuebtn" type="button" title="показать cues с таймкодами">'
-                          + '<span class="cv">▸</span> 🎯 '+cueN+' cues</button>' : '';
-        var stemN = (s.stems && s.stems.length) ? s.stems.length : 0;
-        var mixBtn = stemN ? '<button class="mixbtn" type="button" title="настройка микса дорожек">'
-                          + '<span class="mv">▸</span> 🎛️ Mix</button>' : '';
-        var songCell = '<div class="title">'+esc(s.title)+'</div><div class="artist">'+esc(s.artist)+'</div>'
-                     + '<div class="sub-btns">' + cueBtn + mixBtn + '</div>';
         var edit = '<td class="c-todo" data-song="'+sid+'"></td><td class="c-notes" data-song="'+sid+'"></td>';
+        var songCell = '<div class="title">'+esc(s.title)+'</div><div class="artist">'+esc(s.artist)+'</div>';
         if(!s.hasData){
           html += '<tr class="nodata'+altCls+'" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-                + '<td class="c-mix">'+mixCellFor(s)+'</td>'
                 + '<td class="c-info" colspan="2">нет данных (папка/mix.json отсутствует)</td>'+edit+'</tr>';
           return;
         }
-        html += '<tr class="'+altCls.trim()+'" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
-              + '<td class="c-mix">'+mixCellFor(s)+'</td>'
+        html += '<tr class="songrow'+altCls+'" data-song="'+sid+'"><td class="num">'+n+'</td><td class="song">'+songCell+'</td>'
               + '<td class="c-bass">'+bassCell(s.bass)+'</td>'
               + '<td class="c-other">'+otherCell(s.other)+'</td>'+edit+'</tr>'
+              + playerRowHtml(s)
               + cueRowHtml(s)
               + mixRowHtml(s);
       });
@@ -2002,6 +1915,13 @@
         c.playback+" bass из playback &nbsp;·&nbsp; "+c.other+" с pb-other &nbsp;·&nbsp; "+
         (c.practice||0)+" с практис-миксом";
     }
+  }
+
+  function autoResizeTextarea(ta){
+    if(!ta) return;
+    ta.style.height = "auto";
+    var borderDiff = (ta.offsetHeight - ta.clientHeight) || 2;
+    ta.style.height = Math.max(42, ta.scrollHeight + borderDiff) + "px";
   }
 
   // ---- hydrate editable cells from state ----
@@ -2031,10 +1951,19 @@
       var rec = songRec(td.getAttribute("data-song"));
       var ta = document.createElement("textarea");
       ta.className = "notes-area"; ta.placeholder = "заметки…"; ta.value = rec.notes || "";
-      ta.addEventListener("input", function(){ rec.notes = ta.value; save(); });
+      ta.addEventListener("input", function(){
+        rec.notes = ta.value;
+        save();
+        autoResizeTextarea(ta);
+      });
       td.appendChild(ta);
+      autoResizeTextarea(ta);
     });
   }
+
+  window.addEventListener("resize", function(){
+    document.querySelectorAll(".notes-area").forEach(autoResizeTextarea);
+  });
 
   function setupKeyboardShortcuts(){
     document.addEventListener("keydown", function(e){
@@ -2064,7 +1993,7 @@
     var data;
     try{ data = await dataP; }
     catch(e){ document.getElementById("tbody").innerHTML =
-      '<tr><td class="loading no" colspan="7">не удалось загрузить songs.json</td></tr>'; return; }
+      '<tr><td class="loading no" colspan="6">не удалось загрузить songs.json</td></tr>'; return; }
     ALLDATA = data;
     setupToggles();                          // delegated on persistent #tbody — attach once
     setupTabs();

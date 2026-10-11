@@ -37,6 +37,7 @@
     {"bar": 19, "text": "pre-verse in", "abs_sec": 35.04, "snap_sec": 31.518},
     {"bar": 27, "text": "verse in", "abs_sec": 49.1, "snap_sec": 45.588},
     {"bar": 43, "text": "stop", "abs_sec": 77.27, "snap_sec": 73.308},
+    {"bar": 52, "text": "stop", "abs_sec": 93.04, "snap_sec": 89.108},
     {"bar": 62, "text": "bridge in", "abs_sec": 110.58, "snap_sec": 107.078},
     {"bar": 79, "text": "stop", "abs_sec": 140.4, "snap_sec": 136.448},
     {"bar": 91, "text": "break in ready go", "abs_sec": 161.43, "snap_sec": 157.928},

@@ -20,12 +20,13 @@ set: "24.10 Lefkara Сет 2 #8"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** звуковые эффекты, фортепиано, синты, арпеджиатор и бэки: `04_Sound_effects`, `07_Piano`, `08_Synth_Keys`, `09_Arpeggiator`, `10_Backing_Vocals`.
 - **players:** roma (`05_Bass`), steve (`02_Drum_Kit`), tanya (`11_Lead_Vocal_Izora_Armstead`, `12_Lead_Vocal_Martha_Wash_(ad_lib)`, `13_Lead_Vocal_Martha_Wash`), alex (`06_Electric_Guitar`).
-- **Cues (15 шт.):**
+- **Cues (16 шт.):**
   - `bar 1.1` (3.440s) — `It's Raining Men playback in` («It's Raining Men · playback in ready go») — вступление плейбека / SFX дождя.
   - `bar 3.1` (6.880s) — `all in` («all in ready go») — фортепианное интро.
   - `bar 19.1` (35.040s, 0:35) — `pre-verse in` («pre-verse in ready go») — инструментальный бит перед куплетом.
   - `bar 27.1` (49.100s) — `verse in` («verse in ready go») — первый куплет («Humidity's rising...»).
   - `bar 43.1` (77.270s, JZ 01:14 downbeat) — `stop` («stop in 3 · 3 2 1») — стоп на 1-ю долю такта 43 перед а капелла фразой «It's raining men».
+  - `bar 52.1` (93.040s, ~1:33 render time) — `stop` («stop in 3 · 3 2 1») — стоп на 1-й доле такта 52 (последний удар барабанов перед стопом на аккорде C).
   - `bar 62.1` (110.580s) — `bridge in` («bridge in ready go») — бридж («God bless Mother Nature...»).
   - `bar 79.1` (140.400s, JZ 02:18 C chord) — `stop` («stop in 3 · 3 2 1») — стоп на аккорд C (такт 79).
   - `bar 91.1` (161.430s) — `break in ready go` — брейк («I feel stormy...»).

@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-10
+updated: 2026-10-11
 title: "Stumblin' In"
 artist: "Chris Norman & Suzi Quatro"
 set: "24.10 Lefkara #21"
@@ -19,4 +19,4 @@ set: "24.10 Lefkara #21"
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** `09_Electric_Piano_(Rhodes)`, `10_String_Section`.
 - **players:** roma (`04_Bass`), steve (`03_Drum_Kit`), tanya (`11_Lead_Vocal_Suzi_Quatro`, `12_Lead_Vocal_Chris_Norman`).
-- **Cues:** 13 cues (стартовый bar 1.2& `Stumblin In vocal in`, переклички Alex / Tanya, стопы барабанов bar 37.1 и 81.1, гитарное соло bar 53.3, финальный хит bar 128.1 `end in`).
+- **Cues:** 13 cues (стартовый bar 1.3 `Stumblin In vocal in` с гитарным intro-тоном `stumbling cue tone.mp3` на 6 долей, переклички Alex / Tanya, стопы барабанов bar 37.1 и 81.1, гитарное соло bar 53.3, финальный хит bar 128.1 `end in`).

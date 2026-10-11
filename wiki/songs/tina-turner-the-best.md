@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-10
+updated: 2026-10-11
 title: The Best
 artist: Tina Turner
 set: "24.10 Lefkara #19"
@@ -17,7 +17,7 @@ set: "24.10 Lefkara #19"
 - **Источник стемов:** JamZone HQ-стемы (`cat_5519`).
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **Перкуссия:** ручная перкуссия исключена из плейбека (играет барабанщик Стив).
-- **pb-other:** `09_Digital_Piano`, `10_Hammond_(Hammond)`, `11_Synth_Keys`, `13_Backing_Vocals` + 5 гитар (`04`..`08`) размьючены только в секции Instrumental (`bars 82-89`); саксофон (`12_Tenor_Saxophone`) убран из плейбека (играется вживую).
+- **pb-other:** `09_Digital_Piano`, `10_Hammond_(Hammond)`, `11_Synth_Keys`, `13_Backing_Vocals`; все гитары (`04`..`08`) полностью исключены из плейбека (Алекс играет вживую); саксофон (`12_Tenor_Saxophone`) убран из плейбека (играется вживую).
 - **cues:**
   - `bar 2.1` — `The Best all in` (4.561s)
   - `bar 5.4` — `verse in` (13.191s)
@@ -29,7 +29,7 @@ set: "24.10 Lefkara #19"
 ## Задачи (Todo)
 
 - [x] Исправить ending cue (перенесён на bar 106.1 / 244.79s, ~4:05)
-- [x] Заглушить гитары в плейбеке (`pb-other`) везде кроме секции Instrumental (bars 82–89)
+- [x] Полностью убрать все гитары из плейбека (`pb-other`)
 - [x] Убрать саксофон из плейбека (`12_Tenor_Saxophone`)
 - [x] Сдвинуть sax solo cue на bar 81.3& под первую ноту саксофона
 - [x] Сдвинуть cue припева на bar 89.4 (на 1 долю раньше)

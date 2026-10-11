@@ -906,7 +906,7 @@ def _chord_clip(notes, dur_s, level=0.5):
     return (y*env/(np.max(np.abs(y*env)) or 1)*level).astype(np.float32)
 
 INTRO_GAP = 0.12                                          # breath between intro and the block
-def cue_first_word_time(c, base, relt, bdur, subdiv=1, song_step=None):
+def cue_first_word_time(c, base, relt, bdur, subdiv=1, song_step=None, folder=None):
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); i = cue_beat_index(c); kind = cue_kind(text, c.get("raw"))
     step = _cue_step(c, song_step, subdiv)
@@ -914,7 +914,8 @@ def cue_first_word_time(c, base, relt, bdur, subdiv=1, song_step=None):
         return base + relt(i - 5*step)                    # ~announcement + 3-2-1 count
     intro, metric = cue_words(text, kind)
     blk0 = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))[0][1]
-    pre = 4 if c.get("chord") else 0                      # chord reference rings a whole bar before
+    tone_file = c.get("tone_clip") or c.get("clip")
+    pre = c.get("tone_beats", 6) if tone_file else (4 if c.get("chord") else 0)
     t0 = base + relt(i - blk0*step - pre)                 # the block (extra bar for the vocalist)
     if intro:
         clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
@@ -925,7 +926,7 @@ def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
     if n > 0: buf[s:s+n, 0] += clip[a0:a0+n]; buf[s:s+n, 1] += clip[a0:a0+n]
 
-def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
+def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None, folder=None):
     """Spoken cues on the render grid. Event time = base + relt(beat index of the marked bar/beat);
     the band plays/stops ON that beat (no word on it). Words land on grid beats (relt), so a
     tempo-follow song spaces the count/block by the LOCAL tempo. Three styles:
@@ -954,7 +955,17 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
             intro, metric = cue_words(text, kind)
             clips = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))   # ticks (333ms in a half-time
             blk0 = clips[0][1]; chord = c.get("chord")    # word sped up to fit one tick — so '<x> in
-            if chord:                                     # ready go' (4 fast words) lands after the
+            tone_file = c.get("tone_clip") or c.get("clip")
+            if tone_file:
+                tpath = os.path.join(folder, tone_file) if folder else tone_file
+                if not os.path.exists(tpath) and os.path.exists(os.path.join(os.path.expanduser("~/Downloads"), tone_file)):
+                    tpath = os.path.join(os.path.expanduser("~/Downloads"), tone_file)
+                tclip = _load_clip(tpath)
+                tbeats = c.get("tone_beats", 6)
+                cs, ce = i - blk0*step - tbeats, i - blk0*step
+                _put(buf, tclip, base + relt(cs))
+                anchor = cs
+            elif chord:                                     # ready go' (4 fast words) lands after the
                 cs, ce = i - blk0*step - 4, i - blk0*step # band stops. synth triad rings the bar before
                 _put(buf, _chord_clip(chord, relt(ce) - relt(cs)), base + relt(cs))  # the block (in-ear
                 anchor = cs                               # pitch ref + extra bar). Title ends before it.
@@ -966,7 +977,8 @@ def build_cues(cue_list, total, base, relt, bdur, subdiv=1, song_step=None):
             for (clip, nb), w in zip(clips, metric):
                 _put(buf, clip, base + relt(i - nb*step) - _vowel_onset(clip))
             ext = clips[0][1] - len(metric)
-            phrase = (f"♪{'+'.join(chord)}♪ · " if chord else "") + (intro + " · " if intro else "") \
+            phrase = (f"🎸{tone_file}🎸 · " if tone_file else (f"♪{'+'.join(chord)}♪ · " if chord else "")) \
+                     + (intro + " · " if intro else "") \
                      + " ".join(metric) + (f"  [{metric[0]} {1+ext} доли]" if ext else "")
         rep.append((int(c["bar"]), _disp_beat(c.get("beat", 1)), phrase, t_event))
     return buf, rep
@@ -1285,7 +1297,7 @@ def main():
     lead = 0.0
     daw = mix.get("daw_align")                     # DAW-align: WAV time == stem (song) time, no
     if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
-        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv, cue_step) for c in mix["cues"])  # song
+        min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv, cue_step, folder) for c in mix["cues"])  # song
         if min_word < 0.05:                        # only when the cue would actually clip the front
             lead = np.ceil((0.05 - min_word)/bar_intro)*bar_intro   # (0.05s onset clearance). A cue that fits
             print(f"lead: +{lead/bar_intro:.0f} bar(s) so the longest cue fits the front")  # gets no
@@ -1558,7 +1570,7 @@ def main():
                 _b = _tag.join(_synth)
                 if _b not in _blocks: _blocks.append(_b)
             _pregen_blocks(_blocks)
-        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv, cue_step)
+        out["cues"], crep = build_cues(mix["cues"], total, cue_base, relt, bdur, cue_subdiv, cue_step, folder)
         print(f"cues: {len(crep)} spoken (in -> ready go; stop -> 'in 3' + 3-2-1 count; on grid); "
               f"cue grid bar 1.1 = music downbeat = {cue_base:.3f}s (stem downbeat {db0:.3f}s + OFF {OFF:.3f}s)")
         for b, be, ph, t in crep:
@@ -1669,7 +1681,7 @@ def main():
         # snap = seek point for the web player = 1 bar before the cue's FIRST spoken word, so clicking
         # a cue replays the WHOLE spoken cue (title/announcement/count) and hears the event, not just
         # the event beat with the words already gone. Clamped to >=0 (start cue sits near t=0).
-        snaps = [max(0.0, cue_first_word_time(c, cue_base, relt, bdur, cue_subdiv, cue_step) - bar)
+        snaps = [max(0.0, cue_first_word_time(c, cue_base, relt, bdur, cue_subdiv, cue_step, folder) - bar)
                  for c in mix["cues"]]
         warn = write_cue_abs_times(mix_p, [t for *_, t in crep], snaps)
         print(warn if warn else f"✓ abs_sec+snap: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")

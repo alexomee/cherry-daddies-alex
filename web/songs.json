@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-10T23:49:26",
+  "generated": "2026-10-11T20:20:05",
   "counts": {
     "total": 68,
     "data": 68,
@@ -2247,46 +2247,46 @@
             "count": 7,
             "list": [
               {
-                "t": 4.247,
+                "t": 4.472,
                 "text": "Gimme Gimme Gimme guitar in",
                 "bar": 2,
                 "snap": 0.0
               },
               {
-                "t": 21.497,
+                "t": 21.722,
                 "text": "drums in",
                 "bar": 10,
-                "snap": 17.446
+                "snap": 17.671
               },
               {
-                "t": 40.127,
+                "t": 40.352,
                 "text": "verse in",
                 "bar": 19,
-                "snap": 36.116
+                "snap": 36.341
               },
               {
-                "t": 87.597,
+                "t": 87.822,
                 "text": "intro in ready go",
                 "bar": 43,
-                "snap": 83.586
+                "snap": 83.811
               },
               {
-                "t": 108.517,
+                "t": 108.742,
                 "text": "verse in ready go",
                 "bar": 53,
-                "snap": 104.476
+                "snap": 104.701
               },
               {
-                "t": 139.837,
+                "t": 140.062,
                 "text": "chorus in ready go",
                 "bar": 69,
-                "snap": 135.816
+                "snap": 136.041
               },
               {
-                "t": 195.417,
+                "t": 195.642,
                 "text": "end in",
                 "bar": 97,
-                "snap": 190.926
+                "snap": 191.151
               }
             ]
           },
@@ -2297,8 +2297,6 @@
             "kind": "stems",
             "items": [
               "ARP",
-              "Electric Guitar (clean)",
-              "Electric Guitar",
               "CP",
               "Synthesizer Mellotron",
               "Synth Pad",
@@ -2354,31 +2352,30 @@
             }
           ],
           "stem_versions": {
-            "vocal": "9a653f16ba",
-            "back_vox": "b5e2118035",
-            "drums": "3793a78e16",
-            "keys": "dbc3c73e3f",
-            "bass": "1b1e9968fc",
-            "guitars": "e643035f7c",
-            "other": "c4c5ec26e2",
-            "click": "764669458c",
-            "cues": "cb674bea6b"
+            "vocal": "9c808d7330",
+            "back_vox": "880a0e931d",
+            "drums": "4ccf962dd4",
+            "keys": "2c47cee2d1",
+            "bass": "33d813acb7",
+            "guitars": "0ee71c3150",
+            "other": "50697d915d",
+            "click": "6a3ad89866",
+            "cues": "71353413ba"
           },
           "versions": {
-            "all": "ca2d63b4af",
-            "drums": "887afcede8",
-            "alex": "e6986a6f9a",
-            "steve": "37ceb8c5b3",
-            "roma": "0064440684",
-            "tanya": "d2fc989d4c",
-            "pb-other": "f7055a2b94"
+            "all": "78a7ad42e4",
+            "drums": "439026f42a",
+            "alex": "ccd4ae1634",
+            "steve": "9f4482121b",
+            "roma": "8038ebe95e",
+            "tanya": "3c6b0bf219",
+            "pb-other": "cbff4e8ba7"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "back_vox",
               "keys",
-              "guitars",
               "other"
             ]
           },
@@ -2812,7 +2809,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 15,
+            "count": 16,
             "list": [
               {
                 "t": 3.44,
@@ -2843,6 +2840,12 @@
                 "text": "stop",
                 "bar": 43,
                 "snap": 73.308
+              },
+              {
+                "t": 93.04,
+                "text": "stop",
+                "bar": 52,
+                "snap": 89.108
               },
               {
                 "t": 110.58,
@@ -2974,15 +2977,15 @@
             "guitars": "783f3dab6f",
             "other": "b91bec5d45",
             "click": "3bdb7b088f",
-            "cues": "da2f47f4cb"
+            "cues": "4d41f43bc2"
           },
           "versions": {
-            "all": "3d338701a3",
+            "all": "26c666eb20",
             "drums": "b2ee63af72",
-            "alex": "99a9a3c85d",
-            "steve": "b176f0c7ee",
-            "roma": "a20ee10aa5",
-            "tanya": "d3217cfcb6",
+            "alex": "94a85f0619",
+            "steve": "a431461f5b",
+            "roma": "25846fa75b",
+            "tanya": "ded93e64f7",
             "pb-other": "a6b6ca75ba"
           },
           "pb_other": {
@@ -3016,7 +3019,7 @@
               },
               {
                 "t": 15.12,
-                "text": "main in ready go",
+                "text": "guitar in",
                 "bar": 11,
                 "snap": 12.101
               },
@@ -3133,10 +3136,10 @@
             "guitars": "fa88df35d0",
             "other": "05797a9abe",
             "click": "6e19490415",
-            "cues": "d2d196420b"
+            "cues": "aa44afcc56"
           },
           "versions": {
-            "all": "355f897fd9",
+            "all": "52002398f6",
             "drums": "ee8576b516",
             "alex": "7e2f6d2ce3",
             "steve": "4bf7319f4a",
@@ -4274,11 +4277,6 @@
           "other": {
             "kind": "stems",
             "items": [
-              "Acoustic Guitar (clean)",
-              "Rhythm Electric Guitar (muted)",
-              "Rhythm Electric Guitar",
-              "Arr. Electric Guitar",
-              "Distorted Electric Guitar",
               "Digital Piano",
               "Hammond (Hammond)",
               "Synth Keys",
@@ -4341,14 +4339,13 @@
           "versions": {
             "all": "9f986691e5",
             "drums": "04c9ab03d0",
-            "pb-other": "d84c775a18"
+            "pb-other": "24a1e267e4"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "back_vox",
               "keys",
-              "guitars",
               "other"
             ]
           },
@@ -4516,82 +4513,82 @@
             "count": 13,
             "list": [
               {
-                "t": 4.419,
+                "t": 6.581,
                 "text": "Stumblin In vocal in",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 34.414,
+                "t": 36.341,
                 "text": "alex sing ready go",
                 "bar": 17,
-                "snap": 30.697
+                "snap": 32.624
               },
               {
-                "t": 49.214,
+                "t": 51.141,
                 "text": "tanya sing ready go",
                 "bar": 25,
-                "snap": 45.517
+                "snap": 47.444
               },
               {
-                "t": 70.514,
+                "t": 72.441,
                 "text": "stop",
                 "bar": 37,
-                "snap": 66.337
+                "snap": 68.264
               },
               {
-                "t": 101.174,
+                "t": 103.101,
                 "text": "guitar solo ready go",
                 "bar": 53,
-                "snap": 97.457
+                "snap": 99.384
               },
               {
-                "t": 116.014,
+                "t": 117.941,
                 "text": "alex sing ready go",
                 "bar": 61,
-                "snap": 112.297
+                "snap": 114.224
               },
               {
-                "t": 123.034,
+                "t": 124.961,
                 "text": "tanya sing ready go",
                 "bar": 65,
-                "snap": 119.297
+                "snap": 121.224
               },
               {
-                "t": 130.914,
+                "t": 132.841,
                 "text": "alex sing ready go",
                 "bar": 69,
-                "snap": 127.217
+                "snap": 129.144
               },
               {
-                "t": 152.254,
+                "t": 154.181,
                 "text": "stop",
                 "bar": 81,
-                "snap": 148.077
+                "snap": 150.004
               },
               {
-                "t": 197.314,
+                "t": 199.241,
                 "text": "alex sing ready go",
                 "bar": 105,
-                "snap": 193.617
+                "snap": 195.544
               },
               {
-                "t": 212.154,
+                "t": 214.081,
                 "text": "tanya sing ready go",
                 "bar": 113,
-                "snap": 208.437
+                "snap": 210.364
               },
               {
-                "t": 226.494,
+                "t": 228.421,
                 "text": "tanya sasha sing go",
                 "bar": 121,
-                "snap": 222.797
+                "snap": 224.724
               },
               {
-                "t": 239.414,
+                "t": 241.341,
                 "text": "end in",
                 "bar": 128,
-                "snap": 235.257
+                "snap": 237.184
               }
             ]
           },
@@ -4648,22 +4645,22 @@
             }
           ],
           "stem_versions": {
-            "vocal": "cbb4f033ae",
-            "drums": "20747de7d6",
-            "keys": "3603b15ac4",
-            "bass": "f7e44a4c1f",
-            "guitars": "068979c530",
-            "other": "341794afc6",
-            "click": "05c0a47747",
-            "cues": "30de22ce05"
+            "vocal": "cd89cc8083",
+            "drums": "dd79f1af8a",
+            "keys": "e603820229",
+            "bass": "576092561c",
+            "guitars": "63eb5b120d",
+            "other": "95908f9a51",
+            "click": "9f49d8a44d",
+            "cues": "c8c0a5a0cd"
           },
           "versions": {
-            "all": "ee8b6bc2c0",
-            "drums": "20747de7d6",
-            "steve": "05e25bc01b",
-            "roma": "50cc3343ce",
-            "tanya": "5c14cf5d71",
-            "pb-other": "f09d5208aa"
+            "all": "6af8f1a61a",
+            "drums": "dd79f1af8a",
+            "steve": "b873c860df",
+            "roma": "a40da50b30",
+            "tanya": "3584dc7238",
+            "pb-other": "388f8025fc"
           },
           "pb_other": {
             "available": true,

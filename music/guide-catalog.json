@@ -66,28 +66,28 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 201.08449,
-      "key": "cherry-dash/acbf0b681733/guides/9dae65a09d3f33f0c47b68c5b5bc855996f4506b1e1ac730dab84d604e256bd8/all.wav",
-      "mix_sha256": "4c490657672c937fba67b2bb89293d370d005c8093d07bd443b109de9a80377c",
+      "key": "cherry-dash/acbf0b681733/guides/0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38/all.wav",
+      "mix_sha256": "0f77255abf9ef3ebc4a1adbe0ebec6567e7e682d81a744782c4d4ab1b077bc38",
       "render_audio": {
-        "click.wav": "9b96fccea0d5f32f33a840bf0cff5d474fd77104d230e323bdf38af8e45b43e8",
-        "cues.wav": "12e9d456de0706669c1cbf7b3a30cb9865e99d2126a91abe56fa96cbec776bd0",
-        "pb-drums.wav": "2594d73e4d8f0a10a9a34746a11a134760c8c781c7860ef47af4641063e51ba9",
-        "pb-other.wav": "28563044c741cd639d4aa4d0b75e3fd1901d7db4df0e477fad76a84cb1873e2c"
+        "click.wav": "020706a2b50c82ea5abe0c59124a96769d596ef5cba1484d376a1d8e1e8bd96e",
+        "cues.wav": "fc6700e37822540542a52431a43bf56cfee12405422e243eac77e258e28cfa98",
+        "pb-drums.wav": "0a2141c383e6bbfea2774835caa78fc9ed30641447b85e386e68d0a24f837375",
+        "pb-other.wav": "d8d728ad7e4ca3b76fb84b1192e43ea14f5d9845d27db397d553fa95fbe0766d"
       },
       "render_pcm": {
-        "click.wav": "bd23ef6c4a1ca71c809567fbf5e7dd29037d375305254eb26b6285f353426d0e",
-        "pb-other.wav": "d539064ba86536190b7b62c88199e1583c9b81b590f0a87c63694abc33104a90"
+        "click.wav": "0a062fde41409c686a6c77c417a99a5cc5aa7611e95d85de60c9b6e409226fb9",
+        "pb-other.wav": "842e435122b75893be234bed1e8e6d3e8532ce32c4cc0b09647289a8b997c1f6"
       },
       "sample_rate": 44100,
-      "sha256": "9dae65a09d3f33f0c47b68c5b5bc855996f4506b1e1ac730dab84d604e256bd8",
+      "sha256": "0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38",
       "status": "available",
       "timeline": {
         "bar_sec": 2.010845,
         "bpm": 119.3528,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.711934
+        "offset_sec": 1.936825
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/9dae65a09d3f33f0c47b68c5b5bc855996f4506b1e1ac730dab84d604e256bd8/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38/all.wav"
     },
     "music/songs/ABBA - Money, Money, Money": {
       "bytes": 33759454,
@@ -679,10 +679,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 261.081837,
       "key": "cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav",
-      "mix_sha256": "f231a3f4ed3c66e7836e8bf435cbb2f05325b56ae9d0b6f0054448ceede36d4c",
+      "mix_sha256": "934af8c076ac38155d88c98ea21b8436f67b778c25fee94fe2a10263f321d2fd",
       "render_audio": {
         "click.wav": "fa72d9d271d25d9dd92bf7018c68ccd8d3a024e5b95c49990ccb7d35b27d5fbb",
-        "cues.wav": "fac7d64f7d9a2af4c3cb31327b858598166b336aa184b36dead9cb424542e95e",
+        "cues.wav": "305cbdd15c060e8fac26d15c7b377506f019f560cee349c3c6aba59a38f9a34e",
         "pb-drums.wav": "44cd6aba732cceab2e3b6542dd275519d8cea418fafde8c6ada1a374d3f9ab3b",
         "pb-other.wav": "f9127cae728e8a8d90304e356b8c60f452ea58d2dd1524dcfc04c3b363aa5c70"
       },
@@ -1351,32 +1351,32 @@
       "url": "https://releases.agentiqa.com/cherry-dash/2515a3c01f07/guides/319ad84fc8444e26826e04f2a2ac5f7cbada47882dc9f302caa7b250903078bb/all.wav"
     },
     "music/songs/Suzi Quatro & Chris Norman - Stumblin' In": {
-      "bytes": 43561994,
+      "bytes": 43889526,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 246.94941,
-      "key": "cherry-dash/3a0153697414/guides/be15a1241b5761b8cc9d1517708b3cacec6f800553c2f67c3b225a88bf6ef4ab/all.wav",
-      "mix_sha256": "87d3f5289dfb206ebb468e488ac5cb4da56df55574b5584ce75465ce014127cc",
+      "duration_sec": 248.806168,
+      "key": "cherry-dash/3a0153697414/guides/fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e/all.wav",
+      "mix_sha256": "f69caee1d6b49eb66c2ea267be56f0f13523a1578ac1bc234d4cefbd028c6bc3",
       "render_audio": {
-        "click.wav": "6b408a51ec07b1594d17e4efbae04a392208e43dd20d6bfb3dc094228aaf2566",
-        "cues.wav": "95163df78f82dc44799e3b71bae4846f8c65b50fb8769a69c6a60e08d165db39",
-        "pb-drums.wav": "ddbde53ba556afa76c867a666e78cdfdeda06eb3bf0975b40ab582e8080b94bc",
-        "pb-other.wav": "1be62d158540f6a489f50a5cf91cf5a4099a2ec12fe2ef6ce3d6c7af53175e64"
+        "click.wav": "979a42b805f3169becc6ab9e354103cd69c33ee23f8cb85752eac8095d7cf9c6",
+        "cues.wav": "4adf9a7eaa0f10e91a6dfebf6ed22b1cc02a527296ca798100553c107e4cbb8f",
+        "pb-drums.wav": "94752ca1e3bdf7d5e0b754ccd3173605dc86f492f9e0e6c4ac5239bf4f817843",
+        "pb-other.wav": "a2295aa4c73c55d7aae995e36ef55106211f1736ce83985d998599b394731c22"
       },
       "render_pcm": {
-        "click.wav": "cbc9e09716410a24698d5467bf4390aea15eaed1dea9b78bfb6527e1c2fad86f",
-        "pb-other.wav": "09aff4902c0ad402357a97017d95b7a4c8a267101ab20cbe70765c3d50077223"
+        "click.wav": "a74d25d4a243b837b43a1f51b6dbbe714d07f9d13bbd3d2237d5cdbf78cd27e0",
+        "pb-other.wav": "d5ea9a41676023060e691ecd3a3c9bc4a7843697b3dbf08ba6d28f9acc865cbf"
       },
       "sample_rate": 44100,
-      "sha256": "be15a1241b5761b8cc9d1517708b3cacec6f800553c2f67c3b225a88bf6ef4ab",
+      "sha256": "fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e",
       "status": "available",
       "timeline": {
         "bar_sec": 1.856763,
         "bpm": 129.2572,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.47094
+        "offset_sec": 3.397959
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/3a0153697414/guides/be15a1241b5761b8cc9d1517708b3cacec6f800553c2f67c3b225a88bf6ef4ab/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/3a0153697414/guides/fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e/all.wav"
     },
     "music/songs/The Offspring - Pretty Fly (For A White Guy)": {
       "bytes": 33158382,
@@ -1468,16 +1468,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 256.450385,
       "key": "cherry-dash/ebeb49ea89ca/guides/72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e/all.wav",
-      "mix_sha256": "afb88d8f3bbc09340437e2ca624368ed00b3cbf248716e49ea0910da4fad663f",
+      "mix_sha256": "5720c7aba08601eab1036c77329b9648a36926828f76aab354c873b4c08484e9",
       "render_audio": {
         "click.wav": "352c1a7ea01eda6217325aea7be0cd05056ab7f3091aac6564223d8f34034ead",
         "cues.wav": "fb75679cc42c6ab4cfb089f5439131585c028dea065c9fd696b5a5db2fff8083",
         "pb-drums.wav": "8c1591d52d92a2a9306755061601cc701635a1b06ef1be83e9e78f29fec2953f",
-        "pb-other.wav": "4861e156cfa05a4e9404bd7c7d234430bd164a3fba55509ba444ceb573c2406f"
+        "pb-other.wav": "4836e82ab0959027b46c3cacf9834e8a4ac1a906c39c71d8c693abf724c2140e"
       },
       "render_pcm": {
         "click.wav": "0acff7a1f77f6d956a802609c3fe0a3c28c8e7f812b07f51d9efdbd8b85b38f9",
-        "pb-other.wav": "b5339c1f9ba6052300ad00603e24337446e7aa484034d594281f68de84527cc4"
+        "pb-other.wav": "85fd07772da602c4779f454502a691c348c168a5622a38a1258ac05d7ca6dac9"
       },
       "sample_rate": 44100,
       "sha256": "72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e",
@@ -1524,10 +1524,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 331.123401,
       "key": "cherry-dash/27083695f860/guides/1ad28d429679e5ea25986df5cfea9204939b225b8270ee53f4b88557657c74c0/all.wav",
-      "mix_sha256": "e8a6eba4287a7deaa868cc5d80290e5d0a3b428bb290d3665cb587ee107e6d1e",
+      "mix_sha256": "a8e5157d95ac52cc6349ea337bfe8fb4f896b8473aa49eba6c62ad2592ef2639",
       "render_audio": {
         "click.wav": "3abb53868049cf45fbf83e48c3b2c37a9263b64e081ff478e0b2ba9a624c1e85",
-        "cues.wav": "8c27ee6e1cf676275744c909d62f42da90d01df7823b5afbf18791b94dac30c0",
+        "cues.wav": "f6c68e1abb3127d2addefad91da06c8f2af8417d59bd47f8e6b278302ba2784d",
         "pb-drums.wav": "9aedd35b23191c2711fe275551232cc366d29e887949895248c5fda3e5b0958f",
         "pb-other.wav": "0e36f631eac7aeec9e78e5eebb35b63e565f0b3f69c44e37addf9a21ee166158"
       },

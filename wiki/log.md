@@ -2,6 +2,23 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-11] fix | Tina Turner — The Best: полное удаление всех гитар из плейбека (pb-other)
+
+1. Все 5 гитар (`04_Acoustic_Guitar_(clean)`, `05_Rhythm_Electric_Guitar_(muted)`, `06_Rhythm_Electric_Guitar`, `07_Arr._Electric_Guitar`, `08_Distorted_Electric_Guitar`) полностью удалены из `pb-other` (включая секцию Instrumental; Алекс играет все гитары вживую).
+2. Секция `mute` в `pb-other` удалена.
+3. Выполнен полный рендер (`jamzone_render.py "Tina Turner - The Best"`): обновлены `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, `stems/`, `web/songs.json`.
+4. Синхронизирован `pb-other.wav` в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/The Best/pb-other.wav`).
+
+## [2026-10-11] fix | Stumblin' In: intro guitar tone guidance + сдвиг вокального cue на bar 1 beat 3
+
+1. Поддержка гитарного/аудио-тон гайданса в `tools/jamzone/jamzone_render.py` через `tone_clip` (файл) и `tone_beats` (6 долей).
+2. Стартовый cue `Stumblin In vocal in`:
+   - Добавлен intro guitar riff `stumbling cue tone.mp3` на 6 долей (`bar -1.1`..`bar 0.3`).
+   - Порядок воспроизведения: сначала войсовер «Stumblin In», затем звучит гитарный тон, затем отсчет «vocal in ready go».
+   - Событие «vocal in» сдвинуто на полдоли вправо: с `bar 1.2&` на `bar 1.3` (слово «go» звучит на `bar 1.2`, аккуратно перед вокальным затактом).
+3. Рендер автоматически добавил +1 count-in такт для чистого размещения войсовера и тона (`lead: +1 bar(s)`).
+4. Выполнен полный рендер (`jamzone_render.py "Suzi Quatro & Chris Norman - Stumblin' In" --practice`), обновлены `auto-render/*`, `mix.json`, `web/songs.json`.
+
 ## [2026-10-10] fix | Tina Turner — The Best: правки cue, мьют гитар вне Instrumental, саксофон убран из pb-other
 
 1. Саксофон `12_Tenor_Saxophone` удалён из `pb-other` (партия играется вживую).
@@ -657,13 +674,14 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Обновлены `web/songs.json`, `wiki/songs/maniac.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`, `tools/jamzone/setup_lefkara_27.py`.
 - Суммарная длительность чистых плейбеков программы Лефкары теперь составляет **1ч 37м 11с** (5,830.85 с).
 
-## [2026-10-10] cues | It's Raining Men: обновление подсказок по JamZone сетке (15 cues)
+## [2026-10-10] cues | It's Raining Men: обновление подсказок по JamZone сетке (16 cues)
 
 По запросу Alex актуализирован набор cue для `The Weather Girls — It's Raining Men`:
 - Сохранены стартовые подсказки: `bar 1.1` (3.440s, `It's Raining Men playback in`) и `bar 3.1` (6.880s, `all in`).
 - `0:35 cue`: заменён на `bar 19.1` (35.040s) — `pre-verse in` («pre-verse in ready go»).
 - `JZ section Verse`: добавлен `bar 27.1` (49.100s) — `verse in` («verse in ready go»).
 - `JZ 01:14 (down beat)`: добавлен `bar 43.1` (77.270s, stem 74.49s) — `stop` («stop in 3 · 3 2 1») перед а капелла фразой «It's raining men».
+- `~1:33 our time`: добавлен `bar 52.1` (93.040s, snap 89.108s) — `stop` («stop in 3 · 3 2 1») на последний удар барабанов перед стопом на аккорде C в Chorus 1.
 - `JZ section Bridge`: добавлен `bar 62.1` (110.580s) — `bridge in` («bridge in ready go»).
 - `JZ 02:18 (C chord)`: добавлен `bar 79.1` (140.400s, stem 137.62s) — `stop` («stop in 3 · 3 2 1») на аккорд C.
 - `JZ Break section`: добавлен `bar 91.1` (161.430s) — `break in ready go`.
@@ -719,14 +737,15 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-10-10] cues & edit | Gimme! Gimme! Gimme!: рефайн подсказок, вырезка соло (такты 87–132, переход из Chorus 3 сразу в Outro)
 
 По запросу Alex для `ABBA — Gimme! Gimme! Gimme! (A Man After Midnight)` (cat_9159):
+- Из плейбека исключены все гитары (`06_Electric_Guitar_(clean)` и `07_Electric_Guitar`) — Alex играет гитарные партии живьём.
 - Выполнен рефайн подсказок:
-  - Стартовый cue: заменён с «playback in» на `Gimme Gimme Gimme guitar in` (`bar 2.1`, 4.250s);
-  - `drums in`: перенесён раньше на такт `10.2` (21.500s) — привязан строго к первому удару барабанного сбива Стива;
-  - `verse in`: сдвинут на 1 долю раньше с 19.4 на `19.3` (40.130s) — ровно под вокальный затакт Тани «Half past twelve»;
-  - Добавлен cue на секцию Intro 2: `bar 43.1` (87.600s) — `intro in ready go` (точно в сильную долю синтезаторного риффа, на 2 с раньше задержки JamZone);
-  - Добавлен cue на секцию Verse 2: `bar 53.3` (108.520s) — `verse in ready go` (ровно под затакт «Movie stars», на 3.16 с раньше задержки JamZone);
-  - Добавлен cue на стыке припевов: `bar 77.1` (155.990s, ~02:32 JamZone) — `keep going`;
-  - Финальный cue: `bar 99.1` (199.740s) — `end in` (`count: true` $\to$ «end in 3 · 3 2 1»).
+  - Стартовый cue: заменён с «playback in» на `Gimme Gimme Gimme guitar in` (`bar 2.1`, 4.472s);
+  - `drums in`: перенесён раньше на такт `10.2` (21.722s) — привязан строго к первому удару барабанного сбива Стива;
+  - `verse in`: сдвинут на 1 долю раньше с 19.4 на `19.3` (40.352s) — ровно под вокальный затакт Тани «Half past twelve»;
+  - Добавлен cue на секцию Intro 2: `bar 43.1` (87.822s) — `intro in ready go` (вступление риффа, 1:27.8);
+  - Добавлен cue на секцию Verse 2: `bar 53.3` (108.742s) — `verse in ready go` (ровно под затакт «Movie stars», 1:48.7);
+  - Добавлен cue на финальные припевы: `bar 69.1` (140.062s) — `chorus in ready go` (вход в Chorus 4 после Pre-chorus 3);
+  - Финальный cue: `bar 97.1` (195.642s) — `end in` (`count: true` $\to$ «end in 3 · 3 2 1»).
 - Вырезка середины песни (`cut_bars: [63, 111]`):
   - По скриншоту из JamZone из трека вырезан весь выделенный блок (48 тактов, 96.38 с): Pre-chorus 2, Chorus 2, Chorus 3 и Instrumental;
   - После Verse 2 («...no one in sight») трек сразу переходит в Pre-chorus 3 («There's not a soul out there...»), далее звучат финальные Chorus 4 и Chorus 5 и нативное Outro;
@@ -738,7 +757,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Выполнен полный рендер через `jamzone_render.py --practice`:
   - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `timeline.json`, practice-миксы для Roma, Steve, Tanya, Alex и web-стемы.
   - Рендеры синхронизированы в риг MainStage (`cherry-daddies-2000`).
-- В локальной базе веб-дашборда (`web/data/dashboard.db`) закрыты соответствующие задачи по Gimme (`remove solo part`, `end cue is not right`).
+- В локальной базе веб-дашборда (`web/data/dashboard.db`) закрыты соответствующие задачи по Gimme (`learn guitar intro and remove guitar part`, `remove solo part`, `end cue is not right`).
 - Актуализирован `web/songs.json`, обновлены `wiki/songs/abba-gimme-gimme-gimme.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
 
 ## [2026-10-10] cues | Cheri, Cheri Lady: добавлены 5 подсказок ("verse in", "melody in" ×3, "chorus in")
@@ -803,8 +822,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-10-10] cues & mix | Maniac: cue main in (0:15), мьют ведущего синта в pre-chorus, chorus in на 1 долю раньше (3:31)
 
 По запросу Alex выполнен второй цикл рефайна `Michael Sembello — Maniac`:
-1. **Добавлен cue `main in ready go` на ~0:15:**
-   - `bar 11.1` (15.120s, snap 12.101s) — вход основного грува (Rhodes, бас, синт) после драм-интро.
+1. **Cue на ~0:15 обновлён на `guitar in`:**
+   - `bar 11.1` (15.120s, snap 12.101s) — `guitar in ready go` (вход соло/темы гитары Alex вместо общего «main in»).
 2. **Synth Keys 1 (`08_Synth_Keys_1`) оставлен в плейбеке:**
    - По указанию Alex синт `08_Synth_Keys_1` звучит во всех предприпевах (Pre-chorus 1, 2, 3) и бридже, создавая необходимую гармоническую основу. Заглушен только `09_Synth_Keys_2` до Chorus 3 (`[1, 141]`).
 3. **Сдвинут cue припева Chorus 3 (~3:31) на 1 долю раньше:**

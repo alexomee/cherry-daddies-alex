@@ -16,18 +16,18 @@
     "tanya": ["11_Lead_Vocal_Suzi_Quatro", "12_Lead_Vocal_Chris_Norman"]
   },
   "cues": [
-    {"bar": 1, "beat": 2.5, "text": "Stumblin In vocal in", "abs_sec": 4.419, "snap_sec": 0.0},
-    {"bar": 17, "beat": 3, "text": "alex sing ready go", "abs_sec": 34.414, "snap_sec": 30.697},
-    {"bar": 25, "beat": 3, "text": "tanya sing ready go", "abs_sec": 49.214, "snap_sec": 45.517},
-    {"bar": 37, "beat": 1, "text": "stop", "abs_sec": 70.514, "snap_sec": 66.337},
-    {"bar": 53, "beat": 3, "text": "guitar solo ready go", "abs_sec": 101.174, "snap_sec": 97.457},
-    {"bar": 61, "beat": 3, "text": "alex sing ready go", "abs_sec": 116.014, "snap_sec": 112.297},
-    {"bar": 65, "beat": 2, "text": "tanya sing ready go", "abs_sec": 123.034, "snap_sec": 119.297},
-    {"bar": 69, "beat": 3, "text": "alex sing ready go", "abs_sec": 130.914, "snap_sec": 127.217},
-    {"bar": 81, "beat": 1, "text": "stop", "abs_sec": 152.254, "snap_sec": 148.077},
-    {"bar": 105, "beat": 2, "text": "alex sing ready go", "abs_sec": 197.314, "snap_sec": 193.617},
-    {"bar": 113, "beat": 2, "text": "tanya sing ready go", "abs_sec": 212.154, "snap_sec": 208.437},
-    {"bar": 121, "beat": 1, "text": "tanya sasha sing go", "abs_sec": 226.494, "snap_sec": 222.797},
-    {"bar": 128, "beat": 1, "text": "end in", "count": true, "abs_sec": 239.414, "snap_sec": 235.257}
+    {"bar": 1, "beat": 3, "text": "Stumblin In vocal in", "tone_clip": "stumbling cue tone.mp3", "tone_beats": 6, "abs_sec": 6.581, "snap_sec": 0.0},
+    {"bar": 17, "beat": 3, "text": "alex sing ready go", "abs_sec": 36.341, "snap_sec": 32.624},
+    {"bar": 25, "beat": 3, "text": "tanya sing ready go", "abs_sec": 51.141, "snap_sec": 47.444},
+    {"bar": 37, "beat": 1, "text": "stop", "abs_sec": 72.441, "snap_sec": 68.264},
+    {"bar": 53, "beat": 3, "text": "guitar solo ready go", "abs_sec": 103.101, "snap_sec": 99.384},
+    {"bar": 61, "beat": 3, "text": "alex sing ready go", "abs_sec": 117.941, "snap_sec": 114.224},
+    {"bar": 65, "beat": 2, "text": "tanya sing ready go", "abs_sec": 124.961, "snap_sec": 121.224},
+    {"bar": 69, "beat": 3, "text": "alex sing ready go", "abs_sec": 132.841, "snap_sec": 129.144},
+    {"bar": 81, "beat": 1, "text": "stop", "abs_sec": 154.181, "snap_sec": 150.004},
+    {"bar": 105, "beat": 2, "text": "alex sing ready go", "abs_sec": 199.241, "snap_sec": 195.544},
+    {"bar": 113, "beat": 2, "text": "tanya sing ready go", "abs_sec": 214.081, "snap_sec": 210.364},
+    {"bar": 121, "beat": 1, "text": "tanya sasha sing go", "abs_sec": 228.421, "snap_sec": 224.724},
+    {"bar": 128, "beat": 1, "text": "end in", "count": true, "abs_sec": 241.341, "snap_sec": 237.184}
   ]
 }
