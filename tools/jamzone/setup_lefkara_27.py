@@ -243,7 +243,7 @@ save_mix("Footloose (1984 film) - Holding Out for a Hero", [
     {"bar": 153, "text": "keep going"},
     {"bar": 170, "text": "outro in ready go"},
     {"bar": 194, "text": "keep going"},
-    {"bar": 206, "text": "end in", "count": True}
+    {"bar": 210, "text": "end in", "count": True}
 ], click_mode="follow", cat="cat_13868")
 
 # 22. Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)

@@ -36,9 +36,9 @@
   "click": "follow",
   "cut_after_last_cue": 0.85,
   "fade_out": {
-    "from_bar": 206,
+    "from_bar": 210,
     "from_beat": 1,
-    "to_bar": 207,
+    "to_bar": 211,
     "to_beat": 1
   },
   "cues": [
@@ -55,6 +55,6 @@
     {"bar": 153, "text": "keep going", "abs_sec": 243.568, "snap_sec": 241.165},
     {"bar": 170, "text": "outro in ready go", "abs_sec": 270.848, "snap_sec": 267.635},
     {"bar": 194, "text": "keep going", "abs_sec": 309.348, "snap_sec": 306.945},
-    {"bar": 206, "text": "end in", "count": true, "abs_sec": 328.598, "snap_sec": 324.985}
+    {"bar": 210, "text": "end in", "count": true, "abs_sec": 335.028, "snap_sec": 331.405}
   ]
 }

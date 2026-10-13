@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-09
+updated: 2026-10-12
 title: Felicità
 artist: Al Bano & Romina Power
 set: "24.10 Lefkara #9"
@@ -24,6 +24,7 @@ set: "24.10 Lefkara #9"
   - `bar 29.4` — `chorus in ready go` (66.354s)
   - `bar 45.4` — `intro in ready go` (102.041s)
   - `bar 47.4` — `verse in ready go` (106.502s)
+  - `bar 63.4` — `chorus in ready go` (142.188s)
   - `bar 79.3` — `D modulation chorus in 3 · 3 2 1` (177.317s)
   - `bar 87.3` — `end in 3 · 3 2 1` (195.160s)
 - **fade_out:** bar 88.1 → 88.3 (196.275s → 197.390s, 1.12s ramp): затухание после 2-й доли финального аккорда.

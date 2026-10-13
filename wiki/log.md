@@ -2,6 +2,136 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-13] cues | Gimme! Gimme! Gimme!: добавлен cue «intro in ready go» на 02:56.3 (такт 87.1, вступление Outro)
+
+1. По запросу Alex добавлен cue на сильную долю 87 такта: `{"bar": 87, "text": "intro in ready go", "abs_sec": 176.262, "snap_sec": 172.247}`.
+2. 4-дольный отсчёт «intro in ready go» звучит на такте 86 (174.29s – 176.26s) поверх окончания припева и затакта клавиш, выводя группу точно на сильную долю Outro (аккорд Dm, крэш, синт-рифф). Всего в сетке 8 cues.
+3. Выполнен рендер через `jamzone_render.py`, обновлённый `cues.wav` синхронизирован в риг MainStage (`cherry-daddies-2000`).
+
+## [2026-10-13] fix | Gimme! Gimme! Gimme!: cue chorus in на 69.3 (+2 доли), продление Outro до такта 99 (финальный хит)
+
+1. Сдвиг cue припева: `chorus in ready go` перенесён с сильной доли 69.1 на 3-ю долю такта (`bar 69, beat 3`, 141.142s, ровно на 2 доли позже). Теперь отсчёт «chorus in ready go» завершается ровно перед вокальным вступлением Тани «Gimme! Gimme! Gimme!», которое начинается на 3-й доле такта 69.
+2. Продление Outro и адаптация финала:
+   - Ранее плейбек гасился через `fade_out` на такте 97, обрывая главную клавишную тему Outro на середине квадрата.
+   - Главная тема Outro теперь звучит полностью до конца — до сильной доли 99 такта (199.942s / ~03:20 в рендере, что соответствует финальному крэшу и аккорду Dm на даунбите оригинального такта 145).
+   - Финальный cue `end in 3 · 3 2 1` перенесён на `bar 99.1` (199.942s).
+   - Затухание плейбека `fade_out` адаптировано под такт 99: с 99.1 до 99.3 (1.01 с рампа после финального удара банды).
+3. Полный рендер выполнен, обновлены `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav`, синхронизированы в риг MainStage (`cherry-daddies-2000`).
+
+## [2026-10-13] fix | Gimme! Gimme! Gimme!: долевой срез [[86, 3], [132, 3]] для сохранения затакта темы Outro
+
+1. Проблема: при `cut_bars: [87, 133]` главная клавишная тема Outro (`11_Synth_Lead`, D-F-A-D) начиналась с обрезанным затактом, так как в оригинале её 2-дольный разбег звучит на 3-й и 4-й долях такта 132 (`265.42s`), которые срезались даунбитом 133.
+2. Реализация:
+   - В `tools/jamzone/jamzone_render.py` добавлена поддержка долевых срезов (`cut_bars: [[from_bar, from_beat], [to_bar, to_beat]]` и через dict).
+   - В `mix.json` срез настроен как `cut_bars: [[86, 3], [132, 3]]`: склейка перенесена ровно на 3-ю долю такта.
+   - Длина среза — ровно 184 доли = 46.0 целых тактов 4/4 (сетка клика осталась строго 4/4 без фазовых сдвигов).
+   - Затакт главной клавишной темы Outro теперь звучит полностью (доли 3 и 4 такта 86/132), плавно выходя на сильную долю 133 и запуск полного синт-риффа.
+3. Рендеры пересобраны и скопированы в риг MainStage (`cherry-daddies-2000`). Субтитры и видео (`clips/47.{ass,mp4}`) пересобраны.
+
+## [2026-10-13] fix | Tina Turner — The Best: возврат всех 5 гитар в плейбек (pb-other) во всей песне
+
+1. Все 5 гитар (`04_Acoustic_Guitar_(clean)`, `05_Rhythm_Electric_Guitar_(muted)`, `06_Rhythm_Electric_Guitar`, `07_Arr._Electric_Guitar`, `08_Distorted_Electric_Guitar`) возвращены в `pb-other.stems` на протяжении всей песни (без мьютов).
+2. Выполнен полный рендер (`jamzone_render.py "Tina Turner - The Best" --practice`): обновлены `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, practice-миксы, web-стемы, обновлён `web/songs.json`.
+3. Синхронизированы свежие `pb-other.wav` и `cues.wav` в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/The Best/`).
+
+## [2026-10-13] fix | Gimme! Gimme! Gimme!: Вариант А — срез перенесён на [87, 133] (полное устранение вокальных срезов)
+
+1. Проблема на 02:19: при `cut_bars: [69, 117]` на сильной доле припева происходил срез между Pre-chorus 2 и Chorus 4. Слово *«prayer»* обрывалось на полуноте (оно звучит до 1-й доли такта 69), а припев из такта 117 врывался сразу на первой доле без 2-дольной паузы, из-за чего припев казался начавшимся на 2 доли раньше времени.
+2. Реализация Варианта А (`cut_bars: [87, 133]`):
+   - Блок Verse 2 $\to$ Pre-chorus 2 $\to$ Chorus 2 (такты 53–76) звучит **100% непрерывным студийным дублем** без единого среза.
+   - За ним звучит Chorus 3 (бэк-вокалы, такты 77–86), где вокал полностью завершается.
+   - Срез перенесён на такт 87 (`174.341s` $\to$ `266.401s`, такт 133 Outro), в зону **полной тишины вокала**: вырезано инструментальное соло (флейта/синт, 24 такта), повтор предприпева 3 и припева 4/5.
+   - Трек с такта 87 бесшовно переходит в нативное Outro (такт 133, синт-рифф) и финальный хит.
+   - Длина трека: 205.47 с (102 такта, 3:25). Внутри вокальных секций больше нет ни одной склейки.
+3. Подсказки и тайминги:
+   - Все 7 cues в `mix.json` сохранили свои номера тактов: `chorus in ready go` на 69.1 (140.132s), `end in 3 · 3 2 1` на 97.1 (196.002s, fade out 2 доли).
+   - В `tools/lyric-launcher/lyrics-timed/47.tsv` актуализированы тайминги строк предприпева и припевов, пересобраны `clips/47.ass` и `clips/47.mp4`.
+   - Рендеры обновлены и скопированы в риг MainStage (`cherry-daddies-2000`).
+
+
+## [2026-10-12] fix | Gimme! Gimme! Gimme!: перенос cut_bars на [69, 117] (исправление обрыва вокала куплета 2)
+
+1. Проблема: `cut_bars: [63, 111]` вырезал `Pre-chorus 2` и прыгал в `Pre-chorus 3`. Срез на сильную долю такта 63 (`126.101s` в стэмах, `02:08.04` в рендере) обрывал последнее слово Verse 2 (*«sight»*), которое звучит на 1-й доле такта 63, и срезал 2-дольную паузу/вдох перед предприпевом.
+2. Решение: срез перенесён на 6 тактов — `cut_bars: [69, 117]`:
+   - Verse 2 (такты 53–62) теперь непрерывно и без срезов переходит в нативный Pre-chorus 2 (такты 63–68): слово *«sight»* звучит полностью, сохраняется естественный вдох на доле 2, предприпев звучит с оригинальным балансом и фразировкой.
+   - Склейка перенесена на сильную долю припева (такт 69 $\to$ такт 117, `Chorus 2` $\to$ `Chorus 4`), оба с крэшем и вступлением *«Gimme!»*.
+   - Длина вырезки сохранена: ровно 48 тактов (96.31 с), длина трека прежняя (201.18 с, 3:21).
+   - Подсказки сохранили свои такты: `chorus in ready go` на 69.1 (140.132s), `end in` на 97.1 (195.712s).
+3. Синхронизация:
+   - Выполнен перерендер через `jamzone_render.py`, обновлены файлы в `auto-render/` и скопированы в риг MainStage (`cherry-daddies-2000`).
+   - В `tools/lyric-launcher/lyrics-timed/47.tsv` скорректирован тайминг строки предприпева (`2:08.92`), пересобраны `clips/47.ass` и `clips/47.mp4` и скопированы в риг (`lyrics/clips/`).
+   - Обновлены `wiki/songs/abba-gimme-gimme-gimme.md` и `wiki/index.md`.
+
+
+## [2026-10-12] feat | Felicità: добавлен cue «chorus in» на второй припев (~2:22)
+
+1. В `music/songs/Al Bano & Romina Power - Felicità/mix.json` добавлен cue для второго припева:
+   - `bar 63.4` (142.188 с, `snap_sec: 137.727`) — `chorus in ready go` на 4-ю долю такта под затакт вокала «Sen-ti» (согласно правилу CLAUDE.md для вокала из-за такта и аналогично 1-му припеву `bar 29.4`).
+2. Выполнен локальный рендер через `tools/jamzone/jamzone_render.py "Felicità" --practice`, обновлены рендеры в `auto-render/` (`cues.wav`, `cue_preview.mp3`, `all.wav`, `practice-*.mp3`), обновлён `web/songs.json`.
+3. Обновлены страницы `wiki/songs/al-bano-romina-power-felicita.md`, `wiki/index.md` и `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-12] feat | Gimme! Gimme! Gimme!: затухание плейбека (fade_out) после финального удара
+
+1. В `music/songs/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)/mix.json` добавлено затухание на 2 доли после финального удара:
+   ```json
+   "fade_out": {
+     "from_bar": 97,
+     "from_beat": 1,
+     "to_bar": 97,
+     "to_beat": 3
+   }
+   ```
+2. Финальный удар банды приходится на такт 97.1 (195.642 с, cue `end in 3 · 3 2 1`). Рампа затухания длится ровно 2 доли (1.01 с, 195.642 с → 196.647 с), после чего плейбек (`pb-other`, `pb-drums`, `all`) полностью замолкает.
+3. Выполнен локальный рендер (`jamzone_render.py "ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)"`), обновлены файлы в `auto-render/` и скопированы в MainStage (`cherry-daddies-setlist-2026-06-16/Gimme! Gimme! Gimme!/`).
+
+
+## [2026-10-12] feat | Такая любовь: добавлен слой acoustic-guitar-solo в pb-other
+
+1. Добавлен пользовательский слой акустической гитары:
+   - Исходник `/Users/alex/Downloads/acoustic guitar on solo pb.mp3` сконвертирован в `music/songs/Такая любовь/parts/acoustic-guitar-solo.wav` (frame `render` от t=0, длительность 245.4 с).
+   - Звучит во время гитарного соло: 165.2 – 194.8 с (такты ~92 – 108).
+   - Роль `musical` (пик −0.2 dBFS, уровень сохранён из Logic Pro).
+2. Включён в `pb-other`:
+   ```json
+   "pb-other": {
+     "stems": ["strings"],
+     "layers": [
+       {"file": "sfx-pb", "frame": "render"},
+       {"file": "acoustic-guitar-solo", "frame": "render"}
+     ],
+     "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical"}
+   }
+   ```
+3. Выполнен полный рендер (`jamzone_render.py "Такая любовь"`), обновлены `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, `web/songs.json`.
+4. Свежий `pb-other.wav` синхронизирован в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/pb-other.wav`).
+
+## [2026-10-12] fix | Такая любовь: обновление слоя sfx-pb в pb-other
+
+1. Обновлён файл слоя `sfx-pb` из `/Users/alex/Downloads/sfx pb.mp3` (баунс из Logic Pro, 135.168 с от такта 35 / 64.0 с).
+2. Сконвертирован в `music/songs/Такая любовь/parts/sfx-pb.wav` с точным выравниванием на сетку рендера (lead 64.0 с до такта 35, frame `render`). Доработаны эффекты вокруг гитарного соло перед переходом в solo leak (такты 93–97).
+3. Выполнен полный рендер (`jamzone_render.py "Такая любовь"`), авто-уровень роли `fx` (−21.1 dBFS, gain −8.9 dB до потолка −30 dBFS).
+4. Обновлены `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, `web/songs.json`.
+5. Свежий `pb-other.wav` синхронизирован в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/pb-other.wav`).
+
+## [2026-10-12] cues | Такая любовь: добавлен cue «solo leak ready go» на 00:02:54.222 (такт 97)
+
+1. Добавлен cue: `{"bar": 97, "text": "solo leak ready go", "abs_sec": 174.222, "snap_sec": 170.667}`.
+   - Позиция: 00:02:54.222 (174.222 с) = даунбит такта 97 (tempo 135 bpm, beat 0.4444 с).
+   - 4-дольный отсчёт «solo leak ready go» звучит на долях такта 96 (слова на долях 1, 2, 3, 4 перед событием такта 97.1).
+2. Выполнен полный рендер (`jamzone_render.py "Такая любовь"`), обновлены `cues.wav`, `cue_preview.mp3`, `web/songs.json`. Всего 14 cue.
+3. Обновлённый `cues.wav` синхронизирован в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/cues.wav`).
+
+## [2026-10-11] fix | Такая любовь: бэк-вокал убран из pb-other/pb-other-keys, добавлен слой sfx-pb в pb-other
+
+1. Из `pb-other` убран стем `backing_vocals` (остался `strings`).
+2. Из альтернативного `pb-other-keys` (вариант без клавишника) также убран `backing_vocals` (остались `strings` и `keys`).
+3. Добавлен пользовательский слой sound fx:
+   - Исходник `/Users/alex/Downloads/sfx pb.mp3` сконвертирован в `music/songs/Такая любовь/parts/sfx-pb.wav` (frame `render`, длительность 245.4 с).
+   - Включён в `pb-other`: `layers: [{"file": "sfx-pb", "frame": "render"}]`, `roles: {"sfx-pb": "fx"}` (gated RMS −21.5 dBFS с авто-выравниванием до потолка −30 dBFS, gain −8.5 dB).
+4. Выполнен полный рендер (`jamzone_render.py "Такая любовь"`): обновлены `pb-other.wav`, `pb-other.mp3`, `pb-other-keys.wav`, `pb-other-keys.mp3`, `web/songs.json`.
+5. Свежие плейбеки (`pb-other.wav`, `pb-other-keys.wav`, а также актуализированные `cues.wav` и `pb-bass.wav`) скопированы в риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/`).
+
+
 ## [2026-10-11] fix | Tina Turner — The Best: полное удаление всех гитар из плейбека (pb-other)
 
 1. Все 5 гитар (`04_Acoustic_Guitar_(clean)`, `05_Rhythm_Electric_Guitar_(muted)`, `06_Rhythm_Electric_Guitar`, `07_Arr._Electric_Guitar`, `08_Distorted_Electric_Guitar`) полностью удалены из `pb-other` (включая секцию Instrumental; Алекс играет все гитары вживую).
@@ -958,3 +1088,19 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-drums.wav`, `pb-other.wav`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
    - Актуализированы `mix.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/holding-out-for-a-hero.md`, `wiki/index.md`, `wiki/gigs/2026-10-24-lefkara.md`.
    - Свежие `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в риг MainStage через `tools/sync_to_mainstage.sh --apply "Holding Out for a Hero"`.
+
+## [2026-10-13] cues & playback | Holding Out for a Hero: финал сдвинут на bar 210 (полный 8-тактовый квадрат аутро)
+
+По запросу Alex для `Bonnie Tyler — Holding Out for a Hero` (cat_13868):
+1. **Завершение гармонического квадрата аутро (+4 такта):**
+   - Ранее трек обрезался на такте 206 (`bar 206.1`), из-за чего последний гармонический цикл Outro (Am-Em-F-C-G) обрывался на середине (после 4 тактов Am-Em на bar 202..205).
+   - Счётный финал `"end in"` (`count: true` $\to$ «end in 3 · 3 2 1») перенесён на сильную долю 210 такта (`bar 210.1`, 335.028s render time). Отсчёт идёт на 209 такте (аккорд G), разрешение и финальный стоп группы — на даунбите bar 210 (аккорд Am / тоника).
+   - Теперь все циклы аутро имеют ровные 8-тактовые квадраты: bar 170..177 (8 тактов), 178..185 (8 тактов), 186..193 (8 тактов), 194..201 (8 тактов, cue «keep going»), 202..209 (8 тактов, завершение на 210.1).
+2. **Обрезка и fade out:**
+   - `"fade_out": {"from_bar": 210, "to_bar": 211}` (1.61s ramp) под финальный удар.
+   - `"cut_after_last_cue": 0.85` — общая длительность плейбека стала 5:36 (336.5s, 210 тактов).
+3. **Ре-рендер трека:**
+   - Выполнен полный рендер через `jamzone_render.py "Footloose (1984 film) - Holding Out for a Hero" --practice`.
+   - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-drums.wav`, `pb-other.wav`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
+   - Пересобран титровый клип: `clips/56.ass` и `clips/56.mp4` под новую длину 5:36.53.
+   - Актуализированы `mix.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/holding-out-for-a-hero.md`.

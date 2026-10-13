@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-05
+updated: 2026-10-12
 title: Такая любовь
 artist: 
 set: tryout batch 2026-07
@@ -8,7 +8,7 @@ set: tryout batch 2026-07
 
 # Такая любовь
 
-Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`). 2026-10-05: обновление cue (13 cue).
+Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`). 2026-10-05: обновление cue (13 cue). 2026-10-11: бэк-вокал убран из pb-other и pb-other-keys; в pb-other добавлен пользовательский слой `sfx-pb`. 2026-10-12: добавлен cue «solo leak ready go» на 174.2с (такт 97, 00:02:54.222), всего 14 cue; обновлён слой `sfx-pb`; в `pb-other` добавлен слой `acoustic-guitar-solo` (акустическая гитара на соло, 165.2–194.8с).
 
 ## Сводка
 
@@ -19,7 +19,7 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 
 ## Плейбек и рендер
 
-- **pb-other:** backing_vocals + strings · **pb-other-keys:** backing_vocals + strings + keys (вариант без живого клавишника) · **pb-bass:** bass · **pb-drums:** drums (−3.1 dB).
+- **pb-other:** strings + layers `sfx-pb` (роль `fx`, потолок −30 dBFS) + `acoustic-guitar-solo` (роль `musical`, соло-аккомпанемент) · **pb-other-keys:** strings + keys (вариант без живого клавишника) · **pb-bass:** bass · **pb-drums:** drums (−3.1 dB).
 - **players:** alex = guitars; roma = keys, strings, wind; steve = drums; tanya = vocals; trio = guitars+drums+vocals.
 - Сетка: beat 0.4444с, такт 1.7778с, downbeat стема 0.5601с; OFF рендера +2.99542с, такт 1.1 = 3.556с рендера. Длина 245.333с = 138 тактов.
 
@@ -29,7 +29,7 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 
 ## Cue
 
-13 cue:
+14 cue:
 
 - bar 1 — «Такая любовь · synth fade-in ready go» · 3.6с
 - bar 5 — «chords in» · 10.7с
@@ -41,10 +41,11 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 - bar 84 — «synth solo ready go» · 151.1с
 - bar 92 — «drum stop» («drum stop in 3 · 3 2 1») · 165.3с
 - bar 93.4 — «guitar solo ready go» · 168.4с
+- bar 97 — «solo leak ready go» · 174.2с
 - bar 100 — «verse in» · 179.6с
 - bar 111 — «chorus in» · 199.1с
 - bar 135 — «end in» (`count: true`) · 241.8с
 
 ## Риг (MainStage)
 
-Папка сетлиста: `/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/` (click/cues/pb-bass/pb-drums/pb-other/pb-other-keys). Синк 2026-09-02: только `pb-bass.wav` (pb-other/pb-other-keys с тем же контентом — откачены, чтобы не тащить дизеринг-дрейф). Риг-коммит `75b7a5fc`, запушен.
+Папка сетлиста: `/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/` (click/cues/pb-bass/pb-drums/pb-other/pb-other-keys). Синк 2026-09-02: `pb-bass.wav` (риг-коммит `75b7a5fc`). Синк 2026-10-11: обновление `pb-other.wav`, `pb-other-keys.wav` (бэк-вокал убран), а также свежих `cues.wav` и `pb-bass.wav`.

@@ -62,32 +62,32 @@
       "url": "https://releases.agentiqa.com/cherry-dash/dfa18d189118/guides/be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548/all.wav"
     },
     "music/songs/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)": {
-      "bytes": 35471422,
+      "bytes": 36246710,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 201.08449,
-      "key": "cherry-dash/acbf0b681733/guides/0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38/all.wav",
-      "mix_sha256": "0f77255abf9ef3ebc4a1adbe0ebec6567e7e682d81a744782c4d4ab1b077bc38",
+      "duration_sec": 205.479546,
+      "key": "cherry-dash/acbf0b681733/guides/d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd/all.wav",
+      "mix_sha256": "20b54bb5d3e38a54f5efe515a8c06621e2ca711572ddad6ddd7c0f92ca6aa425",
       "render_audio": {
-        "click.wav": "020706a2b50c82ea5abe0c59124a96769d596ef5cba1484d376a1d8e1e8bd96e",
-        "cues.wav": "fc6700e37822540542a52431a43bf56cfee12405422e243eac77e258e28cfa98",
-        "pb-drums.wav": "0a2141c383e6bbfea2774835caa78fc9ed30641447b85e386e68d0a24f837375",
-        "pb-other.wav": "d8d728ad7e4ca3b76fb84b1192e43ea14f5d9845d27db397d553fa95fbe0766d"
+        "click.wav": "03a8cfdbd3d159597a3183905e941bd9466976e08b1f8e4d401fbb54e142e23e",
+        "cues.wav": "0039ad7ac6aafb5ff252895e071d7f18bb4fb5ef1f41c5dc6e65d69717631224",
+        "pb-drums.wav": "b67e5b1c39890a90607e36fc95b849cb7f7f5eded937106aec8564e6e8d186e4",
+        "pb-other.wav": "cc91a6eda3fbe85a7d10f7d5136ebd5994ad9d8e6a6a36f65e8dcbb6af1294c5"
       },
       "render_pcm": {
-        "click.wav": "0a062fde41409c686a6c77c417a99a5cc5aa7611e95d85de60c9b6e409226fb9",
-        "pb-other.wav": "842e435122b75893be234bed1e8e6d3e8532ce32c4cc0b09647289a8b997c1f6"
+        "click.wav": "95c033d8e6d2c24912292cda8f89d0bc29182cfd062fd0b47222e0d5eeab55f8",
+        "pb-other.wav": "c24263d2465f0dbef77e805d1f038b33226c88d4dab34065063eaf2d4fdc3e68"
       },
       "sample_rate": 44100,
-      "sha256": "0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38",
+      "sha256": "d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd",
       "status": "available",
       "timeline": {
-        "bar_sec": 2.010845,
-        "bpm": 119.3528,
+        "bar_sec": 2.014506,
+        "bpm": 119.1359,
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 1.936825
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/0ae78a166bde366c7ba5f47c34fd509c40d9e2b858ce9a6f506977048776cb38/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd/all.wav"
     },
     "music/songs/ABBA - Money, Money, Money": {
       "bytes": 33759454,
@@ -123,10 +123,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 200.73585,
       "key": "cherry-dash/8cdf237765d9/guides/3580179db5825c711d7e010ea6691b87487c17fc12884443a3986c5fff66fc14/all.wav",
-      "mix_sha256": "7f671e4e97b37fa9e86130bf2d421b295537ecfd755b3b8f0f5b1e9e638197ed",
+      "mix_sha256": "3160b0651d6dad0a805c2d39200d5736b1d1f7f1b9654f95d9524796099c5d69",
       "render_audio": {
         "click.wav": "928fe2e6efa3396c09149b14952da824b2f8bf26f220c3a385f344bf23792e89",
-        "cues.wav": "3bfb8f37853456cf7d378754920f433774163c3825b80476b9e54fc8817023d6",
+        "cues.wav": "232145da2581b59592a5d51cba6a8b7026228a86d04ad3cd25b8f41df4b74900",
         "pb-drums.wav": "255fb3a15e6dbd3d0d879cad6f48c496c46f6f111cb580841ad41d8d8d5295c6",
         "pb-other.wav": "53e7e3c15e0ac4edf0a8e2dbcb664c447adc69641aac3d935860115246aa91d8"
       },
@@ -702,24 +702,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav"
     },
     "music/songs/Footloose (1984 film) - Holding Out for a Hero": {
-      "bytes": 58232754,
+      "bytes": 59363486,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 330.116984,
-      "key": "cherry-dash/b2705ef3b0bb/guides/a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923/all.wav",
-      "mix_sha256": "77ec6c9ab2952e163fca748407522e2baacc4ad7251f1213d0c073f6156391a6",
+      "duration_sec": 336.527029,
+      "key": "cherry-dash/b2705ef3b0bb/guides/aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f/all.wav",
+      "mix_sha256": "589d8afb6111d3adea56fbb60167592545297f7a98907d10bc8547e5edaf00bf",
       "render_audio": {
-        "click.wav": "b09661e8ab675e1b3a04e39a43da10a74e7153276b7bf919461d0a45374f1ab2",
-        "cues.wav": "b782610bf94879e92135a97125ab487d8790cf9c42ac146a03754cdf9830de54",
-        "pb-drums.wav": "78ed4f7dcfcbd62c74c27e90baa34ae9a911f96125da5b8eb4942f647fe31a9c",
-        "pb-other.wav": "ecc22c6193e5a89624d453f00267249587ffdb1503690268bbc9167cbae2fffc"
+        "click.wav": "0f483ef6ccaabd8ec7c0c0496730b29078cbc3655c71f87269508aa95fc3ab35",
+        "cues.wav": "2ec8362cdf545d41d2390fd7b3767a41aa861c427fc89d7a2486100712ea4812",
+        "pb-drums.wav": "e0e6f3503b885691271717d403474dacf717e3e014420eeb1e74d19016c8ff80",
+        "pb-other.wav": "9913a3190b6b5dc9c050cd4bd2cee7526f1efe36aa25b029cb4b5efd854cbc61"
       },
       "render_pcm": {
-        "click.wav": "54830cf1e0bf2c2a4de1e103f7f31f158d15e9853b72dccc9ea4b008756cace8",
-        "pb-other.wav": "3dc12c53f0a87f9591cdb93d7099f3b8113446adac8fcfdf9de6e2d09b3f364c"
+        "click.wav": "827e688f1f4f36f867118f5716dba8d78836f79b87a987cfa71a8329a22d0093",
+        "pb-other.wav": "14a3e00c8e897547cbf03e0a2668664f70e7330846960c9a211638597082ec3c"
       },
       "sample_rate": 44100,
-      "sha256": "a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923",
+      "sha256": "aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f",
       "status": "available",
       "timeline": {
         "bar_sec": 1.60251,
@@ -727,7 +727,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": -0.298912
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/a6bb185134eac43c3a0df4e196d24dc521f15b88dde77d81dddd2f6eaa58f923/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f/all.wav"
     },
     "music/songs/Gala - Freed from Desire": {
       "bytes": 38069694,
@@ -1468,16 +1468,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 256.450385,
       "key": "cherry-dash/ebeb49ea89ca/guides/72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e/all.wav",
-      "mix_sha256": "5720c7aba08601eab1036c77329b9648a36926828f76aab354c873b4c08484e9",
+      "mix_sha256": "d7f14cae7b0998bc48eeb2dbb62a55fb17ca340124bcc1616d86ac1d947e6d6d",
       "render_audio": {
         "click.wav": "352c1a7ea01eda6217325aea7be0cd05056ab7f3091aac6564223d8f34034ead",
-        "cues.wav": "fb75679cc42c6ab4cfb089f5439131585c028dea065c9fd696b5a5db2fff8083",
+        "cues.wav": "c0ce98d9c1ea1ee491c49c8f6d5d5feca056f1166257f34866789f3899475626",
         "pb-drums.wav": "8c1591d52d92a2a9306755061601cc701635a1b06ef1be83e9e78f29fec2953f",
-        "pb-other.wav": "4836e82ab0959027b46c3cacf9834e8a4ac1a906c39c71d8c693abf724c2140e"
+        "pb-other.wav": "15353cd0cbfd2cb636d3b3c0704d73164e466afd3ad3b5e73af8b124ed62be6f"
       },
       "render_pcm": {
         "click.wav": "0acff7a1f77f6d956a802609c3fe0a3c28c8e7f812b07f51d9efdbd8b85b38f9",
-        "pb-other.wav": "85fd07772da602c4779f454502a691c348c168a5622a38a1258ac05d7ca6dac9"
+        "pb-other.wav": "c9eb863554f07415894635b71d7ee3c2a2708f515c199c3b0da1954fd05479ee"
       },
       "sample_rate": 44100,
       "sha256": "72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e",
@@ -1668,19 +1668,21 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 219.69229,
-      "key": "cherry-dash/8aed085975f2/guides/a3fe405d614eaec53b592f4b87586b67f04dbf137235691cb282965c8500d9c6/all.wav",
-      "mix_sha256": "9cf43018200fb8c9490e26008e1a6790aacf8823e2b1d1057cf28f738bdda19e",
+      "key": "cherry-dash/8aed085975f2/guides/c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11/all.wav",
+      "mix_sha256": "f068557b69bae5835ccdbdfb2f719d6720693898687c455845932bc16ffd6219",
       "render_audio": {
         "click.wav": "680f506e69a9da4bf475b041b9db44290017379f7c57d511d4174b18d45c80f9",
-        "cues.wav": "fecfed86a663290bcdb6ca0a9a0dd3668402e8774aae672d0e347a884dd50e10",
+        "cues.wav": "d245cb85c9af6973b633b7a17e04abf831935bbaa3cb14bbdcfe54589ce935b5",
         "pb-drums.wav": "775fceb818453e611525fa7f4cbeb33a7875b9bbc3c14132d829d5de870569ee",
-        "pb-other-keys.wav": "6e18c2624a2f7f03062653c4a4baf6fecf72416923ab18f5eee8861e41cd262b"
+        "pb-other-keys.wav": "6e18c2624a2f7f03062653c4a4baf6fecf72416923ab18f5eee8861e41cd262b",
+        "pb-other.wav": "ca259d561dafcf45b7ad6235645fe3b8ad5b7d3d9b6bad050d0e3af4852e25f2"
       },
       "render_pcm": {
-        "click.wav": "2f7f4813006a182cc9b62ee71a46dd24bf5436494f5f9639b280c4312ea8a4eb"
+        "click.wav": "2f7f4813006a182cc9b62ee71a46dd24bf5436494f5f9639b280c4312ea8a4eb",
+        "pb-other.wav": "282e7bfa0e3ae97b56136493b051462bcf7f1606af2c734fa96b132132b06bd5"
       },
       "sample_rate": 44100,
-      "sha256": "a3fe405d614eaec53b592f4b87586b67f04dbf137235691cb282965c8500d9c6",
+      "sha256": "c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
@@ -1688,7 +1690,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.632194
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/a3fe405d614eaec53b592f4b87586b67f04dbf137235691cb282965c8500d9c6/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11/all.wav"
     },
     "music/songs/Кислотный DJ": {
       "bytes": 41731318,
@@ -1830,23 +1832,23 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 245.333333,
-      "key": "cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav",
-      "mix_sha256": "ee5756b56d1f51dfb6e07d33f30b85777aaa17d86d5b2d6f4c402f93f375d422",
+      "key": "cherry-dash/059476adbfec/guides/35061d2508b5dcaea59b64d700d05533960886aef63f5dd2eccd182259434f86/all.wav",
+      "mix_sha256": "ffcbb1778d620676b8f674fadf1334a933c4384e43456b0492691a31faf3ac5b",
       "render_audio": {
         "click.wav": "b96149fd22a0226fdf14057793015f95beb3205ba3a6ffaf9cf44506bf165a69",
-        "cues.wav": "23d929aae221b469ad51a0cb1d62d0a3a7c9b9105c036ea6d01817cfe86191c5",
-        "pb-bass.wav": "c14fa8c2e783667081f2ea53b567a58ae0f36dabc01646ac15dd0a307683e45e",
+        "cues.wav": "f9120ec35910f388eb8f262a0fb399627ffea7c73355346967098efb5189f174",
+        "pb-bass.wav": "888a555a9740ff41d95a45dd7b876e33927ad00bc9f86b43a0c7f8ad311887b7",
         "pb-drums.wav": "05ecb1236f71945177df69e8149126918af8459a3ed3f54ce877f20b4ae8535d",
-        "pb-other-keys.wav": "547213ba775ac01e2a2b73a42bdebbe203baa23f4972540b64a4436ef10d6a7b",
-        "pb-other.wav": "fff4ae585d39256ac7de5ce74826da5be1ef6032e276be585043013fbbef2692"
+        "pb-other-keys.wav": "31cf5b727706ae852489ea96809ebc4d57985c300f24e12fb89b21622a9f66c3",
+        "pb-other.wav": "d9923770a472adafc15b9b8a85d0961089579b299844051500bbc98bc7d7556d"
       },
       "render_pcm": {
         "click.wav": "a0ca6a3daea81fe8ab4bf164a27b5cf381368ab5e9295c98628c774d8f855d3a",
-        "pb-bass.wav": "7c738f196631b8694b7dd2c99c90fada132470425604618f14e06310f718b16f",
-        "pb-other.wav": "a841ca8aff171b67405229fe2df657a31436c1b4a6eb368d44695a550e3817c4"
+        "pb-bass.wav": "613cad88656543585a0823d31f99e9f117027ce80c58eade31aaa2977e357769",
+        "pb-other.wav": "484333ace7fe4ff4bf10dcdc10d9ccbadd7592d8adf6d56b2b48ba20a0a46f3c"
       },
       "sample_rate": 44100,
-      "sha256": "a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542",
+      "sha256": "35061d2508b5dcaea59b64d700d05533960886aef63f5dd2eccd182259434f86",
       "status": "available",
       "timeline": {
         "bar_sec": 1.777778,
@@ -1854,7 +1856,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 2.99542
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/a150bacc6a073cfc7f6f1177431ab3a649dd0e5d9e598086f235dba85331b542/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/35061d2508b5dcaea59b64d700d05533960886aef63f5dd2eccd182259434f86/all.wav"
     },
     "music/songs/Чичерина - Ту-лу-ла": {
       "bytes": 25609182,

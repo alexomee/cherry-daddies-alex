@@ -1,10 +1,17 @@
 {
   "bpm": 135.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["backing_vocals", "strings"]},
+  "pb-other": {
+    "stems": ["strings"],
+    "layers": [
+      {"file": "sfx-pb", "frame": "render"},
+      {"file": "acoustic-guitar-solo", "frame": "render"}
+    ],
+    "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical"}
+  },
   "pb-bass": {"stems": ["bass"], "mute": {"bass": [[135.5, 138]]}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -3.1}},
-  "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
+  "pb-other-keys": {"stems": ["strings", "keys"]},
   "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 2,
   "cues": [
@@ -18,6 +25,7 @@
     {"bar": 84,  "text": "synth solo ready go", "abs_sec": 151.111, "snap_sec": 147.556},
     {"bar": 92,  "text": "drum stop", "abs_sec": 165.333, "snap_sec": 161.333},
     {"bar": 93,  "beat": 4, "text": "guitar solo ready go", "abs_sec": 168.444, "snap_sec": 164.889},
+    {"bar": 97,  "text": "solo leak ready go", "abs_sec": 174.222, "snap_sec": 170.667},
     {"bar": 100, "text": "verse in", "abs_sec": 179.556, "snap_sec": 176.0},
     {"bar": 111, "text": "chorus in", "abs_sec": 199.111, "snap_sec": 195.556},
     {"bar": 135, "text": "end in", "count": true, "abs_sec": 241.778, "snap_sec": 237.778}

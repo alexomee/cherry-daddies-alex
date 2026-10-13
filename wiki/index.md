@@ -35,7 +35,7 @@
 ### 28.10 new songs
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
-2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 13 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-10-05 апдейт cue (старт «Такая любовь synth fade-in ready go», убраны strings in и light drums, drum fill на такт раньше, synth solo, drum stop 2:45, guitar solo).
+2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-10-12 cue «solo leak ready go» (такт 97 / 174.2с); pb-other: strings + sfx-pb + acoustic-guitar-solo.
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-10-01 корневые стемы обновлены из нового ZIP `(1)`, общий warp 130 BPM; две отдельные гитары `lead_guitars.wav` / `rhythm_guitars.wav`. По запросу только файлы; web/рендер от 2026-09-29, 3 cue на тактах 1/3/19, плейбек не назначен.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; 4 cue (добавлен финальный «end in 3 3 2 1» на 124.1 / 3:21.88). 2026-10-07: pb-other обновлён на v2 (−14.9 LUFS) по результатам репетиции; синхронизирован в риг.
 5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm; 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; оригинальный хвост убран по выбору Alex; pb-drums, practice на четверых, локальный web и click/cues/pb-drums рига обновлены 2026-09-29.
@@ -57,10 +57,10 @@
 3. [Gloria Gaynor — I Will Survive](songs/i-will-survive.md) — ~116.3 BPM; 7 cues (playback in, guitars in, all in, verse in, music stop, voice in, end in).
 4. [Village People — YMCA](songs/ymca.md) — ~127 BPM; 5 cues (all in, verse in 9.1, instrumental in 111.1, chorus in 119.1, end in). cut_bars [3, 11] (старт сразу с темы духовых).
 5. [Donna Summer — Hot Stuff](songs/hot-stuff.md) — ~120.3 BPM; 5 cues (all in, verse in 17.4, guitar solo, chorus in, end in).
-6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — ~119.4 BPM; 7 cues (guitar in, drums in 10.2, verse in 19.3, intro in 43, verse in 53.3, chorus in 69, end in 97). Вырезаны Pre-chorus 2, Chorus 2, Chorus 3 и Instrumental (48 тактов); 2 куплета, 2 блока припевов, нативное Outro (3:21).
+6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — ~119.1 BPM; 8 cues (guitar in, drums in 10.2, verse in 19.3, intro in 43, verse in 53.3, chorus in 69.3, intro in 87, end in 99, fade_out 2 доли). Вырезано соло и повторы (46 тактов, cut_bars [[86, 3], [132, 3]], сохранён затакт темы Outro); 2 куплета, 2 припевных блока, нативное Outro до конца (3:25). Без вокальных срезов.
 7. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — 120.6 BPM; 7 cues (Ti amo all in, voice-only verse, kick in, all in, instrumental in, chorus in, end fill in).
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
-9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 7 cues (all in, verse in 6.1, chorus in, intro in, verse in, D mod chorus in, end in).
+9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 8 cues (all in, verse in 6.1, chorus in, intro in, verse in, chorus in, D mod chorus in, end in).
 10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 7 cues (all in, verse in 7.1, modulation in 39.1, instrumental in, verse in, keep going, end in).
 11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 16 cues (playback in, all in, pre-verse in, verse in, stop x5, bridge in, break in, bridge-2 in, keep going, outro in, end in).
 12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, guitar in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.

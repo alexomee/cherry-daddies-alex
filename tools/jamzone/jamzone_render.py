@@ -1170,13 +1170,40 @@ def main():
     click_st = decode(stems[click_name])
     cut_bars = mix.get("cut_bars")
     if cut_bars:
-        fr_b, to_b = cut_bars
         cl_ons = onsets(click_st.mean(1))
-        t_fr = float(cl_ons[(fr_b - 1)*4])
-        t_to = float(cl_ons[(to_b - 1)*4])
+        def parse_cut_point(spec, default_bar=1, default_beat=1):
+            if isinstance(spec, (list, tuple)):
+                b = int(spec[0])
+                bt = _parse_beat(spec[1]) if len(spec) > 1 else float(default_beat)
+            elif isinstance(spec, dict):
+                b = int(spec.get("bar", default_bar))
+                bt = _parse_beat(spec.get("beat", default_beat))
+            else:
+                b = int(spec)
+                bt = float(default_beat)
+            idx = round((b - 1) * 4 + (bt - 1.0))
+            return b, bt, idx
+
+        if isinstance(cut_bars, dict):
+            fb = cut_bars.get("from_bar", cut_bars.get("from", 1))
+            fbt = cut_bars.get("from_beat", 1)
+            tb = cut_bars.get("to_bar", cut_bars.get("to", 1))
+            tbt = cut_bars.get("to_beat", 1)
+            fr_b, fr_bt, idx_fr = parse_cut_point([fb, fbt])
+            to_b, to_bt, idx_to = parse_cut_point([tb, tbt])
+        elif isinstance(cut_bars, (list, tuple)) and len(cut_bars) == 2:
+            fr_b, fr_bt, idx_fr = parse_cut_point(cut_bars[0])
+            to_b, to_bt, idx_to = parse_cut_point(cut_bars[1])
+        else:
+            sys.exit(f"mix.json: invalid cut_bars spec: {cut_bars}")
+
+        t_fr = float(cl_ons[idx_fr])
+        t_to = float(cl_ons[idx_to])
         s0, s1 = round(t_fr * SR), round(t_to * SR)
         fade_len = int(0.005 * SR)
-        print(f"cut_bars: cutting bars {fr_b} to {to_b} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
+        fr_str = f"bar {fr_b}.{int(fr_bt) if fr_bt.is_integer() else fr_bt}"
+        to_str = f"bar {to_b}.{int(to_bt) if to_bt.is_integer() else to_bt}"
+        print(f"cut_bars: cutting {fr_str} to {to_str} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
         click_st = np.concatenate([click_st[:s0], click_st[s1:]])
 
     insert_bars = mix.get("insert_bars")
