@@ -1,7 +1,12 @@
 {
   "bpm": 130.6,
-  "pitch_semitones": 0,
-  "pb-other": null,
+  "pitch_semitones": -1,
+  "pb-other": {
+    "layers": [
+      {"file": "pb-guitars", "frame": "render"}
+    ],
+    "roles": {"pb-guitars": "musical"}
+  },
   "pb-drums": {"stems": ["drums"]},
   "pb-bass": null,
   "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
