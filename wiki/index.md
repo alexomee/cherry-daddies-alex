@@ -62,12 +62,12 @@
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
 9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 8 cues (all in, verse in 6.1, chorus in, intro in, verse in, chorus in, D mod chorus in, end in).
 10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 7 cues (all in, verse in 7.1, modulation in 39.1, instrumental in, verse in, keep going, end in).
-11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 16 cues (playback in, all in, pre-verse in, verse in, stop x5, bridge in, break in, bridge-2 in, keep going, outro in, end in).
+11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 12 cues (playback in, all in, pre-verse in, verse in, stop x4, bridge in, break in, bridge-2 in, end in @ bar 128.1 / 3:46.2).
 12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, guitar in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).
 15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in); 11_Lead_Vocal (back-vox) в припевах в pb-other.
-16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; 11 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, end in).
+16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; 9 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, keep going, end in @ bar 115.1 / 4:02.1).
 17. [Modern Talking — You're My Heart, You're My Soul](songs/youre-my-heart-youre-my-soul.md) — ~117.5 BPM; 5 cues (all in, verse in 10.3, melody in, verse in, end fill in).
 18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 13 cues (drum-base in, guitar in, verse in, chorus in, intro in, chorus variation, bridge in, voice in, keep going, outro in, end in @ bar 178.1 / 4:43.7; без бэк-вокала после 4:36).
 19. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — 114 BPM; 8 cues (all in, verse in ×2, melody in ×3, chorus in, end fill in).

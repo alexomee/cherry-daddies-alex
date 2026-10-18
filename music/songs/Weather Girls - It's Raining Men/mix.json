@@ -7,7 +7,15 @@
       "08_Synth_Keys",
       "09_Arpeggiator",
       "10_Backing_Vocals"
-    ]
+    ],
+    "fade_out": {
+      "04_Sound_effects": {"from_bar": 127, "from_beat": 4, "to_bar": 128, "to_beat": 1},
+      "07_Piano": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
+      "08_Synth_Keys": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
+      "09_Arpeggiator": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
+      "10_Backing_Vocals": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
+      "11_Lead_Vocal_Izora_Armstead": {"from_bar": 127, "from_beat": 3.5, "to_bar": 127, "to_beat": 4}
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -31,6 +39,13 @@
       "06_Electric_Guitar"
     ]
   },
+  "cut_after_last_cue": 0.85,
+  "fade_out": {
+    "from_bar": 128,
+    "from_beat": 1.15,
+    "to_bar": 128,
+    "to_beat": 1.4
+  },
   "cues": [
     {"bar": 1, "text": "It's Raining Men playback in", "abs_sec": 3.44, "snap_sec": 0.0},
     {"bar": 3, "text": "all in", "abs_sec": 6.88, "snap_sec": 3.408},
@@ -43,10 +58,6 @@
     {"bar": 91, "text": "break in ready go", "abs_sec": 161.43, "snap_sec": 157.928},
     {"bar": 109, "text": "bridge-2 in", "abs_sec": 192.97, "snap_sec": 189.468},
     {"bar": 126, "text": "stop", "abs_sec": 222.73, "snap_sec": 218.798},
-    {"bar": 129, "text": "verse in", "abs_sec": 227.99, "snap_sec": 224.478},
-    {"bar": 152, "text": "stop", "abs_sec": 268.27, "snap_sec": 264.328},
-    {"bar": 167, "text": "keep going", "raw": true, "abs_sec": 294.52, "snap_sec": 291.898},
-    {"bar": 177, "text": "outro in", "abs_sec": 312.0, "snap_sec": 308.498},
-    {"bar": 185, "text": "end in", "count": true, "abs_sec": 326.02, "snap_sec": 322.078}
+    {"bar": 128, "text": "end in", "count": true, "abs_sec": 226.23, "snap_sec": 222.288}
   ]
 }

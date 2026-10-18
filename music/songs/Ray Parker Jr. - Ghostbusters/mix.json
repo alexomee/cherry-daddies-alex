@@ -10,7 +10,19 @@
       "12_Synth_Brass",
       "13_Brass_section",
       "14_Backing_Vocals"
-    ]
+    ],
+    "fade_out": {
+      "06_Digital_Piano": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "07_Electric_Piano_(Clavinet)": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "08_Synth_Strings": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "09_Synth_Keys_1": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "10_Synth_Keys_2": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "11_Synth_Lead": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "12_Synth_Brass": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "13_Brass_section": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
+      "14_Backing_Vocals": {"from_bar": 114, "from_beat": 4, "to_bar": 115, "to_beat": 1},
+      "15_Lead_Vocal": {"from_bar": 114, "from_beat": 1, "to_bar": 114, "to_beat": 2}
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -21,6 +33,13 @@
     "steve": ["02_Drum_Kit"],
     "tanya": ["15_Lead_Vocal"]
   },
+  "cut_after_last_cue": 0.85,
+  "fade_out": {
+    "from_bar": 115,
+    "from_beat": 1.15,
+    "to_bar": 115,
+    "to_beat": 1.4
+  },
   "cues": [
     {"bar": 1, "text": "Ghostbuster playback in", "abs_sec": 4.174, "snap_sec": 0.0},
     {"bar": 2, "text": "guitar bass ready go", "raw": true, "abs_sec": 6.261, "snap_sec": 2.087},
@@ -30,8 +49,6 @@
     {"bar": 75, "text": "break-two in", "abs_sec": 158.609, "snap_sec": 154.435},
     {"bar": 83, "text": "chorus in", "abs_sec": 175.304, "snap_sec": 171.13},
     {"bar": 103, "text": "keep going", "raw": true, "abs_sec": 217.043, "snap_sec": 213.913},
-    {"bar": 115, "text": "keep going", "raw": true, "abs_sec": 242.087, "snap_sec": 238.956},
-    {"bar": 123, "text": "keep going", "raw": true, "abs_sec": 258.783, "snap_sec": 255.652},
-    {"bar": 128, "text": "end in", "count": true, "abs_sec": 269.217, "snap_sec": 264.522}
+    {"bar": 115, "text": "end in", "count": true, "abs_sec": 242.087, "snap_sec": 237.391}
   ]
 }

@@ -1211,3 +1211,17 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Выполнен полный рендер `jamzone_render.py "Holding Out for a Hero" --practice` (обновлены `all.wav`, `click.wav`, `cues.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `stems/*.mp3`, `practice-{steve,roma,tanya,alex}.mp3` и `web/songs.json`).
    - Пересобран титровый клип `tools/lyric-launcher/clips/56.{ass,mp4}` под новую длительность 4:45.25.
    - Обновлённые `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в локальный риг MainStage (`tools/sync_to_mainstage.sh --apply "Holding Out for a Hero"`).
+
+## [2026-10-18] cues & playback | Ghostbusters (4:02) и It's Raining Men (3:46): обрезка концовок, сдвиг end in и чистое завершение pb-other
+
+По запросу Alex аналогично `Holding Out for a Hero` обрезаны концовки и настроены раздельные `fade_out` для `pb-other` и ритм-секции в двух песнях:
+1. **`Ray Parker Jr. — Ghostbusters` (финал на `bar 115.1` = `242.087s` / `4:02.09`):**
+   - Подсказка `"end in"` (`count: true` → «end in 3 · 3 2 1») перенесена с `bar 128` на `bar 115.1` (`242.087s` / `4:02.09`, конец 8-тактового квадрата `107..114` с барабанным брейком в 114 такте), удалены последующие подсказки на `bar 123` и `128`.
+   - В `pb-other.fade_out` духовые и синты (`06_Digital_Piano`, `07_Electric_Piano_(Clavinet)`, `08_Synth_Strings`, `09_Synth_Keys_1`, `10_Synth_Keys_2`, `11_Synth_Lead`, `12_Synth_Brass`, `13_Brass_section`) доигрывают финальный аккорд риффа на счёте «1» (`bar 114.4`) и уходят в ноль на `bar 114 beat 4.5 → bar 115 beat 1` (`241.826s → 242.087s`), так что на даунбите `115.1` (`4:02.09`) `pb-other` уже полностью в нуле (`0.0`); `15_Lead_Vocal` заглушается после `114.1` (до затакта следующей фразы «Who you gonna call?»).
+   - Общий `fade_out` (`bar 115 beat 1.15 → 1.4`, `242.165s → 242.296s`): на `115.1` звучит только финальный даунбит-удар барабанов, баса и гитар.
+2. **`The Weather Girls — It's Raining Men` (финал на `bar 128.1` = `226.230s` / `3:46.23`):**
+   - После стоп-аккорда конца Bridge 2 (`bar 126.1` = `222.730s` / `3:42.73`, cue `stop`) и вокальной коды «Ho-oh, it's raining men, yeah!» (`bar 126.1..127.3`, заканчивается на `3:45.36`) финальная подсказка `"end in"` (`count: true` → «end in 3 · 3 2 1») поставлена на даунбит `bar 128.1` (`226.230s` / `3:46.23`).
+   - В `pb-other.fade_out`: музыкальные стемы (`07_Piano`, `08_Synth_Keys`, `09_Arpeggiator`, `10_Backing_Vocals`) уводятся в ноль на `bar 126 beat 4 → bar 127 beat 1` (после естественного затухания аккорда 126 такта, чтобы на `127.3` не вступало пианино второго куплета), а раскат грома (`04_Sound_effects`) плавно затухает на `bar 127 beat 4 → bar 128 beat 1` (`225.790s → 226.230s`), так что на `bar 128.1` (`3:46.23`) `pb-other` полностью в нуле (`0.0`); `11_Lead_Vocal_Izora_Armstead` уводится в ноль на `127.3.5 → 127.4` (до разговорного затакта «And just...» на `128.1.25`).
+   - Общий `fade_out` (`bar 128 beat 1.15 → 1.4`, `226.296s → 226.406s`): финальный даунбит-удар ритм-секции на `128.1` (`3:46.23`) и тишина до слабой восьмой `128.1.5`.
+3. **Ре-рендер, деплой и синк в риг:**
+   - Выполнены полные рендеры обеих песен (`--practice`), пересобраны титры `35.{ass,mp4}` и `51.{ass,mp4}`, обновлён сайт и R2 (`tools/sync_site.py`), синхронизированы WAV-файлы и титры в риг `basbit/cherry-daddies-2000`.

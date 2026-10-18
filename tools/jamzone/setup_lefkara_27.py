@@ -119,11 +119,16 @@ save_mix("Ricchi e Poveri - Sarà perché ti amo", [
 save_mix("Weather Girls - It's Raining Men", [
     {"bar": 1, "text": "It's Raining Men playback in"},
     {"bar": 3, "text": "all in"},
-    {"bar": 19, "text": "main in ready go"},
-    {"bar": 26, "beat": 4, "text": "verse in"},
+    {"bar": 19, "text": "pre-verse in"},
+    {"bar": 27, "text": "verse in"},
+    {"bar": 43, "text": "stop"},
+    {"bar": 52, "text": "stop"},
+    {"bar": 62, "text": "bridge in"},
+    {"bar": 79, "text": "stop"},
     {"bar": 91, "text": "break in ready go"},
-    {"bar": 109, "text": "bridge in ready go"},
-    {"bar": 185, "text": "end in", "count": True}
+    {"bar": 109, "text": "bridge-2 in"},
+    {"bar": 126, "text": "stop"},
+    {"bar": 128, "text": "end in", "count": True}
 ])
 
 # 12. Flashdance (Michael Sembello) - Maniac

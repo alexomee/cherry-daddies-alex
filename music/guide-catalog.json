@@ -1096,24 +1096,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/b7f061aaf92addf9105701afd1a37733f52080bda9a964cd4e4f884a26b37fd5/all.wav"
     },
     "music/songs/Ray Parker Jr. - Ghostbusters": {
-      "bytes": 48226330,
+      "bytes": 43072382,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 273.391224,
-      "key": "cherry-dash/5a15a70cbdbb/guides/a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e/all.wav",
-      "mix_sha256": "296c76a8c447e3a102dcd1a74f4dd04a59046a68cd853a05d271a71ee94562e7",
+      "duration_sec": 244.173832,
+      "key": "cherry-dash/5a15a70cbdbb/guides/9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a/all.wav",
+      "mix_sha256": "0207bae8af478c64d9d175941f120652dce26a87d9605a15e703c49502b2e0e8",
       "render_audio": {
-        "click.wav": "1cc9c8b0c2070d661842e5d03053496dff28496ac3aaeaa8e38be1edc43405f6",
-        "cues.wav": "31a4151e4832916c94ba4bd2097d0bae3f7e9d11d81324999994ac0a8fda0a9d",
-        "pb-drums.wav": "1f6032c1a74f0516824ba0988153af34ee0eac7f6b1486a8f2be38556d9c26bd",
-        "pb-other.wav": "c0d6052acb5b616c2aeac9cf0252aeb0e86ff5f0d6d3587b46c58be0e36b5f63"
+        "click.wav": "18d406a9947c3c7ac6169171b352cf58f5a05487f5f39080d03093721016aee0",
+        "cues.wav": "689605a74b1ad65a615f6f8df772cc242549f333ce5ad2b074d9508b68c54783",
+        "pb-drums.wav": "61b3b3de482080b4c0de28f0afbcb812470ad311e83063fcc78bc23daec745fd",
+        "pb-other.wav": "5d0cd654c1aa65226df59b8f0d3e2c97201ade95df3ecea1e535be9b3a3c3842"
       },
       "render_pcm": {
-        "click.wav": "f8b3fd390b29b16d09f36c51997d493d1af60115361f48af5695cc866067389e",
-        "pb-other.wav": "4f8bb2638da53baf06bcc1c5b37dd2f9ee5b98d2703b973582a68dae117264a1"
+        "click.wav": "f0a7850836ffa0d467020b32fd713146beabe1b1957636c6962ff7ede040cec2",
+        "pb-other.wav": "7bf4d0f834ae979b1be978e28fa1b3d94a6c2aa2e524c8a12c292d8f1de10e32"
       },
       "sample_rate": 44100,
-      "sha256": "a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e",
+      "sha256": "9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a",
       "status": "available",
       "timeline": {
         "bar_sec": 2.086956,
@@ -1121,7 +1121,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.723841
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/a0bf2a43056ab9d66ab7ee73341d9fe5a1f95cedfb58b4c3c86946f05a72a98e/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a/all.wav"
     },
     "music/songs/Ricchi e Poveri - Mamma María": {
       "bytes": 33965786,
@@ -1519,24 +1519,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/d98efd79f3f1/guides/e790f280744b1af8ea115cef73beab1b7659d0d08aab9aea681d652f04eeda1b/all.wav"
     },
     "music/songs/Weather Girls - It's Raining Men": {
-      "bytes": 58410286,
+      "bytes": 40176422,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 331.123401,
-      "key": "cherry-dash/27083695f860/guides/1ad28d429679e5ea25986df5cfea9204939b225b8270ee53f4b88557657c74c0/all.wav",
-      "mix_sha256": "a8e5157d95ac52cc6349ea337bfe8fb4f896b8473aa49eba6c62ad2592ef2639",
+      "duration_sec": 227.756825,
+      "key": "cherry-dash/27083695f860/guides/97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319/all.wav",
+      "mix_sha256": "ea0e29af120171cef6d066da7bc113a4a5fb0a1c103d3d782a212a7f83e86731",
       "render_audio": {
-        "click.wav": "3abb53868049cf45fbf83e48c3b2c37a9263b64e081ff478e0b2ba9a624c1e85",
-        "cues.wav": "f6c68e1abb3127d2addefad91da06c8f2af8417d59bd47f8e6b278302ba2784d",
-        "pb-drums.wav": "9aedd35b23191c2711fe275551232cc366d29e887949895248c5fda3e5b0958f",
-        "pb-other.wav": "0e36f631eac7aeec9e78e5eebb35b63e565f0b3f69c44e37addf9a21ee166158"
+        "click.wav": "408125c808d95e086c3319c86873948d47b5a1218819d47d38536619fec6c25b",
+        "cues.wav": "62a6767b1312c13295b814779fc7eaebf6146d9b0a5841e54ee626206bd7cade",
+        "pb-drums.wav": "dfed6ab0c00cfa39eb0058eb17eb709ffcc7d8e48bfc576b834b3a0828f5f7c6",
+        "pb-other.wav": "48b54a6934e0b842b2e91b15bb83066e5e6e87637ebfb1e4d0663e41357efa92"
       },
       "render_pcm": {
-        "click.wav": "0b99c05fb17788eb2f7fef46d2aaf8894bbb65ed281b04917cdb842ba59a4248",
-        "pb-other.wav": "2dff9c1fe93b1aa05482ecfd3e4f41ee9a78eff117c116f42cf0746195b9fdbf"
+        "click.wav": "327af40db66576a9596d7919a76dfd2bf81db0e596c6077f8defef764a62523a",
+        "pb-other.wav": "69c3b8a3aa04a9953e2b6cc334f24d206e8fc245dcf3bd7eb15d9bfb55a2f89b"
       },
       "sample_rate": 44100,
-      "sha256": "1ad28d429679e5ea25986df5cfea9204939b225b8270ee53f4b88557657c74c0",
+      "sha256": "97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319",
       "status": "available",
       "timeline": {
         "bar_sec": 1.751976,
@@ -1544,7 +1544,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 2.780907
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/1ad28d429679e5ea25986df5cfea9204939b225b8270ee53f4b88557657c74c0/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319/all.wav"
     },
     "music/songs/Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)": {
       "bytes": 52730438,

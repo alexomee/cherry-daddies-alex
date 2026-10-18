@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-10
+updated: 2026-10-18
 title: "It's Raining Men"
 artist: The Weather Girls
 set: "24.10 Lefkara Сет 2 #8"
@@ -15,12 +15,18 @@ set: "24.10 Lefkara Сет 2 #8"
 
 - **bpm:** ~137 BPM (`click: follow`).
 - **Тональность:** Abm / G#m (оригинальная тональность JamZone, `cat_13536`).
+- **Длительность:** обрезано до 3:47.8 (227.8s, 130 тактов; финальный удар `end in` на `bar 128.1` = 226.230s / `3:46.23`; `cut_after_last_cue: 0.85`).
+- **fade_out:**
+  - `07_Piano`, `08_Synth_Keys`, `09_Arpeggiator`, `10_Backing_Vocals`: `bar 126 beat 4 → bar 127 beat 1` (`224.040s → 224.480s`) — после стоп-аккорда на `bar 126.1` (`3:42.73`) и его естественного затухания инструменты `pb-other` полностью в нуле, чтобы в такте 127 не начинался фортепианный аккомпанемент второго куплета.
+  - `04_Sound_effects` (гром): `bar 127 beat 4 → bar 128 beat 1` (`225.790s → 226.230s`) — раскат грома в такте 126–127 плавно затухает в ноль к финальному даунбиту `bar 128.1` (`3:46.23`).
+  - `11_Lead_Vocal_Izora_Armstead`: `bar 127 beat 3.5 → beat 4` (`225.575s → 225.790s`) — после фразы «Ho-oh, it's raining men, yeah!» (заканчивается на `3:45.36`) убирается затакт «And just...» перед вторым куплетом.
+  - Общий `fade_out` (`all`, барабаны, бас, гитара): `bar 128 beat 1.15 → beat 1.4` (`226.296s → 226.406s`) — финальный даунбит-удар на `bar 128.1` (`3:46.23`) и тишина до слабой восьмой `128.1.5`.
 - **Источник стемов:** JamZone HQ-стемы (13 дорожек).
 - **Перкуссия:** `03_Hand_Clap` исключена из плейбека (играет живой барабанщик).
 - **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
 - **pb-other:** звуковые эффекты, фортепиано, синты, арпеджиатор и бэки: `04_Sound_effects`, `07_Piano`, `08_Synth_Keys`, `09_Arpeggiator`, `10_Backing_Vocals`.
 - **players:** roma (`05_Bass`), steve (`02_Drum_Kit`), tanya (`11_Lead_Vocal_Izora_Armstead`, `12_Lead_Vocal_Martha_Wash_(ad_lib)`, `13_Lead_Vocal_Martha_Wash`), alex (`06_Electric_Guitar`).
-- **Cues (16 шт.):**
+- **Cues (12 шт.):**
   - `bar 1.1` (3.440s) — `It's Raining Men playback in` («It's Raining Men · playback in ready go») — вступление плейбека / SFX дождя.
   - `bar 3.1` (6.880s) — `all in` («all in ready go») — фортепианное интро.
   - `bar 19.1` (35.040s, 0:35) — `pre-verse in` («pre-verse in ready go») — инструментальный бит перед куплетом.
@@ -31,9 +37,5 @@ set: "24.10 Lefkara Сет 2 #8"
   - `bar 79.1` (140.400s, JZ 02:18 C chord) — `stop` («stop in 3 · 3 2 1») — стоп на аккорд C (такт 79).
   - `bar 91.1` (161.430s) — `break in ready go` — брейк («I feel stormy...»).
   - `bar 109.1` (192.970s) — `bridge-2 in` («bridge-2 in ready go») — бридж 2.
-  - `bar 126.1` (222.730s, JZ 03:40 C chord) — `stop` («stop in 3 · 3 2 1») — стоп на аккорд C (такт 126).
-  - `bar 129.1` (227.990s) — `verse in` («verse in ready go») — второй куплет.
-  - `bar 152.1` (268.270s, JZ 04:25 C chord) — `stop` («stop in 3 · 3 2 1») — стоп на аккорд C (такт 152).
-  - `bar 167.1` (294.520s, JZ 04:51) — `keep going` — подсказка продолжать в Chorus 3.
-  - `bar 177.1` (312.000s) — `outro in` («outro in ready go») — аутро.
-  - `bar 185.1` (326.020s, JZ 05:23 downbeat) — `end in` (`count: true` → «end in 3 · 3 2 1») — финальный аккорд.
+  - `bar 126.1` (222.730s, 3:42.73) — `stop` («stop in 3 · 3 2 1») — стоп на аккорд C («Ho-oh, it's raining...»).
+  - `bar 128.1` (226.230s, `3:46.23`) — `end in` (`count: true` → «end in 3 · 3 2 1») — финальный удар на `3:46.23` после «...men, yeah!».
