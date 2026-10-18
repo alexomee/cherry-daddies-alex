@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-13
+updated: 2026-10-14
 title: Gimme! Gimme! Gimme! (A Man After Midnight)
 artist: ABBA
 set: "24.10 Lefkara #6"
@@ -27,5 +27,5 @@ set: "24.10 Lefkara #6"
   - `bar 43.1` — `intro in ready go` (87.822s) — вступление темы синтезатора Intro 2 (1:27.8)
   - `bar 53.3` — `verse in ready go` (108.742s) — куплет 2, точно под вокальный затакт Тани «Movie stars» (1:48.7)
   - `bar 69.3` — `chorus in ready go` (141.142s) — вход вокала во 2-й припев на 3-ю долю такта 69 под слова «Gimme! Gimme! Gimme!» (02:21)
-  - `bar 87.1` — `intro in ready go` (176.262s) — вступление клавишной темы Outro на даунбит (02:56.3)
+  - `bar 86.4` — `intro in ready go` (175.772s) — вступление клавишной темы Outro на 1 долю раньше сильной доли (02:55.8)
   - `bar 99.1` — `end in` (199.942s, count: true) — финальный удар банды на такте 99 (03:20); плейбек затухает за 2 доли

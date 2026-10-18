@@ -6,8 +6,19 @@
       "07_Synth_Voice",
       "08_Synth_Keys_1",
       "09_Synth_Keys_2",
-      "10_Backing_Vocals"
-    ]
+      "10_Backing_Vocals",
+      "11_Lead_Vocal"
+    ],
+    "roles": {
+      "11_Lead_Vocal": "back-vox"
+    },
+    "mute": {
+      "11_Lead_Vocal": [
+        [1, 31.58],
+        [48.5, 63.59],
+        [82.5, 87.55]
+      ]
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -34,7 +45,7 @@
   "cues": [
     {"bar": 2, "text": "What a Feeling guitars in", "abs_sec": 5.218, "snap_sec": 0.0},
     {"bar": 6, "text": "verse in", "abs_sec": 15.652, "snap_sec": 11.055},
-    {"bar": 20, "text": "all in", "abs_sec": 52.098, "snap_sec": 47.577},
+    {"bar": 20, "text": "all in", "lead_tempo": "post", "abs_sec": 52.098, "snap_sec": 48.17},
     {"bar": 48, "text": "solo in ready go", "abs_sec": 106.379, "snap_sec": 102.452},
     {"bar": 55, "beat": 4, "text": "vocal in", "abs_sec": 121.403, "snap_sec": 117.476},
     {"bar": 80, "text": "bridge in", "abs_sec": 168.414, "snap_sec": 164.487},

@@ -218,7 +218,7 @@ save_mix("Cyndi Lauper - Girls Just Want to Have Fun", [
 save_mix("Flashdance (Irene Cara) - What a Feeling", [
     {"bar": 2, "text": "What a Feeling guitars in"},
     {"bar": 6, "text": "verse in"},
-    {"bar": 20, "text": "all in"},
+    {"bar": 20, "text": "all in", "lead_tempo": "post"},
     {"bar": 48, "text": "solo in ready go"},
     {"bar": 55, "beat": 4, "text": "vocal in"},
     {"bar": 80, "text": "bridge in"},
@@ -242,8 +242,7 @@ save_mix("Footloose (1984 film) - Holding Out for a Hero", [
     {"bar": 137, "beat": 4, "text": "chorus in"},
     {"bar": 153, "text": "keep going"},
     {"bar": 170, "text": "outro in ready go"},
-    {"bar": 194, "text": "keep going"},
-    {"bar": 210, "text": "end in", "count": True}
+    {"bar": 178, "text": "end in", "count": True}
 ], click_mode="follow", cat="cat_13868")
 
 # 22. Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)

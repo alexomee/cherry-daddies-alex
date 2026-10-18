@@ -7,7 +7,21 @@
       "10_Arpeggiator",
       "11_Brass_section",
       "12_Backing_Vocals"
-    ]
+    ],
+    "fade_out": {
+      "12_Backing_Vocals": {
+        "from_bar": 171,
+        "from_beat": 1,
+        "to_bar": 172,
+        "to_beat": 1
+      },
+      "10_Arpeggiator": {
+        "from_bar": 177,
+        "from_beat": 4,
+        "to_bar": 178,
+        "to_beat": 1
+      }
+    }
   },
   "pb-bass": null,
   "pb-drums": {
@@ -36,10 +50,10 @@
   "click": "follow",
   "cut_after_last_cue": 0.85,
   "fade_out": {
-    "from_bar": 210,
-    "from_beat": 1,
-    "to_bar": 211,
-    "to_beat": 1
+    "from_bar": 178,
+    "from_beat": 1.15,
+    "to_bar": 178,
+    "to_beat": 1.45
   },
   "cues": [
     {"bar": 3, "text": "Holding Out for a Hero drum-base in", "abs_sec": 3.208, "snap_sec": 0.0},
@@ -54,7 +68,6 @@
     {"bar": 137, "beat": 4, "text": "chorus in", "abs_sec": 219.128, "snap_sec": 215.925},
     {"bar": 153, "text": "keep going", "abs_sec": 243.568, "snap_sec": 241.165},
     {"bar": 170, "text": "outro in ready go", "abs_sec": 270.848, "snap_sec": 267.635},
-    {"bar": 194, "text": "keep going", "abs_sec": 309.348, "snap_sec": 306.945},
-    {"bar": 210, "text": "end in", "count": true, "abs_sec": 335.028, "snap_sec": 331.405}
+    {"bar": 178, "text": "end in", "count": true, "abs_sec": 283.688, "snap_sec": 280.075}
   ]
 }

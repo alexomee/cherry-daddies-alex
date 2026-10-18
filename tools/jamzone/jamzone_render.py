@@ -424,6 +424,18 @@ def build_follow_grid(met_mono, mix, beat, external=True):
         for k in range(zb, len(on)): bt[k] = ph_post + k*beat   # clean post at true bpm
         info.update({"za": za, "zb": zb, "beatB": beat, "zone_t": (float(on[za]), float(on[zb-1])),
                      "slowbpm": 60/float(np.max(d[lo:hi+1]))})
+    reclick = []
+    for c in mix.get("cues", []):
+        if c.get("lead_tempo") == "post":
+            i = int(round(cue_beat_index(c)))
+            n_lead = int(c.get("lead_beats", 4))
+            if n_lead <= i < len(on) - 2:
+                b_post = float(np.median(np.diff(on[i:min(len(on), i+8)])))
+                for m in range(1, n_lead + 1):
+                    bt[i - m] = on[i] - m * b_post
+                reclick.append((i - n_lead, i, b_post, float(on[i])))
+    if reclick:
+        info["reclick"] = reclick
     return bt, beat, info
 
 RU_VOICE, EN_VOICE = "Milena", None              # macOS `say` voices (None = system default)
@@ -1516,6 +1528,25 @@ def main():
                     cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
                 k += 1
             print(f"click: front {k-1} beat(s) filled with JZ count-in at {60/b_intro:.1f} bpm")
+        if follow and finfo.get("reclick"):
+            import jamzone_click as JC
+            jdb = JC.wav_read(JC.DB); jdb = jdb/(np.max(np.abs(jdb)) or 1)
+            jbt = JC.wav_read(JC.BT); jbt = jbt/(np.max(np.abs(jbt)) or 1)
+            g = float(np.abs(cbuf).max())
+            pk_off = int(round(met_onsets(jdb)[0]*SR))
+            for k0, k1, b_post, _ in finfo["reclick"]:
+                t_first = cue_base + relt(k0)
+                t_ev = cue_base + relt(k1)
+                s0_c = max(0, round((t_first - 0.10)*SR))
+                s1_c = min(total, round((t_ev - 0.05)*SR))
+                if s1_c > s0_c:
+                    cbuf[s0_c:s1_c] = 0.0
+                for k in range(k0, k1):
+                    hit = (jdb if k % 4 == 0 else jbt*0.514)*g
+                    s = round((cue_base + relt(k))*SR) - pk_off; n = min(len(hit), total-s)
+                    if s >= 0 and n > 0:
+                        cbuf[s:s+n, 0] += hit[:n]; cbuf[s:s+n, 1] += hit[:n]
+                print(f"click: bar {k0//4+1} ({k1-k0} beats before bar {k1//4+1}.{k1%4+1}) switched to post-tempo {60/b_post:.1f} bpm ({t_first:.3f}s..{t_ev:.3f}s)")
         out = {"click": cbuf}
     def parse_fade_range(spec):
         if not spec: return None

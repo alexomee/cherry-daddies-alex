@@ -67,10 +67,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 205.479546,
       "key": "cherry-dash/acbf0b681733/guides/d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd/all.wav",
-      "mix_sha256": "20b54bb5d3e38a54f5efe515a8c06621e2ca711572ddad6ddd7c0f92ca6aa425",
+      "mix_sha256": "5661d18a30da54cad62fc6a8c788de0aa11bc2ade7b2e66a8864c3f7c6654015",
       "render_audio": {
         "click.wav": "03a8cfdbd3d159597a3183905e941bd9466976e08b1f8e4d401fbb54e142e23e",
-        "cues.wav": "0039ad7ac6aafb5ff252895e071d7f18bb4fb5ef1f41c5dc6e65d69717631224",
+        "cues.wav": "cafa1cfd997b875886a9de8564c5d424480d6bb4950b55f2b7420223d42041cf",
         "pb-drums.wav": "b67e5b1c39890a90607e36fc95b849cb7f7f5eded937106aec8564e6e8d186e4",
         "pb-other.wav": "cc91a6eda3fbe85a7d10f7d5136ebd5994ad9d8e6a6a36f65e8dcbb6af1294c5"
       },
@@ -374,16 +374,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 199.321995,
       "key": "cherry-dash/8b0f4b8c27d3/guides/d82f47973ef16a00d37e4f3b9412ef61be82589966443dbce7604e8e653d9c58/all.wav",
-      "mix_sha256": "a7eb98825df22fa67542194932edfe23925f6a4e12a3b7daeba0c9e100c16a5d",
+      "mix_sha256": "f91eda7843faf7cc3ee018532d258702c4d0212e5ac8fc49d7c7b78220c3c666",
       "render_audio": {
         "click.wav": "1a47a41dd4758fd00e56b42706114a5f57ee5c1518e369f177b36ea0de09861d",
-        "cues.wav": "7f01720f58fb57e2a6b54783814089ff60c2a94bde3348d887b90a72cafd0d43",
+        "cues.wav": "9a56cfaf621416999d519153aa6afac7f37aa29ac88971111e53b5f8efc17847",
         "pb-drums.wav": "2bc7a27fd183bfca74cdeec9920689502e4231028e91521645e316c5b52c4719",
-        "pb-other.wav": "d39293d67a5a0bd46924b1589ba4931fc7cbe6d2c78ac4b6cfc12a38f7a5f3f0"
+        "pb-other.wav": "0ca864004b706491107cd79be4316fad633b4092fff6183ba7df08fdced83e88"
       },
       "render_pcm": {
         "click.wav": "01ad03494fd521daf8dee7b0fc74863dd1354de79d5e88b3a2bfc51e5d2ecce7",
-        "pb-other.wav": "6eb4ebbed7073c950041638ec75fb1e612a57c851330105dcda40ad991a63bdb"
+        "pb-other.wav": "c463c8957226db39d2ea17a6ce23a38a31a47cf27c6ac7cca748c1211f43f3a0"
       },
       "sample_rate": 44100,
       "sha256": "d82f47973ef16a00d37e4f3b9412ef61be82589966443dbce7604e8e653d9c58",
@@ -651,16 +651,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 238.621224,
       "key": "cherry-dash/b8302f019fa7/guides/7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1/all.wav",
-      "mix_sha256": "fdcabf53bcf7bda65385d5f9c8c0114416d83f01688319787107e589cf87145a",
+      "mix_sha256": "b4ec81c98a5dcf9514156a042fdd51cbfaab71657d62d0fa8a4dab70515963b6",
       "render_audio": {
-        "click.wav": "e44a1dad69a63bd3ce71db281e9fbf7538a88115e1f74e07ab8799054d6f285e",
-        "cues.wav": "7588ccbb385fae1bb2241abd3e06ce8a893b39bf61f8931451e12637c9fd8124",
+        "click.wav": "374a1926ff5eb56dcb4a02cb900ccfe5264fe53fdba6aa89823d614e17d08836",
+        "cues.wav": "7fff9a295c07a4ddb04c826e6e1936b5ef5de3c2e93b3a01e9dadbcde7e0ead1",
         "pb-drums.wav": "f54e966dc27d561531cfd5c3aa32e5232f19e533b9cdb74233753e7a8c579da4",
-        "pb-other.wav": "ea1df370213927ff6a17c038618db359f415f5d1a328f2a1d4faf614559b9238"
+        "pb-other.wav": "599b1c7bee765d02e0d7ecd4727082596fd24b1f8ffad06bac14868d4c1a7f27"
       },
       "render_pcm": {
-        "click.wav": "de9f89288c33f426b6762624bc6de86ffc0333e221f912978aff6a9a20398ed6",
-        "pb-other.wav": "e8725fd578ab59adb6512438c585fd726fb4c93d2601a74381be66b25fec4922"
+        "click.wav": "cf146575cca148d99c32b2411e5f53c55e97afedd8f91a95e0b4d107175fbe63",
+        "pb-other.wav": "a2b97fc676c96aafe47420a92d6f4aa8bac592833aaaef43c6bfeb36cea3f335"
       },
       "sample_rate": 44100,
       "sha256": "7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1",
@@ -702,24 +702,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav"
     },
     "music/songs/Footloose (1984 film) - Holding Out for a Hero": {
-      "bytes": 59363486,
+      "bytes": 50317638,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 336.527029,
-      "key": "cherry-dash/b2705ef3b0bb/guides/aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f/all.wav",
-      "mix_sha256": "589d8afb6111d3adea56fbb60167592545297f7a98907d10bc8547e5edaf00bf",
+      "duration_sec": 285.246712,
+      "key": "cherry-dash/b2705ef3b0bb/guides/c567a5f61b1652f6b530ad0c396dc6a8906f6814d4ecbcca69062be6d4f7a975/all.wav",
+      "mix_sha256": "f11a7ed298e3a2af11cabd143db023f443ecad34ed79bfb7d932a8418fcedc4b",
       "render_audio": {
-        "click.wav": "0f483ef6ccaabd8ec7c0c0496730b29078cbc3655c71f87269508aa95fc3ab35",
-        "cues.wav": "2ec8362cdf545d41d2390fd7b3767a41aa861c427fc89d7a2486100712ea4812",
-        "pb-drums.wav": "e0e6f3503b885691271717d403474dacf717e3e014420eeb1e74d19016c8ff80",
-        "pb-other.wav": "9913a3190b6b5dc9c050cd4bd2cee7526f1efe36aa25b029cb4b5efd854cbc61"
+        "click.wav": "fb92dc0082b24abf6644e2c1c00908c776095298bc1a029adcd171592f36d7e1",
+        "cues.wav": "4bb138449b50bf0015f3506421082d67f6f1e7e48150914a571f613d61b4e0d6",
+        "pb-drums.wav": "7aaf7248c23b084e0350f62448a3a23d576d6d4be864b4f43ee825228273aeb5",
+        "pb-other.wav": "b5eb84f0057130b6113cb09eac5c6ed158140544c3b6688eee89558e1599f5c5"
       },
       "render_pcm": {
-        "click.wav": "827e688f1f4f36f867118f5716dba8d78836f79b87a987cfa71a8329a22d0093",
-        "pb-other.wav": "14a3e00c8e897547cbf03e0a2668664f70e7330846960c9a211638597082ec3c"
+        "click.wav": "21acfe7fa810792bc5b5c7f36931a5b0358f8dd8f6d632d23fcc8a81bef028b4",
+        "pb-other.wav": "18e02b772999a82c9a2a0f7cdd31115fbd0ca921a267c8aa13a4c4ef00a48f07"
       },
       "sample_rate": 44100,
-      "sha256": "aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f",
+      "sha256": "c567a5f61b1652f6b530ad0c396dc6a8906f6814d4ecbcca69062be6d4f7a975",
       "status": "available",
       "timeline": {
         "bar_sec": 1.60251,
@@ -727,7 +727,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": -0.298912
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/aea6fb23114b732b08107450f1d92c3fb66beaa6267946d3a42fa273b0ac863f/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/c567a5f61b1652f6b530ad0c396dc6a8906f6814d4ecbcca69062be6d4f7a975/all.wav"
     },
     "music/songs/Gala - Freed from Desire": {
       "bytes": 38069694,

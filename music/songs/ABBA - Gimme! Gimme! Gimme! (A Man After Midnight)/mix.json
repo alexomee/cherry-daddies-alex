@@ -47,7 +47,7 @@
     {"bar": 43, "text": "intro in ready go", "abs_sec": 87.822, "snap_sec": 83.807},
     {"bar": 53, "beat": 3, "text": "verse in ready go", "abs_sec": 108.742, "snap_sec": 104.697},
     {"bar": 69, "beat": 3, "text": "chorus in ready go", "abs_sec": 141.142, "snap_sec": 137.107},
-    {"bar": 87, "text": "intro in ready go", "abs_sec": 176.262, "snap_sec": 172.277},
+    {"bar": 86, "beat": 4, "text": "intro in ready go", "abs_sec": 175.772, "snap_sec": 171.757},
     {"bar": 99, "text": "end in", "count": true, "abs_sec": 199.942, "snap_sec": 195.447}
   ]
 }

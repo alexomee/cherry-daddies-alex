@@ -1104,3 +1104,110 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
    - Обновлены `click.wav`, `cues.wav`, `all.wav`, `pb-drums.wav`, `pb-other.wav`, `cue_preview.mp3`, practice-миксы (steve, roma, tanya, alex) и `web/songs.json`.
    - Пересобран титровый клип: `clips/56.ass` и `clips/56.mp4` под новую длину 5:36.53.
    - Актуализированы `mix.json`, `tools/jamzone/setup_lefkara_27.py`, `wiki/songs/holding-out-for-a-hero.md`.
+
+## [2026-10-13] setlist & web | 24.10 Lefkara: разбивка на SET 1 (10 песен) и SET 2 (11 песен) и утверждённый порядок треков
+
+По запросу Alex обновлён порядок песен для концерта 24.10 в Лефкаре в веб-дашборде (`tools/setlist_dashboard.py` и `web/songs.json`):
+- **SET 1 (`cls: "lefkara1"`, 10 песен):**
+  1. Stayin' Alive — Bee Gees
+  2. Felicità — Al Bano & Romina Power
+  3. Cheri Cheri Lady — Modern Talking
+  4. Sunny — Boney M.
+  5. Stumblin' In — Suzi Quatro & Chris Norman
+  6. Sarà perché ti amo — Ricchi e Poveri
+  7. You're My Heart, You're My Soul — Modern Talking
+  8. Mamma Maria — Ricchi e Poveri
+  9. Gimme! Gimme! Gimme! — ABBA
+  10. YMCA — Village People
+- **SET 2 (`cls: "lefkara2"`, 11 песен):**
+  1. Heart of Glass — Blondie
+  2. Ghostbusters — Ray Parker Jr.
+  3. I Will Survive — Gloria Gaynor
+  4. Brother Louie — Modern Talking
+  5. Venus — Bananarama
+  6. What a Feeling — Irene Cara
+  7. Maniac — Michael Sembello
+  8. Hot Stuff — Donna Summer
+  9. Holding Out for a Hero — Bonnie Tyler
+  10. It's Raining Men — The Weather Girls
+  11. The Best — Tina Turner
+- Перегенерирован `web/songs.json` (`python3 tools/setlist_dashboard.py`), обновлены `wiki/gigs/2026-10-24-lefkara.md` и `wiki/index.md`.
+
+## [2026-10-13] setlist & web | 28.10 Music Hall: замена вкладки «07.10 rehearsal» на сетлист концерта 28.10 (26 песен)
+
+По запросу Alex из веб-дашборда (`web/index.html`, `tools/setlist_dashboard.py`) удалён список `07.10 rehearsal` и добавлена новая вкладка **«28.10 Music Hall»** (26 песен: СЕТ 1 — 11 песен, СЕТ 2 — 13 песен, Бис — 2 песни):
+- **СЕТ 1 (`cls: "musichall1"`, 11 песен):** Солнце, Around the World (La La La La La), Беги от меня, Everytime We Touch, Я буду, Whenever Wherever, Mr. Saxobeat, Такая любовь, Ту-лу-ла, Destination Calabria, Freed From Desire (prod. Molella).
+- **СЕТ 2 (`cls: "musichall2"`, 13 песен):** Кислотный DJ, Я устал, Про красивую жизнь, Солнышко, Медляк, Кукла колдуна, Мало тебя, Pretty Fly, Rock & Roll Queen, Heads Will Roll, I Love It, Мама Люба, Медведица.
+- **Бис (`cls: "musichall_bis"`, 2 песни):** Мелом, Я сошла с ума.
+- Перегенерирован `web/songs.json` (84/84 записей с данными), добавлена страница `wiki/gigs/2026-10-28-music-hall.md`, обновлён `wiki/index.md`.
+
+## [2026-10-13] tune | Ту-лу-ла: транспонирование на полтона ниже (D major → C# / Db major, pitch_semitones: -1)
+
+По запросу Alex песня «Ту-лу-ла» (Чичерина) переведена на полтона ниже оригинала (`"pitch_semitones": -1` в `music/songs/Чичерина - Ту-лу-ла/mix.json`, D major → C# / Db major):
+- Выполнен полный перерендер через `jamzone_render.py "Чичерина - Ту-лу-ла" --practice`.
+- `all.wav`, `cue_preview.mp3`, мультитрековые стемы (`auto-render/stems/vocal.mp3`, `bass.mp3`, `guitars.mp3`) и все 4 practice-микса (`alex`, `roma`, `steve`, `tanya`) транспонированы на −1 полутон через RubberBand R3 (`-3 -F`, с сохранением формант и темпа).
+- `click.wav`, `cues.wav`, `pb-drums.wav` и `stems/drums.mp3` остались без питча; проверка `sync_to_mainstage.sh "Ту-лу-ла"` подтвердила побайтную идентичность файлов рига (`click.wav`, `cues.wav`, `pb-drums.wav`).
+- Обновлены `web/songs.json`, `wiki/songs/chicherina-tu-lu-la.md` и `wiki/index.md`.
+
+## [2026-10-14] feat | Ту-лу-ла: добавлен слой pb-guitars в pb-other, обновление сайта и рига
+
+По запросу Alex добавлен пользовательский гитарный плейбек `/Users/alex/Downloads/тулула-pb-guitars.mp3` в `pb-other`:
+1. **Измерение фрейма и тональности:**
+   - Фрейм **render** (от $t=0$, длительность 146.064 с): входы ритм-гитары точно ложатся на сильные доли трёх соло-секций (`bar 5.1` = 11.026 с, `bar 33.1` = 62.480 с, `bar 69.1` = 128.637 с до `bar 77.1`).
+   - Тональность: уже в ключе группы (**−1 полутон**, C# / Db major; корреляция хрома-профиля со сдвигом −1: 0.911 по басу, 0.960 по гитаре) → подключён как `layer` (без повторного питча).
+   - Роль: `musical` (пик −0.1 dBFS, gated RMS −12.8 dBFS).
+2. **Конфигурация и рендер:**
+   - Сконвертирован в `music/songs/Чичерина - Ту-лу-ла/parts/pb-guitars.wav` (24-bit / 48 kHz PCM), описан в `parts/README.md`.
+   - В `mix.json` задан `"pb-other": {"layers": [{"file": "pb-guitars", "frame": "render"}], "roles": {"pb-guitars": "musical"}}`.
+   - Выполнен полный рендер (`jamzone_render.py "Чичерина - Ту-лу-ла" --practice`): собраны `pb-other.{wav,mp3}`, `all.wav`, `cue_preview.mp3`, `stems/*.mp3`, practice-миксы (`alex`, `roma`, `steve`, `tanya`).
+3. **Синхронизация сайта и рига:**
+   - Сайт обновлён через `tools/sync_site.py`: выгружены 10 обновлённых миксов/стемов и новый guide `all.wav` в R2 (`music/guide-catalog.json`), задеплоен прод Vercel (`web`).
+   - В риг (`basbit/cherry-daddies-2000`) скопирован `cherry-daddies-setlist-2026-06-16/Ту-лу-ла/pb-other.wav` (`sync_to_mainstage.sh --apply --create-missing "Ту-лу-ла"`), закоммичен и запушен в `origin/main` (`47214db9`). `click.wav`, `cues.wav` и `pb-drums.wav` остались побайтно без изменений.
+
+## [2026-10-14] playback | Sunny: убрана электрогитара из pb-other
+
+По запросу Alex для `Boney M. — Sunny` (`cat_5568`):
+- Из `pb-other.stems` в `music/songs/Boney M. - Sunny/mix.json` удалён стем `04_Electric_Guitar` (Alex играет его живьём, остаётся в `players.alex`).
+- В `pb-other` остались: `05_Piano`, `06_Synth_Pad`, `07_Brass_section`, `08_String_Section`, `09_Backing_Vocals`.
+- Выполнен полный ре-рендер (`jamzone_render.py "Boney M. - Sunny" --practice`), обновлены `pb-other.{wav,mp3}`, `web/songs.json` и `wiki/songs/boney-m-sunny.md`.
+
+## [2026-10-14] cues | Gimme! Gimme! Gimme!: сдвиг cue «intro in ready go» (Outro) на 1 долю раньше (bar 86.4, 02:55.8)
+
+По запросу Alex в `ABBA — Gimme! Gimme! Gimme! (A Man After Midnight)` подсказка `intro in ready go` на входе в Outro перенесена на 1 долю раньше — с `bar 87.1` (176.262s / 02:56.3) на `bar 86.4` (175.772s / 02:55.8, `snap_sec: 171.757`):
+- Обновлён `music/songs/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)/mix.json`.
+- Выполнен полный ре-рендер (`jamzone_render.py "ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)" --practice`), обновлены `cues.wav`, `cue_preview.mp3`, practice-миксы и `web/songs.json`.
+- Обновлённый `cues.wav` скопирован в локальный риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Gimme! Gimme! Gimme!/cues.wav`).
+
+## [2026-10-14] cues & click | What a Feeling: отсчёт «all in» (0:52) и клик в такте 19 переведены на 2-й темп (123.8 BPM)
+
+По запросу Alex проверен и исправлен темп подсказки `all in` (`bar 20.1`, 52.098s) и клика перед входом барабанов в `Irene Cara — What a Feeling`:
+- **Причина:** в исходном `01_Click.m4a` JamZone переключение темпа с 92.0 BPM на 123.8 BPM происходило только в момент `bar 20.1` (`52.098s`), поэтому 4 доли такта 19 (где звучит отсчёт «all — in — ready — go» и клик перед вступлением барабанов) шли в старом медленном темпе **92.0 BPM** (`49.565s, 50.218s, 50.870s, 51.522s`).
+- **Исправление (`"lead_tempo": "post"` в `mix.json` и `jamzone_render.py`):**
+  - Даунбит `49.565s` (аккорд F на слове «steel» после 18.4) сохранён, а 4 доли отсчёта такта 19 перед `bar 20.1` (`50.159s, 50.644s, 51.128s, 51.613s` → `52.098s`) теперь как в `cues.wav` («all — in — ready — go»), так и в `click.wav` идут ровно во **2-м (быстром) темпе 123.8 BPM** (шаг `0.4846s`).
+- Выполнен полный ре-рендер (`jamzone_render.py "What a Feeling"`): обновлены `click.wav`, `cues.wav`, `cue_preview.mp3`, `stems/click.mp3`, `stems/cues.mp3`, `mix.json`, `web/songs.json`.
+- Обновлённые `click.wav` и `cues.wav` скопированы в локальный риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/What a Feeling/`).
+
+## [2026-10-14] playback | What a Feeling: добавлен лид-вокал в припевы в плейбек (pb-other)
+
+По запросу Alex для `Irene Cara — What a Feeling` (cat_10091):
+- Дорожка `11_Lead_Vocal` подключена в `pb-other.stems` с ролью `"roles": {"11_Lead_Vocal": "back-vox"}` (автоуровень по целевому потолку -23 dBFS: -5.4 dB, выровнено с `10_Backing_Vocals`).
+- Настроен мьют вне припевов с сохранением затактов «What a feeling»: `"mute": {"11_Lead_Vocal": [[1, 31.58], [48.5, 63.59], [82.5, 87.55]]}`:
+  - Заглушены интро + Verse 1 + Verse 2 (`[1, 31.58]`, до затакта «What a feeling» перед Chorus 1), Instrumental 1 + Verse 3 (`[48.5, 63.59]`, после хвоста «life» и до затакта «What a feeling» перед Chorus 2), Instrumental 2 / бридж (`[82.5, 87.55]`, после протяжного «What a feeling» и до затакта перед Chorus 3).
+  - В Chorus 1 (`31.58..48.5`), Chorus 2 (`63.59..82.5`), Chorus 3 и финальном припевном аутро (`87.55..114`) лид-вокал звучит в плейбеке вместе с `10_Backing_Vocals`.
+- Выполнен полный ре-рендер (`jamzone_render.py "What a Feeling" --practice`), обновлены `pb-other.{wav,mp3}`, `cue_preview.mp3`, practice-миксы и `web/songs.json`; обновлённый `pb-other.wav` скопирован в локальный риг MainStage (`tools/sync_to_mainstage.sh --apply "What a Feeling"`).
+
+## [2026-10-17] cues & playback | Holding Out for a Hero: обрезка концовки на 4:43 (bar 178.1) и отключение бэк-вокала после последнего лида (~4:36)
+
+По запросу Alex для `Bonnie Tyler — Holding Out for a Hero` (`cat_13868`):
+1. **Сокращение аутро до одного 8-тактового квадрата (`bar 170..177`):**
+   - После входа в Outro (`bar 170.1`, 270.848s / 4:30.85) и последней фразы лид-вокала Тани («I need a hero / I'm holding out for a hero 'till the end of the night», заканчивается на `bar 173.2` = 276.07s / 4:36.07) оставлены ровно 4 такта инструментального доигрыша квадрата (`bar 174..177` с барабанным брейком в 177 такте и арпеджиатором).
+   - Счётный финал `"end in"` (`count: true` → «end in 3 · 3 2 1») перенесён с `bar 210.1` на даунбит **`bar 178.1` (`283.688s` / `4:43.69`, `snap_sec: 280.068`)**, удалён промежуточный cue `keep going` на `bar 194`.
+   - Анализ `10_Arpeggiator` в `bar 177..178` показал, что каждый такт арпеджиатор играет 16-ми вверх (доли 1–2) и вниз (доли 3–4): в 177 такте на доле 3 («2») он берёт вершину `G6` и спускается `B5 → G5 → D5`, а на доле 4 («1», `bar 177.4` = `283.288s`) завершает нисходящий ход `B4 → G4 → D4 → B3`; затем на `bar 178.1` (`283.688s`) он прыгал вверх и начинал новую восходящую фразу `A4 → C5 → E5 → A5`, обрывавшуюся на полуслове.
+   - В `pb-other.fade_out` для `10_Arpeggiator` задано `{"from_bar": 177, "from_beat": 4, "to_bar": 178, "to_beat": 1}` (`283.288s → 283.688s`): на счёте «1» синт доигрывает нисходящий ход и к даунбиту `bar 178.1` (доля после «1») уже полностью в нуле (`0.0`), новая фраза не начинается.
+   - Общий `"fade_out"` задан `{"from_bar": 178, "from_beat": 1.15, "to_bar": 178, "to_beat": 1.45}` (`283.748s → 283.868s`): на `bar 178.1` звучит только финальный даунбит-удар барабанов и тоника баса `A2` (до слабой восьмой `178.1.5`), после чего с `283.87s` (`4:43.87`) трек полностью в тишине.
+2. **Отключение бэк-вокала после последнего лида (~4:36):**
+   - В `pb-other.fade_out` для `12_Backing_Vocals` задано `{"from_bar": 171, "from_beat": 1, "to_bar": 172, "to_beat": 1}` (в тактах 171..173.2 стем бэк-вокала уже в паузе, поэтому с `bar 172.1` / 4:34.05 до конца песни `12_Backing_Vocals` полностью в нуле и хор на `bar 173.25` / 4:36.3 не вступает).
+3. **Ре-рендер и обновление артефактов:**
+   - Выполнен полный рендер `jamzone_render.py "Holding Out for a Hero" --practice` (обновлены `all.wav`, `click.wav`, `cues.wav`, `pb-other.{wav,mp3}`, `pb-drums.{wav,mp3}`, `cue_preview.mp3`, `stems/*.mp3`, `practice-{steve,roma,tanya,alex}.mp3` и `web/songs.json`).
+   - Пересобран титровый клип `tools/lyric-launcher/clips/56.{ass,mp4}` под новую длительность 4:45.25.
+   - Обновлённые `click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav` скопированы в локальный риг MainStage (`tools/sync_to_mainstage.sh --apply "Holding Out for a Hero"`).

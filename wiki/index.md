@@ -38,7 +38,7 @@
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-10-12 cue «solo leak ready go» (такт 97 / 174.2с); pb-other: strings + sfx-pb + acoustic-guitar-solo.
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-10-01 корневые стемы обновлены из нового ZIP `(1)`, общий warp 130 BPM; две отдельные гитары `lead_guitars.wav` / `rhythm_guitars.wav`. По запросу только файлы; web/рендер от 2026-09-29, 3 cue на тактах 1/3/19, плейбек не назначен.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; 4 cue (добавлен финальный «end in 3 3 2 1» на 124.1 / 3:21.88). 2026-10-07: pb-other обновлён на v2 (−14.9 LUFS) по результатам репетиции; синхронизирован в риг.
-5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm; 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; оригинальный хвост убран по выбору Alex; pb-drums, practice на четверых, локальный web и click/cues/pb-drums рига обновлены 2026-09-29.
+5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm, pitch −1 (на полтона ниже, C#/Db major); 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; pb-other (layer `pb-guitars` — ритм-гитара на трёх соло), pb-drums, practice на четверых; сайт и риг обновлены 2026-10-14.
 6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — JamZone cat_67531 выровнен RubberBand на 141 BPM; pb-other=backing vocals+lead guitar, бас живой (Рома на гитаре), practice-roma; 8 cue, финальный end in 3 + 3 2 1 на 93.1 / 2:40; arrangement-v4 в локальном web, cues в риге, новый pb-other подключить в MainStage вручную.
 7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — Moises, 143 BPM, A minor (pitch −2), pb-other=backing vocals, pb-drums, бас живой; 5 cue: drums 1.1, vocal 2.1 (первый бэк), all 10.1, bass verse 73.4 (вокальный затакт перед басом), end fill in 108.1 (3:03 даунбит); practice для четверых.
 8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 3 cue (старт synth in, bar 9 drums in, bar 17 verse in).
@@ -57,7 +57,7 @@
 3. [Gloria Gaynor — I Will Survive](songs/i-will-survive.md) — ~116.3 BPM; 7 cues (playback in, guitars in, all in, verse in, music stop, voice in, end in).
 4. [Village People — YMCA](songs/ymca.md) — ~127 BPM; 5 cues (all in, verse in 9.1, instrumental in 111.1, chorus in 119.1, end in). cut_bars [3, 11] (старт сразу с темы духовых).
 5. [Donna Summer — Hot Stuff](songs/hot-stuff.md) — ~120.3 BPM; 5 cues (all in, verse in 17.4, guitar solo, chorus in, end in).
-6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — ~119.1 BPM; 8 cues (guitar in, drums in 10.2, verse in 19.3, intro in 43, verse in 53.3, chorus in 69.3, intro in 87, end in 99, fade_out 2 доли). Вырезано соло и повторы (46 тактов, cut_bars [[86, 3], [132, 3]], сохранён затакт темы Outro); 2 куплета, 2 припевных блока, нативное Outro до конца (3:25). Без вокальных срезов.
+6. [ABBA — Gimme! Gimme! Gimme!](songs/abba-gimme-gimme-gimme.md) — ~119.1 BPM; 8 cues (guitar in, drums in 10.2, verse in 19.3, intro in 43, verse in 53.3, chorus in 69.3, intro in 86.4, end in 99, fade_out 2 доли). Вырезано соло и повторы (46 тактов, cut_bars [[86, 3], [132, 3]], сохранён затакт темы Outro); 2 куплета, 2 припевных блока, нативное Outro до конца (3:25). Без вокальных срезов.
 7. [Ricchi e Poveri — Sarà perché ti amo](songs/sara-perche-ti-amo.md) — 120.6 BPM; 7 cues (Ti amo all in, voice-only verse, kick in, all in, instrumental in, chorus in, end fill in).
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
 9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 8 cues (all in, verse in 6.1, chorus in, intro in, verse in, chorus in, D mod chorus in, end in).
@@ -66,10 +66,10 @@
 12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, guitar in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).
-15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in).
+15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in); 11_Lead_Vocal (back-vox) в припевах в pb-other.
 16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; 11 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, end in).
 17. [Modern Talking — You're My Heart, You're My Soul](songs/youre-my-heart-youre-my-soul.md) — ~117.5 BPM; 5 cues (all in, verse in 10.3, melody in, verse in, end fill in).
-18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 14 cues (drum-base in, guitar in, verse in, chorus in, intro in, chorus variation, bridge in, voice in, keep going, outro in, end in).
+18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 13 cues (drum-base in, guitar in, verse in, chorus in, intro in, chorus variation, bridge in, voice in, keep going, outro in, end in @ bar 178.1 / 4:43.7; без бэк-вокала после 4:36).
 19. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — 114 BPM; 8 cues (all in, verse in ×2, melody in ×3, chorus in, end fill in).
 20. [Modern Talking — Brother Louie](songs/brother-louie.md) — 109 BPM; 4 cues (playback in bar 1.3, verse in bar 50.1, short chorus ready go bar 89.4, end fill in bar 105.3).
 21. [Shocking Blue — Venus](songs/venus.md) — 128 BPM; 6 cues (guitar in bar 3, all in bar 9, verse in bar 13, guitar solo x2, end in).
@@ -101,8 +101,9 @@
 
 ## Гиги
 
-- [Репетиция 2026-10-07](gigs/2026-10-07-rehearsal.md) — Сетлист репетиции (10 песен); дашборд-вкладка «07.10 rehearsal».
-- [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; программа из 21 песни через веб-дашборд (вкладка «24.10 lefkara»).
+- [Репетиция 2026-10-07](gigs/2026-10-07-rehearsal.md) — Сетлист репетиции (10 песен); архив (вкладка заменена на «28.10 Music Hall»).
+- [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; программа из 21 песни (SET 1: 10 песен, SET 2: 11 песен) в веб-дашборде (вкладка «24.10 lefkara»).
+- [Концерт 2026-10-28 (Music Hall)](gigs/2026-10-28-music-hall.md) — Предстоящий концерт в Music Hall; программа из 26 песен (СЕТ 1: 11 песен, СЕТ 2: 13 песен, Бис: 2 песни) в веб-дашборде (вкладка «28.10 Music Hall»).
 - [Концерт 2026-06-26 (мультикам-съёмка)](gigs/2026-06-26-multicam.md) — Концерт с двухкамерной съёмкой (IMG_2689/2690 + DIMAS оператор): сетлист из 24 песен, записанные Set-1 оператор-оффсеты; дата и площадка частично не подтверждены.
 
 ## Контент
