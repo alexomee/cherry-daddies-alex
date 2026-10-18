@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T20:45:20",
+  "generated": "2026-10-18T21:26:41",
   "counts": {
     "total": 84,
     "data": 84,
@@ -7186,7 +7186,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 12,
+            "count": 11,
             "list": [
               {
                 "t": 3.44,
@@ -7249,16 +7249,10 @@
                 "snap": 189.468
               },
               {
-                "t": 222.73,
-                "text": "stop",
-                "bar": 126,
-                "snap": 218.798
-              },
-              {
-                "t": 226.23,
+                "t": 224.48,
                 "text": "end in",
-                "bar": 128,
-                "snap": 222.288
+                "bar": 127,
+                "snap": 220.548
               }
             ]
           },
@@ -7322,24 +7316,24 @@
             }
           ],
           "stem_versions": {
-            "vocal": "d8ba2fcd22",
-            "back_vox": "b9186876ca",
-            "drums": "6795fd86db",
-            "keys": "b6a5c7e78b",
-            "bass": "ed7ebc0fee",
-            "guitars": "1f48f41648",
-            "other": "17342fb4ef",
-            "click": "3d55c1e22d",
-            "cues": "c66e057cee"
+            "vocal": "b3b54f22f9",
+            "back_vox": "611eed2f86",
+            "drums": "2e58ca459f",
+            "keys": "69f4690649",
+            "bass": "a9513877e7",
+            "guitars": "e88a8262f3",
+            "other": "c8d641a25d",
+            "click": "b0a8374f3b",
+            "cues": "29ed4829cf"
           },
           "versions": {
-            "all": "4da350ed92",
-            "drums": "6795fd86db",
-            "alex": "c5f24aa5c2",
-            "steve": "f820a0adb7",
-            "roma": "332e0e1e87",
-            "tanya": "1bb1e89b2f",
-            "pb-other": "f6924c3d00"
+            "all": "2eff014727",
+            "drums": "2e58ca459f",
+            "alex": "0edd143747",
+            "steve": "9318870896",
+            "roma": "71d5e96225",
+            "tanya": "14c8876e7f",
+            "pb-other": "5bc2be63ca"
           },
           "pb_other": {
             "available": true,

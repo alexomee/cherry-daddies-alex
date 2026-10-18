@@ -1519,24 +1519,24 @@
       "url": "https://releases.agentiqa.com/cherry-dash/d98efd79f3f1/guides/e790f280744b1af8ea115cef73beab1b7659d0d08aab9aea681d652f04eeda1b/all.wav"
     },
     "music/songs/Weather Girls - It's Raining Men": {
-      "bytes": 40176422,
+      "bytes": 39867374,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 227.756825,
-      "key": "cherry-dash/27083695f860/guides/97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319/all.wav",
-      "mix_sha256": "ea0e29af120171cef6d066da7bc113a4a5fb0a1c103d3d782a212a7f83e86731",
+      "duration_sec": 226.004853,
+      "key": "cherry-dash/27083695f860/guides/36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1/all.wav",
+      "mix_sha256": "6b3d4381db6774a5d3d9a358b2517b71da87af0a7b179cf4531c5721894a1516",
       "render_audio": {
-        "click.wav": "408125c808d95e086c3319c86873948d47b5a1218819d47d38536619fec6c25b",
-        "cues.wav": "62a6767b1312c13295b814779fc7eaebf6146d9b0a5841e54ee626206bd7cade",
-        "pb-drums.wav": "dfed6ab0c00cfa39eb0058eb17eb709ffcc7d8e48bfc576b834b3a0828f5f7c6",
-        "pb-other.wav": "48b54a6934e0b842b2e91b15bb83066e5e6e87637ebfb1e4d0663e41357efa92"
+        "click.wav": "9f63282cc6e8458f35d554a7dfe5fd39f56617c009ffb6578bec59c720ffc4ca",
+        "cues.wav": "6dc17f65b84c0705ecd527b18b764eb0e5046242fe0794e3e50cd275444b9ff1",
+        "pb-drums.wav": "0100f31fc77a195e12b9a315a6073add196d349d9c66fed4502ec57044660fc9",
+        "pb-other.wav": "2af50cbfd3cda6c776b9670fbacf9e267f63c0758e0d04e1e97047cf3d8546c3"
       },
       "render_pcm": {
-        "click.wav": "327af40db66576a9596d7919a76dfd2bf81db0e596c6077f8defef764a62523a",
-        "pb-other.wav": "69c3b8a3aa04a9953e2b6cc334f24d206e8fc245dcf3bd7eb15d9bfb55a2f89b"
+        "click.wav": "eddc15ac04254ae04ff2d9567b7141c86b11806304e8007398d90e4be3e6e8ef",
+        "pb-other.wav": "a6827b392670cf9c1e11556a6949df6adba1933330baee1ab7853dca069af50b"
       },
       "sample_rate": 44100,
-      "sha256": "97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319",
+      "sha256": "36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1",
       "status": "available",
       "timeline": {
         "bar_sec": 1.751976,
@@ -1544,7 +1544,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 2.780907
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/97185f74a50aac47da2044fdcd82725506514caf107db3eed1dc342a848a2319/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1/all.wav"
     },
     "music/songs/Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)": {
       "bytes": 52730438,

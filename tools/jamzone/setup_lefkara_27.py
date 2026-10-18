@@ -127,8 +127,7 @@ save_mix("Weather Girls - It's Raining Men", [
     {"bar": 79, "text": "stop"},
     {"bar": 91, "text": "break in ready go"},
     {"bar": 109, "text": "bridge-2 in"},
-    {"bar": 126, "text": "stop"},
-    {"bar": 128, "text": "end in", "count": True}
+    {"bar": 127, "text": "end in", "count": True}
 ])
 
 # 12. Flashdance (Michael Sembello) - Maniac

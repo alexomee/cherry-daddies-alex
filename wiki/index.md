@@ -62,7 +62,7 @@
 8. [Joan Jett — I Love Rock 'n' Roll](songs/joan-jett-i-love-rock-n-roll.md) — 95 BPM; 6 cues (guitar in, verse in, chorus in, guitar solo, bridge in, end in).
 9. [Al Bano & Romina Power — Felicità](songs/al-bano-romina-power-felicita.md) — 107 BPM; 8 cues (all in, verse in 6.1, chorus in, intro in, verse in, chorus in, D mod chorus in, end in).
 10. [Ricchi e Poveri — Mamma Maria](songs/ricchi-e-poveri-mamma-maria.md) — 134 BPM; 7 cues (all in, verse in 7.1, modulation in 39.1, instrumental in, verse in, keep going, end in).
-11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 12 cues (playback in, all in, pre-verse in, verse in, stop x4, bridge in, break in, bridge-2 in, end in @ bar 128.1 / 3:46.2).
+11. [The Weather Girls — It's Raining Men](songs/its-raining-men.md) — ~137 BPM; 11 cues (playback in, all in, pre-verse in, verse in, stop x3, bridge in, break in, bridge-2 in, end in @ bar 127.1 / 3:44.5 "Yeah!").
 12. [Michael Sembello — Maniac](songs/maniac.md) — ~159 BPM; 9 cues (drums in 3.1, guitar in 11.1, verse in 18.4, longer here 59.1, bridge in 101, guitar solo 117, prechorus in 133, chorus in 140.4, end in 171). Mute synth keys 2 до Chorus 3; synth keys 1 в плейбеке.
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).

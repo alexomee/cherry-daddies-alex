@@ -9,12 +9,12 @@
       "10_Backing_Vocals"
     ],
     "fade_out": {
-      "04_Sound_effects": {"from_bar": 127, "from_beat": 4, "to_bar": 128, "to_beat": 1},
+      "04_Sound_effects": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
       "07_Piano": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
       "08_Synth_Keys": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
       "09_Arpeggiator": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
       "10_Backing_Vocals": {"from_bar": 126, "from_beat": 4, "to_bar": 127, "to_beat": 1},
-      "11_Lead_Vocal_Izora_Armstead": {"from_bar": 127, "from_beat": 3.5, "to_bar": 127, "to_beat": 4}
+      "11_Lead_Vocal_Izora_Armstead": {"from_bar": 127, "from_beat": 3, "to_bar": 127, "to_beat": 3.5}
     }
   },
   "pb-bass": null,
@@ -41,9 +41,9 @@
   },
   "cut_after_last_cue": 0.85,
   "fade_out": {
-    "from_bar": 128,
+    "from_bar": 127,
     "from_beat": 1.15,
-    "to_bar": 128,
+    "to_bar": 127,
     "to_beat": 1.4
   },
   "cues": [
@@ -57,7 +57,6 @@
     {"bar": 79, "text": "stop", "abs_sec": 140.4, "snap_sec": 136.448},
     {"bar": 91, "text": "break in ready go", "abs_sec": 161.43, "snap_sec": 157.928},
     {"bar": 109, "text": "bridge-2 in", "abs_sec": 192.97, "snap_sec": 189.468},
-    {"bar": 126, "text": "stop", "abs_sec": 222.73, "snap_sec": 218.798},
-    {"bar": 128, "text": "end in", "count": true, "abs_sec": 226.23, "snap_sec": 222.288}
+    {"bar": 127, "text": "end in", "count": true, "abs_sec": 224.48, "snap_sec": 220.548}
   ]
 }
