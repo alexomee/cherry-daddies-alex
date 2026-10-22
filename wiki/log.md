@@ -1235,3 +1235,20 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - `bar 113.1` (`abs_sec: 260.571` / `4:20.57`, `snap_sec: 256.0`) — `"end in"` (`count: true`) → «end in 3 · 3 2 1» на последнем ударе барабанов в финале (отсчёт «3 2 1» на долях `112.2–112.4`).
 Выполнен полный рендер с `--practice` и обновлён `web/songs.json`.
 
+## [2026-10-22] setlist & web | 24.10 Lefkara: обновлён порядок песен в SET 1 и SET 2 по списку Тани
+
+В `tools/setlist_dashboard.py` и `web/songs.json` обновлён порядок треков для концерта 24.10 в Лефкаре (21 песня):
+- **SET 1 (`cls: "lefkara1"`, 10 песен):** Stayin' Alive, Sunny, Venus, Sarà perché ti amo, You're My Heart, You're My Soul, Mamma Maria, Gimme! Gimme! Gimme!, Hot Stuff, It's Raining Men, I Will Survive.
+- **SET 2 (`cls: "lefkara2"`, 11 песен):** Stumblin' In, Cheri Cheri Lady, Felicità, Brother Louie, Heart of Glass, Ghostbusters, What a Feeling, Maniac, Holding Out for a Hero, YMCA, The Best.
+- Обновлена страница `wiki/gigs/2026-10-24-lefkara.md`.
+
+## [2026-10-22] lyrics, setlist & rig | 28.10 Music Hall: добавлены клипы 62–65 (Солнце, Кислотный DJ, Мама Люба, Smells Like Teen Spirit), обновлён сетлист 28.10 (27 песен) и проводка 28_10_1/2.concert
+
+1. **Тексты и клипы (`tools/lyric-launcher/`):**
+   - Подготовлены, проверены с guide и доставлены в риг (`basbit/cherry-daddies-2000`) клипы `62` (*Солнце — Елена Терлеева*), `63` (*Кислотный DJ — Акула*), `64` (*Мама Люба — SEREBRO*) и `65` (*Smells Like Teen Spirit — Nirvana*).
+   - В `28_10_1.concert`, `28_10_2.concert`, `2000_1.concert`, `2000_2.concert` исправлены `Lyrics.cst` / `programChangeNumber` для `Сольнце.patch` (`prog=62`), `Akula.patch` (`prog=63`), `Serebro.patch` (`prog=64`) и `я буду.patch` (`prog=33`).
+2. **Сетлист `28.10 Music Hall` (27 песен) и `28_10_2.concert`:**
+   - **SET 1 — Dance Nostalgia (12 песен):** Солнце, Around the World, Беги от меня, Я буду, Такая любовь, Ту-лу-ла, Blinding Lights, Whenever, Wherever, Everytime We Touch, Mr. Saxobeat, Destination Calabria, Freed From Desire.
+   - **SET 2 — Party & Rock (13 песен):** Кислотный DJ, Солнышко, Про красивую жизнь, Я устал, Медляк, Beverly Hills (добавлен `beverly hills.patch` в `28_10_2.concert`, убран `Rock & roll Queen.patch`), Мало тебя, Медведица, Pretty Fly, Кукла колдуна, Heads Will Roll, I Love It, Мама Люба.
+   - **БИС — Все поют! (2 песни):** Мелом, Я сошла с ума.
+   - Обновлены `tools/setlist_dashboard.py`, `web/songs.json`, `wiki/gigs/2026-10-28-music-hall.md`, `wiki/index.md`.
