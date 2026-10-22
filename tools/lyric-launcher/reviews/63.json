@@ -1,0 +1,74 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 236.571429,
+    "audio_sha256": "ac49a7ae0639bf5f8c6d804ace8b6ad9b5062d67cd1adb6cc6b84df45239c3d6",
+    "clips": {
+      "ass": "67d14c35ab44dcf9868744ce4d5c6c2ac6410a09719860586fe233f932e28608",
+      "mp4": "56c7805487f078564a47583a834e57a59a3dd0049faca54ca29f1212c286c06d"
+    },
+    "guide": {
+      "bytes": 41731318,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 236.571429,
+      "key": "cherry-dash/fd31c4f9ad95/guides/ac49a7ae0639bf5f8c6d804ace8b6ad9b5062d67cd1adb6cc6b84df45239c3d6/all.wav",
+      "mix_sha256": "6342a1dd567ed350a5df0214a6bc79f9220284786aec134ff3c0a6aa09c16cbf",
+      "render_audio": {
+        "click.wav": "01d701010e7f6b2b08981be13d55b69a8a91122d55bed571b04d7043ff88c927",
+        "cues.wav": "1c51421e79534f74ac7cae998db10aa38a0ea3dcb90d9d9d527f232df4454310",
+        "pb-bass.wav": "f626ccd6069809cfcc7564cce43d4941de0a1070527abbc00b37cce417c0403d",
+        "pb-drums.wav": "b6de50e198881619e84e3b363cf0ad0b98ee4c42c0ae192b318280a1148a42df"
+      },
+      "render_pcm": {
+        "click.wav": "abcfa0154385b24d27f45db2ac5df3aac59dbb757a6aee29e7443cd7e774544b",
+        "pb-bass.wav": "005a39255a1fb0ab516f5fb971f7c13fef40899e2c872dbc8da9065ca22121a6"
+      },
+      "sample_rate": 44100,
+      "sha256": "ac49a7ae0639bf5f8c6d804ace8b6ad9b5062d67cd1adb6cc6b84df45239c3d6",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.714286,
+        "bpm": 140.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 2.798458
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/ac49a7ae0639bf5f8c6d804ace8b6ad9b5062d67cd1adb6cc6b84df45239c3d6/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Кислотный DJ/all.wav": "1cf8ff9308e9e6dec877056045ae0137b7617b22c40370c8954702bfd8492de8",
+        "cherry-daddies-setlist-2026-06-16/Кислотный DJ/click.wav": "01d701010e7f6b2b08981be13d55b69a8a91122d55bed571b04d7043ff88c927",
+        "cherry-daddies-setlist-2026-06-16/Кислотный DJ/cues.wav": "1c51421e79534f74ac7cae998db10aa38a0ea3dcb90d9d9d527f232df4454310",
+        "cherry-daddies-setlist-2026-06-16/Кислотный DJ/pb-drums.wav": "b6de50e198881619e84e3b363cf0ad0b98ee4c42c0ae192b318280a1148a42df",
+        "lyrics/clips/63.ass": null,
+        "lyrics/clips/63.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Кислотный DJ",
+      "cat": "",
+      "clip": "63",
+      "concert_patch": "Akula.patch",
+      "factory_dir": "music/songs/Кислотный DJ",
+      "pc_field": "64",
+      "set": "63",
+      "song": "Кислотный DJ",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Кислотный DJ/auto-render/timeline.json": "f0e6f93c86d8f446c8599efd01b4e43987f911726088f8755d3bdd5a6b4c9f48",
+      "music/songs/Кислотный DJ/mix.json": "6342a1dd567ed350a5df0214a6bc79f9220284786aec134ff3c0a6aa09c16cbf",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/63.tsv": "9af774d9bfdfe47ebed1ad0f67d9e0721b0d5931ddca21e37a6ff88d97de6f4f",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "05e01a5e17b4a6cab5186fd21bf3cc8bfab525b418ec71053561e5928e89e12d"
+}

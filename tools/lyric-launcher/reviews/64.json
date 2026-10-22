@@ -1,0 +1,75 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 246.588231,
+    "audio_sha256": "0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553",
+    "clips": {
+      "ass": "424741291ea9ec7c963b7bac541db6f33d05069a499efcd6677acfacf6b86f47",
+      "mp4": "997a31b48384108ae673826f2775fe06419a54d621345e80e1cbc7206f8cae7f"
+    },
+    "guide": {
+      "bytes": 43498282,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 246.588231,
+      "key": "cherry-dash/bfc10db79749/guides/0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553/all.wav",
+      "mix_sha256": "7a65ce6df97cfd78cb37db77dfccab22a6d696cdc8c6205790393e58ed4b21b1",
+      "render_audio": {
+        "click.wav": "9ee0d229a1ea292539f7dee8c17823e487bcf99d2cf7a306a7d174d285a3053b",
+        "cues.wav": "2948053d0216a5e1b7590d14f4567bd878955330d83121a4d67b907d55633517",
+        "pb-bass.wav": "d517cf006f3cf5d43ebb5c3099406f7a020f869880dc75836f88d1b25ccd4ec8",
+        "pb-drums.wav": "a83e4a0f4c9ea23692bcd11bcb5bbb65027ee72ba158479e3747f4fd1009517e"
+      },
+      "render_pcm": {
+        "click.wav": "98f64563a21635e0c3bbc484089049065d249f50f6bfcc92a718f8b35b8dbf76",
+        "pb-bass.wav": "6c1eab7109df2cb766f0e9a0a1e576ecef9f97cd7296b2f0578f2f3b5d16b002"
+      },
+      "sample_rate": 44100,
+      "sha256": "0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.882353,
+        "bpm": 127.5,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.739218
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/bfc10db79749/guides/0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Мама Люба/all.wav": "99bd1dffdf6d5eb7237b2b7f1393c741f7c9176c72a58a13e0f1d37efc78a851",
+        "cherry-daddies-setlist-2026-06-16/Мама Люба/click.wav": "9ee0d229a1ea292539f7dee8c17823e487bcf99d2cf7a306a7d174d285a3053b",
+        "cherry-daddies-setlist-2026-06-16/Мама Люба/cues.wav": "2948053d0216a5e1b7590d14f4567bd878955330d83121a4d67b907d55633517",
+        "cherry-daddies-setlist-2026-06-16/Мама Люба/pb-bass.wav": "d517cf006f3cf5d43ebb5c3099406f7a020f869880dc75836f88d1b25ccd4ec8",
+        "cherry-daddies-setlist-2026-06-16/Мама Люба/pb-drums.wav": "a83e4a0f4c9ea23692bcd11bcb5bbb65027ee72ba158479e3747f4fd1009517e",
+        "lyrics/clips/64.ass": null,
+        "lyrics/clips/64.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Мама Люба",
+      "cat": "",
+      "clip": "64",
+      "concert_patch": "Serebro.patch",
+      "factory_dir": "music/songs/Мама Люба",
+      "pc_field": "65",
+      "set": "64",
+      "song": "Мама Люба",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Мама Люба/auto-render/timeline.json": "e9057719a495eef660469bb9dd3c3a73b2382f8ecbd33277b8687e3f86456406",
+      "music/songs/Мама Люба/mix.json": "7a65ce6df97cfd78cb37db77dfccab22a6d696cdc8c6205790393e58ed4b21b1",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/64.tsv": "676c3aa7123d56c5fb2eb235b1d7710edbdf57b5262b52ab1cb556674333ac24",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "5d2d549d8412653c41d487492a38605c07cb3f23e2a46226391cc0084931eff7"
+}

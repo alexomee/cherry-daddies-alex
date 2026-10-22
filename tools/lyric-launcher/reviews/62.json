@@ -1,0 +1,77 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 219.69229,
+    "audio_sha256": "c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11",
+    "clips": {
+      "ass": "95a867b07dd17beac2c3fe2106595174f259da2dd5cdb9042f910a847ab5e139",
+      "mp4": "3480c41df8b9559f60981e1eeaa455690909d5cc72fdb4fbfd1db2b6d11ccd8f"
+    },
+    "guide": {
+      "bytes": 38753838,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 219.69229,
+      "key": "cherry-dash/8aed085975f2/guides/c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11/all.wav",
+      "mix_sha256": "f068557b69bae5835ccdbdfb2f719d6720693898687c455845932bc16ffd6219",
+      "render_audio": {
+        "click.wav": "680f506e69a9da4bf475b041b9db44290017379f7c57d511d4174b18d45c80f9",
+        "cues.wav": "d245cb85c9af6973b633b7a17e04abf831935bbaa3cb14bbdcfe54589ce935b5",
+        "pb-drums.wav": "775fceb818453e611525fa7f4cbeb33a7875b9bbc3c14132d829d5de870569ee",
+        "pb-other-keys.wav": "6e18c2624a2f7f03062653c4a4baf6fecf72416923ab18f5eee8861e41cd262b",
+        "pb-other.wav": "ca259d561dafcf45b7ad6235645fe3b8ad5b7d3d9b6bad050d0e3af4852e25f2"
+      },
+      "render_pcm": {
+        "click.wav": "2f7f4813006a182cc9b62ee71a46dd24bf5436494f5f9639b280c4312ea8a4eb",
+        "pb-other.wav": "282e7bfa0e3ae97b56136493b051462bcf7f1606af2c734fa96b132132b06bd5"
+      },
+      "sample_rate": 44100,
+      "sha256": "c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.846154,
+        "bpm": 130.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.632194
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/c1b5f0aa0197f636301cff0b025d08a8ea5d86e7124e70646b272abb8f813b11/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/all.wav": "02133ca33259243137a81ecfb7913779923073b944fa43ba9cb4deb1605ee9e4",
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/click.wav": "680f506e69a9da4bf475b041b9db44290017379f7c57d511d4174b18d45c80f9",
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/cues.wav": "d245cb85c9af6973b633b7a17e04abf831935bbaa3cb14bbdcfe54589ce935b5",
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/pb-drums.wav": "775fceb818453e611525fa7f4cbeb33a7875b9bbc3c14132d829d5de870569ee",
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/pb-other-keys.wav": "6e18c2624a2f7f03062653c4a4baf6fecf72416923ab18f5eee8861e41cd262b",
+        "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце/pb-other.wav": "a8299a155ed510cfbf97e09d8bbb68a8ad7c17c7061f8cf05713476e34828c43",
+        "lyrics/clips/62.ass": null,
+        "lyrics/clips/62.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце",
+      "cat": "",
+      "clip": "62",
+      "concert_patch": "Сольнце.patch",
+      "factory_dir": "music/songs/Елена Терлеева - Солнце",
+      "pc_field": "63",
+      "set": "62",
+      "song": "Солнце",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Елена Терлеева - Солнце/auto-render/timeline.json": "c13ef4714f33a0667e33e66fbd3fb8b682e8b11848dbef77f113b13239341a4e",
+      "music/songs/Елена Терлеева - Солнце/mix.json": "f068557b69bae5835ccdbdfb2f719d6720693898687c455845932bc16ffd6219",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/62.tsv": "96b18fd3d99247b1eb48d58fbdc945b4a60d5ea516d679b69f309c8b642fb890",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "7ddfd99ba1e4e4793f26398585536a57253fc803eb77c3a5d6697cf5f456d02f"
+}

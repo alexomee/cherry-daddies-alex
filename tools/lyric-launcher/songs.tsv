@@ -60,3 +60,7 @@ set	song	clip	pc_field	source	cat	factory_dir	bed_dir	concert_patch
 59	Sunny	59	60	dynamic	cat_5568	music/songs/Boney M. - Sunny	cherry-daddies-setlist-2026-06-16/Sunny	Sunny.patch
 60	Money, Money, Money	60	61	jamzone	cat_5459	music/songs/ABBA - Money, Money, Money	cherry-daddies-setlist-2026-06-16/Money, Money, Money	Money, Money, Money.patch
 61	What Is Love	61	62	jamzone	cat_19903	music/songs/Haddaway - What Is Love	cherry-daddies-setlist-2026-06-16/What Is Love	What Is Love.patch
+62	Солнце	62	63	dynamic		music/songs/Елена Терлеева - Солнце	cherry-daddies-setlist-2026-06-16/Елена Терлеева - Солнце	Сольнце.patch
+63	Кислотный DJ	63	64	dynamic		music/songs/Кислотный DJ	cherry-daddies-setlist-2026-06-16/Кислотный DJ	Akula.patch
+64	Мама Люба	64	65	dynamic		music/songs/Мама Люба	cherry-daddies-setlist-2026-06-16/Мама Люба	Serebro.patch
+65	Smells Like Teen Spirit	65	66	jamzone	cat_11775	music/songs/Nirvana - Smells Like Teen Spirit	cherry-daddies-setlist-2026-06-16/Smells Like Teen Spirit	Smells Like Teen Spirit.patch

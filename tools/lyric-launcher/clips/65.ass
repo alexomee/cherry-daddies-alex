@@ -1,0 +1,70 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Title,Arial,46,&H0000D7FF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,8,40,40,30,1
+Style: Pair,Arial,54,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,5,80,80,40,1
+Style: Next,Arial,44,&H008C8C8C,&H000000FF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,3,0,5,80,80,40,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:05:05.08,Title,,0,0,0,,Smells Like Teen Spirit
+Dialogue: 0,0:00:32.88,0:00:46.17,Pair,,0,0,0,,{\pos(640,285)}Load up on guns bring your friends it's fun to lose and to pretend
+Dialogue: 0,0:00:32.88,0:00:46.17,Next,,0,0,0,,{\pos(640,475)}She's over bored and self-assured\NOh no
+Dialogue: 0,0:00:46.17,0:00:51.36,Pair,,0,0,0,,{\pos(640,285)}She's over bored and self-assured\NOh no
+Dialogue: 0,0:00:46.17,0:00:51.36,Next,,0,0,0,,{\pos(640,475)}I know a dirty word\NHello, hello, hello, how low
+Dialogue: 0,0:00:51.36,0:00:58.58,Pair,,0,0,0,,{\pos(640,285)}I know a dirty word\NHello, hello, hello, how low
+Dialogue: 0,0:00:51.36,0:00:58.58,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:00:58.58,0:01:06.76,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:00:58.58,0:01:06.76,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello\NWith the lights out it's less dangerous
+Dialogue: 0,0:01:06.76,0:01:13.62,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello\NWith the lights out it's less dangerous
+Dialogue: 0,0:01:06.76,0:01:13.62,Next,,0,0,0,,{\pos(640,475)}Here we are now entertain us\NI feel stupid and contagious
+Dialogue: 0,0:01:13.62,0:01:21.80,Pair,,0,0,0,,{\pos(640,285)}Here we are now entertain us\NI feel stupid and contagious
+Dialogue: 0,0:01:13.62,0:01:21.80,Next,,0,0,0,,{\pos(640,475)}Here we are now entertain us\NA mullato an albino a mosquito my libido
+Dialogue: 0,0:01:21.80,0:01:34.21,Pair,,0,0,0,,{\pos(640,285)}Here we are now entertain us\NA mullato an albino a mosquito my libido
+Dialogue: 0,0:01:21.80,0:01:34.21,Next,,0,0,0,,{\pos(640,475)}Yeah\NHey
+Dialogue: 0,0:01:34.21,0:01:40.29,Pair,,0,0,0,,{\pos(640,285)}Yeah\NHey
+Dialogue: 0,0:01:34.21,0:01:40.29,Next,,0,0,0,,{\pos(640,475)}Yey
+Dialogue: 0,0:01:40.29,0:01:51.76,Pair,,0,0,0,,{\pos(640,285)}Yey
+Dialogue: 0,0:01:40.29,0:01:51.76,Next,,0,0,0,,{\pos(640,475)}I'm worse at what\NI do best and for this gift
+Dialogue: 0,0:01:51.76,0:01:57.96,Pair,,0,0,0,,{\pos(640,285)}I'm worse at what\NI do best and for this gift
+Dialogue: 0,0:01:51.76,0:01:57.96,Next,,0,0,0,,{\pos(640,475)}I feel blessed\NOur little group has always been and always will until the end
+Dialogue: 0,0:01:57.96,0:02:08.31,Pair,,0,0,0,,{\pos(640,285)}I feel blessed\NOur little group has always been and always will until the end
+Dialogue: 0,0:01:57.96,0:02:08.31,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:02:08.31,0:02:16.58,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:02:08.31,0:02:16.58,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello, how low\NHello, hello, hello
+Dialogue: 0,0:02:16.58,0:02:23.42,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello, how low\NHello, hello, hello
+Dialogue: 0,0:02:16.58,0:02:23.42,Next,,0,0,0,,{\pos(640,475)}With the lights out it's less dangerous\NHere we are now entertain us
+Dialogue: 0,0:02:23.42,0:02:31.55,Pair,,0,0,0,,{\pos(640,285)}With the lights out it's less dangerous\NHere we are now entertain us
+Dialogue: 0,0:02:23.42,0:02:31.55,Next,,0,0,0,,{\pos(640,475)}I feel stupid and contagious\NHere we are now entertain us
+Dialogue: 0,0:02:31.55,0:02:39.69,Pair,,0,0,0,,{\pos(640,285)}I feel stupid and contagious\NHere we are now entertain us
+Dialogue: 0,0:02:31.55,0:02:39.69,Next,,0,0,0,,{\pos(640,475)}A mullato an albino a mosquito my libido
+Dialogue: 0,0:02:39.69,0:02:48.02,Pair,,0,0,0,,{\pos(640,285)}A mullato an albino a mosquito my libido
+Dialogue: 0,0:02:39.69,0:02:48.02,Next,,0,0,0,,{\pos(640,475)}Yeah\NHey
+Dialogue: 0,0:02:48.02,0:02:54.08,Pair,,0,0,0,,{\pos(640,285)}Yeah\NHey
+Dialogue: 0,0:02:48.02,0:02:54.08,Next,,0,0,0,,{\pos(640,475)}Yeah
+Dialogue: 0,0:02:54.08,0:03:37.78,Pair,,0,0,0,,{\pos(640,285)}Yeah
+Dialogue: 0,0:02:54.08,0:03:37.78,Next,,0,0,0,,{\pos(640,475)}And I forget just why\NI taste oh yeah
+Dialogue: 0,0:03:37.78,0:03:42.93,Pair,,0,0,0,,{\pos(640,285)}And I forget just why\NI taste oh yeah
+Dialogue: 0,0:03:37.78,0:03:42.93,Next,,0,0,0,,{\pos(640,475)}I guess it makes me smile\NI found it hard it's hard to find oh well whatever never mind
+Dialogue: 0,0:03:42.93,0:03:54.24,Pair,,0,0,0,,{\pos(640,285)}I guess it makes me smile\NI found it hard it's hard to find oh well whatever never mind
+Dialogue: 0,0:03:42.93,0:03:54.24,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:03:54.24,0:04:02.40,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello, how low\NHello, hello, hello, how low
+Dialogue: 0,0:03:54.24,0:04:02.40,Next,,0,0,0,,{\pos(640,475)}Hello, hello, hello, how low\NHello, hello, hello
+Dialogue: 0,0:04:02.40,0:04:09.19,Pair,,0,0,0,,{\pos(640,285)}Hello, hello, hello, how low\NHello, hello, hello
+Dialogue: 0,0:04:02.40,0:04:09.19,Next,,0,0,0,,{\pos(640,475)}With the lights out it's less dangerous\NHere we are now entertain us
+Dialogue: 0,0:04:09.19,0:04:17.26,Pair,,0,0,0,,{\pos(640,285)}With the lights out it's less dangerous\NHere we are now entertain us
+Dialogue: 0,0:04:09.19,0:04:17.26,Next,,0,0,0,,{\pos(640,475)}I feel stupid and contagious\NHere we are now entertain us
+Dialogue: 0,0:04:17.26,0:04:25.35,Pair,,0,0,0,,{\pos(640,285)}I feel stupid and contagious\NHere we are now entertain us
+Dialogue: 0,0:04:17.26,0:04:25.35,Next,,0,0,0,,{\pos(640,475)}A mullato an albino a mosquito my libido
+Dialogue: 0,0:04:25.35,0:04:33.36,Pair,,0,0,0,,{\pos(640,285)}A mullato an albino a mosquito my libido
+Dialogue: 0,0:04:25.35,0:04:33.36,Next,,0,0,0,,{\pos(640,475)}A denial a denial a denial a denial
+Dialogue: 0,0:04:33.36,0:04:41.54,Pair,,0,0,0,,{\pos(640,285)}A denial a denial a denial a denial
+Dialogue: 0,0:04:33.36,0:04:41.54,Next,,0,0,0,,{\pos(640,475)}A denial a denial a denial a denial
+Dialogue: 0,0:04:41.54,0:04:49.67,Pair,,0,0,0,,{\pos(640,285)}A denial a denial a denial a denial
+Dialogue: 0,0:04:41.54,0:04:49.67,Next,,0,0,0,,{\pos(640,475)}A denial
+Dialogue: 0,0:04:49.67,0:04:57.66,Pair,,0,0,0,,{\pos(640,285)}A denial

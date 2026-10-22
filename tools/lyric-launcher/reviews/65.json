@@ -1,0 +1,71 @@
+{
+  "approved_by": "Alex",
+  "build": {
+    "audio_duration": 305.084739,
+    "audio_sha256": "98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68",
+    "clips": {
+      "ass": "55fde2a3bdc76229d5a33c24a30a56e5d0c6b184448ab24ac9f3355f2c61d8e9",
+      "mp4": "5cd1e93946ca6de2744daf8b023e1c899eb529cca65967e007029c2aa79ef50b"
+    },
+    "guide": {
+      "bytes": 53817066,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 305.084739,
+      "key": "cherry-dash/53a4ff952038/guides/98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68/all.wav",
+      "mix_sha256": "db2beb89200bee161396b461c0f76aab69b8cf66dfa02f452b16bbae69561ab9",
+      "render_audio": {
+        "click.wav": "e7d4eeaf1d5c7cd9b51f4f78894ea43527db44313576298e057520af02e0a02b",
+        "cues.wav": "8507baedd9a8939a8440b44c1d4cbf3df0c1788cf6590b7b2cfbb355c289d65e"
+      },
+      "render_pcm": {
+        "click.wav": "ace19ea88ae55dc1e5974bb7f3384c7fb787d04dfff34bae77945ef5f16e10af"
+      },
+      "sample_rate": 44100,
+      "sha256": "98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 2.033898,
+        "bpm": 118.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 1.734987
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/53a4ff952038/guides/98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68/all.wav"
+    },
+    "jamzone": {
+      "cat": "cat_11775",
+      "sha256": "ab5d788a3f6cbc2f9c0cde0d297ffc6167915a91b36c8ff98bb4ab3fe9b74117"
+    },
+    "offset_sec": 1.734987,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/Smells Like Teen Spirit/click.wav": "f996d1013033a91237c7f2ef179595073a74fb4d1d89996ed001d165685106c4",
+        "cherry-daddies-setlist-2026-06-16/Smells Like Teen Spirit/cues.wav": "4aeec51a5acd6abebc5fab51d70998d65fbc258a53386e9ec5fa2ce6fa3afce8",
+        "lyrics/clips/65.ass": null,
+        "lyrics/clips/65.mp4": null
+      },
+      "row": null
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/Smells Like Teen Spirit",
+      "cat": "cat_11775",
+      "clip": "65",
+      "concert_patch": "Smells Like Teen Spirit.patch",
+      "factory_dir": "music/songs/Nirvana - Smells Like Teen Spirit",
+      "pc_field": "66",
+      "set": "65",
+      "song": "Smells Like Teen Spirit",
+      "source": "jamzone"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/Nirvana - Smells Like Teen Spirit/auto-render/timeline.json": "ed33150aa5207c880a50e2f0fafdef4dae1ec1a13ff3ce608cd7008870fe9b00",
+      "music/songs/Nirvana - Smells Like Teen Spirit/mix.json": "db2beb89200bee161396b461c0f76aab69b8cf66dfa02f452b16bbae69561ab9",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "99843e3ca4ef71ebad6b97221b7fbc291f2a46cbf2fadcaabc97a6279d4a6ecd"
+}
