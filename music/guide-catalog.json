@@ -1016,10 +1016,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 269.714286,
       "key": "cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav",
-      "mix_sha256": "7c3da9102014421c8c70c055a876cf3a6148865b18c56602264bb219b0515597",
+      "mix_sha256": "ee67c67864e35fc1232e017212406776a9eb21c6556eb06c705d7d1e3ac0de55",
       "render_audio": {
         "click.wav": "1e44ceed7a3a65ad0d8bbeefa0063a1ae4261a330f76f695e434c0269f250a41",
-        "cues.wav": "5412bc58597f58c241741f45885039b63df7dab1ebeff848df99c098804ab54c",
+        "cues.wav": "8f18ccaab289766255a26a3ba250b40a57eef9a826f6c4c66c00415d7d5d606e",
         "pb-bass.wav": "1772cafa0c96a126d831281c9fa9ee8bcf4a051db8ed9cff479c93fadb46ee3e",
         "pb-drums.wav": "cd5062d5299bf63586eb9b58a68092bbc86b3584fff58486d09388dfa4abd15c",
         "pb-other-keys.wav": "a99fe0517c9f0a9c4b24da825a15159609fb078272f403395b9c91db0c630e18",

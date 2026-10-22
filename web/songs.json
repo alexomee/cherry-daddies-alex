@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-18T21:26:41",
+  "generated": "2026-10-22T17:59:41",
   "counts": {
     "total": 84,
     "data": 84,
@@ -2639,7 +2639,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 3,
+            "count": 6,
             "list": [
               {
                 "t": 4.571,
@@ -2658,6 +2658,24 @@
                 "text": "verse in",
                 "bar": 17,
                 "snap": 36.571
+              },
+              {
+                "t": 187.429,
+                "text": "stop",
+                "bar": 81,
+                "snap": 182.286
+              },
+              {
+                "t": 221.714,
+                "text": "drum in",
+                "bar": 96,
+                "snap": 217.143
+              },
+              {
+                "t": 260.571,
+                "text": "end in",
+                "bar": 113,
+                "snap": 255.429
               }
             ]
           },
@@ -2721,16 +2739,16 @@
             "bass": "697c078f7b",
             "other": "762b25fa46",
             "click": "b2caff62ac",
-            "cues": "ab49f994fb"
+            "cues": "f58c4e7ebf"
           },
           "versions": {
-            "all": "d524e692d9",
-            "drums": "1701c403fc",
-            "steve": "8f642dd2e8",
-            "roma": "4c4c9b763f",
-            "tanya": "d9d72feac0",
-            "pb-other": "bf401ea16d",
-            "pb-bass": "a59b608932"
+            "all": "0d65cde547",
+            "drums": "4f29057f8d",
+            "steve": "8629596cd9",
+            "roma": "e5d6741f43",
+            "tanya": "31093f82be",
+            "pb-other": "5fb73f7c23",
+            "pb-bass": "697c078f7b"
           },
           "pb_other": {
             "available": true,
@@ -13277,7 +13295,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 3,
+            "count": 6,
             "list": [
               {
                 "t": 4.571,
@@ -13296,6 +13314,24 @@
                 "text": "verse in",
                 "bar": 17,
                 "snap": 36.571
+              },
+              {
+                "t": 187.429,
+                "text": "stop",
+                "bar": 81,
+                "snap": 182.286
+              },
+              {
+                "t": 221.714,
+                "text": "drum in",
+                "bar": 96,
+                "snap": 217.143
+              },
+              {
+                "t": 260.571,
+                "text": "end in",
+                "bar": 113,
+                "snap": 255.429
               }
             ]
           },
@@ -13359,16 +13395,16 @@
             "bass": "697c078f7b",
             "other": "762b25fa46",
             "click": "b2caff62ac",
-            "cues": "ab49f994fb"
+            "cues": "f58c4e7ebf"
           },
           "versions": {
-            "all": "d524e692d9",
-            "drums": "1701c403fc",
-            "steve": "8f642dd2e8",
-            "roma": "4c4c9b763f",
-            "tanya": "d9d72feac0",
-            "pb-other": "bf401ea16d",
-            "pb-bass": "a59b608932"
+            "all": "0d65cde547",
+            "drums": "4f29057f8d",
+            "steve": "8629596cd9",
+            "roma": "e5d6741f43",
+            "tanya": "31093f82be",
+            "pb-other": "5fb73f7c23",
+            "pb-bass": "697c078f7b"
           },
           "pb_other": {
             "available": true,
