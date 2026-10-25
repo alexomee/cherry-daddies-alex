@@ -1,0 +1,86 @@
+{
+  "approved_by": "Татьяна",
+  "build": {
+    "audio_duration": 218.666667,
+    "audio_sha256": "c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf",
+    "clips": {
+      "ass": "8ad74062cf87cdb5670b046551abc76bcb91a087917165e24ab9130ce4109451",
+      "mp4": "3b5d27d69ebd5223f1c30d08841faa696c32880c3787f0146fb5f586f76f2d89"
+    },
+    "guide": {
+      "bytes": 38572916,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 218.666667,
+      "key": "cherry-dash/fde163f34bf4/guides/c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf/all.wav",
+      "mix_sha256": "c9af7a65c5aa18dba26d55c8fcd154457f198039f46505034a499a4c66723b87",
+      "render_audio": {
+        "click.wav": "9b8ff5c3295c63ce2debc3a54a1b6a760105e1282b910cdadab5b83bf0b50225",
+        "cues.wav": "758ded6944289f282f23e44bb70776a1e4ee6c592d3aef1affc992e08c451e7a",
+        "pb-bass.wav": "ad3d17f51936046c4b9b7b1ea620c56ed5805eccb2ffdf69c3edacec3a42e730",
+        "pb-other.wav": "f68ebaaff8630744c3acfce0130314ffff2537cc561192fa003ae6584124a61e"
+      },
+      "render_pcm": {
+        "click.wav": "1c8b9d1fcdc103c8b5f62c549cf45ccb156a5ada69ee716afcc222de73e7c1bd",
+        "pb-bass.wav": "c5f2c670820d3f599cd3102f012c3d14979b2c91f033fedf06087ea326d7a85f",
+        "pb-other.wav": "8a1e8e6991bc24bcbb27eb791c08cd8cf08bb8912d44f5b5e73abe7828504073"
+      },
+      "sample_rate": 44100,
+      "sha256": "c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 2.666667,
+        "bpm": 90.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 0.0
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/fde163f34bf4/guides/c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf/all.wav"
+    },
+    "jamzone": null,
+    "offset_sec": 0.0,
+    "rig": {
+      "files": {
+        "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума/click.wav": "9b8ff5c3295c63ce2debc3a54a1b6a760105e1282b910cdadab5b83bf0b50225",
+        "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума/cues.wav": "758ded6944289f282f23e44bb70776a1e4ee6c592d3aef1affc992e08c451e7a",
+        "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума/pb-bass.wav": "ad3d17f51936046c4b9b7b1ea620c56ed5805eccb2ffdf69c3edacec3a42e730",
+        "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума/pb-other.wav": "f68ebaaff8630744c3acfce0130314ffff2537cc561192fa003ae6584124a61e",
+        "lyrics/clips/24.ass": "c5b965a806ef350f494eafbede083ec8e6665132988c42ed37139841738a4385",
+        "lyrics/clips/24.mp4": "e0f237c07a19b674c47ba2326383a275039ddc45cde577a0857cce8953b27135"
+      },
+      "row": {
+        "bed_dir": "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума",
+        "cat": "cat_54835",
+        "clip": "24",
+        "concert_patch": "tatu.patch",
+        "factory_dir": "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+        "pc_field": "25",
+        "set": "24",
+        "song": "Я сошла с ума",
+        "source": "jamzone"
+      }
+    },
+    "row": {
+      "bed_dir": "cherry-daddies-setlist-2026-06-16/24 Я сошла с ума",
+      "cat": "cat_54835",
+      "clip": "24",
+      "concert_patch": "tatu.patch",
+      "factory_dir": "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+      "pc_field": "25",
+      "set": "24",
+      "song": "Я сошла с ума",
+      "source": "dynamic"
+    },
+    "schema": 1,
+    "sources": {
+      "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)/auto-render/timeline.json": "4a86c8169d153e9f6d8107cc8171ea13520b749772ec39994542bae9c1fd1420",
+      "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)/mix.json": "c9af7a65c5aa18dba26d55c8fcd154457f198039f46505034a499a4c66723b87",
+      "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
+      "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
+      "tools/lyric-launcher/lyrics-timed/24.review.txt": "cd8e27e134008d2ddb3795142b5f40a68e5f5481fba7138c45baae185154870c",
+      "tools/lyric-launcher/lyrics-timed/24.tsv": "9354c1cd2d9b59867f350cede3fda85f2e2b1c58594a9b105c5331b378e739a4",
+      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
+    }
+  },
+  "preview_sha256": "427dfca0f2c5dc29637ee37719b80eec9ced0d07ccbd2a4fae193f99888518b1"
+}
