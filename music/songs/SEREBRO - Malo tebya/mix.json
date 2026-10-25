@@ -9,7 +9,7 @@
         "replaces": [
           "bass"
         ],
-        "gain_db": -3
+        "gain_db": -5.0
       }
     ]
   },

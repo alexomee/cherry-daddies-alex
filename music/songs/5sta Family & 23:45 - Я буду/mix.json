@@ -3,8 +3,8 @@
   "pitch_semitones": 0,
   "pb-other": {"stems": ["backing_vocals", "guitars", "piano", "keys", "other"]},
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"stems": ["bass"]},
-  "players": {"alex": ["guitars"], "roma": ["keys"], "steve": ["drums"], "tanya": ["vocals"]},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -1.2}},
+  "players": {"steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1, "text": "Я буду all in", "abs_sec": 5.333, "snap_sec": 0.0},
     {"bar": 9, "text": "chorus in", "abs_sec": 26.667, "snap_sec": 21.333},

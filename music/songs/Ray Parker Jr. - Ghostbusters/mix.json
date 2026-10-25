@@ -11,6 +11,11 @@
       "13_Brass_section",
       "14_Backing_Vocals"
     ],
+    "gain_db": {
+      "13_Brass_section": -2.5,
+      "11_Synth_Lead": -2.0,
+      "09_Synth_Keys_1": -1.5
+    },
     "fade_out": {
       "06_Digital_Piano": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},
       "07_Electric_Piano_(Clavinet)": {"from_bar": 114, "from_beat": 4.5, "to_bar": 115, "to_beat": 1},

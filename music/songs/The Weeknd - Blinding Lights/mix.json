@@ -1,6 +1,6 @@
 {
   "pb-other": {"stems": ["04_Noise_effects", "09_Synth_Keys", "10_Arpeggiator", "11_Synth_Ambiant", "12_Backing_Vocals"]},
-  "pb-bass": {"stems": ["05_Synth_Bass"]},
+  "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -1.5}},
   "cue_step": 2,
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "roma": ["06_Synthesizer", "07_Synth_Pad_1", "08_Synth_Pad_2"]},
   "cues": [

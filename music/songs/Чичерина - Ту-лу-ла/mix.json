@@ -3,7 +3,7 @@
   "pitch_semitones": -1,
   "pb-other": {
     "layers": [
-      {"file": "pb-guitars", "frame": "render"}
+      {"file": "pb-guitars", "frame": "render", "gain_db": -7.0}
     ],
     "roles": {"pb-guitars": "musical"}
   },

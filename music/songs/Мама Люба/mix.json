@@ -2,7 +2,7 @@
   "bpm": 127.5,
   "pitch_semitones": -2,
   "pb-other": null,
-  "pb-bass": {"stems": ["bass"]},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -6.1}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.8}},
   "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
@@ -18,7 +18,7 @@
     {"bar": 94,  "text": "kick stop", "abs_sec": 178.824, "snap_sec": 174.588},
     {"bar": 102, "text": "chorus variation ready go", "abs_sec": 193.882, "snap_sec": 190.118},
     {"bar": 108, "text": "build up ready go", "abs_sec": 205.176, "snap_sec": 201.412},
-    {"bar": 109, "beat": 4, "text": "stop-n-chorus ready stop", "raw": true, "abs_sec": 208.471, "snap_sec": 204.706},
+    {"bar": 109, "beat": 4, "text": "stop-n-chorus ready stop", "raw": true, "abs_sec": 208.471, "snap_sec": 204.235},
     {"bar": 118, "text": "solo in ready go", "abs_sec": 224.0, "snap_sec": 220.235},
     {"bar": 126, "text": "end in", "count": true, "abs_sec": 239.059, "snap_sec": 234.824}
   ]

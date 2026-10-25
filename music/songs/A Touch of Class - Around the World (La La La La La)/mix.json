@@ -1,5 +1,5 @@
 {
-  "pb-other": {"stems": ["14_Backing_Vocals"]},
+  "pb-other": {"stems": ["14_Backing_Vocals"], "gain_db": {"14_Backing_Vocals": -2.5}},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": 3}},
   "pb-drums": {"stems": ["02_Electronic_Drum_Kit"]},
   "players": {"roma": ["13_Vibes", "11_Synth_Lead", "06_Digital_Piano", "12_Synth_Keys", "09_Synth_Strings_(pizzicato)"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal"], "alex": ["07_Synth_Pad_1", "08_Synth_Pad_2", "10_Synth_Strings"]},

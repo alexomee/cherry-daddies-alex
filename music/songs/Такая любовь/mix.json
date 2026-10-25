@@ -5,11 +5,11 @@
     "stems": ["strings"],
     "layers": [
       {"file": "sfx-pb", "frame": "render"},
-      {"file": "acoustic-guitar-solo", "frame": "render"}
+      {"file": "acoustic-guitar-solo", "frame": "render", "gain_db": -3.5}
     ],
     "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical"}
   },
-  "pb-bass": {"stems": ["bass"], "mute": {"bass": [[135.5, 138]]}},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.5}, "mute": {"bass": [[135.5, 138]]}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -3.1}},
   "pb-other-keys": {"stems": ["strings", "keys"]},
   "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},

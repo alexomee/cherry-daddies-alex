@@ -1,17 +1,17 @@
 {
-  "generated": "2026-10-22T21:32:03",
+  "generated": "2026-10-26T00:34:43",
   "counts": {
     "total": 85,
     "data": 85,
     "cues": 85,
-    "playback": 39,
+    "playback": 40,
     "other": 68,
     "practice": 83
   },
   "sets": [
     {
       "name": "СЕТ 1",
-      "subtitle": "28.10 Music Hall — Dance Nostalgia (12 песен)",
+      "subtitle": "28.10 Music Hall — Dance Nostalgia (11 песен)",
       "cls": "musichall1",
       "songs": [
         {
@@ -99,8 +99,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -167,14 +167,15 @@
             "cues": "74820660a2"
           },
           "versions": {
-            "all": "9a77f31e6c",
+            "all": "492b34daf1",
             "drums": "fd5d09343b",
-            "alex": "dbb996204d",
-            "steve": "1e78c5f179",
-            "roma": "8e2f8fb6d5",
-            "tanya": "bdd11eb3e5",
-            "trio": "5d393a3cb1",
-            "pb-other": "c3daca1df9"
+            "alex": "f6b02b2c04",
+            "steve": "fbca402d78",
+            "roma": "0464a2948d",
+            "tanya": "64834d4974",
+            "trio": "bc2ecaf90f",
+            "pb-other": "c3daca1df9",
+            "pb-bass": "ab94c417b0"
           },
           "pb_other": {
             "available": true,
@@ -183,8 +184,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -334,14 +337,14 @@
             "cues": "94ec79b02f"
           },
           "versions": {
-            "all": "233c416725",
-            "drums": "8bdbe298d1",
+            "all": "04758d7049",
+            "drums": "f03f36f91b",
             "alex": "cc78b136e9",
             "steve": "4bdd27aa4e",
             "roma": "ab221887e3",
             "tanya": "9282c4f292",
-            "pb-other": "b7fc3c74f1",
-            "pb-bass": "6b5c920bcb"
+            "pb-other": "fb00721844",
+            "pb-bass": "43e6efffef"
           },
           "pb_other": {
             "available": true,
@@ -520,12 +523,12 @@
             "cues": "bbe091d128"
           },
           "versions": {
-            "all": "29e9ea729f",
-            "drums": "694a8d9f0d",
+            "all": "a4eae79d73",
+            "drums": "e33a9efb40",
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
-            "pb-other": "5743c44d09",
-            "pb-bass": "5cf7497b08"
+            "pb-other": "1b93b5f421",
+            "pb-bass": "ceaa588456"
           },
           "pb_other": {
             "available": true,
@@ -587,9 +590,7 @@
           "practice": [
             "all",
             "drums",
-            "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -639,17 +640,15 @@
             "guitars": "623aff0c1d",
             "other": "cf2759a6b8",
             "click": "9b088105d1",
-            "cues": "8c23a9e040"
+            "cues": "6444c6b3c7"
           },
           "versions": {
-            "all": "d266438fbd",
+            "all": "c3ce6c3dfd",
             "drums": "aa9d120404",
-            "alex": "6402f32d51",
             "steve": "05858ac6a8",
-            "roma": "47c8544c31",
             "tanya": "eed65648c4",
             "pb-other": "7b8e86fc9c",
-            "pb-bass": "607ac05b87"
+            "pb-bass": "ea64ba47b3"
           },
           "pb_other": {
             "available": true,
@@ -827,21 +826,21 @@
             "drums": "dad362c499",
             "keys": "4f87de1995",
             "bass": "e4fa597bea",
-            "guitars": "51c811db4d",
+            "guitars": "364a079a6a",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "8286ae70ba"
+            "cues": "137fc141ba"
           },
           "versions": {
-            "all": "45ce32420c",
+            "all": "81dddcae81",
             "drums": "4646382670",
             "alex": "d2628619b8",
             "steve": "42a6c5d86d",
             "roma": "163142f63c",
             "tanya": "9681de2869",
             "trio": "78079cdcb9",
-            "pb-other": "279a8e8d05",
-            "pb-bass": "1989db6299"
+            "pb-other": "1982f2cf82",
+            "pb-bass": "e4537c5e0e"
           },
           "pb_other": {
             "available": true,
@@ -981,13 +980,13 @@
             "cues": "7bbc60f4ee"
           },
           "versions": {
-            "all": "84251edcbb",
+            "all": "6cf6092456",
             "drums": "345d1c2c8a",
             "alex": "9cfdfe5019",
             "steve": "01679fe641",
             "roma": "3dff1152d2",
             "tanya": "dc84338cad",
-            "pb-other": "f34cad5eea"
+            "pb-other": "c977c99ce7"
           },
           "pb_other": {
             "available": true,
@@ -1122,15 +1121,15 @@
             "bass": "d43d1eb45d",
             "other": "736c0c80d5",
             "click": "fce6850a30",
-            "cues": "574aece1c1"
+            "cues": "896558be71"
           },
           "versions": {
-            "all": "a8981ae470",
+            "all": "9e32377065",
             "steve": "a1dbddbd9d",
             "roma": "b3b83684bb",
             "tanya": "01ef9839ca",
-            "pb-other": "bceb91647c",
-            "pb-bass": "703b6a5f4d"
+            "pb-other": "184a65d9b3",
+            "pb-bass": "a3810ecc68"
           },
           "pb_other": {
             "available": true,
@@ -1502,182 +1501,6 @@
           }
         },
         {
-          "sid": "Alexandra Stan - Mr. Saxobeat",
-          "slug": "297f69dca0f1",
-          "title": "Mr. Saxobeat",
-          "artist": "Alexandra Stan",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 13,
-            "list": [
-              {
-                "t": 3.78,
-                "text": "Mr Saxobeat sax in ready go",
-                "bar": 3,
-                "snap": 0.0
-              },
-              {
-                "t": 18.898,
-                "text": "bass in",
-                "bar": 11,
-                "snap": 15.118
-              },
-              {
-                "t": 28.346,
-                "text": "vocal in",
-                "bar": 16,
-                "snap": 24.567
-              },
-              {
-                "t": 60.472,
-                "text": "alex vocal in",
-                "bar": 33,
-                "snap": 56.087
-              },
-              {
-                "t": 75.591,
-                "text": "chorus melody in",
-                "bar": 41,
-                "snap": 71.228
-              },
-              {
-                "t": 90.709,
-                "text": "verse in",
-                "bar": 49,
-                "snap": 86.929
-              },
-              {
-                "t": 105.827,
-                "text": "stop",
-                "bar": 57,
-                "snap": 101.575
-              },
-              {
-                "t": 122.835,
-                "text": "alex vocal in",
-                "bar": 66,
-                "snap": 118.449
-              },
-              {
-                "t": 137.953,
-                "text": "sax solo in",
-                "bar": 74,
-                "snap": 133.489
-              },
-              {
-                "t": 153.071,
-                "text": "bass in",
-                "bar": 82,
-                "snap": 149.291
-              },
-              {
-                "t": 162.52,
-                "text": "vocal in",
-                "bar": 87,
-                "snap": 158.74
-              },
-              {
-                "t": 177.638,
-                "text": "sax in",
-                "bar": 95,
-                "snap": 173.858
-              },
-              {
-                "t": 192.756,
-                "text": "stop",
-                "bar": 103,
-                "snap": 188.504
-              }
-            ]
-          },
-          "bass": {
-            "kind": "playback",
-            "label": "Synth Bass"
-          },
-          "other": {
-            "kind": "stems",
-            "items": [
-              "Noise effects",
-              "Saxophone (reverse)"
-            ]
-          },
-          "practice": [
-            "all",
-            "drums",
-            "alex",
-            "steve",
-            "roma",
-            "tanya"
-          ],
-          "stems": [
-            {
-              "id": "vocal",
-              "label": "Вокал"
-            },
-            {
-              "id": "back_vox",
-              "label": "Бэк-вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "vocal": "23e4148c61",
-            "back_vox": "6146a17941",
-            "drums": "12e4916198",
-            "keys": "b2232aca1a",
-            "bass": "8c1bf5e3b8",
-            "other": "1a7b239795",
-            "click": "83bf5b3ecd",
-            "cues": "8bcf7b6622"
-          },
-          "versions": {
-            "all": "d26b1c45ac",
-            "drums": "72fd14a514",
-            "alex": "233ba87d48",
-            "steve": "a5ff448644",
-            "roma": "c5a28ef6c7",
-            "tanya": "d7a08ca47b",
-            "pb-other": "d770a5f7d7",
-            "pb-bass": "99acd1c1a2"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "other"
-            ]
-          },
-          "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
-          }
-        },
-        {
           "sid": "Alex Gaudino - Destination Calabria",
           "slug": "351bca043e8d",
           "title": "Destination Calabria",
@@ -1697,85 +1520,85 @@
                 "t": 11.25,
                 "text": "all in",
                 "bar": 7,
-                "snap": 7.508
+                "snap": 7.505
               },
               {
                 "t": 18.75,
                 "text": "verse in",
                 "bar": 11,
-                "snap": 15.008
+                "snap": 15.005
               },
               {
                 "t": 48.75,
                 "text": "stop",
                 "bar": 27,
-                "snap": 44.538
+                "snap": 44.535
               },
               {
                 "t": 65.63,
                 "text": "verse in",
                 "bar": 36,
-                "snap": 61.878
+                "snap": 61.875
               },
               {
                 "t": 80.63,
                 "text": "more synths in",
                 "bar": 44,
-                "snap": 76.364
+                "snap": 76.361
               },
               {
                 "t": 95.63,
                 "text": "stop",
                 "bar": 52,
-                "snap": 91.418
+                "snap": 91.415
               },
               {
                 "t": 101.25,
                 "text": "all in",
                 "bar": 55,
-                "snap": 97.508
+                "snap": 97.505
               },
               {
                 "t": 116.25,
                 "text": "stop",
                 "bar": 63,
-                "snap": 112.038
+                "snap": 112.035
               },
               {
                 "t": 120.0,
                 "text": "sax solo in",
                 "bar": 65,
-                "snap": 115.574
+                "snap": 115.571
               },
               {
-                "t": 135.71,
+                "t": 135.0,
                 "text": "crash in",
                 "bar": 73,
-                "snap": 131.958
+                "snap": 131.245
               },
               {
-                "t": 137.58,
+                "t": 136.87,
                 "text": "vocal in",
                 "bar": 74,
-                "snap": 133.838
+                "snap": 133.125
               },
               {
-                "t": 139.46,
+                "t": 138.75,
                 "text": "all in",
                 "bar": 75,
-                "snap": 135.708
+                "snap": 134.995
               },
               {
-                "t": 161.96,
+                "t": 161.25,
                 "text": "outro in",
                 "bar": 87,
-                "snap": 158.208
+                "snap": 157.495
               },
               {
-                "t": 178.36,
+                "t": 178.12,
                 "text": "end stop",
                 "bar": 96,
-                "snap": 174.148
+                "snap": 173.905
               }
             ]
           },
@@ -1828,22 +1651,22 @@
             }
           ],
           "stem_versions": {
-            "vocal": "834254a84d",
-            "drums": "d133398c51",
-            "keys": "95be3d0792",
-            "bass": "ec72aa84e1",
-            "other": "7ab603585f",
-            "click": "3be1eb0f89",
-            "cues": "c684dca18f"
+            "vocal": "21d8af1d9a",
+            "drums": "e2dc9e5dd3",
+            "keys": "f47c126814",
+            "bass": "0b8c2d2567",
+            "other": "46f2682a7c",
+            "click": "b216ff7ef4",
+            "cues": "f8ca51691c"
           },
           "versions": {
-            "all": "2a8806db91",
-            "alex": "0f4d3c35d3",
-            "steve": "2cf4bac152",
-            "roma": "fa6385daeb",
-            "tanya": "faf9682786",
-            "pb-other": "05800889e6",
-            "pb-bass": "281517f1ac"
+            "all": "072ea68c79",
+            "alex": "01fa482804",
+            "steve": "a327e7486d",
+            "roma": "7d112834dd",
+            "tanya": "6b243db8b7",
+            "pb-other": "61bdb3da68",
+            "pb-bass": "1d285502d7"
           },
           "pb_other": {
             "available": true,
@@ -2834,14 +2657,14 @@
             "kind": "stems",
             "items": [
               "backing vocals",
-              "strings"
+              "strings",
+              "keys"
             ]
           },
           "practice": [
             "all",
             "drums",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -2889,18 +2712,18 @@
             "cues": "f58c4e7ebf"
           },
           "versions": {
-            "all": "0d65cde547",
+            "all": "8eaa44574a",
             "drums": "4f29057f8d",
             "steve": "8629596cd9",
-            "roma": "e5d6741f43",
             "tanya": "31093f82be",
-            "pb-other": "5fb73f7c23",
-            "pb-bass": "697c078f7b"
+            "pb-other": "595a9d1228",
+            "pb-bass": "37e50fb01b"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "back_vox",
+              "keys",
               "other"
             ]
           },
@@ -3209,19 +3032,19 @@
             "vocal": "0f1ac88d21",
             "drums": "736dcf93b6",
             "keys": "02a7a03102",
-            "bass": "3e6a7757cb",
+            "bass": "474e3343cb",
             "guitars": "0e6db7fbd7",
             "other": "7619bdaece",
             "click": "bf72244c61",
-            "cues": "6b3edb8fe0"
+            "cues": "9cf65e04fe"
           },
           "versions": {
-            "all": "0c47bfb70d",
+            "all": "b71efdfa39",
             "alex": "ba213fb465",
             "steve": "2e89296029",
             "roma": "63c1875d1d",
             "tanya": "698094df25",
-            "pb-bass": "2e71759b21"
+            "pb-bass": "c44eff4620"
           },
           "pb_other": {
             "available": false,
@@ -3552,13 +3375,13 @@
             "cues": "87634f39f2"
           },
           "versions": {
-            "all": "bdfa0f60c1",
+            "all": "0f7d552081",
             "drums": "bd9138b2db",
             "alex": "9b20c61971",
             "steve": "ec553c50e7",
             "roma": "22fde20a06",
             "tanya": "d9fdaea1e7",
-            "pb-other": "530a517cda"
+            "pb-other": "733266fa0b"
           },
           "pb_other": {
             "available": true,
@@ -3929,14 +3752,14 @@
             "cues": "4e831c9cac"
           },
           "versions": {
-            "all": "1f2325e61c",
-            "drums": "fc84d8ad83",
+            "all": "de14228bbe",
+            "drums": "62b01e50dd",
             "alex": "c19ee8b2c3",
             "steve": "4c104e2c3e",
             "roma": "7f3d1fd4ba",
             "tanya": "c60d694598",
-            "pb-other": "8a1d49b3a5",
-            "pb-bass": "679df87b4f"
+            "pb-other": "a1ea07fbd5",
+            "pb-bass": "21734bb85b"
           },
           "pb_other": {
             "available": true,
@@ -4038,7 +3861,7 @@
                 "t": 208.471,
                 "text": "stop-n-chorus ready stop",
                 "bar": 109,
-                "snap": 204.706
+                "snap": 204.235
               },
               {
                 "t": 224.0,
@@ -4111,7 +3934,7 @@
           "stem_versions": {
             "vocal": "4cb30e44c2",
             "back_vox": "7343e4ad3a",
-            "drums": "c2341b2b90",
+            "drums": "eb9601373d",
             "keys": "cbb0cca3b5",
             "bass": "5afda2fdde",
             "guitars": "e23f73271e",
@@ -4120,14 +3943,14 @@
             "cues": "bc1c7809ef"
           },
           "versions": {
-            "all": "6fe4c556af",
-            "drums": "c50d60bc35",
+            "all": "e2f3e6fed9",
+            "drums": "e7ae38208a",
             "alex": "3a7ac7ac27",
             "steve": "0c054e399a",
             "roma": "206b64c511",
             "tanya": "3689e1bd3d",
             "trio": "833b377f84",
-            "pb-bass": "a8306312e0"
+            "pb-bass": "2e8b5c8987"
           },
           "pb_other": {
             "available": false,
@@ -4144,7 +3967,7 @@
     },
     {
       "name": "Бис",
-      "subtitle": "28.10 Music Hall — Все поют!",
+      "subtitle": "28.10 Music Hall — Все поют! + запас",
       "cls": "musichall_bis",
       "songs": [
         {
@@ -4443,22 +4266,22 @@
             }
           ],
           "stem_versions": {
-            "vocal": "266278a1ea",
-            "back_vox": "96d19ff041",
-            "drums": "c4deacd97c",
-            "keys": "8cbb2236b7",
-            "bass": "7e96fa9b34",
-            "guitars": "d70b76b08c",
-            "other": "da48983e6e",
+            "vocal": "3859b2b41a",
+            "back_vox": "7267033bae",
+            "drums": "f06a340007",
+            "keys": "63badeddbc",
+            "bass": "7ea922e697",
+            "guitars": "0b29ef9f15",
+            "other": "8b54eaa7e0",
             "click": "48aa8ed4ce",
             "cues": "0923526def"
           },
           "versions": {
-            "all": "45c94538a2",
+            "all": "1ace38b1b5",
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
-            "pb-other": "88541292c8",
-            "pb-bass": "7e96fa9b34"
+            "pb-other": "933a925818",
+            "pb-bass": "0279f9a85b"
           },
           "pb_other": {
             "available": true,
@@ -4474,6 +4297,167 @@
             "mutes": [
               "bass"
             ]
+          }
+        },
+        {
+          "sid": "Ray Parker Jr. - Ghostbusters",
+          "slug": "5a15a70cbdbb",
+          "title": "Ghostbusters (запас)",
+          "artist": "Ray Parker Jr.",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 9,
+            "list": [
+              {
+                "t": 4.174,
+                "text": "Ghostbuster playback in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 6.261,
+                "text": "guitar bass ready go",
+                "bar": 2,
+                "snap": 2.087
+              },
+              {
+                "t": 14.609,
+                "text": "drums in",
+                "bar": 6,
+                "snap": 10.435
+              },
+              {
+                "t": 16.696,
+                "text": "main in",
+                "bar": 7,
+                "snap": 12.522
+              },
+              {
+                "t": 125.217,
+                "text": "break-one in",
+                "bar": 59,
+                "snap": 121.043
+              },
+              {
+                "t": 158.609,
+                "text": "break-two in",
+                "bar": 75,
+                "snap": 154.435
+              },
+              {
+                "t": 175.304,
+                "text": "chorus in",
+                "bar": 83,
+                "snap": 171.13
+              },
+              {
+                "t": 217.043,
+                "text": "keep going",
+                "bar": 103,
+                "snap": 213.913
+              },
+              {
+                "t": 242.087,
+                "text": "end in",
+                "bar": 115,
+                "snap": 237.391
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Digital Piano",
+              "Electric Piano (Clavinet)",
+              "Synth Strings",
+              "Synth Keys 1",
+              "Synth Keys 2",
+              "Synth Lead",
+              "Synth Brass",
+              "Brass section",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "0c1a3ba52d",
+            "back_vox": "b678a33f30",
+            "drums": "e401e4a7d8",
+            "keys": "06c8e35461",
+            "bass": "912bd42e37",
+            "guitars": "939c53e874",
+            "other": "bb7a9a5f1e",
+            "click": "d96c9de1fe",
+            "cues": "e7d46a1242"
+          },
+          "versions": {
+            "all": "eb28b91d31",
+            "drums": "18e958a0ad",
+            "steve": "377fa4ef30",
+            "roma": "fffc70b306",
+            "tanya": "cbd325ca74",
+            "pb-other": "f5dd7cbf53"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         }
       ]
@@ -6878,12 +6862,12 @@
             "cues": "e7d46a1242"
           },
           "versions": {
-            "all": "f9d8871d2c",
+            "all": "eb28b91d31",
             "drums": "18e958a0ad",
             "steve": "377fa4ef30",
             "roma": "fffc70b306",
             "tanya": "cbd325ca74",
-            "pb-other": "aa12ad2788"
+            "pb-other": "f5dd7cbf53"
           },
           "pb_other": {
             "available": true,
@@ -8018,14 +8002,14 @@
             "cues": "94ec79b02f"
           },
           "versions": {
-            "all": "233c416725",
-            "drums": "8bdbe298d1",
+            "all": "04758d7049",
+            "drums": "f03f36f91b",
             "alex": "cc78b136e9",
             "steve": "4bdd27aa4e",
             "roma": "ab221887e3",
             "tanya": "9282c4f292",
-            "pb-other": "b7fc3c74f1",
-            "pb-bass": "6b5c920bcb"
+            "pb-other": "fb00721844",
+            "pb-bass": "43e6efffef"
           },
           "pb_other": {
             "available": true,
@@ -8602,85 +8586,85 @@
                 "t": 11.25,
                 "text": "all in",
                 "bar": 7,
-                "snap": 7.508
+                "snap": 7.505
               },
               {
                 "t": 18.75,
                 "text": "verse in",
                 "bar": 11,
-                "snap": 15.008
+                "snap": 15.005
               },
               {
                 "t": 48.75,
                 "text": "stop",
                 "bar": 27,
-                "snap": 44.538
+                "snap": 44.535
               },
               {
                 "t": 65.63,
                 "text": "verse in",
                 "bar": 36,
-                "snap": 61.878
+                "snap": 61.875
               },
               {
                 "t": 80.63,
                 "text": "more synths in",
                 "bar": 44,
-                "snap": 76.364
+                "snap": 76.361
               },
               {
                 "t": 95.63,
                 "text": "stop",
                 "bar": 52,
-                "snap": 91.418
+                "snap": 91.415
               },
               {
                 "t": 101.25,
                 "text": "all in",
                 "bar": 55,
-                "snap": 97.508
+                "snap": 97.505
               },
               {
                 "t": 116.25,
                 "text": "stop",
                 "bar": 63,
-                "snap": 112.038
+                "snap": 112.035
               },
               {
                 "t": 120.0,
                 "text": "sax solo in",
                 "bar": 65,
-                "snap": 115.574
+                "snap": 115.571
               },
               {
-                "t": 135.71,
+                "t": 135.0,
                 "text": "crash in",
                 "bar": 73,
-                "snap": 131.958
+                "snap": 131.245
               },
               {
-                "t": 137.58,
+                "t": 136.87,
                 "text": "vocal in",
                 "bar": 74,
-                "snap": 133.838
+                "snap": 133.125
               },
               {
-                "t": 139.46,
+                "t": 138.75,
                 "text": "all in",
                 "bar": 75,
-                "snap": 135.708
+                "snap": 134.995
               },
               {
-                "t": 161.96,
+                "t": 161.25,
                 "text": "outro in",
                 "bar": 87,
-                "snap": 158.208
+                "snap": 157.495
               },
               {
-                "t": 178.36,
+                "t": 178.12,
                 "text": "end stop",
                 "bar": 96,
-                "snap": 174.148
+                "snap": 173.905
               }
             ]
           },
@@ -8733,22 +8717,22 @@
             }
           ],
           "stem_versions": {
-            "vocal": "834254a84d",
-            "drums": "d133398c51",
-            "keys": "95be3d0792",
-            "bass": "ec72aa84e1",
-            "other": "7ab603585f",
-            "click": "3be1eb0f89",
-            "cues": "c684dca18f"
+            "vocal": "21d8af1d9a",
+            "drums": "e2dc9e5dd3",
+            "keys": "f47c126814",
+            "bass": "0b8c2d2567",
+            "other": "46f2682a7c",
+            "click": "b216ff7ef4",
+            "cues": "f8ca51691c"
           },
           "versions": {
-            "all": "2a8806db91",
-            "alex": "0f4d3c35d3",
-            "steve": "2cf4bac152",
-            "roma": "fa6385daeb",
-            "tanya": "faf9682786",
-            "pb-other": "05800889e6",
-            "pb-bass": "281517f1ac"
+            "all": "072ea68c79",
+            "alex": "01fa482804",
+            "steve": "a327e7486d",
+            "roma": "7d112834dd",
+            "tanya": "6b243db8b7",
+            "pb-other": "61bdb3da68",
+            "pb-bass": "1d285502d7"
           },
           "pb_other": {
             "available": true,
@@ -9066,15 +9050,15 @@
             "bass": "d43d1eb45d",
             "other": "736c0c80d5",
             "click": "fce6850a30",
-            "cues": "574aece1c1"
+            "cues": "896558be71"
           },
           "versions": {
-            "all": "a8981ae470",
+            "all": "9e32377065",
             "steve": "a1dbddbd9d",
             "roma": "b3b83684bb",
             "tanya": "01ef9839ca",
-            "pb-other": "bceb91647c",
-            "pb-bass": "703b6a5f4d"
+            "pb-other": "184a65d9b3",
+            "pb-bass": "a3810ecc68"
           },
           "pb_other": {
             "available": true,
@@ -10124,19 +10108,19 @@
             "vocal": "0f1ac88d21",
             "drums": "736dcf93b6",
             "keys": "02a7a03102",
-            "bass": "3e6a7757cb",
+            "bass": "474e3343cb",
             "guitars": "0e6db7fbd7",
             "other": "7619bdaece",
             "click": "bf72244c61",
-            "cues": "6b3edb8fe0"
+            "cues": "9cf65e04fe"
           },
           "versions": {
-            "all": "0c47bfb70d",
+            "all": "b71efdfa39",
             "alex": "ba213fb465",
             "steve": "2e89296029",
             "roma": "63c1875d1d",
             "tanya": "698094df25",
-            "pb-bass": "2e71759b21"
+            "pb-bass": "c44eff4620"
           },
           "pb_other": {
             "available": false,
@@ -11529,14 +11513,14 @@
             "cues": "4e831c9cac"
           },
           "versions": {
-            "all": "1f2325e61c",
-            "drums": "fc84d8ad83",
+            "all": "de14228bbe",
+            "drums": "62b01e50dd",
             "alex": "c19ee8b2c3",
             "steve": "4c104e2c3e",
             "roma": "7f3d1fd4ba",
             "tanya": "c60d694598",
-            "pb-other": "8a1d49b3a5",
-            "pb-bass": "679df87b4f"
+            "pb-other": "a1ea07fbd5",
+            "pb-bass": "21734bb85b"
           },
           "pb_other": {
             "available": true,
@@ -11855,22 +11839,22 @@
             }
           ],
           "stem_versions": {
-            "vocal": "266278a1ea",
-            "back_vox": "96d19ff041",
-            "drums": "c4deacd97c",
-            "keys": "8cbb2236b7",
-            "bass": "7e96fa9b34",
-            "guitars": "d70b76b08c",
-            "other": "da48983e6e",
+            "vocal": "3859b2b41a",
+            "back_vox": "7267033bae",
+            "drums": "f06a340007",
+            "keys": "63badeddbc",
+            "bass": "7ea922e697",
+            "guitars": "0b29ef9f15",
+            "other": "8b54eaa7e0",
             "click": "48aa8ed4ce",
             "cues": "0923526def"
           },
           "versions": {
-            "all": "45c94538a2",
+            "all": "1ace38b1b5",
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
-            "pb-other": "88541292c8",
-            "pb-bass": "7e96fa9b34"
+            "pb-other": "933a925818",
+            "pb-bass": "0279f9a85b"
           },
           "pb_other": {
             "available": true,
@@ -11981,7 +11965,7 @@
                 "t": 208.471,
                 "text": "stop-n-chorus ready stop",
                 "bar": 109,
-                "snap": 204.706
+                "snap": 204.235
               },
               {
                 "t": 224.0,
@@ -12054,7 +12038,7 @@
           "stem_versions": {
             "vocal": "4cb30e44c2",
             "back_vox": "7343e4ad3a",
-            "drums": "c2341b2b90",
+            "drums": "eb9601373d",
             "keys": "cbb0cca3b5",
             "bass": "5afda2fdde",
             "guitars": "e23f73271e",
@@ -12063,14 +12047,14 @@
             "cues": "bc1c7809ef"
           },
           "versions": {
-            "all": "6fe4c556af",
-            "drums": "c50d60bc35",
+            "all": "e2f3e6fed9",
+            "drums": "e7ae38208a",
             "alex": "3a7ac7ac27",
             "steve": "0c054e399a",
             "roma": "206b64c511",
             "tanya": "3689e1bd3d",
             "trio": "833b377f84",
-            "pb-bass": "a8306312e0"
+            "pb-bass": "2e8b5c8987"
           },
           "pb_other": {
             "available": false,
@@ -12458,21 +12442,21 @@
             "drums": "dad362c499",
             "keys": "4f87de1995",
             "bass": "e4fa597bea",
-            "guitars": "51c811db4d",
+            "guitars": "364a079a6a",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "8286ae70ba"
+            "cues": "137fc141ba"
           },
           "versions": {
-            "all": "45ce32420c",
+            "all": "81dddcae81",
             "drums": "4646382670",
             "alex": "d2628619b8",
             "steve": "42a6c5d86d",
             "roma": "163142f63c",
             "tanya": "9681de2869",
             "trio": "78079cdcb9",
-            "pb-other": "279a8e8d05",
-            "pb-bass": "1989db6299"
+            "pb-other": "1982f2cf82",
+            "pb-bass": "e4537c5e0e"
           },
           "pb_other": {
             "available": true,
@@ -12573,8 +12557,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -12641,14 +12625,15 @@
             "cues": "74820660a2"
           },
           "versions": {
-            "all": "9a77f31e6c",
+            "all": "492b34daf1",
             "drums": "fd5d09343b",
-            "alex": "dbb996204d",
-            "steve": "1e78c5f179",
-            "roma": "8e2f8fb6d5",
-            "tanya": "bdd11eb3e5",
-            "trio": "5d393a3cb1",
-            "pb-other": "c3daca1df9"
+            "alex": "f6b02b2c04",
+            "steve": "fbca402d78",
+            "roma": "0464a2948d",
+            "tanya": "64834d4974",
+            "trio": "bc2ecaf90f",
+            "pb-other": "c3daca1df9",
+            "pb-bass": "ab94c417b0"
           },
           "pb_other": {
             "available": true,
@@ -12657,8 +12642,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -12825,12 +12812,12 @@
             "cues": "bbe091d128"
           },
           "versions": {
-            "all": "29e9ea729f",
-            "drums": "694a8d9f0d",
+            "all": "a4eae79d73",
+            "drums": "e33a9efb40",
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
-            "pb-other": "5743c44d09",
-            "pb-bass": "5cf7497b08"
+            "pb-other": "1b93b5f421",
+            "pb-bass": "ceaa588456"
           },
           "pb_other": {
             "available": true,
@@ -13044,13 +13031,13 @@
             "cues": "87634f39f2"
           },
           "versions": {
-            "all": "bdfa0f60c1",
+            "all": "0f7d552081",
             "drums": "bd9138b2db",
             "alex": "9b20c61971",
             "steve": "ec553c50e7",
             "roma": "22fde20a06",
             "tanya": "d9fdaea1e7",
-            "pb-other": "530a517cda"
+            "pb-other": "733266fa0b"
           },
           "pb_other": {
             "available": true,
@@ -13188,13 +13175,13 @@
             "cues": "7bbc60f4ee"
           },
           "versions": {
-            "all": "84251edcbb",
+            "all": "6cf6092456",
             "drums": "345d1c2c8a",
             "alex": "9cfdfe5019",
             "steve": "01679fe641",
             "roma": "3dff1152d2",
             "tanya": "dc84338cad",
-            "pb-other": "f34cad5eea"
+            "pb-other": "c977c99ce7"
           },
           "pb_other": {
             "available": true,
@@ -13513,14 +13500,14 @@
             "kind": "stems",
             "items": [
               "backing vocals",
-              "strings"
+              "strings",
+              "keys"
             ]
           },
           "practice": [
             "all",
             "drums",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -13568,18 +13555,18 @@
             "cues": "f58c4e7ebf"
           },
           "versions": {
-            "all": "0d65cde547",
+            "all": "8eaa44574a",
             "drums": "4f29057f8d",
             "steve": "8629596cd9",
-            "roma": "e5d6741f43",
             "tanya": "31093f82be",
-            "pb-other": "5fb73f7c23",
-            "pb-bass": "697c078f7b"
+            "pb-other": "595a9d1228",
+            "pb-bass": "37e50fb01b"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "back_vox",
+              "keys",
               "other"
             ]
           },
@@ -13637,9 +13624,7 @@
           "practice": [
             "all",
             "drums",
-            "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -13689,17 +13674,15 @@
             "guitars": "623aff0c1d",
             "other": "cf2759a6b8",
             "click": "9b088105d1",
-            "cues": "8c23a9e040"
+            "cues": "6444c6b3c7"
           },
           "versions": {
-            "all": "d266438fbd",
+            "all": "c3ce6c3dfd",
             "drums": "aa9d120404",
-            "alex": "6402f32d51",
             "steve": "05858ac6a8",
-            "roma": "47c8544c31",
             "tanya": "eed65648c4",
             "pb-other": "7b8e86fc9c",
-            "pb-bass": "607ac05b87"
+            "pb-bass": "ea64ba47b3"
           },
           "pb_other": {
             "available": true,

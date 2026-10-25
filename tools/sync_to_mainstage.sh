@@ -166,10 +166,128 @@ done
 echo
 echo "songs: $songs   changed: $copied   identical: $skipped   missing-in-render: $missing"
 
+echo
+echo "=== syncing <concert>/Playback/*.wav bundles ==="
+python3 - "$SRC_ROOT" "$RIG_ROOT" "$APPLY" "$FILTER" << 'PYEOF'
+import os, sys, glob, re, shutil, filecmp, urllib.parse
+
+src_root, rig_root, apply_flag, flt = sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4]
+
+PATCH_TO_SONG = {
+    "1__#$!@%!#__Rihanna.patch": "Rihanna & Calvin Harris - We Found Love",
+    "Adventure of a Lifetime.patch": "Coldplay - Adventure of a Lifetime",
+    "Akula.patch": "Кислотный DJ",
+    "Alexandra Stan.patch": "Alexandra Stan - Mr. Saxobeat",
+    "Alice Deejay.patch": "Alice Deejay - Better Off Alone",
+    "Basshunter.patch": "Basshunter - Now You're Gone",
+    "Blinding Lights.patch": "The Weeknd - Blinding Lights",
+    "Cascada.patch": "Cascada - Everytime We Touch",
+    "Demo.patch": "Demo - Solnyshko",
+    "Destenation.patch": "Alex Gaudino - Destination Calabria",
+    "Freed From Desire.patch": "Gala - Freed from Desire",
+    "Guru Josh.patch": "Guru Josh - Infinity 2008",
+    "I dont care.patch": "Icona Pop & Charli XCX - I Love It",
+    "La la la.patch": "A Touch of Class - Around the World (La La La La La)",
+    "Laurent Wolf.patch": "Laurent Wolf & Eric Carter - No Stress",
+    "Quest pistols.patch": "Quest Pistols - Я устал",
+    "Rihanna.patch": "Rihanna - S&M",
+    "Rock & roll Queen.patch": "The Subways - Rock & Roll Queen",
+    "Serebro.patch": "Мама Люба",
+    "Uptown Funk.patch": "Bruno Mars & Mark Ronson - Uptown Funk",
+    "beverly hills.patch": "Beverly Hills",
+    "heads will roll.patch": "Yeah Yeah Yeahs - Heads Will Roll",
+    "pretty fly.patch": "The Offspring - Pretty Fly (For A White Guy)",
+    "tatu.patch": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+    "whenever.patch": "Shakira - Whenever, Wherever",
+    "Бандерос.patch": "Band'Eros - Pro krasivuju zhizn'",
+    "Беги от меня.patch": "Беги от меня",
+    "Серебро.patch": "SEREBRO - Malo tebya",
+    "Сольнце.patch": "Елена Терлеева - Солнце",
+    "Такая любовь.patch": "Такая любовь",
+    "кукла колдуна.patch": "Король и Шут - Кукла колдуна",
+    "медведица.patch": "Мумий Тролль - Медведица",
+    "медляк.patch": "Mr. Credo - Медляк",
+    "пропоганда.patch": "Мелом",
+    "тулула.patch": "Чичерина - Ту-лу-ла",
+    "я буду.patch": "5sta Family & 23:45 - Я буду",
+}
+
+pb_copied = pb_skipped = 0
+for cdir in sorted(glob.glob(os.path.join(rig_root, "*.concert"))):
+    if not os.path.isdir(os.path.join(cdir, "Playback")):
+        continue
+    cname = os.path.basename(cdir)
+    # Collect mappings from .cst files
+    target_owners = {}  # dst_path -> list of (pname, song, kind)
+    for pdir in sorted(glob.glob(os.path.join(cdir, "Concert.patch", "*.patch"))):
+        pname = os.path.basename(pdir)
+        song = PATCH_TO_SONG.get(pname)
+        if not song:
+            continue
+        for cst in sorted(glob.glob(os.path.join(pdir, "*.cst"))):
+            raw = open(cst, "rb").read()
+            urls = [urllib.parse.unquote(m.decode("utf-8", "ignore"))
+                    for m in re.findall(b"file:///[^\\x00-\\x1f]+?\\.wav", raw)]
+            if not urls:
+                continue
+            rel = urls[-1].replace("file:///Users/baster/Desktop/2000/", "")
+            if ".concert/Playback/" not in rel:
+                continue
+            dst_p = os.path.join(rig_root, rel)
+            bname = os.path.basename(dst_p)
+            kind = re.sub(r"_\d+\.wav$", ".wav", bname)
+            target_owners.setdefault(dst_p, []).append((pname, song, kind))
+
+    # Also include known dedicated Playback files in 28_10_1.concert where .cst had template pb-other.wav
+    if cname == "28_10_1.concert":
+        extra = [
+            ("La la la.patch", "A Touch of Class - Around the World (La La La La La)", "pb-other.wav", "pb-other_1.wav"),
+            ("Сольнце.patch", "Елена Терлеева - Солнце", "pb-other.wav", "pb-other_10.wav"),
+            ("Беги от меня.patch", "Беги от меня", "pb-other.wav", "pb-other_12.wav"),
+        ]
+        for pname, song, kind, fn in extra:
+            dp = os.path.join(cdir, "Playback", fn)
+            if os.path.exists(dp):
+                target_owners.setdefault(dp, []).append((pname, song, kind))
+
+    for dst_p, owners in sorted(target_owners.items()):
+        # Deduplicate owners by song
+        songs_set = {o[1] for o in owners}
+        if len(songs_set) > 1:
+            # Shared template file (e.g. 28_10_1/Playback/pb-other.wav = Alice Deejay); skip clobbering
+            continue
+        pname, song, kind = owners[0]
+        if flt and (flt not in pname and flt not in song):
+            continue
+        if not os.path.exists(dst_p):
+            continue
+        src_dir = os.path.join(src_root, song, "auto-render")
+        src_p = os.path.join(src_dir, kind)
+        # Fallback if pb-other-keys.wav was merged into pb-other.wav
+        if not os.path.exists(src_p) and kind == "pb-other-keys.wav":
+            src_p = os.path.join(src_dir, "pb-other.wav")
+        if not os.path.exists(src_p):
+            continue
+        # Only sync pb-* stems in <concert>/Playback/ unless click/cues length changed
+        if kind in ("click.wav", "cues.wav") and os.path.getsize(src_p) == os.path.getsize(dst_p):
+            pb_skipped += 1
+            continue
+        rel_dst = os.path.relpath(dst_p, rig_root)
+        if filecmp.cmp(src_p, dst_p, shallow=False):
+            pb_skipped += 1
+        else:
+            print(f"  ↑ {rel_dst:50s} ← {song}/auto-render/{os.path.basename(src_p)}")
+            if apply_flag:
+                shutil.copy2(src_p, dst_p)
+            pb_copied += 1
+
+print(f"concert/Playback: changed: {pb_copied}   identical: {pb_skipped}")
+PYEOF
+
 if [ $APPLY -eq 1 ] && [ -n "$COMMIT_MSG" ]; then
   echo
   echo "=== committing in $RIG_ROOT (no push) ==="
-  git -C "$RIG_ROOT" add -A "cherry-daddies-setlist-2026-06-16"
+  git -C "$RIG_ROOT" add -A "cherry-daddies-setlist-2026-06-16" "$RIG_ROOT"/*.concert/Playback
   git -C "$RIG_ROOT" commit -m "$COMMIT_MSG" || echo "(nothing to commit)"
   echo "Push when ready:  git -C \"$RIG_ROOT\" push"
 elif [ $APPLY -eq 1 ]; then

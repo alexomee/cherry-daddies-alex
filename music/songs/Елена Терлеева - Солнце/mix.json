@@ -7,10 +7,9 @@
     ],
     "roles": {"solnce-sfx": "fx"}
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 6.0}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": 5.5}},
-  "pb-other-keys": {"stems": ["keys"]},
-  "players": {"alex": ["guitars"], "roma": ["bass"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"alex": ["guitars"], "roma": ["keys"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Солнце all in", "abs_sec": 3.692, "snap_sec": 0.0},
     {"bar": 8,   "text": "stop", "abs_sec": 16.615, "snap_sec": 12.462},

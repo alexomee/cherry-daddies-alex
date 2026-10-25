@@ -2,7 +2,7 @@
   "bpm": 148.6,
   "pitch_semitones": 0,
   "pb-other": {
-    "layers": [{"file": "kukla-pb-other-v2", "frame": "render", "replaces": ["backing_vocals", "strings"]}],
+    "layers": [{"file": "kukla-pb-other-v2", "frame": "render", "replaces": ["backing_vocals", "strings"], "gain_db": -1.5}],
     "roles": {"kukla-pb-other-v2": "musical"}
   },
   "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},

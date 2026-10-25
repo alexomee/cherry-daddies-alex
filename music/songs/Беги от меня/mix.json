@@ -1,7 +1,7 @@
 {
   "bpm": 125.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["strings"]},
+  "pb-other": {"stems": ["strings"], "gain_db": {"strings": 3.5}},
   "pb-bass": {"stems": ["bass"]},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -1.1}},
   "players": {"steve": ["drums"], "tanya": ["vocals"]},
