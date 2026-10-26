@@ -43,3 +43,17 @@
   }
   ```
 - Результирующий `auto-render/pb-other.wav` создан с tempo-меткой 135.0 BPM.
+
+## takaia_lubov_keys.wav — 2026-10-26
+
+Аккордовая партия клавиш для плейбека (`pb-other`):
+- Источник: `/Users/alex/Downloads/takaia_lubov_keys.wav` (16 bit / 44.1 kHz stereo `pcm_s16le`, 261.333 с от t=0; рендер обрезается на 245.333 с по `cut_after_last_cue: 2`).
+- Фрейм **render**: тайминг соответствует линейке рендера от t=0 (вступление на такте 5.1 / 10.667 с по cue «chords in», финальный аккорд на такте 135.1 / 241.778 с по cue «end in»).
+- Роль: `musical`, аккордовый подклад (не лид). Исходный уровень: пик −8.89 dBFS, gated RMS −23.62 dBFS (−21.2 LUFS). С учётом коридора громкости `pb-other` для аккордового аккомпанемента применён `"gain_db": -2.5` (уровень слоя −26.12 dBFS gated RMS / −23.7 LUFS; итоговый `pb-other.wav` — −24.78 dBFS gated RMS / −21.6 LUFS, пик −3.40 dBFS).
+
+## takaia_lubov_bass.wav — 2026-10-26
+
+Партия баса для плейбека (`pb-bass`, заменяет студийный Moises-стем `bass`):
+- Источник: `/Users/alex/Downloads/takaia_lubov_bass.wav` (16 bit / 44.1 kHz stereo `pcm_s16le`, 261.333 с от t=0; рендер 245.333 с).
+- Фрейм **render**: тайминг соответствует линейке рендера от t=0 (подъезд перед тактом 26 «drum fill ready go», паузы на «soft verse» такты 52–57 и на гитарном соло / 3-м куплете такты 94–110, вступление на «chorus in» такт 111.1, финальная нота Си на «end in» такт 135.1).
+- Роль: `musical`, `"replaces": ["bass"]`. Исходный уровень: пик −1.43 dBFS, gated RMS −15.03 dBFS (−13.6 LUFS). Для попадания в коридор `pb-bass` программы 28.10 (−18.9..−20.7 dBFS gated RMS / −18.0..−19.9 LUFS) применён `"gain_db": -5.0` (итоговый `pb-bass.wav` — −20.04 dBFS gated RMS / −18.6 LUFS, пик −6.43 dBFS).

@@ -35,7 +35,7 @@
 ### 28.10 new songs
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
-2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other/pb-other-keys/pb-bass/pb-drums; 2026-10-12 cue «solo leak ready go» (такт 97 / 174.2с); pb-other: strings + sfx-pb + acoustic-guitar-solo.
+2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other: strings + sfx-pb + acoustic-guitar-solo (такты 92–99) + takaia_lubov_keys (−2.5 dB); pb-bass: layer takaia_lubov_bass (−5.0 dB, replaces bass); pb-drums (−3.1 dB).
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-10-01 корневые стемы обновлены из нового ZIP `(1)`, общий warp 130 BPM; две отдельные гитары `lead_guitars.wav` / `rhythm_guitars.wav`. По запросу только файлы; web/рендер от 2026-09-29, 3 cue на тактах 1/3/19, плейбек не назначен.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; 4 cue (добавлен финальный «end in 3 3 2 1» на 124.1 / 3:21.88). 2026-10-07: pb-other обновлён на v2 (−14.9 LUFS) по результатам репетиции; синхронизирован в риг.
 5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm, pitch −1 (на полтона ниже, C#/Db major); 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; pb-other (layer `pb-guitars` — ритм-гитара на трёх соло), pb-drums, practice на четверых; сайт и риг обновлены 2026-10-14.

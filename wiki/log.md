@@ -2,6 +2,14 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-26] playback | Такая любовь: добавлен takaia_lubov_keys в pb-other (−2.5 dB) и takaia_lubov_bass в pb-bass (−5.0 dB)
+
+1. Добавлены два пользовательских слоя в `music/songs/Такая любовь/parts/` (render-фрейм от $t=0$, 44.1 kHz / 16-bit stereo):
+   - `takaia_lubov_keys.wav` — аккордовый клавишный подклад в `pb-other` (вступает на `bar 5.1` «chords in», завершается на финальном ударе `bar 135.1` «end in»). Исходный уровень: −23.62 dBFS gated RMS / −21.2 LUFS (пик −8.89 dBFS). Так как партия аккордовая (не ведущая), применён `"gain_db": -2.5` (уровень слоя −26.12 dBFS gated RMS / −23.7 LUFS; общий `pb-other.wav` — −24.78 dBFS gated RMS / −21.6 LUFS, пик −3.40 dBFS).
+   - `takaia_lubov_bass.wav` — басовая дорожка в `pb-bass` (`"replaces": ["bass"]`). Исходный уровень: −15.03 dBFS gated RMS / −13.6 LUFS (пик −1.43 dBFS). Под коридор громкости `pb-bass` программы 28.10 (−18.9..−20.7 dBFS gated RMS / −18.0..−19.9 LUFS) применён `"gain_db": -5.0` (итоговый `pb-bass.wav` — −20.04 dBFS gated RMS / −18.6 LUFS, пик −6.43 dBFS).
+2. Выполнен полный рендер (`jamzone_render.py "Такая любовь" --practice`), обновлены `pb-other.{wav,mp3}`, `pb-bass.{wav,mp3}`, `all.wav`, `cue_preview.mp3`, `stems/*.mp3`, practice-миксы и `web/songs.json`.
+3. Обновлённые `pb-other.wav` и `pb-bass.wav` синхронизированы в риг MainStage (`cherry-daddies-2000`: папка сетлиста + бандлы `28_10_1.concert/Playback/` и `2000_1.concert/Playback/`), закоммичены и запушены в `origin/main`.
+
 ## [2026-10-26] playback | Ту-лу-ла: обновлён гитарный плейбек pb-guitars из `/Users/alex/Downloads/тулула guitars.mp3`
 
 1. По запросу Alex обновлён пользовательский слой `parts/pb-guitars.wav` в `music/songs/Чичерина - Ту-лу-ла/` из `/Users/alex/Downloads/тулула guitars.mp3` (24-bit / 48 kHz PCM, render-фрейм, тональность −1 полутон C#/Db major; прежняя версия сохранена в `versions/2026-10-14-pb-guitars-v1/pb-guitars.wav`).

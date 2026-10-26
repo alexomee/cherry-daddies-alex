@@ -8,7 +8,7 @@ set: tryout batch 2026-07
 
 # Такая любовь
 
-Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`). 2026-10-05: обновление cue (13 cue). 2026-10-11: бэк-вокал убран из pb-other и pb-other-keys; в pb-other добавлен пользовательский слой `sfx-pb`. 2026-10-12: добавлен cue «solo leak ready go» на 174.2с (такт 97, 00:02:54.222), всего 14 cue; обновлён слой `sfx-pb`; в `pb-other` добавлен слой `acoustic-guitar-solo` (акустическая гитара на соло, 165.2–194.8с). 2026-10-26: баланс уровня `gain_db: -3.5`, слой `acoustic-guitar-solo` заглушен после 2:59 (с такта 100, cue «verse in»: `"mute": {"acoustic-guitar-solo": [[100, 138]]}`), чтобы не звучать в куплете.
+Tryout-батч 2026-07. Страница заведена 2026-09-02 при фиксе хвоста pb-bass; история cue — по git (`Такая любовь: 3 drums cues (bars 27/59/68)`). 2026-10-05: обновление cue (13 cue). 2026-10-11: бэк-вокал убран из pb-other и pb-other-keys; в pb-other добавлен пользовательский слой `sfx-pb`. 2026-10-12: добавлен cue «solo leak ready go» на 174.2с (такт 97, 00:02:54.222), всего 14 cue; обновлён слой `sfx-pb`; в `pb-other` добавлен слой `acoustic-guitar-solo` (акустическая гитара на соло, 165.2–194.8с). 2026-10-26: баланс уровня `gain_db: -3.5`, слой `acoustic-guitar-solo` заглушен после 2:59 (с такта 100, cue «verse in»: `"mute": {"acoustic-guitar-solo": [[100, 138]]}`), чтобы не звучать в куплете; в `pb-other` добавлен аккордовый слой клавиш `takaia_lubov_keys` (`gain_db: -2.5`), а `pb-bass` переведён на слой `takaia_lubov_bass` (`replaces: ["bass"]`, `gain_db: -5.0`).
 
 ## Сводка
 
@@ -19,7 +19,7 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 
 ## Плейбек и рендер
 
-- **pb-other:** strings + layers `sfx-pb` (роль `fx`, потолок −30 dBFS) + `acoustic-guitar-solo` (роль `musical`, соло-аккомпанемент на тактах 92–99, заглушен с такта 100 / 2:59) · **pb-other-keys:** strings + keys (вариант без живого клавишника) · **pb-bass:** bass · **pb-drums:** drums (−3.1 dB).
+- **pb-other:** strings + layers `sfx-pb` (роль `fx`, потолок −30 dBFS) + `acoustic-guitar-solo` (роль `musical`, `gain_db: -3.5`, соло-аккомпанемент на тактах 92–99, заглушен с такта 100 / 2:59) + `takaia_lubov_keys` (роль `musical`, `gain_db: -2.5`, аккордовый подклад клавиш с такта 5 до 135; итоговый `pb-other.wav` −24.78 dBFS gated RMS / −21.6 LUFS) · **pb-other-keys:** strings + keys (вариант без живого клавишника) · **pb-bass:** layer `takaia_lubov_bass` (`frame: "render"`, `replaces: ["bass"]`, `gain_db: -5.0` → −20.04 dBFS gated RMS / −18.6 LUFS) · **pb-drums:** drums (−3.1 dB).
 - **players:** alex = guitars; roma = keys, strings, wind; steve = drums; tanya = vocals; trio = guitars+drums+vocals.
 - Сетка: beat 0.4444с, такт 1.7778с, downbeat стема 0.5601с; OFF рендера +2.99542с, такт 1.1 = 3.556с рендера. Длина 245.333с = 138 тактов.
 

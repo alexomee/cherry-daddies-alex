@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-26T22:30:24",
+  "generated": "2026-10-26T22:55:18",
   "counts": {
     "total": 85,
     "data": 85,
@@ -764,13 +764,14 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "bass"
+            "label": "takaia_lubov_bass"
           },
           "other": {
             "kind": "layers",
             "items": [
               "sfx-pb",
-              "acoustic-guitar-solo"
+              "acoustic-guitar-solo",
+              "takaia_lubov_keys"
             ]
           },
           "practice": [
@@ -824,27 +825,28 @@
             "vocal": "f57be0637c",
             "back_vox": "cbc5ee02c3",
             "drums": "dad362c499",
-            "keys": "4f87de1995",
-            "bass": "e4fa597bea",
+            "keys": "cc8cf37c83",
+            "bass": "1cb1fbc006",
             "guitars": "f8dc6842b0",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "55e52728c2"
+            "cues": "4e24467136"
           },
           "versions": {
-            "all": "64b593290b",
+            "all": "54c5a13451",
             "drums": "4646382670",
-            "alex": "d2628619b8",
-            "steve": "42a6c5d86d",
-            "roma": "163142f63c",
-            "tanya": "9681de2869",
-            "trio": "78079cdcb9",
-            "pb-other": "7cb1e92b14",
-            "pb-bass": "e4537c5e0e"
+            "alex": "01cb9e7d75",
+            "steve": "abd8ad49c4",
+            "roma": "13c9d83ebc",
+            "tanya": "cf1d3d0064",
+            "trio": "6910c2ca8b",
+            "pb-other": "8939011662",
+            "pb-bass": "6b99fac5c8"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "guitars",
               "other"
             ]
@@ -12368,13 +12370,14 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "bass"
+            "label": "takaia_lubov_bass"
           },
           "other": {
             "kind": "layers",
             "items": [
               "sfx-pb",
-              "acoustic-guitar-solo"
+              "acoustic-guitar-solo",
+              "takaia_lubov_keys"
             ]
           },
           "practice": [
@@ -12428,27 +12431,28 @@
             "vocal": "f57be0637c",
             "back_vox": "cbc5ee02c3",
             "drums": "dad362c499",
-            "keys": "4f87de1995",
-            "bass": "e4fa597bea",
+            "keys": "cc8cf37c83",
+            "bass": "1cb1fbc006",
             "guitars": "f8dc6842b0",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "55e52728c2"
+            "cues": "4e24467136"
           },
           "versions": {
-            "all": "64b593290b",
+            "all": "54c5a13451",
             "drums": "4646382670",
-            "alex": "d2628619b8",
-            "steve": "42a6c5d86d",
-            "roma": "163142f63c",
-            "tanya": "9681de2869",
-            "trio": "78079cdcb9",
-            "pb-other": "7cb1e92b14",
-            "pb-bass": "e4537c5e0e"
+            "alex": "01cb9e7d75",
+            "steve": "abd8ad49c4",
+            "roma": "13c9d83ebc",
+            "tanya": "cf1d3d0064",
+            "trio": "6910c2ca8b",
+            "pb-other": "8939011662",
+            "pb-bass": "6b99fac5c8"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "guitars",
               "other"
             ]
