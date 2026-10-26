@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-26T11:33:26",
+  "generated": "2026-10-26T11:47:39",
   "counts": {
     "total": 85,
     "data": 85,
     "cues": 85,
     "playback": 38,
-    "other": 68,
+    "other": 66,
     "practice": 83
   },
   "sets": [
@@ -3199,10 +3199,7 @@
             "who": "Roma (real bass-guitar)"
           },
           "other": {
-            "kind": "stems",
-            "items": [
-              "backing vocals"
-            ]
+            "kind": "none"
           },
           "practice": [
             "all",
@@ -3257,14 +3254,11 @@
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
             "roma": "e25e62882e",
-            "tanya": "03b90961c6",
-            "pb-other": "53b9db470c"
+            "tanya": "03b90961c6"
           },
           "pb_other": {
-            "available": true,
-            "mutes": [
-              "back_vox"
-            ]
+            "available": false,
+            "mutes": []
           },
           "pb_bass": {
             "available": false,
@@ -13366,10 +13360,7 @@
             "who": "Roma (real bass-guitar)"
           },
           "other": {
-            "kind": "stems",
-            "items": [
-              "backing vocals"
-            ]
+            "kind": "none"
           },
           "practice": [
             "all",
@@ -13424,14 +13415,11 @@
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
             "roma": "e25e62882e",
-            "tanya": "03b90961c6",
-            "pb-other": "53b9db470c"
+            "tanya": "03b90961c6"
           },
           "pb_other": {
-            "available": true,
-            "mutes": [
-              "back_vox"
-            ]
+            "available": false,
+            "mutes": []
           },
           "pb_bass": {
             "available": false,
