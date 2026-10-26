@@ -227,12 +227,11 @@ for cdir in sorted(glob.glob(os.path.join(rig_root, "*.concert"))):
         for cst in sorted(glob.glob(os.path.join(pdir, "*.cst"))):
             raw = open(cst, "rb").read()
             urls = [urllib.parse.unquote(m.decode("utf-8", "ignore"))
-                    for m in re.findall(b"file:///[^\\x00-\\x1f]+?\\.wav", raw)]
-            if not urls:
+                    for m in re.findall(rb"file:///[^\x00-\x1f]+?\.wav", raw)]
+            pb_urls = [u for u in urls if ".concert/Playback/" in u]
+            if not pb_urls:
                 continue
-            rel = urls[-1].replace("file:///Users/baster/Desktop/2000/", "")
-            if ".concert/Playback/" not in rel:
-                continue
+            rel = pb_urls[-1].replace("file:///Users/baster/Desktop/2000/", "")
             dst_p = os.path.join(rig_root, rel)
             bname = os.path.basename(dst_p)
             kind = re.sub(r"_\d+\.wav$", ".wav", bname)
