@@ -6,8 +6,8 @@
     "gain_db": {"13_Backing_Vocals": -2.0, "11_Synth_Lead": -1.5},
     "fade_out": {"from_bar": 77, "from_beat": 1, "to_bar": 77, "to_beat": 3}
   },
-  "pb-bass": {"stems": ["06_Bass"], "gain_db": {"06_Bass": -1.5}},
-  "players": {"steve": ["02_Drum_Kit"], "tanya": ["15_Lead_Vocal_Lena", "14_Lead_Vocal_Julia"]},
+  "pb-bass": null,
+  "players": {"roma": ["06_Bass"], "steve": ["02_Drum_Kit"], "tanya": ["15_Lead_Vocal_Lena", "14_Lead_Vocal_Julia"]},
   "cues": [
     {"bar": 2,  "text": "pad in", "abs_sec": 2.964, "snap_sec": 0.0},
     {"bar": 6,  "beat": 3, "text": "chorus in", "abs_sec": 14.964, "snap_sec": 9.63},

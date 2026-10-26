@@ -63,7 +63,7 @@ def _save_hcache():
 SETS = [
     {
         "name": "СЕТ 1",
-        "subtitle": "28.10 Music Hall — Dance Nostalgia (12 песен)",
+        "subtitle": "28.10 Music Hall — Dance Nostalgia (11 песен)",
         "cls": "musichall1",
         "songs": [
             ("Солнце", "Елена Терлеева", "Елена Терлеева - Солнце"),
@@ -75,7 +75,6 @@ SETS = [
             ("Blinding Lights", "The Weeknd", "The Weeknd - Blinding Lights"),
             ("Whenever, Wherever", "Shakira", "Shakira - Whenever, Wherever"),
             ("Everytime We Touch", "Cascada", "Cascada - Everytime We Touch"),
-            ("Mr. Saxobeat", "Alexandra Stan", "Alexandra Stan - Mr. Saxobeat"),
             ("Destination Calabria", "Alex Gaudino", "Alex Gaudino - Destination Calabria"),
             ("Freed From Desire", "Gala", "Gala - Freed from Desire"),
         ],
@@ -102,11 +101,12 @@ SETS = [
     },
     {
         "name": "Бис",
-        "subtitle": "28.10 Music Hall — Все поют!",
+        "subtitle": "28.10 Music Hall — Все поют! + запас",
         "cls": "musichall_bis",
         "songs": [
             ("Мелом", "Пропаганда", "Мелом"),
             ("Я сошла с ума", "t.A.T.u.", "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)"),
+            ("Ghostbusters (запас)", "Ray Parker Jr.", "Ray Parker Jr. - Ghostbusters"),
         ],
     },
     {
@@ -236,6 +236,7 @@ BASS_ASSIGN = {
     "Cascada - Everytime We Touch": "Roma",
     # на бис
     "Мелом": "Roma",  # roma plays bass live (players.roma = ['bass'])
+    "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)": "Roma (real bass-guitar)",
     # tryout
     "Кислотный DJ": "Alex",  # alex plays bass live (pb-bass removed)
     "Eva 2.0": "Alex",       # alex plays bass live (pb-bass removed)

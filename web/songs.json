@@ -1,10 +1,10 @@
 {
-  "generated": "2026-10-26T00:34:43",
+  "generated": "2026-10-26T11:33:26",
   "counts": {
     "total": 85,
     "data": 85,
     "cues": 85,
-    "playback": 40,
+    "playback": 38,
     "other": 68,
     "practice": 83
   },
@@ -4206,8 +4206,8 @@
             ]
           },
           "bass": {
-            "kind": "playback",
-            "label": "Bass"
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
           },
           "other": {
             "kind": "stems",
@@ -4280,8 +4280,7 @@
             "all": "1ace38b1b5",
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
-            "pb-other": "933a925818",
-            "pb-bass": "0279f9a85b"
+            "pb-other": "933a925818"
           },
           "pb_other": {
             "available": true,
@@ -4293,10 +4292,8 @@
             ]
           },
           "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
+            "available": false,
+            "mutes": []
           }
         },
         {
@@ -11779,8 +11776,8 @@
             ]
           },
           "bass": {
-            "kind": "playback",
-            "label": "Bass"
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
           },
           "other": {
             "kind": "stems",
@@ -11853,8 +11850,7 @@
             "all": "1ace38b1b5",
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
-            "pb-other": "933a925818",
-            "pb-bass": "0279f9a85b"
+            "pb-other": "933a925818"
           },
           "pb_other": {
             "available": true,
@@ -11866,10 +11862,8 @@
             ]
           },
           "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
+            "available": false,
+            "mutes": []
           }
         }
       ]
