@@ -7,7 +7,8 @@
       {"file": "sfx-pb", "frame": "render"},
       {"file": "acoustic-guitar-solo", "frame": "render", "gain_db": -3.5}
     ],
-    "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical"}
+    "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical"},
+    "mute": {"acoustic-guitar-solo": [[100, 138]]}
   },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.5}, "mute": {"bass": [[135.5, 138]]}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -3.1}},

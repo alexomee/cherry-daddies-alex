@@ -1696,12 +1696,25 @@ def main():
                 if fs1 > fs0:
                     lb[fs0:fs1] *= np.linspace(1.0, 0.0, fs1 - fs0, dtype=np.float32)[:, None]
                 lb[fs1:] = 0.0
+            lmutes = (m.get("mute") or {}).get(nm) or ent.get("mute")
+            if lmutes:
+                for fr, to in lmutes:
+                    s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
+                    s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
+                    if s1 > s0:
+                        f = int(0.015*SR)          # 15ms cross-fade at mute edges so cuts don't click
+                        if s0 >= f:
+                            lb[s0-f:s0] *= np.linspace(1, 0, f)[:, None]
+                        lb[s0:s1] = 0.0
+                        if s1+f <= total:          # landing mid-note doesn't click
+                            lb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
             placed_layers.append((nm, lb))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             out["all"] = out["all"] + lb
             lvl = (f", {role} measured {loud:+.1f}dBFS vs ceiling {ROLE_CEILING[role]:+.0f} gain {ag:+.1f}dB"
                    + (" (unchanged)" if ag == 0 else "")) if loud is not None else ""
-            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl})")
+            mute_info = f", muted bars {lmutes}" if lmutes else ""
+            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl}{mute_info})")
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
