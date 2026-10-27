@@ -44,6 +44,7 @@
 8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 6 cue (старт synth in, bar 9 drums in, bar 17 verse in, bar 81 stop, bar 96 drum in, bar 113 end in).
 9. [Я буду — 5sta Family & 23:45](songs/ya-budu.md) — tryout 2026-09, Moises-стемы, 90 bpm (A minor); pb-other (backing_vocals [караоке redacted] + guitars + piano + keys + other [до 0:13] из оригинала), pb-bass (из караоке), pb-drums; pb-other-keys удалён; 3 cue (старт all in, bar 9 chorus in, bar 17 verse in).
 10. [Smells Like Teen Spirit — Nirvana](songs/nirvana-smells-like-teen-spirit.md) — Репетиция 07.10; JamZone cat_11775, click:follow 118 BPM; базовый плейбек (intro cue + click), группа играет живьём; cue bar 2.1 «Smells Like Teen Spirit guitar in ready go».
+11. [Кислотный DJ — Акула](songs/kislotny-dj.md) — СЕТ 2 #1 (28.10 Music Hall, клип №63), Moises 140 bpm, питч 0; 20 cue; pb-other = layer `DJ_arp` (+3.5 dB, −21.52 dBFS gated RMS / −16.1 LUFS, арпеджиатор в припевах и соло), pb-bass null (Alex живьём), pb-drums (−4.5 dB).
 
 ### На бис
 

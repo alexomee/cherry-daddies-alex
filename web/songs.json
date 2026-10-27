@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-26T22:55:18",
+  "generated": "2026-10-27T11:29:52",
   "counts": {
     "total": 85,
     "data": 85,
     "cues": 85,
     "playback": 38,
-    "other": 66,
+    "other": 68,
     "practice": 83
   },
   "sets": [
@@ -2006,7 +2006,10 @@
             "who": "Alex"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "DJ_arp"
+            ]
           },
           "practice": [
             "all",
@@ -2062,22 +2065,25 @@
             "keys": "fd573dba80",
             "bass": "1fc60fd4e8",
             "guitars": "3211d8466e",
-            "other": "882a31ad2a",
+            "other": "7b4e0509d3",
             "click": "15c0b38224",
-            "cues": "2ed5e7152d"
+            "cues": "565ff94522"
           },
           "versions": {
-            "all": "8f1bbd3324",
-            "drums": "44bccf184c",
-            "alex": "e0b5ead0c4",
-            "steve": "18136cd12a",
-            "roma": "c4909dc30a",
-            "tanya": "7070ec94c0",
-            "trio": "2b25d108d8"
+            "all": "d11e4780b4",
+            "drums": "185c2bd639",
+            "alex": "94666d26fd",
+            "steve": "c5ac7f8222",
+            "roma": "cf389b9074",
+            "tanya": "9ed814300d",
+            "trio": "272d7164a9",
+            "pb-other": "5d0ec3e73b"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "other"
+            ]
           },
           "pb_bass": {
             "available": false,
@@ -12194,7 +12200,10 @@
             "who": "Alex"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "DJ_arp"
+            ]
           },
           "practice": [
             "all",
@@ -12250,22 +12259,25 @@
             "keys": "fd573dba80",
             "bass": "1fc60fd4e8",
             "guitars": "3211d8466e",
-            "other": "882a31ad2a",
+            "other": "7b4e0509d3",
             "click": "15c0b38224",
-            "cues": "2ed5e7152d"
+            "cues": "565ff94522"
           },
           "versions": {
-            "all": "8f1bbd3324",
-            "drums": "44bccf184c",
-            "alex": "e0b5ead0c4",
-            "steve": "18136cd12a",
-            "roma": "c4909dc30a",
-            "tanya": "7070ec94c0",
-            "trio": "2b25d108d8"
+            "all": "d11e4780b4",
+            "drums": "185c2bd639",
+            "alex": "94666d26fd",
+            "steve": "c5ac7f8222",
+            "roma": "cf389b9074",
+            "tanya": "9ed814300d",
+            "trio": "272d7164a9",
+            "pb-other": "5d0ec3e73b"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "other"
+            ]
           },
           "pb_bass": {
             "available": false,

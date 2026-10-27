@@ -1,7 +1,12 @@
 {
   "bpm": 140.0,
   "pitch_semitones": 0,
-  "pb-other": null,
+  "pb-other": {
+    "layers": [
+      {"file": "DJ_arp", "frame": "render", "gain_db": 3.5}
+    ],
+    "roles": {"DJ_arp": "musical"}
+  },
   "pb-bass": null,
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.5}},
   "players": {"alex": ["guitars", "bass"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals", "bass"], "steve": ["drums"], "tanya": ["vocals"]},

@@ -2,6 +2,15 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-26] playback | Кислотный DJ: добавлен синт-арпеджиатор DJ_arp в pb-other (+3.5 dB, medium-to-high коридор)
+
+1. В `music/songs/Кислотный DJ/parts/DJ_arp.wav` добавлен пользовательский слой из `/Users/alex/Downloads/DJ_arp.wav` (16-bit / 44.1 kHz stereo PCM, 236.571 с = 138 тактов при 140 BPM):
+   - **Фрейм и ключ:** фрейм `render` (от $t=0$, `OFF = +2.79846 с` уже внутри файла; лаг огибающей к `wind.wav` на `OFF` равен `0 мс`), оригинальная тональность (`pitch_semitones: 0`, корреляция хромы со сдвигом `0 st`: `0.828` по `wind`, `0.799` по `other`, `0.752` по `bass`).
+   - **Активные секции:** такты 41–72 (`72.54–127.20 с`, Chorus 1 + Solo 1), такты 86–117 (`149.69–203.88 с`, Build-up / Chorus 2 + Solo 2) и такты 127–135 (`219.97–233.55 с`, финальный блок `all in` до `end in`).
+   - **Уровень громкости:** исходный уровень файла (`0 dB`) — `−25.02 dBFS` gated RMS (`−22.49 dBFS` stereo gated RMS, `−19.6 LUFS`, пик `−6.71 dBFS`), что попадало в нижнюю (мягкую) зону коридора `pb-other`. С поправкой `"gain_db": 3.5` (роль `musical`) итоговый `auto-render/pb-other.wav` выведен в зону **medium-to-high** актуального коридора `pb-other` программы 28.10 (между средними `Медляк` `−22.07 dBFS` / `Ghostbusters` `−22.17 dBFS` и верхними `Кукла колдуна` `−20.70 dBFS` / `Ту-лу-ла` `−19.76 dBFS`): **`−21.52 dBFS` gated RMS** (`−18.99 dBFS` stereo gated RMS, **`−16.1 LUFS`**, пик `−3.21 dBFS`).
+2. Выполнен полный рендер (`jamzone_render.py "Кислотный DJ" --practice`): собраны `pb-other.{wav,mp3}`, `all.wav`, `cue_preview.mp3`, `stems/*.mp3`, practice-миксы (`alex`, `roma`, `steve`, `tanya`, `trio`) и обновлён `web/songs.json`; удалён устаревший `auto-render/pb-bass.wav`.
+3. Новый `pb-other.wav` скопирован в локальный риг MainStage (`cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Кислотный DJ/pb-other.wav`).
+
 ## [2026-10-26] playback | Такая любовь: добавлен takaia_lubov_keys в pb-other (−2.5 dB) и takaia_lubov_bass в pb-bass (−5.0 dB)
 
 1. Добавлены два пользовательских слоя в `music/songs/Такая любовь/parts/` (render-фрейм от $t=0$, 44.1 kHz / 16-bit stereo):
