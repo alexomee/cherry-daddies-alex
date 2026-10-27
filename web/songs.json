@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-27T13:48:11",
+  "generated": "2026-10-27T14:14:39",
   "counts": {
     "total": 85,
     "data": 85,
@@ -1865,7 +1865,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 20,
+            "count": 22,
             "list": [
               {
                 "t": 3.429,
@@ -1952,6 +1952,12 @@
                 "snap": 144.0
               },
               {
+                "t": 149.143,
+                "text": "all in ready go",
+                "bar": 86,
+                "snap": 145.714
+              },
+              {
                 "t": 174.857,
                 "text": "stop",
                 "bar": 101,
@@ -1976,6 +1982,12 @@
                 "snap": 210.857
               },
               {
+                "t": 217.714,
+                "text": "stop",
+                "bar": 126,
+                "snap": 213.857
+              },
+              {
                 "t": 219.429,
                 "text": "all in ready go",
                 "bar": 127,
@@ -1996,7 +2008,8 @@
           "other": {
             "kind": "layers",
             "items": [
-              "DJ_arp"
+              "DJ_arp",
+              "wind_part"
             ]
           },
           "practice": [
@@ -2053,19 +2066,19 @@
             "keys": "fd573dba80",
             "bass": "1fc60fd4e8",
             "guitars": "3211d8466e",
-            "other": "7b4e0509d3",
+            "other": "e212f168e5",
             "click": "15c0b38224",
-            "cues": "565ff94522"
+            "cues": "171c96fb81"
           },
           "versions": {
-            "all": "d11e4780b4",
+            "all": "053537d558",
             "drums": "185c2bd639",
-            "alex": "94666d26fd",
-            "steve": "c5ac7f8222",
-            "roma": "cf389b9074",
-            "tanya": "9ed814300d",
-            "trio": "272d7164a9",
-            "pb-other": "5d0ec3e73b"
+            "alex": "6ea0183ee7",
+            "steve": "019c4d300c",
+            "roma": "4522b1095e",
+            "tanya": "a475f442d7",
+            "trio": "1cb42c7174",
+            "pb-other": "d9b6c78178"
           },
           "pb_other": {
             "available": true,
@@ -12047,7 +12060,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 20,
+            "count": 22,
             "list": [
               {
                 "t": 3.429,
@@ -12134,6 +12147,12 @@
                 "snap": 144.0
               },
               {
+                "t": 149.143,
+                "text": "all in ready go",
+                "bar": 86,
+                "snap": 145.714
+              },
+              {
                 "t": 174.857,
                 "text": "stop",
                 "bar": 101,
@@ -12158,6 +12177,12 @@
                 "snap": 210.857
               },
               {
+                "t": 217.714,
+                "text": "stop",
+                "bar": 126,
+                "snap": 213.857
+              },
+              {
                 "t": 219.429,
                 "text": "all in ready go",
                 "bar": 127,
@@ -12178,7 +12203,8 @@
           "other": {
             "kind": "layers",
             "items": [
-              "DJ_arp"
+              "DJ_arp",
+              "wind_part"
             ]
           },
           "practice": [
@@ -12235,19 +12261,19 @@
             "keys": "fd573dba80",
             "bass": "1fc60fd4e8",
             "guitars": "3211d8466e",
-            "other": "7b4e0509d3",
+            "other": "e212f168e5",
             "click": "15c0b38224",
-            "cues": "565ff94522"
+            "cues": "171c96fb81"
           },
           "versions": {
-            "all": "d11e4780b4",
+            "all": "053537d558",
             "drums": "185c2bd639",
-            "alex": "94666d26fd",
-            "steve": "c5ac7f8222",
-            "roma": "cf389b9074",
-            "tanya": "9ed814300d",
-            "trio": "272d7164a9",
-            "pb-other": "5d0ec3e73b"
+            "alex": "6ea0183ee7",
+            "steve": "019c4d300c",
+            "roma": "4522b1095e",
+            "tanya": "a475f442d7",
+            "trio": "1cb42c7174",
+            "pb-other": "d9b6c78178"
           },
           "pb_other": {
             "available": true,

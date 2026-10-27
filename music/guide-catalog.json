@@ -1707,20 +1707,20 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 236.571429,
-      "key": "cherry-dash/fd31c4f9ad95/guides/2b784cb92734e3d8fc8682a5ef53652dbf3a6188014d3c020c6934076968e2e7/all.wav",
-      "mix_sha256": "08e2c5040df17e56d1eb450db835390880ed5e08fe22af0c4383b6b999653ba7",
+      "key": "cherry-dash/fd31c4f9ad95/guides/cbd1116b851aa8104bb6a56fd623fb9d4ac2d3335f6d0b23dfdce3a4880b8cbc/all.wav",
+      "mix_sha256": "129c63919afd6adb2dd30ed07b677ecde30087b9115a2f2d7dd06c398d544a9e",
       "render_audio": {
         "click.wav": "01d701010e7f6b2b08981be13d55b69a8a91122d55bed571b04d7043ff88c927",
-        "cues.wav": "fbe712ceaacd4cb393ebbccc91fc5daefd7bb2a00cb216f2c3c3d8f1a141bccf",
+        "cues.wav": "1690e171bb89d46808a47b0999f646603a60b16593f5ec8b253d2dffe3657320",
         "pb-drums.wav": "b6de50e198881619e84e3b363cf0ad0b98ee4c42c0ae192b318280a1148a42df",
-        "pb-other.wav": "2592e4c2e9a1d7923857b4aaafe0d22f2168b422303c06f9533e792789d1d920"
+        "pb-other.wav": "0ddfcf3dac7f3cdc5cbee2b7907991ca309c1daee43f0c31a13bab6d4a2f0965"
       },
       "render_pcm": {
         "click.wav": "abcfa0154385b24d27f45db2ac5df3aac59dbb757a6aee29e7443cd7e774544b",
-        "pb-other.wav": "3012dca74a8865a7859a016fc93423110acd3daaea6be65ba265093e0ec6423e"
+        "pb-other.wav": "7b1af8ccbede37215734204b25a8778f4179d64ae01b022d28806223a07cc721"
       },
       "sample_rate": 44100,
-      "sha256": "2b784cb92734e3d8fc8682a5ef53652dbf3a6188014d3c020c6934076968e2e7",
+      "sha256": "cbd1116b851aa8104bb6a56fd623fb9d4ac2d3335f6d0b23dfdce3a4880b8cbc",
       "status": "available",
       "timeline": {
         "bar_sec": 1.714286,
@@ -1728,7 +1728,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 2.798458
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/2b784cb92734e3d8fc8682a5ef53652dbf3a6188014d3c020c6934076968e2e7/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/cbd1116b851aa8104bb6a56fd623fb9d4ac2d3335f6d0b23dfdce3a4880b8cbc/all.wav"
     },
     "music/songs/Король и Шут - Кукла колдуна": {
       "bytes": 36182298,

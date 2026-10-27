@@ -2,6 +2,21 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-27] playback | Кислотный DJ: добавлен слой wind_part в pb-other (−8.0 dB, на 4 дБ тише прежнего)
+
+1. Из `/Users/alex/Downloads/кислотный dj wind part.mp3` (48 kHz / 320 kbps stereo, 236.64 с) сконвертирован слой `music/songs/Кислотный DJ/parts/wind_part.wav` (24-bit / 44.1 kHz stereo PCM, `frame: "render"` от $t=0$, оригинальная тональность `pitch_semitones: 0`, роль `musical`):
+   - **Активные участки:** такты `33–57` (`58.31–99.95 с`, разгон перед Chorus 1 + Chorus 1), такты `86–103` (`149.16–179.27 с`, разгон + Chorus 2) и такты `127–135` (`219.46–233.77 с`, финальный блок `all in` до `end in`).
+   - **Баланс громкости (`"gain_db": -8.0`):** по запросу Alex ветер понижен ещё на 4 дБ (с `−4.0` до `"gain_db": -8.0` → **`−27.05 dBFS` gated RMS / `−23.0 LUFS`**, пик `−8.12 dBFS`), чтобы на крещендо не спорить с `DJ_arp` (`−21.52 dBFS` gated RMS / `−18.99 dBFS` stereo gated RMS / `−16.1 LUFS`, пик `−3.21 dBFS`). Суммарный `pb-other.wav` — **`−21.19 dBFS` gated RMS** (`−18.96 dBFS` stereo gated RMS, пик `−2.36 dBFS`).
+2. Выполнен полный рендер (`jamzone_render.py "Кислотный DJ" --practice`, 22 cue), обновлены `pb-other.{wav,mp3}`, `all.wav`, `cues.wav`, `cue_preview.mp3`, `stems/*.mp3`, practice-миксы и `web/songs.json`.
+3. Обновлённые файлы выгружены в R2 и задеплоены на сайт (`tools/sync_site.py`), синхронизированы в риг MainStage (`cherry-daddies-2000`) и запушены в оба репозитория.
+
+## [2026-10-27] cues | Кислотный DJ: добавлены подсказки all in на 2:29.14 (bar 86.1) и stop in 3 3 2 1 на 3:37.71 (bar 126.1)
+
+1. В `music/songs/Кислотный DJ/mix.json` добавлены 2 подсказки (всего стало 22 cue):
+   - `{"bar": 86, "text": "all in ready go", "abs_sec": 149.143, "snap_sec": 145.714}` (`02:29.14`) — вступление полного бэнда (бас, клавиши, синт-арпеджиатор) на начало 2-го припева сразу после такта разгона `bar 85` (`build up ready go`).
+   - `{"bar": 126, "text": "stop", "abs_sec": 217.714, "snap_sec": 213.857}` (`03:37.71`) — `stop in 3 · 3 2 1` на последний удар барабанов в конце разгона (`bar 124–125`) перед тактом паузы и финальным припевом `bar 127` (`all in ready go`, `03:39.43`).
+2. Выполнен полный рендер (`jamzone_render.py "Кислотный DJ" --practice`): пересобраны `cues.wav`, `cue_preview.mp3`, `all.wav`, `pb-other.wav`, `pb-drums.wav`, practice-миксы (`alex`, `roma`, `steve`, `tanya`, `trio`) и обновлён `web/songs.json`.
+
 ## [2026-10-27] cues | Freed from Desire: убраны подсказки 1:47 piano in (bar 59) и 3:17 bass stop (bar 107)
 
 1. В `music/songs/Gala - Freed from Desire/mix.json` удалены 2 подсказки:
