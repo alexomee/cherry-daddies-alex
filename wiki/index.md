@@ -11,7 +11,7 @@
 3. [Shakira — Whenever, Wherever](songs/whenever-wherever.md) — СЕТ 1 #3, JamZone-стемы, ~109 bpm, оригинальный ключ; 12 cue, click=follow; players alex(3 гитары)/roma(synth pad)/steve(drums)/tanya(vocal), practice-миксы для всех; перкуссия выкинута из плейбека.
 4. [Infinity 2008 — Guru Josh Project](songs/infinity-2008.md) — СЕТ 1 #4, JamZone-песня (128 bpm, без питча): pb-other = арп + fx + synth keys, pb-bass = synth bass −3dB, 16 ручных Logic-cue, 4 practice-микса.
 5. [Mr. Saxobeat — Alexandra Stan](songs/mr-saxobeat.md) — СЕТ 1 #5, JamZone-песня (без Moises/питча): pb-other = Noise+Sax-reverse +8.9dB, 5 синтов на export для клавишника, 13 cue, 4 practice-микса.
-6. [Destination Calabria — Alex Gaudino](songs/destination-calabria.md) — СЕТ 1 #6, JamZone-песня (~128 bpm, click:follow), два сакса + вокал + драмы живьём, 15 cue с beat-разрешением в хвосте.
+6. [Destination Calabria — Alex Gaudino](songs/destination-calabria.md) — СЕТ 1 #6, JamZone-песня (~128 bpm, click:follow + cut_bars -0.71с в соло), ровный 8-тактовый квадрат сакс-соло в 4/4, два сакса + вокал + драмы живьём, 15 cue строго на Beat 1.
 7. [Adventure of a Lifetime — Coldplay](songs/adventure-of-a-lifetime.md) — СЕТ 1 #7, JamZone-стемы, 112 bpm, живой бас (Roma), 13 cue; alex играет 3 гитары.
 8. [Blinding Lights — The Weeknd](songs/blinding-lights.md) — СЕТ 1 #8, JamZone-стемы, 171 bpm, ориг. тональность; эталон cue_step:2 (быстрый темп); live: steve/tanya/roma, Alex вне песни.
 9. [No Stress](songs/no-stress.md) — Laurent Wolf & Eric Carter — No Stress: СЕТ 1 #9, JamZone-стемы, 130 bpm, живой бас (Alex), 8 cue с A-тоном в ухо вокалисту.
@@ -36,9 +36,9 @@
 
 1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other: strings + sfx-pb + acoustic-guitar-solo (такты 92–99) + takaia_lubov_keys (−2.5 dB); pb-bass: layer takaia_lubov_bass (−5.0 dB, replaces bass); pb-drums (−3.1 dB).
-3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — 2026-10-01 корневые стемы обновлены из нового ZIP `(1)`, общий warp 130 BPM; две отдельные гитары `lead_guitars.wav` / `rhythm_guitars.wav`. По запросу только файлы; web/рендер от 2026-09-29, 3 cue на тактах 1/3/19, плейбек не назначен.
+3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — СЕТ 2 #8 (28.10 Music Hall); Moises-варп 130 BPM, питч 0; 5 cue (такты 1/3/19 + `break in` 83.1 / 2:35.08 + `voice in` 84.1 / 2:36.92); `pb-other` = layer `guitars_on_rap` (−5.5 dB → −22.19 dBFS gated RMS / −17.5 LUFS, medium коридор).
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; 4 cue (добавлен финальный «end in 3 3 2 1» на 124.1 / 3:21.88). 2026-10-07: pb-other обновлён на v2 (−14.9 LUFS) по результатам репетиции; синхронизирован в риг.
-5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm, pitch −1 (на полтона ниже, C#/Db major); 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; pb-other (layer `pb-guitars` — ритм-гитара на трёх соло), pb-drums, practice на четверых; сайт и риг обновлены 2026-10-14.
+5. [Ту-лу-ла — Чичерина](songs/chicherina-tu-lu-la.md) — Moises-стемы, 130.6 bpm, pitch −1 (на полтона ниже, C#/Db major); 10 cue с гитарными затактами, drums only, keep going и финалом 2:23.338; pb-other (layer `pb-guitars` −7 dB — ритм-гитара на трёх соло, обновлена 2026-10-26), pb-drums, practice на четверых.
 6. [Rock & Roll Queen — The Subways](songs/rock-and-roll-queen.md) — JamZone cat_67531 выровнен RubberBand на 141 BPM; pb-other=backing vocals+lead guitar, бас живой (Рома на гитаре), practice-roma; 8 cue, финальный end in 3 + 3 2 1 на 93.1 / 2:40; arrangement-v4 в локальном web, cues в риге, новый pb-other подключить в MainStage вручную.
 7. [Pretty Fly (For A White Guy) — The Offspring](songs/pretty-fly.md) — Moises, 143 BPM, A minor (pitch −2), pb-other=backing vocals, pb-drums, бас живой; 5 cue: drums 1.1, vocal 2.1 (первый бэк), all 10.1, bass verse 73.4 (вокальный затакт перед басом), end fill in 108.1 (3:03 даунбит); practice для четверых.
 8. [Медляк — Mr. Credo](songs/medlyak.md) — tryout 2026-09, Moises-стемы, 105 bpm (G minor); pb-other (backing vocals + strings), pb-other-keys, pb-drums, pb-bass; 6 cue (старт synth in, bar 9 drums in, bar 17 verse in, bar 81 stop, bar 96 drum in, bar 113 end in).
@@ -104,7 +104,7 @@
 
 - [Репетиция 2026-10-07](gigs/2026-10-07-rehearsal.md) — Сетлист репетиции (10 песен); архив (вкладка заменена на «28.10 Music Hall»).
 - [Концерт 2026-10-24 (Лефкара)](gigs/2026-10-24-lefkara.md) — Предстоящий концерт в Лефкаре; программа из 21 песни (SET 1: 10 песен, SET 2: 11 песен) в веб-дашборде (вкладка «24.10 lefkara»).
-- [Концерт 2026-10-28 (Music Hall)](gigs/2026-10-28-music-hall.md) — Предстоящий концерт в Music Hall; программа из 27 песен (СЕТ 1: 12 песен, СЕТ 2: 13 песен, Бис: 2 песни) в веб-дашборде (вкладка «28.10 Music Hall»).
+- [Концерт 2026-10-28 (Music Hall)](gigs/2026-10-28-music-hall.md) — Предстоящий концерт в Music Hall; программа из 27 песен (СЕТ 1: 11 песен, СЕТ 2: 13 песен, Бис: 2 песни + Ghostbusters в запасе) в веб-дашборде (вкладка «28.10 Music Hall»).
 - [Концерт 2026-06-26 (мультикам-съёмка)](gigs/2026-06-26-multicam.md) — Концерт с двухкамерной съёмкой (IMG_2689/2690 + DIMAS оператор): сетлист из 24 песен, записанные Set-1 оператор-оффсеты; дата и площадка частично не подтверждены.
 
 ## Контент

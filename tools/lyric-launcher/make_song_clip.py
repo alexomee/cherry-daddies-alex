@@ -373,13 +373,25 @@ def main():
         print(f"manual lines: {len(lines)} lines (offset 0)")
         print(f"song length {dur:.2f}s")
     else:
+        tl_path = os.path.join(args.song, "auto-render", "timeline.json")
+        tl = json.load(open(tl_path)) if os.path.exists(tl_path) else {}
         if args.offset is None:
-            tl = json.load(open(os.path.join(args.song, "auto-render", "timeline.json")))
             offset = tl["offset_sec"]
         else:
             offset = args.offset
+        cuts = tl.get("cuts") or []
+        def shift_cut(x):
+            s = 0.0
+            for c_fr, c_to in cuts:
+                if x >= c_to:
+                    s += (c_to - c_fr)
+                elif x > c_fr:
+                    s += (x - c_fr)
+            return x - s
         tiles = dj(args.cat, "tiles.json")
         words, cols = lead_words(tiles)
+        if cuts:
+            words = [(shift_cut(st), shift_cut(en), tx) for st, en, tx in words]
         lines = group_lines(words)
         raw = len(lines)
         lines = pack_lines(collapse_letter_runs(lines))

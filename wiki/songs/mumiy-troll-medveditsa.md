@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-01
+updated: 2026-10-27
 title: Медведица
 artist: Мумий Тролль
 set: 28.10 new songs
@@ -8,16 +8,17 @@ set: 28.10 new songs
 
 # Медведица (Мумий Тролль)
 
-Сет «28.10 new songs». Для сцены **click + cues**, плейбек-группы не назначены; банда играет живьём. С 2026-09-29 для репетиций подключены **Moises-стемы в локальном web-микшере**, 130 BPM; 3 подсказки на интро (drums in, all in на гитару, verse in на куплет).
+Сет «28.10 Music Hall» (СЕТ 2 #8). С 2026-09-29 для репетиций подключены **Moises-стемы в локальном web-микшере**, 130 BPM; 2026-10-01 корневые WAV обновлены из нового ZIP `(1)`. 2026-10-27: добавлены 2 подсказки на рэп-брейкдаун (`bar 83.1` / `02:35.077` `break in ready go` и `bar 84.1` / `02:36.923` `voice in ready go`, всего 5 cue) и подключён пользовательский гитарный плейбек в `pb-other` (`parts/guitars_on_rap.wav`, `frame: "render"`, `role: "musical"`, `gain_db: -5.5` → `−22.19 dBFS` gated RMS / `−17.5 LUFS`, зона **medium** коридора `pb-other`).
 
 ## Сводка
 
 - **bpm:** 130.0; небольшой дрейф Moises-клика (сглаженный диапазон −19.7…+3.2 мс) выровнен общей картой RubberBand R2 для всех музыкальных стемов. Синтетический рендер-клик: fit 129.999998 BPM, max остаток ~0.301 мс. Подготовленный исходный `metronome.wav` — другой файл: после сглаженного warp сохраняет квантование онсетов Moises (max остаток ~15 мс, проверено 2026-10-01).
-- **pitch_semitones:** 0 · `pb-other: null`, `pb-bass: null`, `players` нет.
-- Текущий источник корневых WAV: Moises-архив `/Users/alex/Downloads/Мумии_ Тролль _ Медведица _3uDFkM8FH_E_-E minor-130bpm-443hz (1).zip`, обновлён 2026-10-01 (то же YouTube `3uDFkM8FH_E`). Метки архива E minor / 130 BPM / 443 Hz; дополнительная коррекция строя не применялась, pitch_semitones=0. Рендер/web пока используют импорт 2026-09-29 из ZIP без суффикса `(1)`.
+- **pitch_semitones:** 0 · `pb-other: {"layers": [{"file": "guitars_on_rap", "frame": "render", "gain_db": -5.5}], "roles": {"guitars_on_rap": "musical"}}`, `pb-bass: null`, `players` нет.
+- **pb-other (layer `guitars_on_rap`):** гитарная партия на второй половине рэп-секции и разгоне перед финальным припевом (`169.47–184.40 с`, такты `90.4–98.4`, `02:49.5–03:04.4`) из `/Users/alex/Downloads/медведица guitars on rap.mp3` (render-фрейм от $t=0$). Исходный уровень (`0.0 dB`): `−16.69 dBFS` gated RMS (`−16.02 dBFS` stereo gated RMS, `−12.0 LUFS`, пик `−0.13 dBFS`). С поправкой `"gain_db": -5.5` итоговый `auto-render/pb-other.wav` выведен в **medium** зону коридора `pb-other` программы 28.10: **`−22.19 dBFS` gated RMS** (`−21.52 dBFS` stereo gated RMS, **`−17.5 LUFS`**, пик `−5.63 dBFS`; фанковый ритм в тактах `90.4–94.4` `−26.48 dBFS`, перегруженный разгон в тактах `95.1–98.4` `−19.84 dBFS`).
+- Текущий источник корневых WAV: Moises-архив `/Users/alex/Downloads/Мумии_ Тролль _ Медведица _3uDFkM8FH_E_-E minor-130bpm-443hz (1).zip`, обновлён 2026-10-01 (то же YouTube `3uDFkM8FH_E`). Метки архива E minor / 130 BPM / 443 Hz; дополнительная коррекция строя не применялась, pitch_semitones=0.
 - Сильная доля: первый Moises-клик **4.312200 с**, проверен по началу барабанов и гитарному входу через два такта. В исходной click-only подготовке фаза была 4.303 с; новый OFF компенсирует различие.
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Мумий Тролль - Медведица/mix.json`
-- Рендер: OFF **−0.619915 с**, такт 1.1 = **3.692 с**; два такта каунт-ина, общая длина **236.308 с**. Все три cue остаются на прежних музыкальных тактах и render-временах.
+- Рендер: OFF **−0.619915 с**, такт 1.1 = **3.692 с**; два такта каунт-ина, общая длина **236.308 с**.
 
 ## Moises-стемы и локальный web — 2026-09-29
 
@@ -41,13 +42,15 @@ set: 28.10 new songs
 
 ## Cue
 
-3 cue:
+5 cue:
 1. `bar 1.1` (3.692 с) — `"Медведица drums in"` → «Медведица» (в lead-такте) + «drums in ready go» по 4 долям перед тактом 1, вступают барабаны.
 2. `bar 3.1` (7.385 с) — `"all in"` → «all in ready go» по долям такта 2, вступает гитара и вся группа.
 3. `bar 19.1` (36.923 с) — `"verse in"` → «verse in ready go» по долям такта 18, сильная доля перед началом куплета («В слезах парнишка...»).
+4. `bar 83.1` (155.077 с / `02:35.077`) — `"break in"` → «break in ready go» по долям такта 82 (`153.231–155.077 с`), уход в рэп-брейкдаун (снимается лид-гитара и бас).
+5. `bar 84.1` (156.923 с / `02:36.923`) — `"voice in"` → «voice in ready go» по долям такта 83 (`155.077–156.923 с`), вступление вокала на сильную долю («О, диги-диги...»).
 
 ## Риг (MainStage)
 
-`/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Медведица/` — `click.wav` + `cues.wav` (риг-коммиты `eb9b74f6` → `f7b647ec`, запушены). Сет в MainStage **не заведён** — новые песни wire'ятся руками (Playback-плагин на два wav). MAP в `sync_to_mainstage.sh` добавлен.
+`/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Медведица/` — `click.wav` + `cues.wav` + `pb-other.wav` (новый стем `pb-other.wav` подключается в MainStage вручную). MAP в `sync_to_mainstage.sh` добавлен.
 
-2026-09-29 после импорта выполнен `sync_to_mainstage.sh --apply "Медведица"`: cues.wav обновлён, click.wav уже совпадал. Подключение сета в самом MainStage в этой сессии не проверялось.
+2026-10-27 после добавления двух подсказок и слоя `guitars_on_rap` выполнен `sync_to_mainstage.sh --apply --create-missing "Медведица"`: в папку сетлиста скопированы обновлённый `cues.wav` и новый `pb-other.wav`, обновлены `click_30.wav` и `cues_41.wav` в бандлах `28_10_2.concert/Playback/`, `2000_1.concert/Playback/`, `2000_2.concert/Playback/`.

@@ -1094,16 +1094,25 @@ def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec
     print(f"\nJamZone sections for {os.path.basename(folder)} ({cat}):")
     print(f"  {'Section':15s} | {'stem_t':8s} | {'render_t':9s} | {'Logic':6s} | {'mix.json cue snippet':34s} | {'Lyrics preview'}")
     print("  " + "-" * 105)
-    t_fr, t_to = cut_range if cut_range else (None, None)
+    t_fr, t_to = (None, None)
+    cut_ranges = []
+    if cut_range:
+        if isinstance(cut_range, list):
+            cut_ranges = cut_range
+        else:
+            cut_ranges = [cut_range]
     for s in st:
         cap = s.get("caption", "")
         b = s.get("begin", 0.0)
         b_eff = b
-        if t_fr is not None and t_to is not None:
-            if b >= t_to:
-                b_eff = b - (t_to - t_fr)
-            elif b >= t_fr:
-                b_eff = t_fr
+        shift = 0.0
+        for c_fr, c_to in cut_ranges:
+            if c_fr is not None and c_to is not None:
+                if b >= c_to:
+                    shift += (c_to - c_fr)
+                elif b >= c_fr:
+                    shift += (b - c_fr)
+        b_eff = b - shift
         t_rend = b_eff + OFF
         idx = sec_to_idx(t_rend) if sec_to_idx else (b_eff - db0) / beat
         mb, mbe = idx_to_barbeat(idx)
@@ -1181,8 +1190,12 @@ def main():
 
     click_st = decode(stems[click_name])
     cut_bars = mix.get("cut_bars")
+    click_cut_samps = []
+    stem_cut_samps = []
+    stem_cut_ranges = []
     if cut_bars:
         cl_ons = onsets(click_st.mean(1))
+        cl_ons_all = onsets(click_st.mean(1), thr_ratio=0.1, min_gap=0.15)
         def parse_cut_point(spec, default_bar=1, default_beat=1):
             if isinstance(spec, (list, tuple)):
                 b = int(spec[0])
@@ -1193,30 +1206,95 @@ def main():
             else:
                 b = int(spec)
                 bt = float(default_beat)
-            idx = round((b - 1) * 4 + (bt - 1.0))
-            return b, bt, idx
+            idx_f = (b - 1) * 4 + (bt - 1.0)
+            i0 = int(np.floor(idx_f))
+            frac = idx_f - i0
+            if abs(frac) < 1e-6:
+                t = float(cl_ons[round(idx_f)])
+            else:
+                t0 = float(cl_ons[i0])
+                t1 = float(cl_ons[min(i0 + 1, len(cl_ons) - 1)])
+                mid = cl_ons_all[(cl_ons_all > t0 + 0.05) & (cl_ons_all < t1 - 0.05)]
+                if len(mid) and abs(frac - 0.5) < 0.1:
+                    t = float(mid[0])
+                else:
+                    t = t0 + frac * (t1 - t0)
+            return b, bt, t
 
-        if isinstance(cut_bars, dict):
-            fb = cut_bars.get("from_bar", cut_bars.get("from", 1))
-            fbt = cut_bars.get("from_beat", 1)
-            tb = cut_bars.get("to_bar", cut_bars.get("to", 1))
-            tbt = cut_bars.get("to_beat", 1)
-            fr_b, fr_bt, idx_fr = parse_cut_point([fb, fbt])
-            to_b, to_bt, idx_to = parse_cut_point([tb, tbt])
-        elif isinstance(cut_bars, (list, tuple)) and len(cut_bars) == 2:
-            fr_b, fr_bt, idx_fr = parse_cut_point(cut_bars[0])
-            to_b, to_bt, idx_to = parse_cut_point(cut_bars[1])
+        def is_point(x):
+            if isinstance(x, (int, float)):
+                return True
+            if isinstance(x, dict):
+                return "bar" in x or "beat" in x
+            if isinstance(x, (list, tuple)) and len(x) in (1, 2) and isinstance(x[0], (int, float)):
+                return True
+            return False
+
+        def parse_cut_pairs(spec):
+            if isinstance(spec, dict):
+                fb = spec.get("from_bar", spec.get("from", 1))
+                fbt = spec.get("from_beat", 1)
+                tb = spec.get("to_bar", spec.get("to", 1))
+                tbt = spec.get("to_beat", 1)
+                return [(parse_cut_point([fb, fbt]), parse_cut_point([tb, tbt]))]
+            if isinstance(spec, (list, tuple)):
+                if len(spec) == 2 and is_point(spec[0]) and is_point(spec[1]):
+                    return [(parse_cut_point(spec[0]), parse_cut_point(spec[1]))]
+                return [(parse_cut_point(p[0]), parse_cut_point(p[1])) for p in spec]
+            sys.exit(f"mix.json: invalid cut_bars spec: {spec}")
+
+        if isinstance(cut_bars, dict) and ("click" in cut_bars or "stems" in cut_bars):
+            click_pairs = parse_cut_pairs(cut_bars.get("click") or cut_bars.get("stems"))
+            stem_pairs = parse_cut_pairs(cut_bars.get("stems") or cut_bars.get("click"))
         else:
-            sys.exit(f"mix.json: invalid cut_bars spec: {cut_bars}")
+            click_pairs = parse_cut_pairs(cut_bars)
+            stem_pairs = click_pairs
 
-        t_fr = float(cl_ons[idx_fr])
-        t_to = float(cl_ons[idx_to])
-        s0, s1 = round(t_fr * SR), round(t_to * SR)
         fade_len = int(0.005 * SR)
-        fr_str = f"bar {fr_b}.{int(fr_bt) if fr_bt.is_integer() else fr_bt}"
-        to_str = f"bar {to_b}.{int(to_bt) if to_bt.is_integer() else to_bt}"
-        print(f"cut_bars: cutting {fr_str} to {to_str} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
-        click_st = np.concatenate([click_st[:s0], click_st[s1:]])
+        click_pre = int(0.010 * SR)
+        for (fr_b, fr_bt, t_fr), (to_b, to_bt, t_to) in click_pairs:
+            s0, s1 = round(t_fr * SR), round(t_to * SR)
+            if s0 >= click_pre and s1 >= click_pre:
+                s0 -= click_pre
+                s1 -= click_pre
+            click_cut_samps.append((s0, s1))
+            fr_str = f"bar {fr_b}.{_disp_beat(fr_bt)}"
+            to_str = f"bar {to_b}.{_disp_beat(to_bt)}"
+            print(f"cut_bars (click): cutting {fr_str} to {to_str} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
+
+        for (fr_b, fr_bt, t_fr), (to_b, to_bt, t_to) in stem_pairs:
+            s0, s1 = round(t_fr * SR), round(t_to * SR)
+            stem_cut_samps.append((s0, s1))
+            stem_cut_ranges.append((t_fr, t_to))
+            if stem_pairs is not click_pairs:
+                fr_str = f"bar {fr_b}.{_disp_beat(fr_bt)}"
+                to_str = f"bar {to_b}.{_disp_beat(to_bt)}"
+                print(f"cut_bars (stems): cutting {fr_str} to {to_str} ({t_fr:.3f}s to {t_to:.3f}s, duration {t_to - t_fr:.3f}s)")
+
+        tot_c = sum(s1 - s0 for s0, s1 in click_cut_samps)
+        tot_s = sum(s1 - s0 for s0, s1 in stem_cut_samps)
+        if stem_cut_samps and tot_c != tot_s and abs(tot_c - tot_s) <= 10:
+            last_s0, last_s1 = stem_cut_samps[-1]
+            stem_cut_samps[-1] = (last_s0, last_s1 + (tot_c - tot_s))
+
+        def apply_cuts(buf, cuts, fade=0):
+            pieces = []
+            cur = 0
+            for s0, s1 in cuts:
+                seg = buf[cur:s0].copy()
+                if fade > 0 and len(seg) >= fade:
+                    seg[-fade:] *= np.linspace(1, 0, fade)[:, None] if seg.ndim == 2 else np.linspace(1, 0, fade)
+                if fade > 0 and pieces and len(seg) >= fade:
+                    seg[:fade] *= np.linspace(0, 1, fade)[:, None] if seg.ndim == 2 else np.linspace(0, 1, fade)
+                pieces.append(seg)
+                cur = s1
+            tail = buf[cur:].copy()
+            if fade > 0 and pieces and len(tail) >= fade:
+                tail[:fade] *= np.linspace(0, 1, fade)[:, None] if tail.ndim == 2 else np.linspace(0, 1, fade)
+            pieces.append(tail)
+            return np.concatenate(pieces)
+
+        click_st = apply_cuts(click_st, click_cut_samps, fade=0)
 
     insert_bars = mix.get("insert_bars")
     if insert_bars:
@@ -1305,21 +1383,13 @@ def main():
     for n in music:
         buf = decode(stems[n])
         if cut_bars:
-            b_pre = buf[:s0].copy()
-            b_post = buf[s1:].copy()
-            if len(b_pre) >= fade_len:
-                b_pre[-fade_len:] *= np.linspace(1, 0, fade_len)[:, None]
-            if len(b_post) >= fade_len:
-                b_post[:fade_len] *= np.linspace(0, 1, fade_len)[:, None]
-            buf = np.concatenate([b_pre, b_post])
+            buf = apply_cuts(buf, stem_cut_samps, fade=fade_len)
         if insert_bars:
             buf = np.concatenate([buf[:s_ins_split], np.zeros((ins_samples, 2), np.float32), buf[s_ins_split:]])
         audio[n] = buf
     cue_st = decode(cue_p) if os.path.exists(cue_p) else None
     if cue_st is not None and cut_bars:
-        c_pre = cue_st[:s0].copy()
-        c_post = cue_st[s1:].copy()
-        cue_st = np.concatenate([c_pre, c_post])
+        cue_st = apply_cuts(cue_st, stem_cut_samps, fade=0)
     if cue_st is not None and insert_bars:
         cue_st = np.concatenate([cue_st[:s_ins_split], np.zeros((ins_samples, 2), np.float32), cue_st[s_ins_split:]])
 
@@ -1426,7 +1496,7 @@ def main():
                   f"| Logic {lb}.{round(lbe)} | {c['text']}")
     if "--sections" in sys.argv or "-s" in sys.argv:
         q = True
-        cut_range = (t_fr, t_to) if cut_bars else None
+        cut_range = stem_cut_ranges if cut_bars else None
         _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec, db0, beat, sec_to_idx, OFF, cut_range)
     for flag, mk in (("--logic", lambda v: sec_of_logic(int(v.split('.')[0]), int((v.split('.')+['1'])[1]))),
                      ("--bar",   lambda v: render_sec(mixbar_to_idx(int(v.split('.')[0]), int((v.split('.')+['1'])[1])))),
@@ -1764,10 +1834,12 @@ def main():
     bpm = 60/beat
     for n, buf in out.items():
         wav_tempo_write(os.path.join(adir, n + ".wav"), buf, bpm)  # ST + MainStage (tempo label)
-    json.dump({"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
-               "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
-                       "t=0 = bar line; downbeat of stem grid on a bar line"},
-              open(os.path.join(adir, "timeline.json"), "w"), indent=1)
+    tl_obj = {"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
+              "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
+                      "t=0 = bar line; downbeat of stem grid on a bar line"}
+    if stem_cut_ranges:
+        tl_obj["cuts"] = [[round(a, 6), round(b, 6)] for a, b in stem_cut_ranges]
+    json.dump(tl_obj, open(os.path.join(adir, "timeline.json"), "w"), indent=1)
     extra = ""
     if "cues" in out:                              # audition mix to approve cues (levels as in
         m = out["all"]*MIX_LVL + out["click"]*CLICK_LVL + out["cues"]*CUE_LVL   # jamzone_cues.py)

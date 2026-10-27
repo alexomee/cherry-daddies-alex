@@ -1,15 +1,15 @@
 ---
 type: gig
-updated: 2026-10-22
+updated: 2026-10-25
 status: planning
 ---
 
 # Концерт 2026-10-28 (Music Hall)
 
 Предстоящий концерт Cherry Daddies в Music Hall (28 октября 2026).
-Программа из 27 песен разбита в веб-дашборде (вкладка `28.10 Music Hall`) на два сета и блок на бис: **СЕТ 1 — Dance Nostalgia** (12 песен), **СЕТ 2 — Party & Rock** (13 песен) и **БИС — Все поют!** (2 песни).
+Программа из 27 песен (26 основных + 1 запасная) разбита в веб-дашборде (вкладка `28.10 Music Hall`) на два сета и блок на бис: **СЕТ 1 — Dance Nostalgia** (11 песен), **СЕТ 2 — Party & Rock** (13 песен) и **БИС — Все поют!** (2 песни + 1 запас).
 
-## SET 1 — Dance Nostalgia (12 песен)
+## SET 1 — Dance Nostalgia (11 песен)
 
 1. [Солнце — Елена Терлеева](../songs/elena-terleeva-solntse.md)
 2. [Around the World — ATC](../songs/around-the-world.md)
@@ -20,9 +20,8 @@ status: planning
 7. [Blinding Lights — The Weeknd](../songs/blinding-lights.md)
 8. [Whenever, Wherever — Shakira](../songs/whenever-wherever.md)
 9. [Everytime We Touch — Cascada](../songs/everytime-we-touch.md)
-10. [Mr. Saxobeat — Alexandra Stan](../songs/mr-saxobeat.md)
-11. [Destination Calabria — Alex Gaudino](../songs/destination-calabria.md)
-12. [Freed From Desire — Gala](../songs/freed-from-desire.md)
+10. [Destination Calabria — Alex Gaudino](../songs/destination-calabria.md)
+11. [Freed From Desire — Gala](../songs/freed-from-desire.md)
 
 ## SET 2 — Party & Rock (13 песен)
 
@@ -40,7 +39,8 @@ status: planning
 12. [I Love It — Icona Pop](../songs/i-love-it.md)
 13. Мама Люба — SEREBRO
 
-## БИС — Все поют! (2 песни)
+## БИС — Все поют! (2 песни + запас)
 
 1. [Мелом — Пропаганда](../songs/melom.md)
 2. [Я сошла с ума — t.A.T.u.](../songs/ya-soshla-s-uma.md)
+3. [Ghostbusters (запас) — Ray Parker Jr.](../songs/ghostbusters.md)
