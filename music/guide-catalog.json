@@ -749,10 +749,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 215.813923,
       "key": "cherry-dash/a234bff4f98d/guides/86980928a99b53749cdcd124e075abfa6beff0112bf8750b97d65a3983f420dc/all.wav",
-      "mix_sha256": "17ec65139faab7bc64947eedf36ee406a113c01fdcb87819658aaa9e118a9512",
+      "mix_sha256": "8dd0114c48d827e2736779ddc22a986e5a9584b397c653f92bc72880dfa2c49c",
       "render_audio": {
         "click.wav": "aa7661ea6660f5780a3f0516c84ba2166ba6356abb59ba0bab469f472bcf6a55",
-        "cues.wav": "3c12de16fe68e47d61976bea1e36c11cfcdde73afcd4aa27dd44134ab41bc92e",
+        "cues.wav": "ca801459b83eb37425c053e03a68a62a512581da07b0f2c796f20171f11e58a1",
         "pb-bass.wav": "98f4a2d86a9ec71848e8508e89f9be2bbbadd1f96f154277607335e7ea20eccd"
       },
       "render_pcm": {

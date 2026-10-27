@@ -15,7 +15,7 @@
 7. [Adventure of a Lifetime — Coldplay](songs/adventure-of-a-lifetime.md) — СЕТ 1 #7, JamZone-стемы, 112 bpm, живой бас (Roma), 13 cue; alex играет 3 гитары.
 8. [Blinding Lights — The Weeknd](songs/blinding-lights.md) — СЕТ 1 #8, JamZone-стемы, 171 bpm, ориг. тональность; эталон cue_step:2 (быстрый темп); live: steve/tanya/roma, Alex вне песни.
 9. [No Stress](songs/no-stress.md) — Laurent Wolf & Eric Carter — No Stress: СЕТ 1 #9, JamZone-стемы, 130 bpm, живой бас (Alex), 8 cue с A-тоном в ухо вокалисту.
-10. [Gala — Freed from Desire](songs/freed-from-desire.md) — СЕТ 1 #10; JamZone-песня (~129 bpm, без питча), pb-bass=Synth_Bass, roma играет все синты (alex вне), 16 cue включая bass/end stop.
+10. [Gala — Freed from Desire](songs/freed-from-desire.md) — СЕТ 1 #10; JamZone-песня (~129 bpm, без питча), pb-bass=Synth_Bass, roma играет все синты (alex вне), 14 cue (убраны piano 1:47 и bass stop 3:17, оставлен end stop 3:30).
 11. [Uptown Funk — Bruno Mars & Mark Ronson](songs/uptown-funk.md) — JamZone-песня, СЕТ 1 #11, 115 bpm, ориг. тональность; pb-bass null (бас вживую), 19 cue со stop'ами и haa-хитами, practice для steve/tanya/alex.
 
 ### СЕТ 2

@@ -2,6 +2,17 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-27] cues | Freed from Desire: убраны подсказки 1:47 piano in (bar 59) и 3:17 bass stop (bar 107)
+
+1. В `music/songs/Gala - Freed from Desire/mix.json` удалены 2 подсказки:
+   - `{"bar": 59, "text": "piano in"}` (107.907 с / 01:47.9)
+   - `{"bar": 107, "text": "bass stop"}` (197.209 с / 03:17.2)
+   Осталось 14 подсказок (включая секционные входы и финальный `end stop` на bar 114).
+2. Выполнен полный рендер (`jamzone_render.py "Gala - Freed from Desire" --practice`): пересобраны `cues.wav`, `cue_preview.mp3`, `all.wav`, `pb-bass.wav`, `stems/*.mp3` и practice-миксы (`roma`, `steve`, `tanya`). Обновлён `web/songs.json`.
+3. Обновления синхронизированы в риг MainStage (`cherry-daddies-2000`):
+   - папка сетлиста `cherry-daddies-setlist-2026-06-16/10 Freed From Desire/cues.wav`
+   - Playback-бандлы концертов `28_10_1.concert/Playback/`, `2000_1.concert/Playback/`, `2000_all.concert/Playback/` (`cues_9.wav`, `click_9.wav`, `pb-bass_6.wav`).
+
 ## [2026-10-26] playback | Кислотный DJ: добавлен синт-арпеджиатор DJ_arp в pb-other (+3.5 dB, medium-to-high коридор)
 
 1. В `music/songs/Кислотный DJ/parts/DJ_arp.wav` добавлен пользовательский слой из `/Users/alex/Downloads/DJ_arp.wav` (16-bit / 44.1 kHz stereo PCM, 236.571 с = 138 тактов при 140 BPM):

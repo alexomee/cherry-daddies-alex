@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-27T11:29:52",
+  "generated": "2026-10-27T13:48:11",
   "counts": {
     "total": 85,
     "data": 85,
@@ -1692,7 +1692,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16,
+            "count": 14,
             "list": [
               {
                 "t": 3.721,
@@ -1743,12 +1743,6 @@
                 "snap": 87.442
               },
               {
-                "t": 107.907,
-                "text": "piano in",
-                "bar": 59,
-                "snap": 104.186
-              },
-              {
                 "t": 130.233,
                 "text": "break in",
                 "bar": 71,
@@ -1777,12 +1771,6 @@
                 "text": "chorus in",
                 "bar": 98,
                 "snap": 177.674
-              },
-              {
-                "t": 197.209,
-                "text": "bass stop",
-                "bar": 107,
-                "snap": 193.023
               },
               {
                 "t": 210.233,
@@ -1842,14 +1830,14 @@
             "bass": "b40522a1bb",
             "other": "4339ac7112",
             "click": "60f3fe2caf",
-            "cues": "9903fd1f94"
+            "cues": "7794617495"
           },
           "versions": {
-            "all": "c38433c3ad",
-            "steve": "3dc662ce79",
-            "roma": "da02ad8e98",
-            "tanya": "3f4243c47a",
-            "pb-bass": "fce0004740"
+            "all": "31eef4c014",
+            "steve": "de220b51ed",
+            "roma": "8cc328644d",
+            "tanya": "16b94fc852",
+            "pb-bass": "b40522a1bb"
           },
           "pb_other": {
             "available": false,
@@ -9212,7 +9200,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 16,
+            "count": 14,
             "list": [
               {
                 "t": 3.721,
@@ -9263,12 +9251,6 @@
                 "snap": 87.442
               },
               {
-                "t": 107.907,
-                "text": "piano in",
-                "bar": 59,
-                "snap": 104.186
-              },
-              {
                 "t": 130.233,
                 "text": "break in",
                 "bar": 71,
@@ -9297,12 +9279,6 @@
                 "text": "chorus in",
                 "bar": 98,
                 "snap": 177.674
-              },
-              {
-                "t": 197.209,
-                "text": "bass stop",
-                "bar": 107,
-                "snap": 193.023
               },
               {
                 "t": 210.233,
@@ -9362,14 +9338,14 @@
             "bass": "b40522a1bb",
             "other": "4339ac7112",
             "click": "60f3fe2caf",
-            "cues": "9903fd1f94"
+            "cues": "7794617495"
           },
           "versions": {
-            "all": "c38433c3ad",
-            "steve": "3dc662ce79",
-            "roma": "da02ad8e98",
-            "tanya": "3f4243c47a",
-            "pb-bass": "fce0004740"
+            "all": "31eef4c014",
+            "steve": "de220b51ed",
+            "roma": "8cc328644d",
+            "tanya": "16b94fc852",
+            "pb-bass": "b40522a1bb"
           },
           "pb_other": {
             "available": false,

@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-10-27
 title: Freed From Desire
 artist: Gala
 set: СЕТ 1 #10 / 24.10 Lefkara Сет 2 #6
@@ -39,11 +39,11 @@ set: СЕТ 1 #10 / 24.10 Lefkara Сет 2 #6
 
 ## Cue
 
-16 cue (см. [../pipelines/cue-system.md](../pipelines/cue-system.md)). Стартовый: **«Freed from desire keys in»** (bar 3).
+14 cue (см. [../pipelines/cue-system.md](../pipelines/cue-system.md)). Стартовый: **«Freed from desire keys in»** (bar 3).
 
-- Секционные входы: `vocal in`, `drums in`, `piano in` (×2), `keep going`, `chorus in` (×3), `solo in` (×2), `verse in`, `break in`, `bridge in`.
+- Секционные входы: `vocal in`, `drums in`, `piano in` (bar 19), `keep going`, `chorus in` (×3), `solo in` (×2), `verse in`, `break in`, `bridge in`.
 - **`chorus in` на bar 98 beat 3** — вход на 3-ю долю (не на 1). Остальные cue на доле 1.
-- Две остановки в финале: **`bass stop`** (bar 107) и **`end stop`** (bar 114) → разворачиваются в «… stop in 3» + отсчёт «3 2 1».
+- Остановка в финале: **`end stop`** (bar 114) → разворачивается в «end stop in 3» + отсчёт «3 2 1».
 - Счётных входов (`count: true`) нет; `cue_step`/`count_in` не заданы.
 
 ## История и гочи
@@ -51,8 +51,5 @@ set: СЕТ 1 #10 / 24.10 Lefkara Сет 2 #6
 - **2026-06-13** — черновик cue (16 позиций) размечен по стилю ручной разметки при оцифровке старых cue-треков (коммит `bd3fbed`). Тогда же введена семантика `bar 1.1 = музыкальный даунбит`.
 - **2026-06-18** — новые рендеры (`timeline`) + правки `mix.json`.
 - **2026-06-19** — назначены `players`: roma = все синты, alex сидит вне (коммит `265621c`).
-- **2026-06-20** — последний рендер (`auto-render/*` от 2026-06-20 14:16); `10-lyric-review.mp4` от 2026-06-22.
-
-## Открытое
-
-- Cue помечены как **черновик** при разметке 2026-06-13 (наравне с Better Off Alone, Heads Will Roll, I Love It, Around the World) — статус финальной сверки cue со стемами по этой песне в истории явно не зафиксирован.
+- **2026-06-20** — рендер (`auto-render/*` от 2026-06-20 14:16); `10-lyric-review.mp4` от 2026-06-22.
+- **2026-10-27** — убраны подсказки `piano in` на 1:47 (bar 59) и `bass stop` на 3:17 (bar 107). Выполнен полный рендер (`--practice`), обновлены стемы в `cherry-daddies-2000` (`cherry-daddies-setlist-2026-06-16/10 Freed From Desire/` и Playback-бандлы концертов `28_10_1.concert`, `2000_1.concert`, `2000_all.concert`).
