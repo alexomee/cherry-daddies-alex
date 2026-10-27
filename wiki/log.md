@@ -2,14 +2,25 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
-## [2026-10-27] stage-video | Dark Cinema (v6): анти-засвет сцены для всех 27 синхронизированных клипов 28.10 Music Hall (`index-v6.html`)
+## [2026-10-27] cues | Кислотный DJ: обновлены подсказки на 1:37 (bar 56 drums-bass fill), 2:05 (bar 72 drum fill) и 2:20 (bar 81 drums-bass break)
+
+1. В `music/songs/Кислотный DJ/mix.json` изменены 3 подсказки:
+   - `bar 56.1` (`01:37.714`): `drums-bass break ready go` → `drums-bass fill ready go`
+   - `bar 72.1` (`02:05.143`): `drum break ready go` → `drum fill ready go`
+   - `bar 81.1` (`02:20.571`): `long break ready go` → `drums-bass break ready go`
+2. Выполнен полный рендер (`jamzone_render.py "Кислотный DJ" --practice`): пересобраны `cues.wav`, `cue_preview.mp3`, `all.wav`, practice-миксы и обновлён `web/songs.json`.
+3. Обновления синхронизированы в риг MainStage (`cherry-daddies-2000`: `cherry-daddies-setlist-2026-06-16/Кислотный DJ/` и бандлы `28_10_2.concert/Playback/`, `2000_1.concert/Playback/`).
+
+## [2026-10-27] stage-video | Dark Cinema + Club 1920×640 Smart Hybrid (v6/v7): анти-засвет сцены и адаптивный формат 1920×640 для всех 27 клипов 28.10 Music Hall
 
 1. Разработан пайплайн сценической стилизации задника (`tools/stage_dark_cinema.py`, PoC 5 стилей — `tools/stage_video_poc.py`) и метрики засвета сцены (средний линейный свет $\text{APL}_{\text{lin}}$, пиковый свет кадра, доля ярких пятен $Y>0.65$, паразитный белый свет).
 2. Выбран и применён профиль **Dark Cinema (Natural Colors)** ко всем 27 синхронизированным с плейбеком клипам из `music/youtube/28.10-setlist/` → `music/youtube/28.10-setlist-dark-cinema/`:
    - локальный контраст (`CLAHE`) + пространственное подавление плоских белых фонов (небо, циклорама, белые стены);
    - отсечка глубоких теней в чистый `#000000`, плавный roll-off светов, овальная сценическая виньетка и экспо-лимитер анти-строб вспышек (потолок ~3.2–4.6% линейного света при исходных 30–100%);
    - сохранение родной цветовой палитры каждого клипа и 1:1 копирование синхронизированного аудио (`-c:a copy`).
-3. Все 27 клипов выгружены в R2 под версионированным префиксом `cherry-daddies/videos/dark-v6/<id>.mp4`, опубликована витрина `https://releases.agentiqa.com/cherry-daddies/videos/index-v6.html` с индикацией снижения светового потока по каждому треку и ссылками на оригиналы `v5`.
+3. Разработан конвейер под разрешение клубного экрана **`1920×640` (`3:1`) в режиме Smart Hybrid** (`tools/stage_club_1920x640.py`, выходная папка `music/youtube/28.10-setlist-1920x640/`):
+   - автоматическая обрезка запечённых рамок (`ACTIVE_CROPS`) и адаптивный зум по категории исходника (`1860×640` для Cinema `2:1`, `1580×640` для `16:9 HD`, `1360×640` для `4:3 HD`, `1200×640` для `480p SD`, `1120×640` для квадратных обложек) со смещением вертикального кропа в верхнюю треть (`y_bias = 0.28..0.38`) и мягкой косинусной растушёвкой боковых границ в `#000000` (без логотипа).
+4. Все 27 клипов `1920×640` выгружены в R2 под префиксом `cherry-daddies/videos/club-1920x640-v6/<id>.mp4` (а `16:9` Dark-версии — в `cherry-daddies/videos/dark-v6/<id>.mp4`); опубликованы витрины `https://releases.agentiqa.com/cherry-daddies/videos/index-v7.html` и `https://releases.agentiqa.com/cherry-daddies/videos/index-v6.html`.
 
 ## [2026-10-27] cues & playback | Медведица (Мумий Тролль): добавлены подсказки break in (2:35.08) и voice in (2:36.92), слой guitars_on_rap в pb-other (−5.5 dB, medium коридор)
 

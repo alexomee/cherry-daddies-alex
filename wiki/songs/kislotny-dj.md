@@ -37,11 +37,11 @@ set: 28.10 Music Hall SET 2 #1
 - `bar 38.1` (66.857 с) — «synth in ready go»
 - `bar 39.1` (68.571 с) — «build up ready go»
 - `bar 41.1` (72.000 с) — «chorus in ready go»
-- `bar 56.1` (97.714 с) — «drums-bass break ready go»
+- `bar 56.1` (97.714 с) — «drums-bass fill ready go»
 - `bar 64.1` (111.429 с) — «bass break ready go»
 - `bar 65.1` (113.143 с) — «solo in ready go»
-- `bar 72.1` (125.143 с) — «drum break ready go»
-- `bar 81.1` (140.571 с) — «long break ready go»
+- `bar 72.1` (125.143 с) — «drum fill ready go»
+- `bar 81.1` (140.571 с) — «drums-bass break ready go»
 - `bar 85.1` (147.429 с) — «build up ready go»
 - `bar 86.1` (149.143 с) — «all in ready go»
 - `bar 101.1` (174.857 с) — «stop in 3 · 3 2 1»

@@ -267,8 +267,8 @@ for cdir in sorted(glob.glob(os.path.join(rig_root, "*.concert"))):
             src_p = os.path.join(src_dir, "pb-other.wav")
         if not os.path.exists(src_p):
             continue
-        # Only sync pb-* stems in <concert>/Playback/ unless click/cues length changed
-        if kind in ("click.wav", "cues.wav") and os.path.getsize(src_p) == os.path.getsize(dst_p):
+        # Only sync pb-* stems in <concert>/Playback/ unless click/cues length changed (or specific song filtered)
+        if kind in ("click.wav", "cues.wav") and not flt and os.path.getsize(src_p) == os.path.getsize(dst_p):
             pb_skipped += 1
             continue
         rel_dst = os.path.relpath(dst_p, rig_root)
