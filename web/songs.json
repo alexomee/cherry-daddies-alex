@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-28T10:43:35",
+  "generated": "2026-10-28T12:46:07",
   "counts": {
     "total": 84,
     "data": 84,
     "cues": 84,
     "playback": 37,
-    "other": 69,
+    "other": 71,
     "practice": 82
   },
   "sets": [
@@ -2504,7 +2504,11 @@
             "label": "malo-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "malo-guitars",
+              "malo-sfx"
+            ]
           },
           "practice": [
             "all",
@@ -2552,22 +2556,26 @@
             "drums": "736dcf93b6",
             "keys": "02a7a03102",
             "bass": "474e3343cb",
-            "guitars": "0e6db7fbd7",
-            "other": "7619bdaece",
+            "guitars": "cfaa6a3d65",
+            "other": "237ac41f1c",
             "click": "bf72244c61",
-            "cues": "9cf65e04fe"
+            "cues": "e7ce769e46"
           },
           "versions": {
-            "all": "b71efdfa39",
+            "all": "274669c9fa",
             "alex": "ba213fb465",
             "steve": "2e89296029",
             "roma": "63c1875d1d",
             "tanya": "698094df25",
+            "pb-other": "f6f4ba4068",
             "pb-bass": "c44eff4620"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "guitars",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -2717,7 +2725,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 5,
+            "count": 6,
             "list": [
               {
                 "t": 3.692,
@@ -2748,6 +2756,12 @@
                 "text": "voice in",
                 "bar": 84,
                 "snap": 153.231
+              },
+              {
+                "t": 183.692,
+                "text": "stop",
+                "bar": 98,
+                "snap": 179.538
               }
             ]
           },
@@ -2805,10 +2819,10 @@
             "guitars": "59152a0dbe",
             "other": "393c8a01d2",
             "click": "76a8740645",
-            "cues": "4ff1a779a8"
+            "cues": "fd3f03de74"
           },
           "versions": {
-            "all": "f5e9ce2398",
+            "all": "f5a3e91394",
             "pb-other": "97d42b14e9"
           },
           "pb_other": {
@@ -9944,7 +9958,11 @@
             "label": "malo-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "malo-guitars",
+              "malo-sfx"
+            ]
           },
           "practice": [
             "all",
@@ -9992,22 +10010,26 @@
             "drums": "736dcf93b6",
             "keys": "02a7a03102",
             "bass": "474e3343cb",
-            "guitars": "0e6db7fbd7",
-            "other": "7619bdaece",
+            "guitars": "cfaa6a3d65",
+            "other": "237ac41f1c",
             "click": "bf72244c61",
-            "cues": "9cf65e04fe"
+            "cues": "e7ce769e46"
           },
           "versions": {
-            "all": "b71efdfa39",
+            "all": "274669c9fa",
             "alex": "ba213fb465",
             "steve": "2e89296029",
             "roma": "63c1875d1d",
             "tanya": "698094df25",
+            "pb-other": "f6f4ba4068",
             "pb-bass": "c44eff4620"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "guitars",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -12741,7 +12763,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 5,
+            "count": 6,
             "list": [
               {
                 "t": 3.692,
@@ -12772,6 +12794,12 @@
                 "text": "voice in",
                 "bar": 84,
                 "snap": 153.231
+              },
+              {
+                "t": 183.692,
+                "text": "stop",
+                "bar": 98,
+                "snap": 179.538
               }
             ]
           },
@@ -12829,10 +12857,10 @@
             "guitars": "59152a0dbe",
             "other": "393c8a01d2",
             "click": "76a8740645",
-            "cues": "4ff1a779a8"
+            "cues": "fd3f03de74"
           },
           "versions": {
-            "all": "f5e9ce2398",
+            "all": "f5a3e91394",
             "pb-other": "97d42b14e9"
           },
           "pb_other": {

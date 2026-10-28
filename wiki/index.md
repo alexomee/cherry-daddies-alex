@@ -22,7 +22,7 @@
 
 1. [Солнышко (Demo)](songs/solnyshko.md) — СЕТ 2 #1; Moises-варп 138 bpm, pitch −2 (Bb minor); count_in:1 + все cue −1 такт (фикс выравнивания 2026-06-20); pb-bass = live synth-bass layer заменяет студийный бас.
 2. [Про красивую жизнь (Банд'Эрос)](songs/pro-krasivuju-zhizn.md) — СЕТ 2 #2, Moises 125 bpm, оригинальная тональность; 10 cue, layer keys-noise (render-фрейм, +0мс), practice-миксы на 4 игроков.
-3. [Мало тебя — SEREBRO](songs/malo-tebya.md) — SEREBRO «Мало тебя» (СЕТ 2 #3), Moises-стемы, 130 bpm, pitch −2; живой бас как layer (parts/malo-bass.aif, frame stem, replaces bass); 16 cue.
+3. [Мало тебя — SEREBRO](songs/malo-tebya.md) — SEREBRO «Мало тебя» (СЕТ 2 #3), Moises-стемы, 130 bpm, pitch −2; pb-bass (живой бас layer replaces bass); pb-other (layers malo-guitars на соло/припевах и malo-sfx свипы/разгон); 16 cue.
 4. [Я устал — Quest Pistols](songs/ya-ustal.md) — СЕТ 2 #4; half-time брейкдаун с переменным click:"follow" + tempo_zone (subdiv 8-е), живой бас (layer, replaces bass) и backing-vocal layer, 11 cue, practice-миксы на 4 игроков.
 5. [Basshunter — Now You're Gone](songs/now-youre-gone.md) — СЕТ 2 #5, JamZone-стемы, ~149 bpm родной ключ; 13 ручных cue из Logic-бонса; pb-other=Noise_effects, pb-bass живой; players alex/roma/steve/tanya.
 6. [S&M — Rihanna](songs/s-and-m.md) — JamZone-песня СЕТ 2 #6, 128 bpm, pitch −2; 13 cue со счётным финалом, pb-other = синт + 2 бек-вокала, pb-bass +2 dB, Alex на обоих басах.

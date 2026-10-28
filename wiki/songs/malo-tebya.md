@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-10-28
 title: Мало тебя
 artist: SEREBRO
 set: "СЕТ 2 #3"
@@ -16,17 +16,20 @@ set: "СЕТ 2 #3"
 
 - **bpm:** 130.000 (lstsq-среднее реального метронома, ±20мс; медиана 130.40 давала дрейф 685мс — «раз» уезжал).
 - **pitch_semitones:** −2 (плейбек транспонируется в тональность группы; rubberband CLI R3 + формант).
-- **Особые поля:** `pb-other: null` (нет other-группы в плейбеке). `pb-bass` содержит только `layers` (стемов нет). Нет `cue_step`, `count_in`, `tempo_zone`, `click` (константная сетка).
+- **Особые поля:** `pb-other: {"layers": [{"file": "malo-guitars", "frame": "render", "gain_db": -7.0}, {"file": "malo-sfx", "frame": "render", "gain_db": -4.0}], "roles": {"malo-guitars": "musical", "malo-sfx": "musical"}}`. `pb-bass` содержит только `layers` (стемов нет). Нет `cue_step`, `count_in`, `tempo_zone`, `click` (константная сетка).
 
 ## Плейбек и рендер
 
 Файл: `/Users/alex/projects/cherry-daddies/music/songs/SEREBRO - Malo tebya/mix.json`.
 
 - **Стемы Moises** (`music/songs/SEREBRO - Malo tebya/`): `bass.mp3`, `drums.mp3`, `guitars.mp3`, `keys.mp3`, `other.mp3`, `vocals.mp3`, `metronome.mp3`.
-- **Layer (pb-bass):** `parts/malo-bass.aif` (`file: malo-bass`), **frame `stem`** (записан под сырые Moises-стемы → кладётся на OFF), `replaces: ["bass"]` (живой бас вместо студийного — студийный `bass` выкидывается из `all`/превью), `gain_db: -3`. Хрома −2 = уже в ключе группы → **без питча**. Прецедент задокументирован в `CLAUDE.md` (раздел layers). См. [jamzone-render.md](../pipelines/jamzone-render.md).
+- **Layers (pb-other):**
+  - `parts/malo-guitars.wav` (`file: malo-guitars`), **frame `render`**, `gain_db: -7.0`. Ритм-гитара от Alex на припевах и соло (такты 21–45, 61–85, 95–119). Уровень согласован с ритм-гитарой в «Ту-лу-ле» (пик −7.1 dBFS, gated RMS −19.8 dBFS).
+  - `parts/malo-sfx.wav` (`file: malo-sfx`), **frame `render`**, `gain_db: -4.0`. Шумовые свипы/эффекты на структурных переходах (такты 20–22, 45–47, 60–62, 85–87) с RMS −30.1 dBFS (аналогично «Солнцу»); кульминационный разгон/сбивка со снейром на тактах 91–96 звучит громче (RMS −20.1 dBFS, пик −4.1 dBFS).
+- **Layer (pb-bass):** `parts/malo-bass.aif` (`file: malo-bass`), **frame `stem`** (записан под сырые Moises-стемы → кладётся на OFF), `replaces: ["bass"]` (живой бас вместо студийного — студийный `bass` выкидывается из `all`/превью), `gain_db: -5`. Хрома −2 = уже в ключе группы → **без питча**. Прецедент задокументирован в `CLAUDE.md` (раздел layers). См. [jamzone-render.md](../pipelines/jamzone-render.md).
 - **players:** `alex → guitars`, `roma → ["other","keys"]`, `steve → drums`, `tanya → vocals`.
 - **Practice-миксы** (`auto-render/`): `practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3` (каждый = весь микс минус стемы игрока + клик + cue). См. [jamzone-render.md](../pipelines/jamzone-render.md).
-- **Рендеры** (`auto-render/`): `all.wav`, `click.wav`, `cues.wav`, `pb-bass.wav`, `cue_preview.mp3`, `timeline.json` (последний рендер 2026-06-25). Также `preview.mp3` (2026-06-12, старый) и lyric-launcher видео `14-TIMED-prototype.mp4`, `14-lyric-review.mp4`.
+- **Рендеры** (`auto-render/`): `all.wav`, `click.wav`, `cues.wav`, `pb-other.wav`, `pb-other.mp3`, `pb-bass.wav`, `pb-bass.mp3`, `cue_preview.mp3`, `timeline.json` (обновлено 2026-10-28). Также lyric-launcher видео `14-TIMED-prototype.mp4`, `14-lyric-review.mp4`.
 
 ## Cue
 

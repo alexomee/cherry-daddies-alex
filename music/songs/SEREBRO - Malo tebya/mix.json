@@ -1,6 +1,23 @@
 {
   "bpm": 130.0,
-  "pb-other": null,
+  "pb-other": {
+    "layers": [
+      {
+        "file": "malo-guitars",
+        "frame": "render",
+        "gain_db": -7.0
+      },
+      {
+        "file": "malo-sfx",
+        "frame": "render",
+        "gain_db": -4.0
+      }
+    ],
+    "roles": {
+      "malo-guitars": "musical",
+      "malo-sfx": "musical"
+    }
+  },
   "pb-bass": {
     "layers": [
       {

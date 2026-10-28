@@ -2,7 +2,19 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
-## [2026-10-28] mix | Медляк (Mr. Credo): pb-other +4 dB, ре-рендер, синк в риг
+## [2026-10-28] mix | Мало тебя (SEREBRO): добавлены malo-guitars и malo-sfx в pb-other
+
+1. Сконвертированы пользовательские дорожки из `/Users/alex/Downloads/`:
+   - `/Users/alex/Downloads/malo-tebya-rhytm-guitars.mp3` → `music/songs/SEREBRO - Malo tebya/parts/malo-guitars.wav` (24 bit / 48 kHz stereo `pcm_s24le`, 227.136 с).
+   - `/Users/alex/Downloads/malo-tebya-rhytm-sfx.mp3` → `music/songs/SEREBRO - Malo tebya/parts/malo-sfx.wav` (24 bit / 48 kHz stereo `pcm_s24le`, 227.136 с).
+2. Настроены слои в `music/songs/SEREBRO - Malo tebya/mix.json`:
+   - Фрейм: **`render`** (оба файла согласованы с линейкой рендера от t=0).
+   - `malo-guitars`: тональность C# minor (уже в ключе группы, без питча); применен `"gain_db": -7.0` (роль `musical`), уровень полностью согласован с ритм-гитарой в «Ту-лу-ле» (пик −7.13 dBFS, RMS −19.79 dBFS).
+   - `malo-sfx`: применен `"gain_db": -4.0` (роль `musical`), 4 регулярных свипа звучат с RMS −30.03 dBFS (аналогично «Солнцу» −30.3 dBFS); кульминационный разгон/сбивка со снейром на тактах 91–96 звучит на уровне микса с RMS −18.91 dBFS (пик −4.11 dBFS).
+   - Итоговый `pb-other.wav`: пик −4.11 dBFS (запас по хедруму >4 dB, без клиппинга).
+3. Выполнен полный рендер (`jamzone_render.py "SEREBRO - Malo tebya"`):
+   - Пересобраны `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, стемы в `auto-render/stems/`.
+   - Автоматически обновлен `web/songs.json` (`pb_other.available: true`, хэш `pb-other`: `f6f4ba4068`). Доступно для прослушивания через веб-дашборд (`http://localhost:5173`).
 
 1. В `music/songs/Mr. Credo - Медляк/mix.json` уровень `pb-other` поднят на +4 dB:
    - `"gain_db": {"backing_vocals": 0.5, "keys": 0.5, "strings": 2.5}` (было `{"backing_vocals": -3.5, "keys": -3.5, "strings": -1.5}`).
