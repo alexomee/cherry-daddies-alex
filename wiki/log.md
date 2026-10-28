@@ -2,6 +2,13 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-28] cues & lyrics | Медведица (Мумий Тролль): добавлен cue stop на 3:03.69 (bar 98.3) и обновлён фонетический текст рэп-секции (клип 27)
+
+1. В `music/songs/Мумий Тролль - Медведица/mix.json` добавлен 6-й cue:
+   - `{"bar": 98, "beat": 3, "text": "stop", "abs_sec": 183.692, "snap_sec": 179.538}` (`03:03.692`) — «stop in 3 · 3 2 1» перед сольным вокальным затактом «Мерещится».
+2. В `tools/lyric-launcher/lyrics-timed/27.tsv` (и `clips/27.ass`) обновлён пофразовый фонетический текст рэп-брейкдауна (`2:36.81–3:03.38`, такты 84–97).
+3. Выполнен полный рендер (`jamzone_render.py "Мумий Тролль - Медведица"`), синхронизация с R2/Vercel (`tools/sync_site.py`), синк аудио в риг MainStage (`tools/sync_to_mainstage.sh --apply "Медведица"`, коммит `a0e657ce`) и доставка клипа `27` в риг (`lyric_workflow.py deliver 27 --apply`).
+
 ## [2026-10-28] mix | Мало тебя (SEREBRO): добавлены malo-guitars и malo-sfx в pb-other
 
 1. Сконвертированы пользовательские дорожки из `/Users/alex/Downloads/`:

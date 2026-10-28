@@ -13,6 +13,7 @@
     {"bar": 3, "text": "all in", "abs_sec": 7.385, "snap_sec": 3.692},
     {"bar": 19, "text": "verse in", "abs_sec": 36.923, "snap_sec": 33.231},
     {"bar": 83, "text": "break in", "abs_sec": 155.077, "snap_sec": 151.385},
-    {"bar": 84, "text": "voice in", "abs_sec": 156.923, "snap_sec": 153.231}
+    {"bar": 84, "text": "voice in", "abs_sec": 156.923, "snap_sec": 153.231},
+    {"bar": 98, "beat": 3, "text": "stop", "abs_sec": 183.692, "snap_sec": 179.538}
   ]
 }
