@@ -2,9 +2,9 @@
   "approved_by": "Alex",
   "build": {
     "audio_duration": 236.307687,
-    "audio_sha256": "25bef486ac130a0faab8ff666642b9fde50c52cb6acef1c76768f7e852f499c2",
+    "audio_sha256": "a43f3abe5d434008d090a3dc3902af7ddc831a3fd8902a32f3987a5145f21e17",
     "clips": {
-      "ass": "5e3dfb0243b4e2385804cca5503f2fc7e1d1125cd3dc23b7fdba3022b19dbfa3",
+      "ass": "197bce5444d545575819a618287bd2e28b31cb7424aa487f7680efdcac5ce292",
       "mp4": "a2c5eb8e456ccbdef2bbf3c32af34826b5e7aa38fc82b96dd1a46caee5baed38"
     },
     "guide": {
@@ -12,17 +12,19 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 236.307687,
-      "key": "cherry-dash/42a10b949a41/guides/25bef486ac130a0faab8ff666642b9fde50c52cb6acef1c76768f7e852f499c2/all.wav",
-      "mix_sha256": "ac328266fc3de0f1e36999ad038c338c41ccfe3f532b572f9f683db47f1c8bce",
+      "key": "cherry-dash/42a10b949a41/guides/a43f3abe5d434008d090a3dc3902af7ddc831a3fd8902a32f3987a5145f21e17/all.wav",
+      "mix_sha256": "bcc4a6775eab76d2dc3ab99989adfb22ef4d0ec580bc27442fed35c4e7a8b294",
       "render_audio": {
         "click.wav": "a58975af38f033c796f452e4be7f9651d3de0aa775bbf2dc2d812cb8927a48c6",
-        "cues.wav": "e1bb3e6b401bd6ff09957d35dd414a00aed9a011ff5a5390ecc2dcfb6f7b52ba"
+        "cues.wav": "f887c1117bc833eb700000e26c208423b7b1ef3d9e65fe79fb7929212ce48fd3",
+        "pb-other.wav": "f60d3c4daf60cd28167e9f40e387fefedbfc44718f524a5ea3fe3c9eb2ce5b60"
       },
       "render_pcm": {
-        "click.wav": "04ae74fff2f99523e8cf7b5b077bcb45cfd8d23f421bacfb622fe13e771bb4f0"
+        "click.wav": "04ae74fff2f99523e8cf7b5b077bcb45cfd8d23f421bacfb622fe13e771bb4f0",
+        "pb-other.wav": "6981cd2cc6d078b3a91b9c9c76f2f56257a5f9933b8f8b1b721f89f0db2a0718"
       },
       "sample_rate": 44100,
-      "sha256": "25bef486ac130a0faab8ff666642b9fde50c52cb6acef1c76768f7e852f499c2",
+      "sha256": "a43f3abe5d434008d090a3dc3902af7ddc831a3fd8902a32f3987a5145f21e17",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
@@ -30,18 +32,29 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": -0.619915
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/42a10b949a41/guides/25bef486ac130a0faab8ff666642b9fde50c52cb6acef1c76768f7e852f499c2/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/42a10b949a41/guides/a43f3abe5d434008d090a3dc3902af7ddc831a3fd8902a32f3987a5145f21e17/all.wav"
     },
     "jamzone": null,
     "offset_sec": 0.0,
     "rig": {
       "files": {
         "cherry-daddies-setlist-2026-06-16/Медведица/click.wav": "a58975af38f033c796f452e4be7f9651d3de0aa775bbf2dc2d812cb8927a48c6",
-        "cherry-daddies-setlist-2026-06-16/Медведица/cues.wav": "e1bb3e6b401bd6ff09957d35dd414a00aed9a011ff5a5390ecc2dcfb6f7b52ba",
-        "lyrics/clips/27.ass": null,
-        "lyrics/clips/27.mp4": null
+        "cherry-daddies-setlist-2026-06-16/Медведица/cues.wav": "f887c1117bc833eb700000e26c208423b7b1ef3d9e65fe79fb7929212ce48fd3",
+        "cherry-daddies-setlist-2026-06-16/Медведица/pb-other.wav": "f60d3c4daf60cd28167e9f40e387fefedbfc44718f524a5ea3fe3c9eb2ce5b60",
+        "lyrics/clips/27.ass": "5e3dfb0243b4e2385804cca5503f2fc7e1d1125cd3dc23b7fdba3022b19dbfa3",
+        "lyrics/clips/27.mp4": "a2c5eb8e456ccbdef2bbf3c32af34826b5e7aa38fc82b96dd1a46caee5baed38"
       },
-      "row": null
+      "row": {
+        "bed_dir": "cherry-daddies-setlist-2026-06-16/Медведица",
+        "cat": "",
+        "clip": "27",
+        "concert_patch": "Медведица.patch",
+        "factory_dir": "music/songs/Мумий Тролль - Медведица",
+        "pc_field": "28",
+        "set": "27",
+        "song": "Медведица",
+        "source": "dynamic"
+      }
     },
     "row": {
       "bed_dir": "cherry-daddies-setlist-2026-06-16/Медведица",
@@ -57,13 +70,13 @@
     "schema": 1,
     "sources": {
       "music/songs/Мумий Тролль - Медведица/auto-render/timeline.json": "3dcbceaf632a3b0b4a731dc95c7f5d61ff4f4d895fd44e78f90b889098feac15",
-      "music/songs/Мумий Тролль - Медведица/mix.json": "ac328266fc3de0f1e36999ad038c338c41ccfe3f532b572f9f683db47f1c8bce",
+      "music/songs/Мумий Тролль - Медведица/mix.json": "bcc4a6775eab76d2dc3ab99989adfb22ef4d0ec580bc27442fed35c4e7a8b294",
       "tools/lyric-launcher/guide_audio.py": "977f5b4dc001742fbd0742f7dcb666773b0e02fff6bc294a130a2261c47970c0",
       "tools/lyric-launcher/lyric_workflow.py": "c9163eb337c1ebb79dff162ec4d54641a6389a8e2b7de9b158baca545dd10c8c",
-      "tools/lyric-launcher/lyrics-timed/27.tsv": "264c841d3454241046b308555d93d75517dce1df993966022066d7032854fb9a",
-      "tools/lyric-launcher/make_song_clip.py": "0f2da74b3f24d247ff387e2f82511871b9c058a97d44bc62927a5aba1050fc31",
+      "tools/lyric-launcher/lyrics-timed/27.tsv": "04ecd249e2e9e2ee559ee7063e2a309b3e1185dc42097bdf381ae13c8eb54c1a",
+      "tools/lyric-launcher/make_song_clip.py": "c1d2d6e8937468fd5f16c97ace5acfc26de7fc682d2d8aff2adb87d9b429f503",
       "tools/lyric-launcher/make_static_clip.py": "320a8f991f18f74f43499c78aeb0185d02d1b905c56c445bb167514da7a8a87a"
     }
   },
-  "preview_sha256": "d3f61cec17a0a88358f0828530362003d3bd44d3e1913ec3ad97393bd479fad8"
+  "preview_sha256": "130dba9915a111a4343f130a477fca2b77775e2a056bc4952d4bb64eeb87ee1c"
 }
