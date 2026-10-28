@@ -1,7 +1,7 @@
 {
   "bpm": 105.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["backing_vocals", "strings", "keys"], "gain_db": {"backing_vocals": -3.5, "keys": -3.5, "strings": -1.5}},
+  "pb-other": {"stems": ["backing_vocals", "strings", "keys"], "gain_db": {"backing_vocals": 0.5, "keys": 0.5, "strings": 2.5}},
   "pb-drums": {"stems": ["drums"]},
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.0}},
   "players": {"steve": ["drums"], "tanya": ["vocals"]},

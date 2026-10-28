@@ -2,6 +2,18 @@
 
 Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <заголовок>`.
 
+## [2026-10-28] mix | Медляк (Mr. Credo): pb-other +4 dB, ре-рендер, синк в риг
+
+1. В `music/songs/Mr. Credo - Медляк/mix.json` уровень `pb-other` поднят на +4 dB:
+   - `"gain_db": {"backing_vocals": 0.5, "keys": 0.5, "strings": 2.5}` (было `{"backing_vocals": -3.5, "keys": -3.5, "strings": -1.5}`).
+   - Сырой пик микса `pb-other` (+2.17 dBFS) приведен хэдрум-нормализацией к −0.4 dBFS (`buf *= 0.95/pk`), итоговый уровень `auto-render/pb-other.wav` — **`−20.69 dBFS` gated RMS** (было `−22.07 dBFS`, пик `−0.4 dBFS`), в верхней зоне коридора `pb-other` программы 28.10 (рядом с `Кукла колдуна` `−20.70 dBFS`).
+2. Выполнен полный рендер (`jamzone_render.py "Mr. Credo - Медляк" --practice`):
+   - Пересобраны `pb-other.wav`, `pb-other.mp3`, `all.wav`, `cue_preview.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`.
+   - Обновлен `web/songs.json` (хэш `pb-other`: `061cfbd97c`).
+3. Синхронизировано в риг MainStage (`cherry-daddies-2000`):
+   - Запущен `tools/sync_to_mainstage.sh --apply "Медляк"`: обновлены `cherry-daddies-setlist-2026-06-16/Медляк/pb-other.wav`, `28_10_2.concert/Playback/pb-other_2.wav` и резервные концерты.
+   - Закоммичено и запушено в `origin/main` рига.
+
 ## [2026-10-27] cues | Кислотный DJ: обновлены подсказки на 1:37 (bar 56 drums-bass fill), 2:05 (bar 72 drum fill) и 2:20 (bar 81 drums-bass break)
 
 1. В `music/songs/Кислотный DJ/mix.json` изменены 3 подсказки:
