@@ -1,0 +1,142 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>28.10 Stage MIDI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none}
+html,body{width:100vw;height:100vh;overflow:hidden;background:#000;color:#fff;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif}
+#app{display:flex;width:100vw;height:100vh;padding:20px 28px;flex-direction:column}
+.ps-rows{display:flex;flex-direction:column;gap:18px;flex:1;min-height:0;overflow:hidden}
+.ps-card{display:flex;flex-direction:column;flex:1;min-height:0;border-bottom:2px solid #333;padding-bottom:12px}
+.ps-card:last-child{border-bottom:none;padding-bottom:0}
+.ps-header{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:3px solid #fff;padding-bottom:8px;margin-bottom:12px}
+.ps-title{font-size:38px;font-weight:900;letter-spacing:-0.8px;line-height:1.05}
+.ps-num{color:#b3b9c6;margin-right:6px}
+.ps-artist{font-size:24px;font-weight:700;color:#bcc1cc}
+.ps-meta{font-size:20px;font-weight:800;color:#bcc1cc;white-space:nowrap;font-family:"SF Mono",Menlo,monospace;border:2px solid #333;padding:4px 10px;border-radius:6px}
+.ps-note{flex:1;display:flex;align-items:flex-start;min-height:0;overflow:hidden}
+.ps-note>span{display:block;width:100%;font-weight:800;line-height:1.18;white-space:pre-wrap;font-family:"SF Mono",Menlo,monospace}
+.ps-footer{margin-top:10px;padding-top:8px;border-top:2px solid #333;display:flex;justify-content:space-between;align-items:center;font-size:20px;color:#bcc1cc;letter-spacing:0.5px;text-transform:uppercase}
+.ps-footer b{color:#fff;font-weight:900}
+#midi-status{font-size:15px;font-family:"SF Mono",Menlo,monospace;color:#2ecc40;text-transform:none}
+.gtr{color:#2ecc40;font-style:normal}
+.mute{color:#ff4136;font-style:normal}
+</style></head><body>
+<div id="app">
+  <div class="ps-rows" id="rows"></div>
+  <div class="ps-footer">
+    <span id="next-lbl"></span>
+    <span id="midi-status">MIDI: ожидание...</span>
+  </div>
+</div>
+<script>
+var PAGES = [[{"s": "СЕТ 1", "i": 1, "t": "Солнце", "a": "Елена Терлеева", "n": "32B <-> 32D\nGm Bb Eb (Cm D)"}], [{"s": "СЕТ 1", "i": 2, "t": "Around the World", "a": "ATC", "n": "MUTE GUITAR"}], [{"s": "СЕТ 1", "i": 3, "t": "Беги от меня", "a": "Гости из будущего", "n": "synth 003 (beverly hills)\nC#m E A B\nКончилиь наши дни\nF# B7\n[C#m A] [G#]"}], [{"s": "СЕТ 1", "i": 4, "t": "Такая любовь", "a": "Акула", "n": "GUITAR 32C\nV: Bm E* G/Bm F#\nCH: Bm G D F# xN.. G\nslide on \"ready\" before last ch\nне сбудется позабудется\nне нравится получается.. получается"}], [{"s": "СЕТ 1", "i": 5, "t": "Ту-лу-ла", "a": "Чичерина", "n": "GUITAR 32 A - B -D, sing choruses\nC#m F# E A G#"}], [{"s": "СЕТ 1", "i": 6, "t": "Blinding Lights", "a": "The Weeknd", "n": "GUITAR 32D\nFm C D# A#"}], [{"s": "СЕТ 1", "i": 7, "t": "Whenever, Wherever", "a": "Shakira", "n": "GUITAR ONLY I START 32B\nF#m intro"}], [{"s": "СЕТ 1", "i": 8, "t": "Everytime We Touch", "a": "Cascada", "n": "Fm 008 + 32A\nfirst time 3 - ctl\nthen 2 -> ctl off and play below vocal"}], [{"s": "СЕТ 1", "i": 9, "t": "Destination Calabria", "a": "Alex Gaudino", "n": "MUTE GUITAR\nD, I START"}], [{"s": "СЕТ 1", "i": 10, "t": "Freed From Desire", "a": "Gala", "n": "GUITAR\nDm"}], [{"s": "СЕТ 2", "i": 1, "t": "Beverly Hills", "a": "Zivert", "n": "synth 024\nAm F G Em"}], [{"s": "СЕТ 2", "i": 2, "t": "Про красивую жизнь", "a": "Банд'Эрос", "n": "GUITAR\nRAP\nFm Db Ab Eb Db Bbm"}], [{"s": "СЕТ 2", "i": 3, "t": "Солнышко", "a": "Демо", "n": "MUTE GUITAR\nsynth 013\nA#\nint: A# G# D# C#"}], [{"s": "СЕТ 2", "i": 4, "t": "Я устал", "a": "Quest Pistols", "n": "key: D#\nstart on B, verse play"}], [{"s": "СЕТ 2", "i": 5, "t": "Мало тебя", "a": "SEREBRO", "n": "GUITAR 32D\nsynth UP TO 025 AND MUTE BEFORE SOLO\nСm D# G# F\naftr 2nd solo GUITAR"}], [{"s": "СЕТ 2", "i": 6, "t": "Медляк", "a": "Mr. Credo", "n": "32b\nG D# C D\nG D# A# D\nlast chorus sing together"}], [{"s": "СЕТ 2", "i": 7, "t": "Медведица", "a": "Мумий Тролль", "n": "endinf for more"}], [{"s": "СЕТ 2", "i": 8, "t": "Pretty Fly", "a": "The Offspring", "n": "sing aha aha\nAm\nch 3 2"}], [{"s": "СЕТ 2", "i": 9, "t": "Кукла колдуна", "a": "Король и Шут", "n": "GUITAR 1A\nclean -> dist -> solo -> dist\nбридж\nA# C F\nA# G A"}], [{"s": "СЕТ 2", "i": 10, "t": "Heads Will Roll", "a": "Yeah Yeah Yeahs", "n": "GUITAR 32D\nsynth 033\nstart with drums"}, {"s": "СЕТ 2", "i": 11, "t": "I Love It", "a": "Icona Pop", "n": "I START\nsynth 033\nGUITAR 32D\nG# | A#m B C#"}], [{"s": "СЕТ 2", "i": 12, "t": "Мама Люба", "a": "SEREBRO", "n": "GUITAR 1B -> 1A\nG# B C#"}], [{"s": "СЕТ 2", "i": 13, "t": "Кислотный DJ", "a": "Акула", "n": "synth 012 (m&s bass only)"}], [{"s": "Бис", "i": 1, "t": "Мелом", "a": "Пропаганда", "n": "A#m F# C# F\nсадимся на сцене ноги вниз\nA#m   F#   C#   F F7"}], [{"s": "Бис", "i": 2, "t": "Я сошла с ума", "a": "t.A.T.u.", "n": "Db Cm7 Fm Ab\nFm Eb Ab C x2"}], [{"s": "Бис", "i": 3, "t": "Ghostbusters (запас)", "a": "Ray Parker Jr.", "n": "int: notes A-A#\nmain: B A E\ns -> 01C\nbr1: B A... A B\nbr2: F# !solo"}]];
+var cur = 1, total = PAGES.length;
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function fmtNote(t){
+  if(!t) return '<span style="opacity:.35">— без заметок —</span>';
+  var s = esc(t);
+  s = s.replace(/\bMUTE GUITAR\b/g, '<i class="mute">MUTE GUITAR</i>');
+  s = s.replace(/(?<!">)(?<!MUTE )\bGUITAR(\s*32D)?\b/g, '<i class="gtr">$&</i>');
+  return s.replace(/\n/g, '<br>');
+}
+
+function fit(){
+  var box = document.getElementById('rows');
+  var spans = box.querySelectorAll('.ps-note>span');
+  var lo = 12, hi = 96, best = 12;
+  while(lo <= hi){
+    var m = (lo + hi) >> 1;
+    spans.forEach(function(sp){ sp.style.fontSize = m + 'px'; });
+    var ok = box.scrollHeight <= box.clientHeight;
+    if(ok){
+      box.querySelectorAll('.ps-note').forEach(function(n){
+        if(n.scrollHeight > n.clientHeight || n.scrollWidth > n.clientWidth) ok = false;
+      });
+    }
+    if(ok){ best = m; lo = m + 1; } else { hi = m - 1; }
+  }
+  spans.forEach(function(sp){ sp.style.fontSize = best + 'px'; });
+}
+
+function showPage(pc){
+  if(pc < 1) pc = 1;
+  if(pc > total) pc = total;
+  cur = pc;
+  var g = PAGES[cur - 1];
+  var ng = cur < total ? PAGES[cur] : null;
+  var nextTitle = ng ? ng.map(function(e){return e.t;}).join(' / ') : 'КОНЕЦ ПРОГРАММЫ';
+  var html = '';
+  for(var k = 0; k < g.length; k++){
+    var e = g[k];
+    var art = e.a ? ' <span class="ps-artist">— ' + esc(e.a) + '</span>' : '';
+    html += '<div class="ps-card">'
+      + '<div class="ps-header"><div class="ps-title"><span class="ps-num">' + e.i + '.</span> ' + esc(e.t) + art + '</div>'
+      + '<div class="ps-meta">' + esc(e.s) + ' · PC ' + (cur<10?'0'+cur:cur) + '/' + total + '</div></div>'
+      + '<div class="ps-note"><span>' + fmtNote(e.n) + '</span></div></div>';
+  }
+  document.getElementById('rows').innerHTML = html;
+  document.getElementById('next-lbl').innerHTML = 'ДАЛЕЕ: <b>' + esc(nextTitle) + '</b>';
+  fit();
+}
+
+document.addEventListener('click', function(e){
+  if(e.clientX < window.innerWidth * 0.5) showPage(cur - 1);
+  else showPage(cur + 1);
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'ArrowLeft') showPage(cur - 1);
+  else if(e.key === 'ArrowRight' || e.key === ' ') showPage(cur + 1);
+});
+window.addEventListener('resize', fit);
+
+var slotToPage = {1:1,2:2,3:3,5:4,6:5,7:6,8:7,9:8,10:9,11:10,12:22,13:13,14:13,15:13,16:13,17:13,18:13,19:13,20:13,21:12,22:14,23:16,24:11,25:15,26:15,27:15,28:15,29:15,30:17,31:18,32:19,33:20,34:21,35:23,36:24,37:25};
+var stEl = document.getElementById('midi-status');
+
+// GM-800: MIDI SETTINGS → PC OUT = ON, TX PC MAP = FIX → PC# = номер сцены (001 → PC#1).
+// slotToPage: сцена лайвсета 28-Oct.tsl → страница. Сцены вне таблицы (004 YA BUDU) страницу не меняют.
+var lastPcAt = 0, seenTraffic = false;
+function onMidi(e){
+  var d = e.data;
+  if(!d || !d.length) return;
+  if((d[0] & 0xF0) === 0xC0 && d.length >= 2){
+    var ch = (d[0] & 0x0F) + 1, pc1 = d[1] + 1;
+    var t = slotToPage[pc1];
+    lastPcAt = Date.now();
+    if(t){
+      stEl.textContent = 'MIDI Ch' + ch + ' PC#' + pc1 + ' → Стр. ' + t;
+      showPage(t);
+    } else {
+      stEl.textContent = 'MIDI Ch' + ch + ' PC#' + pc1 + ' → нет в сетлисте';
+    }
+    return;
+  }
+  // любой другой трафик (clock от CLOCK OUT и т.п.) = кабель жив; показать один раз, PC-статус не перетирать
+  if(!seenTraffic && Date.now() - lastPcAt > 3000){
+    seenTraffic = true;
+    stEl.textContent += ' · сигнал есть, ждём PC';
+  }
+}
+
+if(navigator.requestMIDIAccess){
+  navigator.requestMIDIAccess({sysex:false}).then(function(m){
+    function bind(){
+      var names = [];
+      seenTraffic = false;
+      m.inputs.forEach(function(i){ names.push(i.name || 'MIDI'); i.onmidimessage = onMidi; });
+      stEl.textContent = names.length ? ('MIDI: ' + names.join(', ')) : 'MIDI: нет устройств';
+    }
+    bind();
+    m.onstatechange = bind;
+  }, function(){ stEl.textContent = 'MIDI: нет доступа'; });
+} else {
+  stEl.textContent = 'Открой в WebMIDI Browser';
+}
+
+if('serviceWorker' in navigator && location.protocol.indexOf('http') === 0){
+  navigator.serviceWorker.register('/sw.js').catch(function(){});
+}
+showPage(1);
+</script>
+</body></html>

@@ -34,6 +34,11 @@ function authorized(request) {
 }
 
 export default function middleware(request) {
+  const { pathname } = new URL(request.url);
+  if (pathname === "/stage.htmk") {
+    return Response.redirect(new URL("/stage.html", request.url), 301);
+  }
+  if (pathname === "/stage.html" || pathname === "/sw.js") return;
   if (authorized(request)) return; // no response = pass through to the static asset
 
   return new Response("401 — Cherry & Daddies: authentication required\n", {
