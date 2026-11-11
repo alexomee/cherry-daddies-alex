@@ -60,7 +60,7 @@
   tr.set1 .setname, tr.lefkara1 .setname, tr.musichall1 .setname{background:var(--set1)}
   tr.set2 .setname, tr.lefkara2 .setname, tr.musichall2 .setname{background:var(--set2)}
   tr.bis .setname, tr.lefkara_bis .setname, tr.musichall_bis .setname{background:var(--bis);color:#1a1300}
-  tr.tryout .setname{background:var(--try);color:#03150d}
+  tr.tryout .setname, tr.new1212 .setname{background:var(--try);color:#03150d}
   tr.archived .setname{background:var(--arch);color:#e8eaf0}
   tr.lefkara .setname{background:var(--lefkara);color:#fff}
   tr.musichall .setname{background:var(--rehearsal);color:#021e2f}
@@ -621,6 +621,7 @@
   <div class="tabs" id="tabs">
     <button class="tab tmusichall active" data-tab="musichall">28.10 Music Hall</button>
     <button class="tab tlefkara" data-tab="lefkara">24.10 lefkara</button>
+    <button class="tab tnew" data-tab="new1212">12.12 new songs</button>
     <button class="tab tnew" data-tab="new">28.10 new songs</button>
     <button class="tab t2606" data-tab="old">26.06</button>
     <button class="tab tarch" data-tab="arch">Архив</button>
@@ -1832,12 +1833,13 @@
     });
   }
 
-  // ---- setlist tabs: "28.10 Music Hall" / "24.10 lefkara" / "New" (tryout) / "26.06" (shipped СЕТ 1/2/бис) / "Архив" (archived) ----
+  // ---- setlist tabs: "28.10 Music Hall" / "24.10 lefkara" / "12.12 new songs" (new1212) / "28.10 new songs" (tryout) / "26.06" (shipped СЕТ 1/2/бис) / "Архив" (archived) ----
   var ALLDATA = null;                        // full songs.json, kept so tab switches re-filter
   var TABLS = "cd-settab";
   var TAB_CLS = {
     musichall: ["musichall", "musichall1", "musichall2", "musichall_bis"],
     lefkara: ["lefkara", "lefkara1", "lefkara2", "lefkara_bis"],
+    new1212: ["new1212"],
     new: ["tryout"],
     old: ["set1", "set2", "bis"],
     arch: ["archived"],

@@ -1,0 +1,40 @@
+{
+  "bpm": 137.59,
+  "pitch_semitones": 0,
+  "pb-other": {
+    "layers": [
+      {"file": "fx-pb", "frame": "stem"}
+    ],
+    "roles": {"fx-pb": "musical"}
+  },
+  "pb-bass": null,
+  "cues": [
+    {"bar": 1,   "text": "Ты меня не ищи drum-bass in", "abs_sec": 3.489, "snap_sec": 0.0},
+    {"bar": 8,   "beat": 3, "text": "stop", "abs_sec": 16.571, "snap_sec": 12.646},
+    {"bar": 8,   "beat": "4&", "text": "verse in", "step": 0.5, "abs_sec": 17.225, "snap_sec": 14.609},
+    {"bar": 17,  "text": "bass in", "abs_sec": 31.398, "snap_sec": 27.909},
+    {"bar": 23,  "beat": 4, "text": "stop", "abs_sec": 43.172, "snap_sec": 39.247},
+    {"bar": 25,  "text": "chorus in", "abs_sec": 45.352, "snap_sec": 41.864},
+    {"bar": 40,  "text": "bass stop", "abs_sec": 71.517, "snap_sec": 67.592},
+    {"bar": 41,  "text": "synth-solo only ready go", "squeeze": true, "abs_sec": 73.261, "snap_sec": 69.773},
+    {"bar": 49,  "text": "single drum ready go", "abs_sec": 87.216, "snap_sec": 83.727},
+    {"bar": 53,  "text": "kick in", "abs_sec": 94.193, "snap_sec": 90.704},
+    {"bar": 57,  "text": "stop", "abs_sec": 101.17, "snap_sec": 97.245},
+    {"bar": 58,  "text": "solo in", "abs_sec": 102.914, "snap_sec": 99.426},
+    {"bar": 66,  "text": "stop", "abs_sec": 116.869, "snap_sec": 112.944},
+    {"bar": 66,  "beat": "4&", "text": "verse in", "abs_sec": 118.395, "snap_sec": 114.907},
+    {"bar": 74,  "text": "stop", "abs_sec": 130.823, "snap_sec": 126.899},
+    {"bar": 75,  "text": "all in", "abs_sec": 132.568, "snap_sec": 129.079},
+    {"bar": 82,  "text": "stop", "abs_sec": 144.778, "snap_sec": 140.853},
+    {"bar": 83,  "text": "chorus in", "abs_sec": 146.522, "snap_sec": 143.034},
+    {"bar": 91,  "text": "drum-bass stop", "abs_sec": 160.477, "snap_sec": 156.552},
+    {"bar": 93,  "text": "single drum ready go", "abs_sec": 163.965, "snap_sec": 160.477},
+    {"bar": 95,  "text": "single drum ready go", "abs_sec": 167.454, "snap_sec": 163.965},
+    {"bar": 98,  "beat": 3, "text": "stop", "abs_sec": 173.559, "snap_sec": 169.634},
+    {"bar": 100, "text": "solo-with-little-drums in", "abs_sec": 176.176, "snap_sec": 171.815},
+    {"bar": 107, "text": "stop", "abs_sec": 188.386, "snap_sec": 184.461},
+    {"bar": 108, "text": "all in", "abs_sec": 190.13, "snap_sec": 186.641},
+    {"bar": 116, "text": "bass stop", "abs_sec": 204.085, "snap_sec": 200.16},
+    {"bar": 123, "beat": "4&", "text": "end in", "count": true, "abs_sec": 217.821, "snap_sec": 213.896}
+  ]
+}

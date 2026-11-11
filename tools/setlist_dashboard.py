@@ -216,6 +216,16 @@ SETS = [
             ("Eva 2.0", "", "Eva 2.0"),
         ],
     },
+    # Appended LAST on purpose: lyric-launcher numbers sets by flattened position in songs.json
+    # (build_manifest.py), so a new section anywhere earlier would renumber existing clips.
+    {
+        "name": "12.12 new songs",
+        "subtitle": "новые песни — черновые авто-рендеры",
+        "cls": "new1212",
+        "songs": [
+            ("Ты меня не ищи", "Вирус", "Вирус - Ты меня не ищи"),
+        ],
+    },
 ]
 
 # Manual bass-player assignment for songs WITHOUT pb-bass (keyed by song folder / sid).

@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-28T12:54:26",
+  "generated": "2026-11-11T22:49:11",
   "counts": {
-    "total": 84,
-    "data": 84,
-    "cues": 84,
+    "total": 85,
+    "data": 85,
+    "cues": 85,
     "playback": 37,
-    "other": 71,
+    "other": 72,
     "practice": 82
   },
   "sets": [
@@ -13737,6 +13737,263 @@
           "pb_other": {
             "available": false,
             "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "12.12 new songs",
+      "subtitle": "новые песни — черновые авто-рендеры",
+      "cls": "new1212",
+      "songs": [
+        {
+          "sid": "Вирус - Ты меня не ищи",
+          "slug": "13127f359691",
+          "title": "Ты меня не ищи",
+          "artist": "Вирус",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 27,
+            "list": [
+              {
+                "t": 3.489,
+                "text": "Ты меня не ищи drum-bass in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.571,
+                "text": "stop",
+                "bar": 8,
+                "snap": 12.646
+              },
+              {
+                "t": 17.225,
+                "text": "verse in",
+                "bar": 8,
+                "snap": 14.609
+              },
+              {
+                "t": 31.398,
+                "text": "bass in",
+                "bar": 17,
+                "snap": 27.909
+              },
+              {
+                "t": 43.172,
+                "text": "stop",
+                "bar": 23,
+                "snap": 39.247
+              },
+              {
+                "t": 45.352,
+                "text": "chorus in",
+                "bar": 25,
+                "snap": 41.864
+              },
+              {
+                "t": 71.517,
+                "text": "bass stop",
+                "bar": 40,
+                "snap": 67.592
+              },
+              {
+                "t": 73.261,
+                "text": "synth-solo only ready go",
+                "bar": 41,
+                "snap": 69.773
+              },
+              {
+                "t": 87.216,
+                "text": "single drum ready go",
+                "bar": 49,
+                "snap": 83.727
+              },
+              {
+                "t": 94.193,
+                "text": "kick in",
+                "bar": 53,
+                "snap": 90.704
+              },
+              {
+                "t": 101.17,
+                "text": "stop",
+                "bar": 57,
+                "snap": 97.245
+              },
+              {
+                "t": 102.914,
+                "text": "solo in",
+                "bar": 58,
+                "snap": 99.426
+              },
+              {
+                "t": 116.869,
+                "text": "stop",
+                "bar": 66,
+                "snap": 112.944
+              },
+              {
+                "t": 118.395,
+                "text": "verse in",
+                "bar": 66,
+                "snap": 114.907
+              },
+              {
+                "t": 130.823,
+                "text": "stop",
+                "bar": 74,
+                "snap": 126.899
+              },
+              {
+                "t": 132.568,
+                "text": "all in",
+                "bar": 75,
+                "snap": 129.079
+              },
+              {
+                "t": 144.778,
+                "text": "stop",
+                "bar": 82,
+                "snap": 140.853
+              },
+              {
+                "t": 146.522,
+                "text": "chorus in",
+                "bar": 83,
+                "snap": 143.034
+              },
+              {
+                "t": 160.477,
+                "text": "drum-bass stop",
+                "bar": 91,
+                "snap": 156.552
+              },
+              {
+                "t": 163.965,
+                "text": "single drum ready go",
+                "bar": 93,
+                "snap": 160.477
+              },
+              {
+                "t": 167.454,
+                "text": "single drum ready go",
+                "bar": 95,
+                "snap": 163.965
+              },
+              {
+                "t": 173.559,
+                "text": "stop",
+                "bar": 98,
+                "snap": 169.634
+              },
+              {
+                "t": 176.176,
+                "text": "solo-with-little-drums in",
+                "bar": 100,
+                "snap": 171.815
+              },
+              {
+                "t": 188.386,
+                "text": "stop",
+                "bar": 107,
+                "snap": 184.461
+              },
+              {
+                "t": 190.13,
+                "text": "all in",
+                "bar": 108,
+                "snap": 186.641
+              },
+              {
+                "t": 204.085,
+                "text": "bass stop",
+                "bar": 116,
+                "snap": 200.16
+              },
+              {
+                "t": 217.821,
+                "text": "end in",
+                "bar": 123,
+                "snap": 213.896
+              }
+            ]
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "fx-pb"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "99cbd43344",
+            "back_vox": "b1fd06b212",
+            "drums": "6430df6690",
+            "keys": "f36531edfd",
+            "bass": "20f9494394",
+            "guitars": "e94c341a09",
+            "other": "67694ac30b",
+            "click": "12b4fc7ef3",
+            "cues": "2c66be8142"
+          },
+          "versions": {
+            "all": "7b3f27f716",
+            "pb-other": "7a7ac1cfd0"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "other"
+            ]
           },
           "pb_bass": {
             "available": false,
