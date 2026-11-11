@@ -1674,6 +1674,33 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534/all.wav"
     },
+    "music/songs/Вирус - Ты меня не ищи": {
+      "bytes": 39077606,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 221.52771,
+      "key": "cherry-dash/13127f359691/guides/d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645/all.wav",
+      "mix_sha256": "a85bdd81aaa2ef29665280fee9fb04e2753ee6f5502060f99b2c0601b91265fb",
+      "render_audio": {
+        "click.wav": "21a7325ecea910d3e966ce2a48bc2c25e59fb0da0dd3f88edcf7fb1b308cd9e8",
+        "cues.wav": "8093c5d5ae82ffd0eea93b236209ca5d3e37a0f5ddb0963638b996d14d0d6b50",
+        "pb-other.wav": "56ba5645c2472cd2517f30cd2bf768403d05fda6652ad244e3a6a87739cfd4e0"
+      },
+      "render_pcm": {
+        "click.wav": "13cf7d410abc504a3f25a3e71e8bef75a427fa9a0338e1b7ff2ba89cf9fb6869",
+        "pb-other.wav": "9edd2c6c9a8d39f0f6259fc751095fa4dff336dc002b4e0b4adc68bdb4637808"
+      },
+      "sample_rate": 44100,
+      "sha256": "d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.744313,
+        "bpm": 137.59,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.440939
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645/all.wav"
+    },
     "music/songs/Елена Терлеева - Солнце": {
       "bytes": 38753838,
       "channels": 2,
