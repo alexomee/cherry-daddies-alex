@@ -11,7 +11,7 @@
   "cues": [
     {"bar": 1,   "text": "Ты меня не ищи drum-bass in", "abs_sec": 3.489, "snap_sec": 0.0},
     {"bar": 8,   "beat": 3, "text": "stop", "abs_sec": 16.571, "snap_sec": 12.646},
-    {"bar": 8,   "beat": "4&", "text": "verse in", "step": 0.5, "abs_sec": 17.225, "snap_sec": 14.609},
+    {"bar": 9,   "text": "verse go", "abs_sec": 17.443, "snap_sec": 14.827},
     {"bar": 17,  "text": "bass in", "abs_sec": 31.398, "snap_sec": 27.909},
     {"bar": 23,  "beat": 4, "text": "stop", "abs_sec": 43.172, "snap_sec": 39.247},
     {"bar": 25,  "text": "chorus in", "abs_sec": 45.352, "snap_sec": 41.864},

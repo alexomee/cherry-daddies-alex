@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-11T23:00:23",
+  "generated": "2026-11-12T09:15:33",
   "counts": {
     "total": 85,
     "data": 85,
@@ -13773,10 +13773,10 @@
                 "snap": 12.646
               },
               {
-                "t": 17.225,
-                "text": "verse in",
-                "bar": 8,
-                "snap": 14.609
+                "t": 17.443,
+                "text": "verse go",
+                "bar": 9,
+                "snap": 14.827
               },
               {
                 "t": 31.398,
@@ -13983,10 +13983,10 @@
             "guitars": "e94c341a09",
             "other": "67694ac30b",
             "click": "12b4fc7ef3",
-            "cues": "2c66be8142"
+            "cues": "5b889298f0"
           },
           "versions": {
-            "all": "7b3f27f716",
+            "all": "9c1d06dfd0",
             "pb-other": "7a7ac1cfd0"
           },
           "pb_other": {
