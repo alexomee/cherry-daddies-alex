@@ -309,8 +309,8 @@ def group_categories(group) -> list[str]:
         if isinstance(layer, str):
             cats.add(item_category(layer))
         elif isinstance(layer, dict):
-            for r in layer.get("replaces", []):
-                cats.add(item_category(r))
+            for r in layer.get("replaces", []) + layer.get("source", []):   # source = stems a
+                cats.add(item_category(r))                                  # "derived" layer is cut from
             if "file" in layer:
                 cats.add(item_category(layer["file"]))
     order = ["vocal", "back_vox", "drums", "keys", "bass", "guitars", "other"]
