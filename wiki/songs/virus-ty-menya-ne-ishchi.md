@@ -16,8 +16,11 @@ status: draft (cue на ревью)
 - **bpm:** 137.59 (константный, без варпа) · **pitch_semitones:** 0 (A minor)
 - Источник: Moises (YouTube `cuCg2mhG_7g`, «A minor-138bpm» в имени — округлено).
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Вирус - Ты меня не ищи/mix.json`
-- Обработка стемов: `tools/jamzone/prep_ty_menya_ne_ishchi.py` (`stems`, затем `fx`) — воспроизводит стемы и `parts/fx-pb.wav` байт-в-байт.
-- **pb-other:** стемы `keys` + `strings` (keys замьючены 40.85–66.95 и 99.77–конец = сырые 01:01:25.175–01:02:10.909 и 01:03:08.164–конец, там клавишник играет вживую) + layer `fx-pb` (stem-frame, role musical). **pb-bass:** нет. `players` нет (practice-миксы не пишутся).
+- Обработка стемов: `tools/jamzone/prep_ty_menya_ne_ishchi.py` (`stems`, затем `fx` и `keys`) — воспроизводит стемы, `parts/pb-fx.wav` и `parts/pb-keys.wav` байт-в-байт.
+- **pb-other:** два layer'а (stem-frame, role musical), каждый отдельной строкой в `mix.json` и на сайте:
+  - `pb-fx` — FX-фрагменты (`prep_ty_menya_ne_ishchi.py fx`);
+  - `pb-keys` (`"derived": true`) — Moises keys + strings; keys замьючены на сырых 01:01:25.175–01:02:10.909 и 01:03:08.164–конец, там клавишник играет вживую. Мьюты — `KEYS_MUTES` в `prep_ty_menya_ne_ishchi.py keys`, в сырых секундах Moises. Отключить — убрать строку layer'а. `derived` = в `all`/стемы сайта не добавляется: там уже есть исходные стемы.
+  **pb-bass:** нет. `players` нет (practice-миксы не пишутся).
 
 ## Сетка — диагностика (2026-11-11)
 
@@ -29,7 +32,7 @@ status: draft (cue на ревью)
 - **Интро вырезано**: такт 1.1 = клик Moises k=35 (Logic 01:00:15.652). Спереди 50 мс pre-roll с fade-in.
 - Проверка после рендера: онсеты барабанов к клику −1…−6 мс во всех 25-с бинах (`click.wav` против `drums.wav` + OFF). Исключение — тихие удары в секции single drum (такты 49–52), в записи они сами ~20 мс раньше; основные удары −2…−3 мс.
 
-Раскладка папки: корень = обработанные 24-bit WAV (`backing_vocals, bass, drums, guitars, keys, other, piano, strings, vocals, metronome`), `moises-orig/` = исходные mp3 (канонические имена + `count-in.mp3`), `parts/fx-pb.wav` + `parts/README.md`. `guitars` и `piano` почти пустые (пики −31 и −42 dBFS).
+Раскладка папки: корень = обработанные 24-bit WAV (`backing_vocals, bass, drums, guitars, keys, other, piano, strings, vocals, metronome`), `moises-orig/` = исходные mp3 (канонические имена + `count-in.mp3`), `parts/pb-fx.wav` + `parts/README.md`. `guitars` и `piano` почти пустые (пики −31 и −42 dBFS).
 
 Рендер: OFF **+3.441 с** (lead +1 такт под название), такт 1.1 = **3.489 с** рендера, длина 221.5 с = 127 тактов.
 

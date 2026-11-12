@@ -2,7 +2,8 @@
 """One-off stem prep for «Вирус — Ты меня не ищи» (12.12 new songs, 2026-11-11). Rebuildable.
 
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py stems   # moises-orig/*.mp3 -> root *.wav + metronome.wav
-  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py fx      # processed stems -> parts/fx-pb.wav (stem frame)
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py fx      # processed stems -> parts/pb-fx.wav (stem frame)
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py keys    # keys+strings (live keys muted) -> parts/pb-keys.wav
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Ты меня не ищи"
 
 Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
@@ -70,6 +71,8 @@ w0, w1 = tA(293.0), tC(300.0)     # rubberband context window
 o_c1 = c1 - s0
 o_c2 = tout(298.25)               # constant grid position of C298.25
 shift3 = o_c2 - c2                # part3: out = src + shift3
+# raw Moises seconds -> processed timeline: identity before the break, shifted after it
+raw2out = lambda r: r - s0 if r < c1 else r + shift3
 print(f"cut {s0:.4f}s | compress src {c1:.4f}-{c2:.4f} ({c2-c1:.4f}s) -> {o_c2-o_c1:.4f}s "
       f"(ratio {(o_c2-o_c1)/(c2-c1):.4f}) | part1 grid err @k295 {((tA(295)-s0)-tout(295))*1000:+.1f}ms")
 
@@ -152,7 +155,6 @@ def do_fx():
     # F1b (2026-11-12, Alex): 4-beat stops use the record's OWN drums of that bar, in place
     # ("4 gunshots": boomy hit on every beat). Raw Moises seconds -> processed timeline:
     # identity before the break (out = raw - s0), shifted after it (out = raw + shift3).
-    raw2out = lambda r: r - s0 if r < c1 else r + shift3
     for label, r0, r1 in [("bar 57.1-58.1", 113.339, 115.070),     # 01:01:53.339-01:01:55.070
                           ("bar 107.1-108.1", 200.761, 202.500)]:  # 01:03:20.761-01:03:22.500
         o0, o1 = raw2out(r0), raw2out(r1)
@@ -177,13 +179,36 @@ def do_fx():
     pk = float(np.abs(out).max())
     if pk > 0.98: out *= 0.98/pk; print(f"  peak guard {pk:.3f} -> 0.98")
     os.makedirs(os.path.join(SONG, "parts"), exist_ok=True)
-    dst = os.path.join(SONG, "parts", "fx-pb.wav")
+    dst = os.path.join(SONG, "parts", "pb-fx.wav")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
                     "-c:a", "pcm_s24le", dst], input=out.astype(np.float32).tobytes(), check=True)
     print(f"  ✓ {dst}  {len(out)/SR:.3f}s  peak {np.abs(out).max():.3f}")
+
+# pb-keys (2026-11-12, Alex): Moises keys + strings for pb-other; keys MUTED where the keyboardist
+# plays live. Raw Moises seconds (Logic 01:00:00 base); None = till the end. Strings never muted.
+KEYS_MUTES = [(85.175, 130.909),       # 01:01:25.175-01:02:10.909  synth solo .. break (bars 40.4.4-66.4.8)
+              (188.164, None)]         # 01:03:08.164-end            solo drums-half .. end (bar 99.4-)
+MUTE_XF = 0.015                        # same 15 ms edge fades as jamzone_render mutes
+
+def do_keys():
+    keys, strings = (decode(os.path.join(SONG, n + ".wav")) for n in ("keys", "strings"))
+    n = len(keys)
+    for r0, r1 in KEYS_MUTES:
+        a = S(raw2out(r0)); b = n if r1 is None else S(raw2out(r1)); f = S(MUTE_XF)
+        keys[a-f:a] *= np.linspace(1, 0, f)[:, None]
+        keys[a:b] = 0
+        if b + f <= n: keys[b:b+f] *= np.linspace(0, 1, f)[:, None]
+        print(f"  keys muted raw {r0}-{r1 or 'end'} -> {a/SR:.3f}-{b/SR:.3f}s")
+    out = keys + strings[:n]
+    pk = float(np.abs(out).max())
+    dst = os.path.join(SONG, "parts", "pb-keys.wav")
+    subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                    "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
+    print(f"  ✓ {dst}  {n/SR:.3f}s  peak {pk:.3f} (float wav, no gain change)")
 
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else ""
     if step == "stems": do_stems()
     elif step == "fx": do_fx()
+    elif step == "keys": do_keys()
     else: sys.exit(__doc__)

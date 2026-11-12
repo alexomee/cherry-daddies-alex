@@ -1778,13 +1778,19 @@ def main():
                         lb[s0:s1] = 0.0
                         if s1+f <= total:          # landing mid-note doesn't click
                             lb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
-            placed_layers.append((nm, lb))
+            # "derived": true = the layer is CUT from this song's own Moises stems (e.g. pb-keys =
+            # keys+strings with live-played sections muted). Its source is already in `all`, the
+            # site stems and the practice minus -> add it ONLY to its pb group (else doubled).
+            derived = bool(ent.get("derived"))
+            if not derived:
+                placed_layers.append((nm, lb))
+                out["all"] = out["all"] + lb
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
-            out["all"] = out["all"] + lb
             lvl = (f", {role} measured {loud:+.1f}dBFS vs ceiling {ROLE_CEILING[role]:+.0f} gain {ag:+.1f}dB"
                    + (" (unchanged)" if ag == 0 else "")) if loud is not None else ""
             mute_info = f", muted bars {lmutes}" if lmutes else ""
-            print(f"layer: {nm} -> {grp} + all ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl}{mute_info})")
+            dest = f"{grp} only (derived: source stems already in all)" if derived else f"{grp} + all"
+            print(f"layer: {nm} -> {dest} ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl}{mute_info})")
 
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())

@@ -2,12 +2,11 @@
   "bpm": 137.59,
   "pitch_semitones": 0,
   "pb-other": {
-    "stems": ["keys", "strings"],
-    "mute": {"keys": [[40.8494, 66.9457], [99.7679, 128]]},
     "layers": [
-      {"file": "fx-pb", "frame": "stem"}
+      {"file": "pb-fx", "frame": "stem"},
+      {"file": "pb-keys", "frame": "stem", "derived": true}
     ],
-    "roles": {"fx-pb": "musical"}
+    "roles": {"pb-fx": "musical", "pb-keys": "musical"}
   },
   "pb-bass": null,
   "cues": [
