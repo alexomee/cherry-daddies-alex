@@ -3,8 +3,8 @@
 
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py stems   # moises-orig/*.mp3 -> root *.wav + metronome.wav
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py fx      # processed stems -> parts/pb-fx.wav (stem frame)
-  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py keys    # keys+strings (live keys muted) + other frag -> parts/pb-keys.wav
-  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py wah     # background vocals -> parts/pb-wah.wav
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py keys    # keys+strings (live keys muted) -> parts/pb-keys.wav
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py wah     # background vocals + other frag -> parts/pb-wah.wav
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Ты меня не ищи"
 
 Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
@@ -190,9 +190,9 @@ def do_fx():
 KEYS_MUTES = [(85.175, 130.909),       # 01:01:25.175-01:02:10.909  synth solo .. break (bars 40.4.4-66.4.8)
               (188.164, None)]         # 01:03:08.164-end            solo drums-half .. end (bar 99.4-)
 MUTE_XF = 0.015                        # same 15 ms edge fades as jamzone_render mutes
-# + fragments of the Moises OTHER stem merged in (raw seconds). 2026-11-12 Alex: the synth pulse
-# from 01:03:02.937 (bar 96.4) -> stop 98.3; its tail is gone by ~187.7, cut where keys mute starts.
-OTHER_FRAGMENTS = [(182.937, 188.164)]
+# + fragments of the Moises OTHER stem merged in (raw seconds). Was [(182.937, 188.164)]; moved to
+# pb-wah 2026-11-12 (Alex: Other 01:02:52.867-01:03:06.294 belongs to pb-wah) -> none here (no double).
+OTHER_FRAGMENTS = []
 
 def do_keys():
     keys, strings = (decode(os.path.join(SONG, n + ".wav")) for n in ("keys", "strings"))
@@ -216,12 +216,22 @@ def do_keys():
                     "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
     print(f"  ✓ {dst}  {n/SR:.3f}s  peak {pk:.3f} (float wav, no gain change)")
 
-# pb-wah (2026-11-12, Alex): third pb-other track = the whole Moises Background Vocals stem.
+# pb-wah (2026-11-12, Alex): third pb-other track = the whole Moises Background Vocals stem
+# + Moises OTHER fragments (raw seconds).
+WAH_OTHER = [(172.867, 186.294)]       # 01:02:52.867-01:03:06.294: bar 91.1 (drum-bass stop) -> 98.3 pulse
+
 def do_wah():
-    import shutil
+    bv, other = (decode(os.path.join(SONG, n + ".wav")) for n in ("backing_vocals", "other"))
+    out = bv.copy()
+    for r0, r1 in WAH_OTHER:
+        o0, o1 = raw2out(r0), raw2out(r1)
+        seg = cut(other, o0, o1, fi=0.01, fo=0.03)
+        out[S(o0):S(o0)+len(seg)] += seg
+        print(f"  + other raw {r0}-{r1} -> {o0:.3f}-{o1:.3f}s")
     dst = os.path.join(SONG, "parts", "pb-wah.wav")
-    shutil.copyfile(os.path.join(SONG, "backing_vocals.wav"), dst)
-    print(f"  ✓ {dst}  (= backing_vocals.wav, whole song, no edits)")
+    subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                    "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
+    print(f"  ✓ {dst}  {len(out)/SR:.3f}s  peak {float(np.abs(out).max()):.3f} (backing vocals + other, no gain change)")
 
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else ""

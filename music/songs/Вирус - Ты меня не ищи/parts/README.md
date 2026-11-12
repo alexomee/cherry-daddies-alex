@@ -22,12 +22,12 @@ FX-плейбек (`pb-other`), собран из обработанных ст�
   - 01:01:25.175 – 01:02:10.909 (такты 40.4.4 – 66.4.8);
   - 01:03:08.164 – конец (с такта 99.4).
 - Strings без мьютов.
-- + фрагмент Moises **Other** 01:03:02.937 – 01:03:08.164 (такт 96.4 → стоп 98.3, хвост затухает к ~01:03:07.7; конец = начало мьюта keys). Список — `OTHER_FRAGMENTS` в скрипте.
+- Other в pb-keys НЕТ: фрагмент 01:03:02.937–08.164 перенесён в `pb-wah` (Alex 2026-11-12), чтобы Other не звучал дважды.
 - В `mix.json`: `{"file": "pb-keys", "frame": "stem", "derived": true}`. Флаг `derived` значит, что дорожка идёт только в `pb-other`: в `all` и стемах сайта keys/strings записи уже есть.
 - **Выключить:** удалить строку `pb-keys` из `layers` и перерендерить. **Поменять мьюты:** поправить `KEYS_MUTES`, пересобрать `keys`, перерендерить.
 
 ## pb-wah.wav — 2026-11-12
 
-Третья дорожка `pb-other`: весь Moises **Background Vocals** (обработанный `backing_vocals.wav`, копия без правок).
+Третья дорожка `pb-other`: весь Moises **Background Vocals** (обработанный `backing_vocals.wav`) + Moises **Other** 01:02:52.867 – 01:03:06.294 (такт 91.1, стоп drum-bass → пульс до 98.3; фейды 10/30 мс). Фрагменты Other — `WAH_OTHER` в скрипте. Float WAV, громкость без изменений.
 - Сборка: `python3 tools/jamzone/prep_ty_menya_ne_ishchi.py wah`.
-- В `mix.json`: `derived` + `source: ["backing_vocals"]`, роль `back-vox`. Потолок −23 dBFS только ослабляет; бэки −29 dBFS, поэтому без изменений.
+- В `mix.json`: `derived` + `source: ["backing_vocals", "other"]`, роль `back-vox`. Потолок −23 dBFS только ослабляет; pb-wah −27.8 dBFS, поэтому без изменений.

@@ -4,8 +4,8 @@
   "pb-other": {
     "layers": [
       {"file": "pb-fx", "frame": "stem"},
-      {"file": "pb-keys", "frame": "stem", "derived": true, "source": ["keys", "strings", "other"]},
-      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals"]}
+      {"file": "pb-keys", "frame": "stem", "derived": true, "source": ["keys", "strings"]},
+      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"]}
     ],
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"}
   },
