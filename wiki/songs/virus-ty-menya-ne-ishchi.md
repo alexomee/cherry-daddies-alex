@@ -17,7 +17,7 @@ status: draft (cue на ревью)
 - Источник: Moises (YouTube `cuCg2mhG_7g`, «A minor-138bpm» в имени — округлено).
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Вирус - Ты меня не ищи/mix.json`
 - Обработка стемов: `tools/jamzone/prep_ty_menya_ne_ishchi.py` (`stems`, затем `fx` и `keys`) — воспроизводит стемы, `parts/pb-fx.wav` и `parts/pb-keys.wav` байт-в-байт.
-- **pb-other:** один файл, три layer'а (stem-frame), каждый отдельной строкой в `mix.json` и на сайте:
+- **pb-other:** один файл, три layer'а (stem-frame), каждый отдельной строкой в `mix.json` и на сайте. **Тишина в pb-other** (Alex 2026-11-12) между cue «solo in» 58.1 (1:42.9) и «stop» 66.1 (1:56.9), а также между «all in» 108.1 (3:10.1) и «end in» 123.4& (3:37.8). Реализовано через `mute` на pb-keys и pb-wah; в pb-fx на этих участках и так ничего нет.
   - `pb-fx` — FX-фрагменты (`prep_ty_menya_ne_ishchi.py fx`);
   - `pb-keys` (`"derived": true`) — Moises keys + strings; keys замьючены на сырых 01:01:25.175–01:02:10.909 и 01:03:08.164–конец, там клавишник играет вживую. Мьюты — `KEYS_MUTES` в `prep_ty_menya_ne_ishchi.py keys`, в сырых секундах Moises. Отключить — убрать строку layer'а. `derived` = в `all`/стемы сайта не добавляется: там уже есть исходные стемы.
   - `pb-wah` (`derived`, role back-vox) — весь Moises Background Vocals + Moises Other 01:02:52.867–01:03:06.294 (такты 91.1 → 98.3) (`prep_ty_menya_ne_ishchi.py wah`).
