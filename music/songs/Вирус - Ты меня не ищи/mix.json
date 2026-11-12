@@ -16,7 +16,7 @@
     {"bar": 23,  "beat": 4, "text": "stop", "abs_sec": 43.172, "snap_sec": 39.247},
     {"bar": 25,  "text": "chorus in", "abs_sec": 45.352, "snap_sec": 41.864},
     {"bar": 40,  "text": "bass stop", "abs_sec": 71.517, "snap_sec": 67.592},
-    {"bar": 41,  "text": "synth-solo only ready go", "squeeze": true, "abs_sec": 73.261, "snap_sec": 69.773},
+    {"bar": 41,  "text": "synth only ready go", "abs_sec": 73.261, "snap_sec": 69.773},
     {"bar": 49,  "text": "single drum ready go", "abs_sec": 87.216, "snap_sec": 83.727},
     {"bar": 53,  "text": "kick in", "abs_sec": 94.193, "snap_sec": 90.704},
     {"bar": 57,  "text": "stop", "abs_sec": 101.17, "snap_sec": 97.245},
