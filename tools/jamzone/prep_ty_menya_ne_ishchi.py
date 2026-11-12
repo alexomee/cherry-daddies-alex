@@ -164,8 +164,12 @@ def do_fx():
     t66 = tout(295) + (o0 - tout(259))
     put(cut(drums, o0, o1), t66)
     print(f"  4 shots (bar-57 drums) @ bar 66.1-67.1 : {t66:.3f}-{t66 + o1 - o0:.3f}s")
-    # F2 REMOVED (2026-11-12, Alex): the Moises keys stem in the break (raw 129.040-130.942) is
-    # the vocal shout "Take it out!" (whisper: 129.1-130.5), not a synth -> unwanted. Break = 4 shots only.
+    # F2 (2026-11-12, Alex, 2nd spec): Moises keys in the break, raw 129.073-130.931 (in the source
+    # this is the vocal shout "Take it out!", whisper 129.1-130.5). The keys stem itself is muted
+    # there in pb-other (mix.json "mute"), so this fx copy is the only keys in the break.
+    k0, k1 = raw2out(129.073), raw2out(130.931)
+    put(cut(keys, k0, k1, fo=0.025), k0)
+    print(f"  keys @ bar 66.1-66.4& : raw 129.073-130.931 -> {k0:.3f}-{k1:.3f}s")
     # F3: ending keys + vocals (raw 230.435-232.328 = C527 .. C531.34)
     put(cut(keys + vocals, tout(527) - LEAD, tout(531.34), fo=0.12), tout(527) - LEAD)
     print(f"  keys+vocals @ bar 124.1-125.1.34 : {tout(527):.3f}-{tout(531.34):.3f}s")

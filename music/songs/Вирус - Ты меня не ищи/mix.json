@@ -2,6 +2,8 @@
   "bpm": 137.59,
   "pitch_semitones": 0,
   "pb-other": {
+    "stems": ["keys", "strings"],
+    "mute": {"keys": [[40.8494, 66.9457], [99.7679, 128]]},
     "layers": [
       {"file": "fx-pb", "frame": "stem"}
     ],
@@ -18,7 +20,7 @@
     {"bar": 40,  "text": "bass stop", "abs_sec": 71.517, "snap_sec": 67.592},
     {"bar": 41,  "text": "synth only ready go", "abs_sec": 73.261, "snap_sec": 69.773},
     {"bar": 49,  "text": "single drum ready go", "abs_sec": 87.216, "snap_sec": 83.727},
-    {"bar": 53,  "text": "kick in", "abs_sec": 94.193, "snap_sec": 90.704},
+    {"bar": 53,  "text": "double kick ready go", "abs_sec": 94.193, "snap_sec": 90.704},
     {"bar": 57,  "text": "stop", "abs_sec": 101.17, "snap_sec": 97.245},
     {"bar": 58,  "text": "solo in", "abs_sec": 102.914, "snap_sec": 99.426},
     {"bar": 66,  "text": "stop", "abs_sec": 116.869, "snap_sec": 112.944},

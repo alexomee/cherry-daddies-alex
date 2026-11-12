@@ -1425,3 +1425,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - FX, брейк 66: keys 66.1–66.4& убраны из `parts/fx-pb.wav`. В Moises-стеме keys там сидит вокальный выкрик «Take it out!» (whisper: сырые 129.1–130.5), синта нет. На брейке остались только 4 выстрела из такта 57; pb-other 66 бит-в-бит = 57.
 - Cue: старт «Ты меня не ищи drums bass ready go» (было «drum-bass in»); `verse in` 66.4& → **67.1** (на сильную долю, Alex: «not on down beat»); 100.1 «solo drums-half ready go» (было «solo-with-little-drums in»). Lead/OFF не изменились (+3.441 с).
+
+## [2026-11-12] playback+cue | Ты меня не ищи: keys+strings в pb-other, «double kick ready go»
+
+- `pb-other` = стемы `keys` + `strings` + layer `fx-pb`. Keys замьючены через `mix.json` `mute` (такты 40.8494–66.9457 и 99.7679–конец = сырые Moises 01:01:25.175–01:02:10.909 и 01:03:08.164–конец). Strings без мьютов. В `all` стемы не задваиваются. Сайт в режиме pb-other мьютит `keys` и `other`. Проверено: pb-other = strings + keys(с мьютами) + fx, остаток −94 дБ.
+- `fx-pb`: на брейк вернул keys, сырые 01:02:09.073–10.931, по второму ТЗ Alex. В стеме keys там выкрик «Take it out!». Стем keys на брейке замьючен, так что двойного нет.
+- Cue 53.1: «double kick ready go» вместо «kick in».
