@@ -1679,19 +1679,19 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 221.52771,
-      "key": "cherry-dash/13127f359691/guides/d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645/all.wav",
-      "mix_sha256": "a85bdd81aaa2ef29665280fee9fb04e2753ee6f5502060f99b2c0601b91265fb",
+      "key": "cherry-dash/13127f359691/guides/413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4/all.wav",
+      "mix_sha256": "5160bf8c5c0949e1bbd5cd9a62dfb64651c1c5362ffe84a15fbe94abc7359730",
       "render_audio": {
         "click.wav": "21a7325ecea910d3e966ce2a48bc2c25e59fb0da0dd3f88edcf7fb1b308cd9e8",
-        "cues.wav": "8093c5d5ae82ffd0eea93b236209ca5d3e37a0f5ddb0963638b996d14d0d6b50",
-        "pb-other.wav": "56ba5645c2472cd2517f30cd2bf768403d05fda6652ad244e3a6a87739cfd4e0"
+        "cues.wav": "ad8301d15eae5377fe457a3073309c6af5edb0138832857ca679d290b2410086",
+        "pb-other.wav": "ab9631b6fe0f30c0c3b26248f1cba275d28391c317f8dd74f7e83648aaf335df"
       },
       "render_pcm": {
         "click.wav": "13cf7d410abc504a3f25a3e71e8bef75a427fa9a0338e1b7ff2ba89cf9fb6869",
-        "pb-other.wav": "9edd2c6c9a8d39f0f6259fc751095fa4dff336dc002b4e0b4adc68bdb4637808"
+        "pb-other.wav": "27b418d78a6553a3edf98ccff875b4c773eec737b1028c5a6c6fe9c48ab1113c"
       },
       "sample_rate": 44100,
-      "sha256": "d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645",
+      "sha256": "413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4",
       "status": "available",
       "timeline": {
         "bar_sec": 1.744313,
@@ -1699,7 +1699,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.440939
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/d8542932da2bca04a0886c61fb825c3bc638383585c19dd60a78c559147a9645/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4/all.wav"
     },
     "music/songs/Елена Терлеева - Солнце": {
       "bytes": 38753838,
