@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-12T20:06:28",
+  "generated": "2026-11-12T20:13:12",
   "counts": {
     "total": 85,
     "data": 85,
@@ -13762,7 +13762,7 @@
             "list": [
               {
                 "t": 3.489,
-                "text": "Ты меня не ищи drum-bass in",
+                "text": "Ты меня не ищи drums bass ready go",
                 "bar": 1,
                 "snap": 0.0
               },
@@ -13839,10 +13839,10 @@
                 "snap": 112.944
               },
               {
-                "t": 118.395,
+                "t": 118.613,
                 "text": "verse in",
-                "bar": 66,
-                "snap": 114.907
+                "bar": 67,
+                "snap": 115.125
               },
               {
                 "t": 130.823,
@@ -13894,9 +13894,9 @@
               },
               {
                 "t": 176.176,
-                "text": "solo-with-little-drums in",
+                "text": "solo drums-half ready go",
                 "bar": 100,
-                "snap": 171.815
+                "snap": 172.251
               },
               {
                 "t": 188.386,
@@ -13981,13 +13981,13 @@
             "keys": "f36531edfd",
             "bass": "20f9494394",
             "guitars": "e94c341a09",
-            "other": "e466142614",
+            "other": "f98297f208",
             "click": "12b4fc7ef3",
-            "cues": "5c837f5910"
+            "cues": "172730a67a"
           },
           "versions": {
-            "all": "94eca1872e",
-            "pb-other": "dbdd937092"
+            "all": "858b9d0c91",
+            "pb-other": "8b1df5d661"
           },
           "pb_other": {
             "available": true,
