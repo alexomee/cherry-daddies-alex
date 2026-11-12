@@ -148,12 +148,16 @@ def do_fx():
     # F1: drum fill of the bar-8 stop (raw 28.696-29.491 = k65 .. k66.70)
     frag = cut(drums, tout(65) - LEAD, tout(66.70))
     plan = [("bar 8.3  stop -> verse (original position)", [65]),
-            ("bar 57.1 stop -> solo in, fill x2", [259, 261]),
             ("bar 66.1 stop -> verse 2, fill x2 (+keys)", [295, 297]),
             ("bar 107.1 stop -> all in, fill x2", [459, 461])]
     for label, ks in plan:
         for k in ks: put(frag, tout(k) - LEAD)
         print(f"  fx fill @ {label}: k={ks} t={[round(tout(k),3) for k in ks]}")
+    # F1b (2026-11-12, Alex): bar-57 stop uses the record's OWN drums of that bar, in place
+    # (raw Moises 01:01:53.339-01:01:55.070 = k~259 .. k~263; part 1 = identity: out = raw - s0)
+    r0, r1 = 113.339, 115.070
+    put(cut(drums, r0 - s0, r1 - s0), r0 - s0)
+    print(f"  drums (original) @ bar 57.1-58.1 : raw {r0}-{r1} -> {r0-s0:.3f}-{r1-s0:.3f}s")
     # F2: keys through the break (raw 129.040-130.942 = k295 .. C298.86)
     put(cut(keys, tout(295) - LEAD, tout(298.86), fo=0.025), tout(295) - LEAD)
     print(f"  keys @ bar 66.1-66.4& : {tout(295):.3f}-{tout(298.86):.3f}s")
