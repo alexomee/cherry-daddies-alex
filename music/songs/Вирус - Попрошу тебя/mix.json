@@ -8,7 +8,22 @@
     "roles": {"pb-keys": "musical"}
   },
   "pb-bass": null,
+  "cut_after_last_cue": 1,
   "cues": [
-    {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0}
+    {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0},
+    {"bar": 3,   "text": "all in", "abs_sec": 6.853, "snap_sec": 3.426},
+    {"bar": 19,  "text": "stop", "abs_sec": 34.264, "snap_sec": 30.409},
+    {"bar": 20,  "text": "all in", "abs_sec": 35.977, "snap_sec": 32.551},
+    {"bar": 28,  "text": "verse no-keys ready go", "abs_sec": 49.682, "snap_sec": 45.828},
+    {"bar": 35,  "beat": 4, "text": "pause in", "count": true, "abs_sec": 62.96, "snap_sec": 59.105},
+    {"bar": 43,  "text": "stop", "abs_sec": 75.38, "snap_sec": 71.525},
+    {"bar": 44,  "text": "all in", "abs_sec": 77.093, "snap_sec": 73.667},
+    {"bar": 52,  "text": "stop", "abs_sec": 90.799, "snap_sec": 86.944},
+    {"bar": 53,  "text": "all in", "abs_sec": 92.512, "snap_sec": 89.086},
+    {"bar": 60,  "beat": 4, "text": "pause and verse in", "count": true, "abs_sec": 105.789, "snap_sec": 101.934},
+    {"bar": 69,  "text": "bass stop", "abs_sec": 119.923, "snap_sec": 116.068},
+    {"bar": 76,  "text": "stop", "abs_sec": 131.915, "snap_sec": 128.061},
+    {"bar": 77,  "text": "all in", "abs_sec": 133.628, "snap_sec": 130.202},
+    {"bar": 93,  "text": "end in", "count": true, "abs_sec": 161.039, "snap_sec": 157.185}
   ]
 }

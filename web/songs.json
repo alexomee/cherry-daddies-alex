@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T21:44:01",
+  "generated": "2026-11-14T21:58:58",
   "counts": {
     "total": 86,
     "data": 86,
@@ -14012,13 +14012,97 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
+            "count": 15,
             "list": [
               {
                 "t": 4.283,
                 "text": "Попрошу тебя playback in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 6.853,
+                "text": "all in",
+                "bar": 3,
+                "snap": 3.426
+              },
+              {
+                "t": 34.264,
+                "text": "stop",
+                "bar": 19,
+                "snap": 30.409
+              },
+              {
+                "t": 35.977,
+                "text": "all in",
+                "bar": 20,
+                "snap": 32.551
+              },
+              {
+                "t": 49.682,
+                "text": "verse no-keys ready go",
+                "bar": 28,
+                "snap": 45.828
+              },
+              {
+                "t": 62.96,
+                "text": "pause in",
+                "bar": 35,
+                "snap": 59.105
+              },
+              {
+                "t": 75.38,
+                "text": "stop",
+                "bar": 43,
+                "snap": 71.525
+              },
+              {
+                "t": 77.093,
+                "text": "all in",
+                "bar": 44,
+                "snap": 73.667
+              },
+              {
+                "t": 90.799,
+                "text": "stop",
+                "bar": 52,
+                "snap": 86.944
+              },
+              {
+                "t": 92.512,
+                "text": "all in",
+                "bar": 53,
+                "snap": 89.086
+              },
+              {
+                "t": 105.789,
+                "text": "pause and verse in",
+                "bar": 60,
+                "snap": 101.934
+              },
+              {
+                "t": 119.923,
+                "text": "bass stop",
+                "bar": 69,
+                "snap": 116.068
+              },
+              {
+                "t": 131.915,
+                "text": "stop",
+                "bar": 76,
+                "snap": 128.061
+              },
+              {
+                "t": 133.628,
+                "text": "all in",
+                "bar": 77,
+                "snap": 130.202
+              },
+              {
+                "t": 161.039,
+                "text": "end in",
+                "bar": 93,
+                "snap": 157.185
               }
             ]
           },
@@ -14073,19 +14157,19 @@
             }
           ],
           "stem_versions": {
-            "vocal": "a1048c1e22",
-            "back_vox": "965dde288e",
-            "drums": "9a9f1a4122",
-            "keys": "0f1488872d",
-            "bass": "492f0ebc3d",
-            "guitars": "383d537e81",
-            "other": "f25846e8f3",
-            "click": "f1c3aaf313",
-            "cues": "490dbca635"
+            "vocal": "e75bf91073",
+            "back_vox": "322741f17b",
+            "drums": "f23f0e8926",
+            "keys": "cce4515a6c",
+            "bass": "fc7995557f",
+            "guitars": "09e27aae89",
+            "other": "ca1bbed09b",
+            "click": "2ab2a7652d",
+            "cues": "3b0db23593"
           },
           "versions": {
-            "all": "ba4af9aefb",
-            "pb-other": "12f3a661d4"
+            "all": "591107e1a5",
+            "pb-other": "51fae67b96"
           },
           "pb_other": {
             "available": true,
