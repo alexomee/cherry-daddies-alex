@@ -1,0 +1,14 @@
+{
+  "bpm": 140.09,
+  "pitch_semitones": 0,
+  "pb-other": {
+    "layers": [
+      {"file": "pb-keys", "frame": "stem", "derived": true, "source": ["keys"]}
+    ],
+    "roles": {"pb-keys": "musical"}
+  },
+  "pb-bass": null,
+  "cues": [
+    {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0}
+  ]
+}

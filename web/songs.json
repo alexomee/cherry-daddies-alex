@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-12T21:07:44",
+  "generated": "2026-11-14T21:44:01",
   "counts": {
-    "total": 85,
-    "data": 85,
-    "cues": 85,
+    "total": 86,
+    "data": 86,
+    "cues": 86,
     "playback": 37,
-    "other": 72,
+    "other": 73,
     "practice": 82
   },
   "sets": [
@@ -13997,6 +13997,100 @@
               "back_vox",
               "keys",
               "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Вирус - Попрошу тебя",
+          "slug": "4bfe90ef136b",
+          "title": "Попрошу тебя",
+          "artist": "Вирус",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.283,
+                "text": "Попрошу тебя playback in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "pb-keys"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "a1048c1e22",
+            "back_vox": "965dde288e",
+            "drums": "9a9f1a4122",
+            "keys": "0f1488872d",
+            "bass": "492f0ebc3d",
+            "guitars": "383d537e81",
+            "other": "f25846e8f3",
+            "click": "f1c3aaf313",
+            "cues": "490dbca635"
+          },
+          "versions": {
+            "all": "ba4af9aefb",
+            "pb-other": "12f3a661d4"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys"
             ]
           },
           "pb_bass": {
