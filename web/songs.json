@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T23:16:37",
+  "generated": "2026-11-14T23:20:13",
   "counts": {
     "total": 86,
     "data": 86,
@@ -14082,7 +14082,7 @@
               },
               {
                 "t": 105.789,
-                "text": "pause and verse in",
+                "text": "pause and synth-verse in",
                 "bar": 60,
                 "snap": 101.934
               },
@@ -14172,10 +14172,10 @@
             "guitars": "09e27aae89",
             "other": "ca1bbed09b",
             "click": "2ab2a7652d",
-            "cues": "43f0690a5c"
+            "cues": "a522773794"
           },
           "versions": {
-            "all": "74d5781340",
+            "all": "90d9b2757e",
             "pb-other": "51fae67b96",
             "pb-bass": "385f0d8bb8"
           },

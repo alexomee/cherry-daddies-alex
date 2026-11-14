@@ -21,7 +21,7 @@
     {"bar": 44,  "text": "all in", "abs_sec": 77.093, "snap_sec": 73.667},
     {"bar": 52,  "text": "stop", "abs_sec": 90.799, "snap_sec": 86.944},
     {"bar": 53,  "text": "synth solo ready go", "abs_sec": 92.512, "snap_sec": 89.086},
-    {"bar": 60,  "beat": 4, "text": "pause and verse in", "count": true, "abs_sec": 105.789, "snap_sec": 101.934},
+    {"bar": 60,  "beat": 4, "text": "pause and synth-verse in", "count": true, "abs_sec": 105.789, "snap_sec": 101.934},
     {"bar": 76,  "text": "stop", "abs_sec": 131.915, "snap_sec": 128.061},
     {"bar": 77,  "text": "all no-rhythm ready go", "abs_sec": 133.628, "snap_sec": 130.202},
     {"bar": 85,  "text": "rhythm in", "abs_sec": 147.334, "snap_sec": 143.907},
