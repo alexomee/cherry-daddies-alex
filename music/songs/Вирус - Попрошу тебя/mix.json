@@ -7,7 +7,7 @@
     ],
     "roles": {"pb-keys": "musical"}
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["bass"]},
   "cut_after_last_cue": 1,
   "cues": [
     {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0},

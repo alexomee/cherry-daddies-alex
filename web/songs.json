@@ -1,10 +1,10 @@
 {
-  "generated": "2026-11-14T21:58:58",
+  "generated": "2026-11-14T22:08:45",
   "counts": {
     "total": 86,
     "data": 86,
     "cues": 86,
-    "playback": 37,
+    "playback": 38,
     "other": 73,
     "practice": 82
   },
@@ -14107,7 +14107,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -14165,11 +14166,12 @@
             "guitars": "09e27aae89",
             "other": "ca1bbed09b",
             "click": "2ab2a7652d",
-            "cues": "3b0db23593"
+            "cues": "6faa769488"
           },
           "versions": {
-            "all": "591107e1a5",
-            "pb-other": "51fae67b96"
+            "all": "94dcb84752",
+            "pb-other": "51fae67b96",
+            "pb-bass": "385f0d8bb8"
           },
           "pb_other": {
             "available": true,
@@ -14178,8 +14180,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         }
       ]

@@ -17,7 +17,7 @@ status: draft (15 cue на ревью)
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Вирус - Попрошу тебя/mix.json`
 - Обработка: `tools/jamzone/prep_poproshu_tebya.py` (`stems`, затем `keys`), воспроизводимо.
 - **pb-other:** layer `pb-keys` (`derived`, `source: ["keys"]`, stem-frame, role musical) = весь Moises Keys. Мьюты — `KEYS_MUTES` в скрипте (пока пусто).
-- **pb-bass:** нет. `players` нет.
+- **pb-bass:** стем `bass` целиком (Moises Bass, без правок громкости; 2026-11-14). `players` нет.
 
 ## Сетка — диагностика (2026-11-14)
 
@@ -41,7 +41,7 @@ status: draft (15 cue на ревью)
 | 19.1 | stop | 0:34.264 | 30.321 | крэш, бас выкл, вокал соло |
 | 20.1 | all in | 0:35.977 | 32.036 | |
 | 28.1 | verse no-keys ready go | 0:49.682 | 45.750 | keys выходят на 28.1, вокал с 28.1&; verse 26.4, no-keys 27.1–27.2 (длинное слово), ready 27.3, go 27.4 |
-| 35.4 | pause in (`count`) | 1:02.960 | 58.607 | ⚠️ отметка ложится на 35.3, но пауза (бас и кик выкл) на 35.4, как и на 60.4; поставлено 35.4 |
+| 35.4 | pause in (`count`) | 1:02.960 | 58.607 | отметка ложится на 35.3, но пауза (бас и кик выкл) на 35.4, как и на 60.4; 35.4 подтверждено Alex 2026-11-14 |
 | 43.1 | stop | 1:15.380 | 71.464 | |
 | 44.1 | all in | 1:17.093 | 73.179 | |
 | 52.1 | stop | 1:30.799 | 86.893 | |
@@ -56,6 +56,6 @@ status: draft (15 cue на ревью)
 
 ## Открытые вопросы
 
-- Ревью cue по `cue_preview.mp3`, особенно 35.4 (⚠️).
+- Ревью cue по `cue_preview.mp3`.
 - Что именно в pb-other кроме Keys: заезд сидит в keys + other; в pb-keys сейчас только keys.
-- `players`, бас, синк в риг, прод — не делались.
+- `players`, синк в риг (pb-bass в MainStage заводится руками), прод — не делались.
