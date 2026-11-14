@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T23:03:20",
+  "generated": "2026-11-14T23:12:58",
   "counts": {
     "total": 86,
     "data": 86,
@@ -14012,7 +14012,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 15,
+            "count": 16,
             "list": [
               {
                 "t": 4.283,
@@ -14094,9 +14094,15 @@
               },
               {
                 "t": 133.628,
-                "text": "all in",
+                "text": "all no-rhythm ready go",
                 "bar": 77,
                 "snap": 130.202
+              },
+              {
+                "t": 147.334,
+                "text": "rhythm in",
+                "bar": 85,
+                "snap": 143.907
               },
               {
                 "t": 161.039,
@@ -14166,10 +14172,10 @@
             "guitars": "09e27aae89",
             "other": "ca1bbed09b",
             "click": "2ab2a7652d",
-            "cues": "d18d77345f"
+            "cues": "43f0690a5c"
           },
           "versions": {
-            "all": "244fd8c373",
+            "all": "74d5781340",
             "pb-other": "51fae67b96",
             "pb-bass": "385f0d8bb8"
           },
