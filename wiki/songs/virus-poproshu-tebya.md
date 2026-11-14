@@ -54,6 +54,23 @@ status: draft (15 cue на ревью)
 
 Пересечений слов нет: проверено по сегментации cues.wav, одинаковые блоки ложатся на свои доли бит-в-бит.
 
+## Рифф Keys на BOSS GM-800 (гитарный синт) — 2026-11-14
+
+Референс: `~/Downloads/synth sample.mp3` = Moises Keys с сырых 3.41 с (такты 3.2–5.1), корреляция 0.99.
+
+**Что в сэмпле:**
+- Ритм: короткий аккорд-стаб на каждую долю, начало через ~177 мс после доли (0.41 доли — чуть раньше «и»), длина ~130 мс.
+- Звук: детюн-суперсо (частичные размазаны на ±40 центов), яркий, но без верха выше ~6 кГц и без низа ниже 400 Гц. Атака быстрая, фильтр не двигается.
+- Аккорды: такт 3 — C5+Eb5+C6 (Cm без квинты), такт 4 — Ab5+C6.
+- Стерео: сухой жёстко влево, эхо 1/8 вправо на −10 дБ и темнее (ping-pong).
+
+**GM-800** (ZEN-Core; на приборе правится готовый тон через TONE MODIFY, осциллятор не редактируется):
+- Тон, слушать по очереди (Sound List): 1019 Super Saws Atk, 1024 Trance Saws, 314 Super Saw Poly 1, 317 Super Saw Key, 316 Trance Syn Poly, 1018 Super Saws.
+- TONE MODIFY: Attack −64, Decay ≈ −25, Release ≈ −50 (обрыв по глушению струн), Cutoff ≈ −8, Resonance 0, Vib Depth 0, Oct Shift +1 (играть октавой ниже). Part EQ: Low −12 dB @ 300 Hz, High −3 dB @ 8 kHz.
+- Play Feel = NO DYNA (стабы одной силы), Chromatic = TYPE 2 (без глиссандо).
+- Scene Tempo 140. MFX 53 Delay: Dly R Sync ON, DRTime Nt 1/8; Dly L Sync ON, DLTime Nt 1/4; Fbk Mode CROSS; Feedback ≈ +15 %; HF Damp 4000; Balance ≈ D100:30W. Part Pan влево — по желанию, как в записи.
+- Аппликатура (с Oct Shift +1): Cm — G-стр. 5 лад (C) + B-стр. 4 (Eb) + E-стр. 8 (C); Ab — B-стр. 9 (Ab) + E-стр. 8 (C).
+
 ## Открытые вопросы
 
 - Ревью cue по `cue_preview.mp3`.
