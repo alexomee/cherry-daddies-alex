@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T22:08:45",
+  "generated": "2026-11-14T23:03:20",
   "counts": {
     "total": 86,
     "data": 86,
@@ -14027,6 +14027,12 @@
                 "snap": 3.426
               },
               {
+                "t": 20.558,
+                "text": "lead synth ready go",
+                "bar": 11,
+                "snap": 17.132
+              },
+              {
                 "t": 34.264,
                 "text": "stop",
                 "bar": 19,
@@ -14034,7 +14040,7 @@
               },
               {
                 "t": 35.977,
-                "text": "all in",
+                "text": "synth solo ready go",
                 "bar": 20,
                 "snap": 32.551
               },
@@ -14070,7 +14076,7 @@
               },
               {
                 "t": 92.512,
-                "text": "all in",
+                "text": "synth solo ready go",
                 "bar": 53,
                 "snap": 89.086
               },
@@ -14079,12 +14085,6 @@
                 "text": "pause and verse in",
                 "bar": 60,
                 "snap": 101.934
-              },
-              {
-                "t": 119.923,
-                "text": "bass stop",
-                "bar": 69,
-                "snap": 116.068
               },
               {
                 "t": 131.915,
@@ -14166,10 +14166,10 @@
             "guitars": "09e27aae89",
             "other": "ca1bbed09b",
             "click": "2ab2a7652d",
-            "cues": "6faa769488"
+            "cues": "d18d77345f"
           },
           "versions": {
-            "all": "94dcb84752",
+            "all": "244fd8c373",
             "pb-other": "51fae67b96",
             "pb-bass": "385f0d8bb8"
           },

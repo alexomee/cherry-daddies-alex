@@ -1478,3 +1478,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - Сэмпл Alex = Moises Keys «Попрошу тебя» (сырые 3.41 с). Разбор: суперсо-стаб на каждую долю, 0.41 доли после доли, ~130 мс; Cm (C5+Eb5+C6) → Ab (Ab5+C6); сухой влево, эхо 1/8 вправо −10 дБ.
 - Рецепт для GM-800 записан на странице песни: тоны 1019/1024/314/317, TONE MODIFY, MFX 53 Delay с sync 1/8, Oct Shift +1, аппликатура. Источники — GM-800 Parameter Guide и Sound List (Roland).
+
+## [2026-11-14] cue | Попрошу тебя: lead synth 11.1, synth solo ×2, без bass stop
+
+- Добавлен «lead synth ready go» на 11.1 (Logic 16.714). В стеме other перед ним возможен 16-й затакт с 10.4e, cue стоит на 11.1, как отметил Alex.
+- «all in» 20.1 и 53.1 → «synth solo ready go». «bass stop» 69.1 (1:59.9) удалён. По-прежнему 15 cue.
