@@ -1674,6 +1674,35 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/158a67d6e7f2cb0ab47810a68db78a2ab90b6fa1b22132f7c2dcc18d91612534/all.wav"
     },
+    "music/songs/Вирус - Попрошу тебя": {
+      "bytes": 28709658,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 162.752494,
+      "key": "cherry-dash/4bfe90ef136b/guides/9ae2595a5dd7ab823bab114067c40f1f8378c14fb30bb3a49588520acc56ea97/all.wav",
+      "mix_sha256": "ff85712948fb4ac16aafafa75e4cfbce36cd98886d15b0ffcff3e63f37732bf8",
+      "render_audio": {
+        "click.wav": "0f0e12af5d0e56c089bc954714368ba54f0f79c4ff19ac430c676d54d00fabe7",
+        "cues.wav": "b8b8e693a90764d39612f91903034733ccf2c7746c2823c1b28a043856f9ac11",
+        "pb-bass.wav": "51309ada1b3726ae10d45469acdfa6a00616e89662a79bc460a867c0c0b19851",
+        "pb-other.wav": "ab199f59b94421c00652bbbb7b52d9530f9ff640027e570cb5101590501bd756"
+      },
+      "render_pcm": {
+        "click.wav": "82c8819967e16102584433da5aa276b2f003c9baccb4905444483e8224350877",
+        "pb-bass.wav": "4bf6fc87d39510a24aa3bd871c50501ff27bab643375e832cd8f8003882a2097",
+        "pb-other.wav": "2006b3c33a828e69234dfca7956ce22cdc0abbdf33023ea075782e142b1e074b"
+      },
+      "sample_rate": 44100,
+      "sha256": "9ae2595a5dd7ab823bab114067c40f1f8378c14fb30bb3a49588520acc56ea97",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.713184,
+        "bpm": 140.09,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.378682
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/4bfe90ef136b/guides/9ae2595a5dd7ab823bab114067c40f1f8378c14fb30bb3a49588520acc56ea97/all.wav"
+    },
     "music/songs/Вирус - Ты меня не ищи": {
       "bytes": 39077606,
       "channels": 2,
