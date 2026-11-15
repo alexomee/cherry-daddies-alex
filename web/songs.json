@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-15T18:34:26",
+  "generated": "2026-11-15T19:21:03",
   "counts": {
-    "total": 86,
-    "data": 86,
-    "cues": 86,
+    "total": 87,
+    "data": 87,
+    "cues": 87,
     "playback": 38,
     "other": 73,
     "practice": 82
@@ -14190,6 +14190,84 @@
             "mutes": [
               "bass"
             ]
+          }
+        },
+        {
+          "sid": "Мумий Тролль - Владивосток 2000",
+          "slug": "d19286157d3c",
+          "title": "Владивосток 2000",
+          "artist": "Мумий Тролль",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 3.694,
+                "text": "Владивосток 2000 all in",
+                "bar": 1,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "07d5888ac9",
+            "back_vox": "0575a07017",
+            "drums": "9a23d8d4a4",
+            "bass": "e6a2bbf9bc",
+            "guitars": "f3b763f0c9",
+            "click": "245fda271a",
+            "cues": "ed97d87bc5"
+          },
+          "versions": {
+            "all": "05413f2dff"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
           }
         }
       ]
