@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-16T00:04:27",
+  "generated": "2026-11-16T00:22:09",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
     "playback": 38,
-    "other": 74,
+    "other": 75,
     "practice": 82
   },
   "sets": [
@@ -14117,7 +14117,10 @@
             "label": "bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "pb-fx"
+            ]
           },
           "practice": [
             "all"
@@ -14173,11 +14176,15 @@
           },
           "versions": {
             "all": "627c819615",
+            "pb-other": "dead286d2a",
             "pb-bass": "b0a2322545"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,

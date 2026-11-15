@@ -1,8 +1,12 @@
 {
   "bpm": 140.09,
   "pitch_semitones": 0,
-  "pb-other": null,
-  "note": "2026-11-16 Alex: keys removed from playback (pb-other was only the derived pb-keys layer = whole Keys stem; parts/pb-keys.wav kept, rebuildable via prep_poproshu_tebya.py). Playback = pb-bass only.",
+  "pb-other": {
+    "layers": [
+      {"file": "pb-fx", "frame": "stem", "derived": true, "source": ["keys", "other"]}
+    ],
+    "roles": {"pb-fx": "musical"}
+  },
   "pb-bass": {"stems": ["bass"]},
   "cut_after_last_cue": 1,
   "cues": [

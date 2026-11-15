@@ -1552,3 +1552,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - «Попрошу тебя»: keys убраны из плейбека (Alex) → `pb-other: null` (был только derived-слой `pb-keys`). Перерендер: сетка и cue те же, плейбек = pb-bass. Устаревшие `auto-render/pb-other.{wav,mp3}` удалены (иначе синк рига подхватил бы). ⚠️ Стартовый cue «playback in» на 1.3 стоял на заезде клавиш — теперь он живьём.
 - Публикация `sync_site.py`: mp3 не изменились (0 changed), обновлены songs.json (pb-other у песни выключен) и guide-каталог; Vercel prod READY; R2 сверен md5.
 - Риг: в MAP `sync_to_mainstage.sh` добавлены Ты меня не ищи, Попрошу тебя, Владивосток 2000 (секция 12.12, вместе с Sex on Fire). `--apply --create-missing` по фильтру: Ты меня не ищи (click, cues, pb-other), Попрошу тебя (click, cues, pb-bass), Владивосток 2000 (click, cues, pb-other); всё побайтно = auto-render, запушено в origin/main рига (c6af41a7). Проверка по SETS: других песен из программы без рига нет. MainStage-сеты — руками у клавишника.
+
+## [2026-11-16] pb | Попрошу тебя: заезд остаётся → pb-fx
+
+- Поправка Alex: синт-заезд до основной темы должен остаться в плейбеке. `prep_poproshu_tebya.py fx` → `parts/pb-fx.wav` = keys + other с начала до 3.1 (затухание 20 мс до тактовой линии), дальше тишина. pb-other = derived-слой `pb-fx` (source keys, other; role musical). `pb-keys.wav` и шаг `keys` удалены.
+- Проверка: pb-other звучит 4.26–6.855 с рендера (1.3 → 3.1), против keys+other −77 дБ; click/cues/pb-bass побайтно прежние. Стартовый cue «playback in» снова верен.
+- Прод: 1 изменённый микс, R2 pb-other сверен md5 (ориджин и edge). Риг: + `pb-other.wav` в «Попрошу тебя», запушено (209836fb).

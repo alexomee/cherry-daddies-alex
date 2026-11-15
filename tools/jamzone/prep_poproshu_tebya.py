@@ -2,7 +2,7 @@
 """One-off stem prep for «Вирус — Попрошу тебя» (12.12 new songs, 2026-11-14). Rebuildable.
 
   python3 tools/jamzone/prep_poproshu_tebya.py stems   # moises-orig/*.mp3 -> root *.wav (padded) + metronome.wav
-  python3 tools/jamzone/prep_poproshu_tebya.py keys    # keys.wav -> parts/pb-keys.wav (pb-other track)
+  python3 tools/jamzone/prep_poproshu_tebya.py fx      # keys+other run-in 1.3-3.1 -> parts/pb-fx.wav (pb-other)
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Попрошу тебя"
 
 Measured on the raw Moises stems (wiki/songs/virus-poproshu-tebya.md):
@@ -70,27 +70,31 @@ def do_stems():
     print(f"  ✓ metronome.wav  synthetic {BPM} bpm, first click (bar 1.1) {PRE:.3f}s; pad {PAD:.4f}s; "
           f"run-in bar 1.3 = {tout(-1):.3f}s, band downbeat bar 3.1 = {tout(5):.3f}s")
 
-# pb-keys (2026-11-14, Alex): pb-other track = the whole Moises Keys stem (initial version).
-# 2026-11-16 Alex: keys REMOVED from playback -> mix.json pb-other = null; this step is kept only to
-# rebuild parts/pb-keys.wav if keys ever go back into pb-other (layer not referenced now).
-# KEYS_MUTES: raw Moises seconds where keys are cut out later (None = till the end).
-KEYS_MUTES = []
-MUTE_XF = 0.015
+# pb-fx (2026-11-16, Alex): playback = ONLY the synth run-in ("заезд") before the main theme; the keys from
+# the band downbeat on are played live. History: 2026-11-14 pb-keys = the whole Keys stem; 2026-11-16
+# keys removed from playback entirely; same day corrected: the run-in stays, renamed pb-fx.
+#   * The run-in lives in keys (-19 dBFS) + other (-28) over bars 1.3-3.1; piano/guitars/strings ~silent
+#     there (<= -70 dBFS), drums only the 2.4& pickup -> pb-fx = keys + other.
+#   * Kept from the file start up to the band downbeat bar 3.1 (raw k=5), faded out over FX_XF ENDING on
+#     that bar line (the band's 3.1 hit masks the cut); silence after. Native level (no gain).
+FX_SRC = ["keys", "other"]
+FX_END_K = 5                      # raw beat index of bar 3.1 (band/vocal downbeat)
+FX_XF = 0.020
 
-def do_keys():
-    keys = decode(os.path.join(SONG, "keys.wav")); n = len(keys)
-    for r0, r1 in KEYS_MUTES:
-        a = S(raw2out(r0)); b = n if r1 is None else S(raw2out(r1)); f = S(MUTE_XF)
-        keys[a-f:a] *= np.linspace(1, 0, f)[:, None]; keys[a:b] = 0
-        if b + f <= n: keys[b:b+f] *= np.linspace(0, 1, f)[:, None]
-        print(f"  keys muted raw {r0}-{r1 or 'end'}")
+def do_fx():
+    x = None
+    for nm in FX_SRC:
+        a = decode(os.path.join(SONG, nm + ".wav")); x = a if x is None else x + a
+    n = len(x); e = S(tout(FX_END_K)); f = S(FX_XF)
+    x[e-f:e] *= np.linspace(1, 0, f, dtype=np.float32)[:, None]; x[e:] = 0
     os.makedirs(os.path.join(SONG, "parts"), exist_ok=True)
-    dst = os.path.join(SONG, "parts", "pb-keys.wav")
-    write_wav(dst, keys)
-    print(f"  ✓ {dst}  {n/SR:.3f}s  peak {np.abs(keys).max():.3f}")
+    dst = os.path.join(SONG, "parts", "pb-fx.wav")
+    write_wav(dst, x)
+    print(f"  ✓ {dst}  {'+'.join(FX_SRC)} up to bar 3.1 = {tout(FX_END_K):.3f}s (fade {FX_XF*1000:.0f} ms), "
+          f"peak {np.abs(x).max():.3f}")
 
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else ""
     if step == "stems": do_stems()
-    elif step == "keys": do_keys()
+    elif step == "fx": do_fx()
     else: sys.exit(__doc__)
