@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Sex on Fire
 artist: Kings of Leon
 set: 12.12 new songs
-status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на проде)
+status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на проде, стемы в риге)
 ---
 
 # Sex on Fire (Kings of Leon)
@@ -79,4 +79,5 @@ status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на про
 ## Открытые вопросы
 
 - Ревью cue по `cue_preview.mp3` / сайту.
-- Риг, текст на сцене — не делались. Прод: опубликовано 2026-11-15.
+- Прод: опубликовано 2026-11-15. **Риг:** 2026-11-15 `click.wav`, `cues.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Sex on Fire/` (MAP в `tools/sync_to_mainstage.sh`), запушено (14f64951). Сет в MainStage (Playback-дорожки на эти wav) клавишник заводит руками.
+- Текст на сцене (lyric-launcher, клип из JamZone `tiles.json`) — не делался.

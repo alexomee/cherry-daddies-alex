@@ -1541,3 +1541,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-11-15] publish | Sex on Fire на проде
 
 - `tools/sync_site.py`: R2 (стемы, pb-other, all.mp3 — md5 совпадают с локальным рендером) + guide `all.wav` в каталоге + Vercel prod READY (web-ten-psi-12.vercel.app). Риг не трогал.
+
+## [2026-11-15] rig | Sex on Fire → риг
+
+- `tools/sync_to_mainstage.sh --apply --create-missing "Sex on Fire"` (новая строка MAP, секция «12.12 new songs»): `click.wav`, `cues.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Sex on Fire/`, побайтно = auto-render. Подтянуты 2 коммита клавишника (ff), закоммичено и запушено в origin/main рига (14f64951).
+- MainStage-сет не заведён (Playback-дорожки — вручную у клавишника). Клип текста не делался.

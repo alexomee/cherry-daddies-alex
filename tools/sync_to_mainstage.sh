@@ -95,6 +95,8 @@ MAP=(
   "Sunny|||Boney M. - Sunny"
   "Money, Money, Money|||ABBA - Money, Money, Money"
   "What Is Love|||Haddaway - What Is Love"
+  # 12.12 new songs
+  "Sex on Fire|||Kings of Leon - Sex on Fire"
 )
 
 # Stems the script is allowed to overwrite. Any pb-* variant counts (pb-other, pb-bass,
