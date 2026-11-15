@@ -1516,4 +1516,4 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-11-15] stems | Владивосток 2000: убран Moises rhythm guitars, keep going 53.3 подтверждён
 
 - Moises `rhythm_guitars.mp3` → `moises-orig/` (Alex): его заменяет записанная `guitars-pb`. Нет в `all`, превью и категориях сайта; «Гитары» на сайте = lead + guitars-pb. Перерендерено, cue и сетка те же.
-- «keep going» остаётся на 53.3 (Alex).
+- «keep going» остаётся на 53.3 (Alex). Опубликовано на прод (R2: стемы, pb-other, all.mp3 сверены побайтно; guide all.wav в каталоге).

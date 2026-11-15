@@ -1870,6 +1870,33 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/b581fa388c98/guides/c7e689eebd6c6b2f35f4d4bedd44c31e2836701aab1cff4ee2d5cb1124ac2fe6/all.wav"
     },
+    "music/songs/Мумий Тролль - Владивосток 2000": {
+      "bytes": 28995146,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 164.370907,
+      "key": "cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav",
+      "mix_sha256": "f474894efbbc9a341bce37c7408e17d4c31a510f1d463a6089a181d7c7d2b07b",
+      "render_audio": {
+        "click.wav": "c7f9d408bde75823fbbff4335295fc95becd49a0be2de754e2d7aa7ecee56fcd",
+        "cues.wav": "dc6380c147daf783969f666c2b6ebe55f13f5eab2384c4cc511eb3b4dea67840",
+        "pb-other.wav": "985681ca64741a02edcca66c69b6233a1d2360b7d9cfe2d6e64eccaeab3ff5a2"
+      },
+      "render_pcm": {
+        "click.wav": "e095d4184260ef8453f0f6fc57f34742db6326737fdc5d10c6a4cedc42ed387b",
+        "pb-other.wav": "372cf60a2586eb4186a649c4260e0236cd7c9d9ab4842eed2192f883396eafd2"
+      },
+      "sample_rate": 44100,
+      "sha256": "0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.846864,
+        "bpm": 129.95,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": 3.493298
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav"
+    },
     "music/songs/Мумий Тролль - Медведица": {
       "bytes": 41684794,
       "channels": 2,
