@@ -71,6 +71,8 @@ def do_stems():
           f"run-in bar 1.3 = {tout(-1):.3f}s, band downbeat bar 3.1 = {tout(5):.3f}s")
 
 # pb-keys (2026-11-14, Alex): pb-other track = the whole Moises Keys stem (initial version).
+# 2026-11-16 Alex: keys REMOVED from playback -> mix.json pb-other = null; this step is kept only to
+# rebuild parts/pb-keys.wav if keys ever go back into pb-other (layer not referenced now).
 # KEYS_MUTES: raw Moises seconds where keys are cut out later (None = till the end).
 KEYS_MUTES = []
 MUTE_XF = 0.015

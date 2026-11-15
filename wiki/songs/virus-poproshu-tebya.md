@@ -1,10 +1,10 @@
 ---
 type: song
-updated: 2026-11-15
+updated: 2026-11-16
 title: Попрошу тебя
 artist: Вирус
 set: 12.12 new songs
-status: draft (16 cue на ревью)
+status: draft (16 cue на ревью; плейбек = только pb-bass; на проде и в риге)
 ---
 
 # Попрошу тебя (Вирус)
@@ -15,8 +15,8 @@ status: draft (16 cue на ревью)
 
 - **bpm:** 140.09 (константный, без варпа) · **pitch_semitones:** 0 (C minor)
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Вирус - Попрошу тебя/mix.json`
-- Обработка: `tools/jamzone/prep_poproshu_tebya.py` (`stems`, затем `keys`), воспроизводимо.
-- **pb-other:** layer `pb-keys` (`derived`, `source: ["keys"]`, stem-frame, role musical) = весь Moises Keys. Мьюты — `KEYS_MUTES` в скрипте (пока пусто).
+- Обработка: `tools/jamzone/prep_poproshu_tebya.py stems` (шаг `keys` больше не нужен), воспроизводимо.
+- **pb-other: нет** (2026-11-16, Alex: keys убраны из плейбека, клавиши играются живьём). Раньше pb-other = derived-слой `pb-keys` (весь Moises Keys); `parts/pb-keys.wav` оставлен, в mix.json не подключён. Keys остаются в `all`, превью и стемах сайта.
 - **pb-bass:** стем `bass` целиком (Moises Bass, без правок громкости; 2026-11-14). `players` нет.
 
 ## Сетка — диагностика (2026-11-14)
@@ -75,5 +75,6 @@ status: draft (16 cue на ревью)
 ## Открытые вопросы
 
 - Ревью cue по `cue_preview.mp3`.
-- Что именно в pb-other кроме Keys: заезд сидит в keys + other; в pb-keys сейчас только keys.
-- `players`, синк в риг (pb-bass в MainStage заводится руками), прод — не делались.
+- Стартовый cue «Попрошу тебя playback in» (1.3) стоял на заезде клавиш, который был в плейбеке. Теперь заезд играется живьём, в плейбеке до 3.1 ничего нет — текст cue, возможно, стоит сменить (напр. «keys in»).
+- `players` не заданы.
+- Прод: 2026-11-16 (сайт без pb-other, R2 сверен). **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Попрошу тебя/` (click, cues, pb-bass), запушено (c6af41a7). Сет в MainStage (Playback-дорожки) клавишник заводит руками.

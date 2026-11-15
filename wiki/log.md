@@ -1546,3 +1546,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - `tools/sync_to_mainstage.sh --apply --create-missing "Sex on Fire"` (новая строка MAP, секция «12.12 new songs»): `click.wav`, `cues.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Sex on Fire/`, побайтно = auto-render. Подтянуты 2 коммита клавишника (ff), закоммичено и запушено в origin/main рига (14f64951).
 - MainStage-сет не заведён (Playback-дорожки — вручную у клавишника). Клип текста не делался.
+
+## [2026-11-16] pb + publish + rig | Попрошу тебя без keys; все песни 12.12 в риге
+
+- «Попрошу тебя»: keys убраны из плейбека (Alex) → `pb-other: null` (был только derived-слой `pb-keys`). Перерендер: сетка и cue те же, плейбек = pb-bass. Устаревшие `auto-render/pb-other.{wav,mp3}` удалены (иначе синк рига подхватил бы). ⚠️ Стартовый cue «playback in» на 1.3 стоял на заезде клавиш — теперь он живьём.
+- Публикация `sync_site.py`: mp3 не изменились (0 changed), обновлены songs.json (pb-other у песни выключен) и guide-каталог; Vercel prod READY; R2 сверен md5.
+- Риг: в MAP `sync_to_mainstage.sh` добавлены Ты меня не ищи, Попрошу тебя, Владивосток 2000 (секция 12.12, вместе с Sex on Fire). `--apply --create-missing` по фильтру: Ты меня не ищи (click, cues, pb-other), Попрошу тебя (click, cues, pb-bass), Владивосток 2000 (click, cues, pb-other); всё побайтно = auto-render, запушено в origin/main рига (c6af41a7). Проверка по SETS: других песен из программы без рига нет. MainStage-сеты — руками у клавишника.

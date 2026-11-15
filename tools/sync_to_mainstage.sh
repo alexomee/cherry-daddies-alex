@@ -96,6 +96,9 @@ MAP=(
   "Money, Money, Money|||ABBA - Money, Money, Money"
   "What Is Love|||Haddaway - What Is Love"
   # 12.12 new songs
+  "Ты меня не ищи|||Вирус - Ты меня не ищи"
+  "Попрошу тебя|||Вирус - Попрошу тебя"
+  "Владивосток 2000|||Мумий Тролль - Владивосток 2000"
   "Sex on Fire|||Kings of Leon - Sex on Fire"
 )
 

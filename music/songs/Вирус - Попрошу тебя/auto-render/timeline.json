@@ -1,0 +1,6 @@
+{
+ "offset_sec": 3.378682,
+ "bar_sec": 1.713184,
+ "bpm": 140.09,
+ "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line"
+}

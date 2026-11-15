@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Владивосток 2000
 artist: Мумий Тролль
 set: 12.12 new songs
-status: draft (7 cue + pb-other guitars-pb, на проде)
+status: draft (7 cue + pb-other guitars-pb, на проде и в риге)
 ---
 
 # Владивосток 2000 (Мумий Тролль)
@@ -68,4 +68,4 @@ status: draft (7 cue + pb-other guitars-pb, на проде)
 ## Открытые вопросы
 
 - Ревью cue и уровня guitars-pb по `cue_preview.mp3` / сайту.
-- pb-bass, `players`, синк в риг (pb-other в MainStage заводится руками), прод — не делались.
+- pb-bass, `players` — не делались. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Владивосток 2000/` (click, cues, pb-other), запушено (c6af41a7). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
