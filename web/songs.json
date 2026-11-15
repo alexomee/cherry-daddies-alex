@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T22:09:40",
+  "generated": "2026-11-15T22:28:45",
   "counts": {
     "total": 88,
     "data": 88,
@@ -14340,10 +14340,9 @@
             "kind": "none"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "Arr. Electric Guitar",
-              "Synthesizer"
+              "pb-rhythm-guitar"
             ]
           },
           "practice": [
@@ -14390,7 +14389,7 @@
           },
           "versions": {
             "all": "4519ea79fe",
-            "pb-other": "de05ccb970"
+            "pb-other": "26addcd7f3"
           },
           "pb_other": {
             "available": true,

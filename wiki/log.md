@@ -1523,3 +1523,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - JamZone `cat_20791` → `music/songs/Kings of Leon - Sex on Fire/` (9 стемов HQ). Клик JZ плавает (146–158 bpm, до ±340 мс от константы) → `click: follow`. `04_Percussion` выкидывается автоматически.
 - Cue: «Sex on Fire guitar in ready go» на **2.4** (рифф правой гитары входит затактом в последнюю долю прекаунта), «all in ready go» на 7.1 (бас, левая гитара, барабаны; затакт барабанов 6.4&). Слова сверены по cues.wav.
 - pb-other (черновик) = Arr. Electric Guitar + Synthesizer; pb-bass нет; players: steve, roma, alex (ритм L+R), tanya. Добавлена в веб, секция «12.12 new songs». Клик против барабанов в пределах ±7 мс. Локально; прод и риг не трогал.
+
+## [2026-11-15] pb | Sex on Fire: pb-rhythm-guitar (L везде, R в припевах и бридже)
+
+- `tools/jamzone/prep_sex_on_fire.py rhythm` → `parts/pb-rhythm-guitar.wav`: JZ Rhythm Guitar left везде, right в тактах 35–42, 59–74, 91–конец (Chorus 1–4 + Bridge). Equal-power кроссфейд 20 мс до тактовой линии, щелчков нет.
+- mix.json: layer stem-frame, `derived: true`, source = обе ритм-гитары, `gain_db +5.0` → −16.6 LUFS в pb-other (как «Ту-лу-ла» / «Мало тебя» / «Владивосток 2000»). Arr. guitar + синт в pb-other оставлены (Alex). pb-other.wav проверен посекционно (остаток −68…−77 дБ). Локально.
