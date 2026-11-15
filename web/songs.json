@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-15T22:33:12",
+  "generated": "2026-11-15T23:19:03",
   "counts": {
     "total": 88,
     "data": 88,
@@ -14320,7 +14320,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 2,
+            "count": 10,
             "list": [
               {
                 "t": 2.8,
@@ -14333,6 +14333,54 @@
                 "text": "all in",
                 "bar": 7,
                 "snap": 6.395
+              },
+              {
+                "t": 27.62,
+                "text": "verse in",
+                "bar": 18,
+                "snap": 24.485
+              },
+              {
+                "t": 65.0,
+                "text": "verse in",
+                "bar": 42,
+                "snap": 61.87
+              },
+              {
+                "t": 102.64,
+                "text": "keep going",
+                "bar": 66,
+                "snap": 100.295
+              },
+              {
+                "t": 115.1,
+                "text": "verse in",
+                "bar": 74,
+                "snap": 111.975
+              },
+              {
+                "t": 152.9,
+                "text": "bridge in",
+                "bar": 98,
+                "snap": 149.745
+              },
+              {
+                "t": 178.32,
+                "text": "chorus in",
+                "bar": 114,
+                "snap": 175.225
+              },
+              {
+                "t": 190.61,
+                "text": "keep going",
+                "bar": 122,
+                "snap": 188.245
+              },
+              {
+                "t": 204.02,
+                "text": "end in",
+                "bar": 131,
+                "snap": 200.495
               }
             ]
           },
@@ -14379,17 +14427,17 @@
             }
           ],
           "stem_versions": {
-            "vocal": "49006920fb",
-            "drums": "aeac7e4cfd",
-            "keys": "0f52285056",
-            "bass": "4a35e883fd",
-            "guitars": "8c6a28281d",
-            "click": "4b74a3a3ce",
-            "cues": "b0781b6c1f"
+            "vocal": "b5c7d96823",
+            "drums": "52b9e08e74",
+            "keys": "104033df86",
+            "bass": "1305fe28af",
+            "guitars": "0f0c0c45dd",
+            "click": "d3cb779bcc",
+            "cues": "ce540e3a05"
           },
           "versions": {
-            "all": "4519ea79fe",
-            "pb-other": "9e2a42844f"
+            "all": "e34928bc5f",
+            "pb-other": "8ee3b39704"
           },
           "pb_other": {
             "available": true,

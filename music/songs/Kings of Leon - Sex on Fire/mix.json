@@ -15,6 +15,14 @@
   "players": {"steve": ["02_Drum_Kit"], "roma": ["03_Bass"], "alex": ["05_Rhythm_Electric_Guitar_(left)", "06_Rhythm_Electric_Guitar_(right)"], "tanya": ["09_Lead_Vocal"]},
   "cues": [
     {"bar": 2, "beat": 4, "text": "Sex on Fire guitar in", "abs_sec": 2.8, "snap_sec": 0.0},
-    {"bar": 7, "text": "all in", "abs_sec": 9.55, "snap_sec": 6.395}
+    {"bar": 7, "text": "all in", "abs_sec": 9.55, "snap_sec": 6.395},
+    {"bar": 18, "beat": 3, "text": "verse in", "abs_sec": 27.62, "snap_sec": 24.485},
+    {"bar": 42, "beat": "2&", "text": "verse in", "abs_sec": 65.0, "snap_sec": 61.87},
+    {"bar": 66, "beat": 3, "text": "keep going", "abs_sec": 102.64, "snap_sec": 100.295},
+    {"bar": 74, "beat": 3, "text": "verse in", "abs_sec": 115.1, "snap_sec": 111.975},
+    {"bar": 98, "beat": 4, "text": "bridge in", "abs_sec": 152.9, "snap_sec": 149.745},
+    {"bar": 114, "beat": 4, "text": "chorus in", "abs_sec": 178.32, "snap_sec": 175.225},
+    {"bar": 122, "beat": 3, "text": "keep going", "abs_sec": 190.61, "snap_sec": 188.245},
+    {"bar": 131, "text": "end in", "count": true, "abs_sec": 204.02, "snap_sec": 200.495}
   ]
 }
