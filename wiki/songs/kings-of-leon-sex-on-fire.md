@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Sex on Fire
 artist: Kings of Leon
 set: 12.12 new songs
-status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; локально)
+status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на проде)
 ---
 
 # Sex on Fire (Kings of Leon)
@@ -79,4 +79,4 @@ status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; локал�
 ## Открытые вопросы
 
 - Ревью cue по `cue_preview.mp3` / сайту.
-- Прод, риг, текст на сцене — не делались.
+- Риг, текст на сцене — не делались. Прод: опубликовано 2026-11-15.

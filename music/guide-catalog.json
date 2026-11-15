@@ -913,6 +913,33 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/4d3a45e5fcd3/guides/b21baecf70332c04adc9f6861f03b2a4856ef3f242fffd7fe99d7f00940c6d90/all.wav"
     },
+    "music/songs/Kings of Leon - Sex on Fire": {
+      "bytes": 36728202,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 208.209093,
+      "key": "cherry-dash/bbcf1941bb32/guides/2db06816431afa6d924879815222379094b4691457c09253024fbd80053bd316/all.wav",
+      "mix_sha256": "63df8710c8139e7491a27726f49ad3318f2bdc45a3f5c96b27f4d35705208130",
+      "render_audio": {
+        "click.wav": "a9d15e4d9636c1f7f7d92b86fa934d1fc578be44b89670ea01f03bad4013c338",
+        "cues.wav": "3a3f312cf5107431af077328edd26200f579cca4e61b0eaad364d68085a4de27",
+        "pb-other.wav": "309ebaac05c85ea6c69ca5ca965b2ac82f22979a210fdfdf5db8693b4dc49129"
+      },
+      "render_pcm": {
+        "click.wav": "6018de6cf36cd92724b46dfc94fb9a557aaa67d51d43aad2aa01c7e1c66cffe3",
+        "pb-other.wav": "a1f05154df541a2eb487446830ce501fe165a8bc99e2d82bf701d71d177edc0f"
+      },
+      "sample_rate": 44100,
+      "sha256": "2db06816431afa6d924879815222379094b4691457c09253024fbd80053bd316",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.565482,
+        "bpm": 153.3074,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": -0.300794
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/bbcf1941bb32/guides/2db06816431afa6d924879815222379094b4691457c09253024fbd80053bd316/all.wav"
+    },
     "music/songs/Laurent Wolf & Eric Carter - No Stress": {
       "bytes": 36148546,
       "channels": 2,
