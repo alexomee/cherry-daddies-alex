@@ -215,6 +215,11 @@ PATCH_TO_SONG = {
     "пропоганда.patch": "Мелом",
     "тулула.patch": "Чичерина - Ту-лу-ла",
     "я буду.patch": "5sta Family & 23:45 - Я буду",
+    # 12.12 new songs: patch names requested from the keyboardist (2026-11-16 instructions)
+    "Ты меня не ищи.patch": "Вирус - Ты меня не ищи",
+    "Попрошу тебя.patch": "Вирус - Попрошу тебя",
+    "Владивосток 2000.patch": "Мумий Тролль - Владивосток 2000",
+    "Sex on Fire.patch": "Kings of Leon - Sex on Fire",
 }
 
 pb_copied = pb_skipped = 0

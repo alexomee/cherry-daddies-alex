@@ -1558,3 +1558,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Поправка Alex: синт-заезд до основной темы должен остаться в плейбеке. `prep_poproshu_tebya.py fx` → `parts/pb-fx.wav` = keys + other с начала до 3.1 (затухание 20 мс до тактовой линии), дальше тишина. pb-other = derived-слой `pb-fx` (source keys, other; role musical). `pb-keys.wav` и шаг `keys` удалены.
 - Проверка: pb-other звучит 4.26–6.855 с рендера (1.3 → 3.1), против keys+other −77 дБ; click/cues/pb-bass побайтно прежние. Стартовый cue «playback in» снова верен.
 - Прод: 1 изменённый микс, R2 pb-other сверен md5 (ориджин и edge). Риг: + `pb-other.wav` в «Попрошу тебя», запушено (209836fb).
+
+## [2026-11-16] rig | Инструкция клавишнику по 4 новым песням 12.12
+
+- Страница-инструкция (artifact, приватная, шарит Alex): https://claude.ai/artifact/DyzZTaqiFHcJRkDbd3sPQs — Pull → патч дублированием донора («тулула» для 3 дорожек, «Quest pistols» для 4 с pb-bass) → имя патча = имя песни → заменить wav в каждом Playback → удалить канал Lyrics из копии → проверить с E1 → сохранить, commit, push. Плюс по песням: что в плейбеке, что живьём, плавающий темп Sex on Fire (без tempo-synced арпов).
+- Устройство патчей в риге (по `data.plist` + `.cst`): каждая дорожка = отдельный канал с Playback (click/cues/pb-other/pb-bass, mono-выходы), wav копируются MainStage в `<concert>/Playback/*_N.wav`.
+- `sync_to_mainstage.sh` PATCH_TO_SONG: заранее добавлены `Ты меня не ищи.patch`, `Попрошу тебя.patch`, `Владивосток 2000.patch`, `Sex on Fire.patch` — после того как клавишник заведёт патчи с этими именами, перерендеры будут обновлять и копии в концерте.
