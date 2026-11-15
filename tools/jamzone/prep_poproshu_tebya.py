@@ -7,7 +7,9 @@ then: python3 tools/jamzone/jamzone_render.py "Вирус - Попрошу те�
 
 Measured on the raw Moises stems (wiki/songs/virus-poproshu-tebya.md):
   * tempo dead-constant 140.09 bpm (metronome lstsq 140.089, kick lstsq 140.093; ±2 ms bins) -> no warp.
-  * Moises metronome is ON the drums (kick 50%-attack -1.2 ms, programmed kit) — no lag.
+  * Moises metronome LAGS the drum transients by ~34 ms (like «Ты меня не ищи»). The kick-sub 50%-attack
+    sits on the metronome too, so it is NOT a phase reference: the grid phase P0 comes from the transient
+    bands (knock/snare/hats spectral-flux onsets), verified 0 ms after the 2026-11-15 fix.
   * The record opens with a keys/other "заезд" (run-in) from raw 0.415 s = 6 beats before the real
     downbeat (raw 2.985 s, drums+bass+vocals in, chord changes on that phase, snare on 2/4).
     Moises' first click (0.803 s) is NOT a downbeat.
@@ -24,10 +26,13 @@ SONG = os.path.expanduser("~/projects/cherry-daddies/music/songs/Вирус - П
 SRC = os.path.join(SONG, "moises-orig")
 BPM = 140.09
 B = 60.0 / BPM
-P0 = 0.84306                      # raw time of k=0 on the kick grid (50%-attack, fitted at 140.09)
+# raw time of k=0 = the drum TRANSIENTS. 2026-11-15 fix: the original 0.84306 was the kick-sub 50%-attack
+# (slow sub swell) = exactly where the lagging Moises metronome sits, ~34 ms AFTER the real hits
+# (spectral-flux onsets knock 150-1k / snare 1-5k / hats 6-16k all -33..-35 ms) -> click flammed late.
+P0 = 0.84306 - 0.0345
 K_BAR1 = -3                       # raw beat index of bar 1.1
 PRE = 0.05                        # bar 1.1 lands here in the processed stems
-PAD = PRE - (P0 + K_BAR1 * B)     # front silence added to every stem (0.4918 s)
+PAD = PRE - (P0 + K_BAR1 * B)     # front silence added to every stem (0.5263 s)
 
 STEMS = ["backing_vocals", "bass", "drums", "guitars", "keys", "other", "piano", "strings", "vocals"]
 

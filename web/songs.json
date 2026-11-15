@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-14T23:21:35",
+  "generated": "2026-11-15T18:27:46",
   "counts": {
     "total": 86,
     "data": 86,
@@ -14164,20 +14164,20 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e75bf91073",
-            "back_vox": "322741f17b",
-            "drums": "f23f0e8926",
-            "keys": "cce4515a6c",
-            "bass": "fc7995557f",
-            "guitars": "09e27aae89",
-            "other": "ca1bbed09b",
+            "vocal": "fc25bbc9a2",
+            "back_vox": "aff4cbf4d6",
+            "drums": "10fbf936f8",
+            "keys": "8ecf24083e",
+            "bass": "11c065eaab",
+            "guitars": "234181a163",
+            "other": "d4a871a243",
             "click": "2ab2a7652d",
             "cues": "a522773794"
           },
           "versions": {
-            "all": "90d9b2757e",
-            "pb-other": "51fae67b96",
-            "pb-bass": "385f0d8bb8"
+            "all": "627c819615",
+            "pb-other": "a27e1eee3b",
+            "pb-bass": "b0a2322545"
           },
           "pb_other": {
             "available": true,
