@@ -8,7 +8,8 @@
       {"file": "pb-rhythm-guitar", "frame": "stem", "derived": true,
        "source": ["05_Rhythm_Electric_Guitar_(left)", "06_Rhythm_Electric_Guitar_(right)"], "gain_db": 5.0}
     ],
-    "roles": {"pb-rhythm-guitar": "musical"}
+    "roles": {"pb-rhythm-guitar": "musical"},
+    "gain_db": {"07_Arr._Electric_Guitar": 5.0, "08_Synthesizer": 5.0}
   },
   "pb-bass": null,
   "players": {"steve": ["02_Drum_Kit"], "roma": ["03_Bass"], "alex": ["05_Rhythm_Electric_Guitar_(left)", "06_Rhythm_Electric_Guitar_(right)"], "tanya": ["09_Lead_Vocal"]},

@@ -1528,3 +1528,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - `tools/jamzone/prep_sex_on_fire.py rhythm` → `parts/pb-rhythm-guitar.wav`: JZ Rhythm Guitar left везде, right в тактах 35–42, 59–74, 91–конец (Chorus 1–4 + Bridge). Equal-power кроссфейд 20 мс до тактовой линии, щелчков нет.
 - mix.json: layer stem-frame, `derived: true`, source = обе ритм-гитары, `gain_db +5.0` → −16.6 LUFS в pb-other (как «Ту-лу-ла» / «Мало тебя» / «Владивосток 2000»). Arr. guitar + синт в pb-other оставлены (Alex). pb-other.wav проверен посекционно (остаток −68…−77 дБ). Локально.
+
+## [2026-11-15] pb | Sex on Fire: Arr. guitar и синт в pb-other +5 дБ
+
+- `"gain_db": {"07_Arr._Electric_Guitar": 5, "08_Synthesizer": 5}` в pb-other (Alex): баланс оригинала с ритм-гитарой (+5) сохранён. Arr −21.2, синт −22.2, весь pb-other −16.1 LUFS, пик 0.79. `all` без изменений. Локально.
