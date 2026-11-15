@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-15T19:21:03",
+  "generated": "2026-11-15T20:13:12",
   "counts": {
     "total": 87,
     "data": 87,
     "cues": 87,
     "playback": 38,
-    "other": 73,
+    "other": 74,
     "practice": 82
   },
   "sets": [
@@ -14200,13 +14200,49 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 1,
+            "count": 7,
             "list": [
               {
                 "t": 3.694,
                 "text": "Владивосток 2000 all in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 55.406,
+                "text": "pre-verse break ready go",
+                "bar": 29,
+                "snap": 51.712
+              },
+              {
+                "t": 100.654,
+                "text": "keep going",
+                "bar": 53,
+                "snap": 97.884
+              },
+              {
+                "t": 116.352,
+                "text": "solo in",
+                "bar": 62,
+                "snap": 112.659
+              },
+              {
+                "t": 130.896,
+                "text": "chorus in",
+                "bar": 69,
+                "snap": 127.203
+              },
+              {
+                "t": 145.902,
+                "text": "outro in",
+                "bar": 78,
+                "snap": 142.209
+              },
+              {
+                "t": 160.215,
+                "text": "double hit ending in",
+                "bar": 85,
+                "snap": 156.06
               }
             ]
           },
@@ -14214,7 +14250,10 @@
             "kind": "none"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "guitars-pb"
+            ]
           },
           "practice": [
             "all"
@@ -14250,20 +14289,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "07d5888ac9",
-            "back_vox": "0575a07017",
-            "drums": "9a23d8d4a4",
-            "bass": "e6a2bbf9bc",
-            "guitars": "f3b763f0c9",
-            "click": "245fda271a",
-            "cues": "ed97d87bc5"
+            "vocal": "cc574cbe82",
+            "back_vox": "9512a88550",
+            "drums": "f626a5bd28",
+            "bass": "87c831ba48",
+            "guitars": "3329a55fce",
+            "click": "dc19e576ec",
+            "cues": "6691784d94"
           },
           "versions": {
-            "all": "05413f2dff"
+            "all": "becaf08303",
+            "pb-other": "6525082c28"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "guitars"
+            ]
           },
           "pb_bass": {
             "available": false,

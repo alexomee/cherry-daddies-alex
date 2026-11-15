@@ -1,7 +1,19 @@
 {
   "bpm": 129.95,
   "pitch_semitones": 0,
+  "pb-other": {
+    "layers": [
+      {"file": "guitars-pb", "frame": "render", "gain_db": -4.5}
+    ],
+    "roles": {"guitars-pb": "musical"}
+  },
   "cues": [
-    {"bar": 1, "text": "Владивосток 2000 all in", "abs_sec": 3.694, "snap_sec": 0.0}
+    {"bar": 1, "text": "Владивосток 2000 all in", "abs_sec": 3.694, "snap_sec": 0.0},
+    {"bar": 29, "text": "pre-verse break ready go", "abs_sec": 55.406, "snap_sec": 51.712},
+    {"bar": 53, "beat": 3, "text": "keep going", "abs_sec": 100.654, "snap_sec": 97.884},
+    {"bar": 62, "text": "solo in", "abs_sec": 116.352, "snap_sec": 112.659},
+    {"bar": 69, "beat": "4&", "text": "chorus in", "abs_sec": 130.896, "snap_sec": 127.203},
+    {"bar": 78, "text": "outro in", "abs_sec": 145.902, "snap_sec": 142.209},
+    {"bar": 85, "beat": 4, "text": "double hit ending in", "count": true, "abs_sec": 160.215, "snap_sec": 156.06}
   ]
 }
