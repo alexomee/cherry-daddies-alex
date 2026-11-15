@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-15T20:22:18",
+  "generated": "2026-11-15T22:09:40",
   "counts": {
-    "total": 87,
-    "data": 87,
-    "cues": 87,
+    "total": 88,
+    "data": 88,
+    "cues": 88,
     "playback": 38,
-    "other": 74,
+    "other": 75,
     "practice": 82
   },
   "sets": [
@@ -14304,6 +14304,98 @@
           "pb_other": {
             "available": true,
             "mutes": [
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          }
+        },
+        {
+          "sid": "Kings of Leon - Sex on Fire",
+          "slug": "bbcf1941bb32",
+          "title": "Sex on Fire",
+          "artist": "Kings of Leon",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 2,
+            "list": [
+              {
+                "t": 2.8,
+                "text": "Sex on Fire guitar in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 9.55,
+                "text": "all in",
+                "bar": 7,
+                "snap": 6.395
+              }
+            ]
+          },
+          "bass": {
+            "kind": "none"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Arr. Electric Guitar",
+              "Synthesizer"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "49006920fb",
+            "drums": "aeac7e4cfd",
+            "keys": "0f52285056",
+            "bass": "4a35e883fd",
+            "guitars": "8c6a28281d",
+            "click": "4b74a3a3ce",
+            "cues": "b0781b6c1f"
+          },
+          "versions": {
+            "all": "4519ea79fe",
+            "pb-other": "de05ccb970"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
               "guitars"
             ]
           },

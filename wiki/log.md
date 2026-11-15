@@ -1517,3 +1517,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - Moises `rhythm_guitars.mp3` → `moises-orig/` (Alex): его заменяет записанная `guitars-pb`. Нет в `all`, превью и категориях сайта; «Гитары» на сайте = lead + guitars-pb. Перерендерено, cue и сетка те же.
 - «keep going» остаётся на 53.3 (Alex). Опубликовано на прод (R2: стемы, pb-other, all.mp3 сверены побайтно; guide all.wav в каталоге).
+
+## [2026-11-15] import | Sex on Fire (Kings of Leon): стемы JamZone, клик, cue интро
+
+- JamZone `cat_20791` → `music/songs/Kings of Leon - Sex on Fire/` (9 стемов HQ). Клик JZ плавает (146–158 bpm, до ±340 мс от константы) → `click: follow`. `04_Percussion` выкидывается автоматически.
+- Cue: «Sex on Fire guitar in ready go» на **2.4** (рифф правой гитары входит затактом в последнюю долю прекаунта), «all in ready go» на 7.1 (бас, левая гитара, барабаны; затакт барабанов 6.4&). Слова сверены по cues.wav.
+- pb-other (черновик) = Arr. Electric Guitar + Synthesizer; pb-bass нет; players: steve, roma, alex (ритм L+R), tanya. Добавлена в веб, секция «12.12 new songs». Клик против барабанов в пределах ±7 мс. Локально; прод и риг не трогал.

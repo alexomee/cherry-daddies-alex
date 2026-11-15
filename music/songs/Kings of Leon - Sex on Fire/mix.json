@@ -1,0 +1,12 @@
+{
+  "cat": "cat_20791",
+  "click": "follow",
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["07_Arr._Electric_Guitar", "08_Synthesizer"]},
+  "pb-bass": null,
+  "players": {"steve": ["02_Drum_Kit"], "roma": ["03_Bass"], "alex": ["05_Rhythm_Electric_Guitar_(left)", "06_Rhythm_Electric_Guitar_(right)"], "tanya": ["09_Lead_Vocal"]},
+  "cues": [
+    {"bar": 2, "beat": 4, "text": "Sex on Fire guitar in", "abs_sec": 2.8, "snap_sec": 0.0},
+    {"bar": 7, "text": "all in", "abs_sec": 9.55, "snap_sec": 6.395}
+  ]
+}
