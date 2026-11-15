@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Владивосток 2000
 artist: Мумий Тролль
 set: 12.12 new songs
-status: draft (7 cue + pb-other guitars-pb на ревью)
+status: draft (7 cue + pb-other guitars-pb, на проде)
 ---
 
 # Владивосток 2000 (Мумий Тролль)
@@ -16,8 +16,8 @@ status: draft (7 cue + pb-other guitars-pb на ревью)
 - **bpm:** 129.95 (константный, без варпа) · **pitch_semitones:** 0 (A minor)
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Мумий Тролль - Владивосток 2000/mix.json`
 - Клик: `tools/jamzone/prep_vladivostok_2000.py click` (синтетический `metronome.wav`; оригинал Moises → `moises-orig/metronome.mp3`), воспроизводимо.
-- Стемы — оригинальные Moises mp3 в корне песни: `backing_vocals`, `bass`, `drums`, `lead_guitars`, `rhythm_guitars`, `vocals`. На сайте обе гитары идут в категорию «Гитары». Count-in Moises не импортирован.
-- **pb-other:** layer `guitars-pb` (записанная гитара Alex, render-frame, `gain_db −4.5`, role musical, без `replaces`), исходник и замеры: `parts/README.md`.
+- Стемы — оригинальные Moises mp3 в корне песни: `backing_vocals`, `bass`, `drums`, `lead_guitars`, `vocals`. **Moises `rhythm_guitars` убран** (2026-11-15, Alex: его заменяет записанная `guitars-pb`) → `moises-orig/rhythm_guitars.mp3`: нет в `all`, превью и категориях сайта. Категория сайта «Гитары» = lead guitars + слой guitars-pb. Count-in Moises не импортирован.
+- **pb-other:** layer `guitars-pb` (записанная гитара Alex, render-frame, `gain_db −4.5`, role musical; Moises rhythm guitars убран из песни), исходник и замеры: `parts/README.md`.
 - **pb-bass / players:** нет.
 
 ## Стемы (2026-11-15)
@@ -41,7 +41,7 @@ status: draft (7 cue + pb-other guitars-pb на ревью)
 |---|---|---|---|---|
 | 1.1 | Владивосток 2000 · all in ready go | 0:03.694 | — | вся банда с 1.1 |
 | 29.1 | pre-verse break ready go | 0:55.406 | 55.385 | брейк: бас и ритм-гитара бьют 29.1 и молчат, соло-гитара рифф с затакта 28.4&, барабаны дальше; вокал снова с затакта 29.4 |
-| 53.3 | keep going | 1:40.654 | 100.615 | ⚠️ в стемах на 53.3 ничего не меняется (всё играет, вокал непрерывно); поставлено строго по отметке, «keep» 53.1, «going» 53.2. Ближайшая граница 8-тактовой фразы 54.1 |
+| 53.3 | keep going | 1:40.654 | 100.615 | в стемах на 53.3 ничего не меняется (всё играет, вокал непрерывно); «keep» 53.1, «going» 53.2. 53.3 подтверждено Alex (не граница фразы 54.1) |
 | 62.1 | solo in ready go | 1:56.352 | 116.308 | соло-гитара: подъезд с 61.4, полная с 62.1; вокал уходит на 61.4 |
 | 69.4& | chorus in ready go | 2:10.896 | 131.077 (≈70.1) | **правило затакта:** вокал входит на 69.4& (onset 69.4.44), поэтому cue на затакт, а не на 70.1; «go» на 69.3&, конец 69.4.05 |
 | 78.1 | outro in ready go | 2:25.902 | 145.846 | в записи стемы без явной смены (вокал до 79.1), cue по отметке |
@@ -67,6 +67,5 @@ status: draft (7 cue + pb-other guitars-pb на ревью)
 
 ## Открытые вопросы
 
-- «keep going» 53.3 против границы фразы 54.1 — подтвердить.
 - Ревью cue и уровня guitars-pb по `cue_preview.mp3` / сайту.
 - pb-bass, `players`, синк в риг (pb-other в MainStage заводится руками), прод — не делались.

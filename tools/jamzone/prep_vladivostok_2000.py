@@ -5,7 +5,8 @@
 then: python3 tools/jamzone/jamzone_render.py "Мумий Тролль - Владивосток 2000"
 
 Measured on the raw Moises stems (wiki/songs/mumiy-troll-vladivostok-2000.md):
-  * Moises export has 7 real stems (no empty ones); Lead/Rhythm Guitars kept separate, count-in not imported.
+  * Moises export has 7 real stems (no empty ones); count-in not imported. Rhythm Guitars later moved to
+    moises-orig/ (replaced by Alex's recorded parts/guitars-pb, 2026-11-15); Lead Guitars stays.
   * tempo ~constant: Moises metronome lstsq 129.947 bpm (filename "130"), residual ±8 ms in 10-s bins,
     drum transients vs the constant grid ±7 ms -> no warp, constant 129.95.
   * first Moises click (0.252 s) IS the downbeat: kick on beats 1/3, snare on 2/4, chord changes on 1;
