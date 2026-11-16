@@ -1589,3 +1589,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Alex: «клавишника больше нет, его рига тоже нет, делаем всё для локального Stage Traxx». MainStage, `basbit/cherry-daddies-2000`, `sync_to_mainstage.sh`, `wire_concert.py`, инструкция клавишнику (artifact DyzZTaqiFHcJRkDbd3sPQs) — история. Риг для «Попрошу тебя» не обновлялся (там остался pb-fx).
 - «Синк в риг» теперь = `tools/stagetraxx_sync.py --apply "<song>"` (железное правило переписано в `CLAUDE.md`). Пометки «история» — `wiki/pipelines/mainstage-rig.md`, `lyric-launcher.md`, `index.md`, `AGENTS.md`, `docs/vocalist-workflow.md`, скилл `tanya-texts` (там «отправь клавишнику» больше не выполнять; путь клипов на сцену решает Alex).
 - Попрошу тебя: прод опубликован (pb-other = весь Keys; R2 md5 pb-other/all сверены, Vercel READY); в Stage Traxx обновлён (`stagetraxx_sync.py --apply`, бэкап `music_library-20261116-230028.sqlite`), PB Other = моно полного Keys (остаток −72 дБ).
+
+## [2026-11-16] people | Рома ушёл из группы
+
+- Alex: клавишник, ушедший вместе с MainStage-ригом, — это Рома, он же основной басист. Ушёл целиком.
+- Сводка по `players.roma` + `bass.who` (снимок `web/songs.json`): из 62 песен в сетах затронуто 55. Бас вживую без pb-bass — 34, синты/клавиши/сакс вне pb-other — 25 (4 песни в обоих списках). Таблицы — `wiki/people/roma.md`, раздел «После ухода». Плейбек ещё не менялся: кто закрывает партии, Alex решает по песне.
+- Обновлены `wiki/people/roma.md`, `index.md`, `pipelines/stagetraxx-rig.md`, память.
