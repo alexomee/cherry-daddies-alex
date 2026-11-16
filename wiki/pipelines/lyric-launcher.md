@@ -6,6 +6,8 @@ status: production
 
 # lyric-launcher — тексты на сценический монитор
 
+> **2026-11-16:** клавишника и его MainStage-рига больше нет. Launcher триггерит Stage Traxx MIDI-тегами (PC/START/STOP в поле lyrics, см. [stagetraxx-rig](stagetraxx-rig.md); вживую не проверено). MainStage-проводка, `wire_concert.py` и доставка клипов в `basbit/cherry-daddies-2000` ниже — история; новый путь доставки клипов на сценический Mac не определён.
+
 ## Полные guide по запросу (2026-10-03)
 
 [Общая библиотека guide](lyric-guide-library.md): 37 чистых `all.wav` опубликованы

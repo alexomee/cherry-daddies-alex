@@ -69,3 +69,4 @@ status: draft (7 cue + pb-other guitars-pb, на проде и в риге)
 
 - Ревью cue и уровня guitars-pb по `cue_preview.mp3` / сайту.
 - pb-bass, `players` — не делались. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Владивосток 2000/` (click, cues, pb-other), запушено (c6af41a7). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
+- **Stage Traxx** (основной плейбек с 2026-11-16): песня в плейлисте `CD · 12.12 new songs` локальной библиотеки. MainStage-риг (`cherry-daddies-2000`) больше не используется — строки про риг выше история.

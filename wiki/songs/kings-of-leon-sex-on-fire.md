@@ -81,3 +81,4 @@ status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на про
 - Ревью cue по `cue_preview.mp3` / сайту.
 - Прод: опубликовано 2026-11-15. **Риг:** 2026-11-15 `click.wav`, `cues.wav`, `pb-other.wav` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Sex on Fire/` (MAP в `tools/sync_to_mainstage.sh`), запушено (14f64951). Сет в MainStage (Playback-дорожки на эти wav) клавишник заводит руками.
 - Текст на сцене (lyric-launcher, клип из JamZone `tiles.json`) — не делался.
+- **Stage Traxx** (основной плейбек с 2026-11-16): песня в плейлисте `CD · 12.12 new songs` локальной библиотеки. MainStage-риг (`cherry-daddies-2000`) больше не используется — строки про риг выше история.

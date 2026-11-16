@@ -1707,17 +1707,17 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 162.752494,
       "key": "cherry-dash/4bfe90ef136b/guides/3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766/all.wav",
-      "mix_sha256": "04e873d1a4fd97640776e03dc42cf12aa9282b455261de723c01e580efdb2e90",
+      "mix_sha256": "98c9971619f10045f8fe1a0bf38c812e672df15a62664cd0b58e619db35068a4",
       "render_audio": {
         "click.wav": "0f0e12af5d0e56c089bc954714368ba54f0f79c4ff19ac430c676d54d00fabe7",
         "cues.wav": "324dfc5fb039220dd4bce9308e3f889e6c63ff0b0e5c62867922035a55c2eb56",
         "pb-bass.wav": "f7c8bc20ffb74218e2f58e5d55128c517874211bb06cc787ed8fb3a8c8ae07b8",
-        "pb-other.wav": "5326fc960b55ba8e58402ae31a882f146b4e83c45d3cf2b9409166b6dc3be92c"
+        "pb-other.wav": "07c61215ede305107ba3d6f00ed4913739e06ad688cb100c624a8d403f165623"
       },
       "render_pcm": {
         "click.wav": "82c8819967e16102584433da5aa276b2f003c9baccb4905444483e8224350877",
         "pb-bass.wav": "d72e2ae134a63e720f5db33a5ce2208b61f95fa3a5305b3e34724720c1a4e029",
-        "pb-other.wav": "fb8024ebfd1c1b7aaef79de2f5cc80c0f9da7335f9e001ae20aed44e9693ad74"
+        "pb-other.wav": "8ae6532c83250af976b05c796e470adb0b26fea0e771df13193a29aeadc8bd95"
       },
       "sample_rate": 44100,
       "sha256": "3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766",

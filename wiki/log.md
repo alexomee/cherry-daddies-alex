@@ -1583,3 +1583,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Alex: Moises «Keys-C minor-140bpm» в плейбек целиком. `mix.json` `"pb-other": {"stems": ["keys"]}`, слой pb-fx убран, `parts/pb-fx.wav` удалён (восстанавливается `prep_poproshu_tebya.py fx`).
 - Рендер: pb-other = keys 1:1 (остаток −68 дБ), −25.5 dBFS RMS, пик −1.6. click и pb-bass байт в байт как в риге. В cues.wav перерендер дал другое по сэмплам «no-rhythm» (77.1) при той же разметке — возвращён прежний cues.wav (= риг); stems/cues.mp3 сайта из нового рендера.
 - Локальный сайт обновлён. Прод и риг пока с pb-fx.
+
+## [2026-11-16] rig | Клавишника и MainStage-рига нет → всё для локального Stage Traxx
+
+- Alex: «клавишника больше нет, его рига тоже нет, делаем всё для локального Stage Traxx». MainStage, `basbit/cherry-daddies-2000`, `sync_to_mainstage.sh`, `wire_concert.py`, инструкция клавишнику (artifact DyzZTaqiFHcJRkDbd3sPQs) — история. Риг для «Попрошу тебя» не обновлялся (там остался pb-fx).
+- «Синк в риг» теперь = `tools/stagetraxx_sync.py --apply "<song>"` (железное правило переписано в `CLAUDE.md`). Пометки «история» — `wiki/pipelines/mainstage-rig.md`, `lyric-launcher.md`, `index.md`, `AGENTS.md`, `docs/vocalist-workflow.md`, скилл `tanya-texts` (там «отправь клавишнику» больше не выполнять; путь клипов на сцену решает Alex).
+- Попрошу тебя: прод опубликован (pb-other = весь Keys; R2 md5 pb-other/all сверены, Vercel READY); в Stage Traxx обновлён (`stagetraxx_sync.py --apply`, бэкап `music_library-20261116-230028.sqlite`), PB Other = моно полного Keys (остаток −72 дБ).

@@ -136,7 +136,7 @@ Per-song `mix.json` ключ `players` — кто что играет ЖИВЬЁ
 
 ## Шаринг рендера через R2 (temp)
 
-Отдать клавишнику/группе пакет ссылкой: зипуем `auto-render/` **без json** (timeline/mix — служебные) и льём в бакет `agentiqa-releases`, публичный на `https://releases.agentiqa.com/`.
+Отдать группе пакет ссылкой: зипуем `auto-render/` **без json** (timeline/mix — служебные) и льём в бакет `agentiqa-releases`, публичный на `https://releases.agentiqa.com/`.
 
 1. **Zip** (только медиа, json исключить):
    ```bash
@@ -162,6 +162,8 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 
 ## Тексты на сцене (lyric-launcher)
 
+**С 2026-11-16 клавишника и его MainStage-рига нет** (см. «Плейбек = локальный Stage Traxx»). Launcher теперь триггерит Stage Traxx MIDI-тегами в поле lyrics (`[midi: PC<clip>@1]`, `[midi@play: START]`, `[midi@stop: STOP]`, пишет `stagetraxx_sync.py`; вживую не проверено). Всё ниже про MainStage, `.concert`, `wire_concert.py`, доставку клипов в `basbit/cherry-daddies-2000` и «отправь клавишнику» — история. Новый путь доставки клипов на сценический Mac не определён: спросить Alex, прежде чем что-то доставлять.
+
 **Актуальный самостоятельный флоу вокалистки (2026-10-02):** `AGENTS.md` и
 `docs/vocalist-workflow.md`. Полный этот репо → `alexomee/cherry-daddies-alex`;
 сценический риг → `basbit/cherry-daddies-2000`. «Сохрани» = проверка + commit/push
@@ -182,23 +184,15 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 - **Маппинг сетов — из `web/songs.json`** (позиция в `sets[].songs[]` = номер сета), не из имён папок. `build_manifest.py` → `songs.tsv` (set·clip·pc·source·cat·factory_dir·bed_dir·concert_patch).
 - **Лирика русских/не-JamZone песен:** `transcribe_lyrics.py` получает черновой текст и тайминги из пользовательского аудио через локальный Whisper; `align_lyrics.py`/`auto_align.py` привязывают готовый текст к вокалу. Все повторы сверить по preview; offset в TSV уже учтён. Установка и команды — в `docs/vocalist-workflow.md`.
 
-## Обновление playback/cue в риге (MainStage) после ре-рендера
+## Плейбек = локальный Stage Traxx (с 2026-11-16)
 
-### ЖЕЛЕЗНОЕ ПРАВИЛО: «СИНК ПЕСЕН В РИГ» = РЕНДЕРЫ (ПЛЕЙБЕКИ/СТЕМЫ) ТАМ ЗАГРУЖЕНЫ
+**Клавишника в группе больше нет, его рига тоже (Alex, 2026-11-16).** MainStage, репо рига `basbit/cherry-daddies-2000` (`~/projects/cherry-daddies-2000`), `tools/sync_to_mainstage.sh`, `wire_concert.py`, `.concert` больше НЕ используются: туда ничего не синкать, не коммитить и не пушить. Click, cues и плейбек играет **Stage Traxx 4 на Mac Alex** (4 выхода: click / cues / pb-other / pb-bass). Партии клавиш, которые раньше играл клавишник, теперь идут в `pb-other` (стемы или `layers`). Устройство библиотеки и разводка: `wiki/pipelines/stagetraxx-rig.md`.
 
-**«Синк песен в риг» (`cherry-daddies-2000`) ВСЕГДА И БЕЗ ИСКЛЮЧЕНИЙ означает, что аудио-рендеры (плейбеки/стемы) скопированы, закоммичены и ЗАПУШЕНЫ в origin/main рига.**
-- **НИКОГДА** не заявлять и не рапортовать, что «песни засинканы в риг», если отправлены только lyrics (клипы `.ass`/`.mp4`, манифест `lyrics/songs.tsv`), а стемы (`click.wav`, `cues.wav`, `pb-other.wav`, `pb-drums.wav`/`pb-bass.wav`) не скопированы или не запушены в риг!
-- Полный синк песни = текст (ASS/MP4) + аудио-плейбеки (`click.wav`, `cues.wav`, `pb-*.wav`), всё в git и **запушено в remote `basbit/cherry-daddies-2000`**.
-- Для каждой песни программы папка в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/<Song>/` ОБЯЗАНА содержать все рабочие стемы.
-- Процедура синка:
-  1. Отрендерить стемы в `cherry-daddies` (`jamzone_render.py`).
-  2. Запустить `tools/sync_to_mainstage.sh --apply` (при необходимости `--create-missing`).
-  3. Закоммитить в `cherry-daddies-2000`.
-  4. **ОБЯЗАТЕЛЬНО выполнить `git push origin main`** в репо рига и проверить `git status` (branch is up to date with origin/main).
+### ЖЕЛЕЗНОЕ ПРАВИЛО: «синк в риг» = песня обновлена в локальном Stage Traxx
 
-Перерендерил песню (`jamzone_render.py` → новые `click/cues/pb-other/pb-bass.wav` в `auto-render/`) → стемы в боевом MainStage-проекте (`cherry-daddies-2000`) **НЕ обновятся сами**. Накатывает `tools/sync_to_mainstage.sh`.
+Перерендер (`jamzone_render.py`) Stage Traxx сам не обновляет. «Синк в риг», «в риг», «на сцену» теперь означают:
+1. Отрендерить: `python3 tools/jamzone/jamzone_render.py "<song>"`.
+2. `tools/stagetraxx_sync.py "<song>"` (dry-run) → `tools/stagetraxx_sync.py --apply "<song>"`. Фильтр по подстроке обновляет только песню, плейлисты не трогает; без фильтра — вся программа и плейлисты `CD · <сет>` из `web/songs.json`. Stage Traxx должен быть закрыт (`--quit` закрывает), бэкап базы скрипт делает сам.
+3. Проверить треки песни в базе (Click / Cues / PB Other / PB Bass, длительность = рендер); при сомнении сверить моно-файл `Documents/<папка>/N_*.wav` с `auto-render/*.wav` (сведение в моно = −3 дБ, это норма).
 
-- **Что делает:** для каждой песни сетлиста копирует из `<song>/auto-render/` в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/<NN Song>/` **только те стемы, что УЖЕ лежат в целевой папке** (`click/cues/pb-other/pb-bass.wav`), перезаписывая на месте. `all.wav`/`cue_preview.mp3`/`timeline.json` — пайплайн-внутренние, не копируются. MainStage ссылается на аудио ПО ПУТИ → перезапись 1:1 = плагин видит новый звук без правок.
-- **Дефолт — dry-run** (показывает, что бы изменилось, с размерами). `--apply` пишет. Фильтр по подстроке: `tools/sync_to_mainstage.sh --apply "S&M"`. Коммит в риге (без push): `--apply --commit "S&M: re-render cues"`. Маппинг setlist-папка ↔ song-папка — табличка `MAP` в самом скрипте (не из `web/songs.json`).
-- **`MISSING in render`** = в целевой папке стем есть, а в `auto-render/` нет → песню не дорендерили / стем переименован в `mix.json`. Чинить рендер, не скрипт.
-- **НОВЫЙ или переименованный стем = РУЧНАЯ правка в MainStage, скрипт его НЕ заведёт** (и не удалит). Причина: путь к wav лежит ТОЛЬКО в бинарном `.cst`-блобе Playback-плагина (не в чистом `data.plist`), имя сет-папки переменной длины → бинарная хирургия хрупкая, рискует побить патч. Поэтому добавление стема (напр. впервые подмешать `pb-bass` к песне, где его не было) делается руками: открыть сет в MainStage → Playback-плагин → добавить дорожку на новый wav. В отличие от `wire_concert.py` (тот правит чистый plist-`channels` — там автоматизация безопасна), Playback-стемы авто-добавлять НЕ автоматизируем.
+Не рапортовать «в риге», пока не сделан шаг 2 с `--apply`. Старая MainStage-процедура (sync_to_mainstage, Playback-патчи, Sync Off) — в git-истории этого файла и в `wiki/log.md` до 2026-11-16.

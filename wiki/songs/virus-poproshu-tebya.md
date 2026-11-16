@@ -4,7 +4,7 @@ updated: 2026-11-16
 title: Попрошу тебя
 artist: Вирус
 set: 12.12 new songs
-status: draft (16 cue на ревью; pb-other = весь Keys, pb-bass; прод и риг ещё с pb-fx)
+status: draft (16 cue на ревью; pb-other = весь Keys, pb-bass; на проде и в Stage Traxx)
 ---
 
 # Попрошу тебя (Вирус)
@@ -77,4 +77,5 @@ status: draft (16 cue на ревью; pb-other = весь Keys, pb-bass; про
 
 - Ревью cue по `cue_preview.mp3`.
 - `players` не заданы.
-- Прод: 2026-11-16 (pb-other = pb-fx, R2 сверен md5) — **устарел**, весь Keys пока только локально. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Попрошу тебя/` (click, cues, pb-bass — c6af41a7; + pb-other = pb-fx — 209836fb), запушено — **pb-other устарел** (click/cues/pb-bass совпадают с текущим рендером байт в байт). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
+- Прод: 2026-11-16 вечером pb-other = весь Keys (R2 md5 pb-other/all сверены, Vercel READY). **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Попрошу тебя/` (click, cues, pb-bass — c6af41a7; + pb-other = pb-fx — 209836fb), запушено — **pb-other устарел** (click/cues/pb-bass совпадают с текущим рендером байт в байт). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
+- **Stage Traxx** (основной плейбек с 2026-11-16): песня в плейлисте `CD · 12.12 new songs` локальной библиотеки. Попрошу тебя обновлён 2026-11-16 23:00 (PB Other = весь Keys). MainStage-риг (`cherry-daddies-2000`) больше не используется — строки про риг выше история.
