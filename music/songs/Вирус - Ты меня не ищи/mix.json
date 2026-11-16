@@ -9,7 +9,7 @@
     ],
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"}
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5}},
   "cues": [
     {"bar": 1,   "text": "Ты меня не ищи drums bass ready go", "abs_sec": 3.489, "snap_sec": 0.0},
     {"bar": 8,   "beat": 3, "text": "stop", "abs_sec": 16.571, "snap_sec": 12.646},

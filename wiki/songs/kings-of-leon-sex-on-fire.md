@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Sex on Fire
 artist: Kings of Leon
 set: 12.12 new songs
-status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на проде, стемы в риге)
+status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ, pb-bass; в Stage Traxx, прод без pb-bass)
 ---
 
 # Sex on Fire (Kings of Leon)
@@ -17,8 +17,8 @@ status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ; на про
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Kings of Leon - Sex on Fire/mix.json`
 - **Клик `follow`:** клик JamZone плавает вместе с записью (интервалы 380–411 мс, ≈146–158 bpm; относительно ровной сетки 153.3 до ±340 мс). Поэтому сетка строится по реальным онсетам клика, константа не годится.
 - **Стемы (9):** Click, Drum_Kit, Bass, Percussion, Rhythm Electric Guitar (left), Rhythm Electric Guitar (right), Arr. Electric Guitar, Synthesizer, Lead Vocal. `04_Percussion` рендер выкидывает автоматически (живой барабанщик).
-- **pb-other:** стемы `07_Arr._Electric_Guitar` + `08_Synthesizer` (подтверждено Alex) + derived-слой **`pb-rhythm-guitar`** (ниже). **pb-bass:** нет (бас живой).
-- **players (черновик):** steve — Drum_Kit, roma — Bass, alex — обе ритм-гитары (L+R), tanya — Lead Vocal.
+- **pb-other:** стемы `07_Arr._Electric_Guitar` + `08_Synthesizer` (подтверждено Alex) + derived-слой **`pb-rhythm-guitar`** (ниже). **pb-bass:** стем `03_Bass`, `gain_db −1.5` → −19.2 LUFS, остаток против стема −76 дБ (2026-11-16: Рома ушёл, бас везде в плейбеке — Alex; уровень под медиану остальных pb-bass −19.2 LUFS).
+- **players (черновик):** steve — Drum_Kit, alex — обе ритм-гитары (L+R), tanya — Lead Vocal.
 
 ## Интро — замеры (сетка клика JamZone, такт 1 = первый клик прекаунта)
 

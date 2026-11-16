@@ -1,10 +1,10 @@
 {
-  "generated": "2026-11-16T22:59:39",
+  "generated": "2026-11-16T23:11:36",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
-    "playback": 38,
+    "playback": 41,
     "other": 75,
     "practice": 82
   },
@@ -13925,7 +13925,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -13985,11 +13986,12 @@
             "guitars": "e94c341a09",
             "other": "0bfce8c322",
             "click": "12b4fc7ef3",
-            "cues": "009bb1a857"
+            "cues": "2fc99323ac"
           },
           "versions": {
-            "all": "cf6fb2a5f5",
-            "pb-other": "cec893395d"
+            "all": "33157a8a29",
+            "pb-other": "cec893395d",
+            "pb-bass": "c02ed9a880"
           },
           "pb_other": {
             "available": true,
@@ -14000,8 +14002,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -14247,7 +14251,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -14299,7 +14304,8 @@
           },
           "versions": {
             "all": "bfb712102c",
-            "pb-other": "6525082c28"
+            "pb-other": "6525082c28",
+            "pb-bass": "4c04a66b01"
           },
           "pb_other": {
             "available": true,
@@ -14308,8 +14314,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -14385,7 +14393,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "Bass"
           },
           "other": {
             "kind": "layers",
@@ -14433,11 +14442,12 @@
             "bass": "1305fe28af",
             "guitars": "0f0c0c45dd",
             "click": "d3cb779bcc",
-            "cues": "ce540e3a05"
+            "cues": "1d052c7bda"
           },
           "versions": {
-            "all": "e34928bc5f",
-            "pb-other": "8ee3b39704"
+            "all": "a08434e874",
+            "pb-other": "8ee3b39704",
+            "pb-bass": "2ca9afb555"
           },
           "pb_other": {
             "available": true,
@@ -14447,8 +14457,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         }
       ]

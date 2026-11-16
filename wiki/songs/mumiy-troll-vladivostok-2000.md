@@ -4,7 +4,7 @@ updated: 2026-11-15
 title: Владивосток 2000
 artist: Мумий Тролль
 set: 12.12 new songs
-status: draft (7 cue + pb-other guitars-pb, на проде и в риге)
+status: draft (7 cue + pb-other guitars-pb + pb-bass; в Stage Traxx, прод без pb-bass)
 ---
 
 # Владивосток 2000 (Мумий Тролль)
@@ -18,7 +18,7 @@ status: draft (7 cue + pb-other guitars-pb, на проде и в риге)
 - Клик: `tools/jamzone/prep_vladivostok_2000.py click` (синтетический `metronome.wav`; оригинал Moises → `moises-orig/metronome.mp3`), воспроизводимо.
 - Стемы — оригинальные Moises mp3 в корне песни: `backing_vocals`, `bass`, `drums`, `lead_guitars`, `vocals`. **Moises `rhythm_guitars` убран** (2026-11-15, Alex: его заменяет записанная `guitars-pb`) → `moises-orig/rhythm_guitars.mp3`: нет в `all`, превью и категориях сайта. Категория сайта «Гитары» = lead guitars + слой guitars-pb. Count-in Moises не импортирован.
 - **pb-other:** layer `guitars-pb` (записанная гитара Alex, render-frame, `gain_db −4.5`, role musical; Moises rhythm guitars убран из песни), исходник и замеры: `parts/README.md`.
-- **pb-bass / players:** нет.
+- **pb-bass:** стем `bass`, `gain_db −3.0` → −19.4 LUFS, остаток −78 дБ (сдвиг 1 сэмпл — округление OFF) (2026-11-16: Рома ушёл, бас везде в плейбеке — Alex; уровень под медиану остальных pb-bass −19.2 LUFS). **players:** нет.
 
 ## Стемы (2026-11-15)
 
@@ -68,5 +68,5 @@ status: draft (7 cue + pb-other guitars-pb, на проде и в риге)
 ## Открытые вопросы
 
 - Ревью cue и уровня guitars-pb по `cue_preview.mp3` / сайту.
-- pb-bass, `players` — не делались. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Владивосток 2000/` (click, cues, pb-other), запушено (c6af41a7). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
+- `players` — не делались. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Владивосток 2000/` (click, cues, pb-other), запушено (c6af41a7). Сет в MainStage (Playback-дорожки) клавишник заводит руками.
 - **Stage Traxx** (основной плейбек с 2026-11-16): песня в плейлисте `CD · 12.12 new songs` локальной библиотеки. MainStage-риг (`cherry-daddies-2000`) больше не используется — строки про риг выше история.
