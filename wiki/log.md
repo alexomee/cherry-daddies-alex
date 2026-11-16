@@ -1577,3 +1577,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Клавишник уходит из группы → плейбек с компа через Stage Traxx 4 (Mac, FLOW 8, 4 выхода: click/cues/pb-other/pb-bass). Клавиши пойдут слоем в pb-other, отдельного выхода нет.
 - Новый `tools/stagetraxx_sync.py`: из `web/songs.json` + `auto-render` собирает библиотеку (62 песни, 202 моно-стема, 11 плейлистов `CD · <сет>`), MIDI-теги PC/START/STOP для lyric-launcher в поле lyrics. Применён к живой библиотеке, бэкап в `~/.cache/cherry-daddies/stagetraxx-backups/`.
 - Не проверено вживую: звук по 4 выходам и приём MIDI launcher'ом. Страница: `wiki/pipelines/stagetraxx-rig.md`.
+
+## [2026-11-16] song | Попрошу тебя: pb-other = весь Keys
+
+- Alex: Moises «Keys-C minor-140bpm» в плейбек целиком. `mix.json` `"pb-other": {"stems": ["keys"]}`, слой pb-fx убран, `parts/pb-fx.wav` удалён (восстанавливается `prep_poproshu_tebya.py fx`).
+- Рендер: pb-other = keys 1:1 (остаток −68 дБ), −25.5 dBFS RMS, пик −1.6. click и pb-bass байт в байт как в риге. В cues.wav перерендер дал другое по сэмплам «no-rhythm» (77.1) при той же разметке — возвращён прежний cues.wav (= риг); stems/cues.mp3 сайта из нового рендера.
+- Локальный сайт обновлён. Прод и риг пока с pb-fx.

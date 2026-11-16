@@ -2,7 +2,8 @@
 """One-off stem prep for «Вирус — Попрошу тебя» (12.12 new songs, 2026-11-14). Rebuildable.
 
   python3 tools/jamzone/prep_poproshu_tebya.py stems   # moises-orig/*.mp3 -> root *.wav (padded) + metronome.wav
-  python3 tools/jamzone/prep_poproshu_tebya.py fx      # keys+other run-in 1.3-3.1 -> parts/pb-fx.wav (pb-other)
+  python3 tools/jamzone/prep_poproshu_tebya.py fx      # keys+other run-in 1.3-3.1 -> parts/pb-fx.wav (history only:
+                                                       #   since 2026-11-16 pb-other = the whole keys stem)
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Попрошу тебя"
 
 Measured on the raw Moises stems (wiki/songs/virus-poproshu-tebya.md):

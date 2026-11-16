@@ -4,7 +4,7 @@ updated: 2026-11-16
 title: Попрошу тебя
 artist: Вирус
 set: 12.12 new songs
-status: draft (16 cue на ревью; pb-other = заезд pb-fx, pb-bass; на проде и в риге)
+status: draft (16 cue на ревью; pb-other = весь Keys, pb-bass; прод и риг ещё с pb-fx)
 ---
 
 # Попрошу тебя (Вирус)
@@ -15,8 +15,9 @@ status: draft (16 cue на ревью; pb-other = заезд pb-fx, pb-bass; н�
 
 - **bpm:** 140.09 (константный, без варпа) · **pitch_semitones:** 0 (C minor)
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Вирус - Попрошу тебя/mix.json`
-- Обработка: `tools/jamzone/prep_poproshu_tebya.py` (`stems`, затем `fx`), воспроизводимо.
-- **pb-other = derived-слой `pb-fx`** (2026-11-16, Alex): только синт-заезд до основной темы = keys + other с 1.3 до 3.1 (затухание 20 мс до тактовой линии 3.1), дальше тишина — клавиши с 3.1 играются живьём. `source: ["keys", "other"]`, stem-frame, role musical, родной уровень. В окне заезда keys −19 dBFS, other −28, piano/guitars/strings ≤ −70 (не берутся). Keys и other целиком остаются в `all`, превью и стемах сайта. История: 2026-11-14 `pb-keys` = весь Keys; 2026-11-16 keys целиком убраны, в тот же день поправлено — заезд остаётся, переименован в pb-fx (`pb-keys.wav` удалён).
+- Обработка: `tools/jamzone/prep_poproshu_tebya.py stems`, воспроизводимо (шаг `fx` — только для истории, сейчас не используется).
+- **pb-other = стем `keys` целиком** (2026-11-16, Alex: «Keys-C minor-140bpm» из Moises включить полностью). Единица, без правок громкости: −25.5 dBFS RMS, пик −1.6 dBFS; по 8 тактам −25…−29, в тактах 33–40 тишина (keys молчат по записи). Остаток против `keys.wav` −68 дБ. Синт-заезд 1.3–3.1 входит (keys −19 dBFS в заезде; тихая часть заезда из `other`, −28, теперь не в плейбеке). Сайт в режиме pb-other мьютит категорию «Клавиши».
+  История: 2026-11-14 `pb-keys` = весь Keys; 2026-11-16 keys убраны целиком, в тот же день оставлен только заезд (`pb-fx` = keys+other 1.3–3.1), вечером того же дня снова весь Keys (`pb-fx.wav` удалён, восстанавливается `prep_poproshu_tebya.py fx`).
 - **pb-bass:** стем `bass` целиком (Moises Bass, без правок громкости; 2026-11-14). `players` нет.
 
 ## Сетка — диагностика (2026-11-14)
@@ -76,4 +77,4 @@ status: draft (16 cue на ревью; pb-other = заезд pb-fx, pb-bass; н�
 
 - Ревью cue по `cue_preview.mp3`.
 - `players` не заданы.
-- Прод: 2026-11-16 (pb-other = pb-fx, R2 сверен md5). **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Попрошу тебя/` (click, cues, pb-bass — c6af41a7; + pb-other — 209836fb), запушено. Сет в MainStage (Playback-дорожки) клавишник заводит руками.
+- Прод: 2026-11-16 (pb-other = pb-fx, R2 сверен md5) — **устарел**, весь Keys пока только локально. **Риг:** 2026-11-16 в `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Попрошу тебя/` (click, cues, pb-bass — c6af41a7; + pb-other = pb-fx — 209836fb), запушено — **pb-other устарел** (click/cues/pb-bass совпадают с текущим рендером байт в байт). Сет в MainStage (Playback-дорожки) клавишник заводит руками.

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T00:22:09",
+  "generated": "2026-11-16T22:56:18",
   "counts": {
     "total": 88,
     "data": 88,
@@ -14117,9 +14117,9 @@
             "label": "bass"
           },
           "other": {
-            "kind": "layers",
+            "kind": "stems",
             "items": [
-              "pb-fx"
+              "keys"
             ]
           },
           "practice": [
@@ -14172,18 +14172,17 @@
             "guitars": "234181a163",
             "other": "d4a871a243",
             "click": "2ab2a7652d",
-            "cues": "a522773794"
+            "cues": "614d74ec29"
           },
           "versions": {
-            "all": "627c819615",
-            "pb-other": "dead286d2a",
+            "all": "78e302d8b0",
+            "pb-other": "a27e1eee3b",
             "pb-bass": "b0a2322545"
           },
           "pb_other": {
             "available": true,
             "mutes": [
-              "keys",
-              "other"
+              "keys"
             ]
           },
           "pb_bass": {
