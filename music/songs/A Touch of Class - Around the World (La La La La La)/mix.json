@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "gm800": 2,
   "pb-other": {"stems": ["14_Backing_Vocals", "13_Vibes", "11_Synth_Lead", "06_Digital_Piano", "12_Synth_Keys", "09_Synth_Strings_(pizzicato)"], "gain_db": {"14_Backing_Vocals": -2.5}},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": 3}},

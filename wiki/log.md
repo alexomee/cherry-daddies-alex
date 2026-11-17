@@ -1753,3 +1753,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-11-17] rig | Заметки с дашборда в Stage Traxx
 
 `stagetraxx_sync.py` пишет заметки песен (локальный `web/data/dashboard.db`) под MIDI-тегами в поле lyrics → видны в центральной области. Полный синк: 62 песни, у 55 есть заметки. Тесты `test_stagetraxx_notes.py` (45 passed вместе с gm800/podgo).
+
+## [2026-11-17] rig | Мьют-патчи: POD Go 31D, GM-800 MUTE
+
+1. POD Go mute = 31D (PC123@3) на 7 песнях без живой гитары: Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя.
+2. GM-800 MUTE (`"gm800": 1`): Владивосток 2000, Sex on Fire.
+3. Засинкано в Stage Traxx (9 песен). Спорные 7 песен (только синт на доске) ждут решения Alex.

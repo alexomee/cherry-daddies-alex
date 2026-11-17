@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "pb-other": {"stems": ["08_Arpeggiator", "03_Noise_effects", "07_Synth_Keys", "05_Synthesizer"]},
   "pb-bass": {"stems": ["04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -3}},
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["06_Synth_Pad"]},

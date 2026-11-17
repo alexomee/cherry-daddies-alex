@@ -37,6 +37,11 @@
 3. `n = (банк − 1) × 4 + A..D` (`02A` → 4, `32D` → 127). Канал — `--podgo-channel` (по умолчанию 3).
 4. Код общий с GM-800: таблица `DEVICES` в `stagetraxx_sync.py`, `MIDI_DEVICES` в `jamzone_render.py`. Тесты: `tools/jamzone/tests/test_podgo.py`.
 
-Раскладка пресетов по песням ещё не задана.
+### Разметка (2026-11-17, в Stage Traxx засинкано)
+
+- **31D = MUTE** (патч Alex для песен без живой гитары).
+- `"podgo": "31D"`: Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя.
+- Солнце: куплеты и вступление 32B, припевы 32D (по тактам).
+- Не решено (на доске только синт): Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M.
 
 Тестовый отправщик MIDI: короткий CoreMIDI-скрипт на Swift (`midisend <порт> <hex-байты>`), в репо не положен.

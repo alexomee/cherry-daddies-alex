@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "gm800": 5,
   "pb-other": {"stems": ["04_Sound_Effects", "06_Synth_Brass", "08_Tenor_Saxophone"]},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -3}},

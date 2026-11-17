@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "pb-other": {"stems": ["06_Synth_Ambiant", "04_Piano", "05_Synthesizer"], "gain_db": {"06_Synth_Ambiant": -12}},
   "pb-bass": null,
   "note": "live bass",
