@@ -1747,6 +1747,7 @@ def main():
         if n > 0: lbuf[s0:s0+n] = a[a0:a0+n]
         return lbuf
     placed_layers = []                             # (name, placed band-key buffer) for practice minus
+    derived_layers = []                            # (name, buffer, source stems) for practice minus
     for grp in pb_group_names(mix):                # layers added AFTER pitch (band key -> NEVER pitched),
         m = mix.get(grp)                           # BEFORE headroom (catch peaks); each folded into `all`.
         fo = parse_fade_range((m or {}).get("fade_out"))
@@ -1785,6 +1786,8 @@ def main():
             if not derived:
                 placed_layers.append((nm, lb))
                 out["all"] = out["all"] + lb
+            else:
+                derived_layers.append((nm, lb, set(ent.get("source") or [])))
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             lvl = (f", {role} measured {loud:+.1f}dBFS vs ceiling {ROLE_CEILING[role]:+.0f} gain {ag:+.1f}dB"
                    + (" (unchanged)" if ag == 0 else "")) if loud is not None else ""
@@ -1929,6 +1932,10 @@ def main():
             if semi: minus = pitch_shift(minus, semi)   # member plays in band key -> minus is pitched;
             for nm, lb in placed_layers:                # layers are already band-key (never pitched): add
                 if nm not in owned: minus = minus + lb  # back the ones this member does NOT play live
+            for nm, lb, src in derived_layers:          # member owns ALL source stems of a derived layer
+                if nm not in owned and src and src <= owned:   # (e.g. keys+strings): the stems left
+                    minus = minus + lb                  # the minus whole, so add back what playback still
+                                                        # plays on stage (the layer = source minus live parts)
             pm = minus*MIX_LVL + out["click"]*CLICK_LVL
             if "cues" in out: pm = pm + out["cues"]*CUE_LVL
             pk = float(np.abs(pm).max())
