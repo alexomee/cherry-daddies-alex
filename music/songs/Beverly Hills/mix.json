@@ -1,22 +1,22 @@
 {
   "gm800": 6,
   "bpm": 115,
-  "pb-other": null,
-  "pb-bass": {"layers": [{"file": "zivert-bass", "frame": "render", "replaces": ["bass"], "gain_db": -7.5}]},
+  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 0.8}], "roles": {"roma-keys-2810": "musical"}},
+  "pb-bass": {"layers": [{"file": "zivert-bass", "frame": "render", "replaces": ["bass"], "gain_db": -7.5, "offset_ms": -23.9}]},
   "click": "follow",
-  "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.174, "snap_sec": 0.0},
-    {"bar": 5,   "text": "vocal in", "abs_sec": 12.514, "snap_sec": 8.329},
-    {"bar": 13,  "text": "ghost beat ready skip", "abs_sec": 29.213, "snap_sec": 25.029},
-    {"bar": 37,  "text": "stop", "abs_sec": 79.294, "snap_sec": 74.607},
-    {"bar": 38,  "text": "all in", "abs_sec": 81.372, "snap_sec": 77.207},
-    {"bar": 46,  "text": "ghost beat ready skip", "abs_sec": 98.074, "snap_sec": 93.906},
-    {"bar": 54,  "text": "stop", "abs_sec": 114.774, "snap_sec": 110.087},
-    {"bar": 55,  "text": "all in", "abs_sec": 116.854, "snap_sec": 112.687},
-    {"bar": 79,  "text": "all stop", "abs_sec": 166.935, "snap_sec": 162.245},
-    {"bar": 88,  "text": "all in", "abs_sec": 185.734, "snap_sec": 181.549},
-    {"bar": 96,  "text": "outro in", "abs_sec": 202.433, "snap_sec": 198.247},
-    {"bar": 104, "text": "end stop", "abs_sec": 219.114, "snap_sec": 214.427}
+    {"bar": 1,   "text": "Beverly Hills all in ready go", "abs_sec": 4.15, "snap_sec": 0.0},
+    {"bar": 5,   "text": "vocal in", "abs_sec": 12.49, "snap_sec": 8.305},
+    {"bar": 13,  "text": "ghost beat ready skip", "abs_sec": 29.189, "snap_sec": 25.005},
+    {"bar": 37,  "text": "stop", "abs_sec": 79.27, "snap_sec": 74.583},
+    {"bar": 38,  "text": "all in", "abs_sec": 81.348, "snap_sec": 77.183},
+    {"bar": 46,  "text": "ghost beat ready skip", "abs_sec": 98.05, "snap_sec": 93.882},
+    {"bar": 54,  "text": "stop", "abs_sec": 114.75, "snap_sec": 110.063},
+    {"bar": 55,  "text": "all in", "abs_sec": 116.83, "snap_sec": 112.663},
+    {"bar": 79,  "text": "all stop", "abs_sec": 166.911, "snap_sec": 162.221},
+    {"bar": 88,  "text": "all in", "abs_sec": 185.71, "snap_sec": 181.525},
+    {"bar": 96,  "text": "outro in", "abs_sec": 202.409, "snap_sec": 198.223},
+    {"bar": 104, "text": "end stop", "abs_sec": 219.09, "snap_sec": 214.403}
   ]
 }

@@ -9,7 +9,7 @@
     "roles": {"pb-guitars": "musical"}
   },
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 2.8}},
+  "pb-bass": {"layers": [{"file": "roma-bass-2810", "frame": "render", "replaces": ["bass"], "gain_db": 14.2}], "roles": {"roma-bass-2810": "musical"}},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 1,
   "cues": [

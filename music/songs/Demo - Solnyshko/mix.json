@@ -1,11 +1,11 @@
 {
   "bpm": 138.0,
   "count_in": 1,
-  "pb-other": null,
+  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -4.2}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"layers": [{"file": "synth-bass", "frame": "render", "replaces": ["bass"], "gain_db": -10.0}]},
   "pb-drums": {"stems": ["drums"]},
   "pitch_semitones": -2,
-  "players": {"roma": ["keys", "other"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["bass", "synth-bass"]},
+  "players": {"steve": ["drums"], "tanya": ["vocals"], "alex": ["bass", "synth-bass"]},
   "gm800": [
     {"bar": 1,   "scene": 7, "abs_sec": 3.478},
     {"bar": 17,  "scene": 8, "abs_sec": 31.304},
@@ -23,7 +23,7 @@
     {"bar": 17,  "text": "alex in", "abs_sec": 31.304, "snap_sec": 27.826},
     {"bar": 25,  "text": "verse in", "abs_sec": 45.217, "snap_sec": 41.739},
     {"bar": 49,  "text": "arpegiator in", "abs_sec": 86.957, "snap_sec": 83.043},
-    {"bar": 57,  "text": "more-arpegiator in", "abs_sec": 100.87, "snap_sec": 96.957},
+    {"bar": 57,  "text": "more-arpegiator in", "abs_sec": 100.87, "snap_sec": 96.522},
     {"bar": 73,  "text": "soft-verse in", "abs_sec": 128.696, "snap_sec": 124.783},
     {"bar": 77,  "text": "drum in", "abs_sec": 135.652, "snap_sec": 132.174},
     {"bar": 81,  "text": "bass-n-beat in", "abs_sec": 142.609, "snap_sec": 138.696},

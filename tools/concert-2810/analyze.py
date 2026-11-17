@@ -12,7 +12,7 @@ SR = 44100
 REPO = "/Users/alex/projects/cherry-daddies/music/songs"
 SCR = os.path.dirname(os.path.abspath(__file__))   # concert_align.json / verdicts.json live next to the scripts
 OUT = "/Users/alex/projects/cherry-daddies/analysis/concert-2810"
-ALIGN = json.load(open(SCR + "/concert_align.json"))
+ALIGN = json.load(open(SCR + "/concert_align.json"))   # coarse lags (cues/PB envelopes)
 PART = {"Солнце": ["keys"], "Беги от меня (бис)": ["keys"], "Такая любовь (S1)": ["keys", "wind"],
         "Такая любовь (бис)": ["keys", "wind"], "Про красивую жизнь": ["keys", "other"], "Солнышко": ["keys", "other"],
         "Я устал": ["keys", "other"], "Медляк": ["keys"], "Мало тебя": ["keys", "other"],
@@ -50,7 +50,7 @@ def onset_times(x, thr=0.25):
         if not out or i - out[-1] > 60: out.append(i)       # >=60 ms apart
     return np.array(out)*H/SR
 
-def fit_map(d, render_click):
+def fit_map(d, render_click, COARSE):
     """concert_t = a + b*render_t from click onsets (scale searched from IOI ratio)."""
     cc = glob.glob(d + "13 *.wav")[0]
     co = jr.onsets(dec(cc, 1), 0.3, 0.1); ro = jr.onsets(mono(render_click), 0.3, 0.1)
@@ -61,6 +61,7 @@ def fit_map(d, render_click):
             a0 = co[i] - b0*ro[j]; pred = a0 + b0*ro
             k = np.searchsorted(co, pred); k = np.clip(k, 1, len(co)-1)
             dd = np.minimum(np.abs(co[k] - pred), np.abs(co[k-1] - pred)); hit = (dd < 0.03).sum()
+            if abs(b0 - 1) < 0.002 and abs(a0 - COARSE) > 0.25: continue   # periodic click: stay on the coarse (cues/PB) lag, not a bar off
             if best is None or hit > best[0]: best = (hit, a0)
     a0 = best[1]; pred = a0 + b0*ro
     k = np.clip(np.searchsorted(co, pred), 1, len(co)-1); pick = np.where(np.abs(co[k]-pred) < np.abs(co[k-1]-pred), co[k], co[k-1])
@@ -115,7 +116,7 @@ for take, part in PART.items():
     tl = json.load(open(folder + "/auto-render/timeline.json")); OFF = int(round(tl["offset_sec"]*SR))
     allw = dec(folder + "/auto-render/all.wav"); total = len(allw)
     rclick = dec(folder + "/auto-render/click.wav")
-    a, b, nhit, nclk, p90 = fit_map(d, rclick)
+    a, b, nhit, nclk, p90 = fit_map(d, rclick, al["lag_s"])
     # ---- stem side
     stems = jr._stem_paths(folder)
     drop = set(mix.get("exclude_stems") or mix.get("drop_stems") or [])

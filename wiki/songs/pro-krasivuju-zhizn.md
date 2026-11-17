@@ -57,3 +57,8 @@ set: "СЕТ 2 #2"
   [Измерения и процесс](../pipelines/lyric-guide-library.md).
 - Вокалистская проверка текста под этим guide ещё требует просмотра и явного
   подтверждения Тани. Команда агента: `lyric_workflow.py preview 13`.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы (`08`, Set 2 №2), заменяют Moises `keys`+`other` (`replaces`), `gain_db +0.7` (громкость стемов); сдвиг −12 мс (задержка ноутбука). Рядом остаётся `keys-noise`.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" roma-keys-2810` (wav не в git). В Stage Traxx 2026-11-17.

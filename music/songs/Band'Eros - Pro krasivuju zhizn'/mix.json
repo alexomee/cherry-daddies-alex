@@ -1,7 +1,7 @@
 {
   "gm800": 1,
   "bpm": 125,
-  "pb-other": {"stems": ["keys", "other"], "layers": ["keys-noise"]},
+  "pb-other": {"layers": ["keys-noise", {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 0.7}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.9}},
   "players": {"steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [

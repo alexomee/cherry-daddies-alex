@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-17T08:29:08",
+  "generated": "2026-11-17T09:56:20",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
     "playback": 57,
-    "other": 75,
+    "other": 79,
     "practice": 83
   },
   "sets": [
@@ -472,9 +472,9 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "strings"
+              "roma-keys-2810"
             ]
           },
           "practice": [
@@ -516,23 +516,24 @@
           "stem_versions": {
             "vocal": "cc3e402af9",
             "drums": "97f778bb1f",
-            "keys": "811bae960c",
+            "keys": "76257fdfcf",
             "bass": "ceaa588456",
             "other": "b2124aaa69",
             "click": "458b4d29be",
-            "cues": "bbe091d128"
+            "cues": "f78c531bd5"
           },
           "versions": {
-            "all": "a4eae79d73",
+            "all": "b34299226b",
             "drums": "e33a9efb40",
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
-            "pb-other": "1b93b5f421",
+            "pb-other": "e0a5acb055",
             "pb-bass": "ceaa588456"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "other"
             ]
           },
@@ -809,7 +810,7 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "bass"
+            "label": "roma-bass-2810"
           },
           "other": {
             "kind": "layers",
@@ -853,19 +854,19 @@
           "stem_versions": {
             "vocal": "ba41b44d37",
             "drums": "345d1c2c8a",
-            "bass": "208ff2b61d",
+            "bass": "a67642c4c5",
             "guitars": "9c545dc52b",
             "click": "209cc138cf",
-            "cues": "08a8334bee"
+            "cues": "7bbc60f4ee"
           },
           "versions": {
-            "all": "fd9a0cffd2",
+            "all": "fa28e4d730",
             "drums": "345d1c2c8a",
             "alex": "6c00af957b",
             "steve": "184b6ba448",
             "tanya": "1eb0734e9e",
             "pb-other": "2c3042b0bb",
-            "pb-bass": "88c4b393ec"
+            "pb-bass": "86bb5d658a"
           },
           "pb_other": {
             "available": true,
@@ -1750,76 +1751,76 @@
             "count": 12,
             "list": [
               {
-                "t": 4.174,
+                "t": 4.15,
                 "text": "Beverly Hills all in ready go",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 12.514,
+                "t": 12.49,
                 "text": "vocal in",
                 "bar": 5,
-                "snap": 8.329
+                "snap": 8.305
               },
               {
-                "t": 29.213,
+                "t": 29.189,
                 "text": "ghost beat ready skip",
                 "bar": 13,
-                "snap": 25.029
+                "snap": 25.005
               },
               {
-                "t": 79.294,
+                "t": 79.27,
                 "text": "stop",
                 "bar": 37,
-                "snap": 74.607
+                "snap": 74.583
               },
               {
-                "t": 81.372,
+                "t": 81.348,
                 "text": "all in",
                 "bar": 38,
-                "snap": 77.207
+                "snap": 77.183
               },
               {
-                "t": 98.074,
+                "t": 98.05,
                 "text": "ghost beat ready skip",
                 "bar": 46,
-                "snap": 93.906
+                "snap": 93.882
               },
               {
-                "t": 114.774,
+                "t": 114.75,
                 "text": "stop",
                 "bar": 54,
-                "snap": 110.087
+                "snap": 110.063
               },
               {
-                "t": 116.854,
+                "t": 116.83,
                 "text": "all in",
                 "bar": 55,
-                "snap": 112.687
+                "snap": 112.663
               },
               {
-                "t": 166.935,
+                "t": 166.911,
                 "text": "all stop",
                 "bar": 79,
-                "snap": 162.245
+                "snap": 162.221
               },
               {
-                "t": 185.734,
+                "t": 185.71,
                 "text": "all in",
                 "bar": 88,
-                "snap": 181.549
+                "snap": 181.525
               },
               {
-                "t": 202.433,
+                "t": 202.409,
                 "text": "outro in",
                 "bar": 96,
-                "snap": 198.247
+                "snap": 198.223
               },
               {
-                "t": 219.114,
+                "t": 219.09,
                 "text": "end stop",
                 "bar": 104,
-                "snap": 214.427
+                "snap": 214.403
               }
             ]
           },
@@ -1828,12 +1829,14 @@
             "label": "zivert-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
           },
           "practice": [
             "all",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -1867,24 +1870,27 @@
             }
           ],
           "stem_versions": {
-            "vocal": "80b3a5a03b",
-            "drums": "c59baac0b5",
-            "keys": "2812aa538d",
-            "bass": "7591f6dfe2",
-            "other": "555b1bdd2b",
-            "click": "696de15b86",
-            "cues": "e3f0a88733"
+            "vocal": "b5641be59e",
+            "drums": "8ca2e44446",
+            "keys": "293370778a",
+            "bass": "207d31641a",
+            "other": "6a7ea8651e",
+            "click": "810f447771",
+            "cues": "37328dc3eb"
           },
           "versions": {
-            "all": "f35e69558c",
+            "all": "d6b9496778",
             "steve": "f949a30546",
-            "roma": "3aeb63ddc0",
             "tanya": "883b52fa78",
-            "pb-bass": "b41cdd9c1c"
+            "pb-other": "293370778a",
+            "pb-bass": "207d31641a"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -1972,7 +1978,8 @@
           "other": {
             "kind": "layers",
             "items": [
-              "keys-noise"
+              "keys-noise",
+              "roma-keys-2810"
             ]
           },
           "practice": [
@@ -2018,19 +2025,19 @@
           "stem_versions": {
             "vocal": "316a603d94",
             "drums": "3f39fa47ba",
-            "keys": "706e5783d5",
+            "keys": "6893e4f9e1",
             "bass": "2e176220fe",
             "guitars": "a9209f3e02",
-            "other": "1bc9eafcc5",
+            "other": "56792f9752",
             "click": "0d7891a2df",
             "cues": "7c599ecc10"
           },
           "versions": {
-            "all": "e4662cfa92",
+            "all": "61bdf5051f",
             "alex": "325065da6d",
             "steve": "6e37ba5873",
             "tanya": "c5df2e6ba9",
-            "pb-other": "9f890acc0b",
+            "pb-other": "6893e4f9e1",
             "pb-bass": "920c2ef284"
           },
           "pb_other": {
@@ -2097,7 +2104,7 @@
                 "t": 100.87,
                 "text": "more-arpegiator in",
                 "bar": 57,
-                "snap": 96.957
+                "snap": 96.522
               },
               {
                 "t": 128.696,
@@ -2178,14 +2185,16 @@
             "label": "synth-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
           },
           "practice": [
             "all",
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -2225,25 +2234,28 @@
           "stem_versions": {
             "vocal": "165c7bad9d",
             "drums": "68bc3001ff",
-            "keys": "e95e31f33f",
+            "keys": "727c7d1fa9",
             "bass": "cd64e3e3a4",
             "guitars": "536674f17d",
-            "other": "c3a2260f92",
+            "other": "66b9b4ae92",
             "click": "7d3ee5b2b5",
-            "cues": "fc7a9bf80d"
+            "cues": "ca53ca80a3"
           },
           "versions": {
-            "all": "314fc3c614",
-            "drums": "a2d6f73f73",
+            "all": "5f2872fa92",
+            "drums": "68bc3001ff",
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
-            "roma": "d5aa899bf0",
             "tanya": "3db6c17760",
-            "pb-bass": "68f555b0b5"
+            "pb-other": "727c7d1fa9",
+            "pb-bass": "cd64e3e3a4"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -2514,14 +2526,14 @@
             "kind": "layers",
             "items": [
               "malo-guitars",
-              "malo-sfx"
+              "malo-sfx",
+              "roma-keys-2810"
             ]
           },
           "practice": [
             "all",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -2561,25 +2573,25 @@
           "stem_versions": {
             "vocal": "0f1ac88d21",
             "drums": "736dcf93b6",
-            "keys": "02a7a03102",
+            "keys": "d2d72c8052",
             "bass": "474e3343cb",
             "guitars": "cfaa6a3d65",
-            "other": "237ac41f1c",
+            "other": "c0a9eaab92",
             "click": "bf72244c61",
-            "cues": "e7ce769e46"
+            "cues": "6f063f3f59"
           },
           "versions": {
-            "all": "274669c9fa",
+            "all": "d7d6abd030",
             "alex": "ba213fb465",
             "steve": "2e89296029",
-            "roma": "63c1875d1d",
             "tanya": "698094df25",
-            "pb-other": "f6f4ba4068",
+            "pb-other": "2825bf9183",
             "pb-bass": "c44eff4620"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "guitars",
               "other"
             ]
@@ -9569,7 +9581,7 @@
                 "t": 100.87,
                 "text": "more-arpegiator in",
                 "bar": 57,
-                "snap": 96.957
+                "snap": 96.522
               },
               {
                 "t": 128.696,
@@ -9650,14 +9662,16 @@
             "label": "synth-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
           },
           "practice": [
             "all",
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -9697,25 +9711,28 @@
           "stem_versions": {
             "vocal": "165c7bad9d",
             "drums": "68bc3001ff",
-            "keys": "e95e31f33f",
+            "keys": "727c7d1fa9",
             "bass": "cd64e3e3a4",
             "guitars": "536674f17d",
-            "other": "c3a2260f92",
+            "other": "66b9b4ae92",
             "click": "7d3ee5b2b5",
-            "cues": "fc7a9bf80d"
+            "cues": "ca53ca80a3"
           },
           "versions": {
-            "all": "314fc3c614",
-            "drums": "a2d6f73f73",
+            "all": "5f2872fa92",
+            "drums": "68bc3001ff",
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
-            "roma": "d5aa899bf0",
             "tanya": "3db6c17760",
-            "pb-bass": "68f555b0b5"
+            "pb-other": "727c7d1fa9",
+            "pb-bass": "cd64e3e3a4"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -9803,7 +9820,8 @@
           "other": {
             "kind": "layers",
             "items": [
-              "keys-noise"
+              "keys-noise",
+              "roma-keys-2810"
             ]
           },
           "practice": [
@@ -9849,19 +9867,19 @@
           "stem_versions": {
             "vocal": "316a603d94",
             "drums": "3f39fa47ba",
-            "keys": "706e5783d5",
+            "keys": "6893e4f9e1",
             "bass": "2e176220fe",
             "guitars": "a9209f3e02",
-            "other": "1bc9eafcc5",
+            "other": "56792f9752",
             "click": "0d7891a2df",
             "cues": "7c599ecc10"
           },
           "versions": {
-            "all": "e4662cfa92",
+            "all": "61bdf5051f",
             "alex": "325065da6d",
             "steve": "6e37ba5873",
             "tanya": "c5df2e6ba9",
-            "pb-other": "9f890acc0b",
+            "pb-other": "6893e4f9e1",
             "pb-bass": "920c2ef284"
           },
           "pb_other": {
@@ -9978,14 +9996,14 @@
             "kind": "layers",
             "items": [
               "malo-guitars",
-              "malo-sfx"
+              "malo-sfx",
+              "roma-keys-2810"
             ]
           },
           "practice": [
             "all",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -10025,25 +10043,25 @@
           "stem_versions": {
             "vocal": "0f1ac88d21",
             "drums": "736dcf93b6",
-            "keys": "02a7a03102",
+            "keys": "d2d72c8052",
             "bass": "474e3343cb",
             "guitars": "cfaa6a3d65",
-            "other": "237ac41f1c",
+            "other": "c0a9eaab92",
             "click": "bf72244c61",
-            "cues": "e7ce769e46"
+            "cues": "6f063f3f59"
           },
           "versions": {
-            "all": "274669c9fa",
+            "all": "d7d6abd030",
             "alex": "ba213fb465",
             "steve": "2e89296029",
-            "roma": "63c1875d1d",
             "tanya": "698094df25",
-            "pb-other": "f6f4ba4068",
+            "pb-other": "2825bf9183",
             "pb-bass": "c44eff4620"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "guitars",
               "other"
             ]
@@ -10574,76 +10592,76 @@
             "count": 12,
             "list": [
               {
-                "t": 4.174,
+                "t": 4.15,
                 "text": "Beverly Hills all in ready go",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 12.514,
+                "t": 12.49,
                 "text": "vocal in",
                 "bar": 5,
-                "snap": 8.329
+                "snap": 8.305
               },
               {
-                "t": 29.213,
+                "t": 29.189,
                 "text": "ghost beat ready skip",
                 "bar": 13,
-                "snap": 25.029
+                "snap": 25.005
               },
               {
-                "t": 79.294,
+                "t": 79.27,
                 "text": "stop",
                 "bar": 37,
-                "snap": 74.607
+                "snap": 74.583
               },
               {
-                "t": 81.372,
+                "t": 81.348,
                 "text": "all in",
                 "bar": 38,
-                "snap": 77.207
+                "snap": 77.183
               },
               {
-                "t": 98.074,
+                "t": 98.05,
                 "text": "ghost beat ready skip",
                 "bar": 46,
-                "snap": 93.906
+                "snap": 93.882
               },
               {
-                "t": 114.774,
+                "t": 114.75,
                 "text": "stop",
                 "bar": 54,
-                "snap": 110.087
+                "snap": 110.063
               },
               {
-                "t": 116.854,
+                "t": 116.83,
                 "text": "all in",
                 "bar": 55,
-                "snap": 112.687
+                "snap": 112.663
               },
               {
-                "t": 166.935,
+                "t": 166.911,
                 "text": "all stop",
                 "bar": 79,
-                "snap": 162.245
+                "snap": 162.221
               },
               {
-                "t": 185.734,
+                "t": 185.71,
                 "text": "all in",
                 "bar": 88,
-                "snap": 181.549
+                "snap": 181.525
               },
               {
-                "t": 202.433,
+                "t": 202.409,
                 "text": "outro in",
                 "bar": 96,
-                "snap": 198.247
+                "snap": 198.223
               },
               {
-                "t": 219.114,
+                "t": 219.09,
                 "text": "end stop",
                 "bar": 104,
-                "snap": 214.427
+                "snap": 214.403
               }
             ]
           },
@@ -10652,12 +10670,14 @@
             "label": "zivert-bass"
           },
           "other": {
-            "kind": "none"
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
           },
           "practice": [
             "all",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -10691,24 +10711,27 @@
             }
           ],
           "stem_versions": {
-            "vocal": "80b3a5a03b",
-            "drums": "c59baac0b5",
-            "keys": "2812aa538d",
-            "bass": "7591f6dfe2",
-            "other": "555b1bdd2b",
-            "click": "696de15b86",
-            "cues": "e3f0a88733"
+            "vocal": "b5641be59e",
+            "drums": "8ca2e44446",
+            "keys": "293370778a",
+            "bass": "207d31641a",
+            "other": "6a7ea8651e",
+            "click": "810f447771",
+            "cues": "37328dc3eb"
           },
           "versions": {
-            "all": "f35e69558c",
+            "all": "d6b9496778",
             "steve": "f949a30546",
-            "roma": "3aeb63ddc0",
             "tanya": "883b52fa78",
-            "pb-bass": "b41cdd9c1c"
+            "pb-other": "293370778a",
+            "pb-bass": "207d31641a"
           },
           "pb_other": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
           },
           "pb_bass": {
             "available": true,
@@ -12708,9 +12731,9 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "strings"
+              "roma-keys-2810"
             ]
           },
           "practice": [
@@ -12752,23 +12775,24 @@
           "stem_versions": {
             "vocal": "cc3e402af9",
             "drums": "97f778bb1f",
-            "keys": "811bae960c",
+            "keys": "76257fdfcf",
             "bass": "ceaa588456",
             "other": "b2124aaa69",
             "click": "458b4d29be",
-            "cues": "bbe091d128"
+            "cues": "f78c531bd5"
           },
           "versions": {
-            "all": "a4eae79d73",
+            "all": "b34299226b",
             "drums": "e33a9efb40",
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
-            "pb-other": "1b93b5f421",
+            "pb-other": "e0a5acb055",
             "pb-bass": "ceaa588456"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "keys",
               "other"
             ]
           },
@@ -13097,7 +13121,7 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "bass"
+            "label": "roma-bass-2810"
           },
           "other": {
             "kind": "layers",
@@ -13141,19 +13165,19 @@
           "stem_versions": {
             "vocal": "ba41b44d37",
             "drums": "345d1c2c8a",
-            "bass": "208ff2b61d",
+            "bass": "a67642c4c5",
             "guitars": "9c545dc52b",
             "click": "209cc138cf",
-            "cues": "08a8334bee"
+            "cues": "7bbc60f4ee"
           },
           "versions": {
-            "all": "fd9a0cffd2",
+            "all": "fa28e4d730",
             "drums": "345d1c2c8a",
             "alex": "6c00af957b",
             "steve": "184b6ba448",
             "tanya": "1eb0734e9e",
             "pb-other": "2c3042b0bb",
-            "pb-bass": "88c4b393ec"
+            "pb-bass": "86bb5d658a"
           },
           "pb_other": {
             "available": true,

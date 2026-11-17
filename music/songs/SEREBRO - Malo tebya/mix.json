@@ -11,11 +11,13 @@
         "file": "malo-sfx",
         "frame": "render",
         "gain_db": -4.0
-      }
+      },
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 4.9}
     ],
     "roles": {
       "malo-guitars": "musical",
-      "malo-sfx": "musical"
+      "malo-sfx": "musical",
+      "roma-keys-2810": "musical"
     }
   },
   "pb-bass": {
@@ -116,7 +118,7 @@
       "abs_sec": 221.538
     }
   ],
-  "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], 
+  "players": {"steve": ["drums"], "tanya": ["vocals"], 
     "alex": [
       "guitars"
     ]

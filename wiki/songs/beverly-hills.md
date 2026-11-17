@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-11-17
 title: Beverly Hills
 artist: Zivert
 set: "СЕТ 2 #7"
@@ -54,3 +54,8 @@ set: "СЕТ 2 #7"
 - **Кто играет бас — не согласовано в источниках.** `mix.json` держит бас в плейбеке (layer `zivert-bass`, `players` без `alex` → practice-alex не генерится), тогда как коммит 06-19 и agent-память (`practice-mix-players.md`) числят бас живой партией Alex. Уточнить актуальное распределение.
 - **Метка источника:** `cues.json` и `moises-orig/` именуют стемы по-JamZone (`A minor-115bpm-440hz`), а память относит Beverly Hills к «4 Moises-песням». Фактически стемы переименованы в Moises-стиль; ярлык неоднозначен.
 - **`ghost beat ready skip`** — cue вне стандартных правил разворачивания; корректность озвучки не подтверждена.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы (`08`, Set 2 №1), заменяют Moises `keys`+`other`, `gain_db +0.8`. Перерендер 2026-11-17 сдвинул таймлайн: OFF 3.6118 → 3.5879 с (−23.9 мс; прошлый рендер был старой версией скрипта, клик и стемы сдвинулись вместе) — render-frame слои поехали бы: `zivert-bass` получил `offset_ms −23.9`, слой Ромы собран под новый клик; cues.wav новый.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" roma-keys-2810` (wav не в git). В Stage Traxx 2026-11-17.

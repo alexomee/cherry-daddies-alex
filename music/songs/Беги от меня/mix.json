@@ -2,7 +2,7 @@
   "gm800": 3,
   "bpm": 125.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["strings"], "gain_db": {"strings": 3.5}},
+  "pb-other": {"stems": ["strings"], "gain_db": {"strings": 3.5}, "layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys"], "gain_db": -1.1}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"stems": ["bass"]},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -1.1}},
   "players": {"steve": ["drums"], "tanya": ["vocals"]},

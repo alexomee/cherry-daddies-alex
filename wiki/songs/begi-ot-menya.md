@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-09-02
+updated: 2026-11-17
 title: Беги от меня
 artist: Гости из будущего
 set: tryout batch 2026-07
@@ -53,3 +53,8 @@ Tryout-батч 2026-07. Полный cue-сет в риге; **2026-09-02 — �
 ## Риг (MainStage)
 
 Папка сетлиста: `/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Беги от меня/` (tryout, wired вручную). Синк 2026-09-02: `cues.wav`, `pb-other.wav`, `pb-bass.wav`, `pb-drums.wav` (все +0.96с); `click.wav` побайтно тот же (константный клик от t=0, длина рендера не изменилась). Коммит в риге `0cc4f838`, **не запушен**.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы **с биса** (`08`, Set 2 №17), заменяют Moises `keys`, `gain_db −1.1`; на бисе темп был 123 → растянуто rubberband'ом до 125 с сохранением тона; вход пульта был перегружен (207 срезанных вершин) → `adeclip` + `alimiter` −1 dBFS, в слое срезов нет; сдвиг −10 мс. В pb-other рядом strings (+3.5).
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" roma-keys-2810` (wav не в git). В Stage Traxx 2026-11-17.

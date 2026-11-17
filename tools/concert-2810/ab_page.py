@@ -26,27 +26,28 @@ for take in ORDER:
         return "—" if not x else f'задержка {x["latency_ms"]:+.0f} мс, разброс {x["spread_ms"]:.0f} мс, ровно {x["tight_pct"]}%'
     loose = [(w[0], f"{w[1]:+d} мс / ±{w[2]}") for w in (t["concert"] or {}).get("loose_4bar", [])] if t["concert"] else []
     v = VERDICT.get(take, {})
+    A = "Слой Ромы" if "Такая любовь" in take else "Стем"
     cards.append(f"""
 <section class="card" data-slug="{slug}">
   <header><h2>{html.escape(take)}</h2><span class="tag {r['kind']}">{part}</span>{f'<span class="verdict v-{v.get("cls","")}">{html.escape(v.get("text",""))}</span>' if v else ''}</header>
   {f'<p class="note">{html.escape(v.get("note",""))}</p>' if v.get("note") else ''}
   <div class="player">
     <div class="seg" role="group">
-      <button class="src on" data-src="ab-stem">Стем в миксе</button><button class="src" data-src="ab-concert">Концерт в миксе</button>
-      <button class="src" data-src="solo-stem">Стем соло</button><button class="src" data-src="solo-concert">Концерт соло</button>
+      <button class="src on" data-src="ab-stem">{A} в миксе</button><button class="src" data-src="ab-concert">Концерт в миксе</button>
+      <button class="src" data-src="solo-stem">{A} соло</button><button class="src" data-src="solo-concert">Концерт соло</button>
     </div>
     <button class="play">▶</button><input class="pos" type="range" min="0" max="1000" value="0"><span class="time">0:00</span>
   </div>
   <dl class="m">
     <dt>Ноты</dt><dd>совпадение {n['mean_sim']:.2f}, тактов ниже 0.6: {n['pct_bars_low']}%</dd>
-    <dt>Покрытие</dt><dd>концерт {c['concert_bars']} / стем {c['stem_bars']} из {c['bars']} тактов</dd>
-    <dt>Тайминг</dt><dd>концерт: {tline(t['concert'])}<br>стем: {tline(t['stem'])}</dd>
-    <dt>Запись</dt><dd>тишина {q['silence_dbfs']:.0f} dBFS, пик {q['peak_dbfs']:.1f} dBFS{', <b>клиппинг: ' + str(q['clip_runs']) + ' срезов</b>' if q['clip_runs'] else ''}; громкость концерт {r['lufs']['concert']:.1f} / стем {r['lufs']['stem']:.1f} LUFS</dd>
+    <dt>Покрытие</dt><dd>концерт {c['concert_bars']} / {A.lower()} {c['stem_bars']} из {c['bars']} тактов</dd>
+    <dt>Тайминг</dt><dd>концерт: {tline(t['concert'])}<br>{A.lower()}: {tline(t['stem'])}</dd>
+    <dt>Запись</dt><dd>тишина {q['silence_dbfs']:.0f} dBFS, пик {q['peak_dbfs']:.1f} dBFS{', <b>клиппинг: ' + str(q['clip_runs']) + ' срезов</b>' if q['clip_runs'] else ''}; громкость концерт {r['lufs']['concert']:.1f} / {A.lower()} {r['lufs']['stem']:.1f} LUFS</dd>
     <dt>Синхронизация</dt><dd>клики {r['map']['clicks_matched']}, p90 {r['map']['p90_ms']} мс{f", темп концерта ×{r['map']['tempo_ratio']} (растянут под рендер)" if abs(r['map']['tempo_ratio'] - 1) > 0.002 else ''}{f"; концерт сдвинут на {r['concert_shift_ms_applied_in_ab']:+.0f} мс" if r['concert_shift_ms_applied_in_ab'] else ''}</dd>
   </dl>
   <div class="flags">
-    {('<span class="lbl">Рома играл, в стеме тихо:</span>' + chips(r['concert_only'], 'c-only')) if r['concert_only'] else ''}
-    {('<span class="lbl">В стеме есть, Рома молчал:</span>' + chips(r['stem_only'], 's-only')) if r['stem_only'] else ''}
+    {(f'<span class="lbl">Рома играл, в {"слое" if A != "Стем" else "стеме"} тихо:</span>' + chips(r['concert_only'], 'c-only')) if r['concert_only'] else ''}
+    {(f'<span class="lbl">В {"слое" if A != "Стем" else "стеме"} есть, Рома молчал:</span>' + chips(r['stem_only'], 's-only')) if r['stem_only'] else ''}
     {('<span class="lbl">Другие ноты:</span>' + chips(n['low_runs'], 'low')) if n['low_runs'] else ''}
     {('<span class="lbl">Неровно по клику (4 такта):</span>' + ''.join(f'<button class="chip loose" data-t="{w[0]}">{w[0]} · {html.escape(w[1])}</button>' for w in loose)) if loose else ''}
   </div>
@@ -76,7 +77,7 @@ dl.m{{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;margin:6px 0 10p
 @media (max-width:600px){{dl.m{{grid-template-columns:1fr}} dt{{margin-top:6px}}}}
 </style></head><body><main>
 <h1>Концерт 28.10 или стем: партии Ромы</h1>
-<p class="sub">Переключатель меняет источник с той же секунды. «В миксе» — вся группа (как в плейбеке, без клика) с партией из стема или с концерта; громкость концертной партии подогнана под стем. Чипы — переход к месту.</p>
+<p class="sub">Переключатель меняет источник с той же секунды. «В миксе» — вся группа (как в плейбеке, без клика) с партией из стема (в Такой любви — из слоя Ромы) или с концерта; громкость концертной партии подогнана под стем. Чипы — переход к месту.</p>
 {''.join(cards)}
 </main>
 <script>
