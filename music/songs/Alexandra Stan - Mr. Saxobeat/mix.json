@@ -1,8 +1,5 @@
 {
-  "pb-other": {
-    "stems": ["04_Noise_effects", "10_Saxophone_(reverse)"],
-    "gain_db": {"10_Saxophone_(reverse)": 8.9}
-  },
+  "pb-other": {"stems": ["04_Noise_effects", "10_Saxophone_(reverse)", "08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "gain_db": {"10_Saxophone_(reverse)": 8.9}},
   "pb-bass": {
     "stems": ["05_Synth_Bass"]
   },
@@ -10,7 +7,7 @@
     "stems": ["02_Electronic_Drum_Kit"]
   },
   "export_stems": ["06_Synth_Lead", "07_Synth_Keys_1", "08_Synth_Keys_2", "09_Synth_Keys_3"],
-  "players": {"roma": ["08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal_♂", "14_Lead_Vocal_Alexandra_Stan", "13_Lead_Vocal_Alexandra_Stan_(ad_lib)"], "alex": ["06_Synth_Lead", "11_Saxophone"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal_♂", "14_Lead_Vocal_Alexandra_Stan", "13_Lead_Vocal_Alexandra_Stan_(ad_lib)"], "alex": ["06_Synth_Lead", "11_Saxophone"]},
   "cues": [
     {"bar": 3,   "text": "Mr Saxobeat sax in ready go", "abs_sec": 3.78, "snap_sec": 0.0},
     {"bar": 11,  "text": "bass in", "abs_sec": 18.898, "snap_sec": 15.118},

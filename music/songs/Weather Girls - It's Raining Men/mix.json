@@ -17,28 +17,13 @@
       "11_Lead_Vocal_Izora_Armstead": {"from_bar": 127, "from_beat": 3, "to_bar": 127, "to_beat": 3.5}
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["05_Bass"], "gain_db": {"05_Bass": 3.1}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "05_Bass"
-    ],
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "tanya": [
-      "11_Lead_Vocal_Izora_Armstead",
-      "12_Lead_Vocal_Martha_Wash_(ad_lib)",
-      "13_Lead_Vocal_Martha_Wash"
-    ],
-    "alex": [
-      "06_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["11_Lead_Vocal_Izora_Armstead", "12_Lead_Vocal_Martha_Wash_(ad_lib)", "13_Lead_Vocal_Martha_Wash"], "alex": ["06_Electric_Guitar"]},
   "cut_after_last_cue": 0.85,
   "fade_out": {
     "from_bar": 127,

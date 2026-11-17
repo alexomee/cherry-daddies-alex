@@ -1,13 +1,13 @@
 {
   "gm800": 15,
-  "pb-other": {"stems": ["04_Noise_effects"]},
-  "pb-bass": null,
-  "players": {"roma": ["07_Synth_Pad", "11_Arpeggiator", "08_Synth_Strings", "10_Synth_Lead_2"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["09_Synth_Lead_1"]},
+  "pb-other": {"stems": ["04_Noise_effects", "07_Synth_Pad", "11_Arpeggiator", "08_Synth_Strings", "10_Synth_Lead_2"]},
+  "pb-bass": {"stems": ["05_Synth_Bass", "06_Synth_Bass_(filter)"], "gain_db": {"05_Synth_Bass": -0.1, "06_Synth_Bass_(filter)": -0.1}},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["09_Synth_Lead_1"]},
   "cues": [
     {"bar": 3,   "text": "Better Off Alone all in", "abs_sec": 3.504, "snap_sec": 0.0},
     {"bar": 19,  "text": "drums stop", "abs_sec": 31.537, "snap_sec": 27.595},
     {"bar": 27,  "text": "bass in", "abs_sec": 45.554, "snap_sec": 42.05},
-    {"bar": 32,  "text": "cut off in", "abs_sec": 54.314, "snap_sec": 50.358},
+    {"bar": 32,  "text": "cut off in", "abs_sec": 54.314, "snap_sec": 50.359},
     {"bar": 35,  "text": "beat in", "abs_sec": 59.571, "snap_sec": 56.067},
     {"bar": 43,  "beat": 2, "text": "vocal in", "abs_sec": 74.025, "snap_sec": 70.521},
     {"bar": 50,  "text": "keys in", "abs_sec": 85.852, "snap_sec": 82.348},

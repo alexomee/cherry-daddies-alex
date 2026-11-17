@@ -1,7 +1,7 @@
 {
-  "pb-other": {"stems": ["08_Arpeggiator", "03_Noise_effects", "07_Synth_Keys"]},
+  "pb-other": {"stems": ["08_Arpeggiator", "03_Noise_effects", "07_Synth_Keys", "05_Synthesizer"]},
   "pb-bass": {"stems": ["04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -3}},
-  "players": {"roma": ["05_Synthesizer"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["06_Synth_Pad"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["06_Synth_Pad"]},
   "cues": [
     {"bar": 3,   "text": "Infinity pad in", "abs_sec": 3.75, "snap_sec": 0.0},
     {"bar": 7,   "beat": 3, "text": "sax in", "abs_sec": 12.187, "snap_sec": 8.437},

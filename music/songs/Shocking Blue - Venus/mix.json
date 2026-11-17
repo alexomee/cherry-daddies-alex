@@ -14,23 +14,13 @@
       ]
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["03_Bass"], "gain_db": {"03_Bass": 3.4}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "03_Bass"
-    ],
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "tanya": [
-      "10_Lead_Vocal"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["10_Lead_Vocal"]},
   "cues": [
     {"bar": 3, "text": "Venus guitar in", "abs_sec": 3.876, "snap_sec": 0.0},
     {"bar": 9, "text": "all in", "abs_sec": 15.316, "snap_sec": 11.612},

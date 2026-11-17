@@ -1,7 +1,7 @@
 {
   "gm800": 1,
   "pb-other": {"stems": ["04_Noise_effects", "09_Piano", "10_Synth_Pad", "11_Sample_(sung)", "12_Backing_Vocals", "13_Backing_Vocals"]},
-  "pb-bass": null,
+  "pb-bass": {"stems": ["05_Bass"], "gain_db": {"05_Bass": -2.7}},
   "note": "live bass",
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["06_Acoustic_Guitar", "07_Electric_Guitar", "08_Electric_Guitar_(right)"]},
   "cues": [

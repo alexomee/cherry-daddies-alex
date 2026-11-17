@@ -27,28 +27,18 @@
       }
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Bass"], "gain_db": {"04_Bass": 8.7}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "04_Bass"
-    ],
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "tanya": [
-      "13_Lead_Vocal"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["13_Lead_Vocal"]},
   "cues": [
-    {"bar": 2, "text": "Hot Stuff all in", "abs_sec": 4.114, "snap_sec": 0.0},
-    {"bar": 17, "beat": 4, "text": "verse in", "abs_sec": 35.574, "snap_sec": 31.6},
-    {"bar": 74, "text": "guitar solo ready go", "abs_sec": 147.764, "snap_sec": 143.79},
-    {"bar": 98, "text": "chorus in ready go", "abs_sec": 195.624, "snap_sec": 191.64},
-    {"bar": 146, "text": "end in", "count": true, "abs_sec": 291.324, "snap_sec": 286.83}
+    {"bar": 2, "text": "Hot Stuff all in", "abs_sec": 4.24, "snap_sec": 0.0},
+    {"bar": 17, "beat": 4, "text": "verse in", "abs_sec": 35.7, "snap_sec": 31.726},
+    {"bar": 74, "text": "guitar solo ready go", "abs_sec": 147.89, "snap_sec": 143.916},
+    {"bar": 98, "text": "chorus in ready go", "abs_sec": 195.75, "snap_sec": 191.766},
+    {"bar": 146, "text": "end in", "count": true, "abs_sec": 291.45, "snap_sec": 286.956}
   ]
 }

@@ -21,28 +21,13 @@
       ]
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Synth_Bass_1", "05_Synth_Bass_2"], "gain_db": {"04_Synth_Bass_1": -5.2, "05_Synth_Bass_2": -5.2}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "04_Synth_Bass_1",
-      "05_Synth_Bass_2"
-    ],
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "tanya": [
-      "14_Lead_Vocal"
-    ],
-    "alex": [
-      "06_Electric_Guitar",
-      "07_Rhythm_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["06_Electric_Guitar", "07_Rhythm_Electric_Guitar"]},
   "cues": [
     {"bar": 2, "text": "You're My Heart all in", "abs_sec": 4.085, "snap_sec": 0.0},
     {"bar": 10, "beat": 3, "text": "verse in", "abs_sec": 21.435, "snap_sec": 17.362},

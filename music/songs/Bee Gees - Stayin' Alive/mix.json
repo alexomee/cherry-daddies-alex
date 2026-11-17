@@ -9,41 +9,26 @@
       "12_Backing_Vocals"
     ]
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Bass"], "gain_db": {"04_Bass": -2.6}},
   "pb-drums": {
     "stems": [
       "02_Acoustic_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "04_Bass"
-    ],
-    "steve": [
-      "02_Acoustic_Drum_Kit"
-    ],
-    "tanya": [
-      "13_Lead_Vocal"
-    ],
-    "alex": [
-      "05_Acoustic_Guitar",
-      "06_Lead_Electric_Guitar_theme",
-      "07_Rhythm_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Acoustic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "alex": ["05_Acoustic_Guitar", "06_Lead_Electric_Guitar_theme", "07_Rhythm_Electric_Guitar"]},
   "cues": [
-    {"bar": 2, "text": "Stayin Alive all in", "abs_sec": 4.571, "snap_sec": 0.0},
+    {"bar": 2, "text": "Stayin Alive all in", "abs_sec": 4.572, "snap_sec": 0.0},
     {"bar": 7, "beat": 4, "text": "verse in", "abs_sec": 17.714, "snap_sec": 13.143},
     {"bar": 27, "text": "main in ready go", "abs_sec": 61.714, "snap_sec": 57.143},
     {"bar": 29, "text": "verse in ready go", "abs_sec": 66.286, "snap_sec": 61.714},
     {"bar": 48, "text": "main in ready go", "abs_sec": 109.714, "snap_sec": 105.143},
     {"bar": 50, "text": "bridge in ready go", "abs_sec": 114.286, "snap_sec": 109.714},
-    {"bar": 60, "text": "verse in ready go", "abs_sec": 137.143, "snap_sec": 132.571},
-    {"bar": 79, "text": "main in ready go", "abs_sec": 180.571, "snap_sec": 176.0},
-    {"bar": 81, "text": "bridge-2 in ready go", "abs_sec": 185.143, "snap_sec": 180.571},
+    {"bar": 60, "text": "verse in ready go", "abs_sec": 137.143, "snap_sec": 132.572},
+    {"bar": 79, "text": "main in ready go", "abs_sec": 180.572, "snap_sec": 176.0},
+    {"bar": 81, "text": "bridge-2 in ready go", "abs_sec": 185.143, "snap_sec": 180.572},
     {"bar": 92, "text": "bridge-3 in ready go", "abs_sec": 210.286, "snap_sec": 205.714},
     {"bar": 103, "text": "bridge-4 in ready go", "abs_sec": 235.429, "snap_sec": 230.857},
-    {"bar": 114, "text": "bridge-5 in ready go", "abs_sec": 260.571, "snap_sec": 256.0},
+    {"bar": 114, "text": "bridge-5 in ready go", "abs_sec": 260.572, "snap_sec": 256.0},
     {"bar": 124, "beat": 2, "text": "end in", "count": true, "abs_sec": 284.0, "snap_sec": 278.857}
   ]
 }

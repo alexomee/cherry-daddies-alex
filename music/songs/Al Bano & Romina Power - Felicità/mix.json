@@ -12,24 +12,13 @@
       "12_Backing_Vocals"
     ]
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["03_Synth_Bass"], "gain_db": {"03_Synth_Bass": -2.2}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "roma": [
-      "03_Synth_Bass"
-    ],
-    "tanya": [
-      "13_Lead_Vocal_Romina_Power",
-      "14_Lead_Vocal_Al_Bano"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["13_Lead_Vocal_Romina_Power", "14_Lead_Vocal_Al_Bano"]},
   "cat": "cat_16687",
   "fade_out": {
     "from_bar": 88,

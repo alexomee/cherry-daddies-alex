@@ -23,29 +23,13 @@
       }
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["03_Synth_Bass_1", "04_Synth_Bass_2"], "gain_db": {"03_Synth_Bass_1": 3.9, "04_Synth_Bass_2": 3.9}},
   "pb-drums": {
     "stems": [
       "02_Electronic_Drum_Kit"
     ]
   },
-  "players": {
-    "steve": [
-      "02_Electronic_Drum_Kit"
-    ],
-    "roma": [
-      "03_Synth_Bass_1",
-      "04_Synth_Bass_2"
-    ],
-    "tanya": [
-      "13_Lead_Vocal"
-    ],
-    "alex": [
-      "05_Electric_Guitar_(left)",
-      "06_Electric_Guitar_(right)",
-      "07_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["13_Lead_Vocal"], "alex": ["05_Electric_Guitar_(left)", "06_Electric_Guitar_(right)", "07_Electric_Guitar"]},
   "cat": "cat_13868",
   "click": "follow",
   "cut_after_last_cue": 0.85,

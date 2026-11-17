@@ -19,6 +19,7 @@ set: на бис #1
 ## Плейбек и рендер
 
 - **Живой квартет — плейбека нет.** `pb-other: null`, `pb-bass: null`: в плейбек/превью не идёт ни один аккомпанирующий стем. Рантайм в MainStage = **только click + cues** (см. [mainstage-rig](../pipelines/mainstage-rig.md)).
+- **Играем с кликом** (Alex, 2026-11-17; на концерте 28.10 играли без метронома — поэтому концертный бас не рассматривался). pb-bass из стема остаётся.
 - **С 2026-11-17 pb-bass** (Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`, `gain_db +3.1` → −20.8 LUFS. До медианы −19.2 не дотянуть: бас тихий с высокими пиками, +4.7 дБ упёрлись бы в нормализацию (пик −0.5 при +3.1). Остаток против стема −76 дБ; all/click прежние, cues.wav прежний. В Stage Traxx: Click, Cues, PB Bass. Есть запись живого баса с концерта 28.10 (`~/Downloads/Set 2/13 Мелом/07 Bass Guitar.wav`) — не сравнивалась.
 - **layers нет.**
 - **Стемы (Moises)** в `/Users/alex/projects/cherry-daddies/music/songs/Мелом/`: `bass`, `drums`, `guitars`, `keys`, `other`, `vocals`, `backing_vocals`, `metronome`. Оригиналы Moises (`Bb minor / 120bpm / 442hz`, id `OaXj5OMqYtE`) в `moises-orig/`. См. [moises-import](../pipelines/moises-import.md).

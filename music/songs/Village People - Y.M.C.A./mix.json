@@ -8,27 +8,13 @@
       "11_Backing_Vocals"
     ]
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["05_Bass"], "gain_db": {"05_Bass": 0.8}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "roma": [
-      "05_Bass"
-    ],
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "tanya": [
-      "12_Lead_Vocal"
-    ],
-    "alex": [
-      "06_Distorted_Electric_Guitar",
-      "07_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["06_Distorted_Electric_Guitar", "07_Electric_Guitar"]},
   "cut_bars": [3, 11],
   "cues": [
     {"bar": 3, "text": "YMCA all in", "abs_sec": 3.92, "snap_sec": 0.0},

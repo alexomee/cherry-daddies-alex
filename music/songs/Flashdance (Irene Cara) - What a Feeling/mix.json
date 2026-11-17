@@ -20,26 +20,13 @@
       ]
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Synth_Bass"], "gain_db": {"04_Synth_Bass": 1.8}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "roma": [
-      "04_Synth_Bass"
-    ],
-    "tanya": [
-      "11_Lead_Vocal"
-    ],
-    "alex": [
-      "05_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["11_Lead_Vocal"], "alex": ["05_Electric_Guitar"]},
   "cat": "cat_10091",
   "click": "follow",
   "cues": [

@@ -12,30 +12,13 @@
       "13_Backing_Vocals"
     ]
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["03_Electric_Bass"], "gain_db": {"03_Electric_Bass": 4.8}},
   "pb-drums": {
     "stems": [
       "02_Drum_Kit"
     ]
   },
-  "players": {
-    "steve": [
-      "02_Drum_Kit"
-    ],
-    "roma": [
-      "03_Electric_Bass"
-    ],
-    "tanya": [
-      "14_Lead_Vocal"
-    ],
-    "alex": [
-      "04_Acoustic_Guitar_(clean)",
-      "05_Rhythm_Electric_Guitar_(muted)",
-      "06_Rhythm_Electric_Guitar",
-      "07_Arr._Electric_Guitar",
-      "08_Distorted_Electric_Guitar"
-    ]
-  },
+  "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["04_Acoustic_Guitar_(clean)", "05_Rhythm_Electric_Guitar_(muted)", "06_Rhythm_Electric_Guitar", "07_Arr._Electric_Guitar", "08_Distorted_Electric_Guitar"]},
   "cat": "cat_5519",
   "click": "follow",
   "cues": [

@@ -2,10 +2,10 @@
   "gm800": 1,
   "bpm": 127.5,
   "pitch_semitones": -2,
-  "pb-other": null,
+  "pb-other": {"stems": ["keys", "strings", "wind"]},
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -6.1}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.8}},
-  "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Мама Люба all in", "abs_sec": 3.765, "snap_sec": 0.0},
     {"bar": 10,  "text": "keep going", "abs_sec": 20.706, "snap_sec": 17.882},

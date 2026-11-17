@@ -1,9 +1,9 @@
 {
   "gm800": 13,
-  "pb-other": {"stems": ["11_Backing_Vocals", "03_Noise_effects"]},
+  "pb-other": {"stems": ["11_Backing_Vocals", "03_Noise_effects", "06_Synth_Pad", "07_Synth_Strings"]},
   "pb-bass": {"stems": ["04_Synth_Bass"], "gain_db": {"04_Synth_Bass": 1.5}},
   "pb-drums": {"stems": ["02_Electronic_Drum_Kit"]},
-  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["05_Synthesizer", "08_Synth_Lead", "09_Guitar_Synth_1", "10_Guitar_Synth_2"], "roma": ["06_Synth_Pad", "07_Synth_Strings"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["05_Synthesizer", "08_Synth_Lead", "09_Guitar_Synth_1", "10_Guitar_Synth_2"]},
   "cues": [
     {"bar": 3,  "text": "I Love It synth in", "abs_sec": 3.81, "snap_sec": 0.0},
     {"bar": 7,  "text": "voice in", "abs_sec": 11.429, "snap_sec": 7.619},

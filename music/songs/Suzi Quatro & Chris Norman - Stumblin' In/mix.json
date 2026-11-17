@@ -6,15 +6,11 @@
       "10_String_Section"
     ]
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["04_Bass"], "gain_db": {"04_Bass": 3.8}},
   "pb-drums": {
     "stems": ["03_Drum_Kit"]
   },
-  "players": {
-    "roma": ["04_Bass"],
-    "steve": ["03_Drum_Kit"],
-    "tanya": ["11_Lead_Vocal_Suzi_Quatro", "12_Lead_Vocal_Chris_Norman"]
-  },
+  "players": {"steve": ["03_Drum_Kit"], "tanya": ["11_Lead_Vocal_Suzi_Quatro", "12_Lead_Vocal_Chris_Norman"]},
   "cues": [
     {"bar": 1, "beat": 3, "text": "Stumblin In vocal in", "tone_clip": "stumbling cue tone.mp3", "tone_beats": 6, "abs_sec": 6.581, "snap_sec": 0.0},
     {"bar": 17, "beat": 3, "text": "alex sing ready go", "abs_sec": 36.341, "snap_sec": 32.624},
