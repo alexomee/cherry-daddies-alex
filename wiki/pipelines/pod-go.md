@@ -40,8 +40,8 @@
 ### Разметка (2026-11-17, в Stage Traxx засинкано)
 
 - **31D = MUTE** (патч Alex для песен без живой гитары).
-- `"podgo": "31D"`: Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя.
+- `"podgo": "31D"` (14 песен): Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя, Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M.
 - Солнце: куплеты и вступление 32B, припевы 32D (по тактам).
-- Не решено (на доске только синт): Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M.
+- У остальных песен ключа `podgo` нет: после песни с мьютом POD Go остаётся на 31D, пока не переключат руками. Гитарные пресеты по заметкам доски ещё не расставлены.
 
 Тестовый отправщик MIDI: короткий CoreMIDI-скрипт на Swift (`midisend <порт> <hex-байты>`), в репо не положен.

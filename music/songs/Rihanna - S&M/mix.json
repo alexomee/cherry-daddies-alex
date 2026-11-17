@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "pitch_semitones": -2,
   "pb-other": {"stems": ["06_Synthesizer", "11_Backing_Vocals_1", "12_Backing_Vocals_2", "07_Synth_Lead", "09_Arpeggiator", "08_Synth_Keys"]},
   "pb-bass": {"stems": ["04_Electric_Bass"], "gain_db": {"04_Electric_Bass": 2}},

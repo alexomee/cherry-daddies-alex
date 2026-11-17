@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "gm800": 15,
   "pb-other": {"stems": ["04_Noise_effects", "07_Synth_Pad", "11_Arpeggiator", "08_Synth_Strings", "10_Synth_Lead_2"]},
   "pb-bass": {"stems": ["05_Synth_Bass", "06_Synth_Bass_(filter)"], "gain_db": {"05_Synth_Bass": -0.1, "06_Synth_Bass_(filter)": -0.1}},

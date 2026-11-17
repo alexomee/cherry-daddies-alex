@@ -1759,3 +1759,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 1. POD Go mute = 31D (PC123@3) на 7 песнях без живой гитары: Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя.
 2. GM-800 MUTE (`"gm800": 1`): Владивосток 2000, Sex on Fire.
 3. Засинкано в Stage Traxx (9 песен). Спорные 7 песен (только синт на доске) ждут решения Alex.
+
+## [2026-11-17] rig | POD Go 31D ещё на 7 песнях
+
+Alex подтвердил мьют гитары и в песнях «только синт»: Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M. Итого 31D на 14 песнях, засинкано. Первый `--apply` молча не записал (вывод без `written`), повтор прошёл — проверять строку `written:`.

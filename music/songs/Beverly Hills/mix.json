@@ -1,4 +1,5 @@
 {
+  "podgo": "31D",
   "gm800": 6,
   "bpm": 115,
   "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 0.8}], "roles": {"roma-keys-2810": "musical"}},
