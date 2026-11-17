@@ -1734,3 +1734,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 1. POD Go подключён по USB, в macOS виден как MIDI-порт `POD Go`.
 2. Тест: PC4 на канале 1 → POD Go переключился на 02A. Нумерация PC n = банк n//4+1, буква n%4.
 3. Найден конфликт: теги launcher `PC<клип>@1` в 57 песнях будут дёргать POD Go на канале 1. Решение — MIDI Base Channel = 3 на приборе. Страница: `wiki/pipelines/pod-go.md`.
+
+## [2026-11-17] gear | POD Go: ключ `podgo` → теги Stage Traxx
+
+1. `jamzone_render.py`: запись `abs_sec` обобщена на оба прибора (`MIDI_DEVICES`: `gm800`/scene, `podgo`/preset).
+2. `stagetraxx_sync.py`: таблица `DEVICES`; POD Go — `PC…@3`, смены за 200 мс до такта (`PODGO_LEAD`), `--podgo-channel`. Сверка до/после: теги всех 62 песен совпали побайтно. `--check` на Солнышке — mix.json без изменений.
+3. Тесты: `test_podgo.py` + обновлён `test_gm800.py` (40 passed). Раскладки пресетов по песням ещё нет.

@@ -36,6 +36,16 @@ BOSS GM-800 scenes (wiki/pipelines/gm-800.md) come from mix.json "gm800", on cha
     [midi@00:31.304: PC7@2]     each change -> at its render second
 No "gm800" key -> no GM-800 tags (the unit keeps whatever scene it is on).
 
+Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on channel 3
+(POD Go MIDI Base Channel; on ch1 it would follow the launcher's PCs):
+
+    "podgo": "02A"                               whole song on one preset
+    "podgo": [{"bar": 1, "preset": "02A"},       preset changes, timed by jamzone_render.py
+              {"bar": 33, "preset": "03C"}, ...]
+
+    preset 02A = PC4 (bank-1)*4 + A..D (verified). Same tags as the GM-800, but every change
+    goes out PODGO_LEAD (200 ms) BEFORE the marked bar so the new preset is already up on it.
+
 Regions (Stage Traxx song sections: double-tap = seek, "Jump to Next Region") are generated
 from the mix.json cues: one per cue, named '<bar> · <cue text>', starting at the cue's snap_sec
 (1 bar before its first spoken word) so a jump replays the cue, then the section. The sync owns
@@ -121,36 +131,76 @@ def midi_block(clip, channel):
 
 
 GM_CHANNEL = 2          # BOSS GM-800 Scene Rx Channel
+PODGO_CHANNEL = 3       # Line 6 POD Go MIDI Base Channel (1 = launcher, 2 = GM-800)
+PODGO_LEAD = 0.200      # POD Go switches this long BEFORE the marked bar (Alex, 2026-11-17)
 
 
-def song_gm800(sid):
-    """mix.json "gm800" -> [(render_sec, scene), ...] (first = start scene), or None when absent.
-    Raises ValueError with a readable reason when the entry is malformed or not timed yet."""
+def gm800_pc(scene):
+    """GM-800 scene 1..128 -> PC number. Stage Traxx sends the raw number, the unit shows it +1."""
+    if not isinstance(scene, int) or isinstance(scene, bool) or not 1 <= scene <= 128:
+        raise ValueError('"scene" must be 1..128')
+    return scene - 1
+
+
+def podgo_pc(preset):
+    """POD Go preset '01A'..'32D' -> PC number: 4 presets per bank (PC4 = 02A, verified)."""
+    m = re.fullmatch(r"(\d{1,2})([A-Da-d])", preset) if isinstance(preset, str) else None
+    if not m or not 1 <= int(m[1]) <= 32:
+        raise ValueError('"preset" must be 01A..32D')
+    return (int(m[1]) - 1) * 4 + "ABCD".index(m[2].upper())
+
+
+# mix.json key -> how its entries become Program Changes. "whole" = type of the one-value form
+# (whole song on one scene/preset); "lead" = how much earlier than the bar a change is sent.
+DEVICES = {
+    "gm800": {"name": "GM-800", "field": "scene", "whole": int, "pc": gm800_pc,
+              "channel": GM_CHANNEL, "lead": 0.0},
+    "podgo": {"name": "POD Go", "field": "preset", "whole": str, "pc": podgo_pc,
+              "channel": PODGO_CHANNEL, "lead": PODGO_LEAD},
+}
+
+
+def song_devices(sid):
+    """mix.json device keys -> ({key: [(render_sec, pc, label), ...]}, {key: error})."""
     try:
         with open(os.path.join(SONGS, sid, "mix.json"), encoding="utf-8") as f:
-            gm = json.load(f).get("gm800")
+            mix = json.load(f)
     except (OSError, ValueError):
-        return None
-    return parse_gm800(gm)
+        return {}, {}
+    out, err = {}, {}
+    for key in DEVICES:
+        try:
+            ch = parse_device(key, mix.get(key))
+        except ValueError as e:
+            err[key] = str(e)
+            continue
+        if ch:
+            out[key] = ch
+    return out, err
 
 
-def parse_gm800(gm):
-    if gm is None:
+def parse_device(key, v):
+    """mix.json "<key>" value -> [(render_sec, pc, label), ...] (first = start), None when absent.
+    Raises ValueError with a readable reason when the entry is malformed or not timed yet."""
+    if v is None:
         return None
-    if isinstance(gm, int) and not isinstance(gm, bool):
-        gm = [{"scene": gm, "abs_sec": 0.0}]
-    if not isinstance(gm, list) or not gm:
-        raise ValueError(f'"gm800" must be a scene number or a non-empty list, got {gm!r}')
+    d = DEVICES[key]
+    field = d["field"]
+    if isinstance(v, d["whole"]) and not isinstance(v, bool):
+        v = [{field: v, "abs_sec": 0.0}]
+    if not isinstance(v, list) or not v:
+        raise ValueError(f'"{key}" must be one {field} or a non-empty list, got {v!r}')
     out = []
-    for e in gm:
-        scene = e.get("scene") if isinstance(e, dict) else None
-        if not isinstance(scene, int) or not 1 <= scene <= 128:
-            raise ValueError(f'gm800 entry {e!r}: "scene" must be 1..128')
+    for e in v:
+        try:
+            pc = d["pc"](e.get(field) if isinstance(e, dict) else None)
+        except ValueError as x:
+            raise ValueError(f"{key} entry {e!r}: {x}") from None
         if "abs_sec" not in e:
-            raise ValueError(f"gm800 entry {e!r} has no abs_sec — run jamzone_render.py --check")
-        out.append((float(e["abs_sec"]), scene))
+            raise ValueError(f"{key} entry {e!r} has no abs_sec — run jamzone_render.py --check")
+        out.append((float(e["abs_sec"]), pc, e[field]))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
-        raise ValueError("gm800 entries are not in time order")
+        raise ValueError(f"{key} entries are not in time order")
     return out
 
 
@@ -227,21 +277,25 @@ def mmss(sec):
     return f"{m:02d}:{rem / 1000:06.3f}"
 
 
-def gm800_block(changes, channel=GM_CHANNEL):
-    """[(sec, scene)] -> Stage Traxx tags. Scene N = PC N-1 (Stage Traxx sends the raw number,
-    the GM-800 shows it +1). The start scene goes out on load AND at 00:00 (the load tag doesn't
-    fire again when the song is replayed without reloading); a change to the scene already
-    active is dropped (re-selecting the same scene mid-song would only risk a glitch)."""
+def device_block(changes, channel, lead=0.0):
+    """[(sec, pc, label)] -> Stage Traxx tags. The start program goes out on load AND at 00:00
+    (the load tag doesn't fire again when the song is replayed without reloading); every later
+    change at sec - lead (POD Go: early, so the new preset is up on the bar); a change to the
+    program already active is dropped (re-selecting it mid-song would only risk a glitch)."""
     if not changes:
         return []
-    start = changes[0][1]
-    lines = [f"[midi: PC{start - 1}@{channel}]", f"[midi@00:00.000: PC{start - 1}@{channel}]"]
-    cur = start
-    for sec, scene in changes[1:]:
-        if scene != cur:
-            lines.append(f"[midi@{mmss(sec)}: PC{scene - 1}@{channel}]")
-            cur = scene
+    cur = changes[0][1]
+    lines = [f"[midi: PC{cur}@{channel}]", f"[midi@00:00.000: PC{cur}@{channel}]"]
+    for sec, pc, _label in changes[1:]:
+        if pc != cur:
+            lines.append(f"[midi@{mmss(max(0.0, sec - lead))}: PC{pc}@{channel}]")
+            cur = pc
     return lines
+
+
+def devices_block(devices, channels):
+    return [ln for key, d in DEVICES.items()
+            for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"])]
 
 
 def merge_lyrics(old, block):
@@ -300,14 +354,11 @@ def plan(sets, clips, song_filters, set_filter):
                 continue
             members.append(sid)
             if sid not in songs:
-                try:
-                    gm, gm_err = song_gm800(sid), None
-                except ValueError as e:
-                    gm, gm_err = None, str(e)
+                devices, dev_err = song_devices(sid)
                 songs[sid] = {
                     "sid": sid, "title": s.get("title") or sid, "artist": s.get("artist") or "",
                     "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
-                    "gm800": gm, "gm800_err": gm_err,
+                    "devices": devices, "dev_err": dev_err,
                 }
         if members:
             playlists.append((PL_PREFIX + name, members))
@@ -329,7 +380,7 @@ def backup(db):
     return dst
 
 
-def upsert_song(c, info, docs, channel, gm_channel=GM_CHANNEL):
+def upsert_song(c, info, docs, channel, dev_channels=None):
     folder = safe_dir(info["sid"])
     dest = os.path.join(docs, folder)
     os.makedirs(dest, exist_ok=True)
@@ -343,7 +394,7 @@ def upsert_song(c, info, docs, channel, gm_channel=GM_CHANNEL):
     dur = wav_duration(os.path.join(dest, "1_Click.wav"))
     t = now()
     mark = MARK + info["sid"]
-    block = midi_block(info["clip"], channel) + gm800_block(info.get("gm800"), gm_channel)
+    block = midi_block(info["clip"], channel) + devices_block(info.get("devices") or {}, dev_channels or {})
     row = c.execute("SELECT id, lyrics FROM song WHERE notes=?", (mark,)).fetchone()
     if row:
         sid = row[0]
@@ -401,6 +452,8 @@ def main():
     ap.add_argument("--channel", type=int, default=1, help="MIDI channel of the PC (default 1)")
     ap.add_argument("--gm-channel", type=int, default=GM_CHANNEL,
                     help=f"GM-800 Scene Rx Channel (default {GM_CHANNEL})")
+    ap.add_argument("--podgo-channel", type=int, default=PODGO_CHANNEL,
+                    help=f"POD Go MIDI Base Channel (default {PODGO_CHANNEL})")
     ap.add_argument("--db", default=DB, help=argparse.SUPPRESS)      # tests: point at a copy
     ap.add_argument("--docs", default=DOCS, help=argparse.SUPPRESS)
     a = ap.parse_args()
@@ -414,18 +467,19 @@ def main():
         stems = " ".join(nm for _s, _f, nm, *_ in info["stems"]).replace("PB ", "pb-")
         clip = f"PC{info['clip']:<3}" if info["clip"] is not None else "no-clip"
         gm = ""
-        if info["gm800"]:
-            gm = "  GM " + " → ".join(f"{sc}@{mmss(t)[:-4]}" if i else str(sc)
-                                     for i, (t, sc) in enumerate(info["gm800"]))
+        for key, ch in info["devices"].items():
+            gm += f"  {DEVICES[key]['name']} " + " → ".join(
+                f"{lb}@{mmss(max(0.0, t - DEVICES[key]['lead']))[:-4]}" if i else str(lb)
+                for i, (t, _pc, lb) in enumerate(ch))
         nreg = len(cue_regions(song_cues(info["sid"]),
                                wav_duration(os.path.join(info["render"], "click.wav"))))
         print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]"
               f"  reg {nreg}{gm}")
-        if info["gm800_err"]:
-            print(f"     ! GM-800 tags skipped: {info['gm800_err']}")
-    bad = [i["title"] for i in songs.values() if i["gm800_err"]]
+        for key, e in info["dev_err"].items():
+            print(f"     ! {DEVICES[key]['name']} tags skipped: {e}")
+    bad = [f"{i['title']} ({'/'.join(i['dev_err'])})" for i in songs.values() if i["dev_err"]]
     if bad and a.apply:
-        sys.exit(f"fix mix.json \"gm800\" first: {', '.join(bad)}")
+        sys.exit(f"fix mix.json first: {', '.join(bad)}")
     noclip = [i["title"] for i in songs.values() if i["clip"] is None]
     print(f"\n{len(songs)} songs, {len(playlists)} playlists"
           + (" (playlists untouched: song filter)" if partial else ""))
@@ -454,7 +508,8 @@ def main():
     ids, conv, new = {}, 0, 0
     try:
         for info in songs.values():
-            sid, n, existed = upsert_song(c, info, a.docs, a.channel, a.gm_channel)
+            sid, n, existed = upsert_song(c, info, a.docs, a.channel,
+                                          {"gm800": a.gm_channel, "podgo": a.podgo_channel})
             ids[info["sid"]] = sid
             conv += n
             new += not existed

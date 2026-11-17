@@ -198,4 +198,6 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 
 **Сцены GM-800 (гитарный синт Alex)** переключает Stage Traxx. Источник — ключ `"gm800"` в mix.json песни: `1` = вся песня на MUTE, либо список `{"bar", "beat"?, "scene"}`. Рендер (или `--check`) вписывает `abs_sec`, `stagetraxx_sync` пишет теги `PC<сцена−1>@2`. Раскладка слотов и процесс: `wiki/pipelines/gm-800.md`.
 
+**Пресеты POD Go (гитарный процессор Alex, USB-MIDI)** — так же, ключ `"podgo"`: `"02A"` = вся песня на одном пресете, либо список `{"bar", "beat"?, "preset": "03C"}`. Рендер вписывает `abs_sec` (сам такт), `stagetraxx_sync` пишет `PC<(банк−1)·4+A..D>@3`, смены — **за 200 мс до такта** (`PODGO_LEAD`). POD Go на канале 3: на канале 1 его дёргают PC launcher'а. Процесс: `wiki/pipelines/pod-go.md`.
+
 Не рапортовать «в риге», пока не сделан шаг 2 с `--apply`. Старая MainStage-процедура (sync_to_mainstage, Playback-патчи, Sync Off) — в git-истории этого файла и в `wiki/log.md` до 2026-11-16.

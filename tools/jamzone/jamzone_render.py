@@ -46,11 +46,13 @@ Grid PHASE (first downbeat) = first metronome onset (first click = downbeat).
 User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 
 Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
-       --check = analyze + verify, no audio (still refreshes abs_sec of cues + "gm800" in mix.json)
+       --check = analyze + verify, no audio (still refreshes abs_sec of cues + "gm800"/"podgo" in mix.json)
        --bpm N = force tempo (external songs; overrides measured)
    mix.json "gm800": [{"bar": N, "beat"?: B, "scene": S}, ...] (one entry per line) = BOSS GM-800
-       scene changes; every render/--check writes their render-time "abs_sec", which
-       tools/stagetraxx_sync.py turns into Stage Traxx MIDI tags (wiki/pipelines/gm-800.md).
+       scene changes; "podgo": [{"bar": N, "beat"?: B, "preset": "02A"}, ...] = Line 6 POD Go
+       preset changes. Every render/--check writes their render-time "abs_sec" (the bar itself),
+       which tools/stagetraxx_sync.py turns into Stage Traxx MIDI tags (wiki/pipelines/gm-800.md,
+       wiki/pipelines/pod-go.md).
    position converter (writes nothing; pick where to add a cue without bar-grid guessing):
        --map           list every cue in mix.json bar / render sec / Logic-ruler bar.beat
        --sections      list all JamZone sections mapped to mix.json bar, render sec & Logic ruler
@@ -1011,13 +1013,17 @@ def write_cue_abs_times(mix_path, times, snaps=None):
     is_cue = lambda ln: re.search(r'"bar"\s*:', ln) and '"text"' in ln
     return _write_abs_lines(mix_path, is_cue, times, snaps, "cue")
 
-def write_gm800_abs_times(mix_path, times):
-    """Same in-place refresh of "abs_sec" for the "gm800" scene-change list (BOSS GM-800 scene
-    switched by Stage Traxx MIDI tags, see wiki/pipelines/gm-800.md). Entry lines are matched by
-    carrying both "bar" and "scene" (and no "text", so they never count as cues)."""
-    is_ev = lambda ln: (re.search(r'"bar"\s*:', ln) and re.search(r'"scene"\s*:', ln)
+# Hardware switched by Stage Traxx MIDI tags: mix.json key -> the field its entries carry
+# (BOSS GM-800 scenes, wiki/pipelines/gm-800.md; Line 6 POD Go presets, wiki/pipelines/pod-go.md).
+MIDI_DEVICES = (("gm800", "scene"), ("podgo", "preset"))
+
+def write_device_abs_times(mix_path, key, field, times):
+    """Same in-place refresh of "abs_sec" for a device change list ("gm800" scenes, "podgo"
+    presets). Entry lines are matched by carrying both "bar" and the device's own field (and no
+    "text", so they never count as cues or as the other device's entries)."""
+    is_ev = lambda ln: (re.search(r'"bar"\s*:', ln) and re.search(rf'"{field}"\s*:', ln)
                         and '"text"' not in ln)
-    return _write_abs_lines(mix_path, is_ev, times, None, "gm800")
+    return _write_abs_lines(mix_path, is_ev, times, None, key)
 
 def _write_abs_lines(mix_path, is_line, times, snaps, what):
     src = open(mix_path, encoding="utf-8").read()
@@ -1849,11 +1855,12 @@ def main():
                  for c in mix["cues"]]
         warn = write_cue_abs_times(mix_p, [t for *_, t in crep], snaps)
         print(warn if warn else f"✓ abs_sec+snap: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")
-    gm = mix.get("gm800")
-    if isinstance(gm, list) and gm:                 # GM-800 scene changes: same bar->render-sec map as
-        warn = write_gm800_abs_times(mix_p, [cue_event_time(e, cue_base, relt) for e in gm])  # cues;
-        print(warn if warn else f"✓ gm800: {len(gm)} scene changes timed (abs_sec) in mix.json")  # read by
-    if "--check" in sys.argv:                                                     # stagetraxx_sync.py
+    for key, field in MIDI_DEVICES:                 # GM-800 scenes / POD Go presets: same bar->render-sec
+        ev = mix.get(key)                           # map as cues; read by stagetraxx_sync.py
+        if isinstance(ev, list) and ev:
+            warn = write_device_abs_times(mix_p, key, field, [cue_event_time(e, cue_base, relt) for e in ev])
+            print(warn if warn else f"✓ {key}: {len(ev)} {field} changes timed (abs_sec) in mix.json")
+    if "--check" in sys.argv:
         print("✓ --check: grid green, mix.json abs_sec+snap updated, no audio written"); return
 
     adir = os.path.join(folder, "auto-render")
