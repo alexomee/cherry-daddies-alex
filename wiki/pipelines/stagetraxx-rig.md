@@ -56,3 +56,10 @@ Stage Traxx шлёт во все MIDI-порты, виртуальный `LyricL
 ## Формат библиотеки (реверс)
 
 `~/Library/Containers/de.dikant.StageTraxx4/Data/`: `Library/Application Support/StageTraxx4/music_library.sqlite` (GRDB; `song`, `track`, `region`, `playlist`, `playlistSong`) + аудио в `Documents/<папка>/`. id — 16-байтные UUID-блобы; `track.filePath` относителен `Documents`; `track.volume` в dB; `track.bus` 0..15, `pan` −1..+1. iCloud-синк выключен (`syncMetadata` пустая). Ранние скрипты того же формата: `tools/jamzone/stagetraxx_render.py`, `jamzone_stagetraxx.py`.
+
+## Очередь и клавиши (Stage Traxx 4.0.15, 2026-11-17)
+
+- **Automatic Queue Handling** (Settings → Audio → Playback Settings → Queue) должен быть включён (`playback_autoQueueHandling = 1`). Если выключен, тап по песне её не загружает, а двойной тап только ставит в очередь («Added to queue»).
+- **Назначения клавиш/MIDI** хранятся не в базе, а в настройках: `~/Library/Containers/de.dikant.StageTraxx4/Data/Library/Preferences/de.dikant.StageTraxx4.plist`, ключ `remote_triggerMappings` = JSON (Data): `[{"isEnabled":true,"action":"startStop","id":"<UUID>","trigger":{"keyboard":{"key":44}}}]`. `key` — HID usage code (пробел 44, Return 40, → 79, ← 80, ↓ 81, ↑ 82). В iCloud не синкаются. Писать при закрытом Stage Traxx через `defaults write … -data <hex>`.
+- Сейчас назначено: пробел = `startStop`, → = `nextSong`, ↑/↓ = `selectionUp`/`selectionDown`, Return = `triggerSelection`. Действия «предыдущая песня» в 4.0.15 нет: очередь идёт только вперёд, назад — через ↑ + Return.
+- Список action raw values (4.0.15) лежит в бинарнике рядом со `startStop`: `startPlayback`, `stopPlayback`, `nextSong`, `rewind`, `jumpToNextRegion`, `cycleRegionForward/Backward`, `toggleQueueAutoplay`, `toggleMuteGroup1..6`, `midiAction1..16` и др. В 4.0.15 пункт «Remote Control» в меню ⋯ отсутствует (он есть в мануале 4.1).

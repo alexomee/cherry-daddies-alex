@@ -1723,3 +1723,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - Сайт играет миксы через Web Audio, а iPhone глушит его при блокировке экрана. Новая кнопка «▶ pb audition» в строке плеера играет один mp3 через обычный `<audio>` (нижняя панель, Media Session: кнопки на экране блокировки, ±10 с; `navigator.audioSession = playback`). Обычный ▶ ставит её на паузу и наоборот.
 - Микс `auto-render/pb-audition.mp3` (`tools/pb_audition.py`): pb-other + pb-bass в 0 дБ, клик −3, кью −3, ведущий вокал (`stems/vocal.mp3`) −3. Если сумма клипует, весь микс опускается целиком. Только песни сетов 28.10 Music Hall и «new songs» (32 песни); у остальных файл удаляется. `jamzone_render.py` пересобирает его после каждого рендера; `setlist_dashboard.py` → `audition` + `versions["pb-audition"]`; `sync_site.py` льёт в R2; `web/dev.mjs` отдаёт локально.
+
+## [2026-11-17] rig | Stage Traxx: очередь и клавиши
+
+1. Тап по песне ставил её в очередь: был выключен Automatic Queue Handling. Alex включил.
+2. Разобран формат `remote_triggerMappings` (prefs, JSON, HID-коды) по образцу, который Alex назначил через Learn. Дописаны → `nextSong`, ↑/↓ выбор, Return загрузить. Пробел = `startStop`. Бэкап prefs: `de.dikant.StageTraxx4.plist.bak-20261117-211815`. Детали: `wiki/pipelines/stagetraxx-rig.md` → «Очередь и клавиши».
