@@ -46,6 +46,12 @@ Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on 
     preset 02A = PC4 (bank-1)*4 + A..D (verified). Same tags as the GM-800, but every change
     goes out PODGO_LEAD (200 ms) BEFORE the marked bar so the new preset is already up on it.
 
+Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
+localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
+the lyrics area. The sync owns that text: edit notes on the board, not in Stage Traxx (text
+typed there is replaced on the next sync; dry-run flags it). No dashboard DB -> the songs'
+existing text is kept.
+
 Regions (Stage Traxx song sections: double-tap = seek, "Jump to Next Region") are generated
 from the mix.json cues: one per cue, named '<bar> · <cue text>', starting at the cue's snap_sec
 (1 bar before its first spoken word) so a jump replays the cue, then the section. The sync owns
@@ -298,12 +304,53 @@ def devices_block(devices, channels):
             for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"])]
 
 
-def merge_lyrics(old, block):
-    """Our MIDI tags first, then whatever non-MIDI text the song already had."""
-    keep = [l for l in (old or "").splitlines() if not l.strip().lower().startswith("[midi")]
+def lyrics_text(lyrics):
+    """The non-MIDI text of a lyrics field (what Stage Traxx shows), leading blank lines dropped."""
+    keep = [l for l in (lyrics or "").splitlines() if not l.strip().lower().startswith("[midi")]
     while keep and not keep[0].strip():
         keep.pop(0)
-    return "\n".join(block + ([""] + keep if keep else []))
+    return "\n".join(keep).rstrip()
+
+
+def merge_lyrics(old, block, note=None):
+    """Our MIDI tags first, then the dashboard note; note=None (no dashboard DB) keeps whatever
+    non-MIDI text the song already had."""
+    text = lyrics_text(old) if note is None else note
+    return "\n".join(block + (["", text] if text else []))
+
+
+DASH_DB = os.path.join(REPO, "web", "data", "dashboard.db")
+
+
+def clean_note(text):
+    """Stage-sheet cleanup: trimmed lines, blank lines and consecutive duplicates dropped."""
+    out = []
+    for ln in (text or "").splitlines():
+        ln = ln.strip()
+        if ln and (not out or ln != out[-1]) and not ln.lower().startswith("[midi"):
+            out.append(ln)
+    return "\n".join(out)
+
+
+def load_web_notes(path=DASH_DB):
+    """Dashboard notes -> {sid: text}, or None when the DB is missing/unreadable. A stray
+    'NOFOLDER:<sid>' record (song added on the board before its folder existed) is merged in."""
+    try:
+        con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+        try:
+            raw = con.execute("SELECT data FROM app_state").fetchone()[0]
+        finally:
+            con.close()
+        recs = json.loads(raw).get("songs") or {}
+    except (sqlite3.Error, TypeError, ValueError):
+        return None
+    out = {}
+    for key, rec in recs.items():
+        sid = key[len("NOFOLDER:"):] if key.startswith("NOFOLDER:") else key
+        note = clean_note((rec or {}).get("notes"))
+        if note and note not in out.get(sid, ""):
+            out[sid] = clean_note(out[sid] + "\n" + note) if sid in out else note
+    return out
 
 
 def safe_dir(sid):
@@ -331,8 +378,8 @@ def live_bass(sid):
     return any("живой бас" in (l if isinstance(l, str) else l.get("file", "")) for l in layers)
 
 
-def plan(sets, clips, song_filters, set_filter):
-    """-> (songs {sid: info}, playlists [(name, [sid...])])"""
+def plan(sets, clips, song_filters, set_filter, notes=None):
+    """-> (songs {sid: info}, playlists [(name, [sid...])]). notes = load_web_notes() result."""
     songs, playlists = {}, []
     for st in sets:
         name = st["name"] + (f" · {st['subtitle']}" if st.get("subtitle") else "")
@@ -359,10 +406,25 @@ def plan(sets, clips, song_filters, set_filter):
                     "sid": sid, "title": s.get("title") or sid, "artist": s.get("artist") or "",
                     "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
                     "devices": devices, "dev_err": dev_err,
+                    "note": None if notes is None else notes.get(sid, ""),
                 }
         if members:
             playlists.append((PL_PREFIX + name, members))
     return songs, playlists
+
+
+def current_texts(db):
+    """{sid: shown text} of the synced songs now in the library (read-only; {} if unreadable)."""
+    try:
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        try:
+            rows = con.execute("SELECT notes, lyrics FROM song WHERE notes LIKE ?",
+                               (MARK + "%",)).fetchall()
+        finally:
+            con.close()
+    except sqlite3.Error:
+        return {}
+    return {n[len(MARK):]: lyrics_text(l) for n, l in rows}
 
 
 def app_running():
@@ -401,7 +463,7 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
         c.execute("""UPDATE song SET title=?, artist=?, duration=?, bpm=?, endTime=?, lyrics=?,
                      metronomeMode=0, lastModified=? WHERE id=?""",
                   (info["title"], info["artist"], dur, info["bpm"], dur,
-                   merge_lyrics(row[1], block), t, sid))
+                   merge_lyrics(row[1], block, info.get("note")), t, sid))
         c.execute("DELETE FROM track WHERE songID=?", (sid,))
     else:
         sid = uuid.uuid4().bytes
@@ -412,7 +474,7 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                   (sid, info["title"], info["artist"], t, dur, info["bpm"], None, mark, 3, 0.0,
                    1.0, 0, 0, 0, 0, 0.0, 0.0, 0.0, dur, 32,
-                   merge_lyrics("", block), None, 0, 2, 0, None, t,
+                   merge_lyrics("", block, info.get("note")), None, 0, 2, 0, None, t,
                    0.0, None, None, 1.2, None, None, None))
     write_regions(c, sid, cue_regions(song_cues(info["sid"]), dur), t)
     for n, (_stem, fn, nm, bus, pan) in enumerate(info["stems"], 1):
@@ -458,7 +520,11 @@ def main():
     ap.add_argument("--docs", default=DOCS, help=argparse.SUPPRESS)
     a = ap.parse_args()
 
-    songs, playlists = plan(load_setlist(), load_clips(), a.songs, a.set_filter)
+    notes = load_web_notes()
+    if notes is None:
+        print(f"  ! no dashboard notes ({DASH_DB}) — songs keep their current text")
+    songs, playlists = plan(load_setlist(), load_clips(), a.songs, a.set_filter, notes)
+    shown = current_texts(a.db)
     if not songs:
         sys.exit("nothing matched")
     partial = bool(a.songs)       # a song filter never rewrites playlists (they'd shrink)
@@ -473,8 +539,12 @@ def main():
                 for i, (t, _pc, lb) in enumerate(ch))
         nreg = len(cue_regions(song_cues(info["sid"]),
                                wav_duration(os.path.join(info["render"], "click.wav"))))
+        nt = f"  notes {len(info['note'].splitlines())}" if info["note"] else ""
         print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]"
-              f"  reg {nreg}{gm}")
+              f"  reg {nreg}{gm}{nt}")
+        old = shown.get(info["sid"])
+        if info["note"] is not None and old and old != info["note"]:
+            print("     ~ text in Stage Traxx differs from the board note -> replaced")
         for key, e in info["dev_err"].items():
             print(f"     ! {DEVICES[key]['name']} tags skipped: {e}")
     bad = [f"{i['title']} ({'/'.join(i['dev_err'])})" for i in songs.values() if i["dev_err"]]
