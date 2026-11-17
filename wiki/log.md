@@ -1728,3 +1728,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 1. Тап по песне ставил её в очередь: был выключен Automatic Queue Handling. Alex включил.
 2. Разобран формат `remote_triggerMappings` (prefs, JSON, HID-коды) по образцу, который Alex назначил через Learn. Дописаны → `nextSong`, ↑/↓ выбор, Return загрузить. Пробел = `startStop`. Бэкап prefs: `de.dikant.StageTraxx4.plist.bak-20261117-211815`. Детали: `wiki/pipelines/stagetraxx-rig.md` → «Очередь и клавиши».
+
+## [2026-11-17] gear | POD Go по MIDI из Stage Traxx
+
+1. POD Go подключён по USB, в macOS виден как MIDI-порт `POD Go`.
+2. Тест: PC4 на канале 1 → POD Go переключился на 02A. Нумерация PC n = банк n//4+1, буква n%4.
+3. Найден конфликт: теги launcher `PC<клип>@1` в 57 песнях будут дёргать POD Go на канале 1. Решение — MIDI Base Channel = 3 на приборе. Страница: `wiki/pipelines/pod-go.md`.
