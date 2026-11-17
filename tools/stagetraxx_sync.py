@@ -34,6 +34,11 @@ BOSS GM-800 scenes (wiki/pipelines/gm-800.md) come from mix.json "gm800", on cha
     [midi@00:31.304: PC7@2]     each change -> at its render second
 No "gm800" key -> no GM-800 tags (the unit keeps whatever scene it is on).
 
+Regions (Stage Traxx song sections: double-tap = seek, "Jump to Next Region") are generated
+from the mix.json cues: one per cue, named '<bar> · <cue text>', starting at the cue's snap_sec
+(1 bar before its first spoken word) so a jump replays the cue, then the section. The sync owns
+the regions of its songs: hand-made regions of a synced song are replaced.
+
 Songs this tool owns are tagged in song.notes (`cd-sync:<folder>`) and updated in
 place; anything else in the library (hand-made songs, old imports) is left alone.
 One playlist per set of web/songs.json, named `CD · <set>`.
@@ -145,6 +150,54 @@ def parse_gm800(gm):
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError("gm800 entries are not in time order")
     return out
+
+
+REGION_COLORS = (6, 10)        # alternate, so neighbouring sections are told apart
+REGION_NEXT = 0                # RegionPlaybackMode: next(0) loop loopOnce stop skip — plain playback
+
+
+def song_cues(sid):
+    try:
+        with open(os.path.join(SONGS, sid, "mix.json"), encoding="utf-8") as f:
+            return json.load(f).get("cues") or []
+    except (OSError, ValueError):
+        return []
+
+
+def cue_regions(cues, duration):
+    """mix.json cues -> Stage Traxx regions [(name, start, end)]. A region starts at the cue's
+    snap_sec (1 bar before its first spoken word — the web player's seek point), so jumping to it
+    replays the whole spoken cue and then the section; abs_sec when there is no snap. Name =
+    '<bar>[.<beat>] · <cue text>'. Regions tile the song: each ends where the next starts, the last
+    at the song end; time before the first one becomes 'count-in'. Cues without abs_sec (not
+    rendered yet) and starts that don't move forward are skipped."""
+    pts = []
+    for c in cues:
+        if "abs_sec" not in c:
+            continue
+        start = float(c.get("snap_sec", c["abs_sec"]))
+        if pts and start <= pts[-1][1]:
+            start = float(c["abs_sec"])
+            if start <= pts[-1][1]:
+                continue
+        beat = c.get("beat", 1)
+        pos = f"{c['bar']}" + ("" if str(beat) in ("1", "1.0") else f".{beat}")
+        pts.append((f"{pos} · {c['text']}"[:64], start))
+    if not pts or pts[0][1] >= duration:
+        return []
+    if pts[0][1] > 1.0:
+        pts.insert(0, ("count-in", 0.0))
+    ends = [p[1] for p in pts[1:]] + [duration]
+    return [(n, s, e) for (n, s), e in zip(pts, ends) if e > s]
+
+
+def write_regions(c, song_id, regions, t):
+    c.execute("DELETE FROM region WHERE songID=?", (song_id,))
+    for i, (name, start, end) in enumerate(regions):
+        c.execute("""INSERT INTO region (id,songID,name,startTime,endTime,color,playbackMode,
+          lastModified) VALUES (?,?,?,?,?,?,?,?)""",
+                  (uuid.uuid4().bytes, song_id, name, start, end,
+                   REGION_COLORS[i % len(REGION_COLORS)], REGION_NEXT, t))
 
 
 def mmss(sec):
@@ -278,6 +331,7 @@ def upsert_song(c, info, docs, channel, gm_channel=GM_CHANNEL):
                    1.0, 0, 0, 0, 0, 0.0, 0.0, 0.0, dur, 32,
                    merge_lyrics("", block), None, 0, 2, 0, None, t,
                    0.0, None, None, 1.2, None, None, None))
+    write_regions(c, sid, cue_regions(song_cues(info["sid"]), dur), t)
     for n, (_stem, fn, nm, bus, pan) in enumerate(info["stems"], 1):
         c.execute("""INSERT INTO track (id,songID,filePath,duration,volume,pan,mute,bus,number,
           hasMarkers,equalizer,lastModified,name,color,transpose,muteGroupMask)
@@ -331,7 +385,10 @@ def main():
         if info["gm800"]:
             gm = "  GM " + " → ".join(f"{sc}@{mmss(t)[:-4]}" if i else str(sc)
                                      for i, (t, sc) in enumerate(info["gm800"]))
-        print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]{gm}")
+        nreg = len(cue_regions(song_cues(info["sid"]),
+                               wav_duration(os.path.join(info["render"], "click.wav"))))
+        print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]"
+              f"  reg {nreg}{gm}")
         if info["gm800_err"]:
             print(f"     ! GM-800 tags skipped: {info['gm800_err']}")
     bad = [i["title"] for i in songs.values() if i["gm800_err"]]
