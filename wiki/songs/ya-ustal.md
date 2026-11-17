@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-11-17
 title: Я устал
 artist: Quest Pistols
 set: СЕТ 2 #4
@@ -66,3 +66,8 @@ Players / practice-миксы (`auto-render/practice-<player>.mp3`, все пр�
 - **Аутро-тайминг лирики (2:29–2:52)** ждёт слуха Тани — участок, где whisper зацикливается на галлюцинациях; слова/порядок верны, тайминг может требовать подвижки (память `todo-15-ya-ustal-lyrics`).
 - В папке лежат служебные каталоги `aligned/`, `break-fix-backup/`, `old-cue-render/`, `auto-render/untitled folder` — артефакты итераций, не вычищены.
 - `bass.mp3` и `metronome.mp3` датированы 13 июня, тогда как остальные стемы — 20 июня (break-fix). Похоже, при вставке 2 долей `bass`/`metronome` не переобрабатывались (bass заменён на live-bass) — проверить, что это осознанно, а не рассинхрон стемов.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы (`08`, Set 2 №4) рядом с backing-vocal и other-breakdown, в `all` заменяют Moises keys/other; `gain_db −8.1` (как в A/B, под громкость стемов); сдвиг −27.8 мс (задержка ноутбука). Брейкдаун 56–72 Рома не играл — там слой other-breakdown.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "roma-keys-2810"` (wav не в git). В Stage Traxx 2026-11-17.

@@ -70,7 +70,7 @@ with tempfile.TemporaryDirectory() as td:
     os.makedirs(os.path.dirname(out), exist_ok=True)
     lim_db = float(sys.argv[sys.argv.index("--limit-db") + 1]) if "--limit-db" in sys.argv else -1.0   # peak ceiling IN THE FILE
     lim = 10**(lim_db/20)            # (with gain_db G in mix.json pass --limit-db -1-G so the group never clips)
-    af = ["-af", f"alimiter=limit={lim:.4f}:attack=3:release=60:level=0"] if declip or np.abs(buf).max() > min(0.99, lim) else []
+    af = ["-af", f"alimiter=limit={lim:.4f}:attack=3:release=60:level=0:latency=1"] if declip or np.abs(buf).max() > min(0.99, lim) else []
     if af:
         over = int((np.abs(buf).max(1) > lim).sum()); print(f"  limiter {lim_db:+.1f} dBFS: {over} samples above ({over/SR*1000:.0f} ms total), peak {20*np.log10(np.abs(buf).max()):+.1f} dBFS")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-"] + af + ["-c:a", "pcm_s24le", out],

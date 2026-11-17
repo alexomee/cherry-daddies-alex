@@ -31,3 +31,8 @@ SHA256: `95220a9f10812855e9a3ff2c672638f8fb60280f1d1d9713761d6416b5c7b7fa`.
 Предыдущие mix, pb-other WAV/MP3 и timeline: `../versions/2026-10-01-before-custom-pb-other/`. При этой поставке обновлены именно pb-other и его прослушка; all/practice и альтернативный pb-other-keys не пересобирались.
 
 Риг: `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Кукла колдуна/pb-other.wav`, побайтно совпадает с canonical auto-render. Коммит `be489c2a`.
+
+## живой бас.wav — 2026-11-17
+
+Концертная партия Ромы с мультитрека 28.10 Music Hall (`tools/concert-2810/make_layer.py`), render-frame: t=0 = рендер t=0, длина = рендер. Без громкости (gain в mix.json). **живой бас** Ромы (`07`, Set 2 №9) вместо Moises `bass` (`replaces`), `gain_db +15.5` → pb-bass −19.2 LUFS; сдвиг −16.5 мс (под ощущение стема). Та же партия (ноты 0.93), ровнее стема. В Stage Traxx дорожка «PB Bass · живой бас».
+Разбор: `wiki/gigs/2026-10-28-multitrack.md`. При смене cue/OFF пересобрать тем же скриптом.

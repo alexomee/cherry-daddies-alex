@@ -61,5 +61,5 @@ Alex явно выбрал **обрезать после удара**, а не �
 
 ## Концертный слой Ромы (2026-11-17)
 
-- **pb-bass** ← `parts/roma-bass-2810.wav` (render-frame): живой бас Ромы (`07 Bass Guitar`, Set 1 №5), заменяет Moises `bass` (`replaces`), `gain_db +14.2` → pb-bass −19.2 LUFS; сдвиг +22.3 мс (под ощущение стема). По цифрам стем ровнее (разброс 11 против 20 мс) — Alex выбрал живой бас.
-- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" roma-bass-2810` (wav не в git). В Stage Traxx 2026-11-17.
+- **pb-bass** ← `parts/живой бас.wav` (render-frame): живой бас Ромы (`07 Bass Guitar`, Set 1 №5), заменяет Moises `bass` (`replaces`), `gain_db +14.2` → pb-bass −19.2 LUFS; сдвиг +22.3 мс (под ощущение стема). По цифрам стем ровнее (разброс 11 против 20 мс) — Alex выбрал живой бас.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" живой бас` (wav не в git). В Stage Traxx 2026-11-17.

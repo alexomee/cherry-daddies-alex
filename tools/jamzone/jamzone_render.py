@@ -1893,7 +1893,7 @@ def main():
         ("back_vox", r"back(ing)?.?vocals?|back.?vox"),
         ("vocal",    r"lead.?vocal|^vocals?$"),
         ("drums",    r"drum"),
-        ("bass",     r"bass"),
+        ("bass",     r"bass|бас"),
         ("guitars",  r"guitar"),
         ("keys",     r"keys|piano|organ|synth|clav|rhodes|accord|vibe"),
     ]

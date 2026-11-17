@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-26
+updated: 2026-11-17
 title: Такая любовь
 artist: 
 set: tryout batch 2026-07
@@ -49,3 +49,8 @@ Tryout-батч 2026-07. Страница заведена 2026-09-02 при ф�
 ## Риг (MainStage)
 
 Папка сетлиста: `/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Такая любовь/` (click/cues/pb-bass/pb-drums/pb-other/pb-other-keys). Синк 2026-09-02: `pb-bass.wav` (риг-коммит `75b7a5fc`). Синк 2026-10-11: обновление `pb-other.wav`, `pb-other-keys.wav` (бэк-вокал убран), а также свежих `cues.wav` и `pb-bass.wav`.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы **с биса** (`08`, Set 2 №16) **поверх** его записанного слоя `takaia_lubov_keys` (Alex: на концерте он играл под этот плейбек — оставляем слой и добавляем живое), без `replaces`; `gain_db −1.8` (громкость слоя); сдвиг −7.8 мс. Концерт ярче слоя (2–6 кГц +11…+36 дБ) — живые звуки, которых в слое нет; такты 1–3 только в концерте.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "roma-keys-2810"` (wav не в git). В Stage Traxx 2026-11-17.

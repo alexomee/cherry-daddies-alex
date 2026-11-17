@@ -4,13 +4,14 @@
   "pitch_semitones": 0,
   "pb-other": {
     "layers": [
-      {"file": "solnce-sfx", "frame": "render"}
+      {"file": "solnce-sfx", "frame": "render"},
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys"], "gain_db": -8.1}
     ],
-    "roles": {"solnce-sfx": "fx"}
+    "roles": {"solnce-sfx": "fx", "roma-keys-2810": "musical"}
   },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 6.0}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": 5.5}},
-  "players": {"alex": ["guitars"], "roma": ["keys"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Солнце all in", "abs_sec": 3.692, "snap_sec": 0.0},
     {"bar": 8,   "text": "stop", "abs_sec": 16.615, "snap_sec": 12.462},

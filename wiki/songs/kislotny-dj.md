@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-27
+updated: 2026-11-17
 title: Кислотный DJ
 artist: Акула
 set: 28.10 Music Hall SET 2 #1
@@ -55,3 +55,8 @@ set: 28.10 Music Hall SET 2 #1
 ## Риг (MainStage)
 
 Папка сетлиста: `cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Кислотный DJ/` (`click.wav`, `cues.wav`, `pb-drums.wav`, `pb-other.wav`). В патче `Akula.patch` (`28_10_2.concert` / `2000_1.concert`) новый стем `pb-other.wav` подключается в Playback-плагин вручную в MainStage.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-other** ← `parts/roma-keys-2810.wav` (render-frame): клавиши Ромы (`08`, Set 2 №12) **поверх** прежних слоёв DJ_arp и wind_part (на концерте он играл под них), в `all` заменяют Moises keys/strings/wind; `gain_db −1.3`; сдвиг +12 мс; пики прижаты до −4.7 dBFS в файле (54 мс), чтобы pb-other не нормализовался. Рома закрывал такты 10–15, 17–32, 73–81, которых нет ни в стемах, ни в слоях.
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "roma-keys-2810"` (wav не в git). В Stage Traxx 2026-11-17.

@@ -8,7 +8,7 @@
     ],
     "roles": {"guitars_on_rap": "musical"}
   },
-  "pb-bass": null,
+  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 15.7}], "roles": {"живой бас": "musical"}},
   "cues": [
     {"bar": 1, "text": "Медведица drums in", "abs_sec": 3.692, "snap_sec": 0.0},
     {"bar": 3, "text": "all in", "abs_sec": 7.385, "snap_sec": 3.692},

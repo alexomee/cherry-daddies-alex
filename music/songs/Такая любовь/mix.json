@@ -7,9 +7,10 @@
     "layers": [
       {"file": "sfx-pb", "frame": "render"},
       {"file": "acoustic-guitar-solo", "frame": "render", "gain_db": -3.5},
-      {"file": "takaia_lubov_keys", "frame": "render", "gain_db": -2.5}
+      {"file": "takaia_lubov_keys", "frame": "render", "gain_db": -2.5},
+      {"file": "roma-keys-2810", "frame": "render", "gain_db": -1.8}
     ],
-    "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical", "takaia_lubov_keys": "musical"},
+    "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical", "takaia_lubov_keys": "musical", "roma-keys-2810": "musical"},
     "mute": {"acoustic-guitar-solo": [[100, 138]]}
   },
   "pb-bass": {
@@ -20,7 +21,7 @@
   },
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -3.1}},
   "pb-other-keys": {"stems": ["strings", "keys"]},
-  "players": {"alex": ["guitars"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 2,
   "cues": [
     {"bar": 1,   "text": "Такая любовь synth fade-in ready go", "abs_sec": 3.556, "snap_sec": 0.0},

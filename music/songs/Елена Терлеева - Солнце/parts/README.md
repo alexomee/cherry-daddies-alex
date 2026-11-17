@@ -22,3 +22,7 @@
   }
   ```
 - Результирующий `auto-render/pb-other.wav` создан с tempo-меткой 130.0 BPM.
+
+## roma-keys-2810.wav — 2026-11-17
+
+Концертная партия Ромы (клавиши, канал `08`, Set 1 №1) с мультитрека 28.10 (`tools/concert-2810/make_layer.py`), render-frame. Без громкости (gain −8.1 в mix.json), сдвиг −9.8 мс. Разбор: `wiki/gigs/2026-10-28-multitrack.md`.

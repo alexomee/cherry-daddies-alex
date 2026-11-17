@@ -79,3 +79,8 @@ Alex сделал полный pb-other (по его описанию: бэк-в
 `auto-render/pb-other.wav` получил tempo-метку 148.6 (SHA256: `95220a9f10812855e9a3ff2c672638f8fb60280f1d1d9713761d6416b5c7b7fa`).
 Прослушка `auto-render/pb-other.mp3` пересобрана с click/cues.
 `sync_to_mainstage.sh --apply "Кукла колдуна"` обновил `pb-other.wav` в риге.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-bass** ← `parts/живой бас.wav` (render-frame): **живой бас** Ромы (`07`, Set 2 №9) вместо Moises `bass` (`replaces`), `gain_db +15.5` → pb-bass −19.2 LUFS; сдвиг −16.5 мс (под ощущение стема). Та же партия (ноты 0.93), ровнее стема. В Stage Traxx дорожка «PB Bass · живой бас».
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "живой бас"` (wav не в git). В Stage Traxx 2026-11-17.

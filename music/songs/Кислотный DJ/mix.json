@@ -5,13 +5,14 @@
   "pb-other": {
     "layers": [
       {"file": "DJ_arp", "frame": "render", "gain_db": 3.5},
-      {"file": "wind_part", "frame": "render", "gain_db": -8.0}
+      {"file": "wind_part", "frame": "render", "gain_db": -8.0},
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "strings", "wind"], "gain_db": -1.3}
     ],
-    "roles": {"DJ_arp": "musical", "wind_part": "musical"}
+    "roles": {"DJ_arp": "musical", "wind_part": "musical", "roma-keys-2810": "musical"}
   },
   "pb-bass": null,
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.5}},
-  "players": {"alex": ["guitars", "bass"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals", "bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "players": {"alex": ["guitars", "bass"], "trio": ["guitars", "drums", "vocals", "bass"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Кислотный DJ drums in", "abs_sec": 3.429, "snap_sec": 0.0},
     {"bar": 8,   "beat": 4, "text": "synth in", "abs_sec": 16.714, "snap_sec": 13.286},

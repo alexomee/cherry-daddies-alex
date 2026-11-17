@@ -8,7 +8,7 @@
   },
   "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.9}},
+  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 15.5}], "roles": {"живой бас": "musical"}},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1, "text": "Кукла колдуна strings in", "abs_sec": 3.23, "snap_sec": 0.0},

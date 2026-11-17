@@ -54,3 +54,8 @@ Tryout 2026-09. Moises стемы (B minor, 143 bpm, тональность гр
 - `all.wav`
 - `cue_preview.mp3`, `pb-drums.mp3`, `pb-other.mp3`
 - `practice-alex.mp3`, `practice-steve.mp3`, `practice-tanya.mp3` (`practice-roma.mp3` убран 2026-11-17)
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-bass** ← `parts/живой бас.wav` (render-frame): **живой бас** Ромы (`07`, Set 2 №8) вместо Moises `bass` (питч −2 больше не нужен — концерт уже в тональности группы), `gain_db +13.5` → −19.2 LUFS; сдвиг +30 мс. В Stage Traxx «PB Bass · живой бас».
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "живой бас"` (wav не в git). В Stage Traxx 2026-11-17.

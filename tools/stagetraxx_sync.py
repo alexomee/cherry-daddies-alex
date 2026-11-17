@@ -267,6 +267,16 @@ def downmix(src, dst):
     return True
 
 
+def live_bass(sid):
+    """True when pb-bass carries a live-played bass layer (file name contains "живой бас")."""
+    try:
+        mix = json.load(open(os.path.join(SONGS, sid, "mix.json")))
+    except (OSError, ValueError):
+        return False
+    layers = (mix.get("pb-bass") or {}).get("layers") or []
+    return any("живой бас" in (l if isinstance(l, str) else l.get("file", "")) for l in layers)
+
+
 def plan(sets, clips, song_filters, set_filter):
     """-> (songs {sid: info}, playlists [(name, [sid...])])"""
     songs, playlists = {}, []
@@ -283,6 +293,8 @@ def plan(sets, clips, song_filters, set_filter):
             render = os.path.join(SONGS, sid, "auto-render")
             stems = [(stem, fn, nm, bus, pan) for stem, fn, nm, bus, pan in ROUTING
                      if os.path.exists(os.path.join(render, stem + ".wav"))]
+            if live_bass(sid):                 # concert/live-played bass in pb-bass -> visible on stage
+                stems = [(st_, fn, nm + " · живой бас" if st_ == "pb-bass" else nm, bus, pan) for st_, fn, nm, bus, pan in stems]
             if not any(x[0] == "click" for x in stems):
                 print(f"  ! SKIP {sid}: no auto-render/click.wav")
                 continue

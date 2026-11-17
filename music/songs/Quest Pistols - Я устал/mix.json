@@ -6,11 +6,13 @@
   "pb-other": {
     "layers": [
       {"file": "backing-vocal", "frame": "render", "gain_db": 0},
-      {"file": "other-breakdown", "frame": "render", "gain_db": 0}
-    ]
+      {"file": "other-breakdown", "frame": "render", "gain_db": 0},
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -8.1}
+    ],
+    "roles": {"roma-keys-2810": "musical"}
   },
   "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
-  "players": {"roma": ["other", "keys"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
+  "players": {"steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [
     {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871, "snap_sec": 0.0},
     {"bar": 3, "text": "drums in", "abs_sec": 7.742, "snap_sec": 3.871},

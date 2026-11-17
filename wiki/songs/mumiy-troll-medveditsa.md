@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-28
+updated: 2026-11-17
 title: Медведица
 artist: Мумий Тролль
 set: 28.10 new songs
@@ -55,3 +55,8 @@ set: 28.10 new songs
 `/Users/alex/projects/cherry-daddies-2000/cherry-daddies-setlist-2026-06-16/Медведица/` — `click.wav` + `cues.wav` + `pb-other.wav` (новый стем `pb-other.wav` подключается в MainStage вручную). MAP в `sync_to_mainstage.sh` добавлен.
 
 2026-10-27 после добавления двух подсказок и слоя `guitars_on_rap` выполнен `sync_to_mainstage.sh --apply --create-missing "Медведица"`: в папку сетлиста скопированы обновлённый `cues.wav` и новый `pb-other.wav`, обновлены `click_30.wav` и `cues_41.wav` в бандлах `28_10_2.concert/Playback/`, `2000_1.concert/Playback/`, `2000_2.concert/Playback/`. 2026-10-28 после добавления 6-го cue (`stop` на `bar 98.3`) повторно синхронизированы `cues.wav` и `pb-other.wav` в сетлист и концертные бандлы (`a0e657ce`), а также доставлен обновлённый сценический клип `27.ass`/`27.mp4`.
+
+## Концертный слой Ромы (2026-11-17)
+
+- **pb-bass** ← `parts/живой бас.wav` (render-frame): **живой бас** Ромы (`07`, Set 2 №7) — до этого pb-bass не было вовсе; `gain_db +15.7` → −19.2 LUFS; на концерте песня шла в 130.7 bpm → растянуто rubberband'ом до 129.9 с сохранением тона; сдвиг +32 мс. В тактах 84–93 Рома играл свою линию. В Stage Traxx «PB Bass · живой бас».
+- Источник: мультитрек 28.10, разбор и A/B — [мультитрек 28.10](../gigs/2026-10-28-multitrack.md). Пересборка: `python3 tools/concert-2810/make_layer.py "<take>" "живой бас"` (wav не в git). В Stage Traxx 2026-11-17.
