@@ -1740,3 +1740,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 1. `jamzone_render.py`: запись `abs_sec` обобщена на оба прибора (`MIDI_DEVICES`: `gm800`/scene, `podgo`/preset).
 2. `stagetraxx_sync.py`: таблица `DEVICES`; POD Go — `PC…@3`, смены за 200 мс до такта (`PODGO_LEAD`), `--podgo-channel`. Сверка до/после: теги всех 62 песен совпали побайтно. `--check` на Солнышке — mix.json без изменений.
 3. Тесты: `test_podgo.py` + обновлён `test_gm800.py` (40 passed). Раскладки пресетов по песням ещё нет.
+
+## [2026-11-17] rig | FLOW 8: весь плейбек в USB 1/2
+
+1. Гитара (POD Go) и синт (GM-800), оба стерео, снова в стереоканалах 5/6 и 7/8 FLOW 8. Чтобы освободить 7/8, в Stage Traxx (prefs `audio_busDeviceSettings`) шины 2–4 для FLOW 8 переведены с USB 3/4 на USB 1/2. Rubix24 не тронут. Бэкап prefs: `de.dikant.StageTraxx4.plist.bak-20261117-222937`.
+2. На приборе: канал 7/8 вернуть с USB 3/4 на аналоговый вход (делает Alex).
