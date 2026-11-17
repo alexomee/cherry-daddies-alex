@@ -1,4 +1,5 @@
 {
+  "gm800": 6,
   "bpm": 115,
   "pb-other": null,
   "pb-bass": {"layers": [{"file": "zivert-bass", "frame": "render", "replaces": ["bass"], "gain_db": -7.5}]},

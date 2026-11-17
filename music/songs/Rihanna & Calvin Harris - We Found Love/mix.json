@@ -1,4 +1,5 @@
 {
+  "gm800": 26,
   "pb-other": {"stems": ["04_Noise_effects"]},
   "pb-bass": {"stems": ["05_Synth_Bass"]},
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "roma": ["06_Organ_1", "07_Organ_2", "08_Organ_3", "09_Synth_Keys_1", "10_Synth_Keys_2", "11_Synthesizer"]},

@@ -1,4 +1,5 @@
 {
+  "gm800": 1,
   "bpm": 125,
   "pb-other": {"stems": ["keys", "other"], "layers": ["keys-noise"]},
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.9}},

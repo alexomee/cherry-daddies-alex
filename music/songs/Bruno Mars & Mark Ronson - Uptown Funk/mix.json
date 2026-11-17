@@ -1,4 +1,5 @@
 {
+  "gm800": 1,
   "pb-other": {"stems": ["06_Organ", "07_Synth_Pad", "08_Brass_section", "09_Noise_effects", "10_Backing_Vocals"]},
   "pb-bass": null,
   "pb-drums": {"stems": ["02_Drum_Kit"]},

@@ -1,4 +1,5 @@
 {
+  "gm800": 15,
   "pb-other": {"stems": ["04_Noise_effects"]},
   "pb-bass": null,
   "players": {"roma": ["07_Synth_Pad", "11_Arpeggiator", "08_Synth_Strings", "10_Synth_Lead_2"], "steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["09_Synth_Lead_1"]},

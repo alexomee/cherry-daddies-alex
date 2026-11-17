@@ -1,4 +1,5 @@
 {
+  "gm800": 1,
   "pb-other": {"stems": ["04_Noise_effects", "09_Synth_Keys", "10_Arpeggiator", "11_Synth_Ambiant", "12_Backing_Vocals"]},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -1.5}},
   "cue_step": 2,
