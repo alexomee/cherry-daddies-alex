@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-08
+updated: 2026-11-17
 title: Pretty Fly (For A White Guy)
 artist: The Offspring
 set: tryout batch 2026-09
@@ -16,8 +16,8 @@ Tryout 2026-09. Moises стемы (B minor, 143 bpm, тональность гр
 - **pitch_semitones:** -2 (A minor, -1 тон от оригинала B minor)
 - **pb-other:** `backing_vocals` (Moises background vocals: "Give it to me baby", "Uh huh uh huh", "Uno, dos, tres..."), авто-гейн -3.0 dBFS под ceiling -23 dBFS.
 - **pb-drums:** `drums` (основная установка для репетиций без барабанщика).
-- **pb-bass:** null (живой бас, Roma).
-- **players:** alex: `guitars`, roma: `bass`, steve: `drums`, tanya: `vocals`.
+- **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`, питч −2 как у песни, `gain_db −3.9` → −19.2 LUFS (без правки −15.3), пик −7.9. Спектр совпадает с басом сайта (остаток −39 дБ; форма волны расходится только фазой отдельных проходов rubberband). all/click/pb-drums прежние, cues.wav прежний. В Stage Traxx 2026-11-17: Click, Cues, PB Bass (pb-other у песни `null`). Есть запись живого баса Ромы с концерта 28.10 (`~/Downloads/Set 2/08 Pretty Fly/07 Bass Guitar.wav`) — альтернатива стему, не сравнивалась.
+- **players:** alex: `guitars`, steve: `drums`, tanya: `vocals` (roma убран 2026-11-17).
 - **mix.json:** `music/songs/The Offspring - Pretty Fly (For A White Guy)/mix.json`
 - **Рендер:** OFF +2.574 с, lead +1 такт под стартовую фразу, длина 188.0 с (112 тактов).
 
@@ -53,4 +53,4 @@ Tryout 2026-09. Moises стемы (B minor, 143 bpm, тональность гр
 - `pb-drums.wav` (drums)
 - `all.wav`
 - `cue_preview.mp3`, `pb-drums.mp3`, `pb-other.mp3`
-- `practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`
+- `practice-alex.mp3`, `practice-steve.mp3`, `practice-tanya.mp3` (`practice-roma.mp3` убран 2026-11-17)

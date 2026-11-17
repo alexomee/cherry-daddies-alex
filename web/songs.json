@@ -1,10 +1,10 @@
 {
-  "generated": "2026-11-17T07:38:07",
+  "generated": "2026-11-17T07:47:33",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
-    "playback": 47,
+    "playback": 53,
     "other": 75,
     "practice": 83
   },
@@ -2886,8 +2886,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "none"
@@ -2897,7 +2897,6 @@
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -2944,16 +2943,18 @@
             "drums": "48eb76cc83",
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
-            "roma": "e25e62882e",
-            "tanya": "03b90961c6"
+            "tanya": "03b90961c6",
+            "pb-bass": "53c8e2218a"
           },
           "pb_other": {
             "available": false,
             "mutes": []
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -2993,8 +2994,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -3007,7 +3008,6 @@
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -3055,18 +3055,18 @@
             "keys": "bb02c35350",
             "bass": "e22132c75d",
             "guitars": "70888629d7",
-            "other": "7b9b05e0ca",
+            "other": "733266fa0b",
             "click": "eb545ae26c",
-            "cues": "87634f39f2"
+            "cues": "ec884ebf49"
           },
           "versions": {
-            "all": "0f7d552081",
+            "all": "d0d0bff4b3",
             "drums": "bd9138b2db",
             "alex": "9b20c61971",
             "steve": "ec553c50e7",
-            "roma": "22fde20a06",
             "tanya": "d9fdaea1e7",
-            "pb-other": "733266fa0b"
+            "pb-other": "733266fa0b",
+            "pb-bass": "5b4ddbdbca"
           },
           "pb_other": {
             "available": true,
@@ -3076,8 +3076,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -3962,8 +3964,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "none"
@@ -3972,7 +3974,6 @@
             "all",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -4022,22 +4023,24 @@
             "guitars": "c071861b58",
             "other": "e86a486e6c",
             "click": "8a76014776",
-            "cues": "74dd01dd5f"
+            "cues": "3c054d5006"
           },
           "versions": {
-            "all": "7542bb32a5",
+            "all": "f3f9744d37",
             "alex": "f9ee2b9781",
             "steve": "7d078aeaba",
-            "roma": "ade44592b7",
-            "tanya": "64c3383844"
+            "tanya": "64c3383844",
+            "pb-bass": "7061a49ac0"
           },
           "pb_other": {
             "available": false,
             "mutes": []
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -11533,8 +11536,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "none"
@@ -11543,7 +11546,6 @@
             "all",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -11593,22 +11595,24 @@
             "guitars": "c071861b58",
             "other": "e86a486e6c",
             "click": "8a76014776",
-            "cues": "74dd01dd5f"
+            "cues": "3c054d5006"
           },
           "versions": {
-            "all": "7542bb32a5",
+            "all": "f3f9744d37",
             "alex": "f9ee2b9781",
             "steve": "7d078aeaba",
-            "roma": "ade44592b7",
-            "tanya": "64c3383844"
+            "tanya": "64c3383844",
+            "pb-bass": "7061a49ac0"
           },
           "pb_other": {
             "available": false,
             "mutes": []
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -12923,8 +12927,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -12937,7 +12941,6 @@
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -12985,18 +12988,18 @@
             "keys": "bb02c35350",
             "bass": "e22132c75d",
             "guitars": "70888629d7",
-            "other": "7b9b05e0ca",
+            "other": "733266fa0b",
             "click": "eb545ae26c",
-            "cues": "87634f39f2"
+            "cues": "ec884ebf49"
           },
           "versions": {
-            "all": "0f7d552081",
+            "all": "d0d0bff4b3",
             "drums": "bd9138b2db",
             "alex": "9b20c61971",
             "steve": "ec553c50e7",
-            "roma": "22fde20a06",
             "tanya": "d9fdaea1e7",
-            "pb-other": "733266fa0b"
+            "pb-other": "733266fa0b",
+            "pb-bass": "5b4ddbdbca"
           },
           "pb_other": {
             "available": true,
@@ -13006,8 +13009,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -13329,8 +13334,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma (real bass-guitar)"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "none"
@@ -13340,7 +13345,6 @@
             "drums",
             "alex",
             "steve",
-            "roma",
             "tanya"
           ],
           "stems": [
@@ -13387,16 +13391,18 @@
             "drums": "48eb76cc83",
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
-            "roma": "e25e62882e",
-            "tanya": "03b90961c6"
+            "tanya": "03b90961c6",
+            "pb-bass": "53c8e2218a"
           },
           "pb_other": {
             "available": false,
             "mutes": []
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {

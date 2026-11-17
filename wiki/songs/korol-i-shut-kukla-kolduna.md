@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-08
+updated: 2026-11-17
 title: Кукла колдуна
 artist: Король и Шут
 set: tryout batch 2026-09
@@ -17,8 +17,8 @@ Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). С 2026-10-01 `pb-other`
 - **pb-other:** `parts/kukla-pb-other-v2.wav` — полный пользовательский слой (2026-10-07), render-frame; `replaces:["backing_vocals","strings"]`, роль musical, −14.9 LUFS-I / −0.1 dBTP.
 - **pb-other-keys:** `backing_vocals` + `strings` + `keys`.
 - **pb-drums:** `drums` (установка для репетиций без барабанщика).
-- **pb-bass:** null (живой бас, Roma).
-- **players:** alex: `guitars`, roma: `bass`, steve: `drums`, tanya: `vocals`.
+- **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`, `gain_db −0.9` → −19.2 LUFS, остаток против стема −79 дБ. all/click/pb-other прежние, cues.wav прежний. В Stage Traxx 2026-11-17. Есть запись живого баса и клавиш с концерта 28.10 (`~/Downloads/Set 2/09 Кукла колдуна/`) — не сравнивалась.
+- **players:** alex: `guitars`, steve: `drums`, tanya: `vocals` (roma убран 2026-11-17).
 - **mix.json:** `music/songs/Король и Шут - Кукла колдуна/mix.json`
 - **Рендер:** OFF +3.058 с, lead +1 такт под стартовую фразу, длина 205.1 с (127 тактов).
 
@@ -35,7 +35,7 @@ Tryout 2026-09. Moises-стемы (D minor, 148.6 bpm). С 2026-10-01 `pb-other`
 - `click.wav`, `cues.wav`, `all.wav`
 - `pb-other.wav`, `pb-other-keys.wav`, `pb-drums.wav`
 - `cue_preview.mp3`, `pb-drums.mp3`, `pb-other.mp3`, `pb-other-keys.mp3`
-- `practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`
+- `practice-alex.mp3`, `practice-steve.mp3`, `practice-tanya.mp3` (`practice-roma.mp3` убран 2026-11-17)
 
 ## Замена скрипок: MIDI-заготовка (2026-09-29)
 

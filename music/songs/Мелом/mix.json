@@ -2,8 +2,8 @@
   "bpm": 120,
   "pitch_semitones": 0,
   "pb-other": null,
-  "pb-bass": null,
-  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 3.1}},
+  "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,  "text": "Мелом guitar in", "abs_sec": 4.0, "snap_sec": 0.0},
     {"bar": 29, "text": "drums stop", "abs_sec": 60.0, "snap_sec": 55.5},

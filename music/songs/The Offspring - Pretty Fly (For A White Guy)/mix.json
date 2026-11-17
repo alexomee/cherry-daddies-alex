@@ -3,8 +3,8 @@
   "pitch_semitones": -2,
   "pb-other": null,
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": null,
-  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -3.9}},
+  "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1, "text": "Pretty Fly drums in", "abs_sec": 3.357, "snap_sec": 0.0},
     {"bar": 2, "text": "vocal in", "abs_sec": 5.035, "snap_sec": 1.678},
