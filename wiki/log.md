@@ -1763,3 +1763,7 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 ## [2026-11-17] rig | POD Go 31D ещё на 7 песнях
 
 Alex подтвердил мьют гитары и в песнях «только синт»: Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M. Итого 31D на 14 песнях, засинкано. Первый `--apply` молча не записал (вывод без `written`), повтор прошёл — проверять строку `written:`.
+
+## [2026-11-17] rig | Drums и Vocals в Stage Traxx (замьючены)
+
+`stagetraxx_sync.py`: треки 5 Drums (`stems/drums.mp3`) и 6 Vocals (`stems/vocal.mp3`) на шине PB Other, `mute = 1`. Полный синк: 62 песни, 122 стема сконвертировано, длины совпали с кликом.

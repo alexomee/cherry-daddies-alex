@@ -54,3 +54,12 @@ def test_resync_is_stable():
     once = st.merge_lyrics("", BLOCK, "a\nb")
     assert st.merge_lyrics(once, BLOCK, "a\nb") == once
     assert st.lyrics_text(once) == "a\nb"
+
+
+def test_practice_tracks_route_to_pb_other_bus_and_start_muted(tmp_path):
+    bus = {stem: b for stem, _fn, _nm, b, _p in st.ROUTING}
+    assert bus["drums"] == bus["vocal"] == bus["pb-other"]
+    assert st.MUTED == {"drums", "vocal"}
+    assert st.stem_src("/r", "drums") == "/r/stems/drums.mp3"
+    assert st.stem_src("/r", "vocal") == "/r/stems/vocal.mp3"
+    assert st.stem_src("/r", "pb-other") == "/r/pb-other.wav"

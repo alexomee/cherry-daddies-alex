@@ -7,6 +7,8 @@ For every song of the setlist (web/songs.json) builds/updates a Stage Traxx song
     Cues      bus 2   (in-ears)
     PB Other  bus 3   (front of house; keys live here too)
     PB Bass   bus 4   (front of house)
+    Drums     bus 3   MUTED (practice: unmute in the mixer to hear the drum kit)
+    Vocals    bus 3   MUTED (practice: lead vocal)
 
 One track per bus, every pan centred; WHERE a bus plays is Stage Traxx's per-device output
 map (prefs audio_busDeviceSettings), not the song: the rehearsal Rubix24 sends buses 1-4 to
@@ -91,7 +93,20 @@ ROUTING = [
     ("cues",     "2_Cues.wav",     "Cues",     1, 0.0),
     ("pb-other", "3_PB_Other.wav", "PB Other", 2, 0.0),
     ("pb-bass",  "4_PB_Bass.wav",  "PB Bass",  3, 0.0),
+    ("drums",    "5_Drums.wav",    "Drums",    2, 0.0),     # practice: same bus as PB Other,
+    ("vocal",    "6_Vocals.wav",   "Vocals",   2, 0.0),     # MUTED by default (see MUTED)
 ]
+# Where a stem comes from inside auto-render/ (default <stem>.wav). drums/vocal are the render's
+# per-category site stems (stems/*.mp3: same timeline as click.wav, sample-exact; drums = the kit
+# only, percussion is never rendered; vocal = lead vocal, pitched to the band key).
+SOURCES = {"drums": "stems/drums.mp3", "vocal": "stems/vocal.mp3"}
+# Tracks written muted: drummer/singer play these live. Unmute in the Stage Traxx mixer to
+# practise without them; every sync writes them muted again (bus 3 = front of house at a gig).
+MUTED = {"drums", "vocal"}
+
+
+def stem_src(render, stem):
+    return os.path.join(render, SOURCES.get(stem, stem + ".wav"))
 
 
 def now():
@@ -393,7 +408,7 @@ def plan(sets, clips, song_filters, set_filter, notes=None):
                 continue
             render = os.path.join(SONGS, sid, "auto-render")
             stems = [(stem, fn, nm, bus, pan) for stem, fn, nm, bus, pan in ROUTING
-                     if os.path.exists(os.path.join(render, stem + ".wav"))]
+                     if os.path.exists(stem_src(render, stem))]
             if live_bass(sid):                 # concert/live-played bass in pb-bass -> visible on stage
                 stems = [(st_, fn, nm + " · живой бас" if st_ == "pb-bass" else nm, bus, pan) for st_, fn, nm, bus, pan in stems]
             if not any(x[0] == "click" for x in stems):
@@ -448,7 +463,7 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
     os.makedirs(dest, exist_ok=True)
     converted = 0
     for stem, fn, _nm, _bus, _pan in info["stems"]:
-        converted += downmix(os.path.join(info["render"], stem + ".wav"), os.path.join(dest, fn))
+        converted += downmix(stem_src(info["render"], stem), os.path.join(dest, fn))
     wanted = {fn for _s, fn, *_ in info["stems"]}
     for f in os.listdir(dest):                       # a stem that left the render leaves the rig
         if f.endswith(".wav") and f not in wanted and any(f == r[1] for r in ROUTING):
@@ -477,11 +492,11 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
                    merge_lyrics("", block, info.get("note")), None, 0, 2, 0, None, t,
                    0.0, None, None, 1.2, None, None, None))
     write_regions(c, sid, cue_regions(song_cues(info["sid"]), dur), t)
-    for n, (_stem, fn, nm, bus, pan) in enumerate(info["stems"], 1):
+    for n, (stem, fn, nm, bus, pan) in enumerate(info["stems"], 1):
         c.execute("""INSERT INTO track (id,songID,filePath,duration,volume,pan,mute,bus,number,
           hasMarkers,equalizer,lastModified,name,color,transpose,muteGroupMask)
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                  (uuid.uuid4().bytes, sid, f"{folder}/{fn}", dur, 0.0, pan, 0, bus, n,
+                  (uuid.uuid4().bytes, sid, f"{folder}/{fn}", dur, 0.0, pan, int(stem in MUTED), bus, n,
                    0, EQ, t, nm, 0, 1, 0))
     return sid, converted, bool(row)
 
