@@ -1,14 +1,16 @@
 {
-  "name": "2026-11-17 v2",
+  "name": "2026-11-17 v3",
   "sources": {
     "dev": "backups/2026-11-17-device.tsl",
     "fac": "backups/2026-06-16-factory.tsl"
   },
   "slots": [
     {"slot": "1", "from": "dev:150", "rename": "MUTE", "note": "all part levels 0; every former '<SONG>-' placeholder (SCENE LEVEL 0) maps here"},
-    {"slot": "2-13", "from": "dev:2,3,8,9,11,13,14,16,22,23,31,33", "note": "Music Hall synth scenes; Солнышко LEAD = level-110 variant (dev:14)"},
-    {"slot": "14-16", "from": "dev:52-54", "note": "12.12 new: Ты меня не ищи, Попрошу тебя x2"},
-    {"slot": "17-28", "from": "dev:103,105,106,113,114,120,121,40,41,43,44,47", "note": "June program synth scenes"},
+    {"slot": "2-8", "from": "dev:2,3,8,9,11,13,14", "note": "Music Hall: Around .. Солнышко BASS, LEAD (scene level 110)"},
+    {"slot": "9", "from": "dev:20", "rename": "SOLNbISHKO QUIET", "note": "Солнышко last LEAD, same patch at scene level 81"},
+    {"slot": "10-14", "from": "dev:16,22,23,31,33", "note": "Music Hall: Солнышко V2 .. Кислотный DJ"},
+    {"slot": "15-26", "from": "dev:103,105,106,113,114,120,121,40,41,43,44,47", "note": "June program synth scenes"},
+    {"slot": "27-29", "from": "dev:52-54", "note": "12.12 new: Ты меня не ищи, Попрошу тебя x2"},
     {"slot": "51-150", "from": "fac:1-100", "note": "factory scene N at slot 50+N"}
   ],
   "fill": "dev:55"
