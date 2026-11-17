@@ -46,8 +46,11 @@ Grid PHASE (first downbeat) = first metronome onset (first click = downbeat).
 User artifacts (stems, cue_track.wav, cues.json, logic-render/) are READ-ONLY.
 
 Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
-       --check = analyze + verify, write nothing
+       --check = analyze + verify, no audio (still refreshes abs_sec of cues + "gm800" in mix.json)
        --bpm N = force tempo (external songs; overrides measured)
+   mix.json "gm800": [{"bar": N, "beat"?: B, "scene": S}, ...] (one entry per line) = BOSS GM-800
+       scene changes; every render/--check writes their render-time "abs_sec", which
+       tools/stagetraxx_sync.py turns into Stage Traxx MIDI tags (wiki/pipelines/gm-800.md).
    position converter (writes nothing; pick where to add a cue without bar-grid guessing):
        --map           list every cue in mix.json bar / render sec / Logic-ruler bar.beat
        --sections      list all JamZone sections mapped to mix.json bar, render sec & Logic ruler
@@ -1005,18 +1008,29 @@ def write_cue_abs_times(mix_path, times, snaps=None):
     seek time, in file order. Cue lines are matched by carrying both "bar" and "text" ("from_bar"/
     "to_bar" in tempo_zone never match — no surrounding quotes on `bar`, and no "text").
     Skips writing on a count mismatch (returns the mismatch for the caller to report)."""
+    is_cue = lambda ln: re.search(r'"bar"\s*:', ln) and '"text"' in ln
+    return _write_abs_lines(mix_path, is_cue, times, snaps, "cue")
+
+def write_gm800_abs_times(mix_path, times):
+    """Same in-place refresh of "abs_sec" for the "gm800" scene-change list (BOSS GM-800 scene
+    switched by Stage Traxx MIDI tags, see wiki/pipelines/gm-800.md). Entry lines are matched by
+    carrying both "bar" and "scene" (and no "text", so they never count as cues)."""
+    is_ev = lambda ln: (re.search(r'"bar"\s*:', ln) and re.search(r'"scene"\s*:', ln)
+                        and '"text"' not in ln)
+    return _write_abs_lines(mix_path, is_ev, times, None, "gm800")
+
+def _write_abs_lines(mix_path, is_line, times, snaps, what):
     src = open(mix_path, encoding="utf-8").read()
     lines = src.split("\n")
-    is_cue = lambda ln: re.search(r'"bar"\s*:', ln) and '"text"' in ln
-    n = sum(1 for ln in lines if is_cue(ln))
+    n = sum(1 for ln in lines if is_line(ln))
     if n != len(times):
-        return f"abs_sec NOT written ({mix_path}): {n} cue lines vs {len(times)} computed"
+        return f"abs_sec NOT written ({mix_path}): {n} {what} lines vs {len(times)} computed"
     k = 0
     for j, ln in enumerate(lines):
-        if not is_cue(ln):
+        if not is_line(ln):
             continue
         body = re.sub(r',\s*"(abs_sec|snap_sec)"\s*:\s*[-0-9.]+', "", ln)   # drop any prior values
-        idx = body.rfind("}")                                    # insert before the cue's closing brace
+        idx = body.rfind("}")                                    # insert before the entry's closing brace
         add = f', "abs_sec": {round(times[k], 3)}'
         if snaps is not None:
             add += f', "snap_sec": {round(snaps[k], 3)}'
@@ -1835,7 +1849,11 @@ def main():
                  for c in mix["cues"]]
         warn = write_cue_abs_times(mix_p, [t for *_, t in crep], snaps)
         print(warn if warn else f"✓ abs_sec+snap: {len(crep)} cues updated in {os.path.basename(folder)}/mix.json")
-    if "--check" in sys.argv:
+    gm = mix.get("gm800")
+    if isinstance(gm, list) and gm:                 # GM-800 scene changes: same bar->render-sec map as
+        warn = write_gm800_abs_times(mix_p, [cue_event_time(e, cue_base, relt) for e in gm])  # cues;
+        print(warn if warn else f"✓ gm800: {len(gm)} scene changes timed (abs_sec) in mix.json")  # read by
+    if "--check" in sys.argv:                                                     # stagetraxx_sync.py
         print("✓ --check: grid green, mix.json abs_sec+snap updated, no audio written"); return
 
     adir = os.path.join(folder, "auto-render")

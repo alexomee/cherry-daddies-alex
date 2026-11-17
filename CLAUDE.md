@@ -195,4 +195,6 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 2. `tools/stagetraxx_sync.py "<song>"` (dry-run) → `tools/stagetraxx_sync.py --apply "<song>"`. Фильтр по подстроке обновляет только песню, плейлисты не трогает; без фильтра — вся программа и плейлисты `CD · <сет>` из `web/songs.json`. Stage Traxx должен быть закрыт (`--quit` закрывает), бэкап базы скрипт делает сам.
 3. Проверить треки песни в базе (Click / Cues / PB Other / PB Bass, длительность = рендер); при сомнении сверить моно-файл `Documents/<папка>/N_*.wav` с `auto-render/*.wav` (сведение в моно = −3 дБ, это норма).
 
+**Сцены GM-800 (гитарный синт Alex)** переключает Stage Traxx. Источник — ключ `"gm800"` в mix.json песни: `1` = вся песня на MUTE, либо список `{"bar", "beat"?, "scene"}`. Рендер (или `--check`) вписывает `abs_sec`, `stagetraxx_sync` пишет теги `PC<сцена−1>@2`. Раскладка слотов и процесс: `wiki/pipelines/gm-800.md`.
+
 Не рапортовать «в риге», пока не сделан шаг 2 с `--apply`. Старая MainStage-процедура (sync_to_mainstage, Playback-патчи, Sync Off) — в git-истории этого файла и в `wiki/log.md` до 2026-11-16.

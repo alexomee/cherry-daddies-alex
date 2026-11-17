@@ -22,6 +22,18 @@ outbound MIDI Stage Traxx 4 has):
 clip NN comes from tools/lyric-launcher/songs.tsv. Stage Traxx sends to all MIDI
 ports, so the launcher's virtual `LyricLauncher` port gets it (start launcher first).
 
+BOSS GM-800 scenes (wiki/pipelines/gm-800.md) come from mix.json "gm800", on channel 2
+(GM-800 Scene Rx Channel; the launcher's ch1 PCs don't touch it):
+
+    "gm800": 1                                   whole song on one scene (1 = MUTE)
+    "gm800": [{"bar": 1, "scene": 7},            scene changes; jamzone_render.py (full
+              {"bar": 17, "scene": 8}, ...]      render or --check) writes each "abs_sec"
+
+    [midi: PC6@2]               song load   -> start scene 7 (tag number = scene - 1, verified)
+    [midi@00:00.00: PC6@2]      t=0         -> again, since the load tag doesn't repeat on replay
+    [midi@00:31.304: PC7@2]     each change -> at its render second
+No "gm800" key -> no GM-800 tags (the unit keeps whatever scene it is on).
+
 Songs this tool owns are tagged in song.notes (`cd-sync:<folder>`) and updated in
 place; anything else in the library (hand-made songs, old imports) is left alone.
 One playlist per set of web/songs.json, named `CD · <set>`.
@@ -101,6 +113,64 @@ def midi_block(clip, channel):
     return lines
 
 
+GM_CHANNEL = 2          # BOSS GM-800 Scene Rx Channel
+
+
+def song_gm800(sid):
+    """mix.json "gm800" -> [(render_sec, scene), ...] (first = start scene), or None when absent.
+    Raises ValueError with a readable reason when the entry is malformed or not timed yet."""
+    try:
+        with open(os.path.join(SONGS, sid, "mix.json"), encoding="utf-8") as f:
+            gm = json.load(f).get("gm800")
+    except (OSError, ValueError):
+        return None
+    return parse_gm800(gm)
+
+
+def parse_gm800(gm):
+    if gm is None:
+        return None
+    if isinstance(gm, int) and not isinstance(gm, bool):
+        gm = [{"scene": gm, "abs_sec": 0.0}]
+    if not isinstance(gm, list) or not gm:
+        raise ValueError(f'"gm800" must be a scene number or a non-empty list, got {gm!r}')
+    out = []
+    for e in gm:
+        scene = e.get("scene") if isinstance(e, dict) else None
+        if not isinstance(scene, int) or not 1 <= scene <= 128:
+            raise ValueError(f'gm800 entry {e!r}: "scene" must be 1..128')
+        if "abs_sec" not in e:
+            raise ValueError(f"gm800 entry {e!r} has no abs_sec — run jamzone_render.py --check")
+        out.append((float(e["abs_sec"]), scene))
+    if any(b[0] < a[0] for a, b in zip(out, out[1:])):
+        raise ValueError("gm800 entries are not in time order")
+    return out
+
+
+def mmss(sec):
+    """Stage Traxx timed-tag clock: MM:SS.mmm (two-digit minutes, as its parser expects)."""
+    ms = max(0, round(sec * 1000))
+    m, rem = divmod(ms, 60000)
+    return f"{m:02d}:{rem / 1000:06.3f}"
+
+
+def gm800_block(changes, channel=GM_CHANNEL):
+    """[(sec, scene)] -> Stage Traxx tags. Scene N = PC N-1 (Stage Traxx sends the raw number,
+    the GM-800 shows it +1). The start scene goes out on load AND at 00:00 (the load tag doesn't
+    fire again when the song is replayed without reloading); a change to the scene already
+    active is dropped (re-selecting the same scene mid-song would only risk a glitch)."""
+    if not changes:
+        return []
+    start = changes[0][1]
+    lines = [f"[midi: PC{start - 1}@{channel}]", f"[midi@00:00.000: PC{start - 1}@{channel}]"]
+    cur = start
+    for sec, scene in changes[1:]:
+        if scene != cur:
+            lines.append(f"[midi@{mmss(sec)}: PC{scene - 1}@{channel}]")
+            cur = scene
+    return lines
+
+
 def merge_lyrics(old, block):
     """Our MIDI tags first, then whatever non-MIDI text the song already had."""
     keep = [l for l in (old or "").splitlines() if not l.strip().lower().startswith("[midi")]
@@ -144,10 +214,16 @@ def plan(sets, clips, song_filters, set_filter):
                 print(f"  ! SKIP {sid}: no auto-render/click.wav")
                 continue
             members.append(sid)
-            songs.setdefault(sid, {
-                "sid": sid, "title": s.get("title") or sid, "artist": s.get("artist") or "",
-                "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
-            })
+            if sid not in songs:
+                try:
+                    gm, gm_err = song_gm800(sid), None
+                except ValueError as e:
+                    gm, gm_err = None, str(e)
+                songs[sid] = {
+                    "sid": sid, "title": s.get("title") or sid, "artist": s.get("artist") or "",
+                    "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
+                    "gm800": gm, "gm800_err": gm_err,
+                }
         if members:
             playlists.append((PL_PREFIX + name, members))
     return songs, playlists
@@ -168,7 +244,7 @@ def backup(db):
     return dst
 
 
-def upsert_song(c, info, docs, channel):
+def upsert_song(c, info, docs, channel, gm_channel=GM_CHANNEL):
     folder = safe_dir(info["sid"])
     dest = os.path.join(docs, folder)
     os.makedirs(dest, exist_ok=True)
@@ -182,7 +258,7 @@ def upsert_song(c, info, docs, channel):
     dur = wav_duration(os.path.join(dest, "1_Click.wav"))
     t = now()
     mark = MARK + info["sid"]
-    block = midi_block(info["clip"], channel)
+    block = midi_block(info["clip"], channel) + gm800_block(info.get("gm800"), gm_channel)
     row = c.execute("SELECT id, lyrics FROM song WHERE notes=?", (mark,)).fetchone()
     if row:
         sid = row[0]
@@ -237,6 +313,8 @@ def main():
     ap.add_argument("--quit", action="store_true", help="quit Stage Traxx 4 before writing")
     ap.add_argument("--launch", action="store_true", help="open Stage Traxx 4 afterwards")
     ap.add_argument("--channel", type=int, default=1, help="MIDI channel of the PC (default 1)")
+    ap.add_argument("--gm-channel", type=int, default=GM_CHANNEL,
+                    help=f"GM-800 Scene Rx Channel (default {GM_CHANNEL})")
     ap.add_argument("--db", default=DB, help=argparse.SUPPRESS)      # tests: point at a copy
     ap.add_argument("--docs", default=DOCS, help=argparse.SUPPRESS)
     a = ap.parse_args()
@@ -249,7 +327,16 @@ def main():
     for info in songs.values():
         stems = " ".join(nm for _s, _f, nm, *_ in info["stems"]).replace("PB ", "pb-")
         clip = f"PC{info['clip']:<3}" if info["clip"] is not None else "no-clip"
-        print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]")
+        gm = ""
+        if info["gm800"]:
+            gm = "  GM " + " → ".join(f"{sc}@{mmss(t)[:-4]}" if i else str(sc)
+                                     for i, (t, sc) in enumerate(info["gm800"]))
+        print(f"  {clip}  {info['bpm']:6.1f}  {info['artist']} - {info['title']}   [{stems}]{gm}")
+        if info["gm800_err"]:
+            print(f"     ! GM-800 tags skipped: {info['gm800_err']}")
+    bad = [i["title"] for i in songs.values() if i["gm800_err"]]
+    if bad and a.apply:
+        sys.exit(f"fix mix.json \"gm800\" first: {', '.join(bad)}")
     noclip = [i["title"] for i in songs.values() if i["clip"] is None]
     print(f"\n{len(songs)} songs, {len(playlists)} playlists"
           + (" (playlists untouched: song filter)" if partial else ""))
@@ -278,7 +365,7 @@ def main():
     ids, conv, new = {}, 0, 0
     try:
         for info in songs.values():
-            sid, n, existed = upsert_song(c, info, a.docs, a.channel)
+            sid, n, existed = upsert_song(c, info, a.docs, a.channel, a.gm_channel)
             ids[info["sid"]] = sid
             conv += n
             new += not existed
