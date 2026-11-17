@@ -3,14 +3,16 @@
 
 For every song of the setlist (web/songs.json) builds/updates a Stage Traxx song:
 
-    out1 Click     bus0 pan -1     (in-ears)
-    out2 Cues      bus0 pan +1     (in-ears)
-    out3 PB Other  bus1 pan -1     (front of house; keys live here too)
-    out4 PB Bass   bus1 pan +1     (front of house)
+    Click     bus 1   (in-ears)
+    Cues      bus 2   (in-ears)
+    PB Other  bus 3   (front of house; keys live here too)
+    PB Bass   bus 4   (front of house)
 
-(each Stage Traxx bus = one stereo output pair; pan picks L/R inside it.) Stems are
-DOWNMIXED TO MONO on the way in — pb-other/pb-bass are true stereo and a hard pan
-on a stereo file would simply drop one side.
+One track per bus, every pan centred; WHERE a bus plays is Stage Traxx's per-device output
+map (prefs audio_busDeviceSettings), not the song: the rehearsal Rubix24 sends buses 1-4 to
+its mono outputs 1-4 (four separate signals for the mixer), the home FLOW 8 sends buses 1+2 to
+USB pair 1/2 and 3+4 to pair 3/4 so everything is heard in both ears (wiki stagetraxx-rig).
+Stems are DOWNMIXED TO MONO on the way in.
 
 MIDI for the lyric launcher goes into the song's lyrics field (the only per-song
 outbound MIDI Stage Traxx 4 has):
@@ -69,10 +71,10 @@ EQ = ('{"bands":[{"bw":1,"freq":100,"gain":0,"label":"LO","type":1},'
 
 # stem -> (file name in Stage Traxx, track name, bus, pan)
 ROUTING = [
-    ("click",    "1_Click.wav",    "Click",    0, -1.0),
-    ("cues",     "2_Cues.wav",     "Cues",     0,  1.0),
-    ("pb-other", "3_PB_Other.wav", "PB Other", 1, -1.0),
-    ("pb-bass",  "4_PB_Bass.wav",  "PB Bass",  1,  1.0),
+    ("click",    "1_Click.wav",    "Click",    0, 0.0),
+    ("cues",     "2_Cues.wav",     "Cues",     1, 0.0),
+    ("pb-other", "3_PB_Other.wav", "PB Other", 2, 0.0),
+    ("pb-bass",  "4_PB_Bass.wav",  "PB Bass",  3, 0.0),
 ]
 
 
