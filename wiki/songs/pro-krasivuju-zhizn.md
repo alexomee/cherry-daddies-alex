@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-03
+updated: 2026-11-17
 title: Про красивую жизнь
 artist: Банд'Эрос
 set: "СЕТ 2 #2"
@@ -16,7 +16,7 @@ set: "СЕТ 2 #2"
 - **bpm:** 125 (число из имени Moises-файла).
 - **pitch_semitones:** не задан → **0**, оригинальная тональность (минус не питчится).
 - Особых полей mix.json нет: `cue_step`, `count_in`, `tempo_zone`, `click` — отсутствуют (константная сетка, без ретемпо/каунт-ина).
-- `pb-bass: null` — своей группы баса в плейбеке нет.
+- **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): стем `bass`, `gain_db −2.9` → −19.2 LUFS (без правки −16.3), остаток −73 дБ. До этого `null`: бас играл Рома.
 
 ## Плейбек и рендер
 
@@ -26,8 +26,9 @@ set: "СЕТ 2 #2"
   - Источник: `/Users/alex/projects/cherry-daddies/music/songs/Band'Eros - Pro krasivuju zhizn'/parts/keys-noise.wav`.
   - **frame: render** (запись слушала мой `auto-render`/`all.wav`) → кладётся 1:1 с индекса 0, lag **+0мс** (измерено, прецедент из `CLAUDE.md`).
   - Уже в тональности группы → без питча. `replaces` не задан (не переписывает студийный стем).
-- **players** (кто играет живьём): `roma` = other, keys; `steve` = drums; `tanya` = vocals; `alex` = guitars.
-- **practice-миксы:** `auto-render/practice-{alex,roma,steve,tanya}.mp3` — весь микс без стемов игрока + клик + cue. См. [jamzone-render](../pipelines/jamzone-render.md).
+- **pb-other = стемы `keys` + `other` + layer `keys-noise`** (2026-11-17, Alex: клавиши Ромы «в плейбек»). Группа упирается в пик +0.3 dBFS и целиком опускается на −0.7 дБ (нормализация «только вниз»), поэтому keys-noise в pb-other на 0.7 дБ тише прежнего; баланс внутри группы как в `all`. Остаток регрессии на keys/other/keys-noise −79 дБ. Ручной перкуссии в `other` не видно: верх выше 6 кГц на 15–19 дБ тише хэтов барабанов и идёт за ними (протечка Moises, не отдельный шейкер); на слух не проверено. click/all не изменились, cues.wav прежний. В Stage Traxx 2026-11-17 (4 дорожки по 222.72 с, остаток против рендера ≤ −75 дБ).
+- **players** (кто играет живьём): `steve` = drums; `tanya` = vocals; `alex` = guitars (`roma` = other, keys убран 2026-11-17: ушёл, партия в плейбеке).
+- **practice-миксы:** `auto-render/practice-{alex,steve,tanya}.mp3` (`practice-roma.mp3` убран 2026-11-17) — весь микс без стемов игрока + клик + cue. См. [jamzone-render](../pipelines/jamzone-render.md).
 - Рендеры в `auto-render/`: `all.wav`, `click.wav`, `cues.wav`, `pb-other.wav`, `cue_preview.mp3` (20.06.2026).
 - Примечание: `keys`/`other` — слитные Moises-стемы, отдельный синт не выделяется стемом, поэтому вклад клавишника заведён как layer.
 
