@@ -152,8 +152,27 @@ def parse_gm800(gm):
     return out
 
 
-REGION_COLORS = (6, 10)        # alternate, so neighbouring sections are told apart
+# Stage Traxx color index: highlight primary red orange yellow green teal blue purple pink gray
+# black white clear (case order in the binary; confirmed on screen: 6 = teal-blue, 10 = gray).
+RED, YELLOW, GREEN, BLUE, GRAY = 2, 4, 5, 7, 10
 REGION_NEXT = 0                # RegionPlaybackMode: next(0) loop loopOnce stop skip — plain playback
+
+
+def region_color(text):
+    """Section type from the cue text: stop red · solo yellow · chorus green · verse blue ·
+    anything else (all in, bridge, end, ...) one neutral gray. 'stop' = last word, as in the
+    cue renderer, so 'stop and solo' is a solo and 'end stop' a stop."""
+    t = text.lower()
+    words = t.replace("-", " ").split()
+    if words and words[-1] == "stop":
+        return RED
+    if "solo" in t or "соло" in t:
+        return YELLOW
+    if "chorus" in t or "припев" in t:
+        return GREEN
+    if "verse" in t or "куплет" in t:
+        return BLUE
+    return GRAY
 
 
 def song_cues(sid):
@@ -165,7 +184,7 @@ def song_cues(sid):
 
 
 def cue_regions(cues, duration):
-    """mix.json cues -> Stage Traxx regions [(name, start, end)]. A region starts at the cue's
+    """mix.json cues -> Stage Traxx regions [(name, start, end, color)]. A region starts at the cue's
     snap_sec (1 bar before its first spoken word — the web player's seek point), so jumping to it
     replays the whole spoken cue and then the section; abs_sec when there is no snap. Name =
     '<bar>[.<beat>] · <cue text>'. Regions tile the song: each ends where the next starts, the last
@@ -182,22 +201,21 @@ def cue_regions(cues, duration):
                 continue
         beat = c.get("beat", 1)
         pos = f"{c['bar']}" + ("" if str(beat) in ("1", "1.0") else f".{beat}")
-        pts.append((f"{pos} · {c['text']}"[:64], start))
+        pts.append((f"{pos} · {c['text']}"[:64], start, region_color(c["text"])))
     if not pts or pts[0][1] >= duration:
         return []
     if pts[0][1] > 1.0:
-        pts.insert(0, ("count-in", 0.0))
+        pts.insert(0, ("count-in", 0.0, GRAY))
     ends = [p[1] for p in pts[1:]] + [duration]
-    return [(n, s, e) for (n, s), e in zip(pts, ends) if e > s]
+    return [(n, s, e, col) for (n, s, col), e in zip(pts, ends) if e > s]
 
 
 def write_regions(c, song_id, regions, t):
     c.execute("DELETE FROM region WHERE songID=?", (song_id,))
-    for i, (name, start, end) in enumerate(regions):
+    for name, start, end, color in regions:
         c.execute("""INSERT INTO region (id,songID,name,startTime,endTime,color,playbackMode,
           lastModified) VALUES (?,?,?,?,?,?,?,?)""",
-                  (uuid.uuid4().bytes, song_id, name, start, end,
-                   REGION_COLORS[i % len(REGION_COLORS)], REGION_NEXT, t))
+                  (uuid.uuid4().bytes, song_id, name, start, end, color, REGION_NEXT, t))
 
 
 def mmss(sec):
