@@ -1,16 +1,14 @@
 {
-  "name": "2026-11-17 target",
+  "name": "2026-11-17 v2",
   "sources": {
     "dev": "backups/2026-11-17-device.tsl",
-    "jun": "backups/2026-06-26-liveset.tsl",
     "fac": "backups/2026-06-16-factory.tsl"
   },
   "slots": [
-    {"slot": "1", "from": "dev:150", "rename": "MUTE", "note": "all part levels 0"},
-    {"slot": "2-31", "from": "dev:1-12,13,14,16,18,20,21-23,27-36", "note": "Music Hall set, device order, section duplicates removed"},
-    {"slot": "32-34", "from": "dev:52-54", "note": "12.12 new: Ты меня не ищи, Попрошу тебя x2"},
-    {"slot": "35-46", "from": "dev:103,105,106,113,114,120,121,40,41,43,44,47", "note": "June program songs not in Music Hall"},
-    {"slot": "47-48", "from": "jun:18,24", "note": "June: ADVENTURE-, FREED-/UPTOWN- (no longer on device)"},
+    {"slot": "1", "from": "dev:150", "rename": "MUTE", "note": "all part levels 0; every former '<SONG>-' placeholder (SCENE LEVEL 0) maps here"},
+    {"slot": "2-13", "from": "dev:2,3,8,9,11,13,14,16,22,23,31,33", "note": "Music Hall synth scenes; Солнышко LEAD = level-110 variant (dev:14)"},
+    {"slot": "14-16", "from": "dev:52-54", "note": "12.12 new: Ты меня не ищи, Попрошу тебя x2"},
+    {"slot": "17-28", "from": "dev:103,105,106,113,114,120,121,40,41,43,44,47", "note": "June program synth scenes"},
     {"slot": "51-150", "from": "fac:1-100", "note": "factory scene N at slot 50+N"}
   ],
   "fill": "dev:55"
