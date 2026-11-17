@@ -1978,6 +1978,16 @@ def main():
             wav_tempo_write(os.path.join(sdir, nm + ".wav"), buf, bpm)
         print(f"✓ auto-render/synths/: {', '.join(n+'.wav' for n in exp)}")
 
+    # pb-audition.mp3 (site "pb audition" button: stage playback + lead vocal, plays in the phone's
+    # background). Never fatal.
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+        import pb_audition
+        r = pb_audition.build(os.path.basename(os.path.dirname(os.path.abspath(adir))))
+        if r: print(f"✓ auto-render/pb-audition.mp3 ({r})")
+    except Exception as e:
+        print(f"  pb-audition skipped ({e})")
+
     # Keep the web dashboard in sync: web/songs.json is GENERATED from every mix.json by
     # setlist_dashboard.py, and the dashboard reads that file (not mix.json). A cue/stem edit only
     # reaches the page — text, timecodes, and the snap seek-target — once it's rebuilt, so a full

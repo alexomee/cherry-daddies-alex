@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-17T12:28:00",
+  "generated": "2026-11-17T15:28:44",
   "counts": {
     "total": 88,
     "data": 88,
@@ -174,7 +174,8 @@
             "tanya": "64834d4974",
             "trio": "bc2ecaf90f",
             "pb-other": "cbe1c2958f",
-            "pb-bass": "ab94c417b0"
+            "pb-bass": "ab94c417b0",
+            "pb-audition": "3803691117"
           },
           "pb_other": {
             "available": true,
@@ -188,7 +189,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "A Touch of Class - Around the World (La La La La La)",
@@ -347,7 +349,8 @@
             "steve": "4bdd27aa4e",
             "tanya": "9282c4f292",
             "pb-other": "a72911ea1d",
-            "pb-bass": "43e6efffef"
+            "pb-bass": "43e6efffef",
+            "pb-audition": "afc456c03c"
           },
           "pb_other": {
             "available": true,
@@ -361,7 +364,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Беги от меня",
@@ -532,7 +536,8 @@
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
             "pb-other": "93607be6b2",
-            "pb-bass": "ceaa588456"
+            "pb-bass": "ceaa588456",
+            "pb-audition": "a3b720477f"
           },
           "pb_other": {
             "available": true,
@@ -546,7 +551,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Такая любовь",
@@ -722,7 +728,8 @@
             "tanya": "cf1d3d0064",
             "trio": "6910c2ca8b",
             "pb-other": "0a99fc4e57",
-            "pb-bass": "6b99fac5c8"
+            "pb-bass": "6b99fac5c8",
+            "pb-audition": "df36a23e59"
           },
           "pb_other": {
             "available": true,
@@ -737,7 +744,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Чичерина - Ту-лу-ла",
@@ -869,7 +877,8 @@
             "steve": "184b6ba448",
             "tanya": "1eb0734e9e",
             "pb-other": "2c3042b0bb",
-            "pb-bass": "86bb5d658a"
+            "pb-bass": "86bb5d658a",
+            "pb-audition": "d1842761b2"
           },
           "pb_other": {
             "available": true,
@@ -882,7 +891,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "The Weeknd - Blinding Lights",
@@ -1015,7 +1025,8 @@
             "steve": "a1dbddbd9d",
             "tanya": "01ef9839ca",
             "pb-other": "b4899acf8e",
-            "pb-bass": "a3810ecc68"
+            "pb-bass": "a3810ecc68",
+            "pb-audition": "1c0a085247"
           },
           "pb_other": {
             "available": true,
@@ -1030,7 +1041,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Shakira - Whenever, Wherever",
@@ -1192,7 +1204,8 @@
             "steve": "160c81104d",
             "tanya": "66fa60d3e0",
             "pb-other": "73f74f1755",
-            "pb-bass": "76e494f2b7"
+            "pb-bass": "76e494f2b7",
+            "pb-audition": "8f9ce0bed1"
           },
           "pb_other": {
             "available": true,
@@ -1207,7 +1220,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Cascada - Everytime We Touch",
@@ -1372,7 +1386,8 @@
             "steve": "b7586b8f83",
             "tanya": "439f0ce423",
             "pb-other": "123012735d",
-            "pb-bass": "9d9b932a52"
+            "pb-bass": "9d9b932a52",
+            "pb-audition": "b6a046b4f4"
           },
           "pb_other": {
             "available": true,
@@ -1387,7 +1402,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
@@ -1554,7 +1570,8 @@
             "steve": "a327e7486d",
             "tanya": "6b243db8b7",
             "pb-other": "43a1232490",
-            "pb-bass": "1d285502d7"
+            "pb-bass": "1d285502d7",
+            "pb-audition": "66d89f851f"
           },
           "pb_other": {
             "available": true,
@@ -1568,7 +1585,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Gala - Freed from Desire",
@@ -1730,7 +1748,8 @@
             "steve": "de220b51ed",
             "tanya": "16b94fc852",
             "pb-other": "810da76a7e",
-            "pb-bass": "b40522a1bb"
+            "pb-bass": "b40522a1bb",
+            "pb-audition": "eaa9979bcd"
           },
           "pb_other": {
             "available": true,
@@ -1744,7 +1763,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -1896,7 +1916,8 @@
             "steve": "f949a30546",
             "tanya": "883b52fa78",
             "pb-other": "293370778a",
-            "pb-bass": "207d31641a"
+            "pb-bass": "207d31641a",
+            "pb-audition": "221389c280"
           },
           "pb_other": {
             "available": true,
@@ -1910,7 +1931,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Band'Eros - Pro krasivuju zhizn'",
@@ -2051,7 +2073,8 @@
             "steve": "6e37ba5873",
             "tanya": "c5df2e6ba9",
             "pb-other": "6893e4f9e1",
-            "pb-bass": "920c2ef284"
+            "pb-bass": "920c2ef284",
+            "pb-audition": "c3c703161b"
           },
           "pb_other": {
             "available": true,
@@ -2065,7 +2088,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Demo - Solnyshko",
@@ -2261,7 +2285,8 @@
             "steve": "854dfb5fbb",
             "tanya": "3db6c17760",
             "pb-other": "727c7d1fa9",
-            "pb-bass": "cd64e3e3a4"
+            "pb-bass": "cd64e3e3a4",
+            "pb-audition": "2247d838db"
           },
           "pb_other": {
             "available": true,
@@ -2275,7 +2300,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Quest Pistols - Я устал",
@@ -2423,7 +2449,8 @@
             "steve": "401e46aed6",
             "tanya": "f6b2995e20",
             "pb-other": "b5d8090cef",
-            "pb-bass": "8d26813cdb"
+            "pb-bass": "8d26813cdb",
+            "pb-audition": "0ba7e73372"
           },
           "pb_other": {
             "available": true,
@@ -2437,7 +2464,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "SEREBRO - Malo tebya",
@@ -2599,7 +2627,8 @@
             "steve": "2e89296029",
             "tanya": "698094df25",
             "pb-other": "2489b007ea",
-            "pb-bass": "c44eff4620"
+            "pb-bass": "c44eff4620",
+            "pb-audition": "8f547b79bf"
           },
           "pb_other": {
             "available": true,
@@ -2614,7 +2643,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Mr. Credo - Медляк",
@@ -2732,7 +2762,8 @@
             "steve": "4435c69f6b",
             "tanya": "5e213e09f2",
             "pb-other": "061cfbd97c",
-            "pb-bass": "37e50fb01b"
+            "pb-bass": "37e50fb01b",
+            "pb-audition": "6b2684e133"
           },
           "pb_other": {
             "available": true,
@@ -2747,7 +2778,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Мумий Тролль - Медведица",
@@ -2857,7 +2889,8 @@
           "versions": {
             "all": "e60b7bd40b",
             "pb-other": "97d42b14e9",
-            "pb-bass": "1a351a55a4"
+            "pb-bass": "1a351a55a4",
+            "pb-audition": "475bed5279"
           },
           "pb_other": {
             "available": true,
@@ -2871,7 +2904,8 @@
               "bass",
               "other"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "The Offspring - Pretty Fly (For A White Guy)",
@@ -2974,7 +3008,8 @@
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
             "tanya": "03b90961c6",
-            "pb-bass": "0ddec7a49d"
+            "pb-bass": "0ddec7a49d",
+            "pb-audition": "e5416ffdf0"
           },
           "pb_other": {
             "available": false,
@@ -2985,7 +3020,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Король и Шут - Кукла колдуна",
@@ -3096,7 +3132,8 @@
             "steve": "ec553c50e7",
             "tanya": "d9fdaea1e7",
             "pb-other": "733266fa0b",
-            "pb-bass": "a8a9eaf826"
+            "pb-bass": "a8a9eaf826",
+            "pb-audition": "efe97d7886"
           },
           "pb_other": {
             "available": true,
@@ -3111,7 +3148,8 @@
               "bass",
               "other"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Yeah Yeah Yeahs - Heads Will Roll",
@@ -3297,7 +3335,8 @@
             "steve": "9e3cd5a3b6",
             "tanya": "1f6efc1b02",
             "pb-other": "4aebeb7571",
-            "pb-bass": "daa29196e1"
+            "pb-bass": "daa29196e1",
+            "pb-audition": "b3f5d22a21"
           },
           "pb_other": {
             "available": true,
@@ -3311,7 +3350,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Icona Pop & Charli XCX - I Love It",
@@ -3479,7 +3519,8 @@
             "steve": "4c104e2c3e",
             "tanya": "c60d694598",
             "pb-other": "7666e2a1bd",
-            "pb-bass": "21734bb85b"
+            "pb-bass": "21734bb85b",
+            "pb-audition": "1eac3dc5c2"
           },
           "pb_other": {
             "available": true,
@@ -3494,7 +3535,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Мама Люба",
@@ -3675,7 +3717,8 @@
             "tanya": "3689e1bd3d",
             "trio": "833b377f84",
             "pb-other": "65611df091",
-            "pb-bass": "2e8b5c8987"
+            "pb-bass": "2e8b5c8987",
+            "pb-audition": "b852b63573"
           },
           "pb_other": {
             "available": true,
@@ -3689,7 +3732,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Кислотный DJ",
@@ -3911,7 +3955,8 @@
             "steve": "3f7e258c5b",
             "tanya": "e1a83d99f6",
             "trio": "7bbcbd20b3",
-            "pb-other": "a344e8b452"
+            "pb-other": "a344e8b452",
+            "pb-audition": "50824f3c14"
           },
           "pb_other": {
             "available": true,
@@ -3923,7 +3968,8 @@
           "pb_bass": {
             "available": false,
             "mutes": []
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -4071,7 +4117,8 @@
             "alex": "f9ee2b9781",
             "steve": "7d078aeaba",
             "tanya": "64c3383844",
-            "pb-bass": "7061a49ac0"
+            "pb-bass": "7061a49ac0",
+            "pb-audition": "faa40e2333"
           },
           "pb_other": {
             "available": false,
@@ -4082,7 +4129,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
@@ -4244,7 +4292,8 @@
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
             "pb-other": "933a925818",
-            "pb-bass": "6f29cbe794"
+            "pb-bass": "6f29cbe794",
+            "pb-audition": "dbbed7ccc3"
           },
           "pb_other": {
             "available": true,
@@ -4260,7 +4309,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Ray Parker Jr. - Ghostbusters",
@@ -4407,7 +4457,8 @@
             "steve": "377fa4ef30",
             "tanya": "cbd325ca74",
             "pb-other": "f5dd7cbf53",
-            "pb-bass": "fd7216894d"
+            "pb-bass": "fd7216894d",
+            "pb-audition": "91242d27dc"
           },
           "pb_other": {
             "available": true,
@@ -4422,7 +4473,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -4613,7 +4665,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Boney M. - Sunny",
@@ -4761,7 +4814,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Shocking Blue - Venus",
@@ -4894,7 +4948,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Ricchi e Poveri - Sarà perché ti amo",
@@ -5033,7 +5088,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Modern Talking - You're My Heart, You're My Soul (Mix '98)",
@@ -5167,7 +5223,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Ricchi e Poveri - Mamma María",
@@ -5305,7 +5362,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)",
@@ -5461,7 +5519,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Donna Summer - Hot Stuff",
@@ -5588,7 +5647,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Weather Girls - It's Raining Men",
@@ -5760,7 +5820,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Gloria Gaynor - I Will Survive",
@@ -5902,7 +5963,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         }
       ]
     },
@@ -6082,7 +6144,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Modern Talking - Cheri, Cheri Lady",
@@ -6237,7 +6300,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Al Bano & Romina Power - Felicità",
@@ -6388,7 +6452,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Modern Talking - Brother Louie",
@@ -6519,7 +6584,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Blondie - Heart of Glass",
@@ -6706,7 +6772,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Ray Parker Jr. - Ghostbusters",
@@ -6853,7 +6920,8 @@
             "steve": "377fa4ef30",
             "tanya": "cbd325ca74",
             "pb-other": "f5dd7cbf53",
-            "pb-bass": "fd7216894d"
+            "pb-bass": "fd7216894d",
+            "pb-audition": "91242d27dc"
           },
           "pb_other": {
             "available": true,
@@ -6868,7 +6936,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Flashdance (Irene Cara) - What a Feeling",
@@ -7032,7 +7101,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Flashdance (Michael Sembello) - Maniac",
@@ -7193,7 +7263,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Footloose (1984 film) - Holding Out for a Hero",
@@ -7379,7 +7450,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Village People - Y.M.C.A.",
@@ -7514,7 +7586,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Tina Turner - The Best",
@@ -7661,7 +7734,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         }
       ]
     },
@@ -7857,7 +7931,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "A Touch of Class - Around the World (La La La La La)",
@@ -8016,7 +8091,8 @@
             "steve": "4bdd27aa4e",
             "tanya": "9282c4f292",
             "pb-other": "a72911ea1d",
-            "pb-bass": "43e6efffef"
+            "pb-bass": "43e6efffef",
+            "pb-audition": "afc456c03c"
           },
           "pb_other": {
             "available": true,
@@ -8030,7 +8106,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Shakira - Whenever, Wherever",
@@ -8192,7 +8269,8 @@
             "steve": "160c81104d",
             "tanya": "66fa60d3e0",
             "pb-other": "73f74f1755",
-            "pb-bass": "76e494f2b7"
+            "pb-bass": "76e494f2b7",
+            "pb-audition": "8f9ce0bed1"
           },
           "pb_other": {
             "available": true,
@@ -8207,7 +8285,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Guru Josh - Infinity 2008",
@@ -8395,7 +8474,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Alexandra Stan - Mr. Saxobeat",
@@ -8573,7 +8653,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
@@ -8740,7 +8821,8 @@
             "steve": "a327e7486d",
             "tanya": "6b243db8b7",
             "pb-other": "43a1232490",
-            "pb-bass": "1d285502d7"
+            "pb-bass": "1d285502d7",
+            "pb-audition": "66d89f851f"
           },
           "pb_other": {
             "available": true,
@@ -8754,7 +8836,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Coldplay - Adventure of a Lifetime",
@@ -8937,7 +9020,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "The Weeknd - Blinding Lights",
@@ -9070,7 +9154,8 @@
             "steve": "a1dbddbd9d",
             "tanya": "01ef9839ca",
             "pb-other": "b4899acf8e",
-            "pb-bass": "a3810ecc68"
+            "pb-bass": "a3810ecc68",
+            "pb-audition": "1c0a085247"
           },
           "pb_other": {
             "available": true,
@@ -9085,7 +9170,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Laurent Wolf & Eric Carter - No Stress",
@@ -9215,7 +9301,8 @@
           "pb_bass": {
             "available": false,
             "mutes": []
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Gala - Freed from Desire",
@@ -9377,7 +9464,8 @@
             "steve": "de220b51ed",
             "tanya": "16b94fc852",
             "pb-other": "810da76a7e",
-            "pb-bass": "b40522a1bb"
+            "pb-bass": "b40522a1bb",
+            "pb-audition": "eaa9979bcd"
           },
           "pb_other": {
             "available": true,
@@ -9391,7 +9479,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Bruno Mars & Mark Ronson - Uptown Funk",
@@ -9611,7 +9700,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         }
       ]
     },
@@ -9814,7 +9904,8 @@
             "steve": "854dfb5fbb",
             "tanya": "3db6c17760",
             "pb-other": "727c7d1fa9",
-            "pb-bass": "cd64e3e3a4"
+            "pb-bass": "cd64e3e3a4",
+            "pb-audition": "2247d838db"
           },
           "pb_other": {
             "available": true,
@@ -9828,7 +9919,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Band'Eros - Pro krasivuju zhizn'",
@@ -9969,7 +10061,8 @@
             "steve": "6e37ba5873",
             "tanya": "c5df2e6ba9",
             "pb-other": "6893e4f9e1",
-            "pb-bass": "920c2ef284"
+            "pb-bass": "920c2ef284",
+            "pb-audition": "c3c703161b"
           },
           "pb_other": {
             "available": true,
@@ -9983,7 +10076,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "SEREBRO - Malo tebya",
@@ -10145,7 +10239,8 @@
             "steve": "2e89296029",
             "tanya": "698094df25",
             "pb-other": "2489b007ea",
-            "pb-bass": "c44eff4620"
+            "pb-bass": "c44eff4620",
+            "pb-audition": "8f547b79bf"
           },
           "pb_other": {
             "available": true,
@@ -10160,7 +10255,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Quest Pistols - Я устал",
@@ -10308,7 +10404,8 @@
             "steve": "401e46aed6",
             "tanya": "f6b2995e20",
             "pb-other": "b5d8090cef",
-            "pb-bass": "8d26813cdb"
+            "pb-bass": "8d26813cdb",
+            "pb-audition": "0ba7e73372"
           },
           "pb_other": {
             "available": true,
@@ -10322,7 +10419,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Basshunter - Now You're Gone",
@@ -10496,7 +10594,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Rihanna - S&M",
@@ -10674,7 +10773,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Beverly Hills",
@@ -10819,7 +10919,8 @@
             "steve": "f949a30546",
             "tanya": "883b52fa78",
             "pb-other": "293370778a",
-            "pb-bass": "207d31641a"
+            "pb-bass": "207d31641a",
+            "pb-audition": "221389c280"
           },
           "pb_other": {
             "available": true,
@@ -10833,7 +10934,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Rihanna & Calvin Harris - We Found Love",
@@ -11022,7 +11124,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": false
         },
         {
           "sid": "Cascada - Everytime We Touch",
@@ -11187,7 +11290,8 @@
             "steve": "b7586b8f83",
             "tanya": "439f0ce423",
             "pb-other": "123012735d",
-            "pb-bass": "9d9b932a52"
+            "pb-bass": "9d9b932a52",
+            "pb-audition": "b6a046b4f4"
           },
           "pb_other": {
             "available": true,
@@ -11202,7 +11306,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Yeah Yeah Yeahs - Heads Will Roll",
@@ -11388,7 +11493,8 @@
             "steve": "9e3cd5a3b6",
             "tanya": "1f6efc1b02",
             "pb-other": "4aebeb7571",
-            "pb-bass": "daa29196e1"
+            "pb-bass": "daa29196e1",
+            "pb-audition": "b3f5d22a21"
           },
           "pb_other": {
             "available": true,
@@ -11402,7 +11508,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Icona Pop & Charli XCX - I Love It",
@@ -11570,7 +11677,8 @@
             "steve": "4c104e2c3e",
             "tanya": "c60d694598",
             "pb-other": "7666e2a1bd",
-            "pb-bass": "21734bb85b"
+            "pb-bass": "21734bb85b",
+            "pb-audition": "1eac3dc5c2"
           },
           "pb_other": {
             "available": true,
@@ -11585,7 +11693,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -11733,7 +11842,8 @@
             "alex": "f9ee2b9781",
             "steve": "7d078aeaba",
             "tanya": "64c3383844",
-            "pb-bass": "7061a49ac0"
+            "pb-bass": "7061a49ac0",
+            "pb-audition": "faa40e2333"
           },
           "pb_other": {
             "available": false,
@@ -11744,7 +11854,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
@@ -11906,7 +12017,8 @@
             "steve": "6b27261615",
             "tanya": "baf397dbf2",
             "pb-other": "933a925818",
-            "pb-bass": "6f29cbe794"
+            "pb-bass": "6f29cbe794",
+            "pb-audition": "dbbed7ccc3"
           },
           "pb_other": {
             "available": true,
@@ -11922,7 +12034,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -12110,7 +12223,8 @@
             "tanya": "3689e1bd3d",
             "trio": "833b377f84",
             "pb-other": "65611df091",
-            "pb-bass": "2e8b5c8987"
+            "pb-bass": "2e8b5c8987",
+            "pb-audition": "b852b63573"
           },
           "pb_other": {
             "available": true,
@@ -12124,7 +12238,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Кислотный DJ",
@@ -12346,7 +12461,8 @@
             "steve": "3f7e258c5b",
             "tanya": "e1a83d99f6",
             "trio": "7bbcbd20b3",
-            "pb-other": "a344e8b452"
+            "pb-other": "a344e8b452",
+            "pb-audition": "50824f3c14"
           },
           "pb_other": {
             "available": true,
@@ -12358,7 +12474,8 @@
           "pb_bass": {
             "available": false,
             "mutes": []
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Такая любовь",
@@ -12534,7 +12651,8 @@
             "tanya": "cf1d3d0064",
             "trio": "6910c2ca8b",
             "pb-other": "0a99fc4e57",
-            "pb-bass": "6b99fac5c8"
+            "pb-bass": "6b99fac5c8",
+            "pb-audition": "df36a23e59"
           },
           "pb_other": {
             "available": true,
@@ -12549,7 +12667,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Елена Терлеева - Солнце",
@@ -12711,7 +12830,8 @@
             "tanya": "64834d4974",
             "trio": "bc2ecaf90f",
             "pb-other": "cbe1c2958f",
-            "pb-bass": "ab94c417b0"
+            "pb-bass": "ab94c417b0",
+            "pb-audition": "3803691117"
           },
           "pb_other": {
             "available": true,
@@ -12725,7 +12845,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Беги от меня",
@@ -12896,7 +13017,8 @@
             "steve": "f4e52fc3d8",
             "tanya": "1dc67cbfb4",
             "pb-other": "93607be6b2",
-            "pb-bass": "ceaa588456"
+            "pb-bass": "ceaa588456",
+            "pb-audition": "a3b720477f"
           },
           "pb_other": {
             "available": true,
@@ -12910,7 +13032,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Мумий Тролль - Медведица",
@@ -13020,7 +13143,8 @@
           "versions": {
             "all": "e60b7bd40b",
             "pb-other": "97d42b14e9",
-            "pb-bass": "1a351a55a4"
+            "pb-bass": "1a351a55a4",
+            "pb-audition": "475bed5279"
           },
           "pb_other": {
             "available": true,
@@ -13034,7 +13158,8 @@
               "bass",
               "other"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Король и Шут - Кукла колдуна",
@@ -13145,7 +13270,8 @@
             "steve": "ec553c50e7",
             "tanya": "d9fdaea1e7",
             "pb-other": "733266fa0b",
-            "pb-bass": "a8a9eaf826"
+            "pb-bass": "a8a9eaf826",
+            "pb-audition": "efe97d7886"
           },
           "pb_other": {
             "available": true,
@@ -13160,7 +13286,8 @@
               "bass",
               "other"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Чичерина - Ту-лу-ла",
@@ -13292,7 +13419,8 @@
             "steve": "184b6ba448",
             "tanya": "1eb0734e9e",
             "pb-other": "2c3042b0bb",
-            "pb-bass": "86bb5d658a"
+            "pb-bass": "86bb5d658a",
+            "pb-audition": "d1842761b2"
           },
           "pb_other": {
             "available": true,
@@ -13305,7 +13433,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "The Subways - Rock & Roll Queen",
@@ -13423,7 +13552,8 @@
           "versions": {
             "all": "f7f749329f",
             "pb-other": "6268d9010a",
-            "pb-bass": "b55d6be751"
+            "pb-bass": "b55d6be751",
+            "pb-audition": "a2603dca25"
           },
           "pb_other": {
             "available": true,
@@ -13437,7 +13567,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "The Offspring - Pretty Fly (For A White Guy)",
@@ -13540,7 +13671,8 @@
             "alex": "270040244a",
             "steve": "fb1c1fd9a0",
             "tanya": "03b90961c6",
-            "pb-bass": "0ddec7a49d"
+            "pb-bass": "0ddec7a49d",
+            "pb-audition": "e5416ffdf0"
           },
           "pb_other": {
             "available": false,
@@ -13551,7 +13683,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Mr. Credo - Медляк",
@@ -13669,7 +13802,8 @@
             "steve": "4435c69f6b",
             "tanya": "5e213e09f2",
             "pb-other": "061cfbd97c",
-            "pb-bass": "37e50fb01b"
+            "pb-bass": "37e50fb01b",
+            "pb-audition": "6b2684e133"
           },
           "pb_other": {
             "available": true,
@@ -13684,7 +13818,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "5sta Family & 23:45 - Я буду",
@@ -13791,7 +13926,8 @@
             "steve": "05858ac6a8",
             "tanya": "eed65648c4",
             "pb-other": "7b8e86fc9c",
-            "pb-bass": "ea64ba47b3"
+            "pb-bass": "ea64ba47b3",
+            "pb-audition": "de7addeec8"
           },
           "pb_other": {
             "available": true,
@@ -13807,7 +13943,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     },
@@ -13909,7 +14046,8 @@
           "pb_bass": {
             "available": false,
             "mutes": []
-          }
+          },
+          "audition": false
         }
       ]
     },
@@ -14161,7 +14299,8 @@
             "all": "33157a8a29",
             "alex": "c191aa581c",
             "pb-other": "cec893395d",
-            "pb-bass": "c02ed9a880"
+            "pb-bass": "c02ed9a880",
+            "pb-audition": "265b590a00"
           },
           "pb_other": {
             "available": true,
@@ -14176,7 +14315,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Вирус - Попрошу тебя",
@@ -14351,7 +14491,8 @@
           "versions": {
             "all": "78e302d8b0",
             "pb-other": "a27e1eee3b",
-            "pb-bass": "b0a2322545"
+            "pb-bass": "b0a2322545",
+            "pb-audition": "a6ab0c3555"
           },
           "pb_other": {
             "available": true,
@@ -14364,7 +14505,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Мумий Тролль - Владивосток 2000",
@@ -14475,7 +14617,8 @@
           "versions": {
             "all": "bfb712102c",
             "pb-other": "6525082c28",
-            "pb-bass": "4c04a66b01"
+            "pb-bass": "4c04a66b01",
+            "pb-audition": "052be2954d"
           },
           "pb_other": {
             "available": true,
@@ -14488,7 +14631,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         },
         {
           "sid": "Kings of Leon - Sex on Fire",
@@ -14617,7 +14761,8 @@
           "versions": {
             "all": "a08434e874",
             "pb-other": "8ee3b39704",
-            "pb-bass": "2ca9afb555"
+            "pb-bass": "2ca9afb555",
+            "pb-audition": "669aec0df6"
           },
           "pb_other": {
             "available": true,
@@ -14631,7 +14776,8 @@
             "mutes": [
               "bass"
             ]
-          }
+          },
+          "audition": true
         }
       ]
     }

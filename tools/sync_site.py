@@ -97,6 +97,11 @@ def desired():
                 ver = vers.get("pb-bass")
                 if ver and pbb_f.is_file():
                     out[f"cherry-dash/{s['slug']}/pb-bass.mp3"] = {"file": str(pbb_f), "ver": ver}
+            if s.get("audition"):
+                pba_f = ar / "pb-audition.mp3"
+                ver = vers.get("pb-audition")
+                if ver and pba_f.is_file():
+                    out[f"cherry-dash/{s['slug']}/pb-audition.mp3"] = {"file": str(pba_f), "ver": ver}
             svers = s.get("stem_versions") or {}
             sdir = ar / "stems"
             for st in s.get("stems", []):

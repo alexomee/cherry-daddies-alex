@@ -480,13 +480,18 @@ def build_data():
                 v = mix_version(pbb_file)
                 if v:
                     versions["pb-bass"] = v
+            # pb-audition.mp3 = stage playback + lead vocal (tools/pb_audition.py), plain <audio> on the site
+            pba_file = ar / "pb-audition.mp3"
+            audition = pba_file.is_file() and bool(mix_version(pba_file))
+            if audition:
+                versions["pb-audition"] = mix_version(pba_file)
 
             songs.append({
                 "sid": sid, "slug": slug_of(sid), "title": title, "artist": artist, "hasData": True,
                 "cues": {"ready": bool(cues), "count": len(cues), "list": cue_list},
                 "bass": bass, "other": other, "practice": practice, "stems": track_stems,
                 "stem_versions": stem_versions, "versions": versions,
-                "pb_other": pb_other_data, "pb_bass": pb_bass_data,
+                "pb_other": pb_other_data, "pb_bass": pb_bass_data, "audition": audition,
             })
         sets.append({
             "name": st["name"], "subtitle": st["subtitle"], "cls": st["cls"], "songs": songs,

@@ -610,6 +610,14 @@
       width:calc(100vw - 24px);
     }
   }
+  /* pb audition: one mp3 in a plain <audio> (keeps playing with the iPhone screen locked) */
+  .aud-btn{background:#151822;border:1px solid #282f42;color:var(--dim);border-radius:6px;padding:3px 8px;font-size:12px;cursor:pointer;white-space:nowrap}
+  .aud-btn.on{color:var(--txt);border-color:var(--accent)}
+  #aud-bar{position:fixed;left:0;right:0;bottom:0;z-index:100000;display:flex;align-items:center;gap:8px;padding:8px 16px calc(8px + env(safe-area-inset-bottom));background:var(--panel);border-top:1px solid var(--line)}
+  #aud-bar[hidden]{display:none}
+  #aud-bar .aud-title{color:var(--txt);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40%}
+  #aud-bar audio{flex:1;min-width:0;height:36px}
+  #aud-bar .aud-close{background:none;border:0;color:var(--dim);font-size:16px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -916,6 +924,7 @@
              : player === "drums" ? "pb-drums.mp3"        // playback drum track, not a practice mix
              : player === "pb-other" ? "pb-other.mp3"
              : player === "pb-bass" ? "pb-bass.mp3"
+             : player === "pb-audition" ? "pb-audition.mp3"
              : "practice-" + player + ".mp3";
     var v = (s.versions && s.versions[player]) ? "?v=" + s.versions[player] : "";
     var sep = v ? "&" : "?";
@@ -927,6 +936,52 @@
     var sep = v ? "&" : "?";
     return R2_BASE + "/" + s.slug + "/stems/" + stemId + ".mp3" + v + sep + "cors=1";
   }
+
+  // pb audition: stage playback (pb-other + pb-bass + click + cues) + lead vocal as ONE mp3 in a plain
+  // <audio> — on iPhone it keeps playing with the screen locked (Web Audio players get suspended).
+  var audEl = null, audSid = null;
+  function audBar(){
+    if(audEl) return audEl;
+    var bar = document.createElement("div"); bar.id = "aud-bar"; bar.hidden = true;
+    bar.innerHTML = '<span class="aud-title"></span><audio controls preload="none"></audio>'
+                  + '<button type="button" class="aud-close" aria-label="закрыть">✕</button>';
+    document.body.appendChild(bar);
+    audEl = bar.querySelector("audio");
+    audEl.addEventListener("play", function(){ stopActivePlayer(false); audSync(); });
+    audEl.addEventListener("pause", audSync); audEl.addEventListener("ended", audSync);
+    bar.querySelector(".aud-close").addEventListener("click", function(){
+      audEl.pause(); bar.hidden = true; audSid = null; audSync(); });
+    return audEl;
+  }
+  function audSync(){
+    document.querySelectorAll(".aud-btn").forEach(function(b){
+      var on = !!(audEl && audSid === b.getAttribute("data-sid") && !audEl.paused);
+      b.textContent = (on ? "⏸" : "▶") + " pb audition"; b.classList.toggle("on", on);
+    });
+  }
+  function audToggle(sid){
+    var s = SONGS[sid]; if(!s) return;
+    var a = audBar();
+    if(audSid === sid){ if(a.paused) a.play().catch(function(){}); else a.pause(); return; }
+    try { if(navigator.audioSession) navigator.audioSession.type = "playback"; } catch(e){}
+    audSid = sid; a.src = audioSrc(s, "pb-audition");
+    var bar = document.getElementById("aud-bar"); bar.hidden = false;
+    bar.querySelector(".aud-title").textContent = "pb audition · " + (s.title || sid);
+    if("mediaSession" in navigator){
+      try { navigator.mediaSession.metadata = new MediaMetadata({title: s.title || sid,
+              artist: (s.artist ? s.artist + " · " : "") + "pb audition", album: "Cherry Daddies"}); } catch(e){}
+      try {
+        navigator.mediaSession.setActionHandler("seekbackward", function(d){ a.currentTime = Math.max(0, a.currentTime - ((d && d.seekOffset) || 10)); });
+        navigator.mediaSession.setActionHandler("seekforward", function(d){ a.currentTime = Math.min(a.duration || 1e9, a.currentTime + ((d && d.seekOffset) || 10)); });
+      } catch(e){}
+    }
+    a.play().catch(function(){}); audSync();
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest && e.target.closest(".aud-btn");
+    if(b){ e.preventDefault(); e.stopPropagation(); audToggle(b.getAttribute("data-sid")); return; }
+    if(e.target.closest && e.target.closest(".pbtn") && audEl && !audEl.paused) audEl.pause();
+  }, true);
 
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){
     return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); }
@@ -1438,6 +1493,7 @@
          + '<svg class="skip-icon" viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>'
          + '</button>'
          + '</div>'
+         + (s.audition ? '<button class="aud-btn" type="button" data-sid="'+sid+'" title="весь плейбек + вокал одним mp3 (на iPhone играет при заблокированном экране)">▶ pb audition</button>' : '')
          + '</div>'
          + '<div class="player-scrub">'
          + '<input class="seek" type="range" min="0" max="100" value="0" step="0.1">'

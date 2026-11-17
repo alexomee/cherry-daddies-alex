@@ -1718,3 +1718,8 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 
 - `tools/sync_site.py`: 253 изменённых микса в R2 (58 песен: pb-other 32, pb-bass 45, all 53, стемы сайта 113, pb-drums 9, practice 1) + гайды (`music/guide-catalog.json`), Vercel prod READY (`dpl_FGS7GWGdbJ2xhChYYwyeNKaTP37X`).
 - Сверка с R2 по md5 (с `?v=`): pb-other 59/59 и pb-bass 59/59 совпадают с локальными. Сайт за паролем (401 без входа) — как и должно.
+
+## [2026-11-17] site | Кнопка «pb audition» (прослушивание с iPhone)
+
+- Сайт играет миксы через Web Audio, а iPhone глушит его при блокировке экрана. Новая кнопка «▶ pb audition» в строке плеера играет один mp3 через обычный `<audio>` (нижняя панель, Media Session: кнопки на экране блокировки, ±10 с; `navigator.audioSession = playback`). Обычный ▶ ставит её на паузу и наоборот.
+- Микс `auto-render/pb-audition.mp3` (`tools/pb_audition.py`): pb-other + pb-bass в 0 дБ, клик −3, кью −3, ведущий вокал (`stems/vocal.mp3`) −3. Если сумма клипует, весь микс опускается целиком. Только песни сетов 28.10 Music Hall и «new songs» (32 песни); у остальных файл удаляется. `jamzone_render.py` пересобирает его после каждого рендера; `setlist_dashboard.py` → `audition` + `versions["pb-audition"]`; `sync_site.py` льёт в R2; `web/dev.mjs` отдаёт локально.
