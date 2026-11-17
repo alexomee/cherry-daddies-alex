@@ -25,7 +25,8 @@ set: СЕТ 2 #9
 
 Стемы в папке `music/songs/Cascada - Everytime We Touch/` (14 стемов JamZone + click).
 
-- **pb-other** (6 стемов): `03_Sound_effects_(Crowd)`, `13_Backing_Vocals`, `04_Noise_effects`, `08_Synth_Voice`, `07_Synth_Pad`, `11_Synth_Ambiant`.
+- **pb-other** (8 стемов): `03_Sound_effects_(Crowd)`, `13_Backing_Vocals`, `04_Noise_effects`, `08_Synth_Voice`, `07_Synth_Pad`, `11_Synth_Ambiant`, `10_Synth_Keys_(Bells)`, `12_Bells`.
+  - **Колокольчики** (2026-11-17, Alex: «в плейбек» — бывшая живая партия Ромы): `10_Synth_Keys_(Bells)` такты 19–34 и 68–91 (0:30–0:56, 1:52–2:30), `12_Bells` 11–12 и 68–69 (тихие удары, −33 LUFS). Без правок громкости, как в записи: pb-other в 19–34 −23.0 → −20.6 dBFS, в 68–91 −21.9 → −20.1; пик −2.3, нормализации нет. Добавка = стемы 1:1 (остаток −68 дБ). click/all/pb-bass не изменились, cues.wav прежний. В Stage Traxx 2026-11-17.
   - **mute**: `13_Backing_Vocals` заглушены в диапазоне `[1, 18.2]` (интро до вступления бэков).
 - **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): `05_Synth_Bass` + `06_Synth_Bass_(crunch)`, оба `gain_db −2.0` (баланс между ними как в записи) → −19.2 LUFS, пик ≈ −5.8 dBFS; остаток против суммы стемов −79 дБ. click/all/pb-other байт в байт прежние, cues.wav оставлен прежний. В Stage Traxx 2026-11-17 (4 дорожки по 199.437 с, остаток против рендера ≤ −72 дБ). До этого `null`: бас играл Рома вживую.
 - **layers / parts**: нет (`parts/` отсутствует).
@@ -36,7 +37,7 @@ set: СЕТ 2 #9
 - `steve` → `02_Electronic_Drum_Kit` → `practice-steve.mp3`
 - `tanya` → `14_Lead_Vocal` → `practice-tanya.mp3`
 - `alex` → `09_Synth_Lead` → `practice-alex.mp3`
-- `roma` → `10_Synth_Keys_(Bells)`, `12_Bells` → `practice-roma.mp3` (Рома ушёл 2026-11-16; кто закрывает колокольчики — открытый вопрос к Alex, сейчас их нет ни в плейбеке, ни живьём)
+- ~~`roma` → `10_Synth_Keys_(Bells)`, `12_Bells`~~ — Рома ушёл 2026-11-16; колокольчики в pb-other с 2026-11-17, `players.roma` убран, `practice-roma.mp3` убран из `auto-render/`.
 
 Рендеры: `all.wav`, `click.wav`, `cues.wav`, `pb-other.wav`, `cue_preview.mp3`, 4×`practice-*.mp3`, `timeline.json`, плюс `20-lyric-review.mp4` (клип ревью текста лаунчера).
 
