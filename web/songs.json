@@ -1,10 +1,10 @@
 {
-  "generated": "2026-11-17T06:26:05",
+  "generated": "2026-11-17T07:01:22",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
-    "playback": 43,
+    "playback": 45,
     "other": 75,
     "practice": 83
   },
@@ -1297,8 +1297,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "Synth Bass, Synth Bass (crunch)"
           },
           "other": {
             "kind": "stems",
@@ -1360,15 +1360,16 @@
             "bass": "cf5e104d39",
             "other": "f159c70224",
             "click": "5d99a1395b",
-            "cues": "2688d7733c"
+            "cues": "ee72b57fa2"
           },
           "versions": {
-            "all": "51605ab09e",
+            "all": "60a8beaa4b",
             "alex": "95e172c6b5",
             "steve": "b7586b8f83",
             "roma": "f16f81ec54",
             "tanya": "439f0ce423",
-            "pb-other": "186f811a6b"
+            "pb-other": "9e8f176025",
+            "pb-bass": "9d9b932a52"
           },
           "pb_other": {
             "available": true,
@@ -1379,8 +1380,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -10979,8 +10982,8 @@
             ]
           },
           "bass": {
-            "kind": "assign",
-            "who": "Roma"
+            "kind": "playback",
+            "label": "Synth Bass, Synth Bass (crunch)"
           },
           "other": {
             "kind": "stems",
@@ -11042,15 +11045,16 @@
             "bass": "cf5e104d39",
             "other": "f159c70224",
             "click": "5d99a1395b",
-            "cues": "2688d7733c"
+            "cues": "ee72b57fa2"
           },
           "versions": {
-            "all": "51605ab09e",
+            "all": "60a8beaa4b",
             "alex": "95e172c6b5",
             "steve": "b7586b8f83",
             "roma": "f16f81ec54",
             "tanya": "439f0ce423",
-            "pb-other": "186f811a6b"
+            "pb-other": "9e8f176025",
+            "pb-bass": "9d9b932a52"
           },
           "pb_other": {
             "available": true,
@@ -11061,8 +11065,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {

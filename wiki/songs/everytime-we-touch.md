@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-11-17
 title: Everytime We Touch
 artist: Cascada
 set: СЕТ 2 #9
@@ -27,7 +27,7 @@ set: СЕТ 2 #9
 
 - **pb-other** (6 стемов): `03_Sound_effects_(Crowd)`, `13_Backing_Vocals`, `04_Noise_effects`, `08_Synth_Voice`, `07_Synth_Pad`, `11_Synth_Ambiant`.
   - **mute**: `13_Backing_Vocals` заглушены в диапазоне `[1, 18.2]` (интро до вступления бэков).
-- **pb-bass**: `null` (баса в плейбеке нет — бас играет живой, `05_Synth_Bass`/`06_Synth_Bass_(crunch)` не в миксе).
+- **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): `05_Synth_Bass` + `06_Synth_Bass_(crunch)`, оба `gain_db −2.0` (баланс между ними как в записи) → −19.2 LUFS, пик ≈ −5.8 dBFS; остаток против суммы стемов −79 дБ. click/all/pb-other байт в байт прежние, cues.wav оставлен прежний. В Stage Traxx 2026-11-17 (4 дорожки по 199.437 с, остаток против рендера ≤ −72 дБ). До этого `null`: бас играл Рома вживую.
 - **layers / parts**: нет (`parts/` отсутствует).
 - Перкуссии-стемов нет — вопрос чистки перкуссии не стоит (см. [jamzone-render](../pipelines/jamzone-render.md)).
 
@@ -36,7 +36,7 @@ set: СЕТ 2 #9
 - `steve` → `02_Electronic_Drum_Kit` → `practice-steve.mp3`
 - `tanya` → `14_Lead_Vocal` → `practice-tanya.mp3`
 - `alex` → `09_Synth_Lead` → `practice-alex.mp3`
-- `roma` → `10_Synth_Keys_(Bells)`, `12_Bells` → `practice-roma.mp3`
+- `roma` → `10_Synth_Keys_(Bells)`, `12_Bells` → `practice-roma.mp3` (Рома ушёл 2026-11-16; кто закрывает колокольчики — открытый вопрос к Alex, сейчас их нет ни в плейбеке, ни живьём)
 
 Рендеры: `all.wav`, `click.wav`, `cues.wav`, `pb-other.wav`, `cue_preview.mp3`, 4×`practice-*.mp3`, `timeline.json`, плюс `20-lyric-review.mp4` (клип ревью текста лаунчера).
 

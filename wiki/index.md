@@ -28,7 +28,7 @@
 6. [S&M — Rihanna](songs/s-and-m.md) — JamZone-песня СЕТ 2 #6, 128 bpm, pitch −2; 13 cue со счётным финалом, pb-other = синт + 2 бек-вокала, pb-bass +2 dB, Alex на обоих басах.
 7. [Beverly Hills — Zivert](songs/beverly-hills.md) — СЕТ 2 #7 (клип №18), Zivert, 115 bpm, pitch 0 (A minor); click:follow без tempo_zone; бас = playback-layer zivert-bass (replaces bass, render-frame); players roma/steve/tanya; 12 cue со скип-cue «ghost beat ready skip».
 8. [We Found Love](songs/we-found-love.md) — Rihanna & Calvin Harris «We Found Love» (СЕТ 2 #8): JamZone-песня, 128 bpm, плейбек в оригинальной тональности (pitch 0 после отката с -2), 16 ручных cue, practice-миксы для steve/tanya/roma.
-9. [Everytime We Touch — Cascada](songs/everytime-we-touch.md) — СЕТ 2 #9, JamZone-источник, 142 bpm, 13 ручных cue; pb-other из 6 стемов (бэки замьючены до 18.2с), баса в плейбеке нет, 4 practice-микса.
+9. [Everytime We Touch — Cascada](songs/everytime-we-touch.md) — СЕТ 2 #9, JamZone-источник, 142 bpm, 13 ручных cue; pb-other из 6 стемов (бэки замьючены до 18.2с); pb-bass (оба синт-баса, 2026-11-17, в Stage Traxx); колокольчики Ромы не закрыты; 4 practice-микса.
 10. [Heads Will Roll — Yeah Yeah Yeahs](songs/heads-will-roll.md) — JamZone-песня, СЕТ 2 #10, оригинальная тональность; 16 черновых ручных cue (не сверены), players на всех четверых, practice-миксы собраны, перкуссия исключена.
 11. [I Love It — Icona Pop &amp; Charli XCX](songs/i-love-it.md) — JamZone-песня, СЕТ 2 #11, 126 bpm, питч 0; 13 cue, live-партии по 4 участникам (alex — 2 синта + 2 гитар-синта), без layers/tempo_zone.
 
