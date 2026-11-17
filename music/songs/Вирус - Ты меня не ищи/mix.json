@@ -5,7 +5,12 @@
     {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398},
     {"bar": 25, "cc": 80, "value": 0, "abs_sec": 45.352}
   ],
-  "gm800": 27,
+  "gm800": [
+    {"bar": 1,   "scene": 27, "abs_sec": 3.489},
+    {"bar": 57,  "beat": "4&", "scene": 30, "abs_sec": 102.696},
+    {"bar": 66,  "beat": "4&", "scene": 27, "abs_sec": 118.395},
+    {"bar": 107, "beat": "4&", "scene": 30, "abs_sec": 189.912}
+  ],
   "bpm": 137.59,
   "pitch_semitones": 0,
   "pb-other": {
