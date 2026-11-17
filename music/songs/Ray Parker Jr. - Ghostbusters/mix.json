@@ -30,12 +30,11 @@
       "15_Lead_Vocal": {"from_bar": 114, "from_beat": 1, "to_bar": 114, "to_beat": 2}
     }
   },
-  "pb-bass": null,
+  "pb-bass": {"stems": ["03_Bass"], "gain_db": {"03_Bass": -2.5}},
   "pb-drums": {
     "stems": ["02_Drum_Kit"]
   },
   "players": {
-    "roma": ["03_Bass"],
     "steve": ["02_Drum_Kit"],
     "tanya": ["15_Lead_Vocal"]
   },

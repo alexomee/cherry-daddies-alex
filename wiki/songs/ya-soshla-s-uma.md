@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-08
+updated: 2026-11-17
 title: Я сошла с ума
 artist: t.A.T.u.
 set: на бис #2
@@ -23,7 +23,7 @@ set: на бис #2
 
 `mix.json`:
 - **pb-other:** `04_Noise_effects`, `05_Noise_effects_(Wind)`, `07_Acoustic_Guitar`, `09_Synth_Pad`, `10_Synth_Voice`, `11_Synth_Lead`, `12_String_Section`, `13_Backing_Vocals`. `fade_out`: bar 77.1 → 77.3 (202.964с → 204.297с).
-- **pb-bass:** `06_Bass`.
+- **pb-bass:** `06_Bass`, `gain_db −2.2` → −19.2 LUFS (2026-11-17: Рома ушёл; песня есть в JamZone → бас из стема, концертный не рассматривается — Alex). Остаток против стема −79 дБ; all/click/pb-other прежние, cues.wav прежний. В Stage Traxx 2026-11-17. `players.roma` убран.
 - **layers:** нет.
 - **players:** `steve` → `02_Drum_Kit`; `tanya` → `15_Lead_Vocal_Lena`, `14_Lead_Vocal_Julia`.
 

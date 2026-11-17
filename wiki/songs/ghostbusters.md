@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-18
+updated: 2026-11-17
 title: Ghostbusters
 artist: Ray Parker Jr.
 set: "24.10 Lefkara #2"
@@ -22,9 +22,9 @@ set: "24.10 Lefkara #2"
   - `15_Lead_Vocal`: `bar 114 beat 1 → beat 2` (чтобы после «Uh, he likes the girls too» не начиналась следующая фраза «Who you gonna call?» на `114.4.93`).
   - Общий `fade_out` (`all`, барабаны, бас, гитары): `bar 115 beat 1.15 → beat 1.4` (`242.165s → 242.296s`) — финальный даунбит-удар на `bar 115.1` (`4:02.09`) после барабанного брейка 114-го такта и тишина до слабой восьмой `115.1.5`.
 - **Источник стемов:** JamZone HQ-стемы (15 дорожек).
-- **Бас:** живой (Рома играет на бас-гитаре), `pb-bass: null`.
+- **Бас:** с 2026-11-17 в плейбеке — `pb-bass` = JamZone `03_Bass`, `gain_db −2.5` → −19.2 LUFS (Рома ушёл; песня есть в JamZone → бас из стема, концертный не рассматривается — Alex). Остаток против стема −79 дБ (до финального фейда песни). all/pb-other/pb-drums прежние, click тот же по сэмплам, cues.wav прежний (Oct 26). В Stage Traxx 2026-11-17. До этого живой бас Ромы, `pb-bass: null`.
 - **pb-other:** клавиши, синты, духовые и бэки: `06_Digital_Piano`, `07_Electric_Piano_(Clavinet)`, `08_Synth_Strings`, `09_Synth_Keys_1`, `10_Synth_Keys_2`, `11_Synth_Lead`, `12_Synth_Brass`, `13_Brass_section`, `14_Backing_Vocals`.
-- **players:** roma (`03_Bass`), steve (`02_Drum_Kit`), tanya (`15_Lead_Vocal`).
+- **players:** steve (`02_Drum_Kit`), tanya (`15_Lead_Vocal`) (roma убран 2026-11-17).
 - **Cues (9 шт.):**
   - `bar 1` (4.17s) — `Ghostbuster playback in` («Ghostbuster · playback in ready go»)
   - `bar 2` (6.26s) — `guitar bass ready go` (вступление живой гитары и баса)

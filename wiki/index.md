@@ -56,7 +56,7 @@
 ### На бис
 
 1. [Мелом (Пропаганда)](songs/melom.md) — Единственная песня блока «на бис»; без pb-other (только click+cues + pb-bass с 2026-11-17, Рома ушёл), Bb minor / 120 bpm, 10 cue, единственный static lyric-клип в риге.
-2. [t.A.T.u. — Я сошла с ума](songs/ya-soshla-s-uma.md) — На бис #2, JamZone-стемы (cat_54835), 90 bpm без питча; все секции входят на долю 3 (cue-гоча), перкуссия вычищена, pb-other fade_out в 0 за 2 доли до финального удара 77.3 (3:24), дуэт-lyric-launcher две колонки.
+2. [t.A.T.u. — Я сошла с ума](songs/ya-soshla-s-uma.md) — На бис #2, JamZone-стемы (cat_54835), 90 bpm без питча; pb-bass из стема с 2026-11-17 (Рома ушёл); все секции входят на долю 3 (cue-гоча), перкуссия вычищена, pb-other fade_out в 0 за 2 доли до финального удара 77.3 (3:24), дуэт-lyric-launcher две колонки.
 
 ### 24.10 Lefkara (27 песен)
 
@@ -75,7 +75,7 @@
 13. [Eurythmics — Sweet Dreams](songs/sweet-dreams.md) — ~125.2 BPM; 6 cues (playback in, chorus in, verse in, break in, verse in, end in).
 14. [Cyndi Lauper — Girls Just Want to Have Fun](songs/cyndi-lauper-girls-just-want-to-have-fun.md) — 120 BPM; 7 cues (all in, verse in, break in, verse in, main in, verse in, end in).
 15. [Irene Cara — What a Feeling](songs/what-a-feeling.md) — 123.8 BPM / интро 92 BPM; 10 cues (guitars in, verse in, all in 20.1, solo in, vocal in 55.4, bridge in, chorus variation, outro in, keep going, end in); 11_Lead_Vocal (back-vox) в припевах в pb-other.
-16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; 9 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, keep going, end in @ bar 115.1 / 4:02.1).
+16. [Ray Parker Jr. — Ghostbusters](songs/ghostbusters.md) — 115 BPM; pb-bass из JamZone-стема с 2026-11-17 (Рома ушёл); 9 cues (playback in, guitar bass in, drums in, main in, break x2, chorus in, keep going, end in @ bar 115.1 / 4:02.1).
 17. [Modern Talking — You're My Heart, You're My Soul](songs/youre-my-heart-youre-my-soul.md) — ~117.5 BPM; 5 cues (all in, verse in 10.3, melody in, verse in, end fill in).
 18. [Bonnie Tyler — Holding Out for a Hero](songs/holding-out-for-a-hero.md) — 150 BPM; 13 cues (drum-base in, guitar in, verse in, chorus in, intro in, chorus variation, bridge in, voice in, keep going, outro in, end in @ bar 178.1 / 4:43.7; без бэк-вокала после 4:36).
 19. [Modern Talking — Cheri, Cheri Lady](songs/cheri-cheri-lady.md) — 114 BPM; 8 cues (all in, verse in ×2, melody in ×3, chorus in, end fill in).
