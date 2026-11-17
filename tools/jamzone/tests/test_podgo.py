@@ -86,3 +86,45 @@ def test_both_devices_in_one_block():
 def test_parse_rejects(v, msg):
     with pytest.raises(ValueError, match=msg):
         st.parse_device("podgo", v)
+
+
+# --- GM-800 ASSIGN CCs ("gm800_cc") -------------------------------------------------------------
+
+def test_gm800_cc_abs_written_only_on_cc_lines(tmp_path):
+    p = tmp_path / "mix.json"
+    p.write_text('{\n  "gm800": 27,\n  "gm800_cc": [\n    {"bar": 1,  "cc": 80, "value": 0},\n'
+                 '    {"bar": 17, "cc": 80, "value": 127}\n  ],\n'
+                 '  "cues": [\n    {"bar": 17, "text": "bass in"}\n  ]\n}', encoding="utf-8")
+    assert jr.write_device_abs_times(str(p), "gm800_cc", "cc", [3.489, 31.398]) is None
+    out = p.read_text(encoding="utf-8")
+    assert '{"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398}' in out
+    assert '{"bar": 17, "text": "bass in"}' in out
+
+
+def test_cc_block_start_state_then_early_change():
+    ev = st.parse_cc([{"bar": 1, "cc": 80, "value": 0, "abs_sec": 3.489},
+                      {"bar": 9, "cc": 80, "value": 0, "abs_sec": 17.4},       # no change -> dropped
+                      {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398}])
+    assert st.cc_block(ev, 2) == ["[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]",
+                                  "[midi@00:31.198: CC80.127@2]"]
+
+
+def test_cc_tags_follow_the_scene_pc():
+    devices = {"gm800": st.parse_device("gm800", 27),
+               "gm800_cc": st.parse_cc([{"cc": 80, "value": 0, "abs_sec": 3.5},
+                                        {"cc": 80, "value": 127, "abs_sec": 31.4}])}
+    assert st.devices_block(devices, {}) == [
+        "[midi: PC26@2]", "[midi@00:00.000: PC26@2]",
+        "[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]", "[midi@00:31.200: CC80.127@2]"]
+
+
+@pytest.mark.parametrize("v,msg", [
+    ([{"cc": 74, "value": 1, "abs_sec": 1}], "not 71..79"),
+    ([{"cc": 40, "value": 1, "abs_sec": 1}], "1..31 or 64..95"),
+    ([{"cc": 80, "value": 128, "abs_sec": 1}], "0..127"),
+    ([{"cc": 80, "value": 1}], "no abs_sec"),
+    ([], "non-empty"),
+])
+def test_parse_cc_rejects(v, msg):
+    with pytest.raises(ValueError, match=msg):
+        st.parse_cc(v)

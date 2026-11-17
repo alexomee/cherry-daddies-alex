@@ -50,7 +50,8 @@ Usage: jamzone_render.py "<song name or folder>" [--check] [--bpm N]
        --bpm N = force tempo (external songs; overrides measured)
    mix.json "gm800": [{"bar": N, "beat"?: B, "scene": S}, ...] (one entry per line) = BOSS GM-800
        scene changes; "podgo": [{"bar": N, "beat"?: B, "preset": "02A"}, ...] = Line 6 POD Go
-       preset changes. Every render/--check writes their render-time "abs_sec" (the bar itself),
+       preset changes; "gm800_cc": [{"bar": N, "cc": 80, "value": 127}, ...] = MIDI CCs into a GM-800
+       scene ASSIGN (e.g. part on/off). Every render/--check writes their render-time "abs_sec" (the bar itself),
        which tools/stagetraxx_sync.py turns into Stage Traxx MIDI tags (wiki/pipelines/gm-800.md,
        wiki/pipelines/pod-go.md).
    position converter (writes nothing; pick where to add a cue without bar-grid guessing):
@@ -1015,7 +1016,7 @@ def write_cue_abs_times(mix_path, times, snaps=None):
 
 # Hardware switched by Stage Traxx MIDI tags: mix.json key -> the field its entries carry
 # (BOSS GM-800 scenes, wiki/pipelines/gm-800.md; Line 6 POD Go presets, wiki/pipelines/pod-go.md).
-MIDI_DEVICES = (("gm800", "scene"), ("podgo", "preset"))
+MIDI_DEVICES = (("gm800", "scene"), ("podgo", "preset"), ("gm800_cc", "cc"))   # gm800_cc: GM-800 ASSIGN CCs
 
 def write_device_abs_times(mix_path, key, field, times):
     """Same in-place refresh of "abs_sec" for a device change list ("gm800" scenes, "podgo"

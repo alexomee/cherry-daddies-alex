@@ -1,5 +1,9 @@
 {
   "podgo": "31D",
+  "gm800_cc": [
+    {"bar": 1,  "cc": 80, "value": 0, "abs_sec": 3.489},
+    {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398}
+  ],
   "gm800": 27,
   "bpm": 137.59,
   "pitch_semitones": 0,

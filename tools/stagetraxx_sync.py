@@ -41,6 +41,13 @@ BOSS GM-800 scenes (wiki/pipelines/gm-800.md) come from mix.json "gm800", on cha
     [midi@00:31.304: PC7@2]     each change -> at its render second
 No "gm800" key -> no GM-800 tags (the unit keeps whatever scene it is on).
 
+GM-800 ASSIGN CCs (a CTL switch can't be pressed over MIDI; a scene ASSIGN with SOURCE = CC#n
+does the same job — wiki gm-800 «CTL-кнопки и MIDI») come from mix.json "gm800_cc", on the
+GM-800 channel, PODGO_LEAD early like POD Go changes:
+
+    "gm800_cc": [{"bar": 1, "cc": 80, "value": 0},      first event per CC = start state
+                 {"bar": 17, "cc": 80, "value": 127}]   (sent on load and at 00:00)
+
 Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on channel 3
 (POD Go MIDI Base Channel; on ch1 it would follow the launcher's PCs):
 
@@ -191,6 +198,55 @@ DEVICES = {
 }
 
 
+GM_CC_LEAD = PODGO_LEAD   # GM-800 ASSIGN CCs: also a bit before the bar (part on before the note)
+
+
+def parse_cc(v):
+    """mix.json "gm800_cc" -> [(render_sec, cc, value), ...] sorted by time, None when absent.
+    CC numbers are the ones a GM-800 ASSIGN SOURCE accepts (1-31, 64-95), minus 71-79 (the
+    unit's own tone-modify CCs)."""
+    if v is None:
+        return None
+    if not isinstance(v, list) or not v:
+        raise ValueError(f'"gm800_cc" must be a non-empty list, got {v!r}')
+    out = []
+    for e in v:
+        cc = e.get("cc") if isinstance(e, dict) else None
+        val = e.get("value") if isinstance(e, dict) else None
+        if not isinstance(cc, int) or isinstance(cc, bool) or not (1 <= cc <= 31 or 64 <= cc <= 95) \
+                or 71 <= cc <= 79:
+            raise ValueError(f"gm800_cc entry {e!r}: \"cc\" must be 1..31 or 64..95 (not 71..79)")
+        if not isinstance(val, int) or isinstance(val, bool) or not 0 <= val <= 127:
+            raise ValueError(f'gm800_cc entry {e!r}: "value" must be 0..127')
+        if "abs_sec" not in e:
+            raise ValueError(f"gm800_cc entry {e!r} has no abs_sec — run jamzone_render.py --check")
+        out.append((float(e["abs_sec"]), cc, val))
+    if any(b[0] < a[0] for a, b in zip(out, out[1:])):
+        raise ValueError("gm800_cc entries are not in time order")
+    return out
+
+
+def cc_block(events, channel, lead=GM_CC_LEAD):
+    """[(sec, cc, value)] -> tags. Each CC's first event is its start state: on load AND at
+    00:00 (after the scene PC, so it lands on the freshly loaded scene); later events at
+    sec - lead; a value the CC already has is dropped."""
+    if not events:
+        return []
+    start = {}
+    for _sec, cc, val in events:
+        start.setdefault(cc, val)
+    lines = [f"[midi: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
+    lines += [f"[midi@00:00.000: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
+    cur, seen = dict(start), set()
+    for sec, cc, val in events:
+        if cc not in seen:                 # the start event itself
+            seen.add(cc)
+        elif cur[cc] != val:
+            lines.append(f"[midi@{mmss(max(0.0, sec - lead))}: CC{cc}.{val}@{channel}]")
+            cur[cc] = val
+    return lines
+
+
 def song_devices(sid):
     """mix.json device keys -> ({key: [(render_sec, pc, label), ...]}, {key: error})."""
     try:
@@ -207,6 +263,13 @@ def song_devices(sid):
             continue
         if ch:
             out[key] = ch
+    try:
+        cc = parse_cc(mix.get("gm800_cc"))
+    except ValueError as e:
+        err["gm800_cc"] = str(e)
+    else:
+        if cc:
+            out["gm800_cc"] = cc
     return out, err
 
 
@@ -326,7 +389,8 @@ def device_block(changes, channel, lead=0.0):
 
 def devices_block(devices, channels):
     return [ln for key, d in DEVICES.items()
-            for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"])]
+            for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"])] \
+        + cc_block(devices.get("gm800_cc"), channels.get("gm800", GM_CHANNEL))
 
 
 def lyrics_text(lyrics):
@@ -559,6 +623,15 @@ def main():
         clip = f"PC{info['clip']:<3}" if info["clip"] is not None else "no-clip"
         gm = ""
         for key, ch in info["devices"].items():
+            if key == "gm800_cc":
+                seen = set()
+                parts = []
+                for t, c, v in ch:                 # first event of a CC = start state (load/00:00)
+                    parts.append(f"{c}={v}" if c not in seen else
+                                 f"{c}={v}@{mmss(max(0.0, t - GM_CC_LEAD))[:-4]}")
+                    seen.add(c)
+                gm += "  GM-800 CC " + " → ".join(parts)
+                continue
             gm += f"  {DEVICES[key]['name']} " + " → ".join(
                 f"{lb}@{mmss(max(0.0, t - DEVICES[key]['lead']))[:-4]}" if i else str(lb)
                 for i, (t, _pc, lb) in enumerate(ch))
@@ -571,7 +644,7 @@ def main():
         if info["note"] is not None and old and old != info["note"]:
             print("     ~ text in Stage Traxx differs from the board note -> replaced")
         for key, e in info["dev_err"].items():
-            print(f"     ! {DEVICES[key]['name']} tags skipped: {e}")
+            print(f"     ! {DEVICES.get(key, {}).get('name', key)} tags skipped: {e}")
     bad = [f"{i['title']} ({'/'.join(i['dev_err'])})" for i in songs.values() if i["dev_err"]]
     if bad and a.apply:
         sys.exit(f"fix mix.json first: {', '.join(bad)}")
