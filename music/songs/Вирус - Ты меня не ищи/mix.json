@@ -2,7 +2,8 @@
   "podgo": "31D",
   "gm800_cc": [
     {"bar": 1,  "cc": 80, "value": 0, "abs_sec": 3.489},
-    {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398}
+    {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398},
+    {"bar": 25, "cc": 80, "value": 0, "abs_sec": 45.352}
   ],
   "gm800": 27,
   "bpm": 137.59,
@@ -15,7 +16,8 @@
     ],
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"}
   },
-  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5}},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5},
+              "mute": {"bass": [[1, 58], [66, 108]]}},
   "players": {"alex": ["keys", "strings"]},
   "cues": [
     {"bar": 1,   "text": "Ты меня не ищи drums bass ready go", "abs_sec": 3.489, "snap_sec": 0.0},
