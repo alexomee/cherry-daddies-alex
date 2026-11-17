@@ -6,6 +6,16 @@
   "pb-drums": {"stems": ["drums"]},
   "pitch_semitones": -2,
   "players": {"roma": ["keys", "other"], "steve": ["drums"], "tanya": ["vocals"], "alex": ["bass", "synth-bass"]},
+  "gm800": [
+    {"bar": 1,   "scene": 7, "abs_sec": 3.478},
+    {"bar": 17,  "scene": 8, "abs_sec": 31.304},
+    {"bar": 25,  "scene": 7, "abs_sec": 45.217},
+    {"bar": 73,  "scene": 10, "abs_sec": 128.696},
+    {"bar": 81,  "scene": 7, "abs_sec": 142.609},
+    {"bar": 121, "scene": 8, "abs_sec": 212.174},
+    {"bar": 129, "scene": 7, "abs_sec": 226.087},
+    {"bar": 137, "scene": 9, "abs_sec": 240.0}
+  ],
   "cues": [
     {"bar": 1,   "text": "Солнышко all in", "abs_sec": 3.478, "snap_sec": 0.0},
     {"bar": 7,   "beat": 4, "text": "stop", "abs_sec": 15.217, "snap_sec": 11.304},
