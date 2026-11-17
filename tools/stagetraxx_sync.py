@@ -9,6 +9,9 @@ For every song of the setlist (web/songs.json) builds/updates a Stage Traxx song
     PB Bass   bus 4   (front of house)
     Drums     bus 3   MUTED (practice: unmute in the mixer to hear the drum kit)
     Vocals    bus 3   MUTED (practice: lead vocal)
+    All       bus 3   MUTED (practice: auto-render/all.wav, the whole song in the band key)
+
+Mute group 1 = all tracks but All, group 2 = all but All/Click/Cues (MUTE_GROUPS).
 
 One track per bus, every pan centred; WHERE a bus plays is Stage Traxx's per-device output
 map (prefs audio_busDeviceSettings), not the song: the rehearsal Rubix24 sends buses 1-4 to
@@ -95,6 +98,7 @@ ROUTING = [
     ("pb-bass",  "4_PB_Bass.wav",  "PB Bass",  3, 0.0),
     ("drums",    "5_Drums.wav",    "Drums",    2, 0.0),     # practice: same bus as PB Other,
     ("vocal",    "6_Vocals.wav",   "Vocals",   2, 0.0),     # MUTED by default (see MUTED)
+    ("all",      "7_All.wav",      "All",      2, 0.0),     # full band-key mix, MUTED by default
 ]
 # Where a stem comes from inside auto-render/ (default <stem>.wav). drums/vocal are the render's
 # per-category site stems (stems/*.mp3: same timeline as click.wav, sample-exact; drums = the kit
@@ -102,7 +106,13 @@ ROUTING = [
 SOURCES = {"drums": "stems/drums.mp3", "vocal": "stems/vocal.mp3"}
 # Tracks written muted: drummer/singer play these live. Unmute in the Stage Traxx mixer to
 # practise without them; every sync writes them muted again (bus 3 = front of house at a gig).
-MUTED = {"drums", "vocal"}
+MUTED = {"drums", "vocal", "all"}
+# Mute groups (Stage Traxx mixer, master section; global across songs): track bitmask, bit 0 =
+# group 1. Group 1 = everything but All -> only the full mix plays; group 2 = the playback parts
+# All already contains (not Click/Cues) -> full mix + click + cues. To listen to the song: unmute
+# All in the mixer, then press 1 or 2.
+MUTE_GROUPS = {"click": 0b01, "cues": 0b01, "pb-other": 0b11, "pb-bass": 0b11,
+               "drums": 0b11, "vocal": 0b11, "all": 0}
 
 
 def stem_src(render, stem):
@@ -497,7 +507,7 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
           hasMarkers,equalizer,lastModified,name,color,transpose,muteGroupMask)
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                   (uuid.uuid4().bytes, sid, f"{folder}/{fn}", dur, 0.0, pan, int(stem in MUTED), bus, n,
-                   0, EQ, t, nm, 0, 1, 0))
+                   0, EQ, t, nm, 0, 1, MUTE_GROUPS.get(stem, 0)))
     return sid, converted, bool(row)
 
 

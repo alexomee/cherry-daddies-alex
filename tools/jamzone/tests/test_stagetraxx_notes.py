@@ -59,7 +59,17 @@ def test_resync_is_stable():
 def test_practice_tracks_route_to_pb_other_bus_and_start_muted(tmp_path):
     bus = {stem: b for stem, _fn, _nm, b, _p in st.ROUTING}
     assert bus["drums"] == bus["vocal"] == bus["pb-other"]
-    assert st.MUTED == {"drums", "vocal"}
+    assert {"drums", "vocal"} <= st.MUTED
     assert st.stem_src("/r", "drums") == "/r/stems/drums.mp3"
     assert st.stem_src("/r", "vocal") == "/r/stems/vocal.mp3"
     assert st.stem_src("/r", "pb-other") == "/r/pb-other.wav"
+
+
+def test_all_track_and_mute_groups():
+    bus = {stem: b for stem, _fn, _nm, b, _p in st.ROUTING}
+    assert bus["all"] == bus["pb-other"] and "all" in st.MUTED
+    assert st.stem_src("/r", "all") == "/r/all.wav"
+    g = st.MUTE_GROUPS
+    assert g["all"] == 0                                              # All is never group-muted
+    assert all(g[s] & 1 for s in bus if s != "all")                   # group 1: everything but All
+    assert {s for s in bus if g.get(s, 0) & 2} == {"pb-other", "pb-bass", "drums", "vocal"}
