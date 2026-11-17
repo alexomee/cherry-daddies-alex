@@ -1609,3 +1609,9 @@ Append-only хроника вики. Формат: `## [YYYY-MM-DD] <op> | <за
 - Уточнение: живые места шире, чем 58–66 и 108+ (это `mute` всего слоя); keys вырезаны ещё раньше, prep-скриптом (`KEYS_MUTES`): с 40.4 и с 99.4.
 - `jamzone_render.py --practice`: `derived`-layer, все стемы `source` которого у игрока, возвращается в минус (иначе practice без keys/strings во всей песне). `practice-alex.mp3` проверен регрессией по стемам. Остальной `auto-render/` возвращён к прежнему (cues.wav = Stage Traxx).
 - `CLAUDE.md`/`jamzone-render.md`: practice пишется только с `--practice` (было «на каждый рендер» — расходилось с кодом).
+
+## [2026-11-17] song | Ту-лу-ла: pb-bass
+
+- Бас Ромы → плейбек: `pb-bass: {stems: [bass], gain_db: {bass: 2.8}}` (было `null`), `players.roma` убран. Уровень −22.0 → −19.2 LUFS (медиана pb-bass), пик −6.9 dBFS.
+- click/all/pb-other/pb-drums байт в байт прежние; cues.wav возвращён прежний (перерендер `say`). pb-bass против баса сайта: спектр совпадает, расхождение формы волны — фаза отдельных проходов rubberband (pitch −1).
+- Stage Traxx: `--apply`, бэкап `music_library-20261117-062709.sqlite`, 4 дорожки по 145.176 с, остаток против рендера ≤ −79 дБ. Прод не публиковался.

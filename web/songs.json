@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-16T23:11:36",
+  "generated": "2026-11-17T06:26:05",
   "counts": {
     "total": 88,
     "data": 88,
     "cues": 88,
-    "playback": 41,
+    "playback": 43,
     "other": 75,
-    "practice": 82
+    "practice": 83
   },
   "sets": [
     {
@@ -808,7 +808,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -856,16 +857,17 @@
             "bass": "208ff2b61d",
             "guitars": "9c545dc52b",
             "click": "209cc138cf",
-            "cues": "cad79a5431"
+            "cues": "08a8334bee"
           },
           "versions": {
-            "all": "abd0c8f5b1",
+            "all": "fd9a0cffd2",
             "drums": "345d1c2c8a",
             "alex": "6c00af957b",
             "steve": "184b6ba448",
             "roma": "291e14f6ab",
             "tanya": "1eb0734e9e",
-            "pb-other": "2c3042b0bb"
+            "pb-other": "2c3042b0bb",
+            "pb-bass": "88c4b393ec"
           },
           "pb_other": {
             "available": true,
@@ -874,8 +876,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -13071,7 +13075,8 @@
             ]
           },
           "bass": {
-            "kind": "none"
+            "kind": "playback",
+            "label": "bass"
           },
           "other": {
             "kind": "layers",
@@ -13119,16 +13124,17 @@
             "bass": "208ff2b61d",
             "guitars": "9c545dc52b",
             "click": "209cc138cf",
-            "cues": "cad79a5431"
+            "cues": "08a8334bee"
           },
           "versions": {
-            "all": "abd0c8f5b1",
+            "all": "fd9a0cffd2",
             "drums": "345d1c2c8a",
             "alex": "6c00af957b",
             "steve": "184b6ba448",
             "roma": "291e14f6ab",
             "tanya": "1eb0734e9e",
-            "pb-other": "2c3042b0bb"
+            "pb-other": "2c3042b0bb",
+            "pb-bass": "88c4b393ec"
           },
           "pb_other": {
             "available": true,
@@ -13137,8 +13143,10 @@
             ]
           },
           "pb_bass": {
-            "available": false,
-            "mutes": []
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
           }
         },
         {
@@ -13937,7 +13945,8 @@
             ]
           },
           "practice": [
-            "all"
+            "all",
+            "alex"
           ],
           "stems": [
             {
@@ -13990,6 +13999,7 @@
           },
           "versions": {
             "all": "33157a8a29",
+            "alex": "c191aa581c",
             "pb-other": "cec893395d",
             "pb-bass": "c02ed9a880"
           },

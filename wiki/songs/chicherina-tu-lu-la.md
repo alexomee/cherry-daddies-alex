@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-26
+updated: 2026-11-17
 title: Ту-лу-ла
 artist: Чичерина
 set: tryout batch 2026-09
@@ -13,9 +13,10 @@ Tryout 2026-09. Банда играет живьём под ровные **130.6
 ## Сводка
 
 - **bpm:** 130.6. Альбомная версия из YouTube `gLe11ZntDCs`, не клип 2:49.
-- **pitch_semitones:** -1 (на полтона ниже оригинала D major → C# / Db major) · `pb-other: {"layers": [{"file": "pb-guitars", "frame": "render", "gain_db": -7.0}], "roles": {"pb-guitars": "musical"}}`, `pb-bass: null`, `pb-drums: {"stems": ["drums"]}`.
+- **pitch_semitones:** -1 (на полтона ниже оригинала D major → C# / Db major) · `pb-other: {"layers": [{"file": "pb-guitars", "frame": "render", "gain_db": -7.0}], "roles": {"pb-guitars": "musical"}}`, `pb-bass: {"stems": ["bass"], "gain_db": {"bass": 2.8}}`, `pb-drums: {"stems": ["drums"]}`.
+- **pb-bass** (2026-11-17, Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`, питч −1 как у всей песни, `gain_db +2.8` → −19.2 LUFS (без усиления −22.0; пик −6.9 dBFS). Сверка с басом сайта (`stems/bass.mp3`, отдельный проход rubberband): спектр совпадает (остаток модуля спектрограммы −30…−47 дБ), разница по форме волны — фаза двух проходов питч-шифта, не содержимое. click/all/pb-other/pb-drums байт в байт прежние; cues.wav оставлен прежний. В Stage Traxx 2026-11-17 (4 дорожки, остаток против рендера −79 дБ).
 - **pb-other (layer `pb-guitars`):** партия ритм-гитары на трёх инструментальных/соло-секциях (11.0–26.1 с / такты 5–12, 62.5–77.7 с / такты 33–40, 128.6–143.8 с / такты 69–77), записанная/сведённая уже в тональности группы (−1 полутон, C# / Db major) в render-фрейме от $t=0$. Обновлена 2026-10-26 из `/Users/alex/Downloads/тулула guitars.mp3` (третье соло сдвинуто на −62.5 мс точно на `bar 69.1`).
-- **players:** alex=guitars, roma=bass, steve=drums, tanya=vocals.
+- **players:** alex=guitars, steve=drums, tanya=vocals (roma=bass убран 2026-11-17: ушёл, бас в pb-bass).
 - **Текущий источник:** подготовленные WAV `bass/drums/guitars/vocals/metronome` из Moises; исходные MP3 в `music/songs/Чичерина - Ту-лу-ла/moises-orig/` (имена помечены D major / 131 bpm / 442 Hz). Эти WAV и назначения игроков уже были на диске до cue-сессии 2026-09-29. Старая запись этой страницы о единственном `original.mp3` устарела: прежний click-only материал находится в `moises-orig/legacy-click-only/`.
 - Сильная доля текущих стемов: первый онсет метронома **0.442200 с**; такт 1 — барабанное вступление. Гитара начинается с затакта **4.4**, бас входит на **5.1**.
 - mix.json: `/Users/alex/projects/cherry-daddies/music/songs/Чичерина - Ту-лу-ла/mix.json`

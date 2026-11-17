@@ -8,8 +8,8 @@
     "roles": {"pb-guitars": "musical"}
   },
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": null,
-  "players": {"alex": ["guitars"], "roma": ["bass"], "steve": ["drums"], "tanya": ["vocals"]},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 2.8}},
+  "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 1,
   "cues": [
     {"bar": 1, "text": "Ту-лу-ла drums in", "abs_sec": 3.675, "snap_sec": 0.0},
