@@ -1783,6 +1783,18 @@ def main():
             if loud is not None: autoleveled.add(grp)
             trim = ent.get("gain_db", (m.get("gain_db", {}) or {}).get(nm, 0))
             lb = lbuf * 10**((ag + trim)/20)
+            # "gain_bars": [[from_bar, to_bar, db], ...] = extra gain on a bar range ON TOP of gain_db
+            # (lift a solo the player recorded quieter than his chords). Bars as in "mute" (fractional
+            # ok, to_bar exclusive); 20ms ramps: up ending at from_bar, down starting at to_bar.
+            for fr, to, gdb in ent.get("gain_bars") or []:
+                s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
+                s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
+                if s1 <= s0: continue
+                g, r = 10**(gdb/20), int(0.02*SR)
+                a, b = max(0, s0 - r), min(total, s1 + r)
+                lb[a:s0] *= np.linspace(1.0, g, s0 - a, dtype=np.float32)[:, None]
+                lb[s0:s1] *= np.float32(g)
+                lb[s1:b] *= np.linspace(g, 1.0, b - s1, dtype=np.float32)[:, None]
             if fo:
                 fs0, fs1 = fo[0], fo[1]
                 if fs1 > fs0:
@@ -1790,16 +1802,20 @@ def main():
                 lb[fs1:] = 0.0
             lmutes = (m.get("mute") or {}).get(nm) or ent.get("mute")
             if lmutes:
+                # "mute_fade_ms": N | [out_ms, in_ms] (default 15 = click guard only): fade-out ends at
+                # from_bar, fade-in starts at to_bar. Longer out = musical fade into a stop.
+                mf = ent.get("mute_fade_ms", 15)
+                fo_ms, fi_ms = mf if isinstance(mf, (list, tuple)) else (mf, mf)
+                fo_n, fi_n = int(fo_ms/1000*SR), int(fi_ms/1000*SR)
                 for fr, to in lmutes:
                     s0 = max(0, round((cue_base + relt((fr-1)*4))*SR))
                     s1 = min(total, round((cue_base + relt((to-1)*4))*SR))
                     if s1 > s0:
-                        f = int(0.015*SR)          # 15ms cross-fade at mute edges so cuts don't click
-                        if s0 >= f:
-                            lb[s0-f:s0] *= np.linspace(1, 0, f)[:, None]
+                        if fo_n and s0 >= fo_n:
+                            lb[s0-fo_n:s0] *= np.linspace(1, 0, fo_n)[:, None]
                         lb[s0:s1] = 0.0
-                        if s1+f <= total:          # landing mid-note doesn't click
-                            lb[s1:s1+f] *= np.linspace(0, 1, f)[:, None]
+                        if fi_n and s1+fi_n <= total:      # landing mid-note doesn't click
+                            lb[s1:s1+fi_n] *= np.linspace(0, 1, fi_n)[:, None]
             # "derived": true = the layer is CUT from this song's own Moises stems (e.g. pb-keys =
             # keys+strings with live-played sections muted). Its source is already in `all`, the
             # site stems and the practice minus -> add it ONLY to its pb group (else doubled).
@@ -1812,7 +1828,8 @@ def main():
             out[grp] = out.get(grp, np.zeros((total, 2), np.float32)) + lb
             lvl = (f", {role} measured {loud:+.1f}dBFS vs ceiling {ROLE_CEILING[role]:+.0f} gain {ag:+.1f}dB"
                    + (" (unchanged)" if ag == 0 else "")) if loud is not None else ""
-            mute_info = f", muted bars {lmutes}" if lmutes else ""
+            mute_info = (f", muted bars {lmutes}" if lmutes else "") + \
+                        (f", gain_bars {ent['gain_bars']}" if ent.get("gain_bars") else "")
             dest = f"{grp} only (derived: source stems already in all)" if derived else f"{grp} + all"
             print(f"layer: {nm} -> {dest} ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl}{mute_info})")
 

@@ -8,7 +8,7 @@
       {"file": "sfx-pb", "frame": "render"},
       {"file": "acoustic-guitar-solo", "frame": "render", "gain_db": -3.5},
       {"file": "takaia_lubov_keys", "frame": "render", "gain_db": -2.5},
-      {"file": "roma-keys-2810", "frame": "render", "gain_db": -1.8}
+      {"file": "roma-keys-2810", "frame": "render", "gain_db": -1.8, "gain_bars": [[43.25, 51, 7], [84.25, 92, 7]]}
     ],
     "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical", "takaia_lubov_keys": "musical", "roma-keys-2810": "musical"},
     "mute": {"acoustic-guitar-solo": [[100, 138]]}

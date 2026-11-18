@@ -7,7 +7,7 @@
     "layers": [
       {"file": "backing-vocal", "frame": "render", "gain_db": 0},
       {"file": "other-breakdown", "frame": "render", "gain_db": 0},
-      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -8.1}
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -4.1}
     ],
     "roles": {"roma-keys-2810": "musical"}
   },

@@ -7,7 +7,7 @@
 ### СЕТ 1
 
 1. [Better Off Alone — Alice Deejay](songs/better-off-alone.md) — Открывашка СЕТ 1 #1; JamZone-стемы (~137 bpm, без питча), 4-piece live, 16 cue (2 счётных входа), pb-other=noise-FX; спровоцировала потолок уровня pb-other; исходник BOA-рилса.
-2. [Around the World (La La La La La) — A Touch of Class](songs/around-the-world.md) — СЕТ 1 #2; JamZone-стемы, 132 bpm, питч 0; 12 cue (1 squeeze, 2 счётных, end stop); players alex/roma/steve/tanya, practice-миксы для всех.
+2. [Around the World (La La La La La) — A Touch of Class](songs/around-the-world.md) — СЕТ 1 #2; JamZone-стемы, 132 bpm, питч 0; 12 cue (1 squeeze, 2 счётных, end stop); все синты (кроме живых лидов Alex) и fx в pb-other с 2026-11-18; players steve/tanya.
 3. [Shakira — Whenever, Wherever](songs/whenever-wherever.md) — СЕТ 1 #3, JamZone-стемы, ~109 bpm, оригинальный ключ; 12 cue, click=follow; players alex(3 гитары)/roma(synth pad)/steve(drums)/tanya(vocal), practice-миксы для всех; перкуссия выкинута из плейбека.
 4. [Infinity 2008 — Guru Josh Project](songs/infinity-2008.md) — СЕТ 1 #4, JamZone-песня (128 bpm, без питча): pb-other = арп + fx + synth keys, pb-bass = synth bass −3dB, 16 ручных Logic-cue, 4 practice-микса.
 5. [Mr. Saxobeat — Alexandra Stan](songs/mr-saxobeat.md) — СЕТ 1 #5, JamZone-песня (без Moises/питча): pb-other = Noise+Sax-reverse +8.9dB, 5 синтов на export для клавишника, 13 cue, 4 practice-микса.

@@ -22,15 +22,13 @@ set: "СЕТ 1 #2"
 
 Стемы (все `.m4a`, 15 шт., 01–15):
 - **pb-bass:** `05_Synth_Bass` с `gain_db: +3`.
-- **pb-other:** `14_Backing_Vocals`.
-- Остальные стемы играются живьём (см. players) и не разложены по pb-группам.
-- **Перкуссия вон из плейбека:** `03_Clap` и `04_Noise_effects` НЕ включены ни в одну pb-группу (правило «перкуссия вон» соблюдено; в плейбек идёт только `02_Electronic_Drum_Kit` — и то через players/живого барабанщика). См. [../pipelines/jamzone-render.md](../pipelines/jamzone-render.md).
+- **pb-other (2026-11-18):** `14_Backing_Vocals` (−2.5), синты Ромы `13_Vibes`, `11_Synth_Lead`, `06_Digital_Piano`, `12_Synth_Keys`, `09_Synth_Strings_(pizzicato)` (2026-11-17) + `07_Synth_Pad_1`, `08_Synth_Pad_2`, `10_Synth_Strings`, `04_Noise_effects` (Alex: «положи в плейбек» — он играет ведущие партии, пэды/струнные больше не его; fx под потолком −30, сейчас ниже). pb-other −16.2 LUFS, пик −1.7.
+- **Перкуссия вон из плейбека:** `03_Clap`. `04_Noise_effects` — не перкуссия (раньше ошибочно считался ею), теперь в pb-other. См. [../pipelines/jamzone-render.md](../pipelines/jamzone-render.md).
 
 `layers` — нет.
 
 **players** (кто играет живьём):
-- **roma:** `13_Vibes`, `11_Synth_Lead`, `06_Digital_Piano`, `12_Synth_Keys`, `09_Synth_Strings_(pizzicato)`
-- **alex:** `07_Synth_Pad_1`, `08_Synth_Pad_2`, `10_Synth_Strings`
+- ~~roma~~ (ушёл 2026-11-16, его синты в pb-other); ~~alex~~ (пэды/струнные в pb-other с 2026-11-18, `practice-alex.mp3` убран)
 - **steve:** `02_Electronic_Drum_Kit`
 - **tanya:** `15_Lead_Vocal`
 

@@ -50,9 +50,9 @@ title: Мультитрек 28.10 Music Hall — партии Ромы: конц
 | Кукла колдуна | живой бас | pb-bass | bass | +15.5 |
 | Медведица | живой бас (растяжка 130.7→129.9) | pb-bass | — (pb-bass не было) | +15.7 |
 | Pretty Fly | живой бас | pb-bass | bass | +13.5 |
-| Солнце | roma-keys-2810 | pb-other (+ solnce-sfx) | keys | −8.1 |
+| Солнце | roma-keys-2810 | pb-other (+ solnce-sfx) | keys | −3.6 (было −8.1, 2026-11-18: клавиши тише fx); мьют 81–88 с фейдом 200 мс — Рома не сделал паузу «keys stop» |
 | Кислотный DJ | roma-keys-2810 (пики −4.7 dBFS) | pb-other (+ DJ_arp, wind_part) | keys, strings, wind | −1.3 |
-| Я устал | roma-keys-2810 | pb-other (+ backing-vocal, other-breakdown) | keys, other | −8.1 |
-| Такая любовь | roma-keys-2810 (бис) | pb-other (+ takaia_lubov_keys и др.) | — (поверх слоя) | −1.8 |
+| Я устал | roma-keys-2810 | pb-other (+ backing-vocal, other-breakdown) | keys, other | −4.1 (было −8.1, 2026-11-18) |
+| Такая любовь | roma-keys-2810 (бис) | pb-other (+ takaia_lubov_keys и др.) | — (поверх слоя) | −1.8; синт-соло 43.2–50 и 84.2–91 +7 (`gain_bars`, 2026-11-18): соло −17.8 LUFS ≈ акустика в pb −18.1 |
 
 Бас-слои названы **«живой бас»** (Alex: обязательная пометка): так он виден на сайте (строка pb-bass), в рендере, и в Stage Traxx дорожка называется «PB Bass · живой бас» (`stagetraxx_sync.py` по имени слоя). Ту-лу-ла переименован (`roma-bass-2810` → `живой бас`). Лимитер (`alimiter`) — с `latency=1`: без компенсации он сдвигал слой на 3 мс (Беги, Мало тебя, Я устал, Кислотный DJ — пересобраны). Мало тебя: потолок пиков слоя −9.3 dBFS, Беги −2.0 dBFS — чтобы pb-other не нормализовался.
