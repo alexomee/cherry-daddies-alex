@@ -1,5 +1,5 @@
 """POD Go preset changes: mix.json "podgo" abs_sec write-back (jamzone_render) and the
-Stage Traxx tags built from it (stagetraxx_sync): PC on channel 3, changes 200 ms early."""
+Stage Traxx tags built from it (stagetraxx_sync): PC on channel 3, changes SWITCH_LEAD (0.5 s) early."""
 import os
 import sys
 
@@ -54,14 +54,14 @@ def test_whole_song_preset():
         "[midi: PC4@3]", "[midi@00:00.000: PC4@3]"]
 
 
-def test_changes_go_out_200ms_early_and_dedupe():
+def test_changes_go_out_half_second_early_and_dedupe():
     ch = st.parse_device("podgo", [
         {"bar": 1, "preset": "02A", "abs_sec": 3.478},
         {"bar": 9, "preset": "02A", "abs_sec": 17.391},     # same preset again -> dropped
         {"bar": 33, "preset": "03C", "abs_sec": 61.25},
     ])
     assert st.device_block(ch, 3, st.PODGO_LEAD) == [
-        "[midi: PC4@3]", "[midi@00:00.000: PC4@3]", "[midi@01:01.050: PC10@3]"]
+        "[midi: PC4@3]", "[midi@00:00.000: PC4@3]", "[midi@01:00.750: PC10@3]"]
 
 
 def test_early_change_never_goes_negative():
@@ -106,7 +106,7 @@ def test_cc_block_start_state_then_early_change():
                       {"bar": 9, "cc": 80, "value": 0, "abs_sec": 17.4},       # no change -> dropped
                       {"bar": 17, "cc": 80, "value": 127, "abs_sec": 31.398}])
     assert st.cc_block(ev, 2) == ["[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]",
-                                  "[midi@00:31.198: CC80.127@2]"]
+                                  "[midi@00:30.898: CC80.127@2]"]
 
 
 def test_cc_tags_follow_the_scene_pc():
@@ -115,7 +115,7 @@ def test_cc_tags_follow_the_scene_pc():
                                         {"cc": 80, "value": 127, "abs_sec": 31.4}])}
     assert st.devices_block(devices, {}) == [
         "[midi: PC26@2]", "[midi@00:00.000: PC26@2]",
-        "[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]", "[midi@00:31.200: CC80.127@2]"]
+        "[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]", "[midi@00:30.900: CC80.127@2]"]
 
 
 @pytest.mark.parametrize("v,msg", [
@@ -128,3 +128,9 @@ def test_cc_tags_follow_the_scene_pc():
 def test_parse_cc_rejects(v, msg):
     with pytest.raises(ValueError, match=msg):
         st.parse_cc(v)
+
+
+def test_every_device_uses_the_standard_lead():
+    assert st.SWITCH_LEAD == 0.5
+    assert st.PODGO_LEAD == st.GM_CC_LEAD == st.SWITCH_LEAD
+    assert all(d["lead"] == st.SWITCH_LEAD for d in st.DEVICES.values())

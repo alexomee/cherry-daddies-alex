@@ -7,9 +7,9 @@
   ],
   "gm800": [
     {"bar": 1,   "scene": 27, "abs_sec": 3.489},
-    {"bar": 40,  "beat": "4&", "scene": 30, "abs_sec": 73.043},
-    {"bar": 66,  "beat": "4&", "scene": 27, "abs_sec": 118.395},
-    {"bar": 99,  "beat": "4&", "scene": 30, "abs_sec": 175.958}
+    {"bar": 41,  "scene": 30, "abs_sec": 73.261},
+    {"bar": 67,  "scene": 27, "abs_sec": 118.613},
+    {"bar": 100, "scene": 30, "abs_sec": 176.176}
   ],
   "bpm": 137.59,
   "pitch_semitones": 0,

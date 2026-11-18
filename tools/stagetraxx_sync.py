@@ -43,7 +43,7 @@ No "gm800" key -> no GM-800 tags (the unit keeps whatever scene it is on).
 
 GM-800 ASSIGN CCs (a CTL switch can't be pressed over MIDI; a scene ASSIGN with SOURCE = CC#n
 does the same job — wiki gm-800 «CTL-кнопки и MIDI») come from mix.json "gm800_cc", on the
-GM-800 channel, PODGO_LEAD early like POD Go changes:
+GM-800 channel, SWITCH_LEAD early like every switch:
 
     "gm800_cc": [{"bar": 1, "cc": 80, "value": 0},      first event per CC = start state
                  {"bar": 17, "cc": 80, "value": 127}]   (sent on load and at 00:00)
@@ -55,8 +55,11 @@ Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on 
     "podgo": [{"bar": 1, "preset": "02A"},       preset changes, timed by jamzone_render.py
               {"bar": 33, "preset": "03C"}, ...]
 
-    preset 02A = PC4 (bank-1)*4 + A..D (verified). Same tags as the GM-800, but every change
-    goes out PODGO_LEAD (200 ms) BEFORE the marked bar so the new preset is already up on it.
+    preset 02A = PC4 (bank-1)*4 + A..D (verified). Same tags as the GM-800.
+
+Every timed switch (GM-800 scene, GM-800 CC, POD Go preset) goes out SWITCH_LEAD (0.5 s) BEFORE
+its marked bar/beat, so the new sound is up when the part starts: mark the EVENT (the bar the
+solo/verse starts on), not a beat before it.
 
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
 localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
@@ -171,7 +174,9 @@ def midi_block(clip, channel):
 
 GM_CHANNEL = 2          # BOSS GM-800 Scene Rx Channel
 PODGO_CHANNEL = 3       # Line 6 POD Go MIDI Base Channel (1 = launcher, 2 = GM-800)
-PODGO_LEAD = 0.200      # POD Go switches this long BEFORE the marked bar (Alex, 2026-11-17)
+SWITCH_LEAD = 0.500     # every device switch goes out this long BEFORE its marked bar/beat (Alex,
+                        # 2026-11-18: «стандартно пол секунды»; was 200 ms for POD Go/CC, 0 for scenes)
+PODGO_LEAD = SWITCH_LEAD
 
 
 def gm800_pc(scene):
@@ -193,13 +198,13 @@ def podgo_pc(preset):
 # (whole song on one scene/preset); "lead" = how much earlier than the bar a change is sent.
 DEVICES = {
     "gm800": {"name": "GM-800", "field": "scene", "whole": int, "pc": gm800_pc,
-              "channel": GM_CHANNEL, "lead": 0.0},
+              "channel": GM_CHANNEL, "lead": SWITCH_LEAD},
     "podgo": {"name": "POD Go", "field": "preset", "whole": str, "pc": podgo_pc,
               "channel": PODGO_CHANNEL, "lead": PODGO_LEAD},
 }
 
 
-GM_CC_LEAD = PODGO_LEAD   # GM-800 ASSIGN CCs: also a bit before the bar (part on before the note)
+GM_CC_LEAD = SWITCH_LEAD  # GM-800 ASSIGN CCs: same standard lead (part on before the note)
 
 
 def parse_cc(v):
