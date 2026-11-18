@@ -1,7 +1,7 @@
 {
   "podgo": "31D",
   "gm800": 5,
-  "pb-other": {"stems": ["04_Sound_Effects", "06_Synth_Brass", "08_Tenor_Saxophone"]},
+  "pb-other": {"stems": ["04_Sound_Effects", "06_Synth_Brass", "08_Tenor_Saxophone"], "gain_db": {"08_Tenor_Saxophone": 3.5}},
   "pb-bass": {"stems": ["05_Synth_Bass"], "gain_db": {"05_Synth_Bass": -3}},
   "click": "follow",
   "cut_bars": {
@@ -23,7 +23,7 @@
     {"bar": 52,  "text": "stop", "abs_sec": 95.63, "snap_sec": 91.415},
     {"bar": 55,  "text": "all in", "abs_sec": 101.25, "snap_sec": 97.505},
     {"bar": 63,  "text": "stop", "abs_sec": 116.25, "snap_sec": 112.035},
-    {"bar": 65,  "text": "sax solo in", "abs_sec": 120.0, "snap_sec": 115.569},
+    {"bar": 65,  "text": "sax solo in", "abs_sec": 120.0, "snap_sec": 115.571},
     {"bar": 73,  "text": "crash in", "abs_sec": 135.0, "snap_sec": 131.245},
     {"bar": 74,  "text": "vocal in", "abs_sec": 136.87, "snap_sec": 133.125},
     {"bar": 75,  "text": "all in", "abs_sec": 138.75, "snap_sec": 134.995},
