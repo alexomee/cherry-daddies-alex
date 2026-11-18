@@ -1859,3 +1859,7 @@ pb-other + pb-bass, integrated LUFS по 61 песне программы: «М�
 ## [2026-11-18] song | Now You're Gone: 04_Synth_Bass_2 → pb-other
 
 По словам Alex, `04_Synth_Bass_2` — синт, а `03_Synth_Bass_1` — настоящий бас. pb-bass теперь только `03` (−1.4 дБ → −18.7 LUFS, в коридоре pb-bass), `04` с тем же −1.4 дБ в pb-other. Сумма pb-other+pb-bass совпадает с прежней (остаток −73.5 дБ), click/all/OFF байт в байт прежние, cues.wav возвращён прежний. Stage Traxx `--apply`, бэкап `music_library-20261118-211920.sqlite`, 7 дорожек по 149.779 с, остаток против рендера ≤ −73 дБ. Прод не публиковался.
+
+## [2026-11-18] song | Now You're Gone: синт-бас +6 дБ
+
+`04_Synth_Bass_2` в pb-other: −1.4 → +4.6 дБ. Причина (Alex): на репетиции синт в басу звучал очень тихо, pb-bass поднимали на +6 дБ, пока в нём не было отдельной партии настоящего баса. pb-other: пик −3.55 dBFS, RMS −24.7 → −21.9 dB, нормализации группы нет. click/all/pb-bass байт в байт прежние, cues.wav прежний, practice-миксы перерендерены. Stage Traxx `--apply`, бэкап `music_library-20261118-230045.sqlite`, остаток ≤ −76 дБ.
