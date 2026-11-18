@@ -1,5 +1,8 @@
 {
-  "gm800": 28,
+  "gm800": [
+    {"bar": 1,  "scene": 28, "abs_sec": 3.426},
+    {"bar": 11, "scene": 29, "abs_sec": 20.558}
+  ],
   "podgo": "31D",
   "bpm": 140.09,
   "pitch_semitones": 0,
