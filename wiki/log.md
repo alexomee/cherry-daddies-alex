@@ -1855,3 +1855,7 @@ pb-other + pb-bass, integrated LUFS по 61 песне программы: «М�
 ## [2026-11-18] rig | Now You're Gone: сцены GM-800 в Stage Traxx
 
 `gm800`: 22 SOLO (такт 1) → 23 BR (58) → 22 (75). Теги `PC21@2` / `PC22@2` @01:31.300 / `PC21@2` @01:58.679, синк `--apply` прошёл, в базе проверено. Сначала BR был поставлен на брейк 42 (cue «break in»), потом перенесён на бридж по заметке Alex «br aft 2nd solo». Открытый вопрос: если в бридже Alex играет партию 05_Synthesizer, то она задваивается с pb-other. См. [gm-800](pipelines/gm-800.md).
+
+## [2026-11-18] song | Now You're Gone: 04_Synth_Bass_2 → pb-other
+
+По словам Alex, `04_Synth_Bass_2` — синт, а `03_Synth_Bass_1` — настоящий бас. pb-bass теперь только `03` (−1.4 дБ → −18.7 LUFS, в коридоре pb-bass), `04` с тем же −1.4 дБ в pb-other. Сумма pb-other+pb-bass совпадает с прежней (остаток −73.5 дБ), click/all/OFF байт в байт прежние, cues.wav возвращён прежний. Stage Traxx `--apply`, бэкап `music_library-20261118-211920.sqlite`, 7 дорожек по 149.779 с, остаток против рендера ≤ −73 дБ. Прод не публиковался.

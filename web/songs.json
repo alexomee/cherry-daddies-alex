@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T10:55:35",
+  "generated": "2026-11-18T21:18:43",
   "counts": {
     "total": 88,
     "data": 88,
@@ -10520,14 +10520,15 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "Synth Bass 1, Synth Bass 2"
+            "label": "Synth Bass 1"
           },
           "other": {
             "kind": "stems",
             "items": [
               "Noise effects",
               "Synthesizer",
-              "Synth Voice"
+              "Synth Voice",
+              "Synth Bass 2"
             ]
           },
           "practice": [
@@ -10578,20 +10579,21 @@
             "bass": "9cc10ce974",
             "other": "9c01e89b98",
             "click": "0115adaf4e",
-            "cues": "5edd8aec28"
+            "cues": "08c61041d2"
           },
           "versions": {
-            "all": "2bdd9f4c6c",
+            "all": "17d1c9c005",
             "alex": "9c339c1587",
             "steve": "ceb32d1346",
             "tanya": "49e32e1ee9",
-            "pb-other": "ee75b7f87c",
-            "pb-bass": "828e03a966"
+            "pb-other": "b0ad7c2b71",
+            "pb-bass": "0cde18525d"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "keys",
+              "bass",
               "other"
             ]
           },

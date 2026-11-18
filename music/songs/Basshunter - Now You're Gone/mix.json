@@ -5,8 +5,8 @@
     {"bar": 58, "scene": 23, "abs_sec": 91.8},
     {"bar": 75, "scene": 22, "abs_sec": 119.179}
   ],
-  "pb-other": {"stems": ["08_Noise_effects", "05_Synthesizer", "06_Synth_Voice"]},
-  "pb-bass": {"stems": ["03_Synth_Bass_1", "04_Synth_Bass_2"], "gain_db": {"03_Synth_Bass_1": -1.4, "04_Synth_Bass_2": -1.4}},
+  "pb-other": {"stems": ["08_Noise_effects", "05_Synthesizer", "06_Synth_Voice", "04_Synth_Bass_2"], "gain_db": {"04_Synth_Bass_2": -1.4}},
+  "pb-bass": {"stems": ["03_Synth_Bass_1"], "gain_db": {"03_Synth_Bass_1": -1.4}},
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["10_Lead_Vocal"], "alex": ["07_Synth_Lead"]},
   "cues": [
     {"bar": 2,  "beat": 3, "text": "Now you're gone vocal in", "abs_sec": 2.416, "snap_sec": 0.0},
@@ -15,7 +15,7 @@
     {"bar": 29, "text": "drum stop", "abs_sec": 45.095, "snap_sec": 41.471},
     {"bar": 42, "text": "break in", "abs_sec": 66.031, "snap_sec": 62.81},
     {"bar": 46, "text": "stop", "abs_sec": 72.474, "snap_sec": 68.85},
-    {"bar": 48, "text": "solo start in", "abs_sec": 75.695, "snap_sec": 71.806},
+    {"bar": 48, "text": "solo start in", "abs_sec": 75.695, "snap_sec": 71.808},
     {"bar": 56, "text": "stop", "abs_sec": 88.579, "snap_sec": 84.955},
     {"bar": 57, "beat": 3, "text": "vocal in", "abs_sec": 90.995, "snap_sec": 87.773},
     {"bar": 66, "text": "bass in", "abs_sec": 104.684, "snap_sec": 101.463},

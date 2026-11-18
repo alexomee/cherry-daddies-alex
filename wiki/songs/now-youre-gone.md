@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-07-10
+updated: 2026-11-18
 title: Now You're Gone
 artist: Basshunter
 set: СЕТ 2 #5
@@ -13,24 +13,26 @@ set: СЕТ 2 #5
 - **Источник:** JamZone (стемы `NN_Name.m4a`, есть `01_Click.m4a`) — не Moises.
 - **bpm:** ~149.02 (из `01_Click.m4a` через `fit_grid`; см. `auto-render/timeline.json`: `bpm 149.0199`, `bar_sec 1.610523`, `offset_sec 1.313572`).
 - **pitch_semitones:** нет в `mix.json` → 0 (родная тональность, не транспонируется).
-- **Особых полей mix.json нет:** `cue_step`/`count_in`/`tempo_zone`/`click`/`layers` не заданы. `pb-bass: null`.
+- **Спецполя mix.json:** `podgo: "31D"` (MUTE гитары), `gm800` по тактам (см. ниже). `cue_step`/`count_in`/`tempo_zone`/`click`/`layers` не заданы.
 - Файл: `music/songs/Basshunter - Now You're Gone/mix.json`. Структура секций: `music/songs/Basshunter - Now You're Gone/structure.txt`.
 
 ## Плейбек и рендер
 
 Стемы (JamZone `.m4a`): `01_Click`, `02_Electronic_Drum_Kit`, `03_Synth_Bass_1`, `04_Synth_Bass_2`, `05_Synthesizer`, `06_Synth_Voice`, `07_Synth_Lead`, `08_Noise_effects`, `09_Backing_Vocals`, `10_Lead_Vocal`.
 
-- **pb-other:** `["08_Noise_effects"]` (задано 2026-06-13). **pb-bass:** `null` (басовый минус в плейбек не идёт — бас живой).
+- **pb-other:** `08_Noise_effects`, `05_Synthesizer`, `06_Synth_Voice`, `04_Synth_Bass_2` (−1.4 дБ). **pb-bass:** только `03_Synth_Bass_1` (−1.4 дБ, −18.7 LUFS, пик −6.7 dBFS).
+- `04_Synth_Bass_2` — синт, а не бас (Alex, 2026-11-18): перенесён из pb-bass в pb-other с тем же гейном, сумма pb-other+pb-bass не изменилась (остаток −73.5 дБ).
+- **GM-800:** 22 U R GONE SOLO (такт 1) → 23 U R GONE BR (58, бридж) → 22 (75). BR = бридж после 2-го соло (заметка «br aft 2nd solo»).
 - **layers:** нет.
 - **players** (кто играет живьём):
   - `steve` → `02_Electronic_Drum_Kit`
   - `tanya` → `10_Lead_Vocal`
   - `alex` → `07_Synth_Lead`
-  - `roma` → `05_Synthesizer`, `06_Synth_Voice`
-- **practice-миксы** отрендерены на всех четверых: `auto-render/practice-{alex,roma,steve,tanya}.mp3`.
-- Рендеры: `auto-render/{all,click,cues,pb-other}.wav`, `auto-render/cue_preview.mp3`, `auto-render/timeline.json`. Также `auto-render/16-lyric-review.mp4` (lyric-клип-ревью).
+- Партии Ромы (`05_Synthesizer`, `06_Synth_Voice`) с 2026-11-17 в pb-other, `players.roma` убран.
+- **practice-миксы:** `auto-render/practice-{alex,steve,tanya}.mp3`.
+- Рендеры: `auto-render/{all,click,cues,pb-other,pb-bass}.wav`, `auto-render/cue_preview.mp3`, `auto-render/timeline.json`. Также `auto-render/16-lyric-review.mp4` (lyric-клип-ревью).
 
-См. [pipelines/jamzone-render.md](../pipelines/jamzone-render.md), [pipelines/mainstage-rig.md](../pipelines/mainstage-rig.md).
+См. [pipelines/jamzone-render.md](../pipelines/jamzone-render.md), [pipelines/stagetraxx-rig.md](../pipelines/stagetraxx-rig.md), [pipelines/gm-800.md](../pipelines/gm-800.md).
 
 ## Cue
 
@@ -45,8 +47,10 @@ set: СЕТ 2 #5
 - **2026-06-11:** cue Basshunter (+ Cascada/WFL/Infinity) вручную в Logic; автоген cue удалён.
 - **2026-06-13:** `pb-other = 08_Noise_effects`.
 - **2026-06-18/19:** новые рендеры (timeline) + players (SET 2 финализирован: alex=synth lead в этой песне).
+- **2026-11-17:** синты Ромы и бас (`03`+`04`) в плейбек, POD Go 31D.
+- **2026-11-18:** GM-800 сцены 22→23→22; `04_Synth_Bass_2` из pb-bass в pb-other. Stage Traxx синкан, дорожки сверены с рендером.
 - **Гоча оцифровки cue (CLAUDE.md, раздел «Оцифровка старых cue»):** NYG — один из двух проверенных прецедентов (второй — Infinity 2008). Ключевой урок: **бонс cue-трека начался на 1 долю РАНЬШЕ такта 1** — смещение таймлайна mp3↔сетка НЕ предполагать, а мерить по жёсткому стем-якорю (онсет барабанов/баса на барлайне). Кажущаяся «другая конвенция отсчёта» = на самом деле смещение.
 
 ## Открытое
 
-- Нет открытых TODO в mix.json/памяти. `pb-bass: null` — осознанно (бас живой), не пробел.
+- Если Alex играет партию `05_Synthesizer` в бридже на BR, она задваивается с pb-other. Не подтверждено.
