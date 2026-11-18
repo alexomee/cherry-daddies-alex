@@ -1808,3 +1808,7 @@ Alex: «плейбеки после переноса партий Ромы ти�
 ## [2026-11-18] song | Клавиши Ромы до −7 LU от записи (6 песен)
 
 Полный замер: 61 клавишная партия, добавленная после ухода Ромы (27 песен), — громкость партии против `all.wav` в местах, где она звучит. Лиды/клавиши ниже −8 LU подняты `gain_db` до −7 LU: Mr. Saxobeat Synth Keys 1/2/3 +4.5/+5/+5.5; S&M Arpeggiator +6, Synth Keys +4.5; Попрошу тебя keys +3.5; We Found Love Synth Keys 2 +3, Synthesizer +2.5; Better Off Alone Synth Lead 2 +4; Cascada Synth Keys (Bells) +1.5, 12_Bells +6 (потолок подъёма; −11.9 LU, до −7 было бы +11). Heads Will Roll `09_Synthesizer_(disto)` (−10.9) не тронут: это не главный риф, а дист-слой в припевах (Alex). Пэды/струнные ниже −9 — фон, как в записи, не тронуты. Saxobeat и Попрошу тебя упёрлись в пик (головной нормалайзер ужимал весь pb-other на 2.3–2.4 дБ) → новый ключ группы `"peak": "limit"` (alimiter −0.4 dBFS, 22–42 выброса на песню). Клик и OFF у всех шести прежние. Засинкано в Stage Traxx; прод не обновлялся.
+
+## [2026-11-18] publish | Прод: клавиши Ромы до −7 LU (6 песен)
+
+`tools/sync_site.py`: 20 миксов в R2 (Mr. Saxobeat, S&M, Попрошу тебя, We Found Love, Better Off Alone, Everytime We Touch), новых guide нет (all.wav не менялись), `vercel deploy --prod` READY. pb-other всех шести на R2 совпадает с локальными по md5.
