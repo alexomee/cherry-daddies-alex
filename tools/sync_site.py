@@ -113,8 +113,24 @@ def desired():
     return out
 
 
+FLAGS = {"--no-deploy", "--bootstrap", "--guides-only"}
+
+
+def parse_args(argv):
+    """Known flags only. -h/--help prints the usage and exits 0; anything else unknown exits 2
+    BEFORE any work — an unrecognised arg used to fall through into a full prod publish."""
+    if any(a in ("-h", "--help") for a in argv):
+        print(__doc__.strip())
+        sys.exit(0)
+    unknown = [a for a in argv if a not in FLAGS]
+    if unknown:
+        print(f"sync_site.py: unknown argument(s): {' '.join(unknown)}\n\n{__doc__.strip()}", file=sys.stderr)
+        sys.exit(2)
+    return argv
+
+
 def main():
-    args = sys.argv[1:]
+    args = parse_args(sys.argv[1:])
     if "--guides-only" in args:
         publish_guides()
         return
