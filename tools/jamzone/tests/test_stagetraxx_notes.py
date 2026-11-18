@@ -71,5 +71,6 @@ def test_all_track_and_mute_groups():
     assert st.stem_src("/r", "all") == "/r/all.wav"
     g = st.MUTE_GROUPS
     assert g["all"] == 0                                              # All is never group-muted
-    assert all(g[s] & 1 for s in bus if s != "all")                   # group 1: everything but All
-    assert {s for s in bus if g.get(s, 0) & 2} == {"pb-other", "pb-bass", "drums", "vocal"}
+    assert g["click"] == g["cues"] == 0                               # click/cues never group-muted
+    assert {s for s in bus if g.get(s, 0) & 1} == {"pb-other", "pb-bass", "drums", "vocal"}
+    assert not any(g.get(s, 0) & ~1 for s in bus)                     # one group only

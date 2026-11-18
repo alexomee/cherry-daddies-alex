@@ -11,7 +11,7 @@ For every song of the setlist (web/songs.json) builds/updates a Stage Traxx song
     Vocals    bus 3   MUTED (practice: lead vocal)
     All       bus 3   MUTED (practice: auto-render/all.wav, the whole song in the band key)
 
-Mute group 1 = all tracks but All, group 2 = all but All/Click/Cues (MUTE_GROUPS).
+Mute group 1 = the playback parts All already contains (not All/Click/Cues) (MUTE_GROUPS).
 
 One track per bus, every pan centred; WHERE a bus plays is Stage Traxx's per-device output
 map (prefs audio_busDeviceSettings), not the song: the rehearsal Rubix24 sends buses 1-4 to
@@ -115,11 +115,12 @@ SOURCES = {"drums": "stems/drums.mp3", "vocal": "stems/vocal.mp3"}
 # practise without them; every sync writes them muted again (bus 3 = front of house at a gig).
 MUTED = {"drums", "vocal", "all"}
 # Mute groups (Stage Traxx mixer, master section; global across songs): track bitmask, bit 0 =
-# group 1. Group 1 = everything but All -> only the full mix plays; group 2 = the playback parts
-# All already contains (not Click/Cues) -> full mix + click + cues. To listen to the song: unmute
-# All in the mixer, then press 1 or 2.
-MUTE_GROUPS = {"click": 0b01, "cues": 0b01, "pb-other": 0b11, "pb-bass": 0b11,
-               "drums": 0b11, "vocal": 0b11, "all": 0}
+# group 1 (verified on screen 2026-11-18). Group 1 = the playback parts All already contains ->
+# full mix + click + cues. Click/Cues are in NO group: a pressed group can't be unmuted by hand,
+# and with All the click and cues must always stay (Alex 2026-11-18; the old "only All" group 1
+# muted them). To listen to the song: unmute All in the mixer, then press 1.
+MUTE_GROUPS = {"click": 0, "cues": 0, "pb-other": 0b01, "pb-bass": 0b01,
+               "drums": 0b01, "vocal": 0b01, "all": 0}
 
 
 def stem_src(render, stem):

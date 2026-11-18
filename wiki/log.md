@@ -1812,3 +1812,7 @@ Alex: «плейбеки после переноса партий Ромы ти�
 ## [2026-11-18] publish | Прод: клавиши Ромы до −7 LU (6 песен)
 
 `tools/sync_site.py`: 20 миксов в R2 (Mr. Saxobeat, S&M, Попрошу тебя, We Found Love, Better Off Alone, Everytime We Touch), новых guide нет (all.wav не менялись), `vercel deploy --prod` READY. pb-other всех шести на R2 совпадает с локальными по md5.
+
+## [2026-11-18] rig | Мьют-группа 1 = All + клик + cues
+
+Alex: с группой 1 не размьютить Click/Cues, а с All они нужны всегда. `MUTE_GROUPS`: группа 1 = PB Other/PB Bass/Drums/Vocals; Click и Cues ни в одной группе; группа 2 (дубль) убрана. Бит 0 = группа 1 подтверждён скриншотом. Полный синк 62 песен.
