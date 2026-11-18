@@ -1,5 +1,12 @@
 {
   "gm800": 1,
+  "podgo": [
+    {"bar": 1,  "preset": "32A", "abs_sec": 3.694},
+    {"bar": 5,  "preset": "32B", "abs_sec": 11.081},
+    {"bar": 21, "preset": "32D", "abs_sec": 40.631},
+    {"bar": 30, "preset": "32B", "abs_sec": 57.253},
+    {"bar": 46, "preset": "32D", "abs_sec": 86.803}
+  ],
   "bpm": 129.95,
   "pitch_semitones": 0,
   "pb-other": {
