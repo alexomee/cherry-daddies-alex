@@ -1,6 +1,6 @@
 # index
 
-Каталог вики: страница — one-liner. Обновляется при каждом ingest (см. [SCHEMA.md](SCHEMA.md)). Хроника: [log.md](log.md).
+Каталог вики: страница — one-liner. Обновляется при каждом ingest (см. [SCHEMA.md](SCHEMA.md)). Хроника: [log.md](log.md). Открытые дела: [todo.md](todo.md).
 
 ## Песни (сетлист)
 

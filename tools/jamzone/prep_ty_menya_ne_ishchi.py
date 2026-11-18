@@ -5,6 +5,7 @@
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py fx      # processed stems -> parts/pb-fx.wav (stem frame)
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py keys    # keys+strings (live keys muted) -> parts/pb-keys.wav
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py wah     # background vocals + other frag -> parts/pb-wah.wav
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py solobass # other, low-passed -> parts/pb-solo-bass.wav
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Ты меня не ищи"
 
 Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
@@ -233,10 +234,24 @@ def do_wah():
                     "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
     print(f"  ✓ {dst}  {len(out)/SR:.3f}s  peak {float(np.abs(out).max()):.3f} (backing vocals + other, no gain change)")
 
+# pb-solo-bass (2026-11-18, Alex: «где соло я играю, там должен быть бас — пока из плейбека»).
+# In the solo sections the record's synth bass is NOT in Moises `bass` (silent there) but in
+# `other` (tonal A/G#/A# line, 30-400 Hz). Whole `other` low-passed at 400 Hz (2x biquad =
+# 24 dB/oct) so any lead/pad above stays out; WHERE it plays is set by the pb-bass mute in mix.json.
+SOLOBASS_LP = 400
+
+def do_solobass():
+    src, dst = os.path.join(SONG, "other.wav"), os.path.join(SONG, "parts", "pb-solo-bass.wav")
+    subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-i", src, "-af",
+                    f"lowpass=f={SOLOBASS_LP},lowpass=f={SOLOBASS_LP}", "-ar", str(SR), "-ac", "2",
+                    "-c:a", "pcm_f32le", dst], check=True)
+    print(f"  ✓ {dst}  (other.wav low-passed {SOLOBASS_LP} Hz, 24 dB/oct, no gain change)")
+
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else ""
     if step == "stems": do_stems()
     elif step == "fx": do_fx()
     elif step == "keys": do_keys()
     elif step == "wah": do_wah()
+    elif step == "solobass": do_solobass()
     else: sys.exit(__doc__)

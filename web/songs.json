@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T10:13:29",
+  "generated": "2026-11-18T10:55:35",
   "counts": {
     "total": 88,
     "data": 88,
@@ -14238,7 +14238,7 @@
           },
           "bass": {
             "kind": "playback",
-            "label": "bass"
+            "label": "pb-solo-bass"
           },
           "other": {
             "kind": "layers",
@@ -14299,14 +14299,14 @@
             "guitars": "e94c341a09",
             "other": "0bfce8c322",
             "click": "12b4fc7ef3",
-            "cues": "67390aa37f"
+            "cues": "64b5a67f69"
           },
           "versions": {
-            "all": "cff40bfb7a",
+            "all": "6459804feb",
             "alex": "c191aa581c",
             "pb-other": "cec893395d",
-            "pb-bass": "1a52f4a2ac",
-            "pb-audition": "d8c64dae56"
+            "pb-bass": "32aaa4fe13",
+            "pb-audition": "63c482b8bc"
           },
           "pb_other": {
             "available": true,

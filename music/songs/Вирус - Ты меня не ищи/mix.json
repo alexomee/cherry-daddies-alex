@@ -7,9 +7,9 @@
   ],
   "gm800": [
     {"bar": 1,   "scene": 27, "abs_sec": 3.489},
-    {"bar": 57,  "beat": "4&", "scene": 30, "abs_sec": 102.696},
+    {"bar": 40,  "beat": "4&", "scene": 30, "abs_sec": 73.043},
     {"bar": 66,  "beat": "4&", "scene": 27, "abs_sec": 118.395},
-    {"bar": 107, "beat": "4&", "scene": 30, "abs_sec": 189.912}
+    {"bar": 99,  "beat": "4&", "scene": 30, "abs_sec": 175.958}
   ],
   "bpm": 137.59,
   "pitch_semitones": 0,
@@ -22,7 +22,9 @@
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"}
   },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5},
-              "mute": {"bass": [[1, 58], [66, 108]]}},
+              "layers": [{"file": "pb-solo-bass", "frame": "stem", "derived": true, "mute_fade_ms": [30, 5]}],
+              "roles": {"pb-solo-bass": "musical"},
+              "mute": {"bass": [[1, 58], [66, 100], [116, 130]], "pb-solo-bass": [[1, 58], [66, 100], [116, 130]]}},
   "players": {"alex": ["keys", "strings"]},
   "cues": [
     {"bar": 1,   "text": "Ты меня не ищи drums bass ready go", "abs_sec": 3.489, "snap_sec": 0.0},
