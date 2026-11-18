@@ -1,6 +1,6 @@
 {
   "pb-other": {"stems": ["03_Sound_effects_(Crowd)", "13_Backing_Vocals", "04_Noise_effects", "08_Synth_Voice", "07_Synth_Pad", "11_Synth_Ambiant", "10_Synth_Keys_(Bells)", "12_Bells"],
-               "mute": {"13_Backing_Vocals": [[1, 18.2]]}},
+               "mute": {"13_Backing_Vocals": [[1, 18.2]]}, "gain_db": {"10_Synth_Keys_(Bells)": 1.5, "12_Bells": 6}},
   "pb-bass": {"stems": ["05_Synth_Bass", "06_Synth_Bass_(crunch)"], "gain_db": {"05_Synth_Bass": -2.0, "06_Synth_Bass_(crunch)": -2.0}},
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["09_Synth_Lead"]},
   "cues": [

@@ -1,6 +1,6 @@
 {
   "gm800": 26,
-  "pb-other": {"stems": ["04_Noise_effects", "06_Organ_1", "07_Organ_2", "08_Organ_3", "09_Synth_Keys_1", "10_Synth_Keys_2", "11_Synthesizer"]},
+  "pb-other": {"stems": ["04_Noise_effects", "06_Organ_1", "07_Organ_2", "08_Organ_3", "09_Synth_Keys_1", "10_Synth_Keys_2", "11_Synthesizer"], "gain_db": {"10_Synth_Keys_2": 3, "11_Synthesizer": 2.5}},
   "pb-bass": {"stems": ["05_Synth_Bass"]},
   "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["12_Lead_Vocal"]},
   "cues": [
@@ -11,7 +11,7 @@
     {"bar": 31,  "text": "break pitch in", "abs_sec": 56.25, "snap_sec": 52.01},
     {"bar": 39,  "text": "intro 2 in", "abs_sec": 71.25, "snap_sec": 66.925},
     {"bar": 47,  "beat": 2, "text": "verse 2 less synth in", "abs_sec": 86.719, "snap_sec": 81.891},
-    {"bar": 61,  "text": "build up in", "abs_sec": 112.5, "snap_sec": 108.27},
+    {"bar": 61,  "text": "build up in", "abs_sec": 112.5, "snap_sec": 108.268},
     {"bar": 63,  "text": "chorus 2 in", "abs_sec": 116.25, "snap_sec": 111.917},
     {"bar": 71,  "text": "break 2 drum stop", "abs_sec": 131.25, "snap_sec": 127.031},
     {"bar": 75,  "beat": 2, "text": "verse 3 in", "abs_sec": 139.219, "snap_sec": 134.869},

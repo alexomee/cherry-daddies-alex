@@ -1833,9 +1833,23 @@ def main():
             dest = f"{grp} only (derived: source stems already in all)" if derived else f"{grp} + all"
             print(f"layer: {nm} -> {dest} ({frame}-frame @ {start/SR:+.3f}s, band key, no pitch{lvl}{mute_info})")
 
+    def limit_peaks(buf):                          # brick-wall at -0.4 dBFS, latency-compensated
+        r = subprocess.run(["ffmpeg", "-v", "quiet", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                            "-af", "alimiter=limit=0.95:attack=3:release=60:level=0:latency=1",
+                            "-f", "f32le", "-"], input=buf.astype(np.float32).tobytes(), capture_output=True)
+        y = np.frombuffer(r.stdout, np.float32).reshape(-1, 2)
+        z = np.zeros_like(buf); n = min(len(y), len(buf)); z[:n] = y[:n]
+        return z
+
     for n, buf in out.items():                     # headroom: only ever attenuate
         pk = float(np.abs(buf).max())
-        if pk > 0.99:
+        if pk > 0.99 and (mix.get(n) or {}).get("peak") == "limit":
+            # "peak": "limit" on a pb group = rare transient overs (a lifted keys part) go through a
+            # limiter instead of pulling the WHOLE group down (which ate the lift and the fx with it).
+            buf[:] = limit_peaks(buf)
+            print(f"  {n}: peak {20*np.log10(pk):+.1f}dBFS -> limited to -0.4dBFS (\"peak\": \"limit\", "
+                  f"{int(np.sum(np.abs(buf) > 0.9))} samples near ceiling)")
+        elif pk > 0.99:
             buf *= 0.95/pk
             warn = "  ⚠ auto-leveled group rescaled — fx/back-vox now below ceiling in this song" \
                    if n in autoleveled else ""

@@ -1,6 +1,6 @@
 {
   "podgo": "31D",
-  "pb-other": {"stems": ["04_Noise_effects", "10_Saxophone_(reverse)", "08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "gain_db": {"10_Saxophone_(reverse)": 8.9}},
+  "pb-other": {"stems": ["04_Noise_effects", "10_Saxophone_(reverse)", "08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "gain_db": {"10_Saxophone_(reverse)": 8.9, "07_Synth_Keys_1": 4.5, "08_Synth_Keys_2": 5, "09_Synth_Keys_3": 5.5}, "peak": "limit"},
   "pb-bass": {
     "stems": ["05_Synth_Bass"]
   },

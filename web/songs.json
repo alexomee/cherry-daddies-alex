@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-18T08:48:20",
+  "generated": "2026-11-18T09:28:57",
   "counts": {
     "total": 88,
     "data": 88,
@@ -1381,16 +1381,16 @@
             "bass": "cf5e104d39",
             "other": "f159c70224",
             "click": "5d99a1395b",
-            "cues": "55b1ec28b4"
+            "cues": "ee72b57fa2"
           },
           "versions": {
-            "all": "d5cffecf54",
+            "all": "60a8beaa4b",
             "alex": "95e172c6b5",
             "steve": "b7586b8f83",
             "tanya": "439f0ce423",
-            "pb-other": "123012735d",
+            "pb-other": "89e1e1cbc4",
             "pb-bass": "9d9b932a52",
-            "pb-audition": "b6a046b4f4"
+            "pb-audition": "c2fa7545de"
           },
           "pb_other": {
             "available": true,
@@ -7779,7 +7779,7 @@
                 "t": 54.314,
                 "text": "cut off in",
                 "bar": 32,
-                "snap": 50.359
+                "snap": 50.358
               },
               {
                 "t": 59.571,
@@ -7912,14 +7912,14 @@
             "bass": "c7a03039ad",
             "other": "5133e80db3",
             "click": "5ed5b5cf1a",
-            "cues": "d4c34db3ae"
+            "cues": "de01fe8412"
           },
           "versions": {
-            "all": "53a6d0560a",
+            "all": "2addcf0281",
             "alex": "be8272c3c1",
             "steve": "fa13ff468e",
             "tanya": "b57e044445",
-            "pb-other": "612ba080e2",
+            "pb-other": "b5a4edc2f2",
             "pb-bass": "475f9013c0"
           },
           "pb_other": {
@@ -8636,15 +8636,15 @@
             "bass": "8c1bf5e3b8",
             "other": "1a7b239795",
             "click": "83bf5b3ecd",
-            "cues": "0d514a6822"
+            "cues": "abcacd9b13"
           },
           "versions": {
-            "all": "b996837bb5",
+            "all": "fb90a5521d",
             "drums": "d290885440",
             "alex": "233ba87d48",
             "steve": "a5ff448644",
             "tanya": "d7a08ca47b",
-            "pb-other": "5b1f217f98",
+            "pb-other": "ec6c67990f",
             "pb-bass": "8c1bf5e3b8"
           },
           "pb_other": {
@@ -10756,14 +10756,14 @@
             "bass": "af77b1c93b",
             "other": "df9d532946",
             "click": "c4ab5c2245",
-            "cues": "d1cbf19bd1"
+            "cues": "e65e2e2f60"
           },
           "versions": {
-            "all": "87ec93b3bb",
+            "all": "5a3d63102d",
             "alex": "d12fbf402f",
             "steve": "0aa338f0a2",
             "tanya": "a2984faaf8",
-            "pb-other": "8e21e463df",
+            "pb-other": "8cc6f61d2b",
             "pb-bass": "3d79296bbd"
           },
           "pb_other": {
@@ -10999,7 +10999,7 @@
                 "t": 112.5,
                 "text": "build up in",
                 "bar": 61,
-                "snap": 108.27
+                "snap": 108.268
               },
               {
                 "t": 116.25,
@@ -11109,13 +11109,13 @@
             "bass": "f2a56e378c",
             "other": "efa749f351",
             "click": "14f3e19df5",
-            "cues": "982b161743"
+            "cues": "12d9e60dd8"
           },
           "versions": {
-            "all": "09ec011e12",
+            "all": "b1d2bf226d",
             "steve": "9cf05e65fe",
             "tanya": "7c4593bddb",
-            "pb-other": "a878a83009",
+            "pb-other": "444f121714",
             "pb-bass": "f2a56e378c"
           },
           "pb_other": {
@@ -11288,16 +11288,16 @@
             "bass": "cf5e104d39",
             "other": "f159c70224",
             "click": "5d99a1395b",
-            "cues": "55b1ec28b4"
+            "cues": "ee72b57fa2"
           },
           "versions": {
-            "all": "d5cffecf54",
+            "all": "60a8beaa4b",
             "alex": "95e172c6b5",
             "steve": "b7586b8f83",
             "tanya": "439f0ce423",
-            "pb-other": "123012735d",
+            "pb-other": "89e1e1cbc4",
             "pb-bass": "9d9b932a52",
-            "pb-audition": "b6a046b4f4"
+            "pb-audition": "c2fa7545de"
           },
           "pb_other": {
             "available": true,
@@ -14492,13 +14492,13 @@
             "guitars": "234181a163",
             "other": "d4a871a243",
             "click": "2ab2a7652d",
-            "cues": "614d74ec29"
+            "cues": "a522773794"
           },
           "versions": {
-            "all": "78e302d8b0",
-            "pb-other": "a27e1eee3b",
+            "all": "627c819615",
+            "pb-other": "5cb8885660",
             "pb-bass": "b0a2322545",
-            "pb-audition": "a6ab0c3555"
+            "pb-audition": "042bd6fb4a"
           },
           "pb_other": {
             "available": true,
