@@ -37,18 +37,18 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 220.000023,
       "key": "cherry-dash/dfa18d189118/guides/be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548/all.wav",
-      "mix_sha256": "a3453b9a11414f19e3227cc647f3d77233b382783e9cd13cc398c75e2d68bc0f",
+      "mix_sha256": "06c4229fa3604fda87c8aa75ed213d4b362cc3db3d0d5763a7fc844ecc7489d7",
       "render_audio": {
         "click.wav": "2e3af95763f2655f9167b74c7b1f6d2ed3c53b896f5dbb652b90b77408097e2a",
-        "cues.wav": "d8b2885c5b97bd8672fbf3ed0e27a13b4de83fb3c7f45334376646181a01c2f3",
+        "cues.wav": "cda6a009b732ef4b6d42d0190fba1c1486d8a285a62b209a71f187ddd544ab15",
         "pb-bass.wav": "dac34f75e0e3d120ba83535efdf38634ecaf5d937d988eda2aa55c3783f6dcfb",
         "pb-drums.wav": "81ada56dc558d83f3331dcfbd308a6c36696cf49b1ecf383323ea57bc0bfe351",
-        "pb-other.wav": "5fed2d0de015337157d439c06a8a68c7d827f136403b05f4733e51f76674de63"
+        "pb-other.wav": "ed9fde381240d9b7c028b952a67ece0c619d2facc1af6e8a3efa1fb7d61628ef"
       },
       "render_pcm": {
         "click.wav": "dcceebf79594d3f343e7ad6f7d0be0e540d63604106c1d8fea4d5272c5934e7f",
         "pb-bass.wav": "02c01735b5a4102d3cf30c7bd7f1c77a0e1efbf5c342ba50a216ad9bc35d568c",
-        "pb-other.wav": "c0c5b3daff685835cb86fb786113e40158f90073360d167384277b1dacf73abe"
+        "pb-other.wav": "7c084a3cfb30697f3d090ac4c9deb2e4ddccb5fcf6c27bf4802fe94f7cd94d1e"
       },
       "sample_rate": 44100,
       "sha256": "be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548",
@@ -161,17 +161,17 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 183.741905,
       "key": "cherry-dash/351bca043e8d/guides/b1866c201de2cb7b9dbc8375a3bcd588bd425ee653e861b8128783f65f86f8ad/all.wav",
-      "mix_sha256": "095c178b80eafda6214cf1af5c925bbc123c7caa8feb448e520aba2aaba15315",
+      "mix_sha256": "fec7f65b229c14ca3de1e1e17521077352c74e795a524f2cc76cbd20bd6da94a",
       "render_audio": {
         "click.wav": "2d329a5ef972ad8c518098c2ee50cea7dd90ca3afb12b84c4a29d83da6b510ec",
-        "cues.wav": "ce8a3717e6de403c0f0f758d16d94ff58ecf234a1ea7b4bd42426ed4cdd46ec4",
+        "cues.wav": "e0c777ddf4d2940fd0e7878dacfe3bf5d041dbdbdcccd57a2bd684297130d903",
         "pb-bass.wav": "3230fd2d1598c9140686bb8a0be08bec25180a2592785f3d136eb2b1e1af169e",
-        "pb-other.wav": "01756b80daf87b585101580613eb9397e30f700aad7388d56ea87da34368185a"
+        "pb-other.wav": "9be13a34fe746bac64884ee2cc15c92ca7e72bfc37f7bf7b0bede8fb2fb434e2"
       },
       "render_pcm": {
         "click.wav": "c34042d5b0fad2c884508a55bcf1b62df440b60259c713e7e320b565571f03f5",
         "pb-bass.wav": "e6e3f69522ce9ccb2a5f23c0a1e59ff410ca92d6538eea75a47e9bb207463af8",
-        "pb-other.wav": "3291ef0b1455c93d7b519420a5eff92abc6cec4f518fd79fb40daa4b3c826b10"
+        "pb-other.wav": "56dc011f29b93c4d6624d05e81d8cb1de965301241185d443a77444abf54f657"
       },
       "sample_rate": 44100,
       "sha256": "b1866c201de2cb7b9dbc8375a3bcd588bd425ee653e861b8128783f65f86f8ad",
@@ -204,7 +204,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 196.535465,
       "key": "cherry-dash/297f69dca0f1/guides/401d7fd0ad1b5f2e5dba5b778800ede390837935b5de607be7e0cbc9a56236eb/all.wav",
-      "mix_sha256": "1659374ef997da2d0169548eb4dcb104e8bd98a709aea595437e858d19c59d6d",
+      "mix_sha256": "f93cf5aa543742aeb146f7e192ca786c29cfeb1c81ae39d532031e69bc81d38d",
       "render_audio": {
         "click.wav": "ab4a468c581298707ed371555ca18e07fe2a987fa6a483d6f2cf93a122fb67c9",
         "cues.wav": "5dc898063c2de98e359fd1e9d1ba76145b2fb54f8e6ba6fdef0faa4f26d8e190",
@@ -234,7 +234,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 219.010068,
       "key": "cherry-dash/3d16441c6169/guides/383172e7e87f940a5acd5cab77a29a6d5ff534296e577d371d27352ef98bcd4e/all.wav",
-      "mix_sha256": "b5d44c112a06f52fb90a8eb54faaec808a2d53c74261ea535364b0137a1a3962",
+      "mix_sha256": "6b9e9818c91af890511474eecbb96f89adf0e0b3eaae84f95de4e48ae49a50ed",
       "render_audio": {
         "click.wav": "8eab20371a691f4d12cfb5fa4db54d1e29063201d364ed6d9193b09896e8ebc0",
         "cues.wav": "32452e1150d3210c9f561331c6eb2c87e2ac552ca38e3a99f59736239af82c58",
@@ -292,7 +292,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 149.778594,
       "key": "cherry-dash/7988839c0526/guides/1147373c48880d4bf22bd06173a40308020212a6af3af152329899c81e8043d6/all.wav",
-      "mix_sha256": "c60428aa15de7855097c69b98124638f6ca151956b7720e64a033fbd514f9dcc",
+      "mix_sha256": "1c5649010cc045f7767e1be260c29fe8ce8b795af5e3529dec078072789aa211",
       "render_audio": {
         "click.wav": "33698f40788fc10d6c5cf3c0f1290103a61ed4ff78499ea3814acf5ba58a8b12",
         "cues.wav": "24dc7f50bb3c21e73086dc5564930d9bf0fcfec422b8008e5f9e0c9adc862dce",
@@ -351,7 +351,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 223.304331,
       "key": "cherry-dash/06185b95940b/guides/6e793c1cf5bd06deed55732d4f91aa699aa7b723947c61e898b4a722e3b4505b/all.wav",
-      "mix_sha256": "47131fc3b467fa337d6ae864fe1bc9be3d40eff31a360a555e7f454e47207145",
+      "mix_sha256": "3bc57ee0f708475797d4133a4a73b454839db38168c96f8d492eb4e96fe6278c",
       "render_audio": {
         "click.wav": "18b96219c6d012e85b790099423c9bb0684806e1fdcda6e4f44b870a7bddad03",
         "cues.wav": "c7cc99c0c6ef292cd057a93d4f7ad0cf7bfb8852523b4a68e9dd9ca3cc45638c",
@@ -562,7 +562,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 260.869546,
       "key": "cherry-dash/c1b741b6747a/guides/ffae8a6a19f54a24e5b5c9b1a559031fe799a9c1155350b0a74212ccf7fc2481/all.wav",
-      "mix_sha256": "7c8b1815ac9da705e3f33b3ef6d9f2f1554c0ba87b5593098c672dc1730a0d9b",
+      "mix_sha256": "d3686812f94522fd0acca0961c0e67c0839b7a5fbbe7d872bef8bc5dc323e45c",
       "render_audio": {
         "click.wav": "72522926d95c5f24d31d3e5a86d4d29fd6ba536a9af71e7ee7f67e3a4a979a2f",
         "cues.wav": "0086c09058c8923ca91aae915b7c965bfc5e0fa3f0906ec6d8835c649ef65c43",
@@ -860,7 +860,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 194.999977,
       "key": "cherry-dash/38db2519ed89/guides/947d20d972ce29fb243d003effbd60e8b10f43455297e5c76414ae3619c30e73/all.wav",
-      "mix_sha256": "9b624c44e05332b253bec2c43e7bc5534a49e0769f58502456a8e754980825b9",
+      "mix_sha256": "e6e9af39de83146d85ca7841d2f48cbf730e0e926a6ef1652a17b9d3991c3089",
       "render_audio": {
         "click.wav": "02e50be90514495c826640c59c33a000d61df2511d2095b61f4e370e06898f7b",
         "cues.wav": "21f8b14b512a1bf5ef60b68138641c507e2fbc529991029dd157358d93c24fbb",
@@ -975,7 +975,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 208.209093,
       "key": "cherry-dash/bbcf1941bb32/guides/2db06816431afa6d924879815222379094b4691457c09253024fbd80053bd316/all.wav",
-      "mix_sha256": "dd1f8342e870f7864aa0c6859d071573f3c817a15dd8a776612db36c1bfcde9e",
+      "mix_sha256": "d366f61d861600e6185ff2a15c8d60f45d1c1a882f48485a8db9cb7b87470a58",
       "render_audio": {
         "click.wav": "a9d15e4d9636c1f7f7d92b86fa934d1fc578be44b89670ea01f03bad4013c338",
         "cues.wav": "8ebbe75e28f38e7543a35f95ac8024e0c3732b0c5046187f94e90ab098425e01",
@@ -1004,7 +1004,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 204.923061,
       "key": "cherry-dash/39c9137c546c/guides/629ad768c122f41dd3f3b1ff21bb639fcaa626cb1d9c855f311dbb4a7557ee50/all.wav",
-      "mix_sha256": "14979507bbb3ac3dace1a816336bc225adedbd986ff5fa2abd31851d075a3232",
+      "mix_sha256": "145d3b78b69eb54dd7496dcc9871abbee52f00b3ab078742e1c8f57b12dbc9e7",
       "render_audio": {
         "click.wav": "80cad254f9287c45ac1eca73a5066de2cf9d007d8d4eb0f6fa907e2b968e6028",
         "cues.wav": "817be9acc5e0825a14b4d032f845253845ee48b34e449c20a968ebe637dec4fc",
@@ -1181,21 +1181,21 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 185.80644,
-      "key": "cherry-dash/cfc3bca52e8c/guides/088caad8081b4d4f4e70839b14e525a12c1fdae57ee0b234be9f294c060ff6f1/all.wav",
-      "mix_sha256": "346977c53f46ade35dcb9fcb4d32884fd5087869a8957d69f4c5eaf32005b104",
+      "key": "cherry-dash/cfc3bca52e8c/guides/32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce/all.wav",
+      "mix_sha256": "e6e97e51928d90acdb2c6e07540fa11987b3f227aaf8db6bf9a1e4aec445f095",
       "render_audio": {
         "click.wav": "31e1a17b6ccc6caf4209e4d035844ce6b2b3b81f846c1ca1c8a699d7c35bb032",
-        "cues.wav": "2f3428d225bb6034ab500e66a38be6a202225ff3a1ffd7140661e1dbd7cac674",
+        "cues.wav": "32e93d8705e42b62ea052d793c2b386d398fb312f7bfe4ec00f81030c8636bf1",
         "pb-bass.wav": "ad5bb0470f1ee085256721e31655c2ad0be1ec7c29639e16c7a31cdf93db3a8c",
-        "pb-other.wav": "e78a08c57291bc0317f2f74f5107d01a51b286582611bfccc411bca0be4a91b0"
+        "pb-other.wav": "98095c51324911b8ad22267f255675c406a433ddaa1295aba18427d6b805a2a2"
       },
       "render_pcm": {
         "click.wav": "dc87987f63b451e3a7d8c2f3f93a9897c58123861965d86934de2f79b675eb52",
         "pb-bass.wav": "17872f7dff642719062e9e1801cb590c848d080252a4ccbeed20c2ae993f7cd9",
-        "pb-other.wav": "ffbb19106af2ddd341fb9a59e61de6a79a87f94f946de7ccd572c65009c76cf9"
+        "pb-other.wav": "a6d89c92181e9fc423a2c589ace1faf5e7be68ef2909d8a00abd583b27d60509"
       },
       "sample_rate": 44100,
-      "sha256": "088caad8081b4d4f4e70839b14e525a12c1fdae57ee0b234be9f294c060ff6f1",
+      "sha256": "32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce",
       "status": "available",
       "timeline": {
         "bar_sec": 1.935484,
@@ -1203,7 +1203,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.706342
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/088caad8081b4d4f4e70839b14e525a12c1fdae57ee0b234be9f294c060ff6f1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce/all.wav"
     },
     "music/songs/Ray Parker Jr. - Ghostbusters": {
       "bytes": 43072382,
@@ -1358,17 +1358,17 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 247.500045,
       "key": "cherry-dash/3101b8a72732/guides/d19cb4265232dfa05f985f8a686ab2a55c216c4cdfafc10d7047fcf7da2813bb/all.wav",
-      "mix_sha256": "3a74ce4af78dd71f2abf5df26e0d74fa5fd957f1757d442db651066efc8bb310",
+      "mix_sha256": "a18e1513aed105b7fb69652980920c1092249d4020f529f761982bb0dd3087cb",
       "render_audio": {
         "click.wav": "a2dc5073b4b634348f7c752b85b165f72296329d423d33e68dfc4db9995b1054",
-        "cues.wav": "01e16a57a6684016993e24ecfd3997c40021cac089e5b7aec5841eb2b9da1642",
+        "cues.wav": "276f8529b97aadb4ba4114df58ff0dd3bc142d4855acf1877e5e8f72b71a52ec",
         "pb-bass.wav": "a2edfeb6ecf1db6741a0fa4a3dd3a8946f3fb33d685a5433a4e40e1639c32909",
-        "pb-other.wav": "579ff546550549c9c26b67bc78b426a214ca5b2c029532dbcaa1a8aad078b049"
+        "pb-other.wav": "f9d513e0cad82c6c5304b00009bb791c8d3c3bb0b5145bd8d9854e30f172ac86"
       },
       "render_pcm": {
         "click.wav": "01cdf5b89cc64370ea517ace527c05168359193f3fcd567c7bc3c4383e1f82fc",
         "pb-bass.wav": "8cab354c757d50a19a2909e2f57decdcbbad8a73cddd2b823101440675332f4b",
-        "pb-other.wav": "b9e4e3dd5de4b0187dd732c7b47ac6c4b6e4688e8aace563ff6b201a18db6c5e"
+        "pb-other.wav": "e6381b24b83f75e22e69e0354e71ef1efce33c627ee558558c4648016e221ae7"
       },
       "sample_rate": 44100,
       "sha256": "d19cb4265232dfa05f985f8a686ab2a55c216c4cdfafc10d7047fcf7da2813bb",
@@ -1775,7 +1775,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 297.599977,
       "key": "cherry-dash/e773956ecaa6/guides/d6141c6270d4e9e2fb23f38358310ec2269bbf2b4c189ad0c72cf0eedf79e83e/all.wav",
-      "mix_sha256": "0012b87134313e45610fb9b7b8d16c4991c0e3cc54e5fd18bdf4e1226130fc97",
+      "mix_sha256": "708373017452f006f0848298db2df71db0b86f0389c26b8bdc5cfa50427b81b9",
       "render_audio": {
         "click.wav": "74017c5b73cb229e97fc1d6f032be0d481234fa6c74b559dd2fc5153402102c3",
         "cues.wav": "9f2a8e5d73451829038352c0857db756a0ba0ac320278945b2167cf73396d4ef",
@@ -1805,7 +1805,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 162.752494,
       "key": "cherry-dash/4bfe90ef136b/guides/3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766/all.wav",
-      "mix_sha256": "98c9971619f10045f8fe1a0bf38c812e672df15a62664cd0b58e619db35068a4",
+      "mix_sha256": "b89db145445f5897cb56feff8252db7a935a3e43baed8859690bfbd73410862c",
       "render_audio": {
         "click.wav": "0f0e12af5d0e56c089bc954714368ba54f0f79c4ff19ac430c676d54d00fabe7",
         "cues.wav": "324dfc5fb039220dd4bce9308e3f889e6c63ff0b0e5c62867922035a55c2eb56",
@@ -1834,16 +1834,16 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 221.52771,
       "key": "cherry-dash/13127f359691/guides/413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4/all.wav",
-      "mix_sha256": "dbec62bb363df6e0d15d91c896e722d96feb0ee71da4ee2dee8d5717cf121144",
+      "mix_sha256": "e2fbc22ff5b072926755c850f6a197e3a4d09c85393aa18f1782def565f7dab8",
       "render_audio": {
         "click.wav": "21a7325ecea910d3e966ce2a48bc2c25e59fb0da0dd3f88edcf7fb1b308cd9e8",
-        "cues.wav": "ad8301d15eae5377fe457a3073309c6af5edb0138832857ca679d290b2410086",
-        "pb-bass.wav": "bcc8eee231575c5ec7c2ef030dcc5ec66114d10b5eab1853fce21d8ce74c3568",
+        "cues.wav": "f9a0e2dc7c61143f66e04776374d4c079312e45efe368971f78ca7898cef3c1a",
+        "pb-bass.wav": "1b43a626b4481b53a839b5b108be06e0fa5b199f0296e3fa70d29e1f2ceb2282",
         "pb-other.wav": "19f786c2afea2c83439464dd74f140c74be40f4e8fc50f912e3d2420385f41aa"
       },
       "render_pcm": {
         "click.wav": "13cf7d410abc504a3f25a3e71e8bef75a427fa9a0338e1b7ff2ba89cf9fb6869",
-        "pb-bass.wav": "3c26730d966d0baa19756672353fcb8cd67cfbfb1acee795a0a75b067131d8a2",
+        "pb-bass.wav": "b2d8677f41a14db13aaceafcb8814fe416a605e2626a3bac46bd7792df44f477",
         "pb-other.wav": "3545268f14ccb251698c3d823f863e4eddf827f4e5acded515b3ef1b8394b39f"
       },
       "sample_rate": 44100,
@@ -1862,22 +1862,22 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 219.69229,
-      "key": "cherry-dash/8aed085975f2/guides/1bfadb9c664e41986023fdb492bc3ec130a5479f0f4ea7a68143e2087254e4dc/all.wav",
-      "mix_sha256": "ac7203335f6c2eaaa970b42e5f23e555a0f317f5d14c607192818c83e302f1cd",
+      "key": "cherry-dash/8aed085975f2/guides/aa1cbfcd4f83fa620cb6631f21c2d18257db59a5a0a6aa11557b55ed6c214f79/all.wav",
+      "mix_sha256": "2ff5aff55ee6ccfb868b51ef2570dbc7466414b6fca926337e8fe9a616698bee",
       "render_audio": {
         "click.wav": "680f506e69a9da4bf475b041b9db44290017379f7c57d511d4174b18d45c80f9",
-        "cues.wav": "d245cb85c9af6973b633b7a17e04abf831935bbaa3cb14bbdcfe54589ce935b5",
+        "cues.wav": "3f9766198dbcd62ac7c6c68de5c8962bddd48a7cf1c3aa881c0e1905c92aba2b",
         "pb-bass.wav": "314f46b1bdc00ba8232d478a8b9ddd4b8ff6a9b48ce820c81c999476cf034d1c",
         "pb-drums.wav": "775fceb818453e611525fa7f4cbeb33a7875b9bbc3c14132d829d5de870569ee",
-        "pb-other.wav": "1b2e520d7a7840c55771d6a2add50274caa8e6ff80787a35fb34e971550c63a6"
+        "pb-other.wav": "2337c15f323bd6304be54ddc271692f39df3f1784b5bfc531a92f652db1c2cb0"
       },
       "render_pcm": {
         "click.wav": "2f7f4813006a182cc9b62ee71a46dd24bf5436494f5f9639b280c4312ea8a4eb",
         "pb-bass.wav": "d4949e4d844bcfec5ea7befc6686df5bce5802841e6f608bc5ca509ed8ada1a2",
-        "pb-other.wav": "a8242260e0a09a2075859f8d5a20590970906240b2208b20a9ee78729f04edb0"
+        "pb-other.wav": "2aca9883014d00cf7348f1eca926f57453e6f72b91f5acfb17406d4bd5da6c73"
       },
       "sample_rate": 44100,
-      "sha256": "1bfadb9c664e41986023fdb492bc3ec130a5479f0f4ea7a68143e2087254e4dc",
+      "sha256": "aa1cbfcd4f83fa620cb6631f21c2d18257db59a5a0a6aa11557b55ed6c214f79",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
@@ -1885,7 +1885,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.632194
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/1bfadb9c664e41986023fdb492bc3ec130a5479f0f4ea7a68143e2087254e4dc/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/aa1cbfcd4f83fa620cb6631f21c2d18257db59a5a0a6aa11557b55ed6c214f79/all.wav"
     },
     "music/songs/Кислотный DJ": {
       "bytes": 41731318,
@@ -1893,7 +1893,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 236.571429,
       "key": "cherry-dash/fd31c4f9ad95/guides/750e30e1a7eacd7984662e7e2d276dee1a29a33f270d6552641b3b37ede07e00/all.wav",
-      "mix_sha256": "07dd7673ffd024c8e2f9e7ec3ed7c136e231b5eb36955c49692bea99d2d6c107",
+      "mix_sha256": "47c96edcc23b05c4f482ebc0f491f29ca6c2598f49632a6fc0f80245f55459fd",
       "render_audio": {
         "click.wav": "01d701010e7f6b2b08981be13d55b69a8a91122d55bed571b04d7043ff88c927",
         "cues.wav": "dd0afc2d3827650678fd400f5e1ea3535c7aeb992fe983fc545e6921787267f7",
@@ -2009,7 +2009,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 164.370907,
       "key": "cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav",
-      "mix_sha256": "a6f6ab8205838a5d16010000381d930732d1c01b2266938e89683f5c65dbd3eb",
+      "mix_sha256": "a35b1b01f32680d20b5ae031b0b0551f329ecc08217d1f5e6cba382b90861544",
       "render_audio": {
         "click.wav": "c7f9d408bde75823fbbff4335295fc95becd49a0be2de754e2d7aa7ecee56fcd",
         "cues.wav": "dc6380c147daf783969f666c2b6ebe55f13f5eab2384c4cc511eb3b4dea67840",
@@ -2066,23 +2066,23 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 245.333333,
-      "key": "cherry-dash/059476adbfec/guides/e498a2b2113f4c4f530a452fd490759c74f63e358872262eedea2808c3f721b8/all.wav",
-      "mix_sha256": "99e825035253f584727932199b3daa96142aa4bf6e853238e3b19d28b8b78fbb",
+      "key": "cherry-dash/059476adbfec/guides/25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5/all.wav",
+      "mix_sha256": "3f500710ab7847a3575f2f2a32e5727b2cd66205565d4f3c8f868a5b598419ad",
       "render_audio": {
         "click.wav": "b96149fd22a0226fdf14057793015f95beb3205ba3a6ffaf9cf44506bf165a69",
-        "cues.wav": "066d9d300ead41c27bb89364ddb0ce8074bf64d3198f4566002ebd5a4a03f361",
+        "cues.wav": "8aec3d1846a0585d773a01d965811dedf6f4c772a02b92687cd68ad0b677da2d",
         "pb-bass.wav": "52bc1fff82b608c5677cf5820e780ce3496db2b836d0cc7a3886ee2ae2307e89",
         "pb-drums.wav": "05ecb1236f71945177df69e8149126918af8459a3ed3f54ce877f20b4ae8535d",
         "pb-other-keys.wav": "31cf5b727706ae852489ea96809ebc4d57985c300f24e12fb89b21622a9f66c3",
-        "pb-other.wav": "115a7f3e4872bbe0950a62bf3a4b417ace7b910acfa50186dd00bcc7a1df200d"
+        "pb-other.wav": "12e076a06b2c77994a698f676cc82e07640a435fd70fa6305cf9a3d760a0fcf0"
       },
       "render_pcm": {
         "click.wav": "a0ca6a3daea81fe8ab4bf164a27b5cf381368ab5e9295c98628c774d8f855d3a",
         "pb-bass.wav": "646542b3f769d0317c17de6b9c039fb60d0bb521aed8a779eea51021aa15f9b2",
-        "pb-other.wav": "466328457384723d62ae2dc8310b919bac6d2d9050abb2ef66ef6c9d88ed13f7"
+        "pb-other.wav": "e04d56dbeddc5c65a14e63156e4c2a98a8356abf7087396f39edceb26c46a7c6"
       },
       "sample_rate": 44100,
-      "sha256": "e498a2b2113f4c4f530a452fd490759c74f63e358872262eedea2808c3f721b8",
+      "sha256": "25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5",
       "status": "available",
       "timeline": {
         "bar_sec": 1.777778,
@@ -2090,7 +2090,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 2.99542
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/e498a2b2113f4c4f530a452fd490759c74f63e358872262eedea2808c3f721b8/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5/all.wav"
     },
     "music/songs/Чичерина - Ту-лу-ла": {
       "bytes": 25609182,
