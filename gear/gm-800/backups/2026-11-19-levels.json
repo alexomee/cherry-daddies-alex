@@ -1,0 +1,604 @@
+{
+ "date": "2026-11-19 10:40",
+ "note": "slot 27 already edited: part2 127->90, part1 98->88",
+ "scenes": {
+  "2": {
+   "name": "AROUND LALALALA",
+   "scene_level": 105,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 127
+    },
+    {
+     "sw": 1,
+     "level": 96
+    },
+    {
+     "sw": 0,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "3": {
+   "name": "BEGI OT MENYA",
+   "scene_level": 68,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 110
+    },
+    {
+     "sw": 1,
+     "level": 90
+    },
+    {
+     "sw": 1,
+     "level": 80
+    },
+    {
+     "sw": 0,
+     "level": 70
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "4": {
+   "name": "CASCADA SOLO",
+   "scene_level": 127,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 115
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 94
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "5": {
+   "name": "DEST CALABARIA",
+   "scene_level": 113,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 110
+    },
+    {
+     "sw": 0,
+     "level": 80
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "6": {
+   "name": "BEVERLY HILLS",
+   "scene_level": 68,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 110
+    },
+    {
+     "sw": 1,
+     "level": 90
+    },
+    {
+     "sw": 1,
+     "level": 80
+    },
+    {
+     "sw": 0,
+     "level": 70
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "7": {
+   "name": "SOLNbLSHKO BASS",
+   "scene_level": 54,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 78
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 0,
+     "level": 68
+    },
+    {
+     "sw": 0,
+     "level": 64
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "8": {
+   "name": "SOLNbISHKO LEAD",
+   "scene_level": 110,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 96
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "9": {
+   "name": "SOLNbISHKO QUIET",
+   "scene_level": 81,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 96
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "10": {
+   "name": "SOLNbLSHKO V2",
+   "scene_level": 110,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 120
+    },
+    {
+     "sw": 1,
+     "level": 90
+    },
+    {
+     "sw": 1,
+     "level": 60
+    },
+    {
+     "sw": 1,
+     "level": 80
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "11": {
+   "name": "MALO TEBYA CH",
+   "scene_level": 110,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 120
+    },
+    {
+     "sw": 1,
+     "level": 74
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "12": {
+   "name": "MALO TEBYA SOLO",
+   "scene_level": 65,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 58
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "13": {
+   "name": "I LOVE IT HEADS",
+   "scene_level": 65,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 58
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "14": {
+   "name": "KISLOTNY DJ",
+   "scene_level": 115,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 98
+    },
+    {
+     "sw": 0,
+     "level": 101
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "15": {
+   "name": "BETTER ALONE SOL",
+   "scene_level": 100,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "18": {
+   "name": "SAXOBEAT SAX",
+   "scene_level": 112,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 110
+    },
+    {
+     "sw": 0,
+     "level": 80
+    },
+    {
+     "sw": 1,
+     "level": 102
+    },
+    {
+     "sw": 1,
+     "level": 102
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "19": {
+   "name": "SAXOBEAT SYNTH",
+   "scene_level": 100,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 64
+    },
+    {
+     "sw": 1,
+     "level": 93
+    },
+    {
+     "sw": 0,
+     "level": 94
+    },
+    {
+     "sw": 1,
+     "level": 94
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "22": {
+   "name": "U R GONE SOLO",
+   "scene_level": 127,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 115
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 68
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "23": {
+   "name": "U R GONE BR",
+   "scene_level": 110,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 81
+    },
+    {
+     "sw": 1,
+     "level": 120
+    },
+    {
+     "sw": 1,
+     "level": 72
+    },
+    {
+     "sw": 1,
+     "level": 63
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "26": {
+   "name": "WE FOUND LOVE",
+   "scene_level": 65,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 58
+    },
+    {
+     "sw": 1,
+     "level": 116
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "27": {
+   "name": "NE ISHI BASS",
+   "scene_level": 100,
+   "parts": [
+    {
+     "sw": 0,
+     "level": 88
+    },
+    {
+     "sw": 1,
+     "level": 90
+    },
+    {
+     "sw": 0,
+     "level": 87
+    },
+    {
+     "sw": 0,
+     "level": 87
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "28": {
+   "name": "POPROSHU TEBYA",
+   "scene_level": 86,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 1,
+     "level": 127
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "29": {
+   "name": "POPROSHU TEBYA *",
+   "scene_level": 127,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 110
+    },
+    {
+     "sw": 1,
+     "level": 110
+    },
+    {
+     "sw": 0,
+     "level": 60
+    },
+    {
+     "sw": 0,
+     "level": 110
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  },
+  "30": {
+   "name": "NE ISHI SOLO",
+   "scene_level": 100,
+   "parts": [
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 1,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    },
+    {
+     "sw": 0,
+     "level": 100
+    }
+   ]
+  }
+ }
+}
