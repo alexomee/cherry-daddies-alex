@@ -2067,3 +2067,7 @@ Alex: «обнови рендеры на проде». `tools/sync_site.py`: 42 
 ## [2026-11-20] gear | Попрошу тебя: свип фильтра GM-800 из Stage Traxx (рампы CC + SuperFilter)
 
 Alex: «да, делай» на разбор свипа 94–101. `stagetraxx_sync.py`: `"ramp": true` в `gm800_cc` = плавный CC от предыдущей записи к этой, тег каждые ≥30 мс при смене значения, без опережения 0.5 с; тесты (106 passed). GM-800 слот 29 по SysEx (`tools/gm800_superfilter.py apply`, бэкап `gear/gm-800/backups/slot29-superfilter-20261120-002002.json`): FX1 = SuperFilter LPF −24 дБ Res 50 Gain +3 (хранится выключенным), партии 1–2 → FX1, PARALLEL, ASSIGN 1 CC#81 → cutoff (цель 407), ASSIGN 2 CC#81 = 127 → FX1 выкл (цель 361). Калибровка CC → Гц и проверка на приборе: при CC 127 звук как до правки (±0.1 дБ), горб +6…+10 дБ как в записи, ступенек нет. mix.json: 94.1 CC40 → 95.3 46 → 97.4& 113, 98.1 24 → 101.1 127. Stage Traxx `--apply`, 179 тегов CC81. Параллельная сессия в это время добавила сцену 31 (бас) на 28–43 — не пересекается. [gm-800](pipelines/gm-800.md), [virus-poproshu-tebya](songs/virus-poproshu-tebya.md).
+
+## [2026-11-20] song | Попрошу тебя: GM-800 сцена 28 на «pause in» 102
+
+Alex: «после 102 на pause in должно быть переключение на 028». `gm800` + `{"bar": 102, "scene": 28}` (стандартные 0.5 с → 2:55.958). Сцены: 28 → 29 (11) → 31 (28) → 29 (44) → 28 (102). Stage Traxx `--apply`, PC27@2 на 2:55.958 в базе, CC81 без изменений. [virus-poproshu-tebya](songs/virus-poproshu-tebya.md).

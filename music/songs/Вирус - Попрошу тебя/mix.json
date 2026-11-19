@@ -3,7 +3,8 @@
     {"bar": 1,  "scene": 28, "abs_sec": 3.426},
     {"bar": 11, "scene": 29, "abs_sec": 20.558},
     {"bar": 28, "scene": 31, "lead": 0, "abs_sec": 49.682},
-    {"bar": 44, "scene": 29, "abs_sec": 77.093}
+    {"bar": 44, "scene": 29, "abs_sec": 77.093},
+    {"bar": 102, "scene": 28, "abs_sec": 176.458}
   ],
   "gm800_cc": [
     {"bar": 1,  "cc": 81, "value": 127, "abs_sec": 3.426},
