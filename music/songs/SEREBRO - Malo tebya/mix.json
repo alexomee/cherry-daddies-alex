@@ -1,4 +1,10 @@
 {
+  "podgo": [
+    {"bar": 1, "preset": "32B", "abs_sec": 3.692},
+    {"bar": 21, "preset": "32D", "abs_sec": 40.615},
+    {"bar": 45, "preset": "32B", "abs_sec": 84.923},
+    {"bar": 61, "preset": "32D", "abs_sec": 114.462}
+  ],
   "bpm": 130.0,
   "pb-other": {
     "layers": [

@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "podgo": "32D",
   "pb-other": {"stems": ["06_Organ", "07_Synth_Pad", "08_Brass_section", "09_Noise_effects", "10_Backing_Vocals"]},
   "pb-bass": {"stems": ["04_Bass"], "gain_db": {"04_Bass": -2.6}},
   "pb-drums": {"stems": ["02_Drum_Kit"]},

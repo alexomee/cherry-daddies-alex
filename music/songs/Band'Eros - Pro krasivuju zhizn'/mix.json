@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "podgo": "32D",
   "bpm": 125,
   "pb-other": {"layers": ["keys-noise", {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 0.7}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.9}},

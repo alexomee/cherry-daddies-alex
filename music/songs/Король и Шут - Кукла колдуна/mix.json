@@ -1,5 +1,9 @@
 {
   "gm800": 1,
+  "podgo": [
+    {"bar": 1, "preset": "01A", "abs_sec": 3.23},
+    {"bar": 34, "preset": "01B", "abs_sec": 56.528}
+  ],
   "bpm": 148.6,
   "pitch_semitones": 0,
   "pb-other": {

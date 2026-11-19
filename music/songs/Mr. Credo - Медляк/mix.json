@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "podgo": "32B",
   "bpm": 105.0,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["backing_vocals", "strings", "keys"], "gain_db": {"backing_vocals": 0.5, "keys": 0.5, "strings": 2.5}},

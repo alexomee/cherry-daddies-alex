@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "podgo": "32D",
   "bpm": 124.0,
   "click": "follow",
   "tempo_zone": {"from_bar": 53, "from_beat": 3, "to_bar": 63, "to_beat": 2, "bpm": 89.919, "anchor_sec": 102.083742, "accent": 4, "accent_from": 211, "subdiv": 2, "return_sec": 131.766742},

@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "podgo": "32B",
   "click": "follow",
   "pb-other": {"stems": ["13_Female_Backing_Vocals", "08_Charango_(left)", "09_Charango_(right)", "10_Synth_Pad"]},
   "pb-bass": {"stems": ["04_Bass"]},

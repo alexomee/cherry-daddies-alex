@@ -1,4 +1,5 @@
 {
+  "podgo": "32D",
   "bpm": 90.0,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["backing_vocals", "guitars", "piano", "keys", "other"]},
