@@ -19,6 +19,7 @@ reads lower by its real fold loss. Fields per measurement:
 Usage:
     tools/level_audit.py              # whole program -> json + summary
     tools/level_audit.py "<song>"     # one song (substring of the folder name), summary only
+    tools/level_audit.py --set "12.12 all"   # only the songs of one set (exact set name)
 """
 import collections, concurrent.futures as cf, glob, json, os, re, statistics as st, subprocess, sys
 
@@ -74,10 +75,12 @@ def measure(path, with_fold=False):
     return r
 
 
-def program(query=None):
+def program(query=None, only_set=None):
     d = json.load(open(os.path.join(REPO, "web", "songs.json")))
     seen = {}
     for s in d["sets"]:
+        if only_set and s.get("name") != only_set:
+            continue
         for x in s["songs"]:
             seen.setdefault(x["sid"], []).append(s.get("name") or "")
     prog = {sid: sets for sid, sets in seen.items() if not all("рхив" in n for n in sets)}
@@ -86,9 +89,9 @@ def program(query=None):
     return prog
 
 
-def collect(query=None):
+def collect(query=None, only_set=None):
     jobs, songs = {}, {}
-    for sid, sets in program(query).items():
+    for sid, sets in program(query, only_set).items():
         folder = os.path.join(jr.SONGS, sid)
         mp = os.path.join(folder, "mix.json")
         if not os.path.exists(mp):
@@ -190,10 +193,13 @@ def summary(S):
 
 
 def main():
-    query = sys.argv[1] if len(sys.argv) > 1 else None
-    S = collect(query)
+    args = sys.argv[1:]
+    only_set = args.pop(args.index("--set") + 1) if "--set" in args else None
+    args = [a for a in args if a != "--set"]
+    query = args[0] if args else None
+    S = collect(query, only_set)
     summary(S)
-    if not query:
+    if not query and not only_set:
         os.makedirs(os.path.dirname(OUT), exist_ok=True)
         json.dump(S, open(OUT, "w"), ensure_ascii=False, indent=1)
         print("\nwritten", OUT)

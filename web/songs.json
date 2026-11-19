@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-19T06:18:58",
+  "generated": "2026-11-19T06:45:58",
   "counts": {
-    "total": 89,
-    "data": 89,
-    "cues": 89,
-    "playback": 85,
-    "other": 84,
-    "practice": 82
+    "total": 123,
+    "data": 121,
+    "cues": 121,
+    "playback": 115,
+    "other": 113,
+    "practice": 110
   },
   "sets": [
     {
@@ -14964,6 +14964,5507 @@
             ]
           },
           "audition": true
+        }
+      ]
+    },
+    {
+      "name": "12.12 all",
+      "subtitle": "вся программа концерта",
+      "cls": "all1212",
+      "songs": [
+        {
+          "sid": "Кислотный DJ",
+          "slug": "fd31c4f9ad95",
+          "title": "Кислотный DJ",
+          "artist": "Акула",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 22,
+            "list": [
+              {
+                "t": 3.429,
+                "text": "Кислотный DJ drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.714,
+                "text": "synth in",
+                "bar": 8,
+                "snap": 13.286
+              },
+              {
+                "t": 29.143,
+                "text": "stop",
+                "bar": 16,
+                "snap": 25.286
+              },
+              {
+                "t": 42.857,
+                "text": "drums break ready go",
+                "bar": 24,
+                "snap": 39.429
+              },
+              {
+                "t": 56.571,
+                "text": "drums-bass break ready go",
+                "bar": 32,
+                "snap": 52.714
+              },
+              {
+                "t": 66.857,
+                "text": "synth in ready go",
+                "bar": 38,
+                "snap": 63.429
+              },
+              {
+                "t": 68.571,
+                "text": "build up ready go",
+                "bar": 39,
+                "snap": 65.143
+              },
+              {
+                "t": 72.0,
+                "text": "chorus in ready go",
+                "bar": 41,
+                "snap": 68.571
+              },
+              {
+                "t": 97.714,
+                "text": "drums-bass fill ready go",
+                "bar": 56,
+                "snap": 93.857
+              },
+              {
+                "t": 111.429,
+                "text": "bass break ready go",
+                "bar": 64,
+                "snap": 108.0
+              },
+              {
+                "t": 113.143,
+                "text": "solo in ready go",
+                "bar": 65,
+                "snap": 109.714
+              },
+              {
+                "t": 125.143,
+                "text": "drum fill ready go",
+                "bar": 72,
+                "snap": 121.714
+              },
+              {
+                "t": 140.571,
+                "text": "drums-bass break ready go",
+                "bar": 81,
+                "snap": 136.714
+              },
+              {
+                "t": 147.429,
+                "text": "build up ready go",
+                "bar": 85,
+                "snap": 144.0
+              },
+              {
+                "t": 149.143,
+                "text": "all in ready go",
+                "bar": 86,
+                "snap": 145.714
+              },
+              {
+                "t": 174.857,
+                "text": "stop",
+                "bar": 101,
+                "snap": 171.0
+              },
+              {
+                "t": 176.571,
+                "text": "solo in ready go",
+                "bar": 102,
+                "snap": 173.143
+              },
+              {
+                "t": 202.286,
+                "text": "drums-bass stop",
+                "bar": 117,
+                "snap": 198.429
+              },
+              {
+                "t": 214.286,
+                "text": "build up ready go",
+                "bar": 124,
+                "snap": 210.857
+              },
+              {
+                "t": 217.714,
+                "text": "stop",
+                "bar": 126,
+                "snap": 213.857
+              },
+              {
+                "t": 219.429,
+                "text": "all in ready go",
+                "bar": 127,
+                "snap": 216.0
+              },
+              {
+                "t": 233.143,
+                "text": "end in",
+                "bar": 135,
+                "snap": 229.286
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "DJ_arp",
+              "wind_part",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "b49df75377",
+            "back_vox": "cfdf74390e",
+            "drums": "fc723dc85d",
+            "keys": "7a54a5bdf0",
+            "bass": "1fc60fd4e8",
+            "guitars": "3211d8466e",
+            "other": "ac135d9a79",
+            "click": "15c0b38224",
+            "cues": "1e44af129b"
+          },
+          "versions": {
+            "all": "46f8945564",
+            "drums": "185c2bd639",
+            "alex": "e4b7551f6d",
+            "steve": "3f7e258c5b",
+            "tanya": "e1a83d99f6",
+            "trio": "7bbcbd20b3",
+            "pb-other": "a344e8b452",
+            "pb-audition": "50824f3c14"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          },
+          "audition": true
+        },
+        {
+          "sid": "Такая любовь",
+          "slug": "059476adbfec",
+          "title": "Такая любовь",
+          "artist": "Акула",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 14,
+            "list": [
+              {
+                "t": 3.556,
+                "text": "Такая любовь synth fade-in ready go",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 10.667,
+                "text": "chords in",
+                "bar": 5,
+                "snap": 7.111
+              },
+              {
+                "t": 17.778,
+                "text": "verse in",
+                "bar": 9,
+                "snap": 14.222
+              },
+              {
+                "t": 48.0,
+                "text": "drum fill ready go",
+                "bar": 26,
+                "snap": 44.444
+              },
+              {
+                "t": 78.222,
+                "text": "synth solo ready go",
+                "bar": 43,
+                "snap": 74.667
+              },
+              {
+                "t": 92.444,
+                "text": "soft verse ready go",
+                "bar": 51,
+                "snap": 88.889
+              },
+              {
+                "t": 120.889,
+                "text": "drum fill ready go",
+                "bar": 67,
+                "snap": 117.333
+              },
+              {
+                "t": 151.111,
+                "text": "synth solo ready go",
+                "bar": 84,
+                "snap": 147.556
+              },
+              {
+                "t": 165.333,
+                "text": "drum stop",
+                "bar": 92,
+                "snap": 161.333
+              },
+              {
+                "t": 168.444,
+                "text": "guitar solo ready go",
+                "bar": 93,
+                "snap": 164.889
+              },
+              {
+                "t": 174.222,
+                "text": "solo leak ready go",
+                "bar": 97,
+                "snap": 170.667
+              },
+              {
+                "t": 179.556,
+                "text": "verse in",
+                "bar": 100,
+                "snap": 176.0
+              },
+              {
+                "t": 199.111,
+                "text": "chorus in",
+                "bar": 111,
+                "snap": 195.556
+              },
+              {
+                "t": 241.778,
+                "text": "end in",
+                "bar": 135,
+                "snap": 237.778
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "takaia_lubov_bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "sfx-pb",
+              "acoustic-guitar-solo",
+              "takaia_lubov_keys",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "f57be0637c",
+            "back_vox": "cbc5ee02c3",
+            "drums": "dad362c499",
+            "keys": "fc0ffbdb82",
+            "bass": "1cb1fbc006",
+            "guitars": "f8dc6842b0",
+            "other": "c522c13363",
+            "click": "2c97676c66",
+            "cues": "ec6925a6e1"
+          },
+          "versions": {
+            "all": "97dd63b25a",
+            "drums": "4646382670",
+            "alex": "01cb9e7d75",
+            "steve": "abd8ad49c4",
+            "tanya": "cf1d3d0064",
+            "trio": "6910c2ca8b",
+            "pb-other": "a52e1e8ee9",
+            "pb-bass": "6b99fac5c8",
+            "pb-audition": "6778bc6a19"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Band'Eros - Pro krasivuju zhizn'",
+          "slug": "ab33e65bf629",
+          "title": "Про красивую жизнь",
+          "artist": "Банд'Эрос",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 3.36,
+                "text": "Про красивую жизнь all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 18.72,
+                "text": "vocal in",
+                "bar": 9,
+                "snap": 14.88
+              },
+              {
+                "t": 40.8,
+                "text": "all stop",
+                "bar": 21,
+                "snap": 36.48
+              },
+              {
+                "t": 79.2,
+                "text": "all stop",
+                "bar": 41,
+                "snap": 74.88
+              },
+              {
+                "t": 109.44,
+                "text": "keep going",
+                "bar": 57,
+                "snap": 106.56
+              },
+              {
+                "t": 126.72,
+                "text": "rap in",
+                "bar": 66,
+                "snap": 122.88
+              },
+              {
+                "t": 153.6,
+                "text": "all stop",
+                "bar": 80,
+                "snap": 149.28
+              },
+              {
+                "t": 188.16,
+                "text": "instrumental outro",
+                "bar": 98,
+                "snap": 185.28
+              },
+              {
+                "t": 203.52,
+                "text": "keep going",
+                "bar": 106,
+                "snap": 200.64
+              },
+              {
+                "t": 218.4,
+                "text": "end stop",
+                "bar": 113,
+                "snap": 214.08
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "keys-noise",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "316a603d94",
+            "drums": "3f39fa47ba",
+            "keys": "6893e4f9e1",
+            "bass": "2e176220fe",
+            "guitars": "a9209f3e02",
+            "other": "56792f9752",
+            "click": "0d7891a2df",
+            "cues": "7c599ecc10"
+          },
+          "versions": {
+            "all": "61bdf5051f",
+            "alex": "325065da6d",
+            "steve": "6e37ba5873",
+            "tanya": "c5df2e6ba9",
+            "pb-other": "6893e4f9e1",
+            "pb-bass": "920c2ef284",
+            "pb-audition": "c3c703161b"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Беги от меня",
+          "slug": "e773956ecaa6",
+          "title": "Беги от меня",
+          "artist": "Гости из будущего",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 3.84,
+                "text": "Беги от меня all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 19.2,
+                "text": "kick in",
+                "bar": 9,
+                "snap": 15.36
+              },
+              {
+                "t": 49.92,
+                "text": "stop",
+                "bar": 25,
+                "snap": 45.6
+              },
+              {
+                "t": 53.76,
+                "text": "kick-bass ready go",
+                "bar": 27,
+                "snap": 50.4
+              },
+              {
+                "t": 69.12,
+                "text": "beat in",
+                "bar": 35,
+                "snap": 65.28
+              },
+              {
+                "t": 115.2,
+                "text": "solo in",
+                "bar": 59,
+                "snap": 111.36
+              },
+              {
+                "t": 130.56,
+                "text": "stop",
+                "bar": 67,
+                "snap": 126.24
+              },
+              {
+                "t": 132.48,
+                "text": "kick-bass ready go",
+                "bar": 68,
+                "snap": 129.12
+              },
+              {
+                "t": 147.84,
+                "text": "beat in",
+                "bar": 76,
+                "snap": 144.0
+              },
+              {
+                "t": 193.92,
+                "text": "solo in",
+                "bar": 100,
+                "snap": 190.08
+              },
+              {
+                "t": 208.32,
+                "text": "keep going",
+                "bar": 107,
+                "snap": 205.44
+              },
+              {
+                "t": 216.96,
+                "text": "stop-and-bridge-in",
+                "bar": 112,
+                "snap": 212.64
+              },
+              {
+                "t": 232.32,
+                "text": "all in",
+                "bar": 120,
+                "snap": 228.48
+              },
+              {
+                "t": 247.68,
+                "text": "chorus in",
+                "bar": 128,
+                "snap": 243.84
+              },
+              {
+                "t": 278.4,
+                "text": "stop-and-solo-only-in",
+                "bar": 144,
+                "snap": 274.08
+              },
+              {
+                "t": 293.76,
+                "text": "end in",
+                "bar": 152,
+                "snap": 289.44
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "cc3e402af9",
+            "drums": "97f778bb1f",
+            "keys": "4ba66547b2",
+            "bass": "ceaa588456",
+            "other": "b2124aaa69",
+            "click": "458b4d29be",
+            "cues": "e143a44b61"
+          },
+          "versions": {
+            "all": "f40e844b77",
+            "drums": "e33a9efb40",
+            "steve": "f4e52fc3d8",
+            "tanya": "1dc67cbfb4",
+            "pb-other": "93607be6b2",
+            "pb-bass": "ceaa588456",
+            "pb-audition": "a3b720477f"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Demo - Solnyshko",
+          "slug": "c1b741b6747a",
+          "title": "Солнышко",
+          "artist": "Демо",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 19,
+            "list": [
+              {
+                "t": 3.478,
+                "text": "Солнышко all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 15.217,
+                "text": "stop",
+                "bar": 7,
+                "snap": 11.304
+              },
+              {
+                "t": 17.391,
+                "text": "all in",
+                "bar": 9,
+                "snap": 13.913
+              },
+              {
+                "t": 31.304,
+                "text": "alex in",
+                "bar": 17,
+                "snap": 27.826
+              },
+              {
+                "t": 45.217,
+                "text": "verse in",
+                "bar": 25,
+                "snap": 41.739
+              },
+              {
+                "t": 86.957,
+                "text": "arpegiator in",
+                "bar": 49,
+                "snap": 83.043
+              },
+              {
+                "t": 100.87,
+                "text": "more-arpegiator in",
+                "bar": 57,
+                "snap": 96.522
+              },
+              {
+                "t": 128.696,
+                "text": "soft-verse in",
+                "bar": 73,
+                "snap": 124.783
+              },
+              {
+                "t": 135.652,
+                "text": "drum in",
+                "bar": 77,
+                "snap": 132.174
+              },
+              {
+                "t": 142.609,
+                "text": "bass-n-beat in",
+                "bar": 81,
+                "snap": 138.696
+              },
+              {
+                "t": 170.435,
+                "text": "arpegiator in",
+                "bar": 97,
+                "snap": 166.522
+              },
+              {
+                "t": 184.348,
+                "text": "roma only ready go",
+                "bar": 105,
+                "snap": 180.87
+              },
+              {
+                "t": 191.304,
+                "text": "bass in",
+                "bar": 109,
+                "snap": 187.826
+              },
+              {
+                "t": 198.261,
+                "text": "drums in",
+                "bar": 113,
+                "snap": 194.783
+              },
+              {
+                "t": 212.174,
+                "text": "alex in",
+                "bar": 121,
+                "snap": 208.696
+              },
+              {
+                "t": 223.913,
+                "text": "stop",
+                "bar": 127,
+                "snap": 220.0
+              },
+              {
+                "t": 226.087,
+                "text": "chorus in",
+                "bar": 129,
+                "snap": 222.609
+              },
+              {
+                "t": 240.0,
+                "text": "outro-solo in",
+                "bar": 137,
+                "snap": 236.087
+              },
+              {
+                "t": 253.913,
+                "text": "stop",
+                "bar": 145,
+                "snap": 250.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "synth-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "165c7bad9d",
+            "drums": "68bc3001ff",
+            "keys": "727c7d1fa9",
+            "bass": "cd64e3e3a4",
+            "guitars": "536674f17d",
+            "other": "66b9b4ae92",
+            "click": "7d3ee5b2b5",
+            "cues": "ca53ca80a3"
+          },
+          "versions": {
+            "all": "5f2872fa92",
+            "drums": "68bc3001ff",
+            "alex": "17afe9354c",
+            "steve": "854dfb5fbb",
+            "tanya": "3db6c17760",
+            "pb-other": "727c7d1fa9",
+            "pb-bass": "cd64e3e3a4",
+            "pb-audition": "2247d838db"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Елена Терлеева - Солнце",
+          "slug": "8aed085975f2",
+          "title": "Солнце",
+          "artist": "Елена Терлеева",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Солнце all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.615,
+                "text": "stop",
+                "bar": 8,
+                "snap": 12.462
+              },
+              {
+                "t": 33.692,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 30.0
+              },
+              {
+                "t": 60.923,
+                "text": "stop",
+                "bar": 32,
+                "snap": 56.769
+              },
+              {
+                "t": 90.462,
+                "text": "stop",
+                "bar": 48,
+                "snap": 86.308
+              },
+              {
+                "t": 92.308,
+                "text": "verse in",
+                "bar": 49,
+                "snap": 88.615
+              },
+              {
+                "t": 120.0,
+                "text": "stop",
+                "bar": 64,
+                "snap": 115.846
+              },
+              {
+                "t": 151.385,
+                "text": "keys stop",
+                "bar": 81,
+                "snap": 147.231
+              },
+              {
+                "t": 166.154,
+                "text": "keys in",
+                "bar": 89,
+                "snap": 162.462
+              },
+              {
+                "t": 179.077,
+                "text": "stop",
+                "bar": 96,
+                "snap": 174.923
+              },
+              {
+                "t": 180.923,
+                "text": "chorus in",
+                "bar": 97,
+                "snap": 177.231
+              },
+              {
+                "t": 210.462,
+                "text": "end in",
+                "bar": 113,
+                "snap": 206.308
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "solnce-sfx",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "596b02a993",
+            "back_vox": "3664f07081",
+            "drums": "74d982e4a4",
+            "keys": "a8f5966449",
+            "bass": "b81be10a12",
+            "guitars": "593157e959",
+            "other": "caf99a46b3",
+            "click": "dda5ceac09",
+            "cues": "9b07c6b378"
+          },
+          "versions": {
+            "all": "79eb45d5b4",
+            "drums": "fd5d09343b",
+            "alex": "f6b02b2c04",
+            "steve": "fbca402d78",
+            "tanya": "64834d4974",
+            "trio": "bc2ecaf90f",
+            "pb-other": "f658c4f702",
+            "pb-bass": "ab94c417b0",
+            "pb-audition": "c7991be386"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Король и Шут - Кукла колдуна",
+          "slug": "ccbcf0c2cad9",
+          "title": "Кукла колдуна",
+          "artist": "Король и Шут",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 4,
+            "list": [
+              {
+                "t": 3.23,
+                "text": "Кукла колдуна strings in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 14.536,
+                "text": "drums in",
+                "bar": 8,
+                "snap": 11.306
+              },
+              {
+                "t": 29.071,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 25.841
+              },
+              {
+                "t": 201.884,
+                "text": "end in",
+                "bar": 124,
+                "snap": 198.25
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "живой бас"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "kukla-pb-other-v2"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "9659bea991",
+            "back_vox": "3d73921a59",
+            "drums": "bd9138b2db",
+            "keys": "bb02c35350",
+            "bass": "a8a9eaf826",
+            "guitars": "70888629d7",
+            "other": "733266fa0b",
+            "click": "eb545ae26c",
+            "cues": "ec884ebf49"
+          },
+          "versions": {
+            "all": "e359808dad",
+            "drums": "bd9138b2db",
+            "alex": "9b20c61971",
+            "steve": "ec553c50e7",
+            "tanya": "d9fdaea1e7",
+            "pb-other": "733266fa0b",
+            "pb-bass": "a8a9eaf826",
+            "pb-audition": "efe97d7886"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass",
+              "other"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Мумий Тролль - Владивосток 2000",
+          "slug": "d19286157d3c",
+          "title": "Владивосток 2000",
+          "artist": "Мумий Тролль",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 7,
+            "list": [
+              {
+                "t": 3.694,
+                "text": "Владивосток 2000 all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 55.406,
+                "text": "pre-verse break ready go",
+                "bar": 29,
+                "snap": 51.712
+              },
+              {
+                "t": 100.654,
+                "text": "keep going",
+                "bar": 53,
+                "snap": 97.884
+              },
+              {
+                "t": 116.352,
+                "text": "solo in",
+                "bar": 62,
+                "snap": 112.659
+              },
+              {
+                "t": 130.896,
+                "text": "chorus in",
+                "bar": 69,
+                "snap": 127.203
+              },
+              {
+                "t": 145.902,
+                "text": "outro in",
+                "bar": 78,
+                "snap": 142.209
+              },
+              {
+                "t": 160.215,
+                "text": "double hit ending in",
+                "bar": 85,
+                "snap": 156.06
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "guitars-pb"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "cc574cbe82",
+            "back_vox": "9512a88550",
+            "drums": "f626a5bd28",
+            "bass": "87c831ba48",
+            "guitars": "78d4c557cc",
+            "click": "dc19e576ec",
+            "cues": "6691784d94"
+          },
+          "versions": {
+            "all": "bfb712102c",
+            "pb-other": "6525082c28",
+            "pb-bass": "4c04a66b01",
+            "pb-audition": "052be2954d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Мумий Тролль - Медведица",
+          "slug": "42a10b949a41",
+          "title": "Медведица",
+          "artist": "Мумий Тролль",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 6,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Медведица drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 7.385,
+                "text": "all in",
+                "bar": 3,
+                "snap": 3.692
+              },
+              {
+                "t": 36.923,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 33.231
+              },
+              {
+                "t": 155.077,
+                "text": "break in",
+                "bar": 83,
+                "snap": 151.385
+              },
+              {
+                "t": 156.923,
+                "text": "voice in",
+                "bar": 84,
+                "snap": 153.231
+              },
+              {
+                "t": 183.692,
+                "text": "stop",
+                "bar": 98,
+                "snap": 179.538
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "живой бас"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "guitars_on_rap"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "473b5f11e1",
+            "drums": "b57eec87c8",
+            "keys": "6822bfe617",
+            "bass": "1a351a55a4",
+            "guitars": "59152a0dbe",
+            "other": "393c8a01d2",
+            "click": "76a8740645",
+            "cues": "aa07d6db9c"
+          },
+          "versions": {
+            "all": "e60b7bd40b",
+            "pb-other": "97d42b14e9",
+            "pb-bass": "1a351a55a4",
+            "pb-audition": "475bed5279"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass",
+              "other"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Мелом",
+          "slug": "b581fa388c98",
+          "title": "Мелом",
+          "artist": "Пропаганда",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 4.0,
+                "text": "Мелом guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 60.0,
+                "text": "drums stop",
+                "bar": 29,
+                "snap": 55.5
+              },
+              {
+                "t": 84.0,
+                "text": "bass-only in",
+                "bar": 41,
+                "snap": 80.0
+              },
+              {
+                "t": 92.0,
+                "text": "all in",
+                "bar": 45,
+                "snap": 88.0
+              },
+              {
+                "t": 108.0,
+                "text": "drums stop",
+                "bar": 53,
+                "snap": 103.5
+              },
+              {
+                "t": 124.0,
+                "text": "drums in",
+                "bar": 61,
+                "snap": 120.0
+              },
+              {
+                "t": 140.0,
+                "text": "drums stop",
+                "bar": 69,
+                "snap": 135.5
+              },
+              {
+                "t": 148.0,
+                "text": "drums in",
+                "bar": 73,
+                "snap": 144.0
+              },
+              {
+                "t": 164.0,
+                "text": "keep going",
+                "bar": 81,
+                "snap": 161.0
+              },
+              {
+                "t": 180.0,
+                "text": "guitar only ready go",
+                "bar": 89,
+                "snap": 176.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "bab0def37b",
+            "back_vox": "cd6367a675",
+            "drums": "3ed2807cad",
+            "keys": "023be18a0a",
+            "bass": "4a87f173a8",
+            "guitars": "c071861b58",
+            "other": "e86a486e6c",
+            "click": "8a76014776",
+            "cues": "3c054d5006"
+          },
+          "versions": {
+            "all": "f3f9744d37",
+            "alex": "f9ee2b9781",
+            "steve": "7d078aeaba",
+            "tanya": "64c3383844",
+            "pb-bass": "7061a49ac0",
+            "pb-audition": "faa40e2333"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Чичерина - Ту-лу-ла",
+          "slug": "fb79a34f990d",
+          "title": "Ту-лу-ла",
+          "artist": "Чичерина",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 3.675,
+                "text": "Ту-лу-ла drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 10.567,
+                "text": "guitar in",
+                "bar": 4,
+                "snap": 6.891
+              },
+              {
+                "t": 25.727,
+                "text": "verse in",
+                "bar": 13,
+                "snap": 22.052
+              },
+              {
+                "t": 62.021,
+                "text": "solo in",
+                "bar": 32,
+                "snap": 58.346
+              },
+              {
+                "t": 77.182,
+                "text": "verse in",
+                "bar": 41,
+                "snap": 73.507
+              },
+              {
+                "t": 95.559,
+                "text": "drums only ready go",
+                "bar": 51,
+                "snap": 91.884
+              },
+              {
+                "t": 99.234,
+                "text": "all in",
+                "bar": 53,
+                "snap": 95.559
+              },
+              {
+                "t": 121.286,
+                "text": "keep going",
+                "bar": 65,
+                "snap": 118.53
+              },
+              {
+                "t": 128.178,
+                "text": "solo in",
+                "bar": 68,
+                "snap": 124.502
+              },
+              {
+                "t": 143.338,
+                "text": "end in",
+                "bar": 77,
+                "snap": 139.204
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "живой бас"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "pb-guitars"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "ba41b44d37",
+            "drums": "345d1c2c8a",
+            "bass": "a67642c4c5",
+            "guitars": "9c545dc52b",
+            "click": "209cc138cf",
+            "cues": "43b31025a1"
+          },
+          "versions": {
+            "all": "4015c7f81a",
+            "drums": "345d1c2c8a",
+            "alex": "6c00af957b",
+            "steve": "184b6ba448",
+            "tanya": "1eb0734e9e",
+            "pb-other": "2c3042b0bb",
+            "pb-bass": "86bb5d658a",
+            "pb-audition": "d1842761b2"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "A Touch of Class - Around the World (La La La La La)",
+          "slug": "dfa18d189118",
+          "title": "Around the World",
+          "artist": "ATC",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 3.636,
+                "text": "Around the World synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 10.909,
+                "text": "vocal in",
+                "bar": 7,
+                "snap": 7.273
+              },
+              {
+                "t": 25.455,
+                "text": "bass-n-beat in",
+                "bar": 15,
+                "snap": 21.364
+              },
+              {
+                "t": 54.545,
+                "text": "solo in",
+                "bar": 31,
+                "snap": 50.909
+              },
+              {
+                "t": 69.091,
+                "text": "vocal in",
+                "bar": 39,
+                "snap": 65.455
+              },
+              {
+                "t": 83.636,
+                "text": "piano in",
+                "bar": 47,
+                "snap": 80.0
+              },
+              {
+                "t": 127.273,
+                "text": "solo in",
+                "bar": 71,
+                "snap": 123.636
+              },
+              {
+                "t": 141.818,
+                "text": "keys-only in",
+                "bar": 79,
+                "snap": 137.727
+              },
+              {
+                "t": 158.182,
+                "text": "modulation in",
+                "bar": 88,
+                "snap": 154.545
+              },
+              {
+                "t": 187.273,
+                "text": "keep going",
+                "bar": 104,
+                "snap": 184.545
+              },
+              {
+                "t": 201.818,
+                "text": "keys-only in",
+                "bar": 112,
+                "snap": 197.727
+              },
+              {
+                "t": 216.364,
+                "text": "end stop",
+                "bar": 120,
+                "snap": 212.273
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Vibes",
+              "Synth Lead",
+              "Digital Piano",
+              "Synth Keys",
+              "Synth Strings (pizzicato)",
+              "Synth Pad 1",
+              "Synth Pad 2",
+              "Synth Strings",
+              "Noise effects"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "e33483be91",
+            "back_vox": "877c2acd22",
+            "drums": "f03f36f91b",
+            "keys": "10a60d555d",
+            "bass": "672374bee3",
+            "other": "adba078c51",
+            "click": "cfc8d05f0e",
+            "cues": "649e130931"
+          },
+          "versions": {
+            "all": "c76818fe6b",
+            "drums": "f03f36f91b",
+            "steve": "4bdd27aa4e",
+            "tanya": "9282c4f292",
+            "pb-other": "9c2f51b468",
+            "pb-bass": "43e6efffef",
+            "pb-audition": "022af6050e"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Alexandra Stan - Mr. Saxobeat",
+          "slug": "297f69dca0f1",
+          "title": "Mr. Saxobeat",
+          "artist": "Alexandra Stan",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 3.78,
+                "text": "Mr Saxobeat sax in ready go",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 18.898,
+                "text": "bass in",
+                "bar": 11,
+                "snap": 15.118
+              },
+              {
+                "t": 28.346,
+                "text": "vocal in",
+                "bar": 16,
+                "snap": 24.567
+              },
+              {
+                "t": 60.472,
+                "text": "alex vocal in",
+                "bar": 33,
+                "snap": 56.087
+              },
+              {
+                "t": 75.591,
+                "text": "chorus melody in",
+                "bar": 41,
+                "snap": 71.228
+              },
+              {
+                "t": 90.709,
+                "text": "verse in",
+                "bar": 49,
+                "snap": 86.929
+              },
+              {
+                "t": 105.827,
+                "text": "stop",
+                "bar": 57,
+                "snap": 101.575
+              },
+              {
+                "t": 122.835,
+                "text": "alex vocal in",
+                "bar": 66,
+                "snap": 118.449
+              },
+              {
+                "t": 137.953,
+                "text": "sax solo in",
+                "bar": 74,
+                "snap": 133.489
+              },
+              {
+                "t": 153.071,
+                "text": "bass in",
+                "bar": 82,
+                "snap": 149.291
+              },
+              {
+                "t": 162.52,
+                "text": "vocal in",
+                "bar": 87,
+                "snap": 158.74
+              },
+              {
+                "t": 177.638,
+                "text": "sax in",
+                "bar": 95,
+                "snap": 173.858
+              },
+              {
+                "t": 192.756,
+                "text": "stop",
+                "bar": 103,
+                "snap": 188.504
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Saxophone (reverse)",
+              "Synth Keys 2",
+              "Synth Keys 1",
+              "Synth Keys 3"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "23e4148c61",
+            "back_vox": "6146a17941",
+            "drums": "12e4916198",
+            "keys": "b2232aca1a",
+            "bass": "8c1bf5e3b8",
+            "other": "1a7b239795",
+            "click": "83bf5b3ecd",
+            "cues": "abcacd9b13"
+          },
+          "versions": {
+            "all": "fb90a5521d",
+            "drums": "d290885440",
+            "alex": "233ba87d48",
+            "steve": "a5ff448644",
+            "tanya": "d7a08ca47b",
+            "pb-other": "ec6c67990f",
+            "pb-bass": "8c1bf5e3b8"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": false
+        },
+        {
+          "sid": "Alex Gaudino - Destination Calabria",
+          "slug": "351bca043e8d",
+          "title": "Destination Calabria",
+          "artist": "Alex Gaudino",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 15,
+            "list": [
+              {
+                "t": 3.75,
+                "text": "Destination Calabria bass in ready go",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.25,
+                "text": "all in",
+                "bar": 7,
+                "snap": 7.505
+              },
+              {
+                "t": 18.75,
+                "text": "verse in",
+                "bar": 11,
+                "snap": 15.005
+              },
+              {
+                "t": 48.75,
+                "text": "stop",
+                "bar": 27,
+                "snap": 44.535
+              },
+              {
+                "t": 65.63,
+                "text": "verse in",
+                "bar": 36,
+                "snap": 61.875
+              },
+              {
+                "t": 80.63,
+                "text": "more synths in",
+                "bar": 44,
+                "snap": 76.361
+              },
+              {
+                "t": 95.63,
+                "text": "stop",
+                "bar": 52,
+                "snap": 91.415
+              },
+              {
+                "t": 101.25,
+                "text": "all in",
+                "bar": 55,
+                "snap": 97.505
+              },
+              {
+                "t": 116.25,
+                "text": "stop",
+                "bar": 63,
+                "snap": 112.035
+              },
+              {
+                "t": 120.0,
+                "text": "sax solo in",
+                "bar": 65,
+                "snap": 115.571
+              },
+              {
+                "t": 135.0,
+                "text": "crash in",
+                "bar": 73,
+                "snap": 131.245
+              },
+              {
+                "t": 136.87,
+                "text": "vocal in",
+                "bar": 74,
+                "snap": 133.125
+              },
+              {
+                "t": 138.75,
+                "text": "all in",
+                "bar": 75,
+                "snap": 134.995
+              },
+              {
+                "t": 161.25,
+                "text": "outro in",
+                "bar": 87,
+                "snap": 157.495
+              },
+              {
+                "t": 178.12,
+                "text": "end stop",
+                "bar": 96,
+                "snap": 173.905
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Sound Effects",
+              "Synth Brass",
+              "Tenor Saxophone"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "21d8af1d9a",
+            "drums": "e2dc9e5dd3",
+            "keys": "f47c126814",
+            "bass": "0b8c2d2567",
+            "other": "46f2682a7c",
+            "click": "b216ff7ef4",
+            "cues": "56e91d8fd4"
+          },
+          "versions": {
+            "all": "235759d122",
+            "alex": "01fa482804",
+            "steve": "a327e7486d",
+            "tanya": "6b243db8b7",
+            "pb-other": "80ba481e03",
+            "pb-bass": "1d285502d7",
+            "pb-audition": "c3baefb415"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Basshunter - Now You're Gone",
+          "slug": "7988839c0526",
+          "title": "Now You're Gone",
+          "artist": "Basshunter",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 2.416,
+                "text": "Now you're gone vocal in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 17.716,
+                "text": "drums in",
+                "bar": 12,
+                "snap": 14.495
+              },
+              {
+                "t": 30.6,
+                "text": "stop and solo in",
+                "bar": 20,
+                "snap": 26.574
+              },
+              {
+                "t": 45.095,
+                "text": "drum stop",
+                "bar": 29,
+                "snap": 41.471
+              },
+              {
+                "t": 66.031,
+                "text": "break in",
+                "bar": 42,
+                "snap": 62.81
+              },
+              {
+                "t": 72.474,
+                "text": "stop",
+                "bar": 46,
+                "snap": 68.85
+              },
+              {
+                "t": 75.695,
+                "text": "solo start in",
+                "bar": 48,
+                "snap": 71.808
+              },
+              {
+                "t": 88.579,
+                "text": "stop",
+                "bar": 56,
+                "snap": 84.955
+              },
+              {
+                "t": 90.995,
+                "text": "vocal in",
+                "bar": 57,
+                "snap": 87.773
+              },
+              {
+                "t": 104.684,
+                "text": "bass in",
+                "bar": 66,
+                "snap": 101.463
+              },
+              {
+                "t": 118.373,
+                "text": "vocal-with-solo in",
+                "bar": 74,
+                "snap": 114.347
+              },
+              {
+                "t": 132.063,
+                "text": "keep going",
+                "bar": 83,
+                "snap": 129.647
+              },
+              {
+                "t": 143.337,
+                "text": "end stop",
+                "bar": 90,
+                "snap": 139.713
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass 1"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Synthesizer",
+              "Synth Voice",
+              "Synth Bass 2"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "3f4ca26898",
+            "back_vox": "098874764b",
+            "drums": "5a5ac9104b",
+            "keys": "30e2523140",
+            "bass": "9cc10ce974",
+            "other": "9c01e89b98",
+            "click": "0115adaf4e",
+            "cues": "24f0e29e8b"
+          },
+          "versions": {
+            "all": "0d82ac2e72",
+            "alex": "d31ff21a9e",
+            "steve": "8d228f19b6",
+            "tanya": "f49feb7462",
+            "pb-other": "bb7647b7ef",
+            "pb-bass": "0cde18525d"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "bass",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": false
+        },
+        {
+          "sid": "Cascada - Everytime We Touch",
+          "slug": "cadd346666dc",
+          "title": "Everytime We Touch",
+          "artist": "Cascada",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 2.958,
+                "text": "Everytime We Touch vocal in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 16.901,
+                "text": "drums in",
+                "bar": 11,
+                "snap": 13.521
+              },
+              {
+                "t": 28.732,
+                "text": "stop",
+                "bar": 18,
+                "snap": 24.93
+              },
+              {
+                "t": 55.775,
+                "text": "stop and solo in",
+                "bar": 34,
+                "snap": 51.589
+              },
+              {
+                "t": 70.986,
+                "text": "bass in",
+                "bar": 43,
+                "snap": 67.606
+              },
+              {
+                "t": 98.028,
+                "text": "stop",
+                "bar": 59,
+                "snap": 94.225
+              },
+              {
+                "t": 99.296,
+                "text": "vocal ready go",
+                "bar": 59,
+                "snap": 96.338
+              },
+              {
+                "t": 113.239,
+                "text": "bass in",
+                "bar": 68,
+                "snap": 109.859
+              },
+              {
+                "t": 125.07,
+                "text": "drums stop",
+                "bar": 75,
+                "snap": 121.268
+              },
+              {
+                "t": 152.958,
+                "text": "solo in",
+                "bar": 91,
+                "snap": 149.578
+              },
+              {
+                "t": 166.479,
+                "text": "keep going",
+                "bar": 99,
+                "snap": 163.944
+              },
+              {
+                "t": 180.0,
+                "text": "vocal in",
+                "bar": 107,
+                "snap": 176.62
+              },
+              {
+                "t": 194.366,
+                "text": "end stop",
+                "bar": 116,
+                "snap": 190.563
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass, Synth Bass (crunch)"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Sound effects (Crowd)",
+              "Backing Vocals",
+              "Noise effects",
+              "Synth Voice",
+              "Synth Pad",
+              "Synth Ambiant",
+              "Synth Keys (Bells)",
+              "Bells"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "c47df0af30",
+            "back_vox": "d81d278684",
+            "drums": "9a47a2d13b",
+            "keys": "dd77c30b4c",
+            "bass": "cf5e104d39",
+            "other": "f159c70224",
+            "click": "5d99a1395b",
+            "cues": "ee72b57fa2"
+          },
+          "versions": {
+            "all": "60a8beaa4b",
+            "alex": "95e172c6b5",
+            "steve": "b7586b8f83",
+            "tanya": "439f0ce423",
+            "pb-other": "89e1e1cbc4",
+            "pb-bass": "9d9b932a52",
+            "pb-audition": "c2fa7545de"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Gala - Freed from Desire",
+          "slug": "a234bff4f98d",
+          "title": "Freed From Desire",
+          "artist": "Gala",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 14,
+            "list": [
+              {
+                "t": 3.721,
+                "text": "Freed from desire keys in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 16.744,
+                "text": "vocal in",
+                "bar": 10,
+                "snap": 13.023
+              },
+              {
+                "t": 18.605,
+                "text": "drums in",
+                "bar": 11,
+                "snap": 14.884
+              },
+              {
+                "t": 33.488,
+                "text": "piano in",
+                "bar": 19,
+                "snap": 29.767
+              },
+              {
+                "t": 55.814,
+                "text": "keep going",
+                "bar": 31,
+                "snap": 53.023
+              },
+              {
+                "t": 63.256,
+                "text": "chorus in",
+                "bar": 35,
+                "snap": 59.535
+              },
+              {
+                "t": 78.14,
+                "text": "solo in",
+                "bar": 43,
+                "snap": 74.419
+              },
+              {
+                "t": 91.163,
+                "text": "verse in",
+                "bar": 50,
+                "snap": 87.442
+              },
+              {
+                "t": 130.233,
+                "text": "break in",
+                "bar": 71,
+                "snap": 126.512
+              },
+              {
+                "t": 137.674,
+                "text": "chorus in",
+                "bar": 75,
+                "snap": 133.953
+              },
+              {
+                "t": 152.558,
+                "text": "solo in",
+                "bar": 83,
+                "snap": 148.837
+              },
+              {
+                "t": 167.442,
+                "text": "bridge in",
+                "bar": 91,
+                "snap": 163.721
+              },
+              {
+                "t": 181.395,
+                "text": "chorus in",
+                "bar": 98,
+                "snap": 177.674
+              },
+              {
+                "t": 210.233,
+                "text": "end stop",
+                "bar": 114,
+                "snap": 206.046
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Piano",
+              "Organ",
+              "Synth Strings",
+              "Synth Strings (treble)",
+              "Synth Lead",
+              "Arpeggiator"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "7fc5b6a300",
+            "drums": "e48f17ba5f",
+            "keys": "37cab6e627",
+            "bass": "b40522a1bb",
+            "other": "4339ac7112",
+            "click": "60f3fe2caf",
+            "cues": "7794617495"
+          },
+          "versions": {
+            "all": "31eef4c014",
+            "steve": "de220b51ed",
+            "tanya": "16b94fc852",
+            "pb-other": "810da76a7e",
+            "pb-bass": "b40522a1bb",
+            "pb-audition": "eaa9979bcd"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Icona Pop & Charli XCX - I Love It",
+          "slug": "278090c6fbe3",
+          "title": "I Love It",
+          "artist": "Icona Pop",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 3.81,
+                "text": "I Love It synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 11.429,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 7.619
+              },
+              {
+                "t": 24.762,
+                "text": "all stop",
+                "bar": 14,
+                "snap": 20.476
+              },
+              {
+                "t": 26.667,
+                "text": "main in",
+                "bar": 15,
+                "snap": 22.857
+              },
+              {
+                "t": 34.286,
+                "text": "verse in",
+                "bar": 19,
+                "snap": 30.476
+              },
+              {
+                "t": 56.19,
+                "text": "bridge in",
+                "bar": 30,
+                "snap": 52.381
+              },
+              {
+                "t": 72.381,
+                "text": "main in",
+                "bar": 39,
+                "snap": 68.571
+              },
+              {
+                "t": 87.619,
+                "text": "verse in",
+                "bar": 47,
+                "snap": 83.81
+              },
+              {
+                "t": 101.905,
+                "text": "chorus in",
+                "bar": 54,
+                "snap": 98.095
+              },
+              {
+                "t": 117.143,
+                "text": "bridge in",
+                "bar": 62,
+                "snap": 113.333
+              },
+              {
+                "t": 129.524,
+                "text": "keep going",
+                "bar": 69,
+                "snap": 126.667
+              },
+              {
+                "t": 133.333,
+                "text": "main in",
+                "bar": 71,
+                "snap": 129.524
+              },
+              {
+                "t": 156.19,
+                "text": "end stop",
+                "bar": 83,
+                "snap": 151.905
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Noise effects",
+              "Synth Pad",
+              "Synth Strings"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "f023446d7d",
+            "back_vox": "be95a19fe8",
+            "drums": "62b01e50dd",
+            "keys": "df67f8b856",
+            "bass": "f7f6dc791f",
+            "guitars": "75cbb63f53",
+            "other": "5cc0dcb0c3",
+            "click": "1f1f0905c8",
+            "cues": "aa2b5030ed"
+          },
+          "versions": {
+            "all": "a44b6b7d70",
+            "drums": "62b01e50dd",
+            "alex": "c19ee8b2c3",
+            "steve": "4c104e2c3e",
+            "tanya": "c60d694598",
+            "pb-other": "7666e2a1bd",
+            "pb-bass": "21734bb85b",
+            "pb-audition": "1eac3dc5c2"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Mr. Credo - Медляк",
+          "slug": "a207e9a0dae0",
+          "title": "Медляк",
+          "artist": "Mr. Credo",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 6,
+            "list": [
+              {
+                "t": 4.571,
+                "text": "Медляк synth in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 22.857,
+                "text": "drums in",
+                "bar": 9,
+                "snap": 18.286
+              },
+              {
+                "t": 41.143,
+                "text": "verse in",
+                "bar": 17,
+                "snap": 36.571
+              },
+              {
+                "t": 187.429,
+                "text": "stop",
+                "bar": 81,
+                "snap": 182.286
+              },
+              {
+                "t": 221.714,
+                "text": "drum in",
+                "bar": 96,
+                "snap": 217.143
+              },
+              {
+                "t": 260.571,
+                "text": "end in",
+                "bar": 113,
+                "snap": 255.429
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "backing vocals",
+              "strings",
+              "keys"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "fef3bde3ee",
+            "back_vox": "7299c62904",
+            "drums": "4f29057f8d",
+            "keys": "0c0a00c6fc",
+            "bass": "697c078f7b",
+            "other": "762b25fa46",
+            "click": "b2caff62ac",
+            "cues": "9e2a58f14e"
+          },
+          "versions": {
+            "all": "13ae30e45c",
+            "drums": "4f29057f8d",
+            "steve": "4435c69f6b",
+            "tanya": "5e213e09f2",
+            "pb-other": "061cfbd97c",
+            "pb-bass": "37e50fb01b",
+            "pb-audition": "6b2684e133"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Nirvana - Smells Like Teen Spirit",
+          "slug": "53a4ff952038",
+          "title": "Smells Like Teen Spirit",
+          "artist": "Nirvana",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 1,
+            "list": [
+              {
+                "t": 4.221,
+                "text": "Smells Like Teen Spirit guitar in",
+                "bar": 2,
+                "snap": 0.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Roma (real bass-guitar)"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "roma",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "23233b5767",
+            "drums": "9f7358063c",
+            "bass": "052b9637fb",
+            "guitars": "ac5cb0a984",
+            "click": "0683a8a44e",
+            "cues": "2784c92e20"
+          },
+          "versions": {
+            "all": "2cbc4373db",
+            "alex": "28932ab543",
+            "steve": "3702c0bce1",
+            "roma": "e32e7921ef",
+            "tanya": "35ae349fd0"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          },
+          "audition": false
+        },
+        {
+          "sid": "Quest Pistols - Я устал",
+          "slug": "cfc3bca52e8c",
+          "title": "Я устал",
+          "artist": "Quest Pistols",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 11,
+            "list": [
+              {
+                "t": 3.871,
+                "text": "Я устал bass in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 7.742,
+                "text": "drums in",
+                "bar": 3,
+                "snap": 3.871
+              },
+              {
+                "t": 27.097,
+                "text": "stop",
+                "bar": 13,
+                "snap": 22.742
+              },
+              {
+                "t": 50.323,
+                "text": "verse in",
+                "bar": 25,
+                "snap": 46.452
+              },
+              {
+                "t": 65.806,
+                "text": "stop",
+                "bar": 33,
+                "snap": 61.452
+              },
+              {
+                "t": 87.097,
+                "text": "keep going",
+                "bar": 44,
+                "snap": 84.194
+              },
+              {
+                "t": 104.516,
+                "text": "stop",
+                "bar": 53,
+                "snap": 100.161
+              },
+              {
+                "t": 107.125,
+                "text": "vocal in",
+                "bar": 54,
+                "snap": 103.855
+              },
+              {
+                "t": 111.795,
+                "text": "drums in",
+                "bar": 55,
+                "snap": 108.525
+              },
+              {
+                "t": 134.505,
+                "text": "chorus in",
+                "bar": 65,
+                "snap": 130.634
+              },
+              {
+                "t": 181.925,
+                "text": "bass-only in",
+                "bar": 90,
+                "snap": 177.57
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "live-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "backing-vocal",
+              "other-breakdown",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "450896fc6c",
+            "drums": "7c11151d2c",
+            "keys": "3f193ff20e",
+            "bass": "8d26813cdb",
+            "guitars": "198aab1af9",
+            "other": "80090ed400",
+            "click": "cc62913998",
+            "cues": "e1fefcefa5"
+          },
+          "versions": {
+            "all": "806ecf5836",
+            "alex": "f16af22398",
+            "steve": "401e46aed6",
+            "tanya": "f6b2995e20",
+            "pb-other": "3158da318c",
+            "pb-bass": "8d26813cdb",
+            "pb-audition": "f8e58c67f8"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "SEREBRO - Malo tebya",
+          "slug": "ace2a923452e",
+          "title": "Мало тебя",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Мало тебя guitar in",
+                "bar": 1
+              },
+              {
+                "t": 11.077,
+                "text": "voice in",
+                "bar": 5
+              },
+              {
+                "t": 25.846,
+                "text": "bass in",
+                "bar": 13
+              },
+              {
+                "t": 33.231,
+                "text": "drums in",
+                "bar": 17
+              },
+              {
+                "t": 70.154,
+                "text": "solo in",
+                "bar": 37
+              },
+              {
+                "t": 84.923,
+                "text": "verse in",
+                "bar": 45
+              },
+              {
+                "t": 88.615,
+                "text": "kick in",
+                "bar": 47
+              },
+              {
+                "t": 99.692,
+                "text": "bass in",
+                "bar": 53
+              },
+              {
+                "t": 114.0,
+                "text": "pause in",
+                "bar": 60
+              },
+              {
+                "t": 144.0,
+                "text": "solo in",
+                "bar": 77
+              },
+              {
+                "t": 158.769,
+                "text": "bridge in",
+                "bar": 85
+              },
+              {
+                "t": 169.846,
+                "text": "snare in",
+                "bar": 91
+              },
+              {
+                "t": 175.385,
+                "text": "all stop",
+                "bar": 94
+              },
+              {
+                "t": 177.231,
+                "text": "solo in",
+                "bar": 95
+              },
+              {
+                "t": 192.0,
+                "text": "chorus in",
+                "bar": 103
+              },
+              {
+                "t": 221.538,
+                "text": "all stop",
+                "bar": 119
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "malo-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "malo-guitars",
+              "malo-sfx",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "0f1ac88d21",
+            "drums": "736dcf93b6",
+            "keys": "aabd585113",
+            "bass": "474e3343cb",
+            "guitars": "cfaa6a3d65",
+            "other": "c0a9eaab92",
+            "click": "bf72244c61",
+            "cues": "6f063f3f59"
+          },
+          "versions": {
+            "all": "608bbedf80",
+            "alex": "ba213fb465",
+            "steve": "2e89296029",
+            "tanya": "698094df25",
+            "pb-other": "2489b007ea",
+            "pb-bass": "c44eff4620",
+            "pb-audition": "8f547b79bf"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Мама Люба",
+          "slug": "bfc10db79749",
+          "title": "Мама Люба",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 15,
+            "list": [
+              {
+                "t": 3.765,
+                "text": "Мама Люба all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 20.706,
+                "text": "keep going",
+                "bar": 10,
+                "snap": 17.882
+              },
+              {
+                "t": 24.471,
+                "text": "verse-instrumental ready go",
+                "bar": 12,
+                "snap": 20.706
+              },
+              {
+                "t": 39.529,
+                "text": "verse in ready go",
+                "bar": 20,
+                "snap": 35.765
+              },
+              {
+                "t": 69.647,
+                "text": "chorus in ready go",
+                "bar": 36,
+                "snap": 65.882
+              },
+              {
+                "t": 99.765,
+                "text": "soft verse ready go",
+                "bar": 52,
+                "snap": 96.0
+              },
+              {
+                "t": 129.882,
+                "text": "guitar break ready go",
+                "bar": 68,
+                "snap": 126.118
+              },
+              {
+                "t": 133.176,
+                "text": "stop-n-chorus in",
+                "bar": 69,
+                "snap": 128.941
+              },
+              {
+                "t": 163.765,
+                "text": "synth solo ready go",
+                "bar": 86,
+                "snap": 160.0
+              },
+              {
+                "t": 178.824,
+                "text": "kick stop",
+                "bar": 94,
+                "snap": 174.588
+              },
+              {
+                "t": 193.882,
+                "text": "chorus variation ready go",
+                "bar": 102,
+                "snap": 190.118
+              },
+              {
+                "t": 205.176,
+                "text": "build up ready go",
+                "bar": 108,
+                "snap": 201.412
+              },
+              {
+                "t": 208.471,
+                "text": "stop-n-chorus ready stop",
+                "bar": 109,
+                "snap": 204.235
+              },
+              {
+                "t": 224.0,
+                "text": "solo in ready go",
+                "bar": 118,
+                "snap": 220.235
+              },
+              {
+                "t": 239.059,
+                "text": "end in",
+                "bar": 126,
+                "snap": 234.824
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "keys",
+              "strings",
+              "wind"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "4cb30e44c2",
+            "back_vox": "7343e4ad3a",
+            "drums": "c2341b2b90",
+            "keys": "cbb0cca3b5",
+            "bass": "5afda2fdde",
+            "guitars": "e23f73271e",
+            "other": "af570a6489",
+            "click": "49b2efe365",
+            "cues": "2c109b0510"
+          },
+          "versions": {
+            "all": "6a5f2f8ae6",
+            "drums": "e7ae38208a",
+            "alex": "3a7ac7ac27",
+            "steve": "0c054e399a",
+            "tanya": "3689e1bd3d",
+            "trio": "833b377f84",
+            "pb-other": "65611df091",
+            "pb-bass": "2e8b5c8987",
+            "pb-audition": "b852b63573"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Shakira - Whenever, Wherever",
+          "slug": "1876a74e9617",
+          "title": "Whenever, Wherever",
+          "artist": "Shakira",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 4.96,
+                "text": "Shakira guitar in ready go",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 12.4,
+                "text": "all in ready go",
+                "bar": 5,
+                "snap": 7.788
+              },
+              {
+                "t": 21.208,
+                "text": "verse in",
+                "bar": 9,
+                "snap": 16.804
+              },
+              {
+                "t": 45.428,
+                "text": "stop",
+                "bar": 20,
+                "snap": 40.474
+              },
+              {
+                "t": 65.244,
+                "text": "flute in",
+                "bar": 29,
+                "snap": 60.841
+              },
+              {
+                "t": 76.253,
+                "text": "verse in",
+                "bar": 34,
+                "snap": 71.85
+              },
+              {
+                "t": 100.474,
+                "text": "stop",
+                "bar": 45,
+                "snap": 95.519
+              },
+              {
+                "t": 129.097,
+                "text": "bridge in",
+                "bar": 58,
+                "snap": 124.694
+              },
+              {
+                "t": 146.712,
+                "text": "stop",
+                "bar": 66,
+                "snap": 141.758
+              },
+              {
+                "t": 148.914,
+                "text": "all in ready go",
+                "bar": 67,
+                "snap": 144.51
+              },
+              {
+                "t": 173.134,
+                "text": "keep going",
+                "bar": 78,
+                "snap": 169.831
+              },
+              {
+                "t": 190.749,
+                "text": "end stop",
+                "bar": 86,
+                "snap": 185.795
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Female Backing Vocals",
+              "Charango (left)",
+              "Charango (right)",
+              "Synth Pad"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "aedd990e78",
+            "back_vox": "d48a7b5704",
+            "drums": "8cdbcf59a7",
+            "keys": "d1436f5d25",
+            "bass": "76e494f2b7",
+            "guitars": "2cce014a58",
+            "other": "5da1667fa7",
+            "click": "a86830d2d6",
+            "cues": "4d804b9a88"
+          },
+          "versions": {
+            "all": "2f3268f2d8",
+            "drums": "8cdbcf59a7",
+            "alex": "3446262f65",
+            "steve": "160c81104d",
+            "tanya": "66fa60d3e0",
+            "pb-other": "73f74f1755",
+            "pb-bass": "76e494f2b7",
+            "pb-audition": "8f9ce0bed1"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+          "slug": "fde163f34bf4",
+          "title": "Я сошла с ума",
+          "artist": "t.A.T.u.",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 2.964,
+                "text": "pad in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 14.964,
+                "text": "chorus in",
+                "bar": 6,
+                "snap": 9.63
+              },
+              {
+                "t": 36.297,
+                "text": "verse in",
+                "bar": 14,
+                "snap": 30.964
+              },
+              {
+                "t": 60.297,
+                "text": "chorus in",
+                "bar": 23,
+                "snap": 54.964
+              },
+              {
+                "t": 81.63,
+                "text": "drums stop",
+                "bar": 31,
+                "snap": 75.63
+              },
+              {
+                "t": 86.964,
+                "text": "instrumental in",
+                "bar": 33,
+                "snap": 81.63
+              },
+              {
+                "t": 108.297,
+                "text": "all stop",
+                "bar": 41,
+                "snap": 102.297
+              },
+              {
+                "t": 129.63,
+                "text": "chorus in",
+                "bar": 49,
+                "snap": 124.297
+              },
+              {
+                "t": 161.63,
+                "text": "all stop",
+                "bar": 61,
+                "snap": 155.63
+              },
+              {
+                "t": 172.297,
+                "text": "drums in",
+                "bar": 65,
+                "snap": 166.964
+              },
+              {
+                "t": 182.964,
+                "text": "chorus in",
+                "bar": 69,
+                "snap": 177.63
+              },
+              {
+                "t": 204.297,
+                "text": "all stop",
+                "bar": 77,
+                "snap": 198.297
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Noise effects (Wind)",
+              "Acoustic Guitar",
+              "Synth Pad",
+              "Synth Voice",
+              "Synth Lead",
+              "String Section",
+              "Backing Vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "266278a1ea",
+            "back_vox": "96d19ff041",
+            "drums": "c4deacd97c",
+            "keys": "8cbb2236b7",
+            "bass": "7e96fa9b34",
+            "guitars": "d70b76b08c",
+            "other": "da48983e6e",
+            "click": "48aa8ed4ce",
+            "cues": "f05c359cd3"
+          },
+          "versions": {
+            "all": "270824e1c6",
+            "steve": "6b27261615",
+            "tanya": "baf397dbf2",
+            "pb-other": "933a925818",
+            "pb-bass": "6f29cbe794",
+            "pb-audition": "dbbed7ccc3"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "The Offspring - Pretty Fly (For A White Guy)",
+          "slug": "54244363ae3e",
+          "title": "Pretty Fly",
+          "artist": "The Offspring",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 5,
+            "list": [
+              {
+                "t": 3.357,
+                "text": "Pretty Fly drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 5.035,
+                "text": "vocal in",
+                "bar": 2,
+                "snap": 1.678
+              },
+              {
+                "t": 18.462,
+                "text": "all in",
+                "bar": 10,
+                "snap": 15.105
+              },
+              {
+                "t": 125.455,
+                "text": "bass verse ready go",
+                "bar": 73,
+                "snap": 122.098
+              },
+              {
+                "t": 182.937,
+                "text": "end fill in",
+                "bar": 108,
+                "snap": 179.161
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "живой бас"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "630f598456",
+            "back_vox": "8e993690b4",
+            "drums": "e3e29bc0d3",
+            "bass": "0ddec7a49d",
+            "guitars": "688e111c9e",
+            "click": "fb1e8291df",
+            "cues": "06c67e5809"
+          },
+          "versions": {
+            "all": "b12b65695e",
+            "drums": "48eb76cc83",
+            "alex": "270040244a",
+            "steve": "fb1c1fd9a0",
+            "tanya": "03b90961c6",
+            "pb-bass": "0ddec7a49d",
+            "pb-audition": "e5416ffdf0"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "The Weeknd - Blinding Lights",
+          "slug": "ce6a8891a4b7",
+          "title": "Blinding Lights",
+          "artist": "The Weeknd",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 8,
+            "list": [
+              {
+                "t": 2.807,
+                "text": "Blinding Lights synth in ready go",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 14.035,
+                "text": "drums in",
+                "bar": 11,
+                "snap": 9.825
+              },
+              {
+                "t": 20.0,
+                "text": "melody in",
+                "bar": 15,
+                "snap": 15.789
+              },
+              {
+                "t": 29.474,
+                "text": "verse in",
+                "bar": 22,
+                "snap": 25.263
+              },
+              {
+                "t": 87.018,
+                "text": "keys in",
+                "bar": 63,
+                "snap": 82.807
+              },
+              {
+                "t": 97.544,
+                "text": "verse in",
+                "bar": 70,
+                "snap": 93.333
+              },
+              {
+                "t": 165.614,
+                "text": "keys in",
+                "bar": 119,
+                "snap": 161.403
+              },
+              {
+                "t": 188.07,
+                "text": "drums stop",
+                "bar": 135,
+                "snap": 183.158
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Synth Keys",
+              "Arpeggiator",
+              "Synth Ambiant",
+              "Backing Vocals",
+              "Synthesizer",
+              "Synth Pad 1",
+              "Synth Pad 2"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "c582ac60a6",
+            "back_vox": "ec6ef3cc44",
+            "drums": "d035f82e36",
+            "keys": "371d6b87f8",
+            "bass": "d43d1eb45d",
+            "other": "736c0c80d5",
+            "click": "fce6850a30",
+            "cues": "09c7b1af07"
+          },
+          "versions": {
+            "all": "064f04b321",
+            "steve": "a1dbddbd9d",
+            "tanya": "01ef9839ca",
+            "pb-other": "b4899acf8e",
+            "pb-bass": "a3810ecc68",
+            "pb-audition": "1c0a085247"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Yeah Yeah Yeahs - Heads Will Roll",
+          "slug": "38c4670831f0",
+          "title": "Heads Will Roll",
+          "artist": "Yeah Yeah Yeahs",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 3.637,
+                "text": "Heads will roll synth in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 18.184,
+                "text": "vocal in",
+                "bar": 11,
+                "snap": 14.547
+              },
+              {
+                "t": 32.731,
+                "text": "drums in",
+                "bar": 19,
+                "snap": 29.095
+              },
+              {
+                "t": 35.914,
+                "text": "bass in",
+                "bar": 20,
+                "snap": 32.277
+              },
+              {
+                "t": 61.826,
+                "text": "guitar in",
+                "bar": 35,
+                "snap": 58.189
+              },
+              {
+                "t": 72.736,
+                "text": "bass in",
+                "bar": 41,
+                "snap": 69.1
+              },
+              {
+                "t": 76.373,
+                "text": "main in",
+                "bar": 43,
+                "snap": 72.736
+              },
+              {
+                "t": 90.466,
+                "text": "vocal in",
+                "bar": 50,
+                "snap": 86.829
+              },
+              {
+                "t": 105.468,
+                "text": "bridge in",
+                "bar": 59,
+                "snap": 101.831
+              },
+              {
+                "t": 134.562,
+                "text": "guitar break ready go",
+                "bar": 75,
+                "snap": 130.926
+              },
+              {
+                "t": 149.11,
+                "text": "all in",
+                "bar": 83,
+                "snap": 145.473
+              },
+              {
+                "t": 167.294,
+                "text": "solo in",
+                "bar": 93,
+                "snap": 163.657
+              },
+              {
+                "t": 180.932,
+                "text": "vocal in",
+                "bar": 100,
+                "snap": 177.295
+              },
+              {
+                "t": 196.388,
+                "text": "guitar solo ready go",
+                "bar": 109,
+                "snap": 192.752
+              },
+              {
+                "t": 210.936,
+                "text": "drums only ready go",
+                "bar": 117,
+                "snap": 207.299
+              },
+              {
+                "t": 221.846,
+                "text": "end stop",
+                "bar": 123,
+                "snap": 217.755
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Noise effects",
+              "Synthesizer (disto)",
+              "Synth Pad",
+              "Synth Strings"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "830e0be6e8",
+            "back_vox": "48bb88bae4",
+            "drums": "c2f9cc866c",
+            "keys": "d59c1a8726",
+            "bass": "daa29196e1",
+            "guitars": "dd5b539df6",
+            "other": "fcd35f8f0c",
+            "click": "42216dda5e",
+            "cues": "901509161b"
+          },
+          "versions": {
+            "all": "217f5e6320",
+            "drums": "c2f9cc866c",
+            "alex": "f7bc939b4f",
+            "steve": "9e3cd5a3b6",
+            "tanya": "1f6efc1b02",
+            "pb-other": "4aebeb7571",
+            "pb-bass": "daa29196e1",
+            "pb-audition": "b3f5d22a21"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Beverly Hills",
+          "slug": "06185b95940b",
+          "title": "Beverly Hills",
+          "artist": "Zivert",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 4.15,
+                "text": "Beverly Hills all in ready go",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 12.49,
+                "text": "vocal in",
+                "bar": 5,
+                "snap": 8.305
+              },
+              {
+                "t": 29.189,
+                "text": "ghost beat ready skip",
+                "bar": 13,
+                "snap": 25.005
+              },
+              {
+                "t": 79.27,
+                "text": "stop",
+                "bar": 37,
+                "snap": 74.583
+              },
+              {
+                "t": 81.348,
+                "text": "all in",
+                "bar": 38,
+                "snap": 77.183
+              },
+              {
+                "t": 98.05,
+                "text": "ghost beat ready skip",
+                "bar": 46,
+                "snap": 93.882
+              },
+              {
+                "t": 114.75,
+                "text": "stop",
+                "bar": 54,
+                "snap": 110.063
+              },
+              {
+                "t": 116.83,
+                "text": "all in",
+                "bar": 55,
+                "snap": 112.663
+              },
+              {
+                "t": 166.911,
+                "text": "all stop",
+                "bar": 79,
+                "snap": 162.221
+              },
+              {
+                "t": 185.71,
+                "text": "all in",
+                "bar": 88,
+                "snap": 181.525
+              },
+              {
+                "t": 202.409,
+                "text": "outro in",
+                "bar": 96,
+                "snap": 198.223
+              },
+              {
+                "t": 219.09,
+                "text": "end stop",
+                "bar": 104,
+                "snap": 214.403
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "zivert-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "b5641be59e",
+            "drums": "8ca2e44446",
+            "keys": "293370778a",
+            "bass": "207d31641a",
+            "other": "6a7ea8651e",
+            "click": "810f447771",
+            "cues": "37328dc3eb"
+          },
+          "versions": {
+            "all": "d6b9496778",
+            "steve": "f949a30546",
+            "tanya": "883b52fa78",
+            "pb-other": "293370778a",
+            "pb-bass": "207d31641a",
+            "pb-audition": "221389c280"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Вирус - Попрошу тебя",
+          "slug": "4bfe90ef136b",
+          "title": "Попрошу тебя",
+          "artist": "Вирус",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 4.283,
+                "text": "Попрошу тебя playback in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 6.853,
+                "text": "all in",
+                "bar": 3,
+                "snap": 3.426
+              },
+              {
+                "t": 20.558,
+                "text": "lead synth ready go",
+                "bar": 11,
+                "snap": 17.132
+              },
+              {
+                "t": 34.264,
+                "text": "stop",
+                "bar": 19,
+                "snap": 30.409
+              },
+              {
+                "t": 35.977,
+                "text": "synth solo ready go",
+                "bar": 20,
+                "snap": 32.551
+              },
+              {
+                "t": 49.682,
+                "text": "verse no-keys ready go",
+                "bar": 28,
+                "snap": 45.828
+              },
+              {
+                "t": 62.96,
+                "text": "pause in",
+                "bar": 35,
+                "snap": 59.105
+              },
+              {
+                "t": 75.38,
+                "text": "stop",
+                "bar": 43,
+                "snap": 71.525
+              },
+              {
+                "t": 77.093,
+                "text": "all in",
+                "bar": 44,
+                "snap": 73.667
+              },
+              {
+                "t": 90.799,
+                "text": "stop",
+                "bar": 52,
+                "snap": 86.944
+              },
+              {
+                "t": 92.512,
+                "text": "synth solo ready go",
+                "bar": 53,
+                "snap": 89.086
+              },
+              {
+                "t": 105.789,
+                "text": "pause and synth-verse in",
+                "bar": 60,
+                "snap": 101.934
+              },
+              {
+                "t": 131.915,
+                "text": "stop",
+                "bar": 76,
+                "snap": 128.061
+              },
+              {
+                "t": 133.628,
+                "text": "all no-rhythm ready go",
+                "bar": 77,
+                "snap": 130.202
+              },
+              {
+                "t": 147.334,
+                "text": "rhythm in",
+                "bar": 85,
+                "snap": 143.907
+              },
+              {
+                "t": 161.039,
+                "text": "end in",
+                "bar": 93,
+                "snap": 157.185
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "keys"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "fc25bbc9a2",
+            "back_vox": "aff4cbf4d6",
+            "drums": "10fbf936f8",
+            "keys": "8ecf24083e",
+            "bass": "11c065eaab",
+            "guitars": "234181a163",
+            "other": "d4a871a243",
+            "click": "2ab2a7652d",
+            "cues": "a522773794"
+          },
+          "versions": {
+            "all": "627c819615",
+            "pb-other": "5cb8885660",
+            "pb-bass": "b0a2322545",
+            "pb-audition": "042bd6fb4a"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Вирус - Ты меня не ищи",
+          "slug": "13127f359691",
+          "title": "Ты меня не ищи",
+          "artist": "Вирус",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 27,
+            "list": [
+              {
+                "t": 3.489,
+                "text": "Ты меня не ищи drums bass ready go",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.571,
+                "text": "stop",
+                "bar": 8,
+                "snap": 12.646
+              },
+              {
+                "t": 17.443,
+                "text": "verse go",
+                "bar": 9,
+                "snap": 14.827
+              },
+              {
+                "t": 31.398,
+                "text": "bass in",
+                "bar": 17,
+                "snap": 27.909
+              },
+              {
+                "t": 43.172,
+                "text": "stop",
+                "bar": 23,
+                "snap": 39.247
+              },
+              {
+                "t": 45.352,
+                "text": "chorus in",
+                "bar": 25,
+                "snap": 41.864
+              },
+              {
+                "t": 71.517,
+                "text": "bass stop",
+                "bar": 40,
+                "snap": 67.592
+              },
+              {
+                "t": 73.261,
+                "text": "synth only ready go",
+                "bar": 41,
+                "snap": 69.773
+              },
+              {
+                "t": 87.216,
+                "text": "single drum ready go",
+                "bar": 49,
+                "snap": 83.727
+              },
+              {
+                "t": 94.193,
+                "text": "double kick ready go",
+                "bar": 53,
+                "snap": 90.704
+              },
+              {
+                "t": 101.17,
+                "text": "stop",
+                "bar": 57,
+                "snap": 97.245
+              },
+              {
+                "t": 102.914,
+                "text": "solo in",
+                "bar": 58,
+                "snap": 99.426
+              },
+              {
+                "t": 116.869,
+                "text": "stop",
+                "bar": 66,
+                "snap": 112.944
+              },
+              {
+                "t": 118.613,
+                "text": "verse in",
+                "bar": 67,
+                "snap": 115.125
+              },
+              {
+                "t": 130.823,
+                "text": "stop",
+                "bar": 74,
+                "snap": 126.899
+              },
+              {
+                "t": 132.568,
+                "text": "all in",
+                "bar": 75,
+                "snap": 129.079
+              },
+              {
+                "t": 144.778,
+                "text": "stop",
+                "bar": 82,
+                "snap": 140.853
+              },
+              {
+                "t": 146.522,
+                "text": "chorus in",
+                "bar": 83,
+                "snap": 143.034
+              },
+              {
+                "t": 160.477,
+                "text": "drum-bass stop",
+                "bar": 91,
+                "snap": 156.552
+              },
+              {
+                "t": 163.965,
+                "text": "single drum ready go",
+                "bar": 93,
+                "snap": 160.477
+              },
+              {
+                "t": 167.454,
+                "text": "single drum ready go",
+                "bar": 95,
+                "snap": 163.965
+              },
+              {
+                "t": 173.559,
+                "text": "stop",
+                "bar": 98,
+                "snap": 169.634
+              },
+              {
+                "t": 176.176,
+                "text": "solo drums-half ready go",
+                "bar": 100,
+                "snap": 172.251
+              },
+              {
+                "t": 188.386,
+                "text": "stop",
+                "bar": 107,
+                "snap": 184.461
+              },
+              {
+                "t": 190.13,
+                "text": "all in",
+                "bar": 108,
+                "snap": 186.641
+              },
+              {
+                "t": 204.085,
+                "text": "bass stop",
+                "bar": 116,
+                "snap": 200.16
+              },
+              {
+                "t": 217.821,
+                "text": "end in",
+                "bar": 123,
+                "snap": 213.896
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "pb-solo-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "pb-fx",
+              "pb-keys",
+              "pb-wah"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "99cbd43344",
+            "back_vox": "b1fd06b212",
+            "drums": "6430df6690",
+            "keys": "f36531edfd",
+            "bass": "20f9494394",
+            "guitars": "e94c341a09",
+            "other": "0bfce8c322",
+            "click": "12b4fc7ef3",
+            "cues": "64b5a67f69"
+          },
+          "versions": {
+            "all": "6459804feb",
+            "alex": "c191aa581c",
+            "pb-other": "cec893395d",
+            "pb-bass": "32aaa4fe13",
+            "pb-audition": "63c482b8bc"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "NOFOLDER:Знаешь ли ты",
+          "title": "Знаешь ли ты",
+          "artist": "МакSим",
+          "hasData": false
+        },
+        {
+          "sid": "Muse - Supermassive Black Hole",
+          "slug": "ebdf7d5b7b57",
+          "title": "Supermassive Black Hole",
+          "artist": "Muse",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 13,
+            "list": [
+              {
+                "t": 4.0,
+                "text": "Supermassive Black Hole all in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 18.75,
+                "text": "drums stop",
+                "bar": 9,
+                "snap": 14.25
+              },
+              {
+                "t": 34.75,
+                "text": "drums stop",
+                "bar": 17,
+                "snap": 30.25
+              },
+              {
+                "t": 50.75,
+                "text": "drums stop",
+                "bar": 25,
+                "snap": 46.25
+              },
+              {
+                "t": 84.5,
+                "text": "verse in",
+                "bar": 42,
+                "snap": 80.5
+              },
+              {
+                "t": 92.0,
+                "text": "guitar in",
+                "bar": 46,
+                "snap": 88.0
+              },
+              {
+                "t": 98.75,
+                "text": "all stop",
+                "bar": 49,
+                "snap": 94.25
+              },
+              {
+                "t": 132.0,
+                "text": "break in",
+                "bar": 66,
+                "snap": 128.0
+              },
+              {
+                "t": 146.75,
+                "text": "all stop",
+                "bar": 73,
+                "snap": 142.25
+              },
+              {
+                "t": 148.0,
+                "text": "solo in",
+                "bar": 74,
+                "snap": 145.0
+              },
+              {
+                "t": 162.75,
+                "text": "drums stop",
+                "bar": 81,
+                "snap": 158.25
+              },
+              {
+                "t": 196.0,
+                "text": "outro in",
+                "bar": 98,
+                "snap": 192.0
+              },
+              {
+                "t": 210.0,
+                "text": "end in",
+                "bar": 105,
+                "snap": 205.5
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Electric Bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "Backing Vocals",
+              "Synthesizer",
+              "Noise effects",
+              "Synth Bass"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "fab45b1fc8",
+            "back_vox": "eb62e6fead",
+            "drums": "2176b62b2e",
+            "keys": "b6fec64df5",
+            "bass": "2f14270c5e",
+            "guitars": "7bc0a78c44",
+            "other": "1b45663d77",
+            "click": "99e90fe1f9",
+            "cues": "7b0e818723"
+          },
+          "versions": {
+            "all": "be270bd721",
+            "pb-other": "993130f760",
+            "pb-bass": "fd0120a1a1",
+            "pb-audition": "dcd9925d29"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "bass",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "NOFOLDER:Нас не догонят",
+          "title": "Нас не догонят",
+          "artist": "t.A.T.u.",
+          "hasData": false
         }
       ]
     }
