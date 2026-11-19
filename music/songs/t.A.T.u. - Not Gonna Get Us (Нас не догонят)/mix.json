@@ -1,0 +1,19 @@
+{
+  "pb-other": {"stems": ["06_Electric_Piano", "07_Synth_Pad", "08_Synth_Voice", "09_Synth_Lead", "10_Arpeggiator_1", "11_Arpeggiator_2", "12_Sound_effects", "13_Backing_Vocals_1", "14_Backing_Vocals_2"]},
+  "pb-bass": {"stems": ["04_Synth_Bass"]},
+  "players": {"steve": ["02_Electronic_Drum_Kit"], "tanya": ["15_Lead_Vocal"], "alex": ["05_Electric_Guitar"]},
+  "cues": [
+    {"bar": 3,   "text": "Not gonna get us drums in", "abs_sec": 3.692, "snap_sec": 0.0},
+    {"bar": 6,   "beat": "4&", "text": "all in", "abs_sec": 10.846, "snap_sec": 7.154},
+    {"bar": 13,  "beat": "4&", "text": "drums stop", "abs_sec": 23.769, "snap_sec": 19.615},
+    {"bar": 23,  "text": "drums in", "abs_sec": 40.615, "snap_sec": 36.923},
+    {"bar": 29,  "beat": "4&", "text": "drums stop", "abs_sec": 53.308, "snap_sec": 49.154},
+    {"bar": 45,  "beat": "4&", "text": "drums stop", "abs_sec": 82.846, "snap_sec": 78.692},
+    {"bar": 62,  "text": "guitar stop", "abs_sec": 112.615, "snap_sec": 108.462},
+    {"bar": 69,  "beat": "4&", "text": "drums stop", "abs_sec": 127.154, "snap_sec": 123.0},
+    {"bar": 78,  "text": "all stop", "abs_sec": 142.154, "snap_sec": 138.0},
+    {"bar": 95,  "text": "chorus in", "abs_sec": 173.538, "snap_sec": 169.846},
+    {"bar": 110, "text": "guitar stop", "abs_sec": 201.231, "snap_sec": 197.077},
+    {"bar": 115, "text": "end in", "count": true, "abs_sec": 210.462, "snap_sec": 206.308}
+  ]
+}
