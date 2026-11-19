@@ -1,6 +1,6 @@
 {
  "date": "2026-11-19 11:10",
- "note": "after levelling to bass -22.1 / F -20.1 / A -24.1",
+ "note": "after levelling to bass -22.1 / F -20.1 / A -24.1; scene 28 scene level put back to 86 (raising it had no effect)",
  "scenes": {
   "2": {
    "name": "AROUND LALALALA",
@@ -524,7 +524,7 @@
   },
   "28": {
    "name": "POPROSHU TEBYA",
-   "scene_level": 127,
+   "scene_level": 86,
    "parts": [
     {
      "sw": 1,
