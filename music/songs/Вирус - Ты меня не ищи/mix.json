@@ -9,15 +9,16 @@
     {"bar": 1,   "scene": 27, "abs_sec": 3.489},
     {"bar": 41,  "scene": 30, "abs_sec": 73.261},
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
-    {"bar": 100, "scene": 30, "abs_sec": 176.176}
+    {"bar": 100, "scene": 30, "abs_sec": 176.176},
+    {"bar": 108, "scene": 27, "abs_sec": 190.13}
   ],
   "bpm": 137.59,
   "pitch_semitones": 0,
   "pb-other": {
     "layers": [
       {"file": "pb-fx", "frame": "stem"},
-      {"file": "pb-keys", "frame": "stem", "gain_db": 8.3, "derived": true, "source": ["keys", "strings"], "mute": [[58, 66], [108, 123.875]]},
-      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66], [108, 123.875]]}
+      {"file": "pb-keys", "frame": "stem", "gain_db": 8.3, "derived": true, "source": ["keys", "strings"], "mute": [[58, 66]]},
+      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66]]}
     ],
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"},
     "peak": "limit"
@@ -25,7 +26,7 @@
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5},
               "layers": [{"file": "pb-solo-bass", "frame": "stem", "derived": true, "mute_fade_ms": [30, 5]}],
               "roles": {"pb-solo-bass": "musical"},
-              "mute": {"bass": [[1, 58], [66, 100], [116, 130]], "pb-solo-bass": [[1, 58], [66, 100], [116, 130]]}},
+              "mute": {"bass": [[1, 58], [66, 100], [108, 130]], "pb-solo-bass": [[1, 58], [66, 100], [108, 130]]}},
   "players": {"alex": ["keys", "strings"]},
   "cues": [
     {"bar": 1,   "text": "Ты меня не ищи drums bass ready go", "abs_sec": 3.489, "snap_sec": 0.0},
@@ -52,8 +53,10 @@
     {"bar": 98,  "beat": 3, "text": "stop", "abs_sec": 173.559, "snap_sec": 169.634},
     {"bar": 100, "text": "solo drums-half ready go", "abs_sec": 176.176, "snap_sec": 172.251},
     {"bar": 107, "text": "stop", "abs_sec": 188.386, "snap_sec": 184.461},
-    {"bar": 108, "text": "all in", "abs_sec": 190.13, "snap_sec": 186.641},
-    {"bar": 116, "text": "bass stop", "abs_sec": 204.085, "snap_sec": 200.16},
-    {"bar": 123, "beat": "4&", "text": "end in", "count": true, "abs_sec": 217.821, "snap_sec": 213.896}
+    {"bar": 108, "text": "chorus in", "abs_sec": 190.13, "snap_sec": 186.641},
+    {"bar": 116, "text": "drum-bass stop", "abs_sec": 204.085, "snap_sec": 200.16},
+    {"bar": 118, "text": "single drum ready go", "abs_sec": 207.573, "snap_sec": 204.085},
+    {"bar": 120, "text": "single drum ready go", "abs_sec": 211.062, "snap_sec": 207.573},
+    {"bar": 123, "beat": 3, "text": "end in", "count": true, "abs_sec": 217.167, "snap_sec": 213.242}
   ]
 }

@@ -6,6 +6,8 @@
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py keys    # keys+strings (live keys muted) -> parts/pb-keys.wav
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py wah     # background vocals + other frag -> parts/pb-wah.wav
   python3 tools/jamzone/prep_ty_menya_ne_ishchi.py solobass # other, low-passed -> parts/pb-solo-bass.wav
+  python3 tools/jamzone/prep_ty_menya_ne_ishchi.py all      # all of the above (each step stands alone:
+                                                            # parts are built from the record, not root WAVs)
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Ты меня не ищи"
 
 Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
@@ -16,6 +18,10 @@ Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
     grid C (after) = grid A (before) + 0.494 beat. Compressed to 4 beats with rubberband ONLY
     inside the break (stop crash and verse-2 vocal pickup untouched) -> constant 4/4 click.
   * intro cut: bar 1.1 = raw click k=35 (Logic 01:00:15.652).
+  * ending (2026-11-19, Alex: «после 3:10 повторить припев и закончить»): bars 1-107 as recorded,
+    from 108.1 the record's chorus 2 (83-98) again, ending on its stop 98.3 -> 123.3. The synth
+    outro of the record (108-124) is dropped. Every step builds the RECORD arrangement in memory
+    and runs arrange() on what it writes, so all stem-frame files get the identical splice.
 Beat index k below = raw Moises click index; bar = (k-35)//4 + 1.
 """
 import os, sys, subprocess, tempfile
@@ -125,6 +131,36 @@ def metronome(n_out, last_k):
 
 LEAD = 0.02                       # pre-roll before the beat (keeps the attack)
 
+# --- arrangement (2026-11-19, Alex): after the bar-107 stop (4 shots) replay chorus 2 and end -----
+# Output = record up to the join, then the record shifted by REPEAT_SHIFT beats (bar 82.x -> 107.x,
+# 83.1 -> 108.1, ... 98.3 stop -> 123.3), faded out before src 99.4& where the record's solo enters.
+REPEAT_SHIFT = 100                         # beats = 25 bars
+JOIN_K = {"drums": 463.0,                  # 108.1: the 4 shots of bar 107 ring out, chorus crash on 108.1
+          "pb-fx": 463.0,                  # 108.1: same 4 shots (fx copy of the record's bar 107)
+          "vocals": 459.5}                 # 107.1&: brings the pickup «ты меня не ищи» (src 82.1&)
+JOIN_DEFAULT = 462.5                       # 107.4&: drops the synth pickup into the old solo,
+                                           # chorus pads lead in on the last eighth (as src 82.4&)
+END_K = 530.5                              # 124.4& (= src 99.4&): nothing after it
+END_FADE_K = 530.0                         # fade-out 124.4 -> 124.4& - LEAD (vocal tail «позабуду»)
+XJ = 0.010                                 # join crossfade
+
+def arrange(x, name):
+    sh = S(REPEAT_SHIFT*B)
+    J, E, F = S(tout(JOIN_K.get(name, JOIN_DEFAULT)) - LEAD), S(tout(END_K) - LEAD), S(tout(END_FADE_K))
+    out = np.zeros_like(x)
+    out[:J] = x[:J]
+    out[J:E] = x[J-sh:E-sh]
+    xj = S(XJ); r = np.linspace(0, 1, xj)[:, None]
+    out[J-xj:J] = x[J-xj:J]*(1-r) + x[J-xj-sh:J-sh]*r
+    out[F:E] *= np.linspace(1, 0, E-F)[:, None]
+    return out
+
+_proc = {}
+def stem(nm):
+    """Processed stem in the RECORD arrangement (before arrange())."""
+    if nm not in _proc: _proc[nm] = process(decode(os.path.join(SRC, nm + ".mp3")))
+    return _proc[nm]
+
 def cut(x, t0, t1, fi=0.005, fo=0.015):
     seg = x[S(t0):S(t1)].copy()
     a, b = S(fi), S(fo)
@@ -135,8 +171,7 @@ def cut(x, t0, t1, fi=0.005, fo=0.015):
 def do_stems():
     n_out = None
     for nm in STEMS:
-        a = decode(os.path.join(SRC, nm + ".mp3"))
-        o = process(a)
+        o = arrange(stem(nm), nm)
         n_out = len(o)
         write_wav(os.path.join(SONG, nm + ".wav"), o)
         print(f"  ✓ {nm}.wav  {len(o)/SR:.3f}s  peak {np.abs(o).max():.3f}")
@@ -144,8 +179,10 @@ def do_stems():
     write_wav(os.path.join(SONG, "metronome.wav"), metronome(n_out, last_k))
     print(f"  ✓ metronome.wav  synthetic, {BPM} bpm, first click {PRE:.3f}s")
 
+FX_GAIN = 0.941201                # = 0.98 / 1.0412, the gain the fx had while F3 was in (see below)
+
 def do_fx():
-    drums, keys, vocals = (decode(os.path.join(SONG, n + ".wav")) for n in ("drums", "keys", "vocals"))
+    drums, keys = stem("drums"), stem("keys")
     out = np.zeros_like(drums)
     def put(seg, t):
         s = S(t); out[s:s+len(seg)] += seg
@@ -174,12 +211,14 @@ def do_fx():
     k0, k1 = raw2out(129.073), raw2out(130.931)
     put(cut(keys, k0, k1, fo=0.025), k0)
     print(f"  keys @ bar 66.1-66.4& : raw 129.073-130.931 -> {k0:.3f}-{k1:.3f}s")
-    # F3: ending keys + vocals (raw 230.435-232.328 = C527 .. C531.34)
-    put(cut(keys + vocals, tout(527) - LEAD, tout(531.34), fo=0.12), tout(527) - LEAD)
-    print(f"  keys+vocals @ bar 124.1-125.1.34 : {tout(527):.3f}-{tout(531.34):.3f}s")
+    # F3 (record ending keys+vocals «Take it out!» at 124.1) removed 2026-11-19: the song now ends
+    # on the chorus stop 123.3 (arrange()). F3 set the old peak guard (raw peak 1.041 -> x0.9412,
+    # -0.53 dB on the whole file); FX_GAIN keeps the fx at that approved level without it.
+    out *= FX_GAIN
 
     pk = float(np.abs(out).max())
     if pk > 0.98: out *= 0.98/pk; print(f"  peak guard {pk:.3f} -> 0.98")
+    out = arrange(out, "pb-fx")
     os.makedirs(os.path.join(SONG, "parts"), exist_ok=True)
     dst = os.path.join(SONG, "parts", "pb-fx.wav")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
@@ -189,14 +228,15 @@ def do_fx():
 # pb-keys (2026-11-12, Alex): Moises keys + strings for pb-other; keys MUTED where the keyboardist
 # plays live. Raw Moises seconds (Logic 01:00:00 base); None = till the end. Strings never muted.
 KEYS_MUTES = [(85.175, 130.909),       # 01:01:25.175-01:02:10.909  synth solo .. break (bars 40.4.4-66.4.8)
-              (188.164, None)]         # 01:03:08.164-end            solo drums-half .. end (bar 99.4-)
+              (188.164, None)]         # 01:03:08.164-end            solo drums-half .. end (bar 99.4-);
+                                       # after arrange() = 99.4-107.4&, the replayed chorus keeps its keys
 MUTE_XF = 0.015                        # same 15 ms edge fades as jamzone_render mutes
 # + fragments of the Moises OTHER stem merged in (raw seconds). Was [(182.937, 188.164)]; moved to
 # pb-wah 2026-11-12 (Alex: Other 01:02:52.867-01:03:06.294 belongs to pb-wah) -> none here (no double).
 OTHER_FRAGMENTS = []
 
 def do_keys():
-    keys, strings = (decode(os.path.join(SONG, n + ".wav")) for n in ("keys", "strings"))
+    keys, strings = stem("keys").copy(), stem("strings")
     n = len(keys)
     for r0, r1 in KEYS_MUTES:
         a = S(raw2out(r0)); b = n if r1 is None else S(raw2out(r1)); f = S(MUTE_XF)
@@ -205,12 +245,13 @@ def do_keys():
         if b + f <= n: keys[b:b+f] *= np.linspace(0, 1, f)[:, None]
         print(f"  keys muted raw {r0}-{r1 or 'end'} -> {a/SR:.3f}-{b/SR:.3f}s")
     out = keys + strings[:n]
-    other = decode(os.path.join(SONG, "other.wav"))
+    other = stem("other")
     for r0, r1 in OTHER_FRAGMENTS:
         o0, o1 = raw2out(r0), raw2out(r1)
         seg = cut(other, o0, o1, fi=0.005, fo=0.03)
         out[S(o0):S(o0)+len(seg)] += seg
         print(f"  + other raw {r0}-{r1} -> {o0:.3f}-{o1:.3f}s")
+    out = arrange(out, "pb-keys")
     pk = float(np.abs(out).max())
     dst = os.path.join(SONG, "parts", "pb-keys.wav")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
@@ -222,13 +263,14 @@ def do_keys():
 WAH_OTHER = [(172.867, 186.294)]       # 01:02:52.867-01:03:06.294: bar 91.1 (drum-bass stop) -> 98.3 pulse
 
 def do_wah():
-    bv, other = (decode(os.path.join(SONG, n + ".wav")) for n in ("backing_vocals", "other"))
+    bv, other = stem("backing_vocals"), stem("other")
     out = bv.copy()
     for r0, r1 in WAH_OTHER:
         o0, o1 = raw2out(r0), raw2out(r1)
         seg = cut(other, o0, o1, fi=0.01, fo=0.03)
         out[S(o0):S(o0)+len(seg)] += seg
         print(f"  + other raw {r0}-{r1} -> {o0:.3f}-{o1:.3f}s")
+    out = arrange(out, "pb-wah")
     dst = os.path.join(SONG, "parts", "pb-wah.wav")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
                     "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
@@ -241,11 +283,14 @@ def do_wah():
 SOLOBASS_LP = 400
 
 def do_solobass():
-    src, dst = os.path.join(SONG, "other.wav"), os.path.join(SONG, "parts", "pb-solo-bass.wav")
-    subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-i", src, "-af",
-                    f"lowpass=f={SOLOBASS_LP},lowpass=f={SOLOBASS_LP}", "-ar", str(SR), "-ac", "2",
-                    "-c:a", "pcm_f32le", dst], check=True)
-    print(f"  ✓ {dst}  (other.wav low-passed {SOLOBASS_LP} Hz, 24 dB/oct, no gain change)")
+    dst = os.path.join(SONG, "parts", "pb-solo-bass.wav")
+    raw = subprocess.run(["ffmpeg", "-v", "quiet", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-", "-af",
+                          f"lowpass=f={SOLOBASS_LP},lowpass=f={SOLOBASS_LP}", "-f", "f32le", "-"],
+                         input=stem("other").astype(np.float32).tobytes(), capture_output=True, check=True).stdout
+    out = arrange(np.frombuffer(raw, np.float32).reshape(-1, 2).copy(), "pb-solo-bass")
+    subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
+                    "-c:a", "pcm_f32le", dst], input=out.astype(np.float32).tobytes(), check=True)
+    print(f"  ✓ {dst}  (other low-passed {SOLOBASS_LP} Hz, 24 dB/oct, no gain change)")
 
 if __name__ == "__main__":
     step = sys.argv[1] if len(sys.argv) > 1 else ""
@@ -254,4 +299,6 @@ if __name__ == "__main__":
     elif step == "keys": do_keys()
     elif step == "wah": do_wah()
     elif step == "solobass": do_solobass()
+    elif step == "all":
+        for f in (do_stems, do_fx, do_keys, do_wah, do_solobass): f()
     else: sys.exit(__doc__)
