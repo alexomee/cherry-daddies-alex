@@ -184,6 +184,8 @@ def do_stems():
     write_wav(os.path.join(SONG, "metronome.wav"), metronome(n_out, last_k))
     print(f"  ✓ metronome.wav  synthetic, {BPM} bpm, first click {PRE:.3f}s")
 
+F3_AT = 529.0                     # 124.3: «Take it out!» 2 beats after the final crash 124.1
+
 def do_fx():
     drums, keys = stem("drums"), stem("keys")
     out = np.zeros_like(drums)
@@ -214,11 +216,12 @@ def do_fx():
     k0, k1 = raw2out(129.073), raw2out(130.931)
     put(cut(keys, k0, k1, fo=0.025), k0)
     print(f"  keys @ bar 66.1-66.4& : raw 129.073-130.931 -> {k0:.3f}-{k1:.3f}s")
-    # F3: ending keys + vocals «Take it out!» (raw 230.435-232.328 = C527 .. C531.34). Stays at 124.1,
-    # which after arrange() is the final crash of the replayed chorus 1 (Alex 2026-11-19: «в конце был
-    # fx — сделать как было»).
-    put(cut(keys + stem("vocals"), tout(527) - LEAD, tout(531.34), fo=0.12), tout(527) - LEAD)
-    print(f"  keys+vocals @ bar 124.1-125.1.34 : {tout(527):.3f}-{tout(531.34):.3f}s")
+    # F3: ending keys + vocals «Take it out!» (raw 230.435-232.328 = C527 .. C531.34), the record's own
+    # ending (Alex 2026-11-19: «в конце был fx — сделать как было»). Placed F3_AT: 2 beats after the
+    # final crash 124.1 of the replayed chorus 1 (Alex: «на 2 счёта позже»).
+    frag = cut(keys + stem("vocals"), tout(527) - LEAD, tout(531.34), fo=0.12)
+    put(frag, tout(F3_AT) - LEAD)
+    print(f"  keys+vocals (src 124.1-125.1.34) @ {tout(F3_AT):.3f}-{tout(F3_AT + 4.34):.3f}s")
     # NO arrange() for pb-fx: in the record it is empty from 108.1 to 124.1, so every fx is already
     # where the new arrangement needs it -> pb-fx stays exactly the approved file.
 
