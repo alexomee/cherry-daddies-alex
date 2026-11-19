@@ -7,7 +7,8 @@ Mix (Alex, 2026-11-17): pb-other + pb-bass at unity, click -3 dB, cues -3 dB, le
 If the sum clips, the whole mix is lowered together (level differences stay). Songs without
 pb-other/pb-bass get no file (nothing to audition). jamzone_render.py calls this after each render.
 Only songs of the current program get it (Alex, 2026-11-17): the 28.10 Music Hall sets + the "new songs"
-sets of web/songs.json; a stale file of any other song is removed."""
+sets of web/songs.json, plus the whole "12.12 all" programme (2026-11-19); a stale file of any other song
+is removed."""
 import os, subprocess, sys
 import numpy as np
 
@@ -24,6 +25,7 @@ def targets():
     import json
     d = json.load(open(os.path.join(REPO, "web", "songs.json"), encoding="utf-8"))
     return {s["sid"] for st in d["sets"] if str(st.get("cls", "")).startswith("musichall") or "new" in st["name"].lower()
+            or st.get("cls") == "all1212"
             for s in st["songs"] if s.get("sid")}
 
 def build(sid, tg=None):

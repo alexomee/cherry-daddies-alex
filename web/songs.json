@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T07:43:55",
+  "generated": "2026-11-19T08:59:56",
   "counts": {
     "total": 123,
     "data": 121,
@@ -732,7 +732,7 @@
             "trio": "6910c2ca8b",
             "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "dce0c474d0"
+            "pb-audition": "75723b1252"
           },
           "pb_other": {
             "available": true,
@@ -1920,7 +1920,7 @@
             "tanya": "883b52fa78",
             "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "f1c9b259b6"
+            "pb-audition": "1aadf94dde"
           },
           "pb_other": {
             "available": true,
@@ -2289,7 +2289,7 @@
             "tanya": "3db6c17760",
             "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "3201f2cdd2"
+            "pb-audition": "a7fa8a50b1"
           },
           "pb_other": {
             "available": true,
@@ -8521,7 +8521,7 @@
                 "t": 75.591,
                 "text": "chorus melody in",
                 "bar": 41,
-                "snap": 71.228
+                "snap": 71.229
               },
               {
                 "t": 90.709,
@@ -8645,7 +8645,8 @@
             "steve": "a5ff448644",
             "tanya": "d7a08ca47b",
             "pb-other": "2148fb5900",
-            "pb-bass": "8c1bf5e3b8"
+            "pb-bass": "8c1bf5e3b8",
+            "pb-audition": "a5abd16fc5"
           },
           "pb_other": {
             "available": true,
@@ -8660,7 +8661,7 @@
               "bass"
             ]
           },
-          "audition": false
+          "audition": true
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
@@ -9911,7 +9912,7 @@
             "tanya": "3db6c17760",
             "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "3201f2cdd2"
+            "pb-audition": "a7fa8a50b1"
           },
           "pb_other": {
             "available": true,
@@ -10587,7 +10588,8 @@
             "steve": "8d228f19b6",
             "tanya": "f49feb7462",
             "pb-other": "bb7647b7ef",
-            "pb-bass": "0cde18525d"
+            "pb-bass": "0cde18525d",
+            "pb-audition": "e5b4a589c6"
           },
           "pb_other": {
             "available": true,
@@ -10603,7 +10605,7 @@
               "bass"
             ]
           },
-          "audition": false
+          "audition": true
         },
         {
           "sid": "Rihanna - S&M",
@@ -10928,7 +10930,7 @@
             "tanya": "883b52fa78",
             "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "f1c9b259b6"
+            "pb-audition": "1aadf94dde"
           },
           "pb_other": {
             "available": true,
@@ -12660,7 +12662,7 @@
             "trio": "6910c2ca8b",
             "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "dce0c474d0"
+            "pb-audition": "75723b1252"
           },
           "pb_other": {
             "available": true,
@@ -14184,8 +14186,7 @@
           "versions": {
             "all": "a08434e874",
             "pb-other": "8ee3b39704",
-            "pb-bass": "2ca9afb555",
-            "pb-audition": "669aec0df6"
+            "pb-bass": "2ca9afb555"
           },
           "pb_other": {
             "available": true,
@@ -14200,7 +14201,7 @@
               "bass"
             ]
           },
-          "audition": true
+          "audition": false
         }
       ]
     },
@@ -14453,7 +14454,7 @@
             "alex": "c191aa581c",
             "pb-other": "545285e5e7",
             "pb-bass": "32aaa4fe13",
-            "pb-audition": "83a0b3642e"
+            "pb-audition": "af3bc7d189"
           },
           "pb_other": {
             "available": true,
@@ -14946,7 +14947,7 @@
             "all": "0cf9703e6a",
             "pb-other": "f6789f7259",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "3783bd40f9"
+            "pb-audition": "18d92d68e2"
           },
           "pb_other": {
             "available": true,
@@ -15383,7 +15384,7 @@
             "trio": "6910c2ca8b",
             "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "dce0c474d0"
+            "pb-audition": "75723b1252"
           },
           "pb_other": {
             "available": true,
@@ -15940,7 +15941,7 @@
             "tanya": "3db6c17760",
             "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "3201f2cdd2"
+            "pb-audition": "a7fa8a50b1"
           },
           "pb_other": {
             "available": true,
@@ -17032,7 +17033,7 @@
                 "t": 75.591,
                 "text": "chorus melody in",
                 "bar": 41,
-                "snap": 71.228
+                "snap": 71.229
               },
               {
                 "t": 90.709,
@@ -17156,7 +17157,8 @@
             "steve": "a5ff448644",
             "tanya": "d7a08ca47b",
             "pb-other": "2148fb5900",
-            "pb-bass": "8c1bf5e3b8"
+            "pb-bass": "8c1bf5e3b8",
+            "pb-audition": "a5abd16fc5"
           },
           "pb_other": {
             "available": true,
@@ -17171,7 +17173,7 @@
               "bass"
             ]
           },
-          "audition": false
+          "audition": true
         },
         {
           "sid": "Alex Gaudino - Destination Calabria",
@@ -17515,7 +17517,8 @@
             "steve": "8d228f19b6",
             "tanya": "f49feb7462",
             "pb-other": "bb7647b7ef",
-            "pb-bass": "0cde18525d"
+            "pb-bass": "0cde18525d",
+            "pb-audition": "e5b4a589c6"
           },
           "pb_other": {
             "available": true,
@@ -17531,7 +17534,7 @@
               "bass"
             ]
           },
-          "audition": false
+          "audition": true
         },
         {
           "sid": "Cascada - Everytime We Touch",
@@ -19807,7 +19810,7 @@
             "tanya": "883b52fa78",
             "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "f1c9b259b6"
+            "pb-audition": "1aadf94dde"
           },
           "pb_other": {
             "available": true,
@@ -20258,7 +20261,7 @@
             "alex": "c191aa581c",
             "pb-other": "545285e5e7",
             "pb-bass": "32aaa4fe13",
-            "pb-audition": "83a0b3642e"
+            "pb-audition": "af3bc7d189"
           },
           "pb_other": {
             "available": true,
@@ -20441,7 +20444,7 @@
             "all": "0cf9703e6a",
             "pb-other": "f6789f7259",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "3783bd40f9"
+            "pb-audition": "18d92d68e2"
           },
           "pb_other": {
             "available": true,
