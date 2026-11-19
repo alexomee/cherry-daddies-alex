@@ -15,8 +15,8 @@
     {"bar": 49, "beat": "2&", "text": "all stop", "abs_sec": 98.75, "snap_sec": 94.25},
     {"bar": 66, "text": "break in", "abs_sec": 132.0, "snap_sec": 128.0},
     {"bar": 73, "beat": "2&", "text": "all stop", "abs_sec": 146.75, "snap_sec": 142.25},
+    {"bar": 74, "text": "solo in", "step": 0.5, "abs_sec": 148.0, "snap_sec": 145.0},
     {"bar": 81, "beat": "2&", "text": "drums stop", "abs_sec": 162.75, "snap_sec": 158.25},
-    {"bar": 90, "text": "vocal in", "abs_sec": 180.0, "snap_sec": 176.0},
     {"bar": 98, "text": "outro in", "abs_sec": 196.0, "snap_sec": 192.0},
     {"bar": 105, "text": "end in", "count": true, "abs_sec": 210.0, "snap_sec": 205.5}
   ]

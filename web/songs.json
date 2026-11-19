@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T06:10:52",
+  "generated": "2026-11-19T06:18:58",
   "counts": {
     "total": 89,
     "data": 89,
@@ -14852,16 +14852,16 @@
                 "snap": 142.25
               },
               {
+                "t": 148.0,
+                "text": "solo in",
+                "bar": 74,
+                "snap": 145.0
+              },
+              {
                 "t": 162.75,
                 "text": "drums stop",
                 "bar": 81,
                 "snap": 158.25
-              },
-              {
-                "t": 180.0,
-                "text": "vocal in",
-                "bar": 90,
-                "snap": 176.0
               },
               {
                 "t": 196.0,
@@ -14940,13 +14940,13 @@
             "guitars": "7bc0a78c44",
             "other": "1b45663d77",
             "click": "99e90fe1f9",
-            "cues": "8dced88e84"
+            "cues": "7b0e818723"
           },
           "versions": {
-            "all": "004e61f98d",
+            "all": "be270bd721",
             "pb-other": "993130f760",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "de1ca6e98d"
+            "pb-audition": "dcd9925d29"
           },
           "pb_other": {
             "available": true,
