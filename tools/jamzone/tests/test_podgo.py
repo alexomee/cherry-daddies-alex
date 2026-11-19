@@ -134,3 +134,36 @@ def test_switch_leads():
     assert st.SWITCH_LEAD == 0.5
     assert st.GM_CC_LEAD == st.DEVICES["gm800"]["lead"] == st.SWITCH_LEAD
     assert st.PODGO_LEAD == st.DEVICES["podgo"]["lead"] == 1.0
+
+
+# --- per-switch "lead" exceptions -----------------------------------------------------------------
+
+def test_lead_exception_overrides_one_switch():
+    ch = st.parse_device("podgo", [
+        {"bar": 1, "preset": "32A", "abs_sec": 3.0},
+        {"bar": 9, "preset": "32D", "lead": -1, "abs_sec": 20.0},      # 1 s AFTER the bar
+        {"bar": 33, "preset": "32A", "lead": 2, "abs_sec": 60.0},      # 2 s before
+        {"bar": 41, "preset": "32D", "abs_sec": 75.0},                 # standard 1 s
+    ])
+    assert st.device_block(ch, 3, st.PODGO_LEAD)[2:] == [
+        "[midi@00:21.000: PC127@3]", "[midi@00:58.000: PC124@3]", "[midi@01:14.000: PC127@3]"]
+
+
+def test_lead_exception_gm800_scene_and_cc():
+    ch = st.parse_device("gm800", [{"scene": 7, "abs_sec": 3.0},
+                                   {"scene": 8, "lead": 0, "abs_sec": 31.304}])
+    assert st.device_block(ch, 2, st.SWITCH_LEAD)[-1] == "[midi@00:31.304: PC7@2]"
+    ev = st.parse_cc([{"cc": 80, "value": 0, "abs_sec": 3.5},
+                      {"cc": 80, "value": 127, "lead": -0.5, "abs_sec": 31.4}])
+    assert st.cc_block(ev, 2)[-1] == "[midi@00:31.900: CC80.127@2]"
+
+
+@pytest.mark.parametrize("v,msg", [
+    ([{"preset": "02A", "abs_sec": 1}, {"preset": "02B", "lead": "1", "abs_sec": 9}], '"lead" must be'),
+    ([{"preset": "02A", "abs_sec": 1}, {"preset": "02B", "lead": 60, "abs_sec": 90}], '"lead" must be'),
+    ([{"preset": "02A", "abs_sec": 1}, {"preset": "02B", "lead": -3, "abs_sec": 9},
+      {"preset": "02A", "abs_sec": 11}], "out of order"),
+])
+def test_lead_exception_rejects(v, msg):
+    with pytest.raises(ValueError, match=msg):
+        st.parse_device("podgo", v)

@@ -61,6 +61,13 @@ Every timed switch goes out early: GM-800 scene/CC by SWITCH_LEAD (0.5 s), POD G
 PODGO_LEAD (1.0 s) BEFORE its marked bar/beat, so the new sound is up when the part starts: mark the EVENT (the bar the
 solo/verse starts on), not a beat before it.
 
+Exception for one switch: "lead": seconds in its entry ("podgo", "gm800", "gm800_cc") replaces
+the standard lead for that switch only. Negative = AFTER the marked point (the old sound rings
+out first):
+
+    {"bar": 9, "preset": "32D", "lead": -1}      1 s after bar 9 instead of 1 s before it
+    {"bar": 33, "preset": "03C", "lead": 2}      2 s before bar 33
+
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
 localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
 the lyrics area. The sync owns that text: edit notes on the board, not in Stage Traxx (text
@@ -206,10 +213,40 @@ DEVICES = {
 
 
 GM_CC_LEAD = SWITCH_LEAD  # GM-800 ASSIGN CCs: same standard lead (part on before the note)
+MAX_LEAD = 10.0           # sanity bound on a per-switch "lead" exception, seconds either way
+
+
+def entry_lead(key, e):
+    """Per-switch exception: optional "lead" (seconds) in a mix.json entry, None when absent.
+    Positive = that much BEFORE the marked point, negative = after it."""
+    if not isinstance(e, dict) or "lead" not in e:
+        return None
+    v = e["lead"]
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or abs(v) > MAX_LEAD:
+        raise ValueError(f'{key} entry {e!r}: "lead" must be seconds, -{MAX_LEAD:g}..{MAX_LEAD:g}')
+    return float(v)
+
+
+def lead_mark(lead):
+    """Dry-run marker of a per-switch exception: (lead 2s) / (lead -1s)."""
+    return "" if lead is None else f"(lead {lead:g}s)"
+
+
+def send_sec(sec, lead, default):
+    """When a switch marked at render second `sec` goes out: its own lead or the standard one."""
+    return max(0.0, sec - (default if lead is None else lead))
+
+
+def check_send_order(key, events, default):
+    """Leads may differ per switch, so the SEND times must still run in entry order."""
+    t = [send_sec(e[0], e[3], default) for e in events[1:]]
+    if any(b < a for a, b in zip(t, t[1:])):
+        raise ValueError(f'{key}: "lead" exceptions put the switches out of order')
 
 
 def parse_cc(v):
-    """mix.json "gm800_cc" -> [(render_sec, cc, value), ...] sorted by time, None when absent.
+    """mix.json "gm800_cc" -> [(render_sec, cc, value, lead), ...] sorted by time, None when
+    absent; lead = the entry's own "lead" exception or None (standard).
     CC numbers are the ones a GM-800 ASSIGN SOURCE accepts (1-31, 64-95), minus 71-79 (the
     unit's own tone-modify CCs)."""
     if v is None:
@@ -227,29 +264,31 @@ def parse_cc(v):
             raise ValueError(f'gm800_cc entry {e!r}: "value" must be 0..127')
         if "abs_sec" not in e:
             raise ValueError(f"gm800_cc entry {e!r} has no abs_sec — run jamzone_render.py --check")
-        out.append((float(e["abs_sec"]), cc, val))
+        out.append((float(e["abs_sec"]), cc, val, entry_lead("gm800_cc", e)))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError("gm800_cc entries are not in time order")
+    check_send_order("gm800_cc", out, GM_CC_LEAD)
     return out
 
 
 def cc_block(events, channel, lead=GM_CC_LEAD):
-    """[(sec, cc, value)] -> tags. Each CC's first event is its start state: on load AND at
-    00:00 (after the scene PC, so it lands on the freshly loaded scene); later events at
-    sec - lead; a value the CC already has is dropped."""
+    """[(sec, cc, value[, own_lead])] -> tags. Each CC's first event is its start state: on
+    load AND at 00:00 (after the scene PC, so it lands on the freshly loaded scene); later events
+    at sec - lead (own_lead when the entry has one); a value the CC already has is dropped."""
     if not events:
         return []
     start = {}
-    for _sec, cc, val in events:
+    for _sec, cc, val, *_ in events:
         start.setdefault(cc, val)
     lines = [f"[midi: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
     lines += [f"[midi@00:00.000: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
     cur, seen = dict(start), set()
-    for sec, cc, val in events:
+    for sec, cc, val, *own in events:
         if cc not in seen:                 # the start event itself
             seen.add(cc)
         elif cur[cc] != val:
-            lines.append(f"[midi@{mmss(max(0.0, sec - lead))}: CC{cc}.{val}@{channel}]")
+            lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: "
+                         f"CC{cc}.{val}@{channel}]")
             cur[cc] = val
     return lines
 
@@ -281,7 +320,8 @@ def song_devices(sid):
 
 
 def parse_device(key, v):
-    """mix.json "<key>" value -> [(render_sec, pc, label), ...] (first = start), None when absent.
+    """mix.json "<key>" value -> [(render_sec, pc, label, lead), ...] (first = start), None when
+    absent; lead = the entry's own "lead" exception or None (the device's standard lead).
     Raises ValueError with a readable reason when the entry is malformed or not timed yet."""
     if v is None:
         return None
@@ -299,9 +339,10 @@ def parse_device(key, v):
             raise ValueError(f"{key} entry {e!r}: {x}") from None
         if "abs_sec" not in e:
             raise ValueError(f"{key} entry {e!r} has no abs_sec — run jamzone_render.py --check")
-        out.append((float(e["abs_sec"]), pc, e[field]))
+        out.append((float(e["abs_sec"]), pc, e[field], entry_lead(key, e)))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError(f"{key} entries are not in time order")
+    check_send_order(key, out, d["lead"])
     return out
 
 
@@ -379,17 +420,18 @@ def mmss(sec):
 
 
 def device_block(changes, channel, lead=0.0):
-    """[(sec, pc, label)] -> Stage Traxx tags. The start program goes out on load AND at 00:00
-    (the load tag doesn't fire again when the song is replayed without reloading); every later
-    change at sec - lead (POD Go: early, so the new preset is up on the bar); a change to the
+    """[(sec, pc, label[, own_lead])] -> Stage Traxx tags. The start program goes out on load
+    AND at 00:00 (the load tag doesn't fire again when the song is replayed without reloading);
+    every later change at sec - lead (early, so the new preset is up on the bar), or at
+    sec - own_lead when its entry carries a "lead" exception (negative = after the bar); a change to the
     program already active is dropped (re-selecting it mid-song would only risk a glitch)."""
     if not changes:
         return []
     cur = changes[0][1]
     lines = [f"[midi: PC{cur}@{channel}]", f"[midi@00:00.000: PC{cur}@{channel}]"]
-    for sec, pc, _label in changes[1:]:
+    for sec, pc, _label, *own in changes[1:]:
         if pc != cur:
-            lines.append(f"[midi@{mmss(max(0.0, sec - lead))}: PC{pc}@{channel}]")
+            lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: PC{pc}@{channel}]")
             cur = pc
     return lines
 
@@ -633,15 +675,15 @@ def main():
             if key == "gm800_cc":
                 seen = set()
                 parts = []
-                for t, c, v in ch:                 # first event of a CC = start state (load/00:00)
+                for t, c, v, own in ch:            # first event of a CC = start state (load/00:00)
                     parts.append(f"{c}={v}" if c not in seen else
-                                 f"{c}={v}@{mmss(max(0.0, t - GM_CC_LEAD))[:-4]}")
+                                 f"{c}={v}@{mmss(send_sec(t, own, GM_CC_LEAD))[:-4]}{lead_mark(own)}")
                     seen.add(c)
                 gm += "  GM-800 CC " + " → ".join(parts)
                 continue
             gm += f"  {DEVICES[key]['name']} " + " → ".join(
-                f"{lb}@{mmss(max(0.0, t - DEVICES[key]['lead']))[:-4]}" if i else str(lb)
-                for i, (t, _pc, lb) in enumerate(ch))
+                f"{lb}@{mmss(send_sec(t, own, DEVICES[key]['lead']))[:-4]}{lead_mark(own)}"
+                if i else str(lb) for i, (t, _pc, lb, own) in enumerate(ch))
         nreg = len(cue_regions(song_cues(info["sid"]),
                                wav_duration(os.path.join(info["render"], "click.wav"))))
         nt = f"  notes {len(info['note'].splitlines())}" if info["note"] else ""
