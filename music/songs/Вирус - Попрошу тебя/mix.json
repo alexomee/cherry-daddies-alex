@@ -2,8 +2,16 @@
   "gm800": [
     {"bar": 1,  "scene": 28, "abs_sec": 3.426},
     {"bar": 11, "scene": 29, "abs_sec": 20.558},
-    {"bar": 28, "scene": 31, "abs_sec": 49.682, "lead": 0},
+    {"bar": 28, "scene": 31, "lead": 0, "abs_sec": 49.682},
     {"bar": 44, "scene": 29, "abs_sec": 77.093}
+  ],
+  "gm800_cc": [
+    {"bar": 1,  "cc": 81, "value": 127, "abs_sec": 3.426},
+    {"bar": 94, "cc": 81, "value": 40, "abs_sec": 162.753},
+    {"bar": 95, "beat": 3, "cc": 81, "value": 46, "ramp": true, "abs_sec": 165.322},
+    {"bar": 97, "beat": "4&", "cc": 81, "value": 113, "ramp": true, "abs_sec": 169.391},
+    {"bar": 98, "cc": 81, "value": 24, "abs_sec": 169.605},
+    {"bar": 101, "cc": 81, "value": 127, "ramp": true, "abs_sec": 174.745}
   ],
   "podgo": "31D",
   "bpm": 140.09,

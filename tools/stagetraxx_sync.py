@@ -48,6 +48,15 @@ GM-800 channel, SWITCH_LEAD early like every switch:
     "gm800_cc": [{"bar": 1, "cc": 80, "value": 0},      first event per CC = start state
                  {"bar": 17, "cc": 80, "value": 127}]   (sent on load and at 00:00)
 
+Ramps (filter sweeps etc., 2026-11-19): "ramp": true in an entry moves the CC smoothly from the
+previous entry of the same CC to this one — a tag every RAMP_STEP (30 ms) while the value changes:
+
+    {"bar": 98, "cc": 81, "value": 32},                 start point (a plain step)
+    {"bar": 101, "cc": 81, "value": 127, "ramp": true}  32 -> 127 over bars 98.1..101.1
+
+A CC that has a ramp is automation, not a switch: its entries go out ON the marked point (no
+SWITCH_LEAD) unless an entry carries its own "lead" or the song a "switch_lead" for gm800_cc.
+
 Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on channel 3
 (POD Go MIDI Base Channel; on ch1 it would follow the launcher's PCs):
 
@@ -98,7 +107,7 @@ Usage:
     tools/stagetraxx_sync.py --apply "S&M"        # only songs matching a substring
     tools/stagetraxx_sync.py --set "Music Hall"   # only sets matching a substring
 """
-import argparse, csv, datetime, json, os, re, sqlite3, subprocess, sys, time, uuid, wave
+import argparse, csv, datetime, json, math, os, re, sqlite3, subprocess, sys, time, uuid, wave
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SONGS = os.path.join(REPO, "music", "songs")
@@ -226,6 +235,7 @@ DEVICES = {
 
 
 GM_CC_LEAD = SWITCH_LEAD  # GM-800 ASSIGN CCs: same standard lead (part on before the note)
+RAMP_STEP = 0.03          # s between tags of a "ramp" (only where the value changes)
 MAX_LEAD = 10.0           # sanity bound on a per-switch "lead" exception, seconds either way
 
 
@@ -275,9 +285,10 @@ def check_send_order(key, events, default):
 
 
 def parse_cc(v, lead=None):
-    """mix.json "gm800_cc" -> [(render_sec, cc, value, lead), ...] sorted by time, None when
+    """mix.json "gm800_cc" -> [(render_sec, cc, value, lead, ramp), ...] sorted by time, None when
     absent; lead = the entry's own "lead" exception, else the song's (`lead` argument), else
-    None (standard).
+    None (standard) — or 0.0 for a CC that has ramps (automation, timed on the point);
+    ramp = True when the value glides there from the CC's previous entry.
     CC numbers are the ones a GM-800 ASSIGN SOURCE accepts (1-31, 64-95), minus 71-79 (the
     unit's own tone-modify CCs)."""
     if v is None:
@@ -295,18 +306,43 @@ def parse_cc(v, lead=None):
             raise ValueError(f'gm800_cc entry {e!r}: "value" must be 0..127')
         if "abs_sec" not in e:
             raise ValueError(f"gm800_cc entry {e!r} has no abs_sec — run jamzone_render.py --check")
+        ramp = e.get("ramp", False)
+        if not isinstance(ramp, bool):
+            raise ValueError(f'gm800_cc entry {e!r}: "ramp" must be true or false')
+        if ramp and all(o[1] != cc for o in out):
+            raise ValueError(f"gm800_cc entry {e!r}: a ramp needs an earlier entry of CC{cc} to start from")
         own = entry_lead("gm800_cc", e)
-        out.append((float(e["abs_sec"]), cc, val, lead if own is None else own))
+        out.append((float(e["abs_sec"]), cc, val, lead if own is None else own, ramp, own))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError("gm800_cc entries are not in time order")
+    ramped = {o[1] for o in out if o[4]}
+    out = [(t, cc, val, 0.0 if (cc in ramped and own is None and lead is None) else ld, ramp)
+           for t, cc, val, ld, ramp, own in out]
     check_send_order("gm800_cc", out, GM_CC_LEAD)
     return out
 
 
+def ramp_points(t0, v0, t1, v1, step=RAMP_STEP):
+    """Linear glide v0 (at t0, already sent) -> v1 (at t1): [(sec, value), ...] on a grid of at
+    least `step`, only where the value changes. The value never runs ahead of the line (truncated
+    toward v0), so v1 lands exactly at t1."""
+    if t1 <= t0 or v0 == v1:
+        return [(t1, v1)] if v0 != v1 else []
+    n = max(1, math.floor((t1 - t0) / step))
+    pts, last = [], v0
+    for i in range(1, n + 1):
+        v = v0 + math.trunc((v1 - v0) * i / n)
+        if v != last:
+            pts.append((t0 + (t1 - t0) * i / n, v))
+            last = v
+    return pts
+
+
 def cc_block(events, channel, lead=GM_CC_LEAD):
-    """[(sec, cc, value[, own_lead])] -> tags. Each CC's first event is its start state: on
+    """[(sec, cc, value[, own_lead[, ramp]])] -> tags. Each CC's first event is its start state: on
     load AND at 00:00 (after the scene PC, so it lands on the freshly loaded scene); later events
-    at sec - lead (own_lead when the entry has one); a value the CC already has is dropped."""
+    at sec - lead (own_lead when the entry has one); a value the CC already has is dropped.
+    A ramp entry glides from the CC's previous event (its send time) to its own send time."""
     if not events:
         return []
     start = {}
@@ -314,14 +350,21 @@ def cc_block(events, channel, lead=GM_CC_LEAD):
         start.setdefault(cc, val)
     lines = [f"[midi: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
     lines += [f"[midi@00:00.000: CC{cc}.{v}@{channel}]" for cc, v in start.items()]
-    cur, seen = dict(start), set()
-    for sec, cc, val, *own in events:
+    cur, seen, at = dict(start), set(), {}
+    for sec, cc, val, *rest in events:
+        own = rest[0] if rest else None
+        ramp = rest[1] if len(rest) > 1 else False
+        t = send_sec(sec, own, lead)
         if cc not in seen:                 # the start event itself
             seen.add(cc)
-        elif cur[cc] != val:
-            lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: "
-                         f"CC{cc}.{val}@{channel}]")
+        elif ramp:
+            for tt, vv in ramp_points(at[cc], cur[cc], t, val):
+                lines.append(f"[midi@{mmss(tt)}: CC{cc}.{vv}@{channel}]")
             cur[cc] = val
+        elif cur[cc] != val:
+            lines.append(f"[midi@{mmss(t)}: CC{cc}.{val}@{channel}]")
+            cur[cc] = val
+        at[cc] = t
     return lines
 
 
@@ -722,9 +765,10 @@ def main():
             if key == "gm800_cc":
                 seen = set()
                 parts = []
-                for t, c, v, own in ch:            # first event of a CC = start state (load/00:00)
+                for t, c, v, own, ramp in ch:      # first event of a CC = start state (load/00:00)
                     parts.append(f"{c}={v}" if c not in seen else
-                                 f"{c}={v}@{mmss(send_sec(t, own, GM_CC_LEAD))[:-4]}{lead_mark(own)}")
+                                 f"{c}{'↗' if ramp else '='}{v}@{mmss(send_sec(t, own, GM_CC_LEAD))[:-4]}"
+                                 f"{lead_mark(own) if own else ''}")
                     seen.add(c)
                 gm += "  GM-800 CC " + " → ".join(parts)
                 continue

@@ -184,3 +184,50 @@ def test_song_switch_lead():
     for bad in ({"switch_lead": "0.3"}, {"switch_lead": 60}, {"switch_lead": {"pod": 1}}):
         with pytest.raises(ValueError, match="switch_lead"):
             st.song_lead(bad, "podgo")
+
+
+# --- GM-800 CC ramps ("ramp": true, filter sweeps; 2026-11-19) ----------------------------------
+
+def test_cc_ramp_glides_from_previous_entry_on_the_point():
+    ev = st.parse_cc([{"cc": 81, "value": 127, "abs_sec": 3.4},
+                      {"cc": 81, "value": 32, "abs_sec": 10.0},
+                      {"cc": 81, "value": 36, "ramp": True, "abs_sec": 10.4}])
+    assert [e[3] for e in ev] == [0.0, 0.0, 0.0]          # a ramped CC is automation: no lead
+    tags = st.cc_block(ev, 2)
+    assert tags[:3] == ["[midi: CC81.127@2]", "[midi@00:00.000: CC81.127@2]",
+                        "[midi@00:10.000: CC81.32@2]"]
+    vals = [int(t.split(".")[-1].split("@")[0]) for t in tags[3:]]
+    times = [t.split("@")[1].split(":", 1)[1].strip() for t in tags[3:]]
+    assert vals == [33, 34, 35, 36] and tags[-1] == "[midi@00:10.400: CC81.36@2]"
+    assert times == sorted(times) and times[0] > "00:10.000"
+
+
+def test_cc_ramp_steps_only_where_value_changes():
+    pts = st.ramp_points(0.0, 0, 1.0, 127)
+    assert pts[-1] == (1.0, 127) and len(pts) == 33          # 1 s / 30 ms -> 33 points, all distinct
+    assert all(b[0] - a[0] >= st.RAMP_STEP - 1e-9 for a, b in zip(pts, pts[1:]))
+    slow = st.ramp_points(0.0, 46, 3.0, 52)
+    assert [v for _, v in slow] == [47, 48, 49, 50, 51, 52]  # 100 steps, 6 distinct values
+
+
+def test_cc_ramp_keeps_explicit_leads_and_other_ccs():
+    ev = st.parse_cc([{"cc": 80, "value": 0, "abs_sec": 3.5},
+                      {"cc": 81, "value": 127, "abs_sec": 3.5},
+                      {"cc": 80, "value": 127, "abs_sec": 31.4},
+                      {"cc": 81, "value": 0, "lead": 0.2, "abs_sec": 40.0},
+                      {"cc": 81, "value": 1, "ramp": True, "abs_sec": 40.5}])
+    leads = {(e[1], e[2]): e[3] for e in ev}
+    assert leads[(80, 127)] is None                          # CC80 is a switch: standard lead
+    assert leads[(81, 0)] == 0.2                             # own lead wins
+    tags = st.cc_block(ev, 2)
+    assert "[midi@00:30.900: CC80.127@2]" in tags
+    assert tags[-2:] == ["[midi@00:39.800: CC81.0@2]", "[midi@00:40.500: CC81.1@2]"]
+
+
+@pytest.mark.parametrize("v,msg", [
+    ([{"cc": 81, "value": 1, "ramp": True, "abs_sec": 1}], "earlier entry"),
+    ([{"cc": 81, "value": 1, "abs_sec": 1}, {"cc": 81, "value": 2, "ramp": 1, "abs_sec": 2}], "true or false"),
+])
+def test_cc_ramp_rejects(v, msg):
+    with pytest.raises(ValueError, match=msg):
+        st.parse_cc(v)
