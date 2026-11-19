@@ -403,6 +403,15 @@ def region_color(text):
     return GRAY
 
 
+def song_resend(sid):
+    """mix.json "resend": true -> write every device switch, also to the program already active."""
+    try:
+        with open(os.path.join(SONGS, sid, "mix.json"), encoding="utf-8") as f:
+            return json.load(f).get("resend") is True
+    except (OSError, ValueError):
+        return False
+
+
 def song_cues(sid):
     try:
         with open(os.path.join(SONGS, sid, "mix.json"), encoding="utf-8") as f:
@@ -453,26 +462,29 @@ def mmss(sec):
     return f"{m:02d}:{rem / 1000:06.3f}"
 
 
-def device_block(changes, channel, lead=0.0):
+def device_block(changes, channel, lead=0.0, resend=False):
     """[(sec, pc, label[, own_lead])] -> Stage Traxx tags. The start program goes out on load
     AND at 00:00 (the load tag doesn't fire again when the song is replayed without reloading);
     every later change at sec - lead (early, so the new preset is up on the bar), or at
     sec - own_lead when its entry carries a "lead" exception (negative = after the bar); a change to the
-    program already active is dropped (re-selecting it mid-song would only risk a glitch)."""
+    program already active is dropped (re-selecting it mid-song would only risk a glitch) —
+    unless the song asks for it with "resend": true in mix.json (service songs made of regions
+    you jump between: every region then sets its own patch)."""
     if not changes:
         return []
     cur = changes[0][1]
     lines = [f"[midi: PC{cur}@{channel}]", f"[midi@00:00.000: PC{cur}@{channel}]"]
     for sec, pc, _label, *own in changes[1:]:
-        if pc != cur:
+        if pc != cur or resend:
             lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: PC{pc}@{channel}]")
             cur = pc
     return lines
 
 
-def devices_block(devices, channels):
+def devices_block(devices, channels, resend=False):
     return [ln for key, d in DEVICES.items()
-            for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"])] \
+            for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"],
+                                   resend)] \
         + cc_block(devices.get("gm800_cc"), channels.get("gm800", GM_CHANNEL))
 
 
@@ -628,7 +640,8 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
     dur = wav_duration(os.path.join(dest, "1_Click.wav"))
     t = now()
     mark = MARK + info["sid"]
-    block = midi_block(info["clip"], channel) + devices_block(info.get("devices") or {}, dev_channels or {})
+    block = midi_block(info["clip"], channel) + devices_block(info.get("devices") or {}, dev_channels or {},
+                                                               song_resend(info["sid"]))
     row = c.execute("SELECT id, lyrics FROM song WHERE notes=?", (mark,)).fetchone()
     if row:
         sid = row[0]

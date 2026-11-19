@@ -29,6 +29,14 @@ BASS = {"song": "Demo - Solnyshko", "group": "pb-bass"}
 ROUNDS = 2          # guitar: (rec 21-29, you, rec 29-37, you) x ROUNDS
 BASS_ROUNDS = 3     # bass:   (you 9-17, rec 17-25) x BASS_ROUNDS
 FADE = 0.012
+# What the live rig plays in each block: guitar on 32D with the synth muted (scene 1 = MUTE),
+# synth bass on scene 7 with the guitar on the mute patch 31D.
+PATCH = {"guitar": {"podgo": "32D", "gm800": 1}, "bass": {"podgo": "31D", "gm800": 7}}
+TAG_IN = 0.030      # a region's patch tag goes out this long after the region starts
+
+
+def tag(i, region_start):
+    return 0.0 if i == 0 else round(region_start + TAG_IN, 3)
 
 
 def load(path):
@@ -90,9 +98,12 @@ def main():
     tracks = {"click": [], "cues": [], "pb-other": [], "pb-bass": []}
     marks, t = [], 0.0
 
-    def add(label, click, cues, other=None, pbass=None):
+    def add(label, click, cues, other=None, pbass=None, dev="guitar", early=0.0, lead_in=0.0):
+        """One region. It starts `early` seconds before this chunk (a "you" region opens on the
+        last bar of the recording: a count-in, and the patch is up before you play); `lead_in` =
+        count bars at the head of the chunk itself."""
         nonlocal t
-        marks.append((label, t))
+        marks.append((label, t + lead_in, t - early, dev))
         tracks["click"].append(click)
         tracks["cues"].append(cues)
         tracks["pb-other"].append(other if other is not None else Z(click))
@@ -105,40 +116,46 @@ def main():
         for a in (21, 29):
             add(f"гитара запись {a}–{a + 8}", gc(a, a + 8), cut(gr["cues"], g1, gbar, a, a + 8),
                 other=cut(guitar, g1, gbar, a, a + 8))
-            add("гитара ты", gc(a, a + 8), Z(gc(a, a + 8)))
-    t_bass = t
+            add("гитара ты", gc(a, a + 8), Z(gc(a, a + 8)), early=gbar)
     bc = lambda a, b: cut(br["click"], b1, bbar, a, b)
-    add("бас: счёт", bc(8, 9), cut(br["cues"], b1, bbar, 8, 9))
     for rnd in range(BASS_ROUNDS):
-        add("бас ты 9–17", bc(9, 17), cut(br["cues"], b1, bbar, 9, 17))
+        a = 9 - (rnd == 0)                 # the first round carries its own count bar (bar 8)
+        add("бас ты 9–17", bc(a, 17), cut(br["cues"], b1, bbar, a, 17), dev="bass",
+            early=bbar * (rnd > 0), lead_in=bbar * (rnd == 0))
         add("бас запись 17–25", bc(17, 25), cut(br["cues"], b1, bbar, 17, 25),
-            pbass=cut(bass, b1, bbar, 17, 25))
+            pbass=cut(bass, b1, bbar, 17, 25), dev="bass")
 
     out = os.path.join(SONGS, SID, "auto-render")
     os.makedirs(out, exist_ok=True)
     for name, chunks in tracks.items():
         sf.write(os.path.join(out, name + ".wav"), np.concatenate(chunks), SR, subtype="PCM_16")
 
-    g_rec = np.concatenate([c for c, (lb, _) in zip(tracks["pb-other"], marks) if "гитара запись" in lb])
-    b_rec = np.concatenate([c for c, (lb, _) in zip(tracks["pb-bass"], marks) if "бас запись" in lb])
+    g_rec = np.concatenate([c for c, m in zip(tracks["pb-other"], marks) if "гитара запись" in m[0]])
+    b_rec = np.concatenate([c for c, m in zip(tracks["pb-bass"], marks) if "бас запись" in m[0]])
     print(f"guitar block: {lufs_mono(g_rec):.1f}   bass block: {lufs_mono(b_rec):.1f}   "
           f"(norms: F -17, bass -19)   length {t:.1f} s")
 
     mix = {
         "_generated_by": "tools/calibration_track.py — do not render with jamzone_render.py",
         "bpm": gmix["bpm"],
-        "cues": [{"bar": i + 1, "text": lb, "abs_sec": round(s, 3)} for i, (lb, s) in enumerate(marks)],
-        "podgo": [{"bar": 1, "preset": "32D", "abs_sec": 0.0},
-                  {"bar": 2, "preset": "31D", "abs_sec": round(t_bass, 3)}],
-        "gm800": [{"bar": 1, "scene": 1, "abs_sec": 0.0},
-                  {"bar": 2, "scene": 7, "abs_sec": round(t_bass, 3)}],
+        "cues": [{"bar": i + 1, "text": lb, "abs_sec": round(s, 3), "snap_sec": round(r, 3)}
+                 for i, (lb, s, r, _d) in enumerate(marks)],
+        # Every region sets its own patch, so a jump to any region leaves both units right:
+        # the tag sits just inside the region ("lead": 0 = sent exactly at abs_sec), and
+        # "resend" makes the sync write it even when the program does not change.
+        "resend": True,
+        "podgo": [{"bar": i + 1, "preset": PATCH[d]["podgo"], "abs_sec": tag(i, r), "lead": 0}
+                  for i, (_lb, _s, r, d) in enumerate(marks)],
+        "gm800": [{"bar": i + 1, "scene": PATCH[d]["gm800"], "abs_sec": tag(i, r), "lead": 0}
+                  for i, (_lb, _s, r, d) in enumerate(marks)],
         "sources": {"guitar": {**GUITAR, "bars": [21, 37], "gain_in_render_db": round(k_db, 2)},
                     "bass": {**BASS, "bars": [9, 25]}},
     }
     with open(os.path.join(SONGS, SID, "mix.json"), "w", encoding="utf-8") as f:
         json.dump(mix, f, ensure_ascii=False, indent=1)
-    for lb, s in marks:
-        print(f"  {int(s // 60)}:{s % 60:04.1f}  {lb}")
+    for lb, s, r, d in marks:
+        print(f"  region {int(r // 60)}:{r % 60:04.1f}  music {int(s // 60)}:{s % 60:04.1f}  {lb:22} "
+              f"POD Go {PATCH[d]['podgo']}  GM-800 {PATCH[d]['gm800']}")
 
 
 if __name__ == "__main__":

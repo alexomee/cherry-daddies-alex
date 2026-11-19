@@ -5,106 +5,277 @@
   {
    "bar": 1,
    "text": "гитара: счёт",
-   "abs_sec": 0.0
+   "abs_sec": 0.0,
+   "snap_sec": 0.0
   },
   {
    "bar": 2,
    "text": "гитара запись 21–29",
-   "abs_sec": 3.692
+   "abs_sec": 3.692,
+   "snap_sec": 3.692
   },
   {
    "bar": 3,
    "text": "гитара ты",
-   "abs_sec": 18.462
+   "abs_sec": 18.462,
+   "snap_sec": 16.615
   },
   {
    "bar": 4,
    "text": "гитара запись 29–37",
-   "abs_sec": 33.231
+   "abs_sec": 33.231,
+   "snap_sec": 33.231
   },
   {
    "bar": 5,
    "text": "гитара ты",
-   "abs_sec": 48.0
+   "abs_sec": 48.0,
+   "snap_sec": 46.154
   },
   {
    "bar": 6,
    "text": "гитара запись 21–29",
-   "abs_sec": 62.769
+   "abs_sec": 62.769,
+   "snap_sec": 62.769
   },
   {
    "bar": 7,
    "text": "гитара ты",
-   "abs_sec": 77.538
+   "abs_sec": 77.538,
+   "snap_sec": 75.692
   },
   {
    "bar": 8,
    "text": "гитара запись 29–37",
-   "abs_sec": 92.308
+   "abs_sec": 92.308,
+   "snap_sec": 92.308
   },
   {
    "bar": 9,
    "text": "гитара ты",
-   "abs_sec": 107.077
+   "abs_sec": 107.077,
+   "snap_sec": 105.231
   },
   {
    "bar": 10,
-   "text": "бас: счёт",
-   "abs_sec": 121.846
+   "text": "бас ты 9–17",
+   "abs_sec": 123.585,
+   "snap_sec": 121.846
   },
   {
    "bar": 11,
-   "text": "бас ты 9–17",
-   "abs_sec": 123.585
+   "text": "бас запись 17–25",
+   "abs_sec": 137.498,
+   "snap_sec": 137.498
   },
   {
    "bar": 12,
-   "text": "бас запись 17–25",
-   "abs_sec": 137.498
+   "text": "бас ты 9–17",
+   "abs_sec": 151.411,
+   "snap_sec": 149.672
   },
   {
    "bar": 13,
-   "text": "бас ты 9–17",
-   "abs_sec": 151.411
+   "text": "бас запись 17–25",
+   "abs_sec": 165.324,
+   "snap_sec": 165.324
   },
   {
    "bar": 14,
-   "text": "бас запись 17–25",
-   "abs_sec": 165.324
+   "text": "бас ты 9–17",
+   "abs_sec": 179.237,
+   "snap_sec": 177.498
   },
   {
    "bar": 15,
-   "text": "бас ты 9–17",
-   "abs_sec": 179.237
-  },
-  {
-   "bar": 16,
    "text": "бас запись 17–25",
-   "abs_sec": 193.15
+   "abs_sec": 193.15,
+   "snap_sec": 193.15
   }
  ],
+ "resend": true,
  "podgo": [
   {
    "bar": 1,
    "preset": "32D",
-   "abs_sec": 0.0
+   "abs_sec": 0.0,
+   "lead": 0
   },
   {
    "bar": 2,
+   "preset": "32D",
+   "abs_sec": 3.722,
+   "lead": 0
+  },
+  {
+   "bar": 3,
+   "preset": "32D",
+   "abs_sec": 16.645,
+   "lead": 0
+  },
+  {
+   "bar": 4,
+   "preset": "32D",
+   "abs_sec": 33.261,
+   "lead": 0
+  },
+  {
+   "bar": 5,
+   "preset": "32D",
+   "abs_sec": 46.184,
+   "lead": 0
+  },
+  {
+   "bar": 6,
+   "preset": "32D",
+   "abs_sec": 62.799,
+   "lead": 0
+  },
+  {
+   "bar": 7,
+   "preset": "32D",
+   "abs_sec": 75.722,
+   "lead": 0
+  },
+  {
+   "bar": 8,
+   "preset": "32D",
+   "abs_sec": 92.338,
+   "lead": 0
+  },
+  {
+   "bar": 9,
+   "preset": "32D",
+   "abs_sec": 105.261,
+   "lead": 0
+  },
+  {
+   "bar": 10,
    "preset": "31D",
-   "abs_sec": 121.846
+   "abs_sec": 121.876,
+   "lead": 0
+  },
+  {
+   "bar": 11,
+   "preset": "31D",
+   "abs_sec": 137.528,
+   "lead": 0
+  },
+  {
+   "bar": 12,
+   "preset": "31D",
+   "abs_sec": 149.702,
+   "lead": 0
+  },
+  {
+   "bar": 13,
+   "preset": "31D",
+   "abs_sec": 165.354,
+   "lead": 0
+  },
+  {
+   "bar": 14,
+   "preset": "31D",
+   "abs_sec": 177.528,
+   "lead": 0
+  },
+  {
+   "bar": 15,
+   "preset": "31D",
+   "abs_sec": 193.18,
+   "lead": 0
   }
  ],
  "gm800": [
   {
    "bar": 1,
    "scene": 1,
-   "abs_sec": 0.0
+   "abs_sec": 0.0,
+   "lead": 0
   },
   {
    "bar": 2,
+   "scene": 1,
+   "abs_sec": 3.722,
+   "lead": 0
+  },
+  {
+   "bar": 3,
+   "scene": 1,
+   "abs_sec": 16.645,
+   "lead": 0
+  },
+  {
+   "bar": 4,
+   "scene": 1,
+   "abs_sec": 33.261,
+   "lead": 0
+  },
+  {
+   "bar": 5,
+   "scene": 1,
+   "abs_sec": 46.184,
+   "lead": 0
+  },
+  {
+   "bar": 6,
+   "scene": 1,
+   "abs_sec": 62.799,
+   "lead": 0
+  },
+  {
+   "bar": 7,
+   "scene": 1,
+   "abs_sec": 75.722,
+   "lead": 0
+  },
+  {
+   "bar": 8,
+   "scene": 1,
+   "abs_sec": 92.338,
+   "lead": 0
+  },
+  {
+   "bar": 9,
+   "scene": 1,
+   "abs_sec": 105.261,
+   "lead": 0
+  },
+  {
+   "bar": 10,
    "scene": 7,
-   "abs_sec": 121.846
+   "abs_sec": 121.876,
+   "lead": 0
+  },
+  {
+   "bar": 11,
+   "scene": 7,
+   "abs_sec": 137.528,
+   "lead": 0
+  },
+  {
+   "bar": 12,
+   "scene": 7,
+   "abs_sec": 149.702,
+   "lead": 0
+  },
+  {
+   "bar": 13,
+   "scene": 7,
+   "abs_sec": 165.354,
+   "lead": 0
+  },
+  {
+   "bar": 14,
+   "scene": 7,
+   "abs_sec": 177.528,
+   "lead": 0
+  },
+  {
+   "bar": 15,
+   "scene": 7,
+   "abs_sec": 193.18,
+   "lead": 0
   }
  ],
  "sources": {
