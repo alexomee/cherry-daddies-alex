@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-19T10:49:38",
+  "generated": "2026-11-19T11:10:14",
   "counts": {
     "total": 123,
-    "data": 121,
-    "cues": 121,
-    "playback": 115,
-    "other": 113,
-    "practice": 110
+    "data": 122,
+    "cues": 122,
+    "playback": 116,
+    "other": 114,
+    "practice": 111
   },
   "sets": [
     {
@@ -20464,10 +20464,177 @@
           "audition": true
         },
         {
-          "sid": "NOFOLDER:Нас не догонят",
+          "sid": "t.A.T.u. - Not Gonna Get Us (Нас не догонят)",
+          "slug": "003a4f299383",
           "title": "Нас не догонят",
           "artist": "t.A.T.u.",
-          "hasData": false
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 12,
+            "list": [
+              {
+                "t": 3.692,
+                "text": "Нас не догонят drums in",
+                "bar": 3,
+                "snap": 0.0
+              },
+              {
+                "t": 10.846,
+                "text": "all in",
+                "bar": 6,
+                "snap": 7.154
+              },
+              {
+                "t": 23.769,
+                "text": "drums stop",
+                "bar": 13,
+                "snap": 19.615
+              },
+              {
+                "t": 40.615,
+                "text": "drums in",
+                "bar": 23,
+                "snap": 36.923
+              },
+              {
+                "t": 53.308,
+                "text": "drums stop",
+                "bar": 29,
+                "snap": 49.154
+              },
+              {
+                "t": 82.846,
+                "text": "drums stop",
+                "bar": 45,
+                "snap": 78.692
+              },
+              {
+                "t": 112.615,
+                "text": "guitar stop",
+                "bar": 62,
+                "snap": 108.462
+              },
+              {
+                "t": 127.154,
+                "text": "drums stop",
+                "bar": 69,
+                "snap": 123.0
+              },
+              {
+                "t": 142.154,
+                "text": "all stop",
+                "bar": 78,
+                "snap": 138.0
+              },
+              {
+                "t": 173.538,
+                "text": "chorus in",
+                "bar": 95,
+                "snap": 169.846
+              },
+              {
+                "t": 201.231,
+                "text": "guitar stop",
+                "bar": 110,
+                "snap": 197.077
+              },
+              {
+                "t": 210.462,
+                "text": "end in",
+                "bar": 115,
+                "snap": 206.308
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Synth Bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "sound-effects"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "3262f211f0",
+            "back_vox": "850a4f14a0",
+            "drums": "398b0f3715",
+            "keys": "f89fa88b57",
+            "bass": "879f7bab6b",
+            "guitars": "1ddda6516b",
+            "other": "193affb996",
+            "click": "6c2d4a6406",
+            "cues": "9030f729b7"
+          },
+          "versions": {
+            "all": "7257a7e727",
+            "alex": "6d9a51bfc9",
+            "steve": "3ae2417a9b",
+            "tanya": "564c77b22a",
+            "pb-other": "d2f2e22291",
+            "pb-bass": "879f7bab6b",
+            "pb-audition": "3fe57ebb6f"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
         }
       ]
     }

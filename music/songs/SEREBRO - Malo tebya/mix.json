@@ -1,14 +1,12 @@
 {
   "gm800": [
     {"bar": 1, "scene": 1, "abs_sec": 3.692},
-    {"bar": 21, "scene": 11, "abs_sec": 40.615},
     {"bar": 37, "scene": 12, "abs_sec": 70.154},
     {"bar": 45, "scene": 1, "abs_sec": 84.923},
-    {"bar": 61, "scene": 11, "abs_sec": 114.462},
     {"bar": 77, "scene": 12, "abs_sec": 144.0},
     {"bar": 85, "scene": 1, "abs_sec": 158.769},
     {"bar": 95, "scene": 12, "abs_sec": 177.231},
-    {"bar": 103, "scene": 11, "abs_sec": 192.0}
+    {"bar": 103, "scene": 1, "abs_sec": 192.0}
   ],
   "podgo": [
     {"bar": 1, "preset": "32B", "abs_sec": 3.692},

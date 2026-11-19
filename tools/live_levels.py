@@ -101,6 +101,16 @@ def part_routes(g, part_ch):
     return routes, desc
 
 
+def k_weight(x):
+    """BS.1770 K-weighting at 48 kHz (needs scipy; returns None without it)."""
+    try:
+        from scipy.signal import lfilter
+    except ImportError:
+        return None
+    x = lfilter([1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585], x)
+    return lfilter([1, -2, 1], [1, -1.99004745483398, 0.99007225036621], x)
+
+
 def audio_in(name):
     for i, d in enumerate(sd.query_devices()):
         if d["name"].startswith(name) and d["max_input_channels"] > 0:
@@ -158,12 +168,12 @@ def gm800(scenes):
                 for n in notes:
                     for ch in routes[string_of(n)]:
                         g.out.send_message([0x80 | ch, n, 0])
-                marks.append((label, a, time.time() - t0)); time.sleep(GAP)
+                marks.append((label, a, time.time() - t0, notes)); time.sleep(GAP)
             sd.wait()
             fold = rec.mean(1)
             seg = {}
             for label in ("low", "mid", "high", "chord"):
-                parts = [fold[int(a * SR):int(b * SR)] for l, a, b in marks if l == label]
+                parts = [fold[int(a * SR):int(b * SR)] for l, a, b, _ in marks if l == label]
                 seg[label] = db(np.concatenate(parts))
             path = os.path.join(outdir, f"scene-{sc:02d}.wav")
             with wave.open(path, "wb") as w:
@@ -172,8 +182,16 @@ def gm800(scenes):
             stereo = db(np.sqrt((rec ** 2).mean(1)))
             res[sc] = {"name": nm, "parts": pinfo, "I": lufs_fold(path), "seg": seg, "peak": round(float(
                 20 * np.log10(np.abs(rec).max() + 1e-12)), 1), "fold_loss": round(stereo - db(fold), 1)}
+            kw = k_weight(fold.astype(np.float64))           # loudness of ONE note, over the notes whose
+            open_strings = ({int(c) - 1 for p in pinfo.values() if p["sw"] for c in p["strings"]}
+                            or set(range(6)))                # string is open on a part that is ON
+            if kw is not None:
+                lv = [-0.691 + 10 * np.log10(np.mean(kw[int((a + 0.06) * SR):int(b * SR)] ** 2) + 1e-20) + 3.01
+                      for l, a, b, ns in marks if len(ns) == 1 and string_of(ns[0]) in open_strings]
+                lv = [x for x in lv if x > -60]
+                res[sc]["note"] = round(float(10 * np.log10(np.mean([10 ** (x / 10) for x in lv]))), 1) if lv else None
             r = res[sc]
-            print(f"scene {sc:2} {nm:16} I {r['I']}  low {seg['low']:6} mid {seg['mid']:6} "
+            print(f"scene {sc:2} {nm:16} note {r.get('note')}  I {r['I']}  low {seg['low']:6} mid {seg['mid']:6} "
                   f"high {seg['high']:6} chord {seg['chord']:6}  peak {r['peak']:6} fold {r['fold_loss']}",
                   flush=True)
     finally:
