@@ -1943,3 +1943,7 @@ Mr. Saxobeat: 18 SAX (1) → 19 SYNTH (16) → 18 (74) → 19 (87) → 18 (95); 
 ## [2026-11-19] publish | Прод: правки по нормам громкости, сет «12.12 all», pb-audition для всей программы 12.12
 
 Alex: «чтобы на проде был актуальный pb-audition». `tools/pb_audition.py`: цель теперь ещё и сет «12.12 all» (добавились Mr. Saxobeat и Now You're Gone; у Smells Like Teen Spirit плейбека нет). `sync_site.py`: 49 файлов по 8 песням (семь с правками уровней + Now You're Gone + впервые Supermassive Black Hole), деплой READY. pb-audition всех восьми на R2 побайтно равны локальным. Страница прода за паролем, вкладку «12.12 all» снаружи не проверить.
+
+## [2026-11-19] rig | Живая сторона: громкость 23 сцен GM-800 замерена автоматом
+
+Alex подключил POD Go и GM-800 и скачал мануалы в `docs/manuals/`. GM-800 играет от MIDI-нот по USB при NOTE SOURCE = USB; `tools/live_levels.py gm800` переключает это по SysEx, играет одну фразу на каждой сцене из `mix.json`, пишет USB-аудио 1/2 и возвращает настройку (проверено чтением: GK IN). Разброс сцен 24 LU; басовые сцены расходятся на 6 дБ (якорная «Солнышко» тише «Кислотного DJ» и «Ты меня не ищи»). POD Go: re-amp требует Input block = USB 3/4 в каждом пресете руками, не замерен. [level-anchors](pipelines/level-anchors.md).
