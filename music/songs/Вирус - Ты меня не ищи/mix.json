@@ -17,8 +17,8 @@
   "pb-other": {
     "layers": [
       {"file": "pb-fx", "frame": "stem"},
-      {"file": "pb-keys", "frame": "stem", "gain_db": 8.3, "derived": true, "source": ["keys", "strings"], "mute": [[58, 66]]},
-      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66]]}
+      {"file": "pb-keys", "frame": "stem", "gain_db": 8.3, "derived": true, "source": ["keys", "strings"], "mute": [[58, 66], [107.75, 130]]},
+      {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66], [107.75, 130]]}
     ],
     "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-wah": "back-vox"},
     "peak": "limit"

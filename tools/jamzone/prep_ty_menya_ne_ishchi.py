@@ -138,7 +138,6 @@ LEAD = 0.02                       # pre-roll before the beat (keeps the attack)
 # crash on src 41.1 (where «synth only» starts) -> 124.1 = final hit, ringing one bar.
 REPEAT_SHIFT = 332                         # beats = 83 bars
 JOIN_K = {"drums": 463.0,                  # 108.1: the 4 shots of bar 107 ring out, chorus crash on 108.1
-          "pb-fx": 463.0,                  # 108.1: same 4 shots (fx copy of the record's bar 107)
           "vocals": 457.5}                 # 106.3&: pickup «ты меня не ищи» (src 23.3&, gap after «слёзы»)
 JOIN_DEFAULT = 462.5                       # 107.4&: drops the synth pickup into the old solo,
                                            # chorus pads lead in on the last eighth (as src 24.4&)
@@ -185,8 +184,6 @@ def do_stems():
     write_wav(os.path.join(SONG, "metronome.wav"), metronome(n_out, last_k))
     print(f"  ✓ metronome.wav  synthetic, {BPM} bpm, first click {PRE:.3f}s")
 
-FX_GAIN = 0.941201                # = 0.98 / 1.0412, the gain the fx had while F3 was in (see below)
-
 def do_fx():
     drums, keys = stem("drums"), stem("keys")
     out = np.zeros_like(drums)
@@ -217,14 +214,16 @@ def do_fx():
     k0, k1 = raw2out(129.073), raw2out(130.931)
     put(cut(keys, k0, k1, fo=0.025), k0)
     print(f"  keys @ bar 66.1-66.4& : raw 129.073-130.931 -> {k0:.3f}-{k1:.3f}s")
-    # F3 (record ending keys+vocals «Take it out!» at 124.1) removed 2026-11-19: the song now ends
-    # on the crash 124.1 after the replayed chorus 1 (arrange()). F3 set the old peak guard (raw peak 1.041 -> x0.9412,
-    # -0.53 dB on the whole file); FX_GAIN keeps the fx at that approved level without it.
-    out *= FX_GAIN
+    # F3: ending keys + vocals «Take it out!» (raw 230.435-232.328 = C527 .. C531.34). Stays at 124.1,
+    # which after arrange() is the final crash of the replayed chorus 1 (Alex 2026-11-19: «в конце был
+    # fx — сделать как было»).
+    put(cut(keys + stem("vocals"), tout(527) - LEAD, tout(531.34), fo=0.12), tout(527) - LEAD)
+    print(f"  keys+vocals @ bar 124.1-125.1.34 : {tout(527):.3f}-{tout(531.34):.3f}s")
+    # NO arrange() for pb-fx: in the record it is empty from 108.1 to 124.1, so every fx is already
+    # where the new arrangement needs it -> pb-fx stays exactly the approved file.
 
     pk = float(np.abs(out).max())
     if pk > 0.98: out *= 0.98/pk; print(f"  peak guard {pk:.3f} -> 0.98")
-    out = arrange(out, "pb-fx")
     os.makedirs(os.path.join(SONG, "parts"), exist_ok=True)
     dst = os.path.join(SONG, "parts", "pb-fx.wav")
     subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", "-",
