@@ -12,7 +12,12 @@ The GM-800 plays MIDI notes only when MENU > MIDI > NOTE SOURCE = USB, so the sc
 that system setting by SysEx for the run and ALWAYS puts the previous value back (GK IN on stage).
 While it runs the guitar does not trigger the synth, and the phrase is audible on the outputs.
 
-Output: analysis/level-audit/live/gm800/scene-NN.wav + gm800.json, table on stdout.
+podgo [preset ...] [--reuse-di]: record one dry guitar take from USB in 3/4 (voice prompt),
+then for every POD Go preset used in mix.json (key "podgo"): select it by Program Change, ask by
+voice to set its Input block to "USB 3/4" (per preset, by hand, not saved), wait until a probe
+comes back processed, re-amp the take and record USB in 1/2.
+
+Output: analysis/level-audit/live/{gm800,podgo}/*.wav + gm800.json / podgo.json, table on stdout.
 Levels: I = integrated LUFS of the mono fold + 3.01 (same metric as tools/level_audit.py);
 seg = plain RMS dBFS of the fold while the notes of that segment are held.
 """
@@ -150,7 +155,93 @@ def gm800(scenes):
               open(os.path.join(OUT, "gm800.json"), "w"), ensure_ascii=False, indent=1)
 
 
+# ---- POD Go: re-amp one dry take through every preset ------------------------------------------
+PODGO_CH = 3                      # POD Go MIDI base channel (tools/stagetraxx_sync.py PODGO_CHANNEL)
+DI_SEC, PROBE_SEC, WAIT_SEC = 15.0, 1.5, 150
+
+
+def say(text):
+    subprocess.run(["say", "-v", "Milena", text])      # default output (the FLOW 8 at home)
+
+
+def used_presets():
+    pr = set()
+    for p in glob.glob(os.path.join(REPO, "music", "songs", "*", "mix.json")):
+        g = json.load(open(p)).get("podgo")
+        pr |= {g} if isinstance(g, str) else {x["preset"] for x in g or []}
+    return sorted(pr)
+
+
+def write_wav(path, x):
+    with wave.open(path, "wb") as w:
+        w.setnchannels(x.shape[1]); w.setsampwidth(2); w.setframerate(SR)
+        w.writeframes((np.clip(x, -1, 1) * 32767).astype("<i2").tobytes())
+
+
+def podgo(presets):
+    """Dry guitar comes to the Mac on USB in 3/4, processed sound on 1/2; a signal sent to USB
+    out 3/4 is processed only while the preset's Input block = USB 3/4 (set by hand, per preset,
+    not saved). So: record one dry take, then for each preset wait until the probe comes back."""
+    dev = audio_in("POD Go")
+    mo = rtmidi.MidiOut(); mo.open_port(mo.get_ports().index("POD Go"))
+    outdir = os.path.join(OUT, "podgo"); os.makedirs(outdir, exist_ok=True)
+    di_path = os.path.join(outdir, "di.wav")
+    if "--reuse-di" in sys.argv and os.path.exists(di_path):
+        with wave.open(di_path) as w:
+            di = np.frombuffer(w.readframes(w.getnframes()), "<i2").astype(np.float32) / 32767
+    else:
+        say("Вход на гитаре. Играй пятнадцать секунд. Начинай.")
+        rec = sd.rec(int(DI_SEC * SR), SR, channels=4, device=dev, blocking=True)
+        say("Стоп.")
+        di = rec[:, 2].copy()
+        print(f"DI take: USB in 3 {db(rec[:, 2])} dB, in 4 {db(rec[:, 3])} dB, peak "
+              f"{round(float(20 * np.log10(np.abs(di).max() + 1e-12)), 1)} dBFS; processed 1/2 {db(rec[:, :2])} dB", flush=True)
+        if db(di) < -70:
+            say("Сухой сигнал не пришёл. Останавливаюсь.")
+            raise SystemExit("no dry signal on USB in 3/4 - nothing recorded, stopping")
+        write_wav(di_path, di[:, None])
+    env = np.convolve(di ** 2, np.ones(int(PROBE_SEC * SR)), "valid")
+    p0 = int(env.argmax()); probe = di[p0:p0 + int(PROBE_SEC * SR)]   # loudest stretch of the take
+
+    def reamp(x):
+        play = np.zeros((len(x) + int(0.5 * SR), 4), np.float32)
+        play[:len(x), 2] = play[:len(x), 3] = x
+        return sd.playrec(play, SR, channels=4, device=(dev, dev), blocking=True)[:, :2]
+
+    res = {"di": {"I": lufs_fold(di_path)}}
+    spoken = {"A": "А", "B": "Бэ", "C": "Цэ", "D": "Дэ"}
+    for pr in presets:
+        pc = (int(pr[:2]) - 1) * 4 + "ABCD".index(pr[2])
+        mo.send_message([0xC0 | (PODGO_CH - 1), pc]); time.sleep(1.2)
+        say(f"Пресет {int(pr[:2])} {spoken[pr[2]]}. Переключи вход на ю эс би три четыре.")
+        t0, hits = time.time(), 0
+        while time.time() - t0 < WAIT_SEC and hits < 2:
+            lvl = db(reamp(probe))
+            hits = hits + 1 if lvl > -55 else 0
+        if hits < 2:
+            print(f"preset {pr}: no signal back in {WAIT_SEC}s - skipped", flush=True)
+            say("Не дождался. Пропускаю."); res[pr] = None; continue
+        out = reamp(di)
+        path = os.path.join(outdir, f"preset-{pr}.wav"); write_wav(path, out)
+        fold = out.mean(1)
+        res[pr] = {"I": lufs_fold(path), "rms": db(fold), "peak": round(float(20 * np.log10(np.abs(out).max() + 1e-12)), 1),
+                   "fold_loss": round(db(np.sqrt((out ** 2).mean(1))) - db(fold), 1)}
+        res[pr]["gain_vs_di"] = round(res[pr]["I"] - res["di"]["I"], 1) if res[pr]["I"] and res["di"]["I"] else None
+        print(f"preset {pr}: I {res[pr]['I']}  rms {res[pr]['rms']}  peak {res[pr]['peak']}  "
+              f"vs DI {res[pr]['gain_vs_di']}  fold {res[pr]['fold_loss']}", flush=True)
+        say("Записал.")
+    say("Готово. Все пресеты записаны.")
+    jp = os.path.join(OUT, "podgo.json")
+    old = json.load(open(jp))["presets"] if os.path.exists(jp) else {}
+    old.update(res)
+    json.dump({"date": time.strftime("%Y-%m-%d %H:%M"), "presets": old}, open(jp, "w"), ensure_ascii=False, indent=1)
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 2 or sys.argv[1] != "gm800":
+    args = [a for a in sys.argv[2:] if not a.startswith("--")]
+    if len(sys.argv) >= 2 and sys.argv[1] == "gm800":
+        gm800([int(a) for a in args] or used_scenes())
+    elif len(sys.argv) >= 2 and sys.argv[1] == "podgo":
+        podgo(args or used_presets())
+    else:
         raise SystemExit(__doc__)
-    gm800([int(a) for a in sys.argv[2:]] or used_scenes())
