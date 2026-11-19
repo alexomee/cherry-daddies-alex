@@ -54,9 +54,6 @@
     {"bar": 100, "text": "solo drums-half ready go", "abs_sec": 176.176, "snap_sec": 172.251},
     {"bar": 107, "text": "stop", "abs_sec": 188.386, "snap_sec": 184.461},
     {"bar": 108, "text": "chorus in", "abs_sec": 190.13, "snap_sec": 186.641},
-    {"bar": 116, "text": "drum-bass stop", "abs_sec": 204.085, "snap_sec": 200.16},
-    {"bar": 118, "text": "single drum ready go", "abs_sec": 207.573, "snap_sec": 204.085},
-    {"bar": 120, "text": "single drum ready go", "abs_sec": 211.062, "snap_sec": 207.573},
-    {"bar": 123, "beat": 3, "text": "end in", "count": true, "abs_sec": 217.167, "snap_sec": 213.242}
+    {"bar": 124, "text": "end in", "count": true, "abs_sec": 218.039, "snap_sec": 214.114}
   ]
 }

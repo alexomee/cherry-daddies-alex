@@ -18,9 +18,9 @@ Measured on the raw Moises stems (wiki/songs/virus-ty-menya-ne-ishchi.md):
     grid C (after) = grid A (before) + 0.494 beat. Compressed to 4 beats with rubberband ONLY
     inside the break (stop crash and verse-2 vocal pickup untouched) -> constant 4/4 click.
   * intro cut: bar 1.1 = raw click k=35 (Logic 01:00:15.652).
-  * ending (2026-11-19, Alex: «после 3:10 повторить припев и закончить»): bars 1-107 as recorded,
-    from 108.1 the record's chorus 2 (83-98) again, ending on its stop 98.3 -> 123.3. The synth
-    outro of the record (108-124) is dropped. Every step builds the RECORD arrangement in memory
+  * ending (2026-11-19, Alex: «после 3:10 повторить припев и закончить», «без остановок, как первый»):
+    bars 1-107 as recorded, from 108.1 the record's chorus 1 (25-40) again, final hit 124.1 (the
+    crash of src 41.1). The synth outro of the record (108-124) is dropped. Every step builds the RECORD arrangement in memory
     and runs arrange() on what it writes, so all stem-frame files get the identical splice.
 Beat index k below = raw Moises click index; bar = (k-35)//4 + 1.
 """
@@ -131,22 +131,28 @@ def metronome(n_out, last_k):
 
 LEAD = 0.02                       # pre-roll before the beat (keeps the attack)
 
-# --- arrangement (2026-11-19, Alex): after the bar-107 stop (4 shots) replay chorus 2 and end -----
-# Output = record up to the join, then the record shifted by REPEAT_SHIFT beats (bar 82.x -> 107.x,
-# 83.1 -> 108.1, ... 98.3 stop -> 123.3), faded out before src 99.4& where the record's solo enters.
-REPEAT_SHIFT = 100                         # beats = 25 bars
+# --- arrangement (2026-11-19, Alex): after the bar-107 stop (4 shots) the FIRST chorus again, straight
+# (Alex: «последний припев без остановок, как первый, 0:45-1:13»; chorus 2 with its drum-bass stop and
+# single-drum bars was tried first and rejected). Output = record up to the join, then the record
+# shifted by REPEAT_SHIFT beats: 23.3& -> 106.3& (pickup), 25.1 -> 108.1 ... 40.4& -> 123.4&, and the
+# crash on src 41.1 (where «synth only» starts) -> 124.1 = final hit, ringing one bar.
+REPEAT_SHIFT = 332                         # beats = 83 bars
 JOIN_K = {"drums": 463.0,                  # 108.1: the 4 shots of bar 107 ring out, chorus crash on 108.1
           "pb-fx": 463.0,                  # 108.1: same 4 shots (fx copy of the record's bar 107)
-          "vocals": 459.5}                 # 107.1&: brings the pickup «ты меня не ищи» (src 82.1&)
+          "vocals": 457.5}                 # 106.3&: pickup «ты меня не ищи» (src 23.3&, gap after «слёзы»)
 JOIN_DEFAULT = 462.5                       # 107.4&: drops the synth pickup into the old solo,
-                                           # chorus pads lead in on the last eighth (as src 82.4&)
-END_K = 530.5                              # 124.4& (= src 99.4&): nothing after it
-END_FADE_K = 530.0                         # fade-out 124.4 -> 124.4& - LEAD (vocal tail «позабуду»)
+                                           # chorus pads lead in on the last eighth (as src 24.4&)
+END_K = {"keys": 527.0}                    # 124.1: the «synth only» riff (src 41.1) never starts
+END_DEFAULT = 531.0                        # 125.1: final crash + vocal tail «позабуду» ring one bar
+FADE_K = {"keys": 526.875}                 # keys: ~35 ms fade into the cut
+FADE_DEFAULT = 528.0                       # 124.2 -> 125.1 fade-out
 XJ = 0.010                                 # join crossfade
 
 def arrange(x, name):
     sh = S(REPEAT_SHIFT*B)
-    J, E, F = S(tout(JOIN_K.get(name, JOIN_DEFAULT)) - LEAD), S(tout(END_K) - LEAD), S(tout(END_FADE_K))
+    J = S(tout(JOIN_K.get(name, JOIN_DEFAULT)) - LEAD)
+    E = S(tout(END_K.get(name, END_DEFAULT)) - LEAD)
+    F = S(tout(FADE_K.get(name, FADE_DEFAULT)))
     out = np.zeros_like(x)
     out[:J] = x[:J]
     out[J:E] = x[J-sh:E-sh]
@@ -212,7 +218,7 @@ def do_fx():
     put(cut(keys, k0, k1, fo=0.025), k0)
     print(f"  keys @ bar 66.1-66.4& : raw 129.073-130.931 -> {k0:.3f}-{k1:.3f}s")
     # F3 (record ending keys+vocals «Take it out!» at 124.1) removed 2026-11-19: the song now ends
-    # on the chorus stop 123.3 (arrange()). F3 set the old peak guard (raw peak 1.041 -> x0.9412,
+    # on the crash 124.1 after the replayed chorus 1 (arrange()). F3 set the old peak guard (raw peak 1.041 -> x0.9412,
     # -0.53 dB on the whole file); FX_GAIN keeps the fx at that approved level without it.
     out *= FX_GAIN
 
@@ -229,7 +235,8 @@ def do_fx():
 # plays live. Raw Moises seconds (Logic 01:00:00 base); None = till the end. Strings never muted.
 KEYS_MUTES = [(85.175, 130.909),       # 01:01:25.175-01:02:10.909  synth solo .. break (bars 40.4.4-66.4.8)
               (188.164, None)]         # 01:03:08.164-end            solo drums-half .. end (bar 99.4-);
-                                       # after arrange() = 99.4-107.4&, the replayed chorus keeps its keys
+                                       # after arrange() = 99.4-107.4&; the replayed chorus 1 keeps its
+                                       # keys up to 123.4.4 (first mute starts at src 40.4.4)
 MUTE_XF = 0.015                        # same 15 ms edge fades as jamzone_render mutes
 # + fragments of the Moises OTHER stem merged in (raw seconds). Was [(182.937, 188.164)]; moved to
 # pb-wah 2026-11-12 (Alex: Other 01:02:52.867-01:03:06.294 belongs to pb-wah) -> none here (no double).
