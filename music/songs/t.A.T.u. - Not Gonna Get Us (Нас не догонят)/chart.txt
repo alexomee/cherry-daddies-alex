@@ -1,0 +1,13 @@
+t.A.T.u. - Нас не догонят    Am (оригинал C#m, pitch -4) / 130 bpm
+1 аккорд = 1 такт. ! = стаб на 1 и тишина. [x] = гитара молчит. Такты как в mix.json.
+
+INTRO   [1-6]   барабаны + synth voice                       [гитара молчит]
+INTRO   [7-14]  F Am Am C | Fmaj7 Am Am C!
+V1      [15-22] F Am F Am | F Am Dm G7                        [гитара молчит, пиано]
+V1b     [23-30] F Em Am C | F E Am C                          [гитара молчит, барабаны+бас; 30 без барабанов]
+CH      [31-46] F E Am C | F E Am C5 | F E Am C | F E Am C!   (38 брейк барабанов)
+INSTR   [47-62] F E Am C | F E Am C | F E Am C | F E Am C!    (62 стаб, дальше барабаны соло)
+V2      [63-78] F E5 Am C | F E5 Am Am! | F E5 Am C | F Em Am Am!
+BREAK   [79-94] (F Am F Am | F Am Dm7 G7) x2                  [гитара молчит]
+CH2     [95-110] F E Am C | F E Am C5 | F E Am C | F E Am C!  (110 стаб, дальше барабаны)
+OUTRO   [111-115] только барабаны, финал 115.1               [гитара молчит]
