@@ -1874,3 +1874,7 @@ pb-other + pb-bass, integrated LUFS по 61 песне программы: «М�
 ## [2026-11-19] rig | Supermassive Black Hole: GM-800 MUTE, POD Go 32D
 
 `gm800: 1`, `podgo: "32D"` на всю песню (Alex). В Stage Traxx теги `PC0@2` и `PC127@3` (при загрузке и в 00:00), проверено в базе; бэкап `music_library-20261119-054304.sqlite`.
+
+## [2026-11-19] song | Supermassive Black Hole: стопы барабанов в cue
+
+9 стопов барабанов на 4-й доле (такты 9, 17, 25, 33, 49, 57, 73, 81, 89), найдены по атакам в стеме барабанов. Порог −40 дБ пропустил 17/81/89, там звенит тарелка. Разметка: «drums stop» (на 49 и 73 «all stop», там молчат и гитара, и бас) + `raw`/`step: 0.5` «chorus go» / «verse go» / «solo go» / «vocal go» / «go» в долю стопа. Они заменили «in ready go» на 18.2, 26, 50, 74, 90. Всего 24 cue. click/all/pb байт в байт прежние, Stage Traxx `--apply` (бэкап `music_library-20261119-060013.sqlite`, Cues остаток −120 дБ). Приём описан в [cue-system](pipelines/cue-system.md).
