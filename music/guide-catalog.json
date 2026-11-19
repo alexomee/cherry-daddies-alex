@@ -1416,7 +1416,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 227.076916,
       "key": "cherry-dash/ace2a923452e/guides/11904632e67fc6f5dc75666476e5db16324bb2569cc2b992e256674e40e6cc15/all.wav",
-      "mix_sha256": "6e2d7b2316bbe6caf115552084d22dd018c7a34488c7db736e605a1508429081",
+      "mix_sha256": "a407127ac24e8791c087fe487ef180c8d2317510b0366962a50e1011ab08a3b0",
       "render_audio": {
         "click.wav": "2fa219a12470b14af8fdeef68b21e91f035b0fad1bbb4c79a5d2bc3b91527fcf",
         "cues.wav": "f1ed5c85e1842626e71473ccc48a5eb823fbdd23aea3b57284bc127b6924df32",
@@ -1769,6 +1769,42 @@
       },
       "url": "https://releases.agentiqa.com/cherry-dash/38c4670831f0/guides/9a8ba97172c1eede63384d56659d78c5c1da2ce565bdc203d72f9269c3c9f82a/all.wav"
     },
+    "music/songs/_Калибровка": {
+      "missing": [
+        "all.wav",
+        "timeline.json"
+      ],
+      "status": "missing"
+    },
+    "music/songs/t.A.T.u. - Not Gonna Get Us (Нас не догонят)": {
+      "bytes": 36148546,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 204.923061,
+      "key": "cherry-dash/003a4f299383/guides/2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792/all.wav",
+      "mix_sha256": "1f7f23c4521cef85bb0975ac1558e9b9b5517d1d818dd412dfd770fbefb73b8b",
+      "render_audio": {
+        "click.wav": "723ce7ae2c3581b2ce6cc5389c5d8f76f319e3699b6e74e704eb548d56bb57f0",
+        "cues.wav": "07947986f3b28cf1a7f0990086fdec63351dfa48b038563971c3f0e1abc55505",
+        "pb-bass.wav": "15f1338f66161ee7e6d29044ab02428497f9f54e25c3f0a864bc4a8b47c4fab9",
+        "pb-other.wav": "72795f41b661ccb6e3982391954faf84f0947591c9e6761947fd0ea261c154bb"
+      },
+      "render_pcm": {
+        "click.wav": "f6c3cf48e9ada1441bffeea400b5c11016bd1ef39d525478d5dee093379ca36b",
+        "pb-bass.wav": "004b7df51ce1c82f4ae850ac724131c6330edde20a86c8140e1600a6c318ed33",
+        "pb-other.wav": "389c9f7274cc0d69e139ae949edaed5a82e45d4eb8564e8e8bf92c7af791b8e0"
+      },
+      "sample_rate": 44100,
+      "sha256": "2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 1.846154,
+        "bpm": 130.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "offset_sec": -0.296997
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/003a4f299383/guides/2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792/all.wav"
+    },
     "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)": {
       "bytes": 38572916,
       "channels": 2,
@@ -1829,25 +1865,25 @@
       "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/d6141c6270d4e9e2fb23f38358310ec2269bbf2b4c189ad0c72cf0eedf79e83e/all.wav"
     },
     "music/songs/Вирус - Попрошу тебя": {
-      "bytes": 28709658,
+      "bytes": 36567010,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 162.752494,
-      "key": "cherry-dash/4bfe90ef136b/guides/3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766/all.wav",
-      "mix_sha256": "9d3ca1cbb28459366bc150003d6fcfc42e60773fab167440fad930c727a27ed9",
+      "duration_sec": 207.295306,
+      "key": "cherry-dash/4bfe90ef136b/guides/62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635/all.wav",
+      "mix_sha256": "95846526f82df8417923c21b3bb8c1c29c1aef658d5e63c0f19ec3acfc8b5409",
       "render_audio": {
-        "click.wav": "0f0e12af5d0e56c089bc954714368ba54f0f79c4ff19ac430c676d54d00fabe7",
-        "cues.wav": "324dfc5fb039220dd4bce9308e3f889e6c63ff0b0e5c62867922035a55c2eb56",
-        "pb-bass.wav": "f7c8bc20ffb74218e2f58e5d55128c517874211bb06cc787ed8fb3a8c8ae07b8",
-        "pb-other.wav": "576b73bbaf82c6f4f35739fc09bd87ac3866acf763f2dc01295b92bbf12694a5"
+        "click.wav": "e139a9e0e9f0b3ff419dc08c6e704f2b898d71f17825a7660c12e61144bc3604",
+        "cues.wav": "23f92b5d4a319ea0080ae6069b3cbfc8ff9cf2ff63d8ae60cecf7e70ccc9a0a0",
+        "pb-bass.wav": "d16e034e216c5b98fed785d684aae7a047bbf5b8798245eff9b48ac9b28935a0",
+        "pb-other.wav": "fabe98daa0bc7aec38f7045fcfc821b3456ffc06ed0781ba6e6e0a2d761097e9"
       },
       "render_pcm": {
-        "click.wav": "82c8819967e16102584433da5aa276b2f003c9baccb4905444483e8224350877",
-        "pb-bass.wav": "d72e2ae134a63e720f5db33a5ce2208b61f95fa3a5305b3e34724720c1a4e029",
-        "pb-other.wav": "dd4abddea25bdf714dd1250e07727a5a9a25ba162acfa11893794e738617ee1a"
+        "click.wav": "26edc07aee07dd6e750991da03c1e93b077a2fb746e4035a9b7aa990a566aef6",
+        "pb-bass.wav": "dcc07b28fe04ee01decd70b998a265f5417e526c2c2437eb46b10c503c014bf7",
+        "pb-other.wav": "f8a8762bf377a82187519c3a7bdb90905b4a800a97631d158c626590f7375b05"
       },
       "sample_rate": 44100,
-      "sha256": "3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766",
+      "sha256": "62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635",
       "status": "available",
       "timeline": {
         "bar_sec": 1.713184,
@@ -1855,28 +1891,28 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.378682
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/4bfe90ef136b/guides/3d19ca8c98c90f10da491f5b09a7e52a216f8c1078ea0171b2219b32706ab766/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/4bfe90ef136b/guides/62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635/all.wav"
     },
     "music/songs/Вирус - Ты меня не ищи": {
       "bytes": 39077606,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 221.52771,
-      "key": "cherry-dash/13127f359691/guides/413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4/all.wav",
-      "mix_sha256": "226dcbe91e9242c13ded81c7b29704bb08ee8ac47e58a51af0977e1e74b093db",
+      "key": "cherry-dash/13127f359691/guides/0608ccfcdb06fcc3bfc502be9c744909a23a5d5de88ebcbaf9eb3d919be68024/all.wav",
+      "mix_sha256": "9482957820a9825ed8856bcf9ba18b6777146a56a99cc2e6e91a345591db1127",
       "render_audio": {
         "click.wav": "21a7325ecea910d3e966ce2a48bc2c25e59fb0da0dd3f88edcf7fb1b308cd9e8",
-        "cues.wav": "ec68a84d57021d5ee48fdc19e6932a1728a9eb8b56c061de97cba0f23421a266",
-        "pb-bass.wav": "210da6a6233ce30991869a96730e419e462e12ef37c1e56a8b935c7b6486607a",
-        "pb-other.wav": "41eb3a22e9fad8a2b34f83819b9bfca491e3252016e88debde50759a52ac1fdf"
+        "cues.wav": "31ce82a48b3ff68a9abbb750a0923a98625e514a14dc37f7794f3593e06398b4",
+        "pb-bass.wav": "f6cb5abe5d951f4604f0a2a56ee46e69dad85335fd1a4a4d3a9947ab376e0872",
+        "pb-other.wav": "8abd57927bf3516d2acee0aa90fb9fdcbc241a8be6f4f7cbb9e707f165c29360"
       },
       "render_pcm": {
         "click.wav": "13cf7d410abc504a3f25a3e71e8bef75a427fa9a0338e1b7ff2ba89cf9fb6869",
-        "pb-bass.wav": "7aae44e7aa86e2ad36f86b33e1adb9356bf3b512ef2cf9b0b7ce3f147db9699b",
-        "pb-other.wav": "b631528719e20e56856b3a662ad499e51f5ad686eeb8e2b9a7f49a057b4b27a5"
+        "pb-bass.wav": "6ae1e75e7ca81340cb5ace1c4b40c9ba894cd4619bdb92c375bc5b1416115bf4",
+        "pb-other.wav": "e084e89a805b4feb0c64cc563beeefc1d50b91f062c1198232c68d84d6f91f05"
       },
       "sample_rate": 44100,
-      "sha256": "413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4",
+      "sha256": "0608ccfcdb06fcc3bfc502be9c744909a23a5d5de88ebcbaf9eb3d919be68024",
       "status": "available",
       "timeline": {
         "bar_sec": 1.744313,
@@ -1884,7 +1920,7 @@
         "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
         "offset_sec": 3.440939
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/413920ab40d8c32c596e60a3211f4f82d6efd95d545359c5d1765807c4b1dbf4/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/0608ccfcdb06fcc3bfc502be9c744909a23a5d5de88ebcbaf9eb3d919be68024/all.wav"
     },
     "music/songs/Елена Терлеева - Солнце": {
       "bytes": 38753838,
@@ -2038,7 +2074,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 164.370907,
       "key": "cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav",
-      "mix_sha256": "d0a7ec6e4cd3eac2c81e29d19f4060c56478566d050b1fcf498f926fa3f70ff7",
+      "mix_sha256": "1d404a94601372ef136f64186dd820f9baa571a4fa3e56563248f63a3df500ff",
       "render_audio": {
         "click.wav": "c7f9d408bde75823fbbff4335295fc95becd49a0be2de754e2d7aa7ecee56fcd",
         "cues.wav": "dc6380c147daf783969f666c2b6ebe55f13f5eab2384c4cc511eb3b4dea67840",
