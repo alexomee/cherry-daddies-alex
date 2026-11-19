@@ -1,21 +1,23 @@
 ---
 type: song
 updated: 2026-11-19
-title: Not Gonna Get Us (Нас не догонят)
+title: Нас не догонят (playback из Not Gonna Get Us)
 artist: t.A.T.u.
 set: не в сетлисте (новая)
 ---
 
 # t.A.T.u. — Not Gonna Get Us (Нас не догонят)
 
-Английская версия «Нас не догонят». Папка: `/Users/alex/projects/cherry-daddies/music/songs/t.A.T.u. - Not Gonna Get Us (Нас не догонят)/`.
+Стемы английской версии из JamZone, **исполняем русскую «Нас не догонят»** (Alex, 2026-11-19). Папка: `/Users/alex/projects/cherry-daddies/music/songs/t.A.T.u. - Not Gonna Get Us (Нас не догонят)/`.
 
 ## Сводка
 
 - **Источник:** JamZone `cat_25870`, 15 HQ-стемов (`.m4a`), заведена 2026-11-19.
-- **bpm:** 130 (клик JamZone, ресид 0.4 мс), C#m (JamZone пишет «A»). Без питча.
+- **bpm:** 130 (клик JamZone, ресид 0.4 мс). Оригинал C#m (JamZone пишет «A»).
+- **pitch_semitones: −4** (C#m → Am, ключ группы, Alex 2026-11-19). Питчатся pb-other, pb-bass, all, practice-миксы.
+- **Sound effects НЕ питчатся:** это шумовой райзер (спектральная плоскостность 0.04–0.15 против 0.001 у пэда, хрома D/A/C/G# вне C#m, один и тот же сэмпл во всех 7 местах). Сделано слоем: `parts/sound-effects.wav` = декод `12_Sound_effects.m4a` 1:1, `frame: stem`, `replaces: [12_Sound_effects]` (оригинал вон из all). Слой авто-уровнится как fx (−7.7 дБ). Проверено: в pb-other совпадает с исходником по форме волны (corr 0.98), лаг 0; бас −4 полутона, лаг 0.
 - `timeline.json`: `offset_sec` −0.297 (рендер начинается с первой сильной доли клика), каунт-ин не нужен: название влезает в такт 1.
-- **Плейбек = всё, кроме гитары** (Alex): pb-other = `06_Electric_Piano`, `07_Synth_Pad`, `08_Synth_Voice`, `09_Synth_Lead`, `10_Arpeggiator_1`, `11_Arpeggiator_2`, `12_Sound_effects` (потолок fx −7.7 дБ), `13/14_Backing_Vocals`; pb-bass = `04_Synth_Bass`. Барабаны (steve) и лид-вокал (tanya) живьём, `03_Claves-Woodblock` выкинут как перкуссия.
+- **Плейбек = всё, кроме гитары и английских бэков** (Alex): pb-other = `06_Electric_Piano`, `07_Synth_Pad`, `08_Synth_Voice`, `09_Synth_Lead`, `10_Arpeggiator_1`, `11_Arpeggiator_2` + слой `sound-effects`; pb-bass = `04_Synth_Bass`. `13/14_Backing_Vocals` (английские) убраны из pb-other, но остаются в `all` и practice-миксах как референс. Барабаны (steve) и лид-вокал (tanya) живьём, `03_Claves-Woodblock` выкинут как перкуссия.
 - **players:** steve → `02_Electronic_Drum_Kit`, tanya → `15_Lead_Vocal`, alex → `05_Electric_Guitar`; practice-миксы для всех троих.
 - GM-800 / POD Go не заданы.
 
@@ -45,7 +47,7 @@ set: не в сетлисте (новая)
 
 | такт.доля | текст | звучит | зачем |
 |---|---|---|---|
-| 3.1 | Not gonna get us drums in | название + drums in ready go | плейбек идёт с 1.1, барабаны с 3.1 |
+| 3.1 | Нас не догонят drums in | название + drums in ready go | плейбек идёт с 1.1, барабаны с 3.1 |
 | 6.4& | all in | all in ready go | затакт вокала «They're», банда с 7.1 |
 | 13.4& | drums stop | stop in 3, 3 2 1 | такт 14 без барабанов, дальше тихий куплет |
 | 23.1 | drums in | drums in ready go | барабаны+бас, смена гармонии на прогрессию припева |
@@ -63,3 +65,4 @@ set: не в сетлисте (новая)
 ## История
 
 - **2026-11-19** — заведена: стемы JamZone, mix.json, рендер `--practice`, 12 черновых cue. В Stage Traxx не синкалась.
+- **2026-11-19** — русская версия: pitch −4, бэки вон из pb-other, Sound effects слоем без питча, стартовый cue «Нас не догонят drums in» (Milena). OFF не изменился (−0.297). Дашборд: строка сетлиста привязана к папке (`setlist_dashboard.py`).
