@@ -1,5 +1,6 @@
 {
   "gm800": 1,
+  "switch_lead": 0.3,
   "podgo": [
     {"bar": 1,  "preset": "32A", "abs_sec": 3.694},
     {"bar": 5,  "preset": "32B", "abs_sec": 11.081},

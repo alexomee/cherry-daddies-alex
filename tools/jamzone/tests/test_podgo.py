@@ -167,3 +167,20 @@ def test_lead_exception_gm800_scene_and_cc():
 def test_lead_exception_rejects(v, msg):
     with pytest.raises(ValueError, match=msg):
         st.parse_device("podgo", v)
+
+
+def test_song_switch_lead():
+    assert st.song_lead({}, "podgo") is None
+    assert st.song_lead({"switch_lead": 0.3}, "podgo") == st.song_lead({"switch_lead": 0.3}, "gm800_cc") == 0.3
+    per = {"switch_lead": {"gm800": 0.2}}
+    assert st.song_lead(per, "podgo") is None and st.song_lead(per, "gm800_cc") == 0.2
+    ch = st.parse_device("podgo", [
+        {"preset": "32A", "abs_sec": 3.694},
+        {"preset": "32B", "abs_sec": 11.081},
+        {"preset": "32D", "lead": 1, "abs_sec": 40.631},       # an entry's own lead still wins
+    ], st.song_lead({"switch_lead": 0.3}, "podgo"))
+    assert st.device_block(ch, 3, st.PODGO_LEAD)[2:] == [
+        "[midi@00:10.781: PC125@3]", "[midi@00:39.631: PC127@3]"]
+    for bad in ({"switch_lead": "0.3"}, {"switch_lead": 60}, {"switch_lead": {"pod": 1}}):
+        with pytest.raises(ValueError, match="switch_lead"):
+            st.song_lead(bad, "podgo")

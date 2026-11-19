@@ -68,6 +68,12 @@ out first):
     {"bar": 9, "preset": "32D", "lead": -1}      1 s after bar 9 instead of 1 s before it
     {"bar": 33, "preset": "03C", "lead": 2}      2 s before bar 33
 
+Exception for a whole song: "switch_lead" at the top of mix.json replaces the standard lead for
+every timed switch of that song (an entry's own "lead" still wins):
+
+    "switch_lead": 0.3                           all devices 300 ms before the bar
+    "switch_lead": {"podgo": 0.3}                only the POD Go; the rest stay standard
+
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
 localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
 the lyrics area. The sync owns that text: edit notes on the board, not in Stage Traxx (text
@@ -227,6 +233,23 @@ def entry_lead(key, e):
     return float(v)
 
 
+def song_lead(mix, key):
+    """Song-wide exception: mix.json "switch_lead" (seconds for every device, or
+    {"podgo"|"gm800"|"gm800_cc": seconds}; "gm800" also covers its CCs) -> the song's lead for
+    `key`, None when the song keeps the standard one."""
+    v = mix.get("switch_lead")
+    if isinstance(v, dict):
+        bad = set(v) - set(DEVICES) - {"gm800_cc"}
+        if bad:
+            raise ValueError(f'"switch_lead": unknown device {sorted(bad)}')
+        v = v.get(key, v.get("gm800") if key == "gm800_cc" else None)
+    if v is None:
+        return None
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or abs(v) > MAX_LEAD:
+        raise ValueError(f'"switch_lead" must be seconds, -{MAX_LEAD:g}..{MAX_LEAD:g}, got {v!r}')
+    return float(v)
+
+
 def lead_mark(lead):
     """Dry-run marker of a per-switch exception: (lead 2s) / (lead -1s)."""
     return "" if lead is None else f"(lead {lead:g}s)"
@@ -244,9 +267,10 @@ def check_send_order(key, events, default):
         raise ValueError(f'{key}: "lead" exceptions put the switches out of order')
 
 
-def parse_cc(v):
+def parse_cc(v, lead=None):
     """mix.json "gm800_cc" -> [(render_sec, cc, value, lead), ...] sorted by time, None when
-    absent; lead = the entry's own "lead" exception or None (standard).
+    absent; lead = the entry's own "lead" exception, else the song's (`lead` argument), else
+    None (standard).
     CC numbers are the ones a GM-800 ASSIGN SOURCE accepts (1-31, 64-95), minus 71-79 (the
     unit's own tone-modify CCs)."""
     if v is None:
@@ -264,7 +288,8 @@ def parse_cc(v):
             raise ValueError(f'gm800_cc entry {e!r}: "value" must be 0..127')
         if "abs_sec" not in e:
             raise ValueError(f"gm800_cc entry {e!r} has no abs_sec — run jamzone_render.py --check")
-        out.append((float(e["abs_sec"]), cc, val, entry_lead("gm800_cc", e)))
+        own = entry_lead("gm800_cc", e)
+        out.append((float(e["abs_sec"]), cc, val, lead if own is None else own))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError("gm800_cc entries are not in time order")
     check_send_order("gm800_cc", out, GM_CC_LEAD)
@@ -303,14 +328,14 @@ def song_devices(sid):
     out, err = {}, {}
     for key in DEVICES:
         try:
-            ch = parse_device(key, mix.get(key))
+            ch = parse_device(key, mix.get(key), song_lead(mix, key))
         except ValueError as e:
             err[key] = str(e)
             continue
         if ch:
             out[key] = ch
     try:
-        cc = parse_cc(mix.get("gm800_cc"))
+        cc = parse_cc(mix.get("gm800_cc"), song_lead(mix, "gm800_cc"))
     except ValueError as e:
         err["gm800_cc"] = str(e)
     else:
@@ -319,9 +344,10 @@ def song_devices(sid):
     return out, err
 
 
-def parse_device(key, v):
+def parse_device(key, v, lead=None):
     """mix.json "<key>" value -> [(render_sec, pc, label, lead), ...] (first = start), None when
-    absent; lead = the entry's own "lead" exception or None (the device's standard lead).
+    absent; lead = the entry's own "lead" exception, else the song's (`lead` argument), else
+    None (the device's standard lead).
     Raises ValueError with a readable reason when the entry is malformed or not timed yet."""
     if v is None:
         return None
@@ -339,7 +365,8 @@ def parse_device(key, v):
             raise ValueError(f"{key} entry {e!r}: {x}") from None
         if "abs_sec" not in e:
             raise ValueError(f"{key} entry {e!r} has no abs_sec — run jamzone_render.py --check")
-        out.append((float(e["abs_sec"]), pc, e[field], entry_lead(key, e)))
+        own = entry_lead(key, e)
+        out.append((float(e["abs_sec"]), pc, e[field], lead if own is None else own))
     if any(b[0] < a[0] for a, b in zip(out, out[1:])):
         raise ValueError(f"{key} entries are not in time order")
     check_send_order(key, out, d["lead"])
