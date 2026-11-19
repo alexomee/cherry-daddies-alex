@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T05:59:45",
+  "generated": "2026-11-19T06:10:52",
   "counts": {
     "total": 89,
     "data": 89,
@@ -14795,7 +14795,7 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 24,
+            "count": 13,
             "list": [
               {
                 "t": 4.0,
@@ -14804,52 +14804,22 @@
                 "snap": 0.0
               },
               {
-                "t": 19.5,
+                "t": 18.75,
                 "text": "drums stop",
                 "bar": 9,
-                "snap": 15.0
+                "snap": 14.25
               },
               {
-                "t": 20.0,
-                "text": "go",
-                "bar": 10,
-                "snap": 17.75
-              },
-              {
-                "t": 35.5,
+                "t": 34.75,
                 "text": "drums stop",
                 "bar": 17,
-                "snap": 31.0
+                "snap": 30.25
               },
               {
-                "t": 36.0,
-                "text": "verse go",
-                "bar": 18,
-                "snap": 33.5
-              },
-              {
-                "t": 51.5,
+                "t": 50.75,
                 "text": "drums stop",
                 "bar": 25,
-                "snap": 47.0
-              },
-              {
-                "t": 52.0,
-                "text": "chorus go",
-                "bar": 26,
-                "snap": 49.5
-              },
-              {
-                "t": 67.5,
-                "text": "drums stop",
-                "bar": 33,
-                "snap": 63.0
-              },
-              {
-                "t": 68.0,
-                "text": "go",
-                "bar": 34,
-                "snap": 65.75
+                "snap": 46.25
               },
               {
                 "t": 84.5,
@@ -14864,28 +14834,10 @@
                 "snap": 88.0
               },
               {
-                "t": 99.5,
+                "t": 98.75,
                 "text": "all stop",
                 "bar": 49,
-                "snap": 95.0
-              },
-              {
-                "t": 100.0,
-                "text": "chorus go",
-                "bar": 50,
-                "snap": 97.5
-              },
-              {
-                "t": 115.5,
-                "text": "drums stop",
-                "bar": 57,
-                "snap": 111.0
-              },
-              {
-                "t": 116.0,
-                "text": "go",
-                "bar": 58,
-                "snap": 113.75
+                "snap": 94.25
               },
               {
                 "t": 132.0,
@@ -14894,40 +14846,22 @@
                 "snap": 128.0
               },
               {
-                "t": 147.5,
+                "t": 146.75,
                 "text": "all stop",
                 "bar": 73,
-                "snap": 143.0
+                "snap": 142.25
               },
               {
-                "t": 148.0,
-                "text": "solo go",
-                "bar": 74,
-                "snap": 145.5
-              },
-              {
-                "t": 163.5,
+                "t": 162.75,
                 "text": "drums stop",
                 "bar": 81,
-                "snap": 159.0
-              },
-              {
-                "t": 164.0,
-                "text": "chorus go",
-                "bar": 82,
-                "snap": 161.5
-              },
-              {
-                "t": 179.5,
-                "text": "drums stop",
-                "bar": 89,
-                "snap": 175.0
+                "snap": 158.25
               },
               {
                 "t": 180.0,
-                "text": "vocal go",
+                "text": "vocal in",
                 "bar": 90,
-                "snap": 177.5
+                "snap": 176.0
               },
               {
                 "t": 196.0,
@@ -15006,13 +14940,13 @@
             "guitars": "7bc0a78c44",
             "other": "1b45663d77",
             "click": "99e90fe1f9",
-            "cues": "d40f4a6ec3"
+            "cues": "8dced88e84"
           },
           "versions": {
-            "all": "7ef1af3950",
+            "all": "004e61f98d",
             "pb-other": "993130f760",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "95550cef1a"
+            "pb-audition": "de1ca6e98d"
           },
           "pb_other": {
             "available": true,
