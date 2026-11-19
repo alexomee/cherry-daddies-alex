@@ -1863,3 +1863,10 @@ pb-other + pb-bass, integrated LUFS по 61 песне программы: «М�
 ## [2026-11-18] song | Now You're Gone: синт-бас +6 дБ
 
 `04_Synth_Bass_2` в pb-other: −1.4 → +4.6 дБ. Причина (Alex): на репетиции синт в басу звучал очень тихо, pb-bass поднимали на +6 дБ, пока в нём не было отдельной партии настоящего баса. pb-other: пик −3.55 dBFS, RMS −24.7 → −21.9 dB, нормализации группы нет. click/all/pb-bass байт в байт прежние, cues.wav прежний, practice-миксы перерендерены. Stage Traxx `--apply`, бэкап `music_library-20261118-230045.sqlite`, остаток ≤ −76 дБ.
+
+## [2026-11-19] song | Supermassive Black Hole вместо Sex on Fire в 12.12
+
+- Sex on Fire снята с 12.12 и перенесена в «Архив» (`tools/setlist_dashboard.py`).
+- Supermassive Black Hole (Muse) из JamZone `cat_12553`: 12 стемов, 120 bpm, 12 базовых cue по структуре и словам `tiles.json`. pb-other = бэки + синт + нойз + синт-бас −6.5 дБ, `peak: limit` (переходы синта 0 dBFS). pb-bass = электробас −6.5 дБ → −19.2 LUFS. Вместе −15.2 LUFS.
+- Stage Traxx: полный синк `--apply` (63 песни, 1 новая, 11 плейлистов), бэкап `music_library-20261119-053819.sqlite`. Плейлист 12.12 = Ты меня не ищи, Попрошу тебя, Владивосток 2000, Supermassive. Дорожки 214.000 с, остаток против рендера ≤ −75 дБ. Прод не публиковался.
+- Открыто: players, GM-800, POD Go не заданы. Страница: [muse-supermassive-black-hole](songs/muse-supermassive-black-hole.md).

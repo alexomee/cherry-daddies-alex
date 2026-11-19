@@ -1,0 +1,20 @@
+{
+  "cat": "cat_12553",
+  "pitch_semitones": 0,
+  "pb-other": {"stems": ["11_Backing_Vocals", "09_Synthesizer", "10_Noise_effects", "04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -6.5}, "peak": "limit"},
+  "pb-bass": {"stems": ["03_Electric_Bass"], "gain_db": {"03_Electric_Bass": -6.5}},
+  "cues": [
+    {"bar": 2, "text": "Supermassive Black Hole all in", "abs_sec": 4.0, "snap_sec": 0.0},
+    {"bar": 18, "beat": 2, "text": "verse in", "abs_sec": 36.5, "snap_sec": 32.5},
+    {"bar": 26, "text": "chorus in", "abs_sec": 52.0, "snap_sec": 48.0},
+    {"bar": 42, "beat": 2, "text": "verse in", "abs_sec": 84.5, "snap_sec": 80.5},
+    {"bar": 46, "text": "guitar in", "abs_sec": 92.0, "snap_sec": 88.0},
+    {"bar": 50, "text": "chorus in", "abs_sec": 100.0, "snap_sec": 96.0},
+    {"bar": 66, "text": "break in", "abs_sec": 132.0, "snap_sec": 128.0},
+    {"bar": 74, "text": "solo in", "abs_sec": 148.0, "snap_sec": 144.0},
+    {"bar": 82, "text": "chorus in", "abs_sec": 164.0, "snap_sec": 160.0},
+    {"bar": 90, "text": "vocal in", "abs_sec": 180.0, "snap_sec": 176.0},
+    {"bar": 98, "text": "outro in", "abs_sec": 196.0, "snap_sec": 192.0},
+    {"bar": 105, "text": "end in", "count": true, "abs_sec": 210.0, "snap_sec": 205.5}
+  ]
+}

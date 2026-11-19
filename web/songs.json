@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-18T23:00:32",
+  "generated": "2026-11-19T05:38:06",
   "counts": {
-    "total": 88,
-    "data": 88,
-    "cues": 88,
-    "playback": 84,
-    "other": 83,
+    "total": 89,
+    "data": 89,
+    "cues": 89,
+    "playback": 85,
+    "other": 84,
     "practice": 82
   },
   "sets": [
@@ -14056,6 +14056,151 @@
             "mutes": []
           },
           "audition": false
+        },
+        {
+          "sid": "Kings of Leon - Sex on Fire",
+          "slug": "bbcf1941bb32",
+          "title": "Sex on Fire",
+          "artist": "Kings of Leon",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 2.8,
+                "text": "Sex on Fire guitar in",
+                "bar": 2,
+                "snap": 0.0
+              },
+              {
+                "t": 9.55,
+                "text": "all in",
+                "bar": 7,
+                "snap": 6.395
+              },
+              {
+                "t": 27.62,
+                "text": "verse in",
+                "bar": 18,
+                "snap": 24.485
+              },
+              {
+                "t": 65.0,
+                "text": "verse in",
+                "bar": 42,
+                "snap": 61.87
+              },
+              {
+                "t": 102.64,
+                "text": "keep going",
+                "bar": 66,
+                "snap": 100.295
+              },
+              {
+                "t": 115.1,
+                "text": "verse in",
+                "bar": 74,
+                "snap": 111.975
+              },
+              {
+                "t": 152.9,
+                "text": "bridge in",
+                "bar": 98,
+                "snap": 149.745
+              },
+              {
+                "t": 178.32,
+                "text": "chorus in",
+                "bar": 114,
+                "snap": 175.225
+              },
+              {
+                "t": 190.61,
+                "text": "keep going",
+                "bar": 122,
+                "snap": 188.245
+              },
+              {
+                "t": 204.02,
+                "text": "end in",
+                "bar": 131,
+                "snap": 200.495
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "Bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "pb-rhythm-guitar"
+            ]
+          },
+          "practice": [
+            "all"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "b5c7d96823",
+            "drums": "52b9e08e74",
+            "keys": "104033df86",
+            "bass": "1305fe28af",
+            "guitars": "0f0c0c45dd",
+            "click": "d3cb779bcc",
+            "cues": "1d052c7bda"
+          },
+          "versions": {
+            "all": "a08434e874",
+            "pb-other": "8ee3b39704",
+            "pb-bass": "2ca9afb555",
+            "pb-audition": "669aec0df6"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "guitars"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
         }
       ]
     },
@@ -14643,85 +14788,100 @@
           "audition": true
         },
         {
-          "sid": "Kings of Leon - Sex on Fire",
-          "slug": "bbcf1941bb32",
-          "title": "Sex on Fire",
-          "artist": "Kings of Leon",
+          "sid": "Muse - Supermassive Black Hole",
+          "slug": "ebdf7d5b7b57",
+          "title": "Supermassive Black Hole",
+          "artist": "Muse",
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 10,
+            "count": 12,
             "list": [
               {
-                "t": 2.8,
-                "text": "Sex on Fire guitar in",
+                "t": 4.0,
+                "text": "Supermassive Black Hole all in",
                 "bar": 2,
                 "snap": 0.0
               },
               {
-                "t": 9.55,
-                "text": "all in",
-                "bar": 7,
-                "snap": 6.395
-              },
-              {
-                "t": 27.62,
+                "t": 36.5,
                 "text": "verse in",
                 "bar": 18,
-                "snap": 24.485
+                "snap": 32.5
               },
               {
-                "t": 65.0,
+                "t": 52.0,
+                "text": "chorus in",
+                "bar": 26,
+                "snap": 48.0
+              },
+              {
+                "t": 84.5,
                 "text": "verse in",
                 "bar": 42,
-                "snap": 61.87
+                "snap": 80.5
               },
               {
-                "t": 102.64,
-                "text": "keep going",
-                "bar": 66,
-                "snap": 100.295
+                "t": 92.0,
+                "text": "guitar in",
+                "bar": 46,
+                "snap": 88.0
               },
               {
-                "t": 115.1,
-                "text": "verse in",
-                "bar": 74,
-                "snap": 111.975
-              },
-              {
-                "t": 152.9,
-                "text": "bridge in",
-                "bar": 98,
-                "snap": 149.745
-              },
-              {
-                "t": 178.32,
+                "t": 100.0,
                 "text": "chorus in",
-                "bar": 114,
-                "snap": 175.225
+                "bar": 50,
+                "snap": 96.0
               },
               {
-                "t": 190.61,
-                "text": "keep going",
-                "bar": 122,
-                "snap": 188.245
+                "t": 132.0,
+                "text": "break in",
+                "bar": 66,
+                "snap": 128.0
               },
               {
-                "t": 204.02,
+                "t": 148.0,
+                "text": "solo in",
+                "bar": 74,
+                "snap": 144.0
+              },
+              {
+                "t": 164.0,
+                "text": "chorus in",
+                "bar": 82,
+                "snap": 160.0
+              },
+              {
+                "t": 180.0,
+                "text": "vocal in",
+                "bar": 90,
+                "snap": 176.0
+              },
+              {
+                "t": 196.0,
+                "text": "outro in",
+                "bar": 98,
+                "snap": 192.0
+              },
+              {
+                "t": 210.0,
                 "text": "end in",
-                "bar": 131,
-                "snap": 200.495
+                "bar": 105,
+                "snap": 205.5
               }
             ]
           },
           "bass": {
             "kind": "playback",
-            "label": "Bass"
+            "label": "Electric Bass"
           },
           "other": {
-            "kind": "layers",
+            "kind": "stems",
             "items": [
-              "pb-rhythm-guitar"
+              "Backing Vocals",
+              "Synthesizer",
+              "Noise effects",
+              "Synth Bass"
             ]
           },
           "practice": [
@@ -14731,6 +14891,10 @@
             {
               "id": "vocal",
               "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
             },
             {
               "id": "drums",
@@ -14749,6 +14913,10 @@
               "label": "Гитары"
             },
             {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
               "id": "click",
               "label": "click"
             },
@@ -14758,25 +14926,29 @@
             }
           ],
           "stem_versions": {
-            "vocal": "b5c7d96823",
-            "drums": "52b9e08e74",
-            "keys": "104033df86",
-            "bass": "1305fe28af",
-            "guitars": "0f0c0c45dd",
-            "click": "d3cb779bcc",
-            "cues": "1d052c7bda"
+            "vocal": "fab45b1fc8",
+            "back_vox": "eb62e6fead",
+            "drums": "2176b62b2e",
+            "keys": "b6fec64df5",
+            "bass": "2f14270c5e",
+            "guitars": "7bc0a78c44",
+            "other": "1b45663d77",
+            "click": "99e90fe1f9",
+            "cues": "4eac93fc9e"
           },
           "versions": {
-            "all": "a08434e874",
-            "pb-other": "8ee3b39704",
-            "pb-bass": "2ca9afb555",
-            "pb-audition": "669aec0df6"
+            "all": "52f850a236",
+            "pb-other": "993130f760",
+            "pb-bass": "fd0120a1a1",
+            "pb-audition": "01d87d2c84"
           },
           "pb_other": {
             "available": true,
             "mutes": [
+              "back_vox",
               "keys",
-              "guitars"
+              "bass",
+              "other"
             ]
           },
           "pb_bass": {

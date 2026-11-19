@@ -1,0 +1,10 @@
+Precount
+Intro
+Verse
+Chorus
+Verse 2
+Chorus 2
+Break
+Instrumental
+Chorus 3
+Outro

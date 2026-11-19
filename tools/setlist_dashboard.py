@@ -214,6 +214,7 @@ SETS = [
         "cls": "archived",
         "songs": [
             ("Eva 2.0", "", "Eva 2.0"),
+            ("Sex on Fire", "Kings of Leon", "Kings of Leon - Sex on Fire"),
         ],
     },
     # Appended LAST on purpose: lyric-launcher numbers sets by flattened position in songs.json
@@ -226,7 +227,7 @@ SETS = [
             ("Ты меня не ищи", "Вирус", "Вирус - Ты меня не ищи"),
             ("Попрошу тебя", "Вирус", "Вирус - Попрошу тебя"),
             ("Владивосток 2000", "Мумий Тролль", "Мумий Тролль - Владивосток 2000"),
-            ("Sex on Fire", "Kings of Leon", "Kings of Leon - Sex on Fire"),
+            ("Supermassive Black Hole", "Muse", "Muse - Supermassive Black Hole"),
         ],
     },
 ]

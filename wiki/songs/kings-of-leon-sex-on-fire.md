@@ -1,13 +1,15 @@
 ---
 type: song
-updated: 2026-11-15
+updated: 2026-11-19
 title: Sex on Fire
 artist: Kings of Leon
-set: 12.12 new songs
+set: Архив (снята с 12.12 2026-11-19)
 status: draft (10 cue, pb-other с pb-rhythm-guitar, всё +5 дБ, pb-bass; в Stage Traxx, прод без pb-bass)
 ---
 
 # Sex on Fire (Kings of Leon)
+
+> **2026-11-19: снята с 12.12** (решение Alex), перенесена в сетлист «Архив». Вместо неё — [Supermassive Black Hole](muse-supermassive-black-hole.md). В Stage Traxx песня осталась в библиотеке, но в плейлистах 12.12 её больше нет.
 
 Четвёртая песня секции **12.12 new songs** (веб-вкладка `new1212`). Импорт 2026-11-15 из JamZone (`cat_20791`, HQ AAC ~124 kb/s): стемы, клик, cue на интро.
 
