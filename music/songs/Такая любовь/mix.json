@@ -4,7 +4,7 @@
     {"bar": 1, "preset": "32C", "abs_sec": 3.556},
     {"bar": 43, "preset": "32D", "abs_sec": 78.222},
     {"bar": 100, "preset": "32C", "abs_sec": 179.556},
-    {"bar": 110, "beat": 3, "preset": "32D", "abs_sec": 198.222}
+    {"bar": 110, "preset": "32D", "abs_sec": 197.333}
   ],
   "bpm": 135.0,
   "pitch_semitones": 0,

@@ -1,11 +1,11 @@
 {
   "gm800": 1,
   "podgo": [
-    {"bar": 1, "preset": "01A", "abs_sec": 3.765},
-    {"bar": 12, "preset": "01B", "abs_sec": 24.471},
-    {"bar": 36, "preset": "01A", "abs_sec": 69.647},
-    {"bar": 52, "preset": "01B", "abs_sec": 99.765},
-    {"bar": 68, "preset": "01A", "abs_sec": 129.882}
+    {"bar": 1, "preset": "01B", "abs_sec": 3.765},
+    {"bar": 12, "preset": "01A", "abs_sec": 24.471},
+    {"bar": 36, "preset": "01B", "abs_sec": 69.647},
+    {"bar": 52, "preset": "01A", "abs_sec": 99.765},
+    {"bar": 68, "preset": "01B", "abs_sec": 129.882}
   ],
   "bpm": 127.5,
   "pitch_semitones": -2,
