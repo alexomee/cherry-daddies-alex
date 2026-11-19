@@ -147,9 +147,16 @@ def now():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
 
 
+# Built by tools/calibration_track.py: real pieces of two songs for setting the desk faders.
+SERVICE_SONGS = [{"sid": "_Калибровка", "title": "Калибровка уровней", "artist": "Cherry Daddies"}]
+
+
 def load_setlist():
     with open(os.path.join(REPO, "web", "songs.json"), encoding="utf-8") as f:
-        return json.load(f)["sets"]
+        sets = json.load(f)["sets"]
+    # Service songs: not on the site and in no set of the programme, but kept in the library.
+    extra = [s for s in SERVICE_SONGS if os.path.isdir(os.path.join(SONGS, s["sid"]))]
+    return sets + ([{"name": "служебное", "songs": extra}] if extra else [])
 
 
 def load_clips():
