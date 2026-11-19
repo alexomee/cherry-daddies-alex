@@ -36,6 +36,8 @@ PHRASE = [("low", [40], 0.8), ("low", [45], 0.8), ("mid", [50], 0.8), ("mid", [5
           ("high", [59], 0.8), ("high", [64], 0.8), ("chord", [40, 47, 52], 1.4)]
 GAP, TAIL = 0.25, 1.0
 EXTRA_CC = {}                     # scene -> [(cc, value)] sent on the Scene Rx channel after loading it
+EXTRA_DT = {}                     # scene -> [(temp-scene address, data)] written after loading it, e.g. the
+                                  # PART SW a CTL button would toggle (CTL buttons cannot be pressed by MIDI)
 
 
 def csum(body):
@@ -67,6 +69,9 @@ class GM800:
         self.out.send_message(HDR + [0x12] + body + [csum(body), 0xF7])
         time.sleep(0.05)
 
+    def close(self):
+        self.out.close_port(); self.inp.close_port()
+
     def scene(self, n, ch):
         self.out.send_message([0xC0 | (ch - 1), n - 1])
         time.sleep(0.8)
@@ -96,7 +101,7 @@ def part_routes(g, part_ch):
         for st in range(6):
             if not sc[st]:
                 routes[st].append(ch)
-        desc[p + 1] = {"sw": ts[4], "level": ts[6], "strings": "".join(str(st + 1) for st in range(6) if not sc[st]),
+        desc["R" if p == 4 else p + 1] = {"sw": ts[4], "level": ts[6], "strings": "".join(str(st + 1) for st in range(6) if not sc[st]),
                        "string_levels": list(sc[7:13])}
     return routes, desc
 
@@ -143,7 +148,10 @@ def gm800(scenes):
     sysb = g.rq(SYS_MIDI, 0x10)
     if not sysb:
         raise SystemExit("GM-800 does not answer SysEx (is BOSS Tone Studio holding the port?)")
-    scene_ch, part_ch, src0 = sysb[0] + 1, [b for b in sysb[1:5]], sysb[8]
+    scene_ch, part_ch, src0 = sysb[0] + 1, [b for b in sysb[1:6]], sysb[8]    # parts 1-4 and R
+    if src0 == NOTE_SRC_USB:          # a previous run was cut off (cable pulled) before it could put
+        print("NOTE SOURCE was left on USB by an interrupted run - will restore GK IN")   # GK IN back
+        src0 = 0
     dev = audio_in("GM-800")
     outdir = os.path.join(OUT, "gm800"); os.makedirs(outdir, exist_ok=True)
     total = sum(h + GAP for _, _, h in PHRASE) + TAIL + 0.3
@@ -154,7 +162,9 @@ def gm800(scenes):
             g.scene(sc, scene_ch)
             for cc, val in EXTRA_CC.get(sc, []):             # e.g. an ASSIGN that swaps parts
                 g.out.send_message([0xB0 | (scene_ch - 1), cc, val])
-            time.sleep(0.2 if EXTRA_CC.get(sc) else 0)
+            for addr, data in EXTRA_DT.get(sc, []):
+                g.dt(addr, data)
+            time.sleep(0.2 if EXTRA_CC.get(sc) or EXTRA_DT.get(sc) else 0)
             nm = g.name()
             routes, pinfo = part_routes(g, part_ch)
             rec = sd.rec(int(total * SR), SR, channels=2, device=dev)
@@ -182,11 +192,15 @@ def gm800(scenes):
             stereo = db(np.sqrt((rec ** 2).mean(1)))
             res[sc] = {"name": nm, "parts": pinfo, "I": lufs_fold(path), "seg": seg, "peak": round(float(
                 20 * np.log10(np.abs(rec).max() + 1e-12)), 1), "fold_loss": round(stereo - db(fold), 1)}
-            kw = k_weight(fold.astype(np.float64))           # loudness of ONE note, over the notes whose
+            # Loudness of ONE note in STEREO (the synth feeds the desk in stereo): BS.1770 sum of the
+            # K-weighted L and R power; a centred sound reads the same as its mono fold + 3.01.
+            # Only notes whose string is open on a part that is ON count.
+            kwl, kwr = k_weight(rec[:, 0].astype(np.float64)), k_weight(rec[:, 1].astype(np.float64))
+            kw = None if kwl is None else kwl ** 2 + kwr ** 2
             open_strings = ({int(c) - 1 for p in pinfo.values() if p["sw"] for c in p["strings"]}
-                            or set(range(6)))                # string is open on a part that is ON
+                            or set(range(6)))
             if kw is not None:
-                lv = [-0.691 + 10 * np.log10(np.mean(kw[int((a + 0.06) * SR):int(b * SR)] ** 2) + 1e-20) + 3.01
+                lv = [-0.691 + 10 * np.log10(np.mean(kw[int((a + 0.06) * SR):int(b * SR)]) + 1e-20)
                       for l, a, b, ns in marks if len(ns) == 1 and string_of(ns[0]) in open_strings]
                 lv = [x for x in lv if x > -60]
                 res[sc]["note"] = round(float(10 * np.log10(np.mean([10 ** (x / 10) for x in lv]))), 1) if lv else None
@@ -199,6 +213,7 @@ def gm800(scenes):
         back = g.rq(SYS_MIDI, 0x10)
         g.scene(1, scene_ch)                                 # leave the synth on MUTE
         print(f"NOTE SOURCE restored to {back[8] if back else '?'} (was {src0}); scene 1 (MUTE) loaded")
+        g.close()
     jp = os.path.join(OUT, "gm800.json")                    # a partial run keeps the other scenes
     old = json.load(open(jp))["scenes"] if os.path.exists(jp) else {}
     old.update({str(k): v for k, v in res.items()})

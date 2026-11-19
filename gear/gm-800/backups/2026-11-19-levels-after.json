@@ -1,10 +1,10 @@
 {
- "date": "2026-11-19 11:10",
- "note": "after levelling to bass -22.1 / F -20.1 / A -24.1; scene 28 scene level put back to 86 (raising it had no effect)",
+ "date": "2026-11-19 11:43",
+ "note": "after levelling to bass -22.1 / F -20.1 / A -24.1",
  "scenes": {
   "2": {
    "name": "AROUND LALALALA",
-   "scene_level": 127,
+   "scene_level": 105,
    "parts": [
     {
      "sw": 0,
@@ -12,7 +12,7 @@
     },
     {
      "sw": 1,
-     "level": 127
+     "level": 96
     },
     {
      "sw": 0,
@@ -56,7 +56,7 @@
   },
   "4": {
    "name": "CASCADA SOLO",
-   "scene_level": 120,
+   "scene_level": 96,
    "parts": [
     {
      "sw": 1,
@@ -134,7 +134,7 @@
   },
   "7": {
    "name": "SOLNbLSHKO BASS",
-   "scene_level": 33,
+   "scene_level": 31,
    "parts": [
     {
      "sw": 1,
@@ -160,7 +160,7 @@
   },
   "8": {
    "name": "SOLNbISHKO LEAD",
-   "scene_level": 60,
+   "scene_level": 57,
    "parts": [
     {
      "sw": 1,
@@ -212,7 +212,7 @@
   },
   "10": {
    "name": "SOLNbLSHKO V2",
-   "scene_level": 122,
+   "scene_level": 115,
    "parts": [
     {
      "sw": 1,
@@ -316,7 +316,7 @@
   },
   "14": {
    "name": "KISLOTNY DJ",
-   "scene_level": 68,
+   "scene_level": 66,
    "parts": [
     {
      "sw": 0,
@@ -342,7 +342,7 @@
   },
   "15": {
    "name": "BETTER ALONE SOL",
-   "scene_level": 105,
+   "scene_level": 101,
    "parts": [
     {
      "sw": 1,
@@ -368,7 +368,7 @@
   },
   "18": {
    "name": "SAXOBEAT SAX",
-   "scene_level": 121,
+   "scene_level": 116,
    "parts": [
     {
      "sw": 0,
@@ -394,7 +394,7 @@
   },
   "19": {
    "name": "SAXOBEAT SYNTH",
-   "scene_level": 127,
+   "scene_level": 121,
    "parts": [
     {
      "sw": 1,
