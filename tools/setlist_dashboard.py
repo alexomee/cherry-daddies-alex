@@ -269,7 +269,7 @@ SETS = [
             ("Ты меня не ищи", "Вирус", "Вирус - Ты меня не ищи"),
             ("Знаешь ли ты", "МакSим", None),
             ("Supermassive Black Hole", "Muse", "Muse - Supermassive Black Hole"),
-            ("Нас не догонят", "t.A.T.u.", None),
+            ("Нас не догонят", "t.A.T.u.", "t.A.T.u. - Not Gonna Get Us (Нас не догонят)"),
         ],
     },
 ]
