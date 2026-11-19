@@ -1,13 +1,15 @@
 {
   "gm800": [
     {"bar": 1,  "scene": 28, "abs_sec": 3.426},
-    {"bar": 11, "scene": 29, "abs_sec": 20.558}
+    {"bar": 11, "scene": 29, "abs_sec": 20.558},
+    {"bar": 28, "scene": 31, "abs_sec": 49.682, "lead": 0},
+    {"bar": 44, "scene": 29, "abs_sec": 77.093}
   ],
   "podgo": "31D",
   "bpm": 140.09,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["keys"], "gain_db": {"keys": 3.5}, "peak": "limit"},
-  "pb-bass": {"stems": ["bass"]},
+  "pb-bass": {"stems": ["bass"], "mute": {"bass": [[28, 44]]}},
   "cut_after_last_cue": 1,
   "cues": [
     {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0},

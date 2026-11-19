@@ -11,10 +11,14 @@
     gmm tones   "<song>" FROM TO 645 --template 7  # ...inside band scene 7 (part 1, others off)
     gmm preview "<song>" FROM TO [--norm]        # in-context mp3 of every take (--norm: at pb level)
     gmm anchor                                   # re-measure the USB -> desk offset
+    gmm build 31 7 645 "POPROSHU BASS"           # new scene in INIT slot 31 = scene 7 + tone 645 in part 1
+    gmm level 31 part1 127                       # PART LEVEL (part 1) / SCENE LEVEL in slot memory
+    gmm scenes "<song>" FROM TO 31 7             # ...re-measure; repeat level until desk ~ pb
 
 FROM..TO = bars of the part (TO exclusive, as "mute"). Constant-tempo songs only.
 Tones are set in the TEMP scene by SysEx on top of an INIT scene (--base 31): nothing is written
-to the GM-800's memory. NOTE SOURCE goes to USB for the run and is ALWAYS put back; scene 1 (MUTE)
+to the GM-800's memory - except `build` / `level`, which write one user slot (SysEx dumps before/after
+in gear/gm-800/backups/sysex/). NOTE SOURCE goes to USB for the run and is ALWAYS put back; scene 1 (MUTE)
 is loaded at the end. Output: analysis/gm800-match/<song>/ (audio not in git).
 
 Level: a take is predicted at the desk through the bass anchor (Солнышко bars 9-17 on scene 7 is
@@ -426,6 +430,117 @@ def cmd_preview(song, b0, b1, stem="bass", lead=2, tail=4, norm=False):
         print(mp3(name, band + s2 + y), f"(desk {desk:.1f}, pb after {pb_after:.1f}{', placed at pb' if norm else ''})")
 
 
+# ---- scene memory (SysEx) -----------------------------------------------------------------------
+HDR = [0xF0, 0x41, 0x10, 0x00, 0x00, 0x00, 0x00, 0x26]
+BACKUPS = os.path.join(REPO, "gear", "gm-800", "backups", "sysex")
+
+
+def csum(b):
+    return (128 - sum(b) % 128) % 128
+
+
+def slot_base(n):                      # user scene n: 40 00 00 00 + (n-1) * 00 10 00 00 (7-bit)
+    v = (n - 1) * 0x10
+    return [0x40 + v // 128, v % 128]
+
+
+class Sx:
+    """Whole-scene SysEx I/O. Input by callback: a polled queue loses the first ~17 of 88 blocks."""
+    def __init__(self):
+        import rtmidi
+        self.o, self.i = rtmidi.MidiOut(), rtmidi.MidiIn()
+        self.o.open_port(self.o.get_ports().index("GM-800")); self.i.open_port(self.i.get_ports().index("GM-800"))
+        self.i.ignore_types(sysex=False, timing=True, active_sense=True)
+        self.buf, self.t = [], time.time(); self.i.set_callback(self._cb)
+
+    def _cb(self, ev, _):
+        m = ev[0]
+        if m and m[0] == 0xF0 and len(m) > 13 and m[8] == 0x12:
+            self.buf.append(m); self.t = time.time()
+
+    def dt(self, addr, data, wait=0.05):
+        body = list(addr) + list(data); self.o.send_message(HDR + [0x12] + body + [csum(body), 0xF7]); time.sleep(wait)
+
+    def dump(self, base):
+        """{"gg bb cc": data} of all 88 blocks of the scene at base ([0x10, 0] = temp)."""
+        out = {}
+        for g in range(6):                                   # scene groups +00..+05
+            b1 = base[1] + g; b0 = base[0] + b1 // 128; b1 %= 128
+            self.buf = []; body = [b0, b1, 0, 0, 0, 1, 0, 0]
+            self.o.send_message(HDR + [0x11] + body + [csum(body), 0xF7]); self.t = t0 = time.time()
+            while time.time() - self.t < 0.6 and time.time() - t0 < 6:
+                time.sleep(0.01)
+            for m in self.buf:
+                out[f"{g:02X} {m[11]:02X} {m[12]:02X}"] = list(m[13:-2])
+        return out
+
+    def write(self, base, blocks):
+        for k, data in sorted(blocks.items()):
+            g, b2, b3 = (int(x, 16) for x in k.split())
+            b1 = base[1] + g
+            self.dt([base[0] + b1 // 128, b1 % 128, b2, b3], data)
+
+    def close(self):
+        self.i.cancel_callback(); self.o.close_port(); self.i.close_port()
+
+
+def scene_name(blocks):
+    return bytes(blocks["00 00 00"][3:19]).decode("ascii", "replace").strip()
+
+
+def backup(sx, slot, tag):
+    os.makedirs(BACKUPS, exist_ok=True)
+    d = sx.dump(slot_base(slot))
+    p = os.path.join(BACKUPS, f"{time.strftime('%Y-%m-%d')}-slot{slot:03d}-{tag}.json")
+    json.dump(d, open(p, "w"), indent=0, sort_keys=True)
+    return d, p
+
+
+def cmd_build(slot, tpl, tone, name, force=False):
+    """New scene = band scene `tpl` with ROM `tone` in part 1 and parts 2-4/R off, built in TEMP (the
+    GM-800 itself resets part 1's TONE MODIFY for the new tone, as in `tones --template`), read back
+    whole and written to user slot `slot` (must be an INIT scene unless --force). Backups before/after."""
+    tab = {r[0]: r for r in tone_table()}
+    _, tn, msb, lsb, pc, _ = tab[tone]
+    sx = Sx()
+    try:
+        before, pb = backup(sx, slot, "before")
+        if len(before) != 88:
+            raise SystemExit(f"slot {slot}: read {len(before)} of 88 blocks, not writing")
+        if "INIT" not in scene_name(before).upper() and not force:
+            raise SystemExit(f"slot {slot} is '{scene_name(before)}', not INIT: refusing (--force to overwrite)")
+        ch = 2                                               # Scene Rx channel (gm-800.md)
+        sx.o.send_message([0xC0 | (ch - 1), tpl - 1]); time.sleep(1.0)
+        sx.dt([0x10, 0x02, 0x00, 0x00], [msb, lsb, pc - 1], 0.5)
+        for p in (1, 2, 3, 4):
+            sx.dt([0x10, 0x02, p, 0x04], [0])
+        time.sleep(0.3)
+        new = sx.dump([0x10, 0x00])
+        if len(new) != 88:
+            raise SystemExit(f"temp scene: read {len(new)} of 88 blocks, not writing")
+        new["00 00 00"][3:19] = list(name.ljust(16)[:16].encode("ascii"))
+        sx.write(slot_base(slot), new); time.sleep(0.5)
+        after, pa = backup(sx, slot, "after")
+        bad = [k for k in new if after.get(k) != new[k]]
+        print(f"slot {slot}: '{scene_name(before)}' -> '{scene_name(after)}' = scene {tpl} + {tone} {tn}; "
+              f"88 blocks written, mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
+        sx.o.send_message([0xC0 | (ch - 1), 0])              # leave the synth on MUTE
+    finally:
+        sx.close()
+
+
+def cmd_level(slot, what, val):
+    """PART LEVEL of part 1 (ToneSelect 1, +06) or SCENE LEVEL (Common, +13) in a slot's memory."""
+    b = slot_base(slot)
+    addr = {"part1": [b[0], b[1] + 2, 0x00, 0x06], "scene": [b[0], b[1], 0x00, 0x13]}[what]
+    sx = Sx()
+    try:
+        sx.dt(addr, [val], 0.3); d = sx.dump(b)
+        print(f"slot {slot} '{scene_name(d)}': part-1 level {d['02 00 00'][6]}, scene level {d['00 00 00'][0x13]}")
+    finally:
+        sx.close()
+
+
 def cmd_anchor():
     a = Song(ANCHOR["song"]); b0, b1 = ANCHOR["line"]
     notes = load_line(a, b0, b1); t0 = notes[0]["t"]
@@ -450,6 +565,10 @@ if __name__ == "__main__":
     cmd = pos[0]
     if cmd == "anchor":
         cmd_anchor(); sys.exit()
+    if cmd == "build":                                    # build SLOT TEMPLATE TONE "NAME" [--force]
+        cmd_build(int(pos[1]), int(pos[2]), int(pos[3]), pos[4], "--force" in a); sys.exit()
+    if cmd == "level":                                    # level SLOT part1|scene VALUE
+        cmd_level(int(pos[1]), pos[2], int(pos[3])); sys.exit()
     song, b0, b1 = Song(pos[1]), int(pos[2]), int(pos[3])
     if cmd == "line":
         transcribe(song, b0, b1, opt("--stem", "bass"))
