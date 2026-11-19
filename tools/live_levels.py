@@ -76,6 +76,31 @@ class GM800:
         return bytes(b for b in (d or []) if b >= 32).decode("ascii", "replace").strip()
 
 
+def string_of(note):
+    """0-based string a note sits on in standard tuning (0 = high E ... 5 = low E)."""
+    return 0 if note >= 64 else 1 if note >= 59 else 2 if note >= 55 else 3 if note >= 50 else 4 if note >= 45 else 5
+
+
+def part_routes(g, part_ch):
+    """string -> MIDI channels of the parts that string plays. MIDI notes ignore a part's
+    STRING MUTE (it belongs to the GK input), so a scene that splits one tone over parts by
+    string (e.g. part 3 = 6th string, part 4 = 5th) would sound doubled if every part got
+    every note. Read the loaded scene's string mutes and route each note like the pickup would."""
+    routes, desc = {st: [] for st in range(6)}, {}
+    for p, ch in enumerate(part_ch):
+        ts, sc = g.rq([0x10, 0x02, p, 0], 12), g.rq([0x10, 0x02, 0x20 + p, 0], 14)
+        if not ts or not sc:
+            for st in routes:                                # no answer: old behaviour
+                routes[st].append(ch)
+            continue
+        for st in range(6):
+            if not sc[st]:
+                routes[st].append(ch)
+        desc[p + 1] = {"sw": ts[4], "level": ts[6], "strings": "".join(str(st + 1) for st in range(6) if not sc[st]),
+                       "string_levels": list(sc[7:13])}
+    return routes, desc
+
+
 def audio_in(name):
     for i, d in enumerate(sd.query_devices()):
         if d["name"].startswith(name) and d["max_input_channels"] > 0:
@@ -121,16 +146,17 @@ def gm800(scenes):
                 g.out.send_message([0xB0 | (scene_ch - 1), cc, val])
             time.sleep(0.2 if EXTRA_CC.get(sc) else 0)
             nm = g.name()
+            routes, pinfo = part_routes(g, part_ch)
             rec = sd.rec(int(total * SR), SR, channels=2, device=dev)
             t0 = time.time(); time.sleep(0.3); marks = []
             for label, notes, hold in PHRASE:
                 a = time.time() - t0
-                for ch in part_ch:
-                    for n in notes:
+                for n in notes:
+                    for ch in routes[string_of(n)]:
                         g.out.send_message([0x90 | ch, n, VEL])
                 time.sleep(hold)
-                for ch in part_ch:
-                    for n in notes:
+                for n in notes:
+                    for ch in routes[string_of(n)]:
                         g.out.send_message([0x80 | ch, n, 0])
                 marks.append((label, a, time.time() - t0)); time.sleep(GAP)
             sd.wait()
@@ -144,7 +170,7 @@ def gm800(scenes):
                 w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR)
                 w.writeframes((np.clip(rec, -1, 1) * 32767).astype("<i2").tobytes())
             stereo = db(np.sqrt((rec ** 2).mean(1)))
-            res[sc] = {"name": nm, "I": lufs_fold(path), "seg": seg, "peak": round(float(
+            res[sc] = {"name": nm, "parts": pinfo, "I": lufs_fold(path), "seg": seg, "peak": round(float(
                 20 * np.log10(np.abs(rec).max() + 1e-12)), 1), "fold_loss": round(stereo - db(fold), 1)}
             r = res[sc]
             print(f"scene {sc:2} {nm:16} I {r['I']}  low {seg['low']:6} mid {seg['mid']:6} "
@@ -158,9 +184,10 @@ def gm800(scenes):
     jp = os.path.join(OUT, "gm800.json")                    # a partial run keeps the other scenes
     old = json.load(open(jp))["scenes"] if os.path.exists(jp) else {}
     old.update({str(k): v for k, v in res.items()})
-    json.dump({"date": time.strftime("%Y-%m-%d %H:%M"), "vel": VEL, "phrase": PHRASE,
-               "scenes": dict(sorted(old.items(), key=lambda kv: int(kv[0])))},
-              open(jp, "w"), ensure_ascii=False, indent=1)
+    text = json.dumps({"date": time.strftime("%Y-%m-%d %H:%M"), "vel": VEL, "phrase": PHRASE,
+                       "scenes": dict(sorted(old.items(), key=lambda kv: int(kv[0])))},
+                      ensure_ascii=False, indent=1)          # serialise first: a failure must not
+    open(jp, "w").write(text)                                # truncate the previous results
     return res
 
 
