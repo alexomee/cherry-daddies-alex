@@ -1,0 +1,1208 @@
+1	Acoustic Piano	71	91	1	1:Ac.Piano
+2	Piano + Strings	71	91	2	1:Ac.Piano
+3	Bright Detune	71	91	3	1:Ac.Piano
+4	Bright JD Piano	71	91	4	2:Pop Piano
+5	MIDI Grand	71	91	5	2:Pop Piano
+6	MK-80 PianoBlend	71	91	6	2:Pop Piano
+7	Fantasy Piano	71	91	7	2:Pop Piano
+8	Digi Chime Blend	71	91	8	2:Pop Piano
+9	Bright E.Grand	71	91	9	3:E.Grand Piano
+10	Detune E.Grand	71	91	10	3:E.Grand Piano
+11	Simple E.Piano     71   91   11   4:E.Piano1        69    12 Str Guitar 1	71	91	69	16:Ac.Guitar
+12	Dyno EP Lite       71   91   12   4:E.Piano1        70    12 StrGtr Unison	71	91	70	16:Ac.Guitar
+13	70s Suitcase EP    71   91   13   4:E.Piano1        71    12 StrGtr Oct	71	91	71	16:Ac.Guitar
+14	Phaser EP          71   91   14   4:E.Piano1        72    12 Str Guitar 2	71	91	72	16:Ac.Guitar
+15	Chorus EP          71   91   15   4:E.Piano1        73    12 Str Nylon Gtr	71	91	73	16:Ac.Guitar
+16	60s EP Trem        71   91   16   4:E.Piano1        74    Nylon Gtr + Str	71	91	74	16:Ac.Guitar
+17	SA Wide Piano      71   91   17   4:E.Piano1        75    Simple Jazz Gtr	71	91	75	17:E.Guitar
+18	Simple SA EP       71   91   18   4:E.Piano1        76    Nice Oct Gtr	71	91	76	17:E.Guitar
+19	Chorus Water EP    71   91   19   5:E.Piano2        77    JC ST BackingGtr	71	91	77	17:E.Guitar
+20	Bright Tine EP     71   91   20   5:E.Piano2        78    JV ST Guitar	71	91	78	17:E.Guitar
+21	80s Soft FM EP     71   91   21   5:E.Piano2        79    Distortion 1	71	91	79	18:Dist.Guitar
+22	MK-80 Chorus EP    71   91   22   5:E.Piano2        80    Distortion 2	71	91	80	18:Dist.Guitar
+23	Crystal EP         71   91   23   5:E.Piano2        81    Distortion 3	71	91	81	18:Dist.Guitar
+24	Nylon EP Blend     71   91   24   5:E.Piano2        82    Distortion 4	71	91	82	18:Dist.Guitar
+25	EP + Strings       71   91   25   5:E.Piano2        83    Digi Dist Guitar	71	91	83	18:Dist.Guitar
+26	Warm Jazz Organ	71	91	26	6:E.Organ
+27	Perc Jazz Org 1	71	91	27	6:E.Organ
+28	Praise Organ	71	91	28	6:E.Organ
+29	Vintage Cho Org	71	91	29	6:E.Organ
+30	Fullness Organ	71	91	30	6:E.Organ
+31	Soft B Organ	71	91	31	6:E.Organ
+32	Rocker Organ	71	91	32	6:E.Organ
+33	Perc Jazz Org 2	71	91	33	6:E.Organ
+34	Perc Organ Amp	71	91	34	6:E.Organ
+35	VK Rotary Dist 1	71	91	35	6:E.Organ
+36	VK Rotary Dist 2	71	91	36	6:E.Organ
+37	Whisper VK Organ	71	91	37	6:E.Organ
+38	Syn Tri Organ	71	91	38	6:E.Organ
+39	96 Vintage Organ	71	91	39	6:E.Organ
+40	Old Fashion Org	71	91	40	6:E.Organ
+41	D-50 Rotary Org	71	91	41	6:E.Organ
+42	Cathedral Org	71	91	42	7:Pipe Organ
+43	Grand Pipes Org	71	91	43	7:Pipe Organ
+44	Harpsichord 1	71	91	44	9:Harpsichord
+45	Harpsichord 2	71	91	45	9:Harpsichord
+46	Clav	71	91	46	10:Clav
+47	Bright Clav	71	91	47	10:Clav
+48	Touch Wah Clav	71	91	48	10:Clav
+49	Auto Wah Clav	71	91	49	10:Clav
+50	Phaser Clav	71	91	50	10:Clav
+51	Musette	71	91	51	12:Accordion
+52	Simple Harmonica	71	91	52	13:Harmonica
+53	Harmonica Vib	71	91	53	13:Harmonica
+54	Harmonica Dist	71	91	54	13:Harmonica
+55	Pure Bell	71	91	55	14:Bell
+56	Organ Bell	71	91	56	14:Bell
+57	JP-80 Bell	71	91	57	14:Bell
+58	FM Sparkles Bell	71	91	58	14:Bell
+59	Snowflakes Bell	71	91	59	14:Bell
+60	Agogo Tri Bell	71	91	60	14:Bell
+61	X-Mod Bell	71	91	61	14:Bell
+62	Warm Vibraphone	71	91	62	15:Mallet
+63	Hard Marimba	71	91	63	15:Mallet
+64	Funny Mallet	71	91	64	15:Mallet
+65	Simple Nylon Gtr	71	91	65	16:Ac.Guitar
+66	Nylon Gtr Bright	71	91	66	16:Ac.Guitar
+67	Steel Guitar 1	71	91	67	16:Ac.Guitar
+68	Steel Guitar 2	71	91	68	16:Ac.Guitar
+84	Ac.Bass 1	71	91	84	19:Ac.Bass
+85	Ac.Bass 2	71	91	85	19:Ac.Bass
+86	Ac.Bass+Cymbal	71	91	86	19:Ac.Bass
+87	Finger E.Bass 1	71	91	87	20:E.Bass
+88	Finger E.Bass 2	71	91	88	20:E.Bass
+89	Jazz Bass Slap	71	91	89	20:E.Bass
+90	Jazz Bass /Slap	71	91	90	20:E.Bass
+91	Bright Pick Bass	71	91	91	20:E.Bass
+92	Soft Pick Bass	71	91	92	20:E.Bass
+93	Simple Fretless	71	91	93	20:E.Bass
+94	Fretless Chorus	71	91	94	20:E.Bass
+95	Fretless Delay	71	91	95	20:E.Bass
+96	8 Str Fretless	71	91	96	20:E.Bass
+97	MG Saws Bass	71	91	97	21:Synth Bass
+98	MG Saw Bass	71	91	98	21:Synth Bass
+99	Hard House Bass	71	91	99	21:Synth Bass
+100	Acid Bass	71	91	100	21:Synth Bass
+101	Reso Saw Bass	71	91	101	21:Synth Bass
+102	Reso Oct Bass	71	91	102	21:Synth Bass
+103	Spike Saw Bass	71	91	103	21:Synth Bass
+104	101 Saw Bass	71	91	104	21:Synth Bass
+105	R&B Saw Bass	71	91	105	21:Synth Bass
+106	Decay Bounce Bs	71	91	106	21:Synth Bass
+107	WhiteNz Sync Bs	71	91	107	21:Synth Bass
+108	Modular Bass	71	91	108	21:Synth Bass
+109	Unison Atk Bass1	71	91	109	21:Synth Bass
+110	Unison Atk Bass2	71	91	110	21:Synth Bass
+111	P5 Bass	71	91	111	21:Synth Bass
+112	Soft Sqr Saw Bs	71	91	112	21:Synth Bass
+113	Alpha Syn Bass	71	91	113	21:Synth Bass
+114	Wonder Syn Bass	71	91	114	21:Synth Bass
+115	MG Detune Bass	71	91	115	21:Synth Bass
+116	MG Saw Sqr Bass	71	91	116	21:Synth Bass
+117	106 Bass	71	91	117	21:Synth Bass
+118	Juno Sub Bass	71	91	118	21:Synth Bass
+119	R&B Sqr Bass	71	91	119	21:Synth Bass
+120	JP-8 Bass	71	91	120	21:Synth Bass
+121	Crizzle Syn Bass	71	91	121	21:Synth Bass
+122	Tri Syn Bass	71	91	122	21:Synth Bass
+123	FM Bass	71	91	123	21:Synth Bass
+124	Dist 808Style Bs	71	91	124	21:Synth Bass
+125	Bit Subby Bass	71	91	125	21:Synth Bass
+126	Dirt Sub Bass	71	91	126	21:Synth Bass
+127	Dust Sub Bass	71	91	127	21:Synth Bass
+128	Dark Sub Bass	71	91	128	21:Synth Bass
+129	XMod Rubber Bass	71	92	1	21:Synth Bass
+130	Mini Ladder Bass	71	92	2	21:Synth Bass
+131	XMod Dist Bass	71	92	3	21:Synth Bass
+132	Wobble Bass	71	92	4	21:Synth Bass
+133	Reso Moist Bass	71	92	5	21:Synth Bass
+134	Natural Sitar	71	92	6	22:Plucked/Stroke
+135	E.Sitar	71	92	7	22:Plucked/Stroke
+136	Octave E.Sitar	71	92	8	22:Plucked/Stroke
+137	Soft E.Sitar	71	92	9	22:Plucked/Stroke
+138	Sitar + Bell	71	92	10	22:Plucked/Stroke
+139	Santur 1	71	92	11	22:Plucked/Stroke
+140	Santur 2	71	92	12	22:Plucked/Stroke
+141	Simple Koto	71	92	13	22:Plucked/Stroke
+142	Harp 1	71	92	14	22:Plucked/Stroke
+143	Harp 2	71	92	15	22:Plucked/Stroke
+144	Violin Vib	71	92	16	23:Solo Strings
+145	Dolce Strings	71	92	17	24:Ensemble Strings
+146	Marcato Strings	71	92	18	24:Ensemble Strings
+147	Strings Attack	71	92	19	24:Ensemble Strings
+148	Octave Strings 1	71	92	20	24:Ensemble Strings
+149	Octave Strings 2	71	92	21	24:Ensemble Strings
+150	Lo-Fi Comp Str	71	92	22	24:Ensemble Strings
+151	Chamber Ensemble	71	92	23	25:Orchestral
+152	Bright Trumpet	71	92	24	26:Solo Brass
+153	Majestic Tp	71	92	25	26:Solo Brass
+154	Mute Trumpet	71	92	26	26:Solo Brass
+155	Soft Tb	71	92	27	26:Solo Brass
+156	Tp Section	71	92	28	27:Ensemble Brass
+157	Tp Sax Section	71	92	29	27:Ensemble Brass
+158	Oct Brass Sect 1	71	92	30	27:Ensemble Brass
+159	Oct Brass Sect 2	71	92	31	27:Ensemble Brass
+160	Soft Brass Sect1	71	92	32	27:Ensemble Brass
+161	Soft Brass Sect2	71	92	33	27:Ensemble Brass
+162	Oboe Vib	71	92	34	28:Wind
+163	Simple Oboe	71	92	35	28:Wind
+164	Clarinet SlowVib	71	92	36	28:Wind
+165	Simple Clarinet	71	92	37	28:Wind
+166	Bagpipe + Shaku	71	92	38	28:Wind
+167	Flute Vib	71	92	39	29:Flute
+168	Jazz Flute	71	92	40	29:Flute
+169	Pan Flute 1	71	92	41	29:Flute
+170	Pan Flute 2	71	92	42	29:Flute
+171	Dyna Sop Sax	71	92	43	30:Sax
+172	Dyna Alto Sax	71	92	44	30:Sax
+173	Dyna Tenor Sax	71	92	45	30:Sax
+174	Tenor Breathy	71	92	46	30:Sax
+175	Dyna BaritoneSax	71	92	47	30:Sax
+176	Bigband Sax Sect	71	92	48	30:Sax
+177	LA Sax Section	71	92	49	30:Sax
+178	Pop Sax Section	71	92	50	30:Sax
+179	Choir Aahs Dly	71	92	51	32:Vox/Choir
+180	VP-330 SoftChoir	71	92	52	32:Vox/Choir
+181	Female Syn Vox	71	92	53	32:Vox/Choir
+182	Vox Pad	71	92	54	32:Vox/Choir
+183	Angel Calm Voice	71	92	55	32:Vox/Choir
+184	A E I O Voice	71	92	56	32:Vox/Choir
+185	Jazz Scat 1	71	92	57	33:Scat
+186	Jazz Scat 2	71	92	58	33:Scat
+187	Jazz Voice Doos	71	92	59	33:Scat
+188	Classic Saw Lead	71	92	60	34:Synth Lead
+189	Warm TB Saw Ld	71	92	61	34:Synth Lead
+190	GR-300 Saw Lead	71	92	62	34:Synth Lead
+191	GR-300 Detune Ld	71	92	63	34:Synth Lead
+192	GR Saw Chorus 1	71	92	64	34:Synth Lead
+193	GR Saw Chorus 2	71	92	65	34:Synth Lead
+194	Detune Pulse Ld	71	92	66	34:Synth Lead
+195	Fat GR Saw Lead	71	92	67	34:Synth Lead
+196	TB Detune Lead	71	92	68	34:Synth Lead
+197	Edge Boost Sweep	71	92	69	34:Synth Lead
+198	Fat Mask Dist Ld	71	92	70	34:Synth Lead
+199	Detune Saw Lead	71	92	71	34:Synth Lead
+200	Windy Saw Lead	71	92	72	34:Synth Lead
+201	Funky Reso Lead	71	92	73	34:Synth Lead
+202	Smooth Lead	71	92	74	34:Synth Lead
+203	Triangle Lead	71	92	75	34:Synth Lead
+204	Detune Soft Lead	71	92	76	34:Synth Lead
+205	Simple Soft Lead	71	92	77	34:Synth Lead
+206	Soft Vib Lead	71	92	78	34:Synth Lead
+207	Analog Vox Lead	71	92	79	34:Synth Lead
+208	Pulse Vib Lead	71	92	80	34:Synth Lead
+209	Waspy Pulse Lead	71	92	81	34:Synth Lead
+210	Square Edge Lead	71	92	82	34:Synth Lead
+211	Simple Square Ld	71	92	83	34:Synth Lead
+212	Square Easy Lead	71	92	84	34:Synth Lead
+213	Blow Square Lead	71	92	85	34:Synth Lead
+214	Detune Square Ld	71	92	86	34:Synth Lead
+215	Atk Nz Syn Lead	71	92	87	34:Synth Lead
+216	7th Stack Sqr Ld	71	92	88	34:Synth Lead
+217	Oct Square Lead	71	92	89	34:Synth Lead
+218	JP-6 Lead	71	92	90	34:Synth Lead
+219	Atk Bell Lead	71	92	91	34:Synth Lead
+220	Tri Stack Lead	71	92	92	34:Synth Lead
+221	Simple Tri Ld	71	92	93	34:Synth Lead
+222	Soft Tri Vib Ld	71	92	94	34:Synth Lead
+223	Simple Sine Ld	71	92	95	34:Synth Lead
+224	Warm Sine Lead	71	92	96	34:Synth Lead
+225	XMod Soft Lead	71	92	97	34:Synth Lead
+226	Sync Saw Lead	71	92	98	34:Synth Lead
+227	JP-6 Ring Lead	71	92	99	34:Synth Lead
+228	Sync Lead 1	71	92	100	34:Synth Lead
+229	Sync Lead 2	71	92	101	34:Synth Lead
+230	Fat Sync Lead	71	92	102	34:Synth Lead
+231	Sync Lover	71	92	103	34:Synth Lead
+232	Metal Sync Ld	71	92	104	34:Synth Lead
+233	Dist Sync Atk Ld	71	92	105	34:Synth Lead
+234	Unison Saw Ld 1	71	92	106	34:Synth Lead
+235	Unison Fat Lead	71	92	107	34:Synth Lead
+236	Unison Saw Ld 2	71	92	108	34:Synth Lead
+237	Mod Swallow Ld	71	92	109	34:Synth Lead
+238	Dist Syn Vox Ld	71	92	110	34:Synth Lead
+239	Buzz Square Ld	71	92	111	34:Synth Lead
+240	XMod Hard Lead	71	92	112	34:Synth Lead
+241	Hoover Hard Lead	71	92	113	34:Synth Lead
+242	JP-8 Soft Brass	71	92	114	35:Synth Brass
+243	Juno Soft Brass	71	92	115	35:Synth Brass
+244	BrightAtk Brass1	71	92	116	35:Synth Brass
+245	JX Cream Brass	71	92	117	35:Synth Brass
+246	Soft Saws Brass	71	92	118	35:Synth Brass
+247	80s Syn Brass 1	71	92	119	35:Synth Brass
+248	JP-8000 Brass	71	92	120	35:Synth Brass
+249	JP-8 Brass	71	92	121	35:Synth Brass
+250	BrightAtk Brass2	71	92	122	35:Synth Brass
+251	Retro Brass	71	92	123	35:Synth Brass
+252	80s Syn Brass 2	71	92	124	35:Synth Brass
+253	80s Syn Brass 3	71	92	125	35:Synth Brass
+254	Soaring Horns 1	71	92	126	35:Synth Brass
+255	Soaring Horns 2	71	92	127	35:Synth Brass
+256	Bright Brass Oct	71	92	128	35:Synth Brass
+257	Analog Brass	71	93	1	35:Synth Brass
+258	Horn Blast Brass	71	93	2	35:Synth Brass
+259	JP Soft Strings	71	93	3	36:Synth Pad/Str
+260	OB Bright Str	71	93	4	36:Synth Pad/Str
+261	PWM Slow Strings	71	93	5	36:Synth Pad/Str
+262	PWM Warm Pad	71	93	6	36:Synth Pad/Str
+263	PWM Soft Pad	71	93	7	36:Synth Pad/Str
+264	Greek Power Pad	71	93	8	36:Synth Pad/Str
+265	Vintage Orch Pad	71	93	9	36:Synth Pad/Str
+266	Soft Syn Strings	71	93	10	36:Synth Pad/Str
+267	Soft Vib Pad	71	93	11	36:Synth Pad/Str
+268	Warm Tri Pad	71	93	12	36:Synth Pad/Str
+269	D-50 Heaven Pad	71	93	13	36:Synth Pad/Str
+270	JP-6 Pad	71	93	14	36:Synth Pad/Str
+271	GR-700 Pad	71	93	15	36:Synth Pad/Str
+272	Soft Glass Pad	71	93	16	36:Synth Pad/Str
+273	Bright Glass Pad	71	93	17	36:Synth Pad/Str
+274	Moving Glass Pad	71	93	18	36:Synth Pad/Str
+275	Awakening Pad	71	93	19	36:Synth Pad/Str
+276	Wide Scape Pad	71	93	20	36:Synth Pad/Str
+277	Bright Sweep 1	71	93	21	36:Synth Pad/Str
+278	Bright Sweep 2	71	93	22	36:Synth Pad/Str
+279	Phase Pad 1	71	93	23	36:Synth Pad/Str
+280	Phase Pad 2	71	93	24	36:Synth Pad/Str
+281	Angels Saw Pad	71	93	25	36:Synth Pad/Str
+282	Analog Drama Pad	71	93	26	36:Synth Pad/Str
+283	Voyager Pad	71	93	27	36:Synth Pad/Str
+284	Sawchestra Pad	71	93	28	36:Synth Pad/Str
+285	VoiceFormant Pad	71	93	29	36:Synth Pad/Str
+286	Jet Str Ens Pad	71	93	30	36:Synth Pad/Str
+287	Aurora Pad	71	93	31	36:Synth Pad/Str
+288	Rhythmical Pad	71	93	32	36:Synth Pad/Str
+289	Cosmic Rays Pad	71	93	33	36:Synth Pad/Str
+290	Soft Wafting Org	71	93	34	36:Synth Pad/Str
+291	5th Delay Pad	71	93	35	36:Synth Pad/Str
+292	Tuned Nz Pad	71	93	36	36:Synth Pad/Str
+293	D-50 FantasiaPad	71	93	37	37:Synth Bellpad
+294	D-50 Stack Pad	71	93	38	37:Synth Bellpad
+295	D-50 Bell Pad	71	93	39	37:Synth Bellpad
+296	Bright Heaven	71	93	40	37:Synth Bellpad
+297	Phantasy Pad	71	93	41	37:Synth Bellpad
+298	Dreaming Pad	71	93	42	37:Synth Bellpad
+299	Bright BellPad 1	71	93	43	37:Synth Bellpad
+300	Bright BellPad 2	71	93	44	37:Synth Bellpad
+301	Magichand Pad	71	93	45	37:Synth Bellpad
+302	Bright Saw Poly	71	93	46	38:Synth PolyKey
+303	Bright Cho Key 1	71	93	47	38:Synth PolyKey
+304	Square Saw Key	71	93	48	38:Synth PolyKey
+305	Juno Saw Poly	71	93	49	38:Synth PolyKey
+306	Reso Syn Poly	71	93	50	38:Synth PolyKey
+307	Fusion Decay Key	71	93	51	38:Synth PolyKey
+308	Juno-60 Poly	71	93	52	38:Synth PolyKey
+309	Detune Syn Poly	71	93	53	38:Synth PolyKey
+310	BPF Poly	71	93	54	38:Synth PolyKey
+311	Analogical Key	71	93	55	38:Synth PolyKey
+312	Synth Edge Poly	71	93	56	38:Synth PolyKey
+313	Bright Cho Key 2	71	93	57	38:Synth PolyKey
+314	Super Saw Poly 1	71	93	58	38:Synth PolyKey
+315	Super Saw Poly 2	71	93	59	38:Synth PolyKey
+316	Trance Syn Poly	71	93	60	38:Synth PolyKey
+317	Super Saw Key	71	93	61	38:Synth PolyKey
+318	Digitaless Key	71	93	62	38:Synth PolyKey
+319	Bright Syn Poly	71	93	63	38:Synth PolyKey
+320	Power Stack Key	71	93	64	38:Synth PolyKey
+321	Juno Poly	71	93	65	38:Synth PolyKey
+322	Super Saw Poly 3	71	93	66	38:Synth PolyKey
+323	Moving Reso Poly	71	93	67	38:Synth PolyKey
+324	P5 Saw Stack	71	93	68	38:Synth PolyKey
+325	PWM Sub Key	71	93	69	38:Synth PolyKey
+326	JP-6 Key	71	93	70	38:Synth PolyKey
+327	Square Key	71	93	71	38:Synth PolyKey
+328	Analog Dream Key	71	93	72	38:Synth PolyKey
+329	Warm Saw Key	71	93	73	38:Synth PolyKey
+330	Bright Pulse Key	71	93	74	38:Synth PolyKey
+331	Wire Key	71	93	75	38:Synth PolyKey
+332	Sunrise Key	71	93	76	38:Synth PolyKey
+333	Santur Syn Key	71	93	77	38:Synth PolyKey
+334	Mallet + Pipes	71	93	78	38:Synth PolyKey
+335	Tabla Syn Key	71	93	79	38:Synth PolyKey
+336	Freeze FXM Syn	71	93	80	38:Synth PolyKey
+337	Intro Sweep 1	71	93	81	39:Synth FX
+338	Intro Sweep 2	71	93	82	39:Synth FX
+339	Ring Mod Sqr	71	93	83	39:Synth FX
+340	Ring Mod Sweep	71	93	84	39:Synth FX
+341	Noise Sweep Down	71	93	85	39:Synth FX
+342	Noise Sweep Up	71	93	86	39:Synth FX
+343	Inertial Force	71	93	87	39:Synth FX
+344	Abyss World	71	93	88	39:Synth FX
+345	Night Shadow	71	93	89	39:Synth FX
+346	Chip Sound 1	71	93	90	39:Synth FX
+347	Chip Sound 2	71	93	91	39:Synth FX
+348	Chip Sound 3	71	93	92	39:Synth FX
+349	Progre Pluck	71	93	93	40:Synth Pluck
+350	Saw Seq	71	93	94	40:Synth Pluck
+351	Reso Saw Seq	71	93	95	40:Synth Pluck
+352	Super Saw Mild	71	93	96	40:Synth Pluck
+353	PW Dynamic Pluck	71	93	97	40:Synth Pluck
+354	Lo-Fi Comp Pluck	71	93	98	40:Synth Pluck
+355	Atk Sine Pluck	71	93	99	40:Synth Pluck
+356	Sharp Pizz Pluck	71	93	100	40:Synth Pluck
+357	Syn Vox Seq	71	93	101	40:Synth Pluck
+358	Funny Pluck	71	93	102	40:Synth Pluck
+359	Soft Chime Pluck	71	93	103	40:Synth Pluck
+360	5th FXM Pluck	71	93	104	40:Synth Pluck
+361	7th Saw Seq	71	93	105	40:Synth Pluck
+362	Intro Pulse 1	71	93	106	42:Pulsating
+363	Intro Pulse 2	71	93	107	42:Pulsating
+364	Intro Pulse 3	71	93	108	42:Pulsating
+365	Saw Pluck Pulse	71	93	109	42:Pulsating
+366	Saw Step Beat	71	93	110	42:Pulsating
+367	SuperSaw Slice 1	71	93	111	42:Pulsating
+368	SuperSaw Slice 2	71	93	112	42:Pulsating
+369	SuperSaw Slice 3	71	93	113	42:Pulsating
+370	Syn Bass Beat	71	93	114	42:Pulsating
+371	Sin Rhythm	71	93	115	42:Pulsating
+372	Sin+Nz Rhythm 1	71	93	116	42:Pulsating
+373	Sin+Nz Rhythm 2	71	93	117	42:Pulsating
+374	Sin+Nz Rhythm 3	71	93	118	42:Pulsating
+375	Sin+Nz Rhythm 4	71	93	119	42:Pulsating
+376	Sin+Nz Rhythm 5	71	93	120	42:Pulsating
+377	Rhythm + Bs 1	71	93	121	42:Pulsating
+378	Rhythm + Bs 2	71	93	122	42:Pulsating
+379	Rhythm + Bs 3	71	93	123	42:Pulsating
+380	Rhythm + Bs 4	71	93	124	42:Pulsating
+381	Rhythm + Bs 5	71	93	125	42:Pulsating
+382	Rhythm + Bs 6	71	93	126	42:Pulsating
+383	Rhythm + Bs 7	71	93	127	42:Pulsating
+384	Side Chain 1	71	93	128	42:Pulsating
+385	Side Chain 2	71	94	1	42:Pulsating
+386	Fat Syn Beat	71	94	2	42:Pulsating
+387	Square Pulse	71	94	3	42:Pulsating
+388	S&H Reso Beat	71	94	4	42:Pulsating
+389	JV Temple Beat	71	94	5	42:Pulsating
+390	Running Pulse	71	94	6	42:Pulsating
+391	Chord Pulse	71	94	7	42:Pulsating
+392	Warm Bell Pulse	71	94	8	42:Pulsating
+393	Bright Syn Pulse	71	94	9	42:Pulsating
+394	Reso Syn Pulse	71	94	10	42:Pulsating
+395	DistTBStepPhaser	71	94	11	42:Pulsating
+396	Flanger Pulse	71	94	12	42:Pulsating
+397	S&H Filter Pulse	71	94	13	42:Pulsating
+398	Dance Slicer	71	94	14	42:Pulsating
+399	Wobble Pulse	71	94	15	42:Pulsating
+400	Bounce Noize 1	71	94	16	42:Pulsating
+401	Bounce Noize 2	71	94	17	42:Pulsating
+402	Reso Pulse Pad	71	94	18	42:Pulsating
+403	Soft Pulse Pad	71	94	19	42:Pulsating
+404	Pulse Layer	71	94	20	42:Pulsating
+405	Night Zoon	71	94	21	42:Pulsating
+406	Soft Reso Pulse	71	94	22	42:Pulsating
+407	Ring Pulse	71	94	23	42:Pulsating
+408	CeremonyTimpani	71	94	24	47:Percussion
+409	Ride Cymbal	71	94	25	47:Percussion
+410	Piano 1	87	85	1	1:Ac.Piano
+411	Piano 1 w	87	85	2	1:Ac.Piano
+412	Piano 1 d	87	85	3	1:Ac.Piano
+413	Piano 1 Bright	87	85	4	1:Ac.Piano
+414	Piano 1 Amp	87	85	5	1:Ac.Piano
+415	Piano 1 w 2	87	85	6	1:Ac.Piano
+416	Piano + Str 1	87	85	7	1:Ac.Piano
+417	Piano + Str 2	87	85	8	1:Ac.Piano
+418	Piano + Choir 1	87	85	9	1:Ac.Piano
+419	Piano + Choir 2	87	85	10	1:Ac.Piano
+420	Piano + Pad 1	87	85	11	1:Ac.Piano
+421	Piano + Pad 2	87	85	12	1:Ac.Piano
+422	Healing Piano	87	85	13	1:Ac.Piano
+423	Piano Vib	87	85	14	1:Ac.Piano
+424	Piano Dly	87	85	15	1:Ac.Piano
+425	Piano 2	87	85	16	1:Ac.Piano
+426	Piano 2 w	87	85	17	1:Ac.Piano
+427	JD Piano	87	85	18	1:Ac.Piano
+428	JD Piano w	87	85	19	1:Ac.Piano
+429	Piano 3	87	85	20	3:E.Grand Piano
+430	Piano 3 w	87	85	21	3:E.Grand Piano
+431	Piano 3 w 2	87	85	22	3:E.Grand Piano
+432	Honky-tonk	87	85	23	2:Pop Piano
+433	Honky-tonk w	87	85	24	2:Pop Piano
+434	Honky-tonk w 2	87	85	25	2:Pop Piano
+458	Harpsichord	87	85	49	9:Harpsichord
+459	Coupled Harpsi.	87	85	50	9:Harpsichord
+460	Harpsichord w	87	85	51	9:Harpsichord
+461	Harpsichord w 2	87	85	52	9:Harpsichord
+462	Harpsichord o	87	85	53	9:Harpsichord
+463	Clav 1	87	85	54	10:Clav
+464	Clav 1 w	87	85	55	10:Clav
+465	Clav 1 Phaser	87	85	56	10:Clav
+466	Clav 2	87	85	57	10:Clav
+467	Clav 2 w	87	85	58	10:Clav
+468	Pulse Clav 1	87	85	59	10:Clav
+469	Pulse Clav 1 w	87	85	60	10:Clav
+470	Pulse Clav 1 w 2	87	85	61	10:Clav
+471	Pulse Clav 2	87	85	62	10:Clav
+472	Biting Clav	87	85	63	10:Clav
+473	Analog Clav	87	85	64	10:Clav
+474	Celesta	87	85	65	11:Celesta
+475	Celesta w	87	85	66	11:Celesta
+476	Glockenspiel	87	85	67	15:Mallet
+477	Glockenspiel w	87	85	68	15:Mallet
+478	Music Box	87	85	69	22:Plucked/Stroke
+479	Music Box w	87	85	70	22:Plucked/Stroke
+480	Pops Seq 1	87	85	71	22:Plucked/Stroke
+481	Pops Seq 1 Atk	87	85	72	22:Plucked/Stroke
+482	Vibraphone	87	85	73	15:Mallet
+483	Vibraphone w	87	85	74	15:Mallet
+484	Vibraphone w 2	87	85	75	15:Mallet
+485	Vibraphone Trem	87	85	76	15:Mallet
+486	Jazz Vib	87	85	77	15:Mallet
+487	Jazz Vib w	87	85	78	15:Mallet
+488	Marimba	87	85	79	15:Mallet
+489	Marimba w	87	85	80	15:Mallet
+490	Marimba w 2	87	85	81	15:Mallet
+491	Bs Marimba 1	87	85	82	15:Mallet
+492	Bs Marimba 2	87	85	83	15:Mallet
+493	Xylophone 1	87	85	84	15:Mallet
+494	Xylophone 1 w	87	85	85	15:Mallet
+495	Xylophone 1 w 2	87	85	86	15:Mallet
+496	Xylophone 2	87	85	87	15:Mallet
+497	Kalimbells	87	85	88	15:Mallet
+498	Pops Seq 2	87	85	89	15:Mallet
+499	Pops Seq 2 w	87	85	90	15:Mallet
+500	Pops Seq 2 Atk	87	85	91	15:Mallet
+501	Pops Seq 3	87	85	92	15:Mallet
+502	Pops Seq 3 Atk	87	85	93	15:Mallet
+503	Ethno Keys	87	85	94	15:Mallet
+504	Ethno Keys Dly	87	85	95	15:Mallet
+505	Toy Box	87	85	96	15:Mallet
+506	Tubular Bells	87	85	97	14:Bell
+507	Tubular Bells w	87	85	98	14:Bell
+508	Church Bell	87	85	99	14:Bell
+509	Church Bell w	87	85	100	14:Bell
+510	Carillon	87	85	101	14:Bell
+511	Carillon w	87	85	102	14:Bell
+512	Santur	87	85	103	15:Mallet
+513	Santur w	87	85	104	15:Mallet
+514	Organ 1	87	85	105	6:E.Organ
+515	Organ 1 Rtry	87	85	106	6:E.Organ
+516	Tremolo Organ	87	85	107	6:E.Organ
+517	Tremolo Organ w	87	85	108	6:E.Organ
+518	60s Organ	87	85	109	6:E.Organ
+519	60s Organ Cho	87	85	110	6:E.Organ
+520	Organ 2	87	85	111	6:E.Organ
+521	Organ 2 Rtry	87	85	112	6:E.Organ
+522	Ana Organ 1	87	85	113	6:E.Organ
+523	Ana Organ 1 Rtry	87	85	114	6:E.Organ
+524	Ana Organ 2	87	85	115	6:E.Organ
+525	Ana Organ 3	87	85	116	6:E.Organ
+526	Ana Organ 4	87	85	117	6:E.Organ
+527	Perc.Organ 1	87	85	118	6:E.Organ
+528	Perc.Organ 1Rtry	87	85	119	6:E.Organ
+529	Chorus Organ	87	85	120	6:E.Organ
+530	Perc.Organ 2	87	85	121	6:E.Organ
+531	E.Organ 1	87	85	122	6:E.Organ
+532	E.Organ 1 w	87	85	123	6:E.Organ
+533	E.Organ 1 Rtry	87	85	124	6:E.Organ
+534	E.Organ 2	87	85	125	6:E.Organ
+535	E.Organ 2 Trem	87	85	126	6:E.Organ
+536	E.Organ 3	87	85	127	6:E.Organ
+537	Mad Organ	87	85	128	6:E.Organ
+538	Rock Organ 1	87	86	1	6:E.Organ
+539	Rock Organ Amp	87	86	2	6:E.Organ
+540	Rock Organ 2	87	86	3	6:E.Organ
+541	Rock Organ w	87	86	4	6:E.Organ
+542	Full Organ Rtry	87	86	5	6:E.Organ
+543	Full Organ OD	87	86	6	6:E.Organ
+544	Rotary Organ	87	86	7	6:E.Organ
+545	Rotary Organ Cho	87	86	8	6:E.Organ
+546	Church Organ 1	87	86	9	7:Pipe Organ
+547	Church Organ 1 w	87	86	10	7:Pipe Organ
+548	Church Organ 2	87	86	11	7:Pipe Organ
+549	Church Organ 2 w	87	86	12	7:Pipe Organ
+550	Church Organ 3	87	86	13	7:Pipe Organ
+551	Church Organ 3 w	87	86	14	7:Pipe Organ
+552	Reed Organ	87	86	15	8:Reed Organ
+553	Reed Organ w	87	86	16	8:Reed Organ
+554	Puff Organ	87	86	17	7:Pipe Organ
+555	Puff Organ w	87	86	18	7:Pipe Organ
+556	Accordion 1	87	86	19	12:Accordion
+557	Accordion 1 w	87	86	20	12:Accordion
+558	Accordion 2	87	86	21	12:Accordion
+559	Accordion It	87	86	22	12:Accordion
+560	Vodkakordion	87	86	23	12:Accordion
+561	Harmonica	87	86	24	13:Harmonica
+562	Harmonica w	87	86	25	13:Harmonica
+563	Bandoneon	87	86	26	12:Accordion
+564	Bandoneon w	87	86	27	12:Accordion
+565	Nylon Gtr 1	87	86	28	16:Ac.Guitar
+566	Ukulele	87	86	29	16:Ac.Guitar
+567	Nylon Gtr o	87	86	30	16:Ac.Guitar
+568	Nylon Gtr 2	87	86	31	16:Ac.Guitar
+569	Nylon Gtr w	87	86	32	16:Ac.Guitar
+570	Nylon Gtr Amp	87	86	33	16:Ac.Guitar
+571	Steel-str.Gtr	87	86	34	16:Ac.Guitar
+572	Steel-str.Gtr w	87	86	35	16:Ac.Guitar
+573	Steel-str.GtrAmp	87	86	36	16:Ac.Guitar
+574	Steel-str.GtrDst	87	86	37	16:Ac.Guitar
+575	Stl Gtr Trem	87	86	38	16:Ac.Guitar
+576	12-str.Guitar	87	86	39	16:Ac.Guitar
+577	12-str.Guitar w	87	86	40	16:Ac.Guitar
+578	Mandolin	87	86	41	16:Ac.Guitar
+579	Steel+Body	87	86	42	16:Ac.Guitar
+580	Reso Guitar w	87	86	43	16:Ac.Guitar
+581	Reso Guitar Amp	87	86	44	16:Ac.Guitar
+582	Jazz Guitar	87	86	45	17:E.Guitar
+583	Jazz Guitar w	87	86	46	17:E.Guitar
+584	Jazz Guitar Atk	87	86	47	17:E.Guitar
+585	Hawaiian Gtr	87	86	48	17:E.Guitar
+586	Clean Guitar	87	86	49	17:E.Guitar
+587	Clean Guitar w	87	86	50	17:E.Guitar
+588	Clean Gtr Chorus	87	86	51	17:E.Guitar
+589	Chorus Gtr 1	87	86	52	17:E.Guitar
+590	Soft Clean Gtr	87	86	53	17:E.Guitar
+591	Soft Clean Gtr w	87	86	54	17:E.Guitar
+592	Soft Clean Atk	87	86	55	17:E.Guitar
+593	Soft Dist Gtr	87	86	56	17:E.Guitar
+594	Mid Tone Gtr	87	86	57	17:E.Guitar
+595	Mid Tone Gtr Dly	87	86	58	17:E.Guitar
+596	Mid Tone GtrTrem	87	86	59	17:E.Guitar
+597	Muted Guitar	87	86	60	17:E.Guitar
+598	Muted Guitar w	87	86	61	17:E.Guitar
+599	Muted Guitar Atk	87	86	62	17:E.Guitar
+600	Muted Guitar Dst	87	86	63	17:E.Guitar
+601	Funk Guitar 1	87	86	64	17:E.Guitar
+602	Funk Guitar 2	87	86	65	17:E.Guitar
+603	Chorus Gtr 2	87	86	66	17:E.Guitar
+604	Chorus Gtr2 Echo	87	86	67	17:E.Guitar
+605	Chorus Gtr2 Step	87	86	68	17:E.Guitar
+606	Overdrive Gtr 1	87	86	69	18:Dist.Guitar
+607	Overdrive Gtr 2	87	86	70	18:Dist.Guitar
+608	Overdrive Chorus	87	86	71	18:Dist.Guitar
+609	Guitar Pinch	87	86	72	18:Dist.Guitar
+610	Distortion Gtr 1	87	86	73	18:Dist.Guitar
+611	Distortion Gtr 2	87	86	74	18:Dist.Guitar
+612	Distortion Gtr 3	87	86	75	18:Dist.Guitar
+613	Distortion Gtr 4	87	86	76	18:Dist.Guitar
+614	Distortion Gtr 5	87	86	77	18:Dist.Guitar
+615	Gtr Feedback 1	87	86	78	18:Dist.Guitar
+616	Dist.Rhy Gtr	87	86	79	18:Dist.Guitar
+617	Dist.Rhy Gtr Amp	87	86	80	18:Dist.Guitar
+618	Gtr Harmonics	87	86	81	18:Dist.Guitar
+619	Gtr Harmonics w	87	86	82	18:Dist.Guitar
+620	Gtr Feedback 2	87	86	83	18:Dist.Guitar
+621	Gtr Feedback 2 w	87	86	84	18:Dist.Guitar
+622	Acoustic Bass	87	86	85	19:Ac.Bass
+623	Acoustic Bass w	87	86	86	19:Ac.Bass
+624	Fingered Bass	87	86	87	20:E.Bass
+625	FingeredBass Atk	87	86	88	20:E.Bass
+626	Finger Slap	87	86	89	20:E.Bass
+627	Finger Slap Atk	87	86	90	20:E.Bass
+628	Picked Bass	87	86	91	20:E.Bass
+629	Picked Bass Atk1	87	86	92	20:E.Bass
+630	Picked Bass Atk2	87	86	93	20:E.Bass
+631	Fretless Bass	87	86	94	20:E.Bass
+632	Fretless Bass w	87	86	95	20:E.Bass
+633	Slap Bass 1	87	86	96	20:E.Bass
+634	Slap Bass 1 Atk	87	86	97	20:E.Bass
+635	Slap Bass 2	87	86	98	20:E.Bass
+636	Slap Bass 2 Amp	87	86	99	20:E.Bass
+637	Synth Bass 1	87	86	100	21:Synth Bass
+638	Synth Bass 1 w	87	86	101	21:Synth Bass
+639	Warm Syn Bass	87	86	102	21:Synth Bass
+640	Synth Bass 3	87	86	103	21:Synth Bass
+641	Clav.Bass	87	86	104	21:Synth Bass
+642	Clav.Bass w	87	86	105	21:Synth Bass
+643	Hammer Bass	87	86	106	21:Synth Bass
+644	Hammer Bass Atk	87	86	107	21:Synth Bass
+645	Juno Sqr Bass	87	86	108	21:Synth Bass
+646	MKS-50 Bass	87	86	109	21:Synth Bass
+647	R&B Bass 1	87	86	110	21:Synth Bass
+648	R&B Bass 1 w	87	86	111	21:Synth Bass
+649	R&B Bass 1 Atk	87	86	112	21:Synth Bass
+650	MC202 Bass	87	86	113	21:Synth Bass
+651	Compu Bass 1	87	86	114	21:Synth Bass
+652	Compu Bass 1 Atk	87	86	115	21:Synth Bass
+653	Muffled Bass	87	86	116	21:Synth Bass
+654	R&B Bass 2	87	86	117	21:Synth Bass
+655	R&B Bass 2 w	87	86	118	21:Synth Bass
+656	R&B Bass 2 Atk	87	86	119	21:Synth Bass
+657	R&B Bass 3	87	86	120	21:Synth Bass
+658	R&B Bass 3 w	87	86	121	21:Synth Bass
+659	R&B Bass 4	87	86	122	21:Synth Bass
+660	MG Bass 1	87	86	123	21:Synth Bass
+661	MG Bass 1 w	87	86	124	21:Synth Bass
+662	MG Bass 1 Atk	87	86	125	21:Synth Bass
+663	MG Bass 2	87	86	126	21:Synth Bass
+664	MG Bass 2 w	87	86	127	21:Synth Bass
+665	MG Bass 3	87	86	128	21:Synth Bass
+666	MG Bass 4	87	87	1	21:Synth Bass
+667	MG Bass 5	87	87	2	21:Synth Bass
+668	New Reso Bs 1	87	87	3	21:Synth Bass
+669	New Reso Bs 1 w	87	87	4	21:Synth Bass
+670	New Reso Bs 2	87	87	5	21:Synth Bass
+671	Reso Bass 1	87	87	6	21:Synth Bass
+672	Rubber Bass	87	87	7	21:Synth Bass
+673	Reso Bass 2	87	87	8	21:Synth Bass
+674	Reso Bass 3	87	87	9	21:Synth Bass
+675	Reso Bass 4	87	87	10	21:Synth Bass
+676	Acid Bass 1	87	87	11	21:Synth Bass
+677	Acid Bass 2	87	87	12	21:Synth Bass
+678	Acid Bass 3	87	87	13	21:Synth Bass
+679	TB Bass 1	87	87	14	21:Synth Bass
+680	TB Bass 2	87	87	15	21:Synth Bass
+681	Flat Bass	87	87	16	21:Synth Bass
+682	Sub Bass	87	87	17	21:Synth Bass
+683	Sub Bass Atk	87	87	18	21:Synth Bass
+684	Garage Bass	87	87	19	21:Synth Bass
+685	Synth Bass 2	87	87	20	21:Synth Bass
+686	Synth Bass 5	87	87	21	21:Synth Bass
+687	Synth Bass 4	87	87	22	21:Synth Bass
+688	Synth Bass 6	87	87	23	21:Synth Bass
+689	Rubber Syn Bs	87	87	24	21:Synth Bass
+690	Attack Pulse	87	87	25	21:Synth Bass
+691	Seq Bass	87	87	26	21:Synth Bass
+692	106 Bass 1	87	87	27	21:Synth Bass
+693	106 Bass 2	87	87	28	21:Synth Bass
+694	Juno Bass	87	87	29	21:Synth Bass
+695	Filter Env Bs	87	87	30	21:Synth Bass
+696	Unison Syn Bs	87	87	31	21:Synth Bass
+697	Unison Syn Bs w	87	87	32	21:Synth Bass
+698	Alpha Bass	87	87	33	21:Synth Bass
+699	Alpha Bass w	87	87	34	21:Synth Bass
+700	Detune Bs	87	87	35	21:Synth Bass
+701	Detune Bs w	87	87	36	21:Synth Bass
+702	Ramp Bass	87	87	37	21:Synth Bass
+703	Ramp Bass Atk	87	87	38	21:Synth Bass
+704	Pedal Bass 1	87	87	39	21:Synth Bass
+705	Pedal Bass 2	87	87	40	21:Synth Bass
+706	Compu Bass 2	87	87	41	21:Synth Bass
+707	Sqr Bass w	87	87	42	21:Synth Bass
+708	Modular Bs 1	87	87	43	21:Synth Bass
+709	Modular Bs 2	87	87	44	21:Synth Bass
+710	Synth Bass 7	87	87	45	21:Synth Bass
+711	Pedal Bass 3	87	87	46	21:Synth Bass
+712	Monster Bass 1	87	87	47	21:Synth Bass
+713	Monster Bass 2	87	87	48	21:Synth Bass
+714	Growl Bass 1	87	87	49	21:Synth Bass
+715	Growl Bass 2	87	87	50	21:Synth Bass
+716	Violin	87	87	51	23:Solo Strings
+717	Slow Violin	87	87	52	23:Solo Strings
+718	Violin w	87	87	53	23:Solo Strings
+719	Violin Amp	87	87	54	23:Solo Strings
+720	Viola	87	87	55	23:Solo Strings
+721	Viola Amp	87	87	56	23:Solo Strings
+722	Cello	87	87	57	23:Solo Strings
+723	Cello Amp	87	87	58	23:Solo Strings
+724	Contrabass	87	87	59	23:Solo Strings
+725	Contrabass Amp	87	87	60	23:Solo Strings
+726	Tremolo Str	87	87	61	24:Ensemble Strings
+727	Pizzicato Str	87	87	62	24:Ensemble Strings
+728	Pizzicato Str w	87	87	63	24:Ensemble Strings
+729	Pizz	87	87	64	24:Ensemble Strings
+730	Pops Seq 4	87	87	65	24:Ensemble Strings
+731	Pops Seq 4 w	87	87	66	24:Ensemble Strings
+732	Harp	87	87	67	22:Plucked/Stroke
+733	Aerial Harp	87	87	68	22:Plucked/Stroke
+734	Yang Qin	87	87	69	15:Mallet
+735	Yang Qin w	87	87	70	15:Mallet
+736	Timpani	87	87	71	47:Percussion
+737	Timpani w	87	87	72	47:Percussion
+738	Timpani Low	87	87	73	47:Percussion
+739	Timpani Atk	87	87	74	47:Percussion
+740	Strings	87	87	75	24:Ensemble Strings
+741	Orchestra	87	87	76	24:Ensemble Strings
+742	60s Strings	87	87	77	24:Ensemble Strings
+743	Small Strings	87	87	78	24:Ensemble Strings
+744	Hybrid Strings	87	87	79	24:Ensemble Strings
+745	Small Str Stacc	87	87	80	24:Ensemble Strings
+746	Strings Stacc	87	87	81	24:Ensemble Strings
+747	Strings Stacc w	87	87	82	24:Ensemble Strings
+748	Strings Amp	87	87	83	24:Ensemble Strings
+749	Slow Strings	87	87	84	24:Ensemble Strings
+750	Mood Strings	87	87	85	24:Ensemble Strings
+751	Syn Strings 1	87	87	86	36:Synth Pad/Str
+752	Syn Strings 1 w	87	87	87	36:Synth Pad/Str
+753	Syn Strings 3	87	87	88	36:Synth Pad/Str
+754	Syn Strings 3 w	87	87	89	36:Synth Pad/Str
+755	Syn Strings 2	87	87	90	36:Synth Pad/Str
+756	Syn Strings 2 w	87	87	91	36:Synth Pad/Str
+757	Choir 1	87	87	92	32:Vox/Choir
+758	Choir 2	87	87	93	32:Vox/Choir
+759	Choir 3	87	87	94	32:Vox/Choir
+760	Voice Doos	87	87	95	33:Scat
+761	Humming	87	87	96	32:Vox/Choir
+762	Synth Voice	87	87	97	32:Vox/Choir
+763	Analog Voice 1	87	87	98	32:Vox/Choir
+764	Analog Voice 2	87	87	99	32:Vox/Choir
+765	Jazz Scat	87	87	100	33:Scat
+766	Jazz Scat w	87	87	101	33:Scat
+767	Aerial Choir	87	87	102	32:Vox/Choir
+768	Aerial Choir w	87	87	103	32:Vox/Choir
+769	DJ Soft Vox	87	87	104	32:Vox/Choir
+770	DJ Soft Vox w	87	87	105	32:Vox/Choir
+771	Syn Vox	87	87	106	32:Vox/Choir
+772	Syn Vox w	87	87	107	32:Vox/Choir
+773	VP-330 Choir	87	87	108	32:Vox/Choir
+774	VP-330 Choir w	87	87	109	32:Vox/Choir
+775	FXM Voice	87	87	110	32:Vox/Choir
+776	Cat Voice	87	87	111	32:Vox/Choir
+777	Cat Voice Wah	87	87	112	32:Vox/Choir
+778	Orchestra Hit	87	87	113	44:Hit
+779	Bass Hit	87	87	114	44:Hit
+780	Bass Hit w	87	87	115	44:Hit
+781	6th Hit	87	87	116	44:Hit
+782	6th Hit w	87	87	117	44:Hit
+783	Euro Hit	87	87	118	44:Hit
+784	Euro Hit w	87	87	119	44:Hit
+785	Cheezy Movie	87	87	120	44:Hit
+786	Cheezy Movie w	87	87	121	44:Hit
+787	Tao Hit	87	87	122	44:Hit
+788	Tao Hit w	87	87	123	44:Hit
+789	House Hit	87	87	124	44:Hit
+790	House Hit w	87	87	125	44:Hit
+791	Trumpet	87	87	126	26:Solo Brass
+792	Trumpet Echo	87	87	127	26:Solo Brass
+793	Dark Trumpet	87	87	128	26:Solo Brass
+794	Dark Trumpet w	87	88	1	26:Solo Brass
+795	Romantic Tp	87	88	2	26:Solo Brass
+796	Romantic Tp Echo	87	88	3	26:Solo Brass
+797	Trombone 1	87	88	4	26:Solo Brass
+798	Trombone 1 w	87	88	5	26:Solo Brass
+799	Trombone 2	87	88	6	26:Solo Brass
+800	Bright Tb	87	88	7	26:Solo Brass
+801	Bright Tb w	87	88	8	26:Solo Brass
+802	Tuba	87	88	9	26:Solo Brass
+803	Tuba Atk	87	88	10	26:Solo Brass
+804	Mute Trumpet 1	87	88	11	26:Solo Brass
+805	Mute Trumpet 1 w	87	88	12	26:Solo Brass
+806	Mute Trumpet 2	87	88	13	26:Solo Brass
+807	Mute Trumpet 2 w	87	88	14	26:Solo Brass
+808	French Horn 1	87	88	15	27:Ensemble Brass
+809	French Horn 1 w	87	88	16	27:Ensemble Brass
+810	French Horn 2	87	88	17	26:Solo Brass
+811	FrenchHorn2 Echo	87	88	18	26:Solo Brass
+812	Brass 1	87	88	19	27:Ensemble Brass
+813	Brass 1 w	87	88	20	27:Ensemble Brass
+814	Brass 2	87	88	21	27:Ensemble Brass
+815	Brass Atk	87	88	22	27:Ensemble Brass
+816	Brass Atk w	87	88	23	27:Ensemble Brass
+817	Synth Brass 1	87	88	24	35:Synth Brass
+818	Synth Brass 3	87	88	25	35:Synth Brass
+819	Synth Brass 3 w	87	88	26	35:Synth Brass
+820	Analog Brass 1	87	88	27	35:Synth Brass
+821	Analog Brass 1 w	87	88	28	35:Synth Brass
+822	Analog Brs 1 w 2	87	88	29	35:Synth Brass
+823	Jump Brass	87	88	30	35:Synth Brass
+824	Jump Brass Amp	87	88	31	35:Synth Brass
+825	JP8 Brass 1	87	88	32	35:Synth Brass
+826	JP8 Brass 1 w	87	88	33	35:Synth Brass
+827	Syn Brass	87	88	34	35:Synth Brass
+828	Syn Brass w	87	88	35	35:Synth Brass
+829	JP8 Brass 2	87	88	36	35:Synth Brass
+830	80's Brass 1	87	88	37	35:Synth Brass
+831	80's Brass 2	87	88	38	35:Synth Brass
+832	Synth Brass 2	87	88	39	35:Synth Brass
+833	Synth Brass 4	87	88	40	35:Synth Brass
+834	Analog Brass 2	87	88	41	35:Synth Brass
+835	Analog Brass 3	87	88	42	35:Synth Brass
+836	Analog Brass 3 w	87	88	43	35:Synth Brass
+837	Reso Brass	87	88	44	35:Synth Brass
+838	Poly Brass	87	88	45	35:Synth Brass
+839	Soft Brass	87	88	46	35:Synth Brass
+840	FM Brass	87	88	47	35:Synth Brass
+841	Warm Syn Brass	87	88	48	35:Synth Brass
+842	Dual Saw Brass	87	88	49	35:Synth Brass
+843	Soft Syn Brass	87	88	50	35:Synth Brass
+844	Vintage Brass	87	88	51	35:Synth Brass
+845	Vintage Brass w	87	88	52	35:Synth Brass
+846	Euro Express	87	88	53	35:Synth Brass
+847	Mix Brass	87	88	54	35:Synth Brass
+848	Brite Syn Brass	87	88	55	35:Synth Brass
+849	JP8 Brass 3	87	88	56	35:Synth Brass
+850	Synth Brass 5	87	88	57	35:Synth Brass
+851	80's Brass 3	87	88	58	35:Synth Brass
+852	80's Brass 4	87	88	59	35:Synth Brass
+853	Soprano Sax	87	88	60	30:Sax
+854	Soprano Sax Amp	87	88	61	30:Sax
+855	Alto Sax	87	88	62	30:Sax
+856	Alto Sax Amp	87	88	63	30:Sax
+857	Tenor Sax	87	88	64	30:Sax
+858	Tenor Sax Amp	87	88	65	30:Sax
+859	Baritone Sax	87	88	66	30:Sax
+860	Baritone Sax Atk	87	88	67	30:Sax
+861	Oboe	87	88	68	28:Wind
+862	Oboe w	87	88	69	28:Wind
+863	English Horn	87	88	70	28:Wind
+864	Bassoon	87	88	71	28:Wind
+865	Clarinet	87	88	72	28:Wind
+866	Piccolo	87	88	73	29:Flute
+867	Flute	87	88	74	29:Flute
+868	Flute w	87	88	75	29:Flute
+869	Flute Echo	87	88	76	29:Flute
+870	Recorder	87	88	77	31:Recorder
+871	Pan Flute	87	88	78	29:Flute
+872	Pan Flute w	87	88	79	29:Flute
+873	Pan Flute Dly	87	88	80	29:Flute
+874	Bottle Blow	87	88	81	29:Flute
+875	Bottle Blow w	87	88	82	29:Flute
+876	Bottle Blow Dly	87	88	83	29:Flute
+877	Shakuhachi	87	88	84	29:Flute
+878	Shakuhachi w	87	88	85	29:Flute
+879	Shakuhachi Amp	87	88	86	29:Flute
+880	Whistle	87	88	87	31:Recorder
+881	Whistle Dly	87	88	88	31:Recorder
+882	Ocarina	87	88	89	31:Recorder
+883	Ocarina Echo	87	88	90	31:Recorder
+884	Square Lead 1	87	88	91	34:Synth Lead
+885	Square Lead 2	87	88	92	34:Synth Lead
+886	Sine Lead	87	88	93	34:Synth Lead
+887	Porta Sine Lead	87	88	94	34:Synth Lead
+888	Pure Lead Dly	87	88	95	34:Synth Lead
+889	Dist Flt TB 2	87	88	96	34:Synth Lead
+890	Dist Flt TB 1	87	88	97	34:Synth Lead
+891	DistFlt TB 1 Dly	87	88	98	34:Synth Lead
+892	80's Tech Lead	87	88	99	34:Synth Lead
+893	Sqr Buzz Lead	87	88	100	34:Synth Lead
+894	Ana Vox Lead	87	88	101	34:Synth Lead
+895	CS Lead	87	88	102	34:Synth Lead
+896	Classic GR	87	88	103	34:Synth Lead
+897	Therasaw	87	88	104	34:Synth Lead
+898	Bell Lead	87	88	105	34:Synth Lead
+899	Bell Lead w	87	88	106	34:Synth Lead
+900	Simple Tri	87	88	107	34:Synth Lead
+901	Spooky Lead	87	88	108	34:Synth Lead
+902	Soft Lead	87	88	109	34:Synth Lead
+903	Sqr Lead 1	87	88	110	34:Synth Lead
+904	Sqr Lead 2	87	88	111	34:Synth Lead
+905	Sqr Lead 3	87	88	112	34:Synth Lead
+906	Saw Lead 1	87	88	113	34:Synth Lead
+907	Saw Lead 1 w	87	88	114	34:Synth Lead
+908	Saw Lead 2	87	88	115	34:Synth Lead
+909	Doctor Solo	87	88	116	34:Synth Lead
+910	Natural Lead	87	88	117	34:Synth Lead
+911	Sequenced Saw	87	88	118	34:Synth Lead
+912	Sequenced Saw w	87	88	119	34:Synth Lead
+913	Ah Super Saw	87	88	120	34:Synth Lead
+914	Ah SuperSaw Dst1	87	88	121	34:Synth Lead
+915	Ah SuperSaw Dst2	87	88	122	34:Synth Lead
+916	Porta Super Saw	87	88	123	34:Synth Lead
+917	S-Saw Stac Ld	87	88	124	34:Synth Lead
+918	S-Saw Stac Ld w	87	88	125	34:Synth Lead
+919	Tekno Lead 1 Atk	87	88	126	34:Synth Lead
+920	Tekno Lead 1 Bit	87	88	127	34:Synth Lead
+921	OSC-Sync Ld 1	87	88	128	34:Synth Lead
+922	Wave Shape Ld	87	89	1	34:Synth Lead
+923	Wave Shape Ld w	87	89	2	34:Synth Lead
+924	Legato Tkno	87	89	3	34:Synth Lead
+925	Legato Tkno w	87	89	4	34:Synth Lead
+926	Tekno Lead 2	87	89	5	34:Synth Lead
+927	Buzz Lead	87	89	6	34:Synth Lead
+928	Buzz Lead Dist	87	89	7	34:Synth Lead
+929	Saw Buzz Ld	87	89	8	34:Synth Lead
+930	Saw Buzz Ld w	87	89	9	34:Synth Lead
+931	Saw Lead 3	87	89	10	34:Synth Lead
+932	Saw Lead 4	87	89	11	34:Synth Lead
+933	Classic Lead	87	89	12	34:Synth Lead
+934	Ramp Lead	87	89	13	34:Synth Lead
+935	Saw Lead 5	87	89	14	34:Synth Lead
+936	Jupiter Lead 1	87	89	15	34:Synth Lead
+937	JupiterLead1 Atk	87	89	16	34:Synth Lead
+938	Jupiter Lead 2	87	89	17	34:Synth Lead
+939	Saw Lead 6	87	89	18	34:Synth Lead
+940	On Air	87	89	19	34:Synth Lead
+941	Saw Lead 7	87	89	20	34:Synth Lead
+942	Saw Lead 8	87	89	21	34:Synth Lead
+943	Warm Lead	87	89	22	34:Synth Lead
+944	Saw Lead 9	87	89	23	34:Synth Lead
+945	Saw Lead 10	87	89	24	34:Synth Lead
+946	EQ Lead	87	89	25	34:Synth Lead
+947	Saw Lead 11	87	89	26	34:Synth Lead
+948	Saw Lead 12	87	89	27	34:Synth Lead
+949	Waspy Lead	87	89	28	34:Synth Lead
+950	Octa Square	87	89	29	34:Synth Lead
+951	Octa Juice	87	89	30	34:Synth Lead
+952	Fat GR Lead	87	89	31	34:Synth Lead
+953	Octa Saw	87	89	32	34:Synth Lead
+954	Juicy Lead	87	89	33	34:Synth Lead
+955	OSC-Sync Ld 2	87	89	34	34:Synth Lead
+956	OSC-Sync Ld 3	87	89	35	34:Synth Lead
+957	Syn.Calliope	87	89	36	34:Synth Lead
+958	Syn.Calliope w	87	89	37	34:Synth Lead
+959	Syn.Calliope Dly	87	89	38	34:Synth Lead
+960	Chiffer Lead	87	89	39	34:Synth Lead
+961	Chiffer Lead w	87	89	40	34:Synth Lead
+962	Charang	87	89	41	34:Synth Lead
+963	Wire Lead	87	89	42	34:Synth Lead
+964	Wire Lead Cho	87	89	43	34:Synth Lead
+965	Solo Vox	87	89	44	34:Synth Lead
+966	Solo Vox w	87	89	45	34:Synth Lead
+967	Solo Vox Cho	87	89	46	34:Synth Lead
+968	OB Lead	87	89	47	34:Synth Lead
+969	5th Saw Lead	87	89	48	34:Synth Lead
+970	5th Saw Lead Dly	87	89	49	34:Synth Lead
+971	Housechord	87	89	50	34:Synth Lead
+972	Ju-D Fifths	87	89	51	34:Synth Lead
+973	Major 7	87	89	52	34:Synth Lead
+974	Dance Saws 1	87	89	53	34:Synth Lead
+975	Bass+Lead	87	89	54	34:Synth Lead
+976	Bass+Lead w	87	89	55	34:Synth Lead
+977	Delayed Lead	87	89	56	34:Synth Lead
+978	Delayed Lead w	87	89	57	34:Synth Lead
+979	Delayed Lead Cho	87	89	58	34:Synth Lead
+980	Fantasia	87	89	59	37:Synth Bellpad
+981	D50 Bell	87	89	60	37:Synth Bellpad
+982	D50 Bell w	87	89	61	37:Synth Bellpad
+983	Fantasy 1	87	89	62	37:Synth Bellpad
+984	D50 Fantasy	87	89	63	37:Synth Bellpad
+985	D50 Fantasy w	87	89	64	37:Synth Bellpad
+986	Soft Bell	87	89	65	37:Synth Bellpad
+987	Dreambell	87	89	66	37:Synth Bellpad
+988	Dreambell w	87	89	67	37:Synth Bellpad
+989	Dreaming Box	87	89	68	37:Synth Bellpad
+990	Dreaming Box w	87	89	69	37:Synth Bellpad
+991	Fantasy 2	87	89	70	37:Synth Bellpad
+992	Fantasy 2 w	87	89	71	37:Synth Bellpad
+993	Stacc Heaven	87	89	72	37:Synth Bellpad
+994	Stacc Heaven w	87	89	73	37:Synth Bellpad
+995	Warm Pad	87	89	74	36:Synth Pad/Str
+996	Warm Pad Dly	87	89	75	36:Synth Pad/Str
+997	Sine Pad	87	89	76	36:Synth Pad/Str
+998	JP8 Strings 1	87	89	77	36:Synth Pad/Str
+999	Soft Pad	87	89	78	36:Synth Pad/Str
+1000	JP8 Strings 2	87	89	79	36:Synth Pad/Str
+1001	JUNO Str	87	89	80	36:Synth Pad/Str
+1002	JUNO Str w	87	89	81	36:Synth Pad/Str
+1003	Oct Strings	87	89	82	36:Synth Pad/Str
+1004	Brite Str	87	89	83	36:Synth Pad/Str
+1005	Voyager	87	89	84	36:Synth Pad/Str
+1006	Voyager w	87	89	85	36:Synth Pad/Str
+1007	JP8 Strings 3	87	89	86	36:Synth Pad/Str
+1008	PWM Str 1	87	89	87	36:Synth Pad/Str
+1009	PWM Str 2	87	89	88	36:Synth Pad/Str
+1010	Fading Str	87	89	89	36:Synth Pad/Str
+1011	Vintage Str	87	89	90	36:Synth Pad/Str
+1012	Vintage Str Amp	87	89	91	36:Synth Pad/Str
+1013	Analog Str	87	89	92	36:Synth Pad/Str
+1014	Polysynth	87	89	93	38:Synth PolyKey
+1015	Polysynth Dly	87	89	94	38:Synth PolyKey
+1016	Digitaless	87	89	95	38:Synth PolyKey
+1017	Analog Saws	87	89	96	38:Synth PolyKey
+1018	Super Saws	87	89	97	38:Synth PolyKey
+1019	Super Saws Atk	87	89	98	38:Synth PolyKey
+1020	Dance Saws 2	87	89	99	38:Synth PolyKey
+1021	S-Saw Pad	87	89	100	38:Synth PolyKey
+1022	S-Saw Pad w	87	89	101	38:Synth PolyKey
+1023	DOC Stack	87	89	102	38:Synth PolyKey
+1024	Trance Saws	87	89	103	38:Synth PolyKey
+1025	Trance Saws w	87	89	104	38:Synth PolyKey
+1026	PWM Pad	87	89	105	38:Synth PolyKey
+1027	Space Voice	87	89	106	36:Synth Pad/Str
+1028	Space Voice Dly	87	89	107	36:Synth Pad/Str
+1029	Itopia	87	89	108	36:Synth Pad/Str
+1030	Itopia Dly	87	89	109	36:Synth Pad/Str
+1031	JP8 Hollow 1	87	89	110	36:Synth Pad/Str
+1032	JP8 Hollow 2	87	89	111	36:Synth Pad/Str
+1033	Hollow Pad	87	89	112	36:Synth Pad/Str
+1034	Strobe Pad	87	89	113	36:Synth Pad/Str
+1035	Heaven Pad	87	89	114	36:Synth Pad/Str
+1036	Itopia w	87	89	115	36:Synth Pad/Str
+1037	Bowed Glass	87	89	116	36:Synth Pad/Str
+1038	Bowed Glass Dly	87	89	117	36:Synth Pad/Str
+1039	Brite Wine	87	89	118	36:Synth Pad/Str
+1040	Bell Pad	87	89	119	36:Synth Pad/Str
+1041	Wine Pad	87	89	120	36:Synth Pad/Str
+1042	Fine Wine Pad	87	89	121	36:Synth Pad/Str
+1043	Organ Pad	87	89	122	36:Synth Pad/Str
+1044	Brite Wine w	87	89	123	36:Synth Pad/Str
+1045	Metallic Pad	87	89	124	36:Synth Pad/Str
+1046	Metallic Pad Dly	87	89	125	36:Synth Pad/Str
+1047	Chime Pad	87	89	126	36:Synth Pad/Str
+1048	Halo Pad	87	89	127	36:Synth Pad/Str
+1049	Halo Pad w	87	89	128	36:Synth Pad/Str
+1050	Halo Pad Dly	87	90	1	36:Synth Pad/Str
+1051	Sweep Pad 1	87	90	2	36:Synth Pad/Str
+1052	Sweep Pad 1 Dly	87	90	3	36:Synth Pad/Str
+1053	Trns Sweep Pad w	87	90	4	36:Synth Pad/Str
+1054	Trns Sweep Pad	87	90	5	36:Synth Pad/Str
+1055	Giant Sweep	87	90	6	36:Synth Pad/Str
+1056	Sweep Pad 2 w	87	90	7	36:Synth Pad/Str
+1057	Sweep Pad 2	87	90	8	36:Synth Pad/Str
+1058	Reso Pad	87	90	9	36:Synth Pad/Str
+1059	Ice Rain	87	90	10	36:Synth Pad/Str
+1060	Ice Rain Dly	87	90	11	36:Synth Pad/Str
+1061	Healing Pad	87	90	12	36:Synth Pad/Str
+1062	Healing Pad w	87	90	13	36:Synth Pad/Str
+1063	Soundtrack	87	90	14	36:Synth Pad/Str
+1064	Soundtrack Dly	87	90	15	36:Synth Pad/Str
+1065	Random Str	87	90	16	36:Synth Pad/Str
+1066	Fairy's Song	87	90	17	36:Synth Pad/Str
+1067	Crystal	87	90	18	40:Synth Pluck
+1068	Crystal w	87	90	19	40:Synth Pluck
+1069	Synth Mallet	87	90	20	40:Synth Pluck
+1070	Synth Mallet w	87	90	21	40:Synth Pluck
+1071	Synth Mallet Dly	87	90	22	40:Synth Pluck
+1072	Sine Mallet	87	90	23	40:Synth Pluck
+1073	Seq Saw	87	90	24	40:Synth Pluck
+1074	Seq 1	87	90	25	40:Synth Pluck
+1075	Seq 1 w	87	90	26	40:Synth Pluck
+1076	Seq 2	87	90	27	40:Synth Pluck
+1077	Seq 3	87	90	28	40:Synth Pluck
+1078	Seq Sqr 1	87	90	29	40:Synth Pluck
+1079	Seq Sqr 1 Atk	87	90	30	40:Synth Pluck
+1080	Seq Sqr 2	87	90	31	40:Synth Pluck
+1081	Seq Tri	87	90	32	40:Synth Pluck
+1082	Seq Tri w	87	90	33	40:Synth Pluck
+1083	Synth Seq 1	87	90	34	40:Synth Pluck
+1084	Synth Seq 2	87	90	35	40:Synth Pluck
+1085	Synth Seq 3	87	90	36	40:Synth Pluck
+1086	Analog Seq	87	90	37	40:Synth Pluck
+1087	Detune Seq	87	90	38	40:Synth Pluck
+1088	Uni-G	87	90	39	40:Synth Pluck
+1089	Seq 4	87	90	40	40:Synth Pluck
+1090	Analog Poly	87	90	41	40:Synth Pluck
+1091	Analog Poly Dly	87	90	42	40:Synth Pluck
+1092	Saws Key	87	90	43	40:Synth Pluck
+1093	Vintage Key	87	90	44	40:Synth Pluck
+1094	Analog Key w	87	90	45	40:Synth Pluck
+1095	Analog Key	87	90	46	40:Synth Pluck
+1096	Bell 1	87	90	47	40:Synth Pluck
+1097	Bell 1 Atk	87	90	48	40:Synth Pluck
+1098	Bell 2	87	90	49	40:Synth Pluck
+1099	Bell 3	87	90	50	40:Synth Pluck
+1100	Bell 3 Amp	87	90	51	40:Synth Pluck
+1101	MusicBox Key w	87	90	52	40:Synth Pluck
+1102	MusicBox Key	87	90	53	40:Synth Pluck
+1103	Music Bells	87	90	54	40:Synth Pluck
+1104	Music Bells w	87	90	55	40:Synth Pluck
+1105	Dreaming Bell	87	90	56	40:Synth Pluck
+1106	FingBell Key	87	90	57	40:Synth Pluck
+1107	FingBell Key w	87	90	58	40:Synth Pluck
+1108	Org Bell	87	90	59	40:Synth Pluck
+1109	Pluck Synth	87	90	60	40:Synth Pluck
+1110	Atmosphere	87	90	61	38:Synth PolyKey
+1111	Atmosphere Cho	87	90	62	38:Synth PolyKey
+1112	Analog Dream	87	90	63	38:Synth PolyKey
+1113	Analog Dream Atk	87	90	64	38:Synth PolyKey
+1114	Choir Key	87	90	65	38:Synth PolyKey
+1115	Choir Key Echo	87	90	66	38:Synth PolyKey
+1116	Brass Key	87	90	67	38:Synth PolyKey
+1117	Harpsi Key	87	90	68	38:Synth PolyKey
+1118	Harpsi Key w	87	90	69	38:Synth PolyKey
+1119	Brightness	87	90	70	38:Synth PolyKey
+1120	Brightness Cho	87	90	71	38:Synth PolyKey
+1121	Vox Key	87	90	72	38:Synth PolyKey
+1122	Air Key 1	87	90	73	38:Synth PolyKey
+1123	Air Key 2	87	90	74	38:Synth PolyKey
+1124	Digital Key	87	90	75	38:Synth PolyKey
+1125	Dreamheaven 1	87	90	76	38:Synth PolyKey
+1126	Dreamheaven 2	87	90	77	38:Synth PolyKey
+1127	Goblins	87	90	78	39:Synth FX
+1128	Cosmic Drops	87	90	79	39:Synth FX
+1129	Echo Drops	87	90	80	39:Synth FX
+1130	Echo Drops Cho	87	90	81	39:Synth FX
+1131	Echo Bell	87	90	82	39:Synth FX
+1132	Echo Bell Cho	87	90	83	39:Synth FX
+1133	Echo Bell Dly	87	90	84	39:Synth FX
+1134	Echo Pan	87	90	85	39:Synth FX
+1135	Echo Pan Cho	87	90	86	39:Synth FX
+1136	LFO Saw	87	90	87	39:Synth FX
+1137	Keep Going	87	90	88	39:Synth FX
+1138	Electrostar	87	90	89	39:Synth FX
+1139	Scream at me	87	90	90	39:Synth FX
+1140	Scream at me w	87	90	91	39:Synth FX
+1141	Star Theme	87	90	92	36:Synth Pad/Str
+1142	Star Theme Dly	87	90	93	36:Synth Pad/Str
+1143	Sitar 1	87	90	94	22:Plucked/Stroke
+1144	Sitar 1 w	87	90	95	22:Plucked/Stroke
+1145	Sitar 2	87	90	96	22:Plucked/Stroke
+1146	Sitar 2 w	87	90	97	22:Plucked/Stroke
+1147	Banjo	87	90	98	22:Plucked/Stroke
+1148	Banjo w	87	90	99	22:Plucked/Stroke
+1149	Shamisen	87	90	100	22:Plucked/Stroke
+1150	Shamisen w	87	90	101	22:Plucked/Stroke
+1151	Koto	87	90	102	22:Plucked/Stroke
+1152	Koto w	87	90	103	22:Plucked/Stroke
+1153	Taisho Koto	87	90	104	22:Plucked/Stroke
+1154	Taisho Koto w	87	90	105	22:Plucked/Stroke
+1155	Kalimba	87	90	106	22:Plucked/Stroke
+1156	Kalimba w	87	90	107	22:Plucked/Stroke
+1157	Bagpipe	87	90	108	28:Wind
+1158	Bagpipe w	87	90	109	28:Wind
+1159	Fiddle	87	90	110	23:Solo Strings
+1160	Fiddle w	87	90	111	23:Solo Strings
+1161	Shanai	87	90	112	28:Wind
+1162	Shanai w	87	90	113	28:Wind
+1163	Tinkle Bell	87	90	114	14:Bell
+1164	Tinkle Bell w	87	90	115	14:Bell
+1165	Agogo	87	90	116	14:Bell
+1166	Agogo w	87	90	117	14:Bell
+1167	Steel Drums	87	90	118	47:Percussion
+1168	Steel Drums w	87	90	119	47:Percussion
+1169	Steel Drums w 2	87	90	120	47:Percussion
+1170	Woodblock	87	90	121	47:Percussion
+1171	Castanets	87	90	122	47:Percussion
+1172	Taiko	87	90	123	47:Percussion
+1173	Concert BD	87	90	124	47:Percussion
+1174	Concert BD w	87	90	125	47:Percussion
+1175	Melodic Tom 1	87	90	126	47:Percussion
+1176	Melodic Tom 2	87	90	127	47:Percussion
+1177	Synth Drum	87	90	128	47:Percussion
+1178	Synth Drum w	87	91	1	47:Percussion
+1179	TR-808 Tom	87	91	2	47:Percussion
+1180	Elec.Perc.	87	91	3	47:Percussion
+1181	Reverse Cym	87	91	4	47:Percussion
+1182	Reverse Cym Atk	87	91	5	47:Percussion
+1183	Gtr Fret Noise	87	91	6	45:Sound FX
+1184	Gtr Cut Noise	87	91	7	45:Sound FX
+1185	Bass String Slap	87	91	8	45:Sound FX
+1186	Breath Noise	87	91	9	45:Sound FX
+1187	Flute Key Click	87	91	10	45:Sound FX
+1188	Seashore	87	91	11	45:Sound FX
+1189	Rain	87	91	12	45:Sound FX
+1190	Thunder	87	91	13	45:Sound FX
+1191	Thunder Dly	87	91	14	45:Sound FX
+1192	Wind	87	91	15	45:Sound FX
+1193	Stream	87	91	16	45:Sound FX
+1194	Stream w	87	91	17	45:Sound FX
+1195	Bubble 1	87	91	18	45:Sound FX
+1196	Bubble 1 w	87	91	19	45:Sound FX
+1197	Bubble 2	87	91	20	45:Sound FX
+1198	FX Scene	87	91	21	45:Sound FX
+1199	Tuned Winds	87	91	22	45:Sound FX
+1200	Tuned Winds w	87	91	23	45:Sound FX
+1201	Sand Noise	87	91	24	45:Sound FX
+1202	Bird 1	87	91	25	45:Sound FX
+1203	Dog	87	91	26	45:Sound FX
+1204	Horse Gallop	87	91	27	45:Sound FX
+1205	Bird 2	87	91	28	45:Sound FX
+1206	Telephone 1	87	91	29	45:Sound FX
+1207	Telephone 2	87	91	30	45:Sound FX
+1208	Door Creaking	87	91	31	45:Sound FX
+1209	Door	87	91	32	45:Sound FX
+1210	Scratch	87	91	33	45:Sound FX
+1211	Wind Chimes	87	91	34	45:Sound FX
+1212	FX Close	87	91	35	45:Sound FX
+1213	Helicopter	87	91	36	45:Sound FX
+1214	Car Engine	87	91	37	45:Sound FX
+1215	Car Stop	87	91	38	45:Sound FX
+1216	Car Pass	87	91	39	45:Sound FX
+1217	Car Crash	87	91	40	45:Sound FX
+1218	Siren	87	91	41	45:Sound FX
+1219	Train	87	91	42	45:Sound FX
+1220	Jetplane	87	91	43	45:Sound FX
+1221	Jetplane Dly	87	91	44	45:Sound FX
+1222	Starship	87	91	45	45:Sound FX
+1223	Starship Dly	87	91	46	45:Sound FX
+1224	Burst Noise	87	91	47	45:Sound FX
+1225	Passing By	87	91	48	45:Sound FX
+1226	FX Pass 1	87	91	49	45:Sound FX
+1227	FX Pass 2	87	91	50	45:Sound FX
+1228	FX Pass 3	87	91	51	45:Sound FX
+1229	FX Pass 4	87	91	52	45:Sound FX
+1230	FX Pass 5	87	91	53	45:Sound FX
+1231	Poly Sweep Nz	87	91	54	45:Sound FX
+1232	Reso Sweep Dn	87	91	55	45:Sound FX
+1233	Applause	87	91	56	45:Sound FX
+1234	Applause w	87	91	57	45:Sound FX
+1235	Laughing	87	91	58	45:Sound FX
+1236	Screaming	87	91	59	45:Sound FX
+1237	Punch	87	91	60	45:Sound FX
+1238	Heart Beat	87	91	61	45:Sound FX
+1239	Footsteps	87	91	62	45:Sound FX
+1240	Gun Shot	87	91	63	45:Sound FX
+1241	Machine Gun	87	91	64	45:Sound FX
+1242	Laser Gun	87	91	65	45:Sound FX
+1243	Explosion	87	91	66	45:Sound FX
+1244	Explosion Dly	87	91	67	45:Sound FX
+1245	Explosion Dist	87	91	68	45:Sound FX
+1246	FX Hit w	87	91	69	45:Sound FX
