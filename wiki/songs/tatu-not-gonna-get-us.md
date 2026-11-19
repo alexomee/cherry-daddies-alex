@@ -66,3 +66,4 @@ set: не в сетлисте (новая)
 
 - **2026-11-19** — заведена: стемы JamZone, mix.json, рендер `--practice`, 12 черновых cue. В Stage Traxx не синкалась.
 - **2026-11-19** — русская версия: pitch −4, бэки вон из pb-other, Sound effects слоем без питча, стартовый cue «Нас не догонят drums in» (Milena). OFF не изменился (−0.297). Дашборд: строка сетлиста привязана к папке (`setlist_dashboard.py`).
+- **2026-11-19** — в Stage Traxx (`stagetraxx_sync.py --apply`, новая песня): Click/Cues/PB Other/PB Bass включены, Drums/Vocals/All замьючены, все треки 216.00 с = рендер. Текстового клипа нет (только START/STOP).
