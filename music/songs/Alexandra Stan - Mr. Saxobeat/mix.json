@@ -1,4 +1,11 @@
 {
+  "gm800": [
+    {"bar": 1, "scene": 18, "abs_sec": 0.0},
+    {"bar": 16, "scene": 19, "abs_sec": 28.346},
+    {"bar": 74, "scene": 18, "abs_sec": 137.953},
+    {"bar": 87, "scene": 19, "abs_sec": 162.52},
+    {"bar": 95, "scene": 18, "abs_sec": 177.638}
+  ],
   "podgo": "31D",
   "pb-other": {"stems": ["04_Noise_effects", "10_Saxophone_(reverse)", "08_Synth_Keys_2", "07_Synth_Keys_1", "09_Synth_Keys_3"], "gain_db": {"10_Saxophone_(reverse)": 2.4, "07_Synth_Keys_1": 4.5, "08_Synth_Keys_2": 5, "09_Synth_Keys_3": 5.5}, "peak": "limit"},
   "pb-bass": {
@@ -14,7 +21,7 @@
     {"bar": 11,  "text": "bass in", "abs_sec": 18.898, "snap_sec": 15.118},
     {"bar": 16,  "text": "vocal in", "abs_sec": 28.346, "snap_sec": 24.567},
     {"bar": 33,  "text": "alex vocal in", "abs_sec": 60.472, "snap_sec": 56.087},
-    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591, "snap_sec": 71.228},
+    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591, "snap_sec": 71.229},
     {"bar": 49,  "text": "verse in", "abs_sec": 90.709, "snap_sec": 86.929},
     {"bar": 57,  "text": "stop", "abs_sec": 105.827, "snap_sec": 101.575},
     {"bar": 66,  "text": "alex vocal in", "abs_sec": 122.835, "snap_sec": 118.449},
