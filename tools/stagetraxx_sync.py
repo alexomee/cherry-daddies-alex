@@ -57,8 +57,8 @@ Line 6 POD Go presets (wiki/pipelines/pod-go.md) come from mix.json "podgo", on 
 
     preset 02A = PC4 (bank-1)*4 + A..D (verified). Same tags as the GM-800.
 
-Every timed switch (GM-800 scene, GM-800 CC, POD Go preset) goes out SWITCH_LEAD (0.5 s) BEFORE
-its marked bar/beat, so the new sound is up when the part starts: mark the EVENT (the bar the
+Every timed switch goes out early: GM-800 scene/CC by SWITCH_LEAD (0.5 s), POD Go preset by
+PODGO_LEAD (1.0 s) BEFORE its marked bar/beat, so the new sound is up when the part starts: mark the EVENT (the bar the
 solo/verse starts on), not a beat before it.
 
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
@@ -176,7 +176,8 @@ GM_CHANNEL = 2          # BOSS GM-800 Scene Rx Channel
 PODGO_CHANNEL = 3       # Line 6 POD Go MIDI Base Channel (1 = launcher, 2 = GM-800)
 SWITCH_LEAD = 0.500     # every device switch goes out this long BEFORE its marked bar/beat (Alex,
                         # 2026-11-18: «стандартно пол секунды»; was 200 ms for POD Go/CC, 0 for scenes)
-PODGO_LEAD = SWITCH_LEAD
+PODGO_LEAD = 1.000      # POD Go presets (guitar patches) go out a full second early (Alex, 2026-11-19:
+                        # «переключение патчей гитары миди за 1 секунду»; was SWITCH_LEAD)
 
 
 def gm800_pc(scene):
