@@ -3,7 +3,7 @@
   "podgo": "32D",
   "cat": "cat_12553",
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["11_Backing_Vocals", "09_Synthesizer", "10_Noise_effects", "04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -6.5}, "peak": "limit"},
+  "pb-other": {"stems": ["11_Backing_Vocals", "09_Synthesizer", "10_Noise_effects", "04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -6.5, "09_Synthesizer": -2.5}, "peak": "limit"},
   "pb-bass": {"stems": ["03_Electric_Bass"], "gain_db": {"03_Electric_Bass": -6.5}},
   "cues": [
     {"bar": 2, "text": "Supermassive Black Hole all in", "abs_sec": 4.0, "snap_sec": 0.0},

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-19T06:45:58",
+  "generated": "2026-11-19T07:38:37",
   "counts": {
     "total": 123,
     "data": 121,
@@ -159,7 +159,7 @@
             "vocal": "596b02a993",
             "back_vox": "3664f07081",
             "drums": "74d982e4a4",
-            "keys": "a8f5966449",
+            "keys": "d79974c880",
             "bass": "b81be10a12",
             "guitars": "593157e959",
             "other": "caf99a46b3",
@@ -167,15 +167,15 @@
             "cues": "9b07c6b378"
           },
           "versions": {
-            "all": "79eb45d5b4",
+            "all": "758ac1523f",
             "drums": "fd5d09343b",
             "alex": "f6b02b2c04",
             "steve": "fbca402d78",
             "tanya": "64834d4974",
             "trio": "bc2ecaf90f",
-            "pb-other": "f658c4f702",
+            "pb-other": "ffe0a2b71a",
             "pb-bass": "ab94c417b0",
-            "pb-audition": "c7991be386"
+            "pb-audition": "87b26d2316"
           },
           "pb_other": {
             "available": true,
@@ -716,23 +716,23 @@
             "vocal": "f57be0637c",
             "back_vox": "cbc5ee02c3",
             "drums": "dad362c499",
-            "keys": "fc0ffbdb82",
+            "keys": "7ea4b9fdfa",
             "bass": "1cb1fbc006",
             "guitars": "f8dc6842b0",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "ec6925a6e1"
+            "cues": "a904e045a5"
           },
           "versions": {
-            "all": "97dd63b25a",
+            "all": "69e8ed6dd8",
             "drums": "4646382670",
             "alex": "01cb9e7d75",
             "steve": "abd8ad49c4",
             "tanya": "cf1d3d0064",
             "trio": "6910c2ca8b",
-            "pb-other": "a52e1e8ee9",
+            "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "6778bc6a19"
+            "pb-audition": "dce0c474d0"
           },
           "pb_other": {
             "available": true,
@@ -1908,19 +1908,19 @@
           "stem_versions": {
             "vocal": "b5641be59e",
             "drums": "8ca2e44446",
-            "keys": "293370778a",
+            "keys": "711722a2e8",
             "bass": "207d31641a",
             "other": "6a7ea8651e",
             "click": "810f447771",
-            "cues": "37328dc3eb"
+            "cues": "b9f6985266"
           },
           "versions": {
-            "all": "d6b9496778",
+            "all": "0246f22c27",
             "steve": "f949a30546",
             "tanya": "883b52fa78",
-            "pb-other": "293370778a",
+            "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "221389c280"
+            "pb-audition": "f1c9b259b6"
           },
           "pb_other": {
             "available": true,
@@ -2274,22 +2274,22 @@
           "stem_versions": {
             "vocal": "165c7bad9d",
             "drums": "68bc3001ff",
-            "keys": "727c7d1fa9",
+            "keys": "c7e5f48fca",
             "bass": "cd64e3e3a4",
             "guitars": "536674f17d",
             "other": "66b9b4ae92",
             "click": "7d3ee5b2b5",
-            "cues": "ca53ca80a3"
+            "cues": "d6d236b1c4"
           },
           "versions": {
-            "all": "5f2872fa92",
+            "all": "38f4809771",
             "drums": "68bc3001ff",
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
             "tanya": "3db6c17760",
-            "pb-other": "727c7d1fa9",
+            "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "2247d838db"
+            "pb-audition": "3201f2cdd2"
           },
           "pb_other": {
             "available": true,
@@ -8636,15 +8636,15 @@
             "bass": "8c1bf5e3b8",
             "other": "1a7b239795",
             "click": "83bf5b3ecd",
-            "cues": "abcacd9b13"
+            "cues": "0d514a6822"
           },
           "versions": {
-            "all": "fb90a5521d",
+            "all": "b996837bb5",
             "drums": "d290885440",
             "alex": "233ba87d48",
             "steve": "a5ff448644",
             "tanya": "d7a08ca47b",
-            "pb-other": "ec6c67990f",
+            "pb-other": "2148fb5900",
             "pb-bass": "8c1bf5e3b8"
           },
           "pb_other": {
@@ -9896,22 +9896,22 @@
           "stem_versions": {
             "vocal": "165c7bad9d",
             "drums": "68bc3001ff",
-            "keys": "727c7d1fa9",
+            "keys": "c7e5f48fca",
             "bass": "cd64e3e3a4",
             "guitars": "536674f17d",
             "other": "66b9b4ae92",
             "click": "7d3ee5b2b5",
-            "cues": "ca53ca80a3"
+            "cues": "d6d236b1c4"
           },
           "versions": {
-            "all": "5f2872fa92",
+            "all": "38f4809771",
             "drums": "68bc3001ff",
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
             "tanya": "3db6c17760",
-            "pb-other": "727c7d1fa9",
+            "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "2247d838db"
+            "pb-audition": "3201f2cdd2"
           },
           "pb_other": {
             "available": true,
@@ -10916,19 +10916,19 @@
           "stem_versions": {
             "vocal": "b5641be59e",
             "drums": "8ca2e44446",
-            "keys": "293370778a",
+            "keys": "711722a2e8",
             "bass": "207d31641a",
             "other": "6a7ea8651e",
             "click": "810f447771",
-            "cues": "37328dc3eb"
+            "cues": "b9f6985266"
           },
           "versions": {
-            "all": "d6b9496778",
+            "all": "0246f22c27",
             "steve": "f949a30546",
             "tanya": "883b52fa78",
-            "pb-other": "293370778a",
+            "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "221389c280"
+            "pb-audition": "f1c9b259b6"
           },
           "pb_other": {
             "available": true,
@@ -12644,23 +12644,23 @@
             "vocal": "f57be0637c",
             "back_vox": "cbc5ee02c3",
             "drums": "dad362c499",
-            "keys": "fc0ffbdb82",
+            "keys": "7ea4b9fdfa",
             "bass": "1cb1fbc006",
             "guitars": "f8dc6842b0",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "ec6925a6e1"
+            "cues": "a904e045a5"
           },
           "versions": {
-            "all": "97dd63b25a",
+            "all": "69e8ed6dd8",
             "drums": "4646382670",
             "alex": "01cb9e7d75",
             "steve": "abd8ad49c4",
             "tanya": "cf1d3d0064",
             "trio": "6910c2ca8b",
-            "pb-other": "a52e1e8ee9",
+            "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "6778bc6a19"
+            "pb-audition": "dce0c474d0"
           },
           "pb_other": {
             "available": true,
@@ -12823,7 +12823,7 @@
             "vocal": "596b02a993",
             "back_vox": "3664f07081",
             "drums": "74d982e4a4",
-            "keys": "a8f5966449",
+            "keys": "d79974c880",
             "bass": "b81be10a12",
             "guitars": "593157e959",
             "other": "caf99a46b3",
@@ -12831,15 +12831,15 @@
             "cues": "9b07c6b378"
           },
           "versions": {
-            "all": "79eb45d5b4",
+            "all": "758ac1523f",
             "drums": "fd5d09343b",
             "alex": "f6b02b2c04",
             "steve": "fbca402d78",
             "tanya": "64834d4974",
             "trio": "bc2ecaf90f",
-            "pb-other": "f658c4f702",
+            "pb-other": "ffe0a2b71a",
             "pb-bass": "ab94c417b0",
-            "pb-audition": "c7991be386"
+            "pb-audition": "87b26d2316"
           },
           "pb_other": {
             "available": true,
@@ -14446,14 +14446,14 @@
             "guitars": "e94c341a09",
             "other": "0bfce8c322",
             "click": "12b4fc7ef3",
-            "cues": "64b5a67f69"
+            "cues": "2fc99323ac"
           },
           "versions": {
-            "all": "6459804feb",
+            "all": "33157a8a29",
             "alex": "c191aa581c",
-            "pb-other": "cec893395d",
+            "pb-other": "bd5c971ab7",
             "pb-bass": "32aaa4fe13",
-            "pb-audition": "63c482b8bc"
+            "pb-audition": "fb554dfe1b"
           },
           "pb_other": {
             "available": true,
@@ -14940,13 +14940,13 @@
             "guitars": "7bc0a78c44",
             "other": "1b45663d77",
             "click": "99e90fe1f9",
-            "cues": "7b0e818723"
+            "cues": "14706e023a"
           },
           "versions": {
-            "all": "be270bd721",
-            "pb-other": "993130f760",
+            "all": "0cf9703e6a",
+            "pb-other": "f6789f7259",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "dcd9925d29"
+            "pb-audition": "3783bd40f9"
           },
           "pb_other": {
             "available": true,
@@ -15367,23 +15367,23 @@
             "vocal": "f57be0637c",
             "back_vox": "cbc5ee02c3",
             "drums": "dad362c499",
-            "keys": "fc0ffbdb82",
+            "keys": "7ea4b9fdfa",
             "bass": "1cb1fbc006",
             "guitars": "f8dc6842b0",
             "other": "c522c13363",
             "click": "2c97676c66",
-            "cues": "ec6925a6e1"
+            "cues": "a904e045a5"
           },
           "versions": {
-            "all": "97dd63b25a",
+            "all": "69e8ed6dd8",
             "drums": "4646382670",
             "alex": "01cb9e7d75",
             "steve": "abd8ad49c4",
             "tanya": "cf1d3d0064",
             "trio": "6910c2ca8b",
-            "pb-other": "a52e1e8ee9",
+            "pb-other": "907be4d16f",
             "pb-bass": "6b99fac5c8",
-            "pb-audition": "6778bc6a19"
+            "pb-audition": "dce0c474d0"
           },
           "pb_other": {
             "available": true,
@@ -15925,22 +15925,22 @@
           "stem_versions": {
             "vocal": "165c7bad9d",
             "drums": "68bc3001ff",
-            "keys": "727c7d1fa9",
+            "keys": "c7e5f48fca",
             "bass": "cd64e3e3a4",
             "guitars": "536674f17d",
             "other": "66b9b4ae92",
             "click": "7d3ee5b2b5",
-            "cues": "ca53ca80a3"
+            "cues": "d6d236b1c4"
           },
           "versions": {
-            "all": "5f2872fa92",
+            "all": "38f4809771",
             "drums": "68bc3001ff",
             "alex": "17afe9354c",
             "steve": "854dfb5fbb",
             "tanya": "3db6c17760",
-            "pb-other": "727c7d1fa9",
+            "pb-other": "42bc6a8018",
             "pb-bass": "cd64e3e3a4",
-            "pb-audition": "2247d838db"
+            "pb-audition": "3201f2cdd2"
           },
           "pb_other": {
             "available": true,
@@ -16102,7 +16102,7 @@
             "vocal": "596b02a993",
             "back_vox": "3664f07081",
             "drums": "74d982e4a4",
-            "keys": "a8f5966449",
+            "keys": "d79974c880",
             "bass": "b81be10a12",
             "guitars": "593157e959",
             "other": "caf99a46b3",
@@ -16110,15 +16110,15 @@
             "cues": "9b07c6b378"
           },
           "versions": {
-            "all": "79eb45d5b4",
+            "all": "758ac1523f",
             "drums": "fd5d09343b",
             "alex": "f6b02b2c04",
             "steve": "fbca402d78",
             "tanya": "64834d4974",
             "trio": "bc2ecaf90f",
-            "pb-other": "f658c4f702",
+            "pb-other": "ffe0a2b71a",
             "pb-bass": "ab94c417b0",
-            "pb-audition": "c7991be386"
+            "pb-audition": "87b26d2316"
           },
           "pb_other": {
             "available": true,
@@ -17147,15 +17147,15 @@
             "bass": "8c1bf5e3b8",
             "other": "1a7b239795",
             "click": "83bf5b3ecd",
-            "cues": "abcacd9b13"
+            "cues": "0d514a6822"
           },
           "versions": {
-            "all": "fb90a5521d",
+            "all": "b996837bb5",
             "drums": "d290885440",
             "alex": "233ba87d48",
             "steve": "a5ff448644",
             "tanya": "d7a08ca47b",
-            "pb-other": "ec6c67990f",
+            "pb-other": "2148fb5900",
             "pb-bass": "8c1bf5e3b8"
           },
           "pb_other": {
@@ -19795,19 +19795,19 @@
           "stem_versions": {
             "vocal": "b5641be59e",
             "drums": "8ca2e44446",
-            "keys": "293370778a",
+            "keys": "711722a2e8",
             "bass": "207d31641a",
             "other": "6a7ea8651e",
             "click": "810f447771",
-            "cues": "37328dc3eb"
+            "cues": "b9f6985266"
           },
           "versions": {
-            "all": "d6b9496778",
+            "all": "0246f22c27",
             "steve": "f949a30546",
             "tanya": "883b52fa78",
-            "pb-other": "293370778a",
+            "pb-other": "a3f8d8fba6",
             "pb-bass": "207d31641a",
-            "pb-audition": "221389c280"
+            "pb-audition": "f1c9b259b6"
           },
           "pb_other": {
             "available": true,
@@ -20251,14 +20251,14 @@
             "guitars": "e94c341a09",
             "other": "0bfce8c322",
             "click": "12b4fc7ef3",
-            "cues": "64b5a67f69"
+            "cues": "2fc99323ac"
           },
           "versions": {
-            "all": "6459804feb",
+            "all": "33157a8a29",
             "alex": "c191aa581c",
-            "pb-other": "cec893395d",
+            "pb-other": "bd5c971ab7",
             "pb-bass": "32aaa4fe13",
-            "pb-audition": "63c482b8bc"
+            "pb-audition": "fb554dfe1b"
           },
           "pb_other": {
             "available": true,
@@ -20435,13 +20435,13 @@
             "guitars": "7bc0a78c44",
             "other": "1b45663d77",
             "click": "99e90fe1f9",
-            "cues": "7b0e818723"
+            "cues": "14706e023a"
           },
           "versions": {
-            "all": "be270bd721",
-            "pb-other": "993130f760",
+            "all": "0cf9703e6a",
+            "pb-other": "f6789f7259",
             "pb-bass": "fd0120a1a1",
-            "pb-audition": "dcd9925d29"
+            "pb-audition": "3783bd40f9"
           },
           "pb_other": {
             "available": true,

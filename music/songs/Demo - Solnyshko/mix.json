@@ -2,7 +2,7 @@
   "podgo": "31D",
   "bpm": 138.0,
   "count_in": 1,
-  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -4.2}], "roles": {"roma-keys-2810": "musical"}},
+  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 0.6}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"layers": [{"file": "synth-bass", "frame": "render", "replaces": ["bass"], "gain_db": -10.0}]},
   "pb-drums": {"stems": ["drums"]},
   "pitch_semitones": -2,

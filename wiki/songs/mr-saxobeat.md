@@ -22,7 +22,7 @@ set: СЕТ 1 #5
 
 Стемы в миксе (`/Users/alex/projects/cherry-daddies/music/songs/Alexandra Stan - Mr. Saxobeat/mix.json`):
 
-- **pb-other:** `04_Noise_effects`, `10_Saxophone_(reverse)` (gain **+8.9 dB**). Реконструкция оригинального бounce, fit 1.000 (коммит `495cc7e`, 2026-06-12).
+- **pb-other:** `04_Noise_effects`, `10_Saxophone_(reverse)` (gain **+2.4 dB** с 2026-11-19, роль «аккомпанемент» −21 по [нормам громкости](../pipelines/level-anchors.md); до этого +8.9 dB — реконструкция оригинального бounce, fit 1.000, коммит `495cc7e`, 2026-06-12).
 - **pb-bass:** `05_Synth_Bass`.
 - **export_stems** → `auto-render/synths/` (для клавишника, wav в темпе/сетке рендера): `06_Synth_Lead`, `07_Synth_Keys_1`, `08_Synth_Keys_2`, `09_Synth_Keys_3`.
 - **Вон из плейбека** (правило «перкуссия/лишнее — вон»): `03_Percussion`, `12_Backing_Vocals`, лид-вокалы и живые синты — не в миксе.

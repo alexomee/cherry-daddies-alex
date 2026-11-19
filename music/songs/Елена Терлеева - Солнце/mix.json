@@ -13,7 +13,7 @@
   "pb-other": {
     "layers": [
       {"file": "solnce-sfx", "frame": "render"},
-      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys"], "gain_db": -3.6, "mute": [[81, 89]], "mute_fade_ms": [200, 5]}
+      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys"], "gain_db": 0.7, "mute": [[81, 89]], "mute_fade_ms": [200, 5]}
     ],
     "roles": {"solnce-sfx": "fx", "roma-keys-2810": "musical"}
   },
