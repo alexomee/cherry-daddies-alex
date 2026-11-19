@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """One-off stem prep for «Вирус — Попрошу тебя» (12.12 new songs, 2026-11-14). Rebuildable.
 
-  python3 tools/jamzone/prep_poproshu_tebya.py stems   # moises-orig/*.mp3 -> root *.wav (padded) + metronome.wav
+  python3 tools/jamzone/prep_poproshu_tebya.py stems   # moises-orig/*.mp3 -> root *.wav (padded, ending
+                                                       #   faded after the crash 119.1) + metronome.wav
   python3 tools/jamzone/prep_poproshu_tebya.py fx      # keys+other run-in 1.3-3.1 -> parts/pb-fx.wav (history only:
                                                        #   since 2026-11-16 pb-other = the whole keys stem)
 then: python3 tools/jamzone/jamzone_render.py "Вирус - Попрошу тебя"
@@ -59,11 +60,26 @@ def metronome(n_out):
         s = S(tout(k)); out[s:s+L, 0] += hit; out[s:s+L, 1] += hit; k += 1
     return out
 
+# Ending (2026-11-19, Alex: «была срезана — вернуть, но только до 3:20, там где голос заканчивает»).
+# Until then the render cut the song after the crash on bar 93.1 (mix.json cut_after_last_cue). Now it
+# ends on the crash 119.1 (raw 3:21.7, render 3:25.6): crash + bass out, the vocal's last word rings to
+# ~119.3. The record's drum pickup into its instrumental outro starts on 119.3e, and the render's cut can
+# only end on a bar line -> every stem fades 119.2& -> 119.3e - 20 ms here and is silent after.
+END_K = 471.25                    # raw beat of bar 119.3e (bar = (k+3)//4 + 1)
+END_FADE_K = 470.5                # 119.2&
+LEAD = 0.02
+
+def end_cut(o):
+    e, f = S(tout(END_K) - LEAD), S(tout(END_FADE_K))
+    o[f:e] *= np.linspace(1, 0, e - f, dtype=np.float32)[:, None]
+    o[e:] = 0
+    return o
+
 def do_stems():
     pad = np.zeros((S(PAD), 2), np.float32)
     n_out = None
     for nm in STEMS:
-        o = np.vstack([pad, decode(os.path.join(SRC, nm + ".mp3"))])
+        o = end_cut(np.vstack([pad, decode(os.path.join(SRC, nm + ".mp3"))]))
         n_out = len(o)
         write_wav(os.path.join(SONG, nm + ".wav"), o)
         print(f"  ✓ {nm}.wav  {len(o)/SR:.3f}s  peak {np.abs(o).max():.3f}")
