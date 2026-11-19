@@ -1870,3 +1870,7 @@ pb-other + pb-bass, integrated LUFS по 61 песне программы: «М�
 - Supermassive Black Hole (Muse) из JamZone `cat_12553`: 12 стемов, 120 bpm, 12 базовых cue по структуре и словам `tiles.json`. pb-other = бэки + синт + нойз + синт-бас −6.5 дБ, `peak: limit` (переходы синта 0 dBFS). pb-bass = электробас −6.5 дБ → −19.2 LUFS. Вместе −15.2 LUFS.
 - Stage Traxx: полный синк `--apply` (63 песни, 1 новая, 11 плейлистов), бэкап `music_library-20261119-053819.sqlite`. Плейлист 12.12 = Ты меня не ищи, Попрошу тебя, Владивосток 2000, Supermassive. Дорожки 214.000 с, остаток против рендера ≤ −75 дБ. Прод не публиковался.
 - Открыто: players, GM-800, POD Go не заданы. Страница: [muse-supermassive-black-hole](songs/muse-supermassive-black-hole.md).
+
+## [2026-11-19] rig | Supermassive Black Hole: GM-800 MUTE, POD Go 32D
+
+`gm800: 1`, `podgo: "32D"` на всю песню (Alex). В Stage Traxx теги `PC0@2` и `PC127@3` (при загрузке и в 00:00), проверено в базе; бэкап `music_library-20261119-054304.sqlite`.

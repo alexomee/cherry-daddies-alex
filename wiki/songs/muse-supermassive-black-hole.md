@@ -4,7 +4,7 @@ updated: 2026-11-19
 title: Supermassive Black Hole
 artist: Muse
 set: 12.12 new songs
-status: draft (12 базовых cue, pb-other бэки+синт+нойз+синт-бас, pb-bass; в Stage Traxx, прод не публиковался)
+status: draft (GM-800 MUTE, POD Go 32D; 12 базовых cue, pb-other бэки+синт+нойз+синт-бас, pb-bass; в Stage Traxx, прод не публиковался)
 ---
 
 # Supermassive Black Hole (Muse)
@@ -22,7 +22,8 @@ status: draft (12 базовых cue, pb-other бэки+синт+нойз+син
 - **pb-other:** `11_Backing_Vocals` (back-vox, авто −5.4 дБ), `09_Synthesizer`, `10_Noise_effects` (fx, авто −11.7 дБ), `04_Synth_Bass` (−6.5 дБ) + `"peak": "limit"`. `09_Synthesizer` играет только переходы (такты 41, 65, 81, 97) с пиком 0 dBFS. Без лимитера группа ужималась бы целиком, а так лимитер трогает 225 сэмплов. −15.7 LUFS.
 - **pb-bass:** `03_Electric_Bass` −6.5 дБ → −19.2 LUFS (норма программы), пик −9.4 dBFS. Синт-бас дублирует бас в припевах и стоит в pb-other с тем же −6.5 дБ, чтобы их баланс остался оригинальным (правило Alex с Now You're Gone: синт → pb-other).
 - pb-other + pb-bass = −15.2 LUFS (середина программы).
-- **Не в плейбеке:** барабаны (Steve), лид-вокал (Tanya), все 4 гитары: `05` theme (рифф), `06` fuzz (интро 9–17, припевы), `07` lead (соло 74–81, припев 3), `08` arr. `players`, `gm800`, `podgo` не заданы.
+- **Не в плейбеке:** барабаны (Steve), лид-вокал (Tanya), все 4 гитары: `05` theme (рифф), `06` fuzz (интро 9–17, припевы), `07` lead (соло 74–81, припев 3), `08` arr. `players` не заданы.
+- **Риг Alex:** GM-800 = 1 MUTE (`PC0@2`), POD Go = 32D (`PC127@3`) на всю песню (Alex, 2026-11-19), в Stage Traxx.
 
 ## Cue (12)
 
@@ -46,4 +47,4 @@ status: draft (12 базовых cue, pb-other бэки+синт+нойз+син
 ## Открытое
 
 - Не проверено на слух: послушать `auto-render/cue_preview.mp3`. Формулировки cue черновые.
-- `players` / practice-миксы, сцена GM-800 и пресет POD Go не заданы. Без ключа `gm800` прибор останется на сцене предыдущей песни.
+- `players` / practice-миксы не заданы.

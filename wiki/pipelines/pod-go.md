@@ -42,6 +42,7 @@
 - **31D = MUTE** (патч Alex для песен без живой гитары).
 - `"podgo": "31D"` (14 песен): Around the World, Destination Calabria, Солнышко, Infinity 2008, No Stress, Ты меня не ищи, Попрошу тебя, Беги от меня, Beverly Hills, Кислотный DJ, Better Off Alone, Mr. Saxobeat, Now You're Gone, S&M.
 - Солнце: куплеты и вступление 32B, припевы 32D (по тактам).
+- Supermassive Black Hole: 32D на всю песню (2026-11-19).
 - У остальных песен ключа `podgo` нет: после песни с мьютом POD Go остаётся на 31D, пока не переключат руками. Гитарные пресеты по заметкам доски ещё не расставлены.
 
 Тестовый отправщик MIDI: короткий CoreMIDI-скрипт на Swift (`midisend <порт> <hex-байты>`), в репо не положен.

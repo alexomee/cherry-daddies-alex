@@ -1,4 +1,6 @@
 {
+  "gm800": 1,
+  "podgo": "32D",
   "cat": "cat_12553",
   "pitch_semitones": 0,
   "pb-other": {"stems": ["11_Backing_Vocals", "09_Synthesizer", "10_Noise_effects", "04_Synth_Bass"], "gain_db": {"04_Synth_Bass": -6.5}, "peak": "limit"},
