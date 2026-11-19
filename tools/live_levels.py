@@ -35,6 +35,7 @@ VEL = 100
 PHRASE = [("low", [40], 0.8), ("low", [45], 0.8), ("mid", [50], 0.8), ("mid", [55], 0.8),
           ("high", [59], 0.8), ("high", [64], 0.8), ("chord", [40, 47, 52], 1.4)]
 GAP, TAIL = 0.25, 1.0
+EXTRA_CC = {}                     # scene -> [(cc, value)] sent on the Scene Rx channel after loading it
 
 
 def csum(body):
@@ -116,6 +117,9 @@ def gm800(scenes):
         g.dt(SYS_MIDI[:3] + [0x08], [NOTE_SRC_USB])
         for sc in scenes:
             g.scene(sc, scene_ch)
+            for cc, val in EXTRA_CC.get(sc, []):             # e.g. an ASSIGN that swaps parts
+                g.out.send_message([0xB0 | (scene_ch - 1), cc, val])
+            time.sleep(0.2 if EXTRA_CC.get(sc) else 0)
             nm = g.name()
             rec = sd.rec(int(total * SR), SR, channels=2, device=dev)
             t0 = time.time(); time.sleep(0.3); marks = []
@@ -151,8 +155,13 @@ def gm800(scenes):
         back = g.rq(SYS_MIDI, 0x10)
         g.scene(1, scene_ch)                                 # leave the synth on MUTE
         print(f"NOTE SOURCE restored to {back[8] if back else '?'} (was {src0}); scene 1 (MUTE) loaded")
-    json.dump({"date": time.strftime("%Y-%m-%d %H:%M"), "vel": VEL, "phrase": PHRASE, "scenes": res},
-              open(os.path.join(OUT, "gm800.json"), "w"), ensure_ascii=False, indent=1)
+    jp = os.path.join(OUT, "gm800.json")                    # a partial run keeps the other scenes
+    old = json.load(open(jp))["scenes"] if os.path.exists(jp) else {}
+    old.update({str(k): v for k, v in res.items()})
+    json.dump({"date": time.strftime("%Y-%m-%d %H:%M"), "vel": VEL, "phrase": PHRASE,
+               "scenes": dict(sorted(old.items(), key=lambda kv: int(kv[0])))},
+              open(jp, "w"), ensure_ascii=False, indent=1)
+    return res
 
 
 # ---- POD Go: re-amp one dry take through every preset ------------------------------------------
