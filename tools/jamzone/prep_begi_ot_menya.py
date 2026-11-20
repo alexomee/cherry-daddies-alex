@@ -9,7 +9,8 @@ original stems = reference; nothing played on the GM-800 yet: «пока gm 800 
   $P tools/jamzone/prep_begi_ot_menya.py notes     # MIDI + stem corrections -> parts/synths.notes.json
                                                    #   (+ the MIDI as it is -> analysis/.../synths-midi.notes.json)
   $P tools/jamzone/prep_begi_ot_menya.py fx        # the two reverse swells cut from the stems -> parts/pb-fx.wav
-  $P tools/jamzone/prep_begi_ot_menya.py plan      # voices, bars, tone candidates, the sweep commands
+  $P tools/jamzone/prep_begi_ot_menya.py plan      # voices, bars, candidates: scenes (gmp take) and tones (gmp sweep)
+  $P tools/jamzone/prep_begi_ot_menya.py rank      # after the takes: scenes and tones in one ranking against the stems
   $P tools/jamzone/prep_begi_ot_menya.py preview   # A/B page: original / my notes / MIDI as it is / Roma
   gmp record "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # when the GM-800 is free
   gmp layer  "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # -> parts/pb-synths.wav
@@ -90,7 +91,7 @@ def shared():
 # tone = provisional pick by patch name (nothing has been played on the GM-800 yet); cand = the short list for
 # `gmp sweep --tones`; solo = bars where the voice is (almost) alone in keys + strings, for the sweep.
 VOICES = {
-    "lead":      dict(tone=316, role="lead",  solo=(144, 148), cand=[316, 1024, 1092, 352, 350, 1073, 314, 349, 1019, 980],
+    "lead":      dict(tone=316, role="lead",  solo=(144, 148), cand=[316, 1024, 1092, 352, 350, 1073, 314, 349, 980],
                       what="лид, верхняя октава (G#4 B4 E5 F#5→D#5)"),
     "lead_lo":   dict(tone=316, role="lead",  solo=(144, 148), cand=[], what="лид октавой ниже (в записи основная)"),
     "lead_echo": dict(tone=316, role="lead",  solo=(144, 148), cand=[], what="эхо лида, −10 дБ (или дилей тона)"),
@@ -102,6 +103,18 @@ VOICES = {
                       what="фигура шестнадцатыми C#4 D#4 E4 G#3"),
     "pad":       dict(tone=287, role="pad",   solo=(112, 116), cand=[287, 286, 284, 753, 1011, 275, 264, 285],
                       what="пэд, аккорды по такту"),
+}
+# Scenes (presets) first, single ROM tones second (Alex 2026-11-20: «ты по одному тону собрался перебирать? кандидатов из
+# пресетов нет?»). Picked from the contents of all 150 scenes of gear/gm-800/livesets/2026-11-17-v3.tsl (tones of every
+# part); (scene, parts or None = the whole scene). Slot 50 + N = factory scene N. Scene 3 BEGI OT MENYA is Alex's own
+# scene for this song (= factory SWEEP STRINGS at scene level 68): OB Bright Str + Voyager Pad + Aurora Pad.
+SCENES = {
+    "lead":    [(76, [4]), (114, [2]), (28, [4]), (19, None), (84, None), (101, None), (79, None), (17, [1]), (121, None), (130, [1]),
+                (112, None)],
+    "whistle": [(116, [3]), (148, [2]), (144, None), (83, None), (8, [1]), (137, None), (80, [3])],
+    "stab":    [(76, [4]), (114, [2]), (121, None), (130, None), (60, None), (101, None), (23, [4]), (119, None)],
+    "arp":     [(84, None), (112, [4]), (19, [2, 4]), (28, [3]), (25, [4]), (93, [4]), (105, None), (87, [1])],
+    "pad":     [(3, None), (136, None), (81, None), (70, None), (57, None), (16, None), (62, None), (91, None), (11, None)],
 }
 GAP = {"lead": 0.002, "lead_lo": 0.002, "lead_echo": 0.002, "stab": 0.002, "arp": 0.002}   # 16th-long notes: keep the length
 
@@ -211,18 +224,74 @@ def cmd_fx():
     print(FX, f"peak {20 * np.log10(np.abs(out).max()):.1f} dBFS")
 
 
+def scene_table():
+    """{slot: (name, [(part, tone number, tone name)] of the parts that are on)} from the liveset file (no GM-800)."""
+    T = {}
+    for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8"):
+        c = r.rstrip("\n").split("\t"); T[(int(c[2]), int(c[3]), int(c[4]))] = (int(c[0]), c[1].split("  ")[0])
+    h = lambda x: int(x, 16); out = {}
+    d = json.load(open(os.path.join(REPO, "gear", "gm-800", "livesets", "2026-11-17-v3.tsl")))
+    for i, sc in enumerate(d["data"][0], 1):
+        ps = sc["paramSet"]; parts = []
+        for q in range(1, 5):
+            t = ps[f"User_Scene%ToneSelect({q})"]
+            if h(t[4]):
+                parts.append((q, *T.get((h(t[0]), h(t[1]), h(t[2]) + 1), (0, "?"))))
+        out[i] = ("".join(chr(h(x)) for x in ps["User_Scene%Common"][3:19]).strip(), parts)
+    # slot 28 was changed on the unit after that export (2026-11-20, wiki/pipelines/gm-800.md): part 4 = 316 with a 1/8 delay
+    out[28] = (out[28][0], [(1, 323, "Moving Reso Poly"), (2, 323, "Moving Reso Poly"), (3, 350, "Saw Seq"), (4, 316, "Trance Syn Poly + дилей 1/8")])
+    return out
+
+
 def cmd_plan():
-    sh = shared(); part = json.load(open(PART, encoding="utf-8"))
-    rows = {int(r.split("\t")[0]): r.split("\t")[1] for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
-    rel = os.path.relpath(PART, REPO)
+    sh = shared(); part = json.load(open(PART, encoding="utf-8")); sct = scene_table()
+    rows = {int(r.split("\t")[0]): r.split("\t")[1].split("  ")[0] for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
+    rel = os.path.relpath(PART, REPO); n_sc = n_t = 0
     for vn, spec in VOICES.items():
         sp = " ".join(f"{a}-{b - 1}" for a, b in sh.spans(part["voices"][vn]["notes"]))
         print(f"\n{vn}: {spec['what']}; такты {sp}; пока тон {spec['tone']} {rows[spec['tone']]}")
+        b0, b1 = spec["solo"]
+        for scene, parts in SCENES.get(vn, []):
+            nm, ps = sct[scene]; n_sc += 1
+            what = " + ".join(f"{num} {tn}" for q, num, tn in ps if not parts or q in parts)
+            print(f"   сцена {scene:3} {nm:16} {'партия ' + ','.join(map(str, parts)) if parts else 'вся':10} {what}")
+        for scene, parts in SCENES.get(vn, []):
+            print(f"   gmp take \"Беги от меня\" \"{rel}\" {vn} {scene}" + (f" --parts {','.join(map(str, parts))}" if parts else "")
+                  + f" --bars {b0} {b1}")
         if spec["cand"]:
-            print("   кандидаты: " + ", ".join(f"{n} {rows[n]}" for n in spec["cand"]))
+            n_t += len(spec["cand"])
+            print("   тоны: " + ", ".join(f"{n} {rows[n]}" for n in spec["cand"]))
             both = "lead,lead_lo" if vn == "lead" else vn
-            print(f"   gmp sweep \"Беги от меня\" \"{rel}\" {both} --bars {spec['solo'][0]} {spec['solo'][1]} "
+            print(f"   gmp sweep \"Беги от меня\" \"{rel}\" {both} --bars {b0} {b1} "
                   f"--role {spec['role']} --tones {','.join(map(str, spec['cand']))}")
+    print(f"\nвсего: {n_sc} дублей на сценах, {n_t} тонов; потом `prep_begi_ot_menya.py rank` — общий рейтинг сцен и тонов против стема")
+
+
+def cmd_rank():
+    """Scene takes (gmp take) and tone takes (gmp sweep) of every voice in one ranking against the stems of its solo
+    bars (gm800_part.sweep_score: mean spectrum + time-frequency picture). No GM-800: reads the kept takes."""
+    import glob, re
+    gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); sct = scene_table()
+    rows = {int(r.split("\t")[0]): r.split("\t")[1].split("  ")[0] for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
+    for vn, spec in VOICES.items():
+        b0, b1 = spec["solo"]
+        files = glob.glob(os.path.join(song.out, f"part-synths-{vn}-s*-{b0}-{b1}*.wav")) \
+            + glob.glob(os.path.join(song.out, f"sweep-synths-{vn}*-{b0}-{b1}-t*.wav"))
+        if not files:
+            continue
+        dur = (b1 - b0) * song.bar + 1.0
+        ref = sum(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + dur) for st in part["stems"]).mean(1)
+        R = gp.cqt_db(ref); out = []
+        for f in files:
+            x = gp.gmm.read_wav(f).mean(1)[:len(ref)]
+            sc, spc, tf, o = gp.sweep_score(R, gp.cqt_db(x), song.semi); nm = os.path.basename(f)
+            m = re.search(r"-s(\d+)-(all|p\d+)-", nm); t = re.search(r"-t(\d+)\.wav$", nm)
+            what = (f"сцена {int(m[1])} {sct[int(m[1])][0]} ({'вся' if m[2] == 'all' else 'партия ' + ','.join(m[2][1:])})" if m
+                    else f"тон {int(t[1])} {rows[int(t[1])]}")
+            out.append((sc, spc, tf, o, what))
+        print(f"\n{vn}, такты {b0}-{b1 - 1}:")
+        for sc, spc, tf, o, what in sorted(out, reverse=True):
+            print(f"  {sc:.3f}  спектр {spc:.3f}  картина {tf:.3f}  окт {o:+d}  {what}")
 
 
 HTML = """
@@ -329,4 +398,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "preview": cmd_preview}[sys.argv[1]]()
