@@ -1,5 +1,16 @@
 {
   "gm800": 1,
+  "podgo": [
+    {"bar": 1, "preset": "04D", "abs_sec": 1.505},
+    {"bar": 6, "preset": "32D", "abs_sec": 11.486},
+    {"bar": 14, "preset": "04A", "lead": -0.15, "abs_sec": 26.429},
+    {"bar": 34, "preset": "32D", "abs_sec": 64.457},
+    {"bar": 50, "preset": "04A", "lead": -0.1, "abs_sec": 94.537},
+    {"bar": 70, "preset": "32D", "abs_sec": 132.546},
+    {"bar": 86, "preset": "32A", "lead": -0.15, "abs_sec": 162.479},
+    {"bar": 106, "preset": "04A", "lead": -2, "abs_sec": 199.917},
+    {"bar": 122, "preset": "32D", "abs_sec": 230.025}
+  ],
   "bpm": 128.0,
   "stem_speed": 1.0847458,
   "note": "128 bpm instead of the original 118 (Alex 2026-11-20): stems stretched by tools/jamzone/prep_teen_spirit_tempo.py, JamZone originals in jamzone-orig/. Bass = GM-800 synth bass in the playback (parts/synth-bass.wav, tools/jamzone/prep_teen_spirit_bass.py).",
