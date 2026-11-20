@@ -49,89 +49,22 @@
   },
   "pitch_semitones": -2,
   "cues": [
-    {
-      "bar": 1,
-      "beat": 1,
-      "text": "Мало тебя guitar in",
-      "abs_sec": 3.692
-    },
-    {
-      "bar": 5,
-      "text": "voice in",
-      "abs_sec": 11.077
-    },
-    {
-      "bar": 13,
-      "text": "bass in",
-      "abs_sec": 25.846
-    },
-    {
-      "bar": 17,
-      "text": "drums in",
-      "abs_sec": 33.231
-    },
-    {
-      "bar": 37,
-      "text": "solo in",
-      "abs_sec": 70.154
-    },
-    {
-      "bar": 45,
-      "text": "verse in",
-      "abs_sec": 84.923
-    },
-    {
-      "bar": 47,
-      "text": "kick in",
-      "abs_sec": 88.615
-    },
-    {
-      "bar": 53,
-      "text": "bass in",
-      "abs_sec": 99.692
-    },
-    {
-      "bar": 60,
-      "beat": 4,
-      "text": "pause in",
-      "count": true,
-      "abs_sec": 114.0
-    },
-    {
-      "bar": 77,
-      "text": "solo in",
-      "abs_sec": 144.0
-    },
-    {
-      "bar": 85,
-      "text": "bridge in",
-      "abs_sec": 158.769
-    },
-    {
-      "bar": 91,
-      "text": "snare in",
-      "abs_sec": 169.846
-    },
-    {
-      "bar": 94,
-      "text": "all stop",
-      "abs_sec": 175.385
-    },
-    {
-      "bar": 95,
-      "text": "solo in",
-      "abs_sec": 177.231
-    },
-    {
-      "bar": 103,
-      "text": "chorus in",
-      "abs_sec": 192.0
-    },
-    {
-      "bar": 119,
-      "text": "all stop",
-      "abs_sec": 221.538
-    }
+    {"bar": 1, "beat": 1, "text": "Мало тебя guitar in", "abs_sec": 2.856, "snap_sec": 0.0},
+    {"bar": 5, "text": "voice in", "abs_sec": 10.241, "snap_sec": 6.498},
+    {"bar": 13, "text": "bass in", "abs_sec": 25.01, "snap_sec": 21.318},
+    {"bar": 17, "text": "drums in", "abs_sec": 32.395, "snap_sec": 28.672},
+    {"bar": 37, "text": "solo in", "abs_sec": 69.318, "snap_sec": 65.505},
+    {"bar": 45, "text": "verse in", "abs_sec": 84.087, "snap_sec": 80.345},
+    {"bar": 47, "text": "kick in", "abs_sec": 87.779, "snap_sec": 84.027},
+    {"bar": 53, "text": "bass in", "abs_sec": 98.856, "snap_sec": 95.164},
+    {"bar": 60, "beat": 4, "text": "pause in", "count": true, "abs_sec": 113.164, "snap_sec": 108.848},
+    {"bar": 77, "text": "solo in", "abs_sec": 143.164, "snap_sec": 139.352},
+    {"bar": 85, "text": "bridge in", "abs_sec": 157.933, "snap_sec": 154.211},
+    {"bar": 91, "text": "snare in", "abs_sec": 169.01, "snap_sec": 165.198},
+    {"bar": 94, "text": "all stop", "abs_sec": 174.548, "snap_sec": 170.091},
+    {"bar": 95, "text": "solo in", "abs_sec": 176.395, "snap_sec": 172.582},
+    {"bar": 103, "text": "chorus in", "abs_sec": 191.164, "snap_sec": 187.432},
+    {"bar": 119, "text": "all stop", "abs_sec": 220.702, "snap_sec": 216.245}
   ],
   "players": {"steve": ["drums"], "tanya": ["vocals"], 
     "alex": [
