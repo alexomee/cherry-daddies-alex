@@ -3,7 +3,7 @@
 (wiki/pipelines/part-transcription-guide.md; Alex 2026-11-20: «большая задача на снятие партии клавиш»,
 notes and the part itself = the MIDI from the web, sound type / brightness = Roma's concert take,
 original stems = reference; nothing played on the GM-800 yet: «пока gm 800 занят делай все что требуется
-для записи»).
+для записи»; then «всё в плейбек»: all voices go into the layer, none is played live).
 
   P="uv run -q --python 3.12 --with numpy --with scipy --with soundfile --with mido python"
   $P tools/jamzone/prep_begi_ot_menya.py notes     # MIDI + stem corrections -> parts/synths.notes.json
@@ -174,8 +174,8 @@ def cmd_notes():
                       "tools/jamzone/prep_begi_ot_menya.py notes (edit there, not here). Notes: the MIDI from midifind "
                       "(parts/begi-midifind.mid) with the record's notes where they differ (stab, arp, pad bars, the lower "
                       "octave of the lead). C# minor = band key, mix.json bars. Tones and gains are provisional: nothing "
-                      "has been played on the GM-800 or checked by ear yet (2026-11-20). Which voices Alex plays live is "
-                      "not decided: all of them are in the layer for now.",
+                      "has been played on the GM-800 or checked by ear yet (2026-11-20). Alex 2026-11-20: «всё в плейбек» - "
+                      "all seven voices go into the layer, none is played live.",
             "stems": ["keys", "strings"], "voices": V, "layer": {"file": "pb-synths", "takes": takes}}
     sh.dump(part, PART)
     os.makedirs(OUT, exist_ok=True)
@@ -237,8 +237,8 @@ HTML = """
 <tr><td>pad</td><td class="n">1–24, 59–66, 100–127, 144–151</td><td>C#m · E · A · B→B/F#; бридж F#m · B · C#m · A · F#m · B · G#sus4 · G#</td><td>MIDI; такты и G#sus4 по записи</td></tr>
 <tr><td>FX (из стемов)</td><td class="n">42.3–42.4, 83.3–83.4</td><td>обратный свелл аккорда C#m перед припевом</td><td>вырезано из keys/strings</td></tr>
 </table></div>
-<p class="q">Не выписано: тонкая высокая линия струнных в 92–99 (B4 / C#5, очень тихо). Какой голос ты играешь вживую
-(сцена 3), я не знаю: пока в плейбеке все голоса.</p>
+<p class="q">Не выписано: тонкая высокая линия струнных в 92–99 (B4 / C#5, очень тихо). Все семь голосов идут в плейбек
+(твоё решение 2026-11-20), живых среди них нет.</p>
 """
 
 # ---- preview without the GM-800: plain synth, render timeline -------------------------------------------------
