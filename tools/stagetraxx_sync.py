@@ -239,7 +239,7 @@ def podgo_pc(preset):
 # (whole song on one scene/preset); "lead" = how much earlier than the bar a change is sent.
 DEVICES = {
     "gm800": {"name": "GM-800", "field": "scene", "whole": int, "pc": gm800_pc,
-              "channel": GM_CHANNEL, "lead": SWITCH_LEAD},
+              "channel": GM_CHANNEL, "lead": SWITCH_LEAD, "bank0": True},
     "podgo": {"name": "POD Go", "field": "preset", "whole": str, "pc": podgo_pc,
               "channel": PODGO_CHANNEL, "lead": PODGO_LEAD},
 }
@@ -516,21 +516,26 @@ def mmss(sec):
     return f"{m:02d}:{rem / 1000:06.3f}"
 
 
-def device_block(changes, channel, lead=0.0, resend=False):
+def device_block(changes, channel, lead=0.0, resend=False, bank0=False):
     """[(sec, pc, label[, own_lead])] -> Stage Traxx tags. The start program goes out on load
     AND at 00:00 (the load tag doesn't fire again when the song is replayed without reloading);
     every later change at sec - lead (early, so the new preset is up on the bar), or at
     sec - own_lead when its entry carries a "lead" exception (negative = after the bar); a change to the
     program already active is dropped (re-selecting it mid-song would only risk a glitch) —
     unless the song asks for it with "resend": true in mix.json (service songs made of regions
-    you jump between: every region then sets its own patch)."""
+    you jump between: every region then sets its own patch).
+    bank0: every PC is preceded by Bank Select 0 (CC0 0, CC32 0) in the same tag. The GM-800
+    stays in bank 1 once a scene above 128 was picked on the unit (or called over MIDI) and then
+    ignores plain PCs for scenes 1-128 (wiki/pipelines/gm-800.md, 2026-11-20). Explicit CCs, not
+    "PC26.0": Stage Traxx sends only CC32 for the ".bank" form, and the unit needs both."""
     if not changes:
         return []
+    pre = f"CC0.0@{channel}, CC32.0@{channel}, " if bank0 else ""
     cur = changes[0][1]
-    lines = [f"[midi: PC{cur}@{channel}]", f"[midi@00:00.000: PC{cur}@{channel}]"]
+    lines = [f"[midi: {pre}PC{cur}@{channel}]", f"[midi@00:00.000: {pre}PC{cur}@{channel}]"]
     for sec, pc, _label, *own in changes[1:]:
         if pc != cur or resend:
-            lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: PC{pc}@{channel}]")
+            lines.append(f"[midi@{mmss(send_sec(sec, own[0] if own else None, lead))}: {pre}PC{pc}@{channel}]")
             cur = pc
     return lines
 
@@ -538,7 +543,7 @@ def device_block(changes, channel, lead=0.0, resend=False):
 def devices_block(devices, channels, resend=False):
     return [ln for key, d in DEVICES.items()
             for ln in device_block(devices.get(key), channels.get(key, d["channel"]), d["lead"],
-                                   resend)] \
+                                   resend, d.get("bank0", False))] \
         + cc_block(devices.get("gm800_cc"), channels.get("gm800", GM_CHANNEL))
 
 

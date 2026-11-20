@@ -71,7 +71,8 @@ def test_early_change_never_goes_negative():
 def test_both_devices_in_one_block():
     devices = {"gm800": st.parse_device("gm800", 1), "podgo": st.parse_device("podgo", "02A")}
     assert st.devices_block(devices, {}) == [
-        "[midi: PC0@2]", "[midi@00:00.000: PC0@2]", "[midi: PC4@3]", "[midi@00:00.000: PC4@3]"]
+        "[midi: CC0.0@2, CC32.0@2, PC0@2]", "[midi@00:00.000: CC0.0@2, CC32.0@2, PC0@2]",
+        "[midi: PC4@3]", "[midi@00:00.000: PC4@3]"]      # GM-800: Bank Select 0 before every PC
     assert st.devices_block({"podgo": devices["podgo"]}, {"podgo": 5})[0] == "[midi: PC4@5]"
 
 
@@ -114,7 +115,7 @@ def test_cc_tags_follow_the_scene_pc():
                "gm800_cc": st.parse_cc([{"cc": 80, "value": 0, "abs_sec": 3.5},
                                         {"cc": 80, "value": 127, "abs_sec": 31.4}])}
     assert st.devices_block(devices, {}) == [
-        "[midi: PC26@2]", "[midi@00:00.000: PC26@2]",
+        "[midi: CC0.0@2, CC32.0@2, PC26@2]", "[midi@00:00.000: CC0.0@2, CC32.0@2, PC26@2]",
         "[midi: CC80.0@2]", "[midi@00:00.000: CC80.0@2]", "[midi@00:30.900: CC80.127@2]"]
 
 
