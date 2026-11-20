@@ -688,8 +688,18 @@ def cmd_sweep(song, part_file, voices, b0, b1, nums, base, tail, band, rescore=F
                 raise SystemExit(f"scene {base} is '{nm}', not INIT")
             ch = rig.part_ch[0]
             for i, num in enumerate(nums, 1):
-                r = tab[num]; rig.tone(int(r[2]), int(r[3]), int(r[4]))
-                x = play(rig, [(t, n, d, ch) for t, n, d in line], tail=tail + 0.3)
+                r = tab[num]; want = [int(r[2]), int(r[3]), int(r[4]) - 1]
+                for attempt in range(4):                     # a PC from elsewhere (Stage Traxx being launched by
+                    rig.tone(*want[:2], want[2] + 1)         # another session, 2026-11-20) replaces the TEMP scene
+                    x = play(rig, [(t, n, d, ch) for t, n, d in line], tail=tail + 0.3)   # mid-run: every take
+                    got = rig.g.rq([0x10, 0x02, 0x00, 0x00], 3)                           # after it came out
+                    if got and list(got[:3]) == want and "INIT" in rig.g.name().upper():  # silent. So check
+                        break                                                             # the scene is still
+                    print(f"      {num}: the scene changed under the take (tone {list(got[:3]) if got else None}, "
+                          f"wanted {want}) - scene {base} again, take repeated", flush=True)   # ours, else redo
+                    rig.load(base)
+                else:
+                    raise SystemExit(f"tone {num}: the scene keeps changing - something is sending PCs to the GM-800")
                 gmm.save(path(num), x)
                 print(f"  {i:3}/{len(nums)} {num:4} {r[1]}", flush=True)
             time.sleep(0.2)
