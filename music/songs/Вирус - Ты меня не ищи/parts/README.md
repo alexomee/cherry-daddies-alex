@@ -47,7 +47,7 @@ Alex: между cue 1:42 → 1:56 и 3:10 → 3:37 плейбек не игра
 Клавиши, сыгранные самим GM-800 вместо вырезанных Moises keys + strings (слой `pb-keys` из `mix.json` убран, `pb-keys.wav` в плейбек больше не идёт).
 
 - `pb-keys-pad.wav` — пэд куплетов и припевов, такты 9–40 и 67–98. Ноты и список дублей: `keys-pad.notes.json` (голоса `low`, `low2`, `high`, `live`; `tab` — табулатура для Stage Traxx; раздел `layer`). Верхний голос записан со сцены 32 NE ISHI PAD, на которой Alex играет его вживую в 9–16.
-- `pb-keys-solo-pad.wav` — длинная высокая A6 в 41–56 (тон 272 Soft Glass Pad). Ноты и дубль: `keys-solo-pad.notes.json`.
+- `pb-keys-solo-pad.wav` — длинная высокая A6 в 41–56, сыграна на сцене 32 NE ISHI PAD. Ноты и дубль: `keys-solo-pad.notes.json`.
 - Оба stem-фрейм, 44.1 кГц, вне git. Сборка: `tools/gm800_part.py record "Ты меня не ищи" parts/<файл>.notes.json` (нужен прибор по USB; дубли в `analysis/gm800-match/`), затем `tools/gm800_part.py layer …` (офлайн).
-- В `mix.json`: оба `derived` + `source: ["keys", "strings"]`; `pb-keys-pad` +6.5 дБ → −21 в куплетах и припевах, `mute` `[41, 67]`, `[98.5, 130]` с фейдом 250 мс; `pb-keys-solo-pad` +0.4 дБ.
+- В `mix.json`: оба `derived` + `source: ["keys", "strings"]`; `pb-keys-pad` +6.5 дБ → −21 в куплетах и припевах, `mute` `[41, 67]`, `[98.5, 130]` с фейдом 250 мс; `pb-keys-solo-pad` +11.1 дБ.
 - Подход, состав звука, табы: `wiki/pipelines/gm-800-parts.md`.
