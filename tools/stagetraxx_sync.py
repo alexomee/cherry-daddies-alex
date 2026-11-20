@@ -86,6 +86,10 @@ every timed switch of that song (an entry's own "lead" still wins):
     "switch_lead": {"podgo": 0.3}                only the POD Go; the rest stay standard
 
 Tabs of the parts Alex plays (key "tab" in the song's parts/*.notes.json) go under the note.
+A note written as a chord chart (some line holds a repeat ×N or a bar |, e.g. 'A B ×2 | A G#')
+gets Stage Traxx color markup {c:<color>}…{c} on its chord lines (every token a chord / ×N / |):
+chords green, ×N orange, | gray (CHART_COLORS). Notes without ×N/| keep Stage Traxx's own
+chord-line highlight. Only in Stage Traxx: the board note stays plain (stage_sheet.py prints it).
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
 localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
 the lyrics area. The sync owns that text: edit notes on the board, not in Stage Traxx (text
@@ -575,6 +579,46 @@ def clean_note(text):
     return "\n".join(out)
 
 
+CHORD_TOKEN = re.compile(r"[A-G][#b♯♭]?(?:maj|min|m|dim|aug|sus|add|[0-9]|[#b+°ø])*(?:/[A-G][#b♯♭]?)?")
+REPEAT_TOKEN = re.compile(r"[×x][0-9]+")
+REPEAT_IN_TEXT = re.compile(r"(?<!\S)([×x][0-9]+)(?=[,\s]|$)")
+CHART_COLORS = {"chord": "green", "repeat": "orange", "bar": "gray"}   # Stage Traxx {c:<name>} palette:
+                                  # blue gray green orange pink purple red teal white yellow (app's own demo song)
+
+
+def color_chart_line(line):
+    """'A B ×2 | A G#' -> '{c:green}A B{c} {c:orange}×2{c} {c:gray}|{c} {c:green}A G#{c}'. A line with
+    any token that is not a chord / ×N / | (section names, lyrics, tabs, [bracket] chords) is unchanged."""
+    toks = line.split()
+    kinds = []
+    for t in toks:
+        core = t.rstrip(",")
+        kinds.append("bar" if core == "|" else "repeat" if REPEAT_TOKEN.fullmatch(core)
+                     else "chord" if CHORD_TOKEN.fullmatch(core) else None)
+    if not toks or None in kinds or "chord" not in kinds:
+        return line
+    out, i = [], 0
+    while i < len(toks):
+        j = i
+        while j < len(toks) and kinds[j] == kinds[i]:
+            j += 1
+        out.append("{c:%s}%s{c}" % (CHART_COLORS[kinds[i]], " ".join(toks[i:j])))
+        i = j
+    return " ".join(out)
+
+
+def color_chart_note(text):
+    """Color the chord lines of a chart-style note (one with ×N or |) — all of them, so the chords
+    share one green; a note without ×N/| is returned as is (Stage Traxx highlights chord lines)."""
+    lines = (text or "").splitlines()
+    colored = [color_chart_line(l) for l in lines]
+    if not any("{c:orange}" in c or "{c:gray}" in c for c in colored):
+        return text
+    rep = "{c:%s}\\1{c}" % CHART_COLORS["repeat"]                  # a standalone ×N in a text line
+    return "\n".join(c if c != l else REPEAT_IN_TEXT.sub(rep, l)     # ('Барабаны 24–39, блок ×2') too
+                     for c, l in zip(colored, lines))
+
+
 def song_tabs(sid):
     """Tab lines of the parts Alex plays (key "tab" of every parts/*.notes.json of the song,
     written with the part: wiki/pipelines/gm-800-parts.md). Shown under the dashboard note."""
@@ -705,7 +749,8 @@ def plan(sets, clips, song_filters, set_filter, notes=None):
                     "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
                     "devices": devices, "dev_err": dev_err,
                     "note": None if notes is None else "\n".join(
-                        t for t in (notes.get(sid, ""), song_tabs(sid)) if t),
+                        t for t in (color_chart_note(notes.get(sid, "")),
+                                    song_tabs(sid)) if t),
                 }
         if members:
             playlists.append((PL_PREFIX + name, members))
