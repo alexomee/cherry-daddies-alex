@@ -8,6 +8,8 @@ them with the record; `store` writes the chosen one into the slot (backups with 
             --with python-rtmidi --with pyloudnorm --with librosa --with mido tools/gm800_poproshu29.py "$@"; }
     gm9 test                       # every variant of VARIANTS, takes + table against the record
     gm9 store NAME                 # that variant into slot 29's memory
+    gm9 layer-test [--level L] [--alone]   # 198 Fat Mask Dist Ld in part 3 (TEMP), lead 77-80 vs the record
+    gm9 layer-store --level L              # the layer into slot 29's memory
 
 Scene 29 as found (2026-11-20): parts 1-2 Harpsichord 1 (oct +1 / 0), PLAY FEEL 2, TEMPO 120 (the song is 140),
 Chorus/Delay on (SDD-320) but every part's send 0, Reverb on (level 70), sends 30. FX1 = the SuperFilter of bars
@@ -123,6 +125,66 @@ def cmd_test(names):
     print(f"  {'record':10} dip between notes {rd:6.1f} dB                  centroid {rc:5.0f} Hz")
 
 
+# ---- the layer (Alex 2026-11-20: «проблема в тоне… в оригинале явно что-то трубное или saw-ное» → «198 пила»):
+# 198 Fat Mask Dist Ld in part 3 (was off: MK-80 Chorus EP), over the harpsichord. Short list of 51 tones (brass
+# categories, cut short, + 13 leads of the sweep journal) as a layer on scene 29: 198 at +3 dB to the harpsichord
+# was closest to the record's lead in 77-78 (0.908 vs 0.870 alone; gap between notes -6.4 vs -12.0 dB).
+LAYER_PART, LAYER_TONE = 3, 198
+
+
+def set_layer(dt, level):
+    import csv
+    r = next(r for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t") if int(r[0]) == LAYER_TONE)
+    p = LAYER_PART - 1
+    dt([TEMP, 0x02, p, 0x00], [int(r[2]), int(r[3]), int(r[4]) - 1]); time.sleep(0.6)
+    for off, v in ((0x04, 1), (0x06, level), (0x08, 0), (0x09, 64), (0x0A, 0), (0x0B, 30)):   # on, level, unmuted,
+        dt([TEMP, 0x02, p, off], [v])                                                      # centre, sends as 1-2
+    dt([TEMP, 0x02, 0x08 + p, 0x00], [1])             # OUTPUT = FX1, like parts 1-2 (the 94-101 filter sweep)
+    dt([TEMP, 0x02, 0x10 + p, 0x02], [32])            # TONE MOD OCT SHIFT 0
+    time.sleep(0.4)
+
+
+def cmd_layer_test(level, alone):
+    song = gmm.Song("Попрошу"); line = lead_line(song)
+    with gmm.Rig() as rig:
+        rig.load(SLOT); set_layer(rig.g.dt, level)
+        print("part 3:", rig.g.rq([TEMP, 0x02, LAYER_PART - 1, 0x00], 12), "out", rig.g.rq([TEMP, 0x02, 0x08 + LAYER_PART - 1, 0], 1),
+              "oct", rig.g.rq([TEMP, 0x02, 0x10 + LAYER_PART - 1, 0x02], 1))
+        if alone:
+            for q in (0, 1):
+                rig.g.dt([TEMP, 0x02, q, 0x04], [0])
+            p = take(rig, song, line, f"layer198-alone-l{level}")
+        else:
+            p = take(rig, song, line, f"layer198-l{level}")
+    d, sc, ce, rd, rc = metrics(song, p)
+    print(f"  {os.path.basename(p)}: LUFS {gmm.lufs(gmm.read_wav(p)):.1f}  dip {d:.1f} dB  score {sc:.3f}  centroid {ce:.0f} Hz"
+          f"  (record: dip {rd:.1f}, centroid {rc:.0f})")
+
+
+def cmd_layer_store(level):
+    sx = gmm.Sx()
+    try:
+        stamp = time.strftime("%H%M%S")
+        before, pb = gmm.backup(sx, SLOT, f"before-layer198-{stamp}")
+        if len(before) != 88 or not gmm.scene_name(before).startswith("POPROSHU"):
+            raise SystemExit(f"slot {SLOT}: '{gmm.scene_name(before)}' / {len(before)} blocks: not writing")
+        for m in ([0xB1, 0, 0], [0xB1, 32, 0], [0xC1, SLOT - 1]):
+            sx.o.send_message(m)
+        time.sleep(1.5)
+        set_layer(lambda ad, d: sx.dt(ad, d, 0.08), level); time.sleep(0.5)
+        new = sx.dump([TEMP, 0x00])
+        if len(new) != 88:
+            raise SystemExit(f"temp scene: read {len(new)} of 88 blocks, not writing")
+        sx.write(gmm.slot_base(SLOT), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, SLOT, f"after-layer198-{stamp}")
+        bad = [k for k in new if after.get(k) != new[k]]
+        print(f"slot {SLOT} '{gmm.scene_name(after)}': part 3 = {LAYER_TONE} level {level}, 88 blocks written, "
+              f"mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
+        sx.o.send_message([0xC1, 0])
+    finally:
+        sx.close()
+
+
 def cmd_store(name):
     sx = gmm.Sx()
     try:
@@ -152,5 +214,14 @@ if __name__ == "__main__":
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("test"); p.add_argument("names", nargs="*", default=list(VARIANTS))
     p = sub.add_parser("store"); p.add_argument("name", choices=list(VARIANTS))
+    p = sub.add_parser("layer-test"); p.add_argument("--level", type=int, default=100); p.add_argument("--alone", action="store_true")
+    p = sub.add_parser("layer-store"); p.add_argument("--level", type=int, required=True)
     a = ap.parse_args()
-    cmd_test(a.names) if a.cmd == "test" else cmd_store(a.name)
+    if a.cmd == "test":
+        cmd_test(a.names)
+    elif a.cmd == "store":
+        cmd_store(a.name)
+    elif a.cmd == "layer-test":
+        cmd_layer_test(a.level, a.alone)
+    else:
+        cmd_layer_store(a.level)
