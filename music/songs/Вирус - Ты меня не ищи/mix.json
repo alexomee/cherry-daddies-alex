@@ -19,11 +19,11 @@
   "pb-other": {
     "layers": [
       {"file": "pb-fx", "frame": "stem"},
-      {"file": "pb-keys", "frame": "stem", "gain_db": 4.3, "derived": true, "source": ["keys", "strings"], "mute": [[9, 25], [58, 66], [67, 83], [107.75, 130]]},
-      {"file": "pb-keys-verse", "frame": "stem", "gain_db": 6.5, "derived": true, "source": ["keys", "strings"]},
+      {"file": "pb-keys-pad", "frame": "stem", "gain_db": 6.5, "derived": true, "source": ["keys", "strings"], "mute": [[41, 67], [98.5, 130]], "mute_fade_ms": [250, 5]},
+      {"file": "pb-keys-solo-pad", "frame": "stem", "gain_db": 0.4, "derived": true, "source": ["keys", "strings"]},
       {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66], [107.75, 130]]}
     ],
-    "roles": {"pb-fx": "musical", "pb-keys": "musical", "pb-keys-verse": "musical", "pb-wah": "back-vox"},
+    "roles": {"pb-fx": "musical", "pb-keys-pad": "musical", "pb-keys-solo-pad": "musical", "pb-wah": "back-vox"},
     "peak": "limit"
   },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -0.5},

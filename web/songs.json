@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T09:14:59",
+  "generated": "2026-11-20T09:59:15",
   "counts": {
     "total": 127,
     "data": 125,
@@ -14386,8 +14386,8 @@
             "kind": "layers",
             "items": [
               "pb-fx",
-              "pb-keys",
-              "pb-keys-verse",
+              "pb-keys-pad",
+              "pb-keys-solo-pad",
               "pb-wah"
             ]
           },
@@ -14442,14 +14442,14 @@
             "guitars": "ba5b19bd1a",
             "other": "84ea20c9da",
             "click": "12b4fc7ef3",
-            "cues": "78589b352e"
+            "cues": "4f23f06e9c"
           },
           "versions": {
-            "all": "f81a146754",
+            "all": "b41de0d9c5",
             "alex": "78375f39fc",
-            "pb-other": "044a56fbcc",
+            "pb-other": "1f16da9660",
             "pb-bass": "33797ce323",
-            "pb-audition": "aa281f0d08"
+            "pb-audition": "36f116b93b"
           },
           "pb_other": {
             "available": true,
@@ -20713,8 +20713,8 @@
             "kind": "layers",
             "items": [
               "pb-fx",
-              "pb-keys",
-              "pb-keys-verse",
+              "pb-keys-pad",
+              "pb-keys-solo-pad",
               "pb-wah"
             ]
           },
@@ -20769,14 +20769,14 @@
             "guitars": "ba5b19bd1a",
             "other": "84ea20c9da",
             "click": "12b4fc7ef3",
-            "cues": "78589b352e"
+            "cues": "4f23f06e9c"
           },
           "versions": {
-            "all": "f81a146754",
+            "all": "b41de0d9c5",
             "alex": "78375f39fc",
-            "pb-other": "044a56fbcc",
+            "pb-other": "1f16da9660",
             "pb-bass": "33797ce323",
-            "pb-audition": "aa281f0d08"
+            "pb-audition": "36f116b93b"
           },
           "pb_other": {
             "available": true,

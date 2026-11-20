@@ -1,0 +1,14 @@
+{
+ "_about": "The long high note under the synth-only section and the solo (bars 41-56): one A6, an almost pure tone in the strings stem (h2 -20 dB, slow swell, fades over bars 54-56). Nobody plays it live, so it is a ROM tone in a TEMP scene, no scene kept. tools/gm800_part.py, wiki/pipelines/gm-800-parts.md.",
+ "bars": [41, 45],
+ "stems": ["strings"],
+ "voices": {
+  "line": {"at": [41], "bars": 16, "notes": [[1, 1, 60, "A6"]]}
+ },
+ "layer": {
+  "file": "pb-keys-solo-pad",
+  "takes": [
+   {"voice": "line", "tone": 272, "base": 33, "bars": [41, 57], "gain_db": 0, "fade": [54, 56.25]}
+  ]
+ }
+}

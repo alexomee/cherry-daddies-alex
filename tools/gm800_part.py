@@ -14,6 +14,7 @@ the same sound Alex plays live on that scene.
     gmp record "<song>" NOTES.json           # every take of the "layer" spec, time-locked (see below)
     gmp layer "<song>" NOTES.json            # takes -> parts/<file>.wav (stem frame), offline
     gmp balance 51 3:127 1:110,60,30,15      # loudness of part 1 at these PART LEVELs against part 3 at 127
+    gmp tones "<song>" A6 223,224,886 [--base 33]   # one held note on ROM tones: harmonics, attack, pitch
     gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
 
 NOTES.json (lives in the song's parts/ folder, bars = mix.json bars):
@@ -29,8 +30,11 @@ is loaded at the end. Nothing is written to the GM-800's memory - except `scene`
 user slot (must be INIT unless --force; SysEx dumps before/after in gear/gm-800/backups/sysex/).
 
 The playback layer is described in NOTES.json:
-    "layer": {"file": "pb-keys-verse", "takes": [
-        {"voice": "low", "scene": 57, "parts": [3], "bars": [9, 25], "gain_db": -6.0}, ...]}
+    "layer": {"file": "pb-keys-pad", "takes": [
+        {"voice": "low", "scene": 57, "parts": [3], "bars": [9, 25], "gain_db": -6.0},
+        {"voice": "line", "tone": 272, "base": 33, "bars": [41, 57], "gain_db": 0, "fade": [54, 56.25]}]}
+(a take is a scene, whole or some of its parts, or one ROM tone in part 1 of an INIT scene - for
+a part nobody plays live, so no scene is kept for it)
 `record` plays each take and cuts it so that sample 0 is the bar line of its first bar: the USB
 record chain has a latency that changes from run to run, so every take starts with a short note
 on a sharp scene (SYNC_SCENE), its onset gives the latency of this very recording, then the
@@ -164,8 +168,11 @@ SYNC_SCENE, SYNC_AT, SYNC_T0 = 7, 0.3, 3.0     # sharp bass scene; marker time; 
 
 def rec_path(song, part_file, tk):
     base = os.path.basename(part_file).replace(".notes.json", "")
-    tag = "all" if not tk.get("parts") else "p" + "".join(map(str, tk["parts"]))
-    return os.path.join(song.out, f"rec-{base}-{tk['voice']}-s{tk['scene']:03d}-{tag}-{tk['bars'][0]}-{tk['bars'][1]}.wav")
+    if tk.get("tone"):
+        src = f"t{tk['tone']:04d}"
+    else:
+        src = f"s{tk['scene']:03d}-" + ("all" if not tk.get("parts") else "p" + "".join(map(str, tk["parts"])))
+    return os.path.join(song.out, f"rec-{base}-{tk['voice']}-{src}-{tk['bars'][0]}-{tk['bars'][1]}.wav")
 
 
 def cmd_record(song, part_file, only=None, tail=4.0):
@@ -175,8 +182,19 @@ def cmd_record(song, part_file, only=None, tail=4.0):
             if only is not None and i not in only:
                 continue
             b0, b1 = tk["bars"]; line = voice_line(song, part, tk["voice"], b0, b1)
-            nm, _ = rig.load(tk["scene"])
-            sp = [x for x in scene_parts(rig, tones) if (x[0] in tk["parts"] if tk.get("parts") else x[2])]
+            tone_msg = None
+            if tk.get("tone"):                               # a ROM tone in part 1 of the TEMP scene
+                scene = tk.get("base", 33); nm, _ = rig.load(scene)
+                if "INIT" not in nm.upper():
+                    raise SystemExit(f"take {i}: base scene {scene} is '{nm}', not INIT")
+                r = next(r for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t") if int(r[0]) == tk["tone"])
+                rig.tone(int(r[2]), int(r[3]), int(r[4])); nm = f"{r[0]} {r[1]}"
+                body = [0x10, 0x02, 0x00, 0x00, int(r[2]), int(r[3]), int(r[4]) - 1]
+                tone_msg = gmm.HDR + [0x12] + body + [gmm.csum(body), 0xF7]
+                sp = [(1, rig.part_ch[0], True, tk["tone"], r[1], 0)]
+            else:
+                scene = tk["scene"]; nm, _ = rig.load(scene)
+                sp = [x for x in scene_parts(rig, tones) if (x[0] in tk["parts"] if tk.get("parts") else x[2])]
             shifts = {}
             for pnum, ch, on, num, name, level in sp:
                 sh = probe_shift(rig, ch)
@@ -187,7 +205,9 @@ def cmd_record(song, part_file, only=None, tail=4.0):
             rig.load(SYNC_SCENE)
             msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
             msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
-            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), tk["scene"] - 1])]
+            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), scene - 1])]
+            if tone_msg:
+                msgs += [(SYNC_AT + 1.4, tone_msg)]
             for t, n, d in line:
                 for ch, sh in shifts.items():
                     msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, gmm.VEL]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
@@ -207,7 +227,7 @@ def cmd_record(song, part_file, only=None, tail=4.0):
                 raise SystemExit(f"take {i}: sync onset at {on:.3f} s, latency {lat * 1000:.0f} ms - not plausible")
             y = x[int(round((SYNC_T0 + lat) * SR)):]
             out = rec_path(song, part_file, tk); gmm.save(out, y)
-            print(f"take {i}: {tk['voice']} bars {b0}-{b1} on scene {tk['scene']} '{nm}' parts "
+            print(f"take {i}: {tk['voice']} bars {b0}-{b1} on scene {scene} '{nm}' parts "
                   f"{[q[0] for q in sp]}: latency {lat * 1000:.1f} ms, LUFS {gmm.lufs(y):.1f}, peak "
                   f"{20 * np.log10(np.abs(y).max() + 1e-9):.1f} -> {os.path.basename(out)}", flush=True)
 
@@ -221,6 +241,9 @@ def cmd_layer(song, part_file):
     for tk in lay["takes"]:
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
+        if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
+            f0, f1 = (int((b - tk["bars"][0]) * song.bar * SR) for b in tk["fade"])
+            x[f0:f1] *= np.linspace(1, 0, f1 - f0)[:, None]; x[f1:] = 0
         if sr != SR:
             x = resample_poly(x, sr, SR, axis=0)
         a = int(round(song.t_stem(tk["bars"][0]) * sr)); m = min(len(x), len(out) - a)
@@ -228,6 +251,43 @@ def cmd_layer(song, part_file):
     dst = os.path.join(song.dir, "parts", lay["file"] + ".wav")
     sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
     print(f"{len(lay['takes'])} takes -> {dst}  peak {20 * np.log10(np.abs(out).max() + 1e-9):.1f} dBFS")
+
+
+def note_profile(x, f0, hold):
+    """Harmonics 2-4 (dB to the fundamental), seconds to reach -6 dB of the sustain level, pitch
+    offset in cents and level wobble (dB, std) of a held note."""
+    m = x.mean(1); a, b = int(0.8 * SR), int((hold - 0.2) * SR); seg = m[a:b] * np.hanning(b - a)
+    mag = np.abs(np.fft.rfft(seg)); fr = np.fft.rfftfreq(b - a, 1 / SR)
+
+    def pk(f):
+        k = (fr > f * 0.97) & (fr < f * 1.03); i = int(np.argmax(mag[k]))
+        return 20 * np.log10(mag[k][i] + 1e-12), fr[k][i]
+    l1, f1 = pk(f0); hs = [pk(f0 * h)[0] - l1 for h in (2, 3, 4)]
+    n = int(0.02 * SR); env = np.array([np.sqrt(np.mean(m[i:i + n] ** 2)) for i in range(0, int(hold * SR) - n, n)])
+    sus = np.median(env[int(0.8 / 0.02):]); att = float(np.argmax(env > sus * 0.5)) * 0.02
+    wob = float(np.std(20 * np.log10(env[int(0.8 / 0.02):] + 1e-9)))
+    return hs, att, 1200 * np.log2(f1 / f0), wob
+
+
+def cmd_tones(song, note, nums, base, hold=4.0):
+    """One held note on ROM tones (part 1 of the TEMP scene over an INIT scene; nothing is written)."""
+    tab = {int(r[0]): r for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t")}
+    n = midi_of(note); f0 = 440 * 2 ** ((n - 69) / 12)
+    with gmm.Rig() as rig:
+        nm, _ = rig.load(base)
+        if "INIT" not in nm.upper():
+            raise SystemExit(f"scene {base} is '{nm}', not INIT")
+        ch = rig.part_ch[0]
+        print(f"note {note} ({f0:.0f} Hz), {hold} s:  h2 h3 h4 (dB) | attack s | cents | wobble dB | LUFS")
+        for num in nums:
+            r = tab[num]; rig.tone(int(r[2]), int(r[3]), int(r[4]))
+            x = play(rig, [(0.0, n, hold, ch)], tail=2.0)
+            if np.abs(x).max() < 1e-4:
+                print(f"  {num:4} {r[1]:18} silent"); continue
+            hs, att, cents, wob = note_profile(x, f0, hold)
+            gmm.save(os.path.join(song.out, f"tone-{note}-{num:04d}.wav"), x)
+            print(f"  {num:4} {r[1]:18} {hs[0]:5.0f} {hs[1]:5.0f} {hs[2]:5.0f} | {att:5.2f} | {cents:+5.0f} | {wob:4.1f} | "
+                  f"{gmm.lufs(x[:int(hold * SR)]):6.1f}", flush=True)
 
 
 def cmd_balance(tpl, ref, part, chord="E4 A4 C5"):
@@ -321,6 +381,8 @@ def main():
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("--bars", type=int, nargs=2)
     p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--only", default="")
     p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes")
+    p = sub.add_parser("tones"); p.add_argument("song"); p.add_argument("note"); p.add_argument("nums")
+    p.add_argument("--base", type=int, default=33)
     p = sub.add_parser("balance")
     p.add_argument("template", type=int); p.add_argument("ref"); p.add_argument("part")
     p.add_argument("--chord", default="E4 A4 C5")
@@ -338,6 +400,8 @@ def main():
         parts = {int(k): int(v) for k, v in (x.split(":") for x in a.parts.split(","))}
         return cmd_scene(a.slot, a.template, a.name, parts, a.octave, a.force)
     song = gmm.Song(a.song)
+    if a.cmd == "tones":
+        return cmd_tones(song, a.note, [int(v) for v in a.nums.split(",")], a.base)
     if a.cmd == "record":
         return cmd_record(song, a.notes, [int(v) for v in a.only.split(",") if v] or None)
     if a.cmd == "layer":
