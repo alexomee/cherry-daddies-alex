@@ -23,8 +23,9 @@ parts of the sum, not one per stem:
   bass     intro only (the bass stem is silent there): G#1 / B1 / C#2, C#2 held 8-11.
   stab     F3 F#4 G#4 B4 D#5 on 4.3 of every odd bar of the verses (13-35, 53-67), into the downbeat.
   pluck    G#5 (1) / C#5 (1.3) with a dotted-eighth echo, bars 21 25 29 33.
-  lead     the hook, a stack of octaves (+ fifth) in the record: 4 bars H1 H2 H1 H4 in 86-101 and
-           118-125, H1 H2 H1 H2 H1 H2 H1 H4 in 110-117, variation VA/VB 102-107, build 108-109.
+  lead     the hook in the RHYTHM OF THE MIDI (Alex 2026-11-20), a stack of octaves (+ fifth) in the record:
+           solo 86-93 and 118-125 H1 H2 H1 H4, kick stop 94-101 K1 K2 K1 K4, variation 102-107 K1 K2, build
+           108-109 B1 B2, last chorus 110-117 H1 H2 ... H4 (no hook there in the MIDI; kept from the record).
   FX       impacts / noise / the final fall are not notes: kept as cut stems (pb-fx) in their windows.
 """
 import json, os, subprocess, sys
@@ -50,18 +51,22 @@ def ev(bar, q, l16, pitches):
 
 
 # ---- the hook (16th, length in 16ths, root in octave 4) ----------------------------------------
-H1 = [(0, 1, "F#4"), (1, 2, "G#4"), (3, 2, "G#4"), (5, 2, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"), (9, 1, "G#4"),
-      (10, 1, "F#4"), (11, 1, "G#4"), (12, 1, "A#4"), (13, 1, "B4"), (14, 1, "A#4"), (15, 1, "G#4")]
-H2 = [(0, 1, "F#4"), (1, 2, "G#4"), (3, 2, "G#4"), (5, 2, "G#4"), (7, 1, "G#4"), (8, 1, "F4"), (9, 2, "G#4"),
-      (11, 1, "G#4"), (12, 1, "F4"), (13, 1, "F#4"), (14, 1, "F4"), (15, 1, "D#4")]
-H4 = [(0, 2, "A#4"), (2, 1, "G#4"), (3, 1, "F#4"), (4, 2, "G#4"), (6, 1, "F#4"), (7, 1, "F4"), (8, 2, "F#4"),
-      (10, 1, "F4"), (11, 1, "D#4"), (12, 2, "F4"), (14, 1, "D#4")]
-VA = [(0, 1, "F#4"), (1, 5, "G#4"), (6, 4, "D#4"), (10, 1, "G#4"), (11, 1, "G#4"), (12, 1, "A#4"), (13, 1, "B4"),
-      (14, 1, "A#4"), (15, 1, "G#4")]
-VB = [(0, 1, "F#4"), (1, 7, "G#4"), (11, 1, "G#4"), (12, 1, "F4"), (13, 2, "F#4")]
-B1 = [(0, 1, "F#4"), (1, 2, "G#4"), (3, 2, "G#4"), (5, 2, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"), (9, 2, "G#4"),
-      (11, 2, "G#4"), (13, 2, "G#4"), (15, 1, "G#4")]
-B2 = B1[:-2] + [(13, 1, "G#4"), (14, 1, "F#5"), (15, 1, "G#5")]
+# RHYTHM FROM THE MIDI (Alex 2026-11-20, after an A/B of a plain render: «да, по миди»): G# short (a 16th) on the
+# offbeat 16ths, brass track 6 of ~/Downloads/mama_ljuba_[lakhin_juriy].mid. MIDI bars -> ours: solo 78-85 -> 86-93
+# (and 118-125), kick stop 86-89 -> 94-101 (x2, the MIDI has 4 bars), variation 90-95 -> 102-107, build 96-97 ->
+# 108-109. The MIDI's last chorus has no hook (a half-note brass line); ours keeps the hook there in the solo rhythm.
+_G6 = [(1, 1, "G#4"), (3, 1, "G#4"), (5, 1, "G#4"), (7, 1, "G#4"), (9, 1, "G#4"), (11, 1, "G#4")]
+H1 = [(0, 1, "F#4")] + _G6 + [(12, 1, "A#4"), (13, 1, "B4"), (14, 1, "A#4"), (15, 1, "G#4")]
+H2 = [(0, 1, "F#4")] + _G6 + [(12, 1, "F4"), (13, 1, "F#4"), (14, 1, "F4"), (15, 1, "D#4")]
+H4 = [(0, 1, "A#4"), (1, 1, "B4"), (2, 1, "G#4"), (3, 1, "F#4"), (4, 2, "G#4"), (6, 1, "F#4"), (7, 1, "F4"),
+      (8, 2, "F#4"), (10, 1, "F4"), (11, 1, "D#4"), (12, 2, "F4"), (14, 1, "D#4"), (15, 1, "C#4")]
+K1 = [(0, 1, "F#4")] + _G6 + [(12, 3, "A#4"), (15, 1, "G#4")]          # kick stop / variation: the turn held
+K2 = [(0, 1, "F#4")] + _G6 + [(12, 3, "F4"), (15, 1, "D#4")]
+K4 = [(0, 2, "A#4")] + H4[2:]
+B1 = [(0, 1, "F#4"), (1, 1, "G#4"), (3, 1, "G#4"), (5, 1, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"), (9, 1, "G#4"),
+      (11, 1, "G#4"), (13, 1, "G#4"), (15, 1, "G#4")]
+B2 = [(0, 1, "F#4"), (1, 1, "G#4"), (3, 1, "G#4"), (4, 1, "F#4"), (5, 1, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"),
+      (9, 1, "G#4"), (11, 1, "G#4")]
 # The record's lead: root (G#4 on the sweep's best tone), a fifth above and an octave below, each a take of
 # its own - the lead tones are MONO (a chord sent to one sounds only one note). Gains to the root's.
 LEAD_LAYERS = {"lead": 0, "lead5": 7, "leadsub": -12}
@@ -69,11 +74,14 @@ REL = {"lead5": -4.0, "leadsub": -6.0, "pluck_echo": -8.0}
 GROUP = {"lead5": "lead", "leadsub": "lead"}
 
 
+LEGATO = 0.5          # 16ths a legato note is held past the next note's start (voice_line cuts 30 ms: ~30 ms overlap)
+
+
 def lead_notes(bars, shift=0):
     out = []
     for i, pat in enumerate(bars, 1):
-        for q, l, r in pat:
-            out.append(ev(i, q, l, name(midi(r) + shift)))
+        for q, l, r, *leg in pat:
+            out.append(ev(i, q, l + (LEGATO if leg else 0), name(midi(r) + shift)))
     return out
 
 
@@ -100,11 +108,12 @@ SOUND = {"pad": [(256, 0.0), (287, -3.0)], "padlow": [(256, 0.0), (287, -3.0)], 
          "stab": 256, "lead": 922, "bass": 129, "pluck": 354}                     # Wave Shape Ld, XMod Rubber Bass,
                                                                                    # Lo-Fi Comp Pluck
 TRANSPOSE = {}        # voice -> semitones sent off the written pitch (a tone that sounds an octave low: 12)
-GAIN = {"pad": 10.8, "padlow": 12.8, "lead": 16.3, "stab": 7.2, "pluck": 6.1, "bass": -0.3}   # `calibrate`, 2026-11-20
+GAIN = {"pad": 10.6, "padlow": 12.1, "lead": 17.5, "stab": 7.2, "pluck": 6.1, "bass": -2.3}   # `calibrate`, 2026-11-20 (v2: MIDI hook, chords back to back)
 DUCK = {"stem": "drums", "db": 7, "release_ms": 70}     # the record's sidechain on the synths
 # per section, against the stems there after `calibrate` (the record mixes the same part differently):
 # the hook sits low under the vocal in 110-117 and 102-109, the intro is a bit hotter, the final hit quiet
-ADJ = {"intro": 2.0, "var": -4.4, "build": -4.4, "chorus": -8.1, "end": -9.5}
+ADJ = {"intro": 2.1, "var": -4.1, "build": -4.1, "chorus": -6.8, "end": -10.4,
+       "lead": 1.5, "lead5": 1.5, "leadsub": 1.5}      # by voice name: the hook of the two solos
 INTRO_TO = 12
 
 
@@ -132,36 +141,42 @@ def layer(voices):
             g = GAIN.get(grp, 0.0) + REL.get(vn, REL.get(base, 0.0)) + rel
             suf = vn.split("_")[1] if "_" in vn and vn != "pluck_echo" else ""
             for a, b in spans(v):
-                adj = ADJ.get(suf, ADJ["intro"] if a < INTRO_TO else 0.0)
+                adj = ADJ.get(vn, ADJ.get(suf, ADJ["intro"] if a < INTRO_TO else 0.0))
                 takes.append({"voice": vn, "tone": tone, "base": 33, "bars": [a, b], "gain_db": round(g + adj, 1)}
                              | ({"transpose": tr} if tr else {}))
     return {"file": "pb-synths", "duck": DUCK, "takes": takes}
 
 
+# the chords follow each other with no hole (Alex 2026-11-20: «третья нота в основном риффе — обрыв, должно быть
+# легато»: with the default 30 ms gap Bright Brass Oct drops 15-19 dB before every chord); each chord is still struck
+GAP = 0.002
+
+
 def chord_voice(table, at, extra=()):
     notes = [ev(b, q, l, table[c]) for c, b, q, l in P_RHYTHM]
-    return {"at": at, "bars": 2, "notes": notes}
+    return {"at": at, "bars": 2, "gap": GAP, "notes": notes}
 
 
 def build():
     voices = {
         "pad": chord_voice(PAD, P_AT),
         "padlow": chord_voice(LOW, P_AT),
-        "pad_intro": {"at": [7], "bars": 5, "notes": [ev(1, 0, 14, PAD["E"]), ev(1, 14, 66, PAD["C#"])]},
-        "padlow_intro": {"at": [7], "bars": 5, "notes": [ev(1, 0, 14, LOW["E"]), ev(1, 14, 66, LOW["C#"])]},
-        "pad_end": {"at": [126], "bars": 1, "notes": [ev(1, 0, 8, PAD["G#m"])]},
-        "padlow_end": {"at": [126], "bars": 1, "notes": [ev(1, 0, 8, LOW["G#m"])]},
-        "bass": {"at": [1, 3, 5], "bars": 2, "notes": [ev(b, q, l, BASS[c]) for c, b, q, l in P_RHYTHM]},
-        "bass_intro": {"at": [7], "bars": 5, "notes": [ev(1, 14, 66, BASS["C#"])]},
+        "pad_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, PAD["E"]), ev(1, 14, 66, PAD["C#"])]},
+        "padlow_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, LOW["E"]), ev(1, 14, 66, LOW["C#"])]},
+        "pad_end": {"gap": GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, PAD["G#m"])]},
+        "padlow_end": {"gap": GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, LOW["G#m"])]},
+        "bass": {"at": [1, 3, 5], "bars": 2, "gap": GAP, "notes": [ev(b, q, l, BASS[c]) for c, b, q, l in P_RHYTHM]},
+        "bass_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 14, 66, BASS["C#"])]},
         "stab": {"at": list(range(13, 36, 2)) + list(range(53, 68, 2)), "bars": 2,      # 2: one take a verse
                  "notes": [ev(1, 14, 2, "F3 F#4 G#4 B4 D#5")]},
         "pluck": {"at": [21, 25, 29, 33], "bars": 4, "notes": [ev(1, 0, 1, "G#5"), ev(1, 2, 1, "C#5")]},
         "pluck_echo": {"at": [21, 25, 29, 33], "bars": 4,
                        "notes": [ev(1, q, 1, n) for q, n in ((3, "G#5"), (5, "C#5"), (6, "G#5"), (8, "C#5"), (9, "G#5"))]},
     }
-    voices.update(lead_voices("", [86, 90, 94, 98, 118, 122], 4, [H1, H2, H1, H4]))
+    voices.update(lead_voices("", [86, 90, 118, 122], 4, [H1, H2, H1, H4]))
+    voices.update(lead_voices("_kick", [94, 98], 4, [K1, K2, K1, K4]))
     voices.update(lead_voices("_chorus", [110], 8, [H1, H2, H1, H2, H1, H2, H1, H4]))
-    voices.update(lead_voices("_var", [102, 104, 106], 2, [VA, VB]))
+    voices.update(lead_voices("_var", [102, 104, 106], 2, [K1, K2]))
     voices.update(lead_voices("_build", [108], 2, [B1, B2]))
     voices.update(lead_voices("_end", [126], 1, [[(0, 4, "G#4")]]))
     part = {
@@ -187,7 +202,8 @@ def cmd_notes():
                 f.write(' "voices": {\n')
                 vs = list(v.items())
                 for j, (vn, vv) in enumerate(vs):
-                    f.write(f'  {json.dumps(vn)}: {{"at": {json.dumps(vv["at"])}, "bars": {vv["bars"]}, "notes": [\n')
+                    gap = f'"gap": {vv["gap"]}, ' if "gap" in vv else ""
+                    f.write(f'  {json.dumps(vn)}: {{{gap}"at": {json.dumps(vv["at"])}, "bars": {vv["bars"]}, "notes": [\n')
                     f.write(",\n".join("   " + json.dumps(n, ensure_ascii=False) for n in vv["notes"]))
                     f.write("]}" + ("," if j < len(vs) - 1 else "") + "\n")
                 f.write(" }" + ("," if i < len(items) - 1 else "") + "\n")

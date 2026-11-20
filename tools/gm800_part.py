@@ -112,12 +112,13 @@ def cmd_probe(scenes):
 def voice_line(song, part, voice, b0, b1):
     """[(seconds from bar b0, midi, seconds)] of a voice inside bars [b0, b1)."""
     v = part["voices"][voice]; beat = song.bar / 4; line = []
-    for at in v["at"]:
+    gap = v.get("gap", 0.03)            # s of silence before the next note; a brass with a short release opens
+    for at in v["at"]:                  # an audible hole with 30 ms: chords played back to back use 0.002
         for bar, bt, ln, pitches in v["notes"]:
             pos = at + bar - 1 + (bt - 1) / 4
             if b0 <= pos < b1:
                 for s in pitches.split():
-                    line.append(((pos - b0) * song.bar, midi_of(s), ln * beat - 0.03))
+                    line.append(((pos - b0) * song.bar, midi_of(s), ln * beat - gap))
     return sorted(line)
 
 
