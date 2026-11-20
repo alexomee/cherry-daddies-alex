@@ -231,6 +231,7 @@ SETS = [
             ("Smells Like Teen Spirit", "Nirvana", "Nirvana - Smells Like Teen Spirit"),
             ("Мама Люба", "SEREBRO", "Мама Люба"),
             ("Нас не догонят", "t.A.T.u.", "t.A.T.u. - Not Gonna Get Us (Нас не догонят)"),
+            ("Мелом", "Пропаганда", "Мелом"),
             ("Знаешь ли ты", "МакSим", "МакSим - Знаешь ли ты"),
         ],
     },

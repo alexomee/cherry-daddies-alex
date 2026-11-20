@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-20T21:10:05",
+  "generated": "2026-11-20T21:12:14",
   "counts": {
-    "total": 127,
-    "data": 127,
-    "cues": 127,
-    "playback": 120,
+    "total": 128,
+    "data": 128,
+    "cues": 128,
+    "playback": 121,
     "other": 118,
-    "practice": 116
+    "practice": 117
   },
   "sets": [
     {
@@ -15573,6 +15573,160 @@
               "keys",
               "other"
             ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Мелом",
+          "slug": "b581fa388c98",
+          "title": "Мелом",
+          "artist": "Пропаганда",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 10,
+            "list": [
+              {
+                "t": 4.0,
+                "text": "Мелом guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 60.0,
+                "text": "drums stop",
+                "bar": 29,
+                "snap": 55.5
+              },
+              {
+                "t": 84.0,
+                "text": "bass-only in",
+                "bar": 41,
+                "snap": 80.0
+              },
+              {
+                "t": 92.0,
+                "text": "all in",
+                "bar": 45,
+                "snap": 88.0
+              },
+              {
+                "t": 108.0,
+                "text": "drums stop",
+                "bar": 53,
+                "snap": 103.5
+              },
+              {
+                "t": 124.0,
+                "text": "drums in",
+                "bar": 61,
+                "snap": 120.0
+              },
+              {
+                "t": 140.0,
+                "text": "drums stop",
+                "bar": 69,
+                "snap": 135.5
+              },
+              {
+                "t": 148.0,
+                "text": "drums in",
+                "bar": 73,
+                "snap": 144.0
+              },
+              {
+                "t": 164.0,
+                "text": "keep going",
+                "bar": 81,
+                "snap": 161.0
+              },
+              {
+                "t": 180.0,
+                "text": "guitar only ready go",
+                "bar": 89,
+                "snap": 176.0
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "none"
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "bab0def37b",
+            "back_vox": "cd6367a675",
+            "drums": "3ed2807cad",
+            "keys": "023be18a0a",
+            "bass": "4a87f173a8",
+            "guitars": "c071861b58",
+            "other": "e86a486e6c",
+            "click": "8a76014776",
+            "cues": "3c054d5006"
+          },
+          "versions": {
+            "all": "f3f9744d37",
+            "alex": "f9ee2b9781",
+            "steve": "7d078aeaba",
+            "tanya": "64c3383844",
+            "pb-bass": "7061a49ac0",
+            "pb-audition": "faa40e2333"
+          },
+          "pb_other": {
+            "available": false,
+            "mutes": []
           },
           "pb_bass": {
             "available": true,
