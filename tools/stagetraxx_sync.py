@@ -85,6 +85,7 @@ every timed switch of that song (an entry's own "lead" still wins):
     "switch_lead": 0.3                           all devices 300 ms before the bar
     "switch_lead": {"podgo": 0.3}                only the POD Go; the rest stay standard
 
+Tabs of the parts Alex plays (key "tab" in the song's parts/*.notes.json) go under the note.
 Song notes from the setlist dashboard (web/data/dashboard.db — the local board at
 localhost:5173, same source as tools/stage_sheet.py) go under the MIDI tags, so they show in
 the lyrics area. The sync owns that text: edit notes on the board, not in Stage Traxx (text
@@ -109,7 +110,7 @@ Usage:
     tools/stagetraxx_sync.py --apply "S&M"        # only songs matching a substring
     tools/stagetraxx_sync.py --set "Music Hall"   # only sets matching a substring
 """
-import argparse, csv, datetime, json, math, os, re, sqlite3, subprocess, sys, time, uuid, wave
+import argparse, csv, datetime, glob, json, math, os, re, sqlite3, subprocess, sys, time, uuid, wave
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SONGS = os.path.join(REPO, "music", "songs")
@@ -569,6 +570,19 @@ def clean_note(text):
     return "\n".join(out)
 
 
+def song_tabs(sid):
+    """Tab lines of the parts Alex plays (key "tab" of every parts/*.notes.json of the song,
+    written with the part: wiki/pipelines/gm-800-parts.md). Shown under the dashboard note."""
+    out = []
+    for p in sorted(glob.glob(os.path.join(glob.escape(os.path.join(SONGS, sid, "parts")), "*.notes.json"))):
+        try:
+            tab = json.load(open(p, encoding="utf-8")).get("tab") or []
+        except (OSError, ValueError):
+            continue
+        out += [ln.rstrip() for ln in tab if ln.strip()]
+    return "\n".join(out)
+
+
 def load_web_notes(path=DASH_DB):
     """Dashboard notes -> {sid: text}, or None when the DB is missing/unreadable. A stray
     'NOFOLDER:<sid>' record (song added on the board before its folder existed) is merged in."""
@@ -685,7 +699,8 @@ def plan(sets, clips, song_filters, set_filter, notes=None):
                     "sid": sid, "title": s.get("title") or sid, "artist": s.get("artist") or "",
                     "render": render, "stems": stems, "clip": clips.get(sid), "bpm": song_bpm(sid),
                     "devices": devices, "dev_err": dev_err,
-                    "note": None if notes is None else notes.get(sid, ""),
+                    "note": None if notes is None else "\n".join(
+                        t for t in (notes.get(sid, ""), song_tabs(sid)) if t),
                 }
         if members:
             playlists.append((PL_PREFIX + name, members))

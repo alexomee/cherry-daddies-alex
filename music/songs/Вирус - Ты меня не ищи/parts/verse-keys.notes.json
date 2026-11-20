@@ -1,5 +1,12 @@
 {
  "_about": "Verse keys accompaniment, written out from the stems (keys + strings) for the GM-800 (tools/gm800_part.py, wiki/pipelines/gm-800-parts.md). Notes confirmed by Alex by ear 2026-11-20 (variant 3: bar 3 with E4 and the top C6). 'low' + 'high' = the playback; 'live' = what Alex plays in bars 9-16 on scene 32 NE ISHI PAD (sounding pitch; on the guitar an octave lower).",
+ "tab": [
+  "КЛАВИШИ 9–16 · сцена 32 · струны 6→1",
+  "Am   x 7 7 5 x x",
+  "F     x 8 7 5 x x",
+  "C     x x 10 9 8 8",
+  "G     x x 9 7 8 x"
+ ],
  "bars": [9, 13],
  "stems": ["keys", "strings"],
  "voices": {
