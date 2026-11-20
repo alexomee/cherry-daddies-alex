@@ -224,7 +224,7 @@ def take_path(song, part_file, voice, scene, parts, b0, b1):
     return os.path.join(song.out, f"part-{base}-{voice}-s{scene:03d}-{tag}-{b0}-{b1}.wav")
 
 
-def cmd_take(song, part_file, voice, scene, parts, b0, b1):
+def cmd_take(song, part_file, voice, scene, parts, b0, b1, as_played=False):
     part = json.load(open(part_file, encoding="utf-8")); tones = tone_names()
     line = voice_line(song, part, voice, b0, b1)
     if not line:
@@ -241,6 +241,8 @@ def cmd_take(song, part_file, voice, scene, parts, b0, b1):
                 shifts[ch] = sh
         if not shifts:
             raise SystemExit("no sounding part")
+        if as_played:                                       # every part the same note, as on the guitar
+            ref = min(shifts.values()); shifts = {ch: ref for ch in shifts}
         time.sleep(1.5)                                     # let the probe tails die
         ev = [(t, n - sh, d, ch) for t, n, d in line for ch, sh in shifts.items()]
         x = play(rig, ev)
@@ -305,6 +307,9 @@ def cmd_record(song, part_file, only=None, tail=4.0):
                     shifts[ch] = sh
             if not shifts or not line:
                 raise SystemExit(f"take {i}: nothing to play")
+            if tk.get("as_played") and shifts:       # the scene as Alex plays it: every part gets the same note
+                ref = min(shifts.values())           # (its lowest part sounds at the written pitch, the parts
+                shifts = {ch: ref for ch in shifts}  # shifted up stay above it, as on the guitar)
             rig.load(SYNC_SCENE)
             msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
             msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
@@ -722,6 +727,8 @@ def main():
     p = sub.add_parser("take")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("scene", type=int)
     p.add_argument("--parts", default=""); p.add_argument("--bars", type=int, nargs=2)
+    p.add_argument("--as-played", action="store_true", help="every part gets the same note (the scene as played "
+                   "on the guitar: parts shifted by octaves stay shifted); default = each part at the written pitch")
     p = sub.add_parser("preview")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("--bars", type=int, nargs=2)
     p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--only", default="")
@@ -778,7 +785,7 @@ def main():
     part = json.load(open(a.notes, encoding="utf-8"))
     b0, b1 = a.bars or part.get("bars")
     if a.cmd == "take":
-        cmd_take(song, a.notes, a.voice, a.scene, [int(v) for v in a.parts.split(",") if v], b0, b1)
+        cmd_take(song, a.notes, a.voice, a.scene, [int(v) for v in a.parts.split(",") if v], b0, b1, a.as_played)
     else:
         cmd_preview(song, a.notes, b0, b1)
 

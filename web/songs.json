@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T16:11:03",
+  "generated": "2026-11-20T16:42:41",
   "counts": {
     "total": 127,
     "data": 125,
@@ -14602,9 +14602,9 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys"
+              "pb-rhythm"
             ]
           },
           "practice": [
@@ -14657,18 +14657,19 @@
             "guitars": "6ed9aa52e5",
             "other": "271ddf7ef5",
             "click": "0efedfa787",
-            "cues": "d1e867ab6d"
+            "cues": "6b53c72e21"
           },
           "versions": {
-            "all": "f7400fbca3",
-            "pb-other": "9453014bc2",
+            "all": "c3abfaaf4d",
+            "pb-other": "7ca1632a24",
             "pb-bass": "26ea610338",
-            "pb-audition": "087431d607"
+            "pb-audition": "0e5a07f1e7"
           },
           "pb_other": {
             "available": true,
             "mutes": [
-              "keys"
+              "keys",
+              "other"
             ]
           },
           "pb_bass": {
@@ -20456,9 +20457,9 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys"
+              "pb-rhythm"
             ]
           },
           "practice": [
@@ -20511,18 +20512,19 @@
             "guitars": "6ed9aa52e5",
             "other": "271ddf7ef5",
             "click": "0efedfa787",
-            "cues": "d1e867ab6d"
+            "cues": "6b53c72e21"
           },
           "versions": {
-            "all": "f7400fbca3",
-            "pb-other": "9453014bc2",
+            "all": "c3abfaaf4d",
+            "pb-other": "7ca1632a24",
             "pb-bass": "26ea610338",
-            "pb-audition": "087431d607"
+            "pb-audition": "0e5a07f1e7"
           },
           "pb_other": {
             "available": true,
             "mutes": [
-              "keys"
+              "keys",
+              "other"
             ]
           },
           "pb_bass": {
