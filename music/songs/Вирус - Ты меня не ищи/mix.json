@@ -11,6 +11,7 @@
     {"bar": 17,  "scene": 27, "lead": 0.3, "abs_sec": 31.398},
     {"bar": 41,  "scene": 30, "abs_sec": 73.261},
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
+    {"bar": 91,  "scene": 32, "lead": 0.1, "abs_sec": 160.477},
     {"bar": 100, "scene": 30, "abs_sec": 176.176},
     {"bar": 108, "scene": 27, "abs_sec": 190.13}
   ],
