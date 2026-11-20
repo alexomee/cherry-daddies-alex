@@ -10,5 +10,10 @@
 Клавиши песни нотами для GM-800 (вместо концертной партии Ромы). `synths.notes.json` собирает
 `tools/jamzone/prep_solnyshko.py notes` из `solnyshko-rusmidi.mid` (MIDI с rusmidi.com, дал Alex) — править в скрипте, не в json.
 Тональность группы (Bbm), такты mix.json. Голос `live` (офф-бит стабы 17–24 и 121–127, cue «alex in») играет Alex, в слой не идёт.
-Тоны и усиления в `layer.takes` предварительные: на приборе ничего не сыграно, слоя `pb-synths.wav` ещё нет, `mix.json` не тронут.
+Тоны выбрал Alex на слух (2026-11-20), усиления — `synths.gains.json` (`prep_solnyshko.py calibrate`).
 Разбор и что дальше: `wiki/songs/solnyshko.md`.
+
+## pb-synths.wav, pb-fx.wav — 2026-11-20
+
+`pb-synths.wav` — слой клавиш, записанный с GM-800 (25 дублей, `gmp record` → `gmp layer`), stem-фрейм, тональность группы. `pb-fx.wav` — реверс-тарелка из стема `other` (такты 8, 24, 120, 128, выше 3 кГц, транспонирована −2), `prep_solnyshko.py fx`. Оба не в git (wav), пересобираются командами из шапки скрипта; дубли лежат в `analysis/gm800-match/Demo - Solnyshko/rec-synths-*.wav`.
+**В `mix.json` пока не подключены** — в плейбеке стоит `roma-keys-2810`, ждёт слуха Alex.
