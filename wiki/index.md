@@ -41,7 +41,7 @@
 
 5. [Not Gonna Get Us (Нас не догонят) — t.A.T.u.](songs/tatu-not-gonna-get-us.md) — 2026-11-19, JamZone `cat_25870` (английская версия, поём русскую), 130 bpm, pitch −4 (fx-райзер слоем без питча); плейбек = всё кроме гитары и английских бэков (pb-bass = Synth Bass, claves выкинуты); 15 cue: стопы барабанов на 4& (13/29/45/69) с возвратами chorus in 31 / solo in 47 / drums in 70.3&, all in 7.1, drums-only in 62, voice in 63, all stop 78, концовка end in → 110.1, плейбек держит такт и гаснет за 111 (205 с); в Stage Traxx.
 
-6. [Знаешь ли ты — МакSим](songs/maksim-znaesh-li-ty.md) — 2026-11-20, Moises-минус без лид-вокала (Vocals = бэки), ровные 63.855 bpm без варпа; метроном Moises отстаёт от барабанов на 37–52 мс и начинается со 2-й доли → синтетический клик по атакам, 1.1 = 0.165 с; pitch 0; всё кроме барабанов в плейбек (pb-other = piano/keys/strings/other/бэки, pb-bass = bass); модуляции C#m→Ebm 19→Fm 44→Gm 60 (аутро); 5 cue (playback in 1.1, modulation in 19/44, drums in 24 после затакта 23.4a, end in 3 → 59.4); POD Go 32C, GM-800 MUTE; аккорды по частям в Stage Traxx; в Stage Traxx.
+6. [Знаешь ли ты — МакSим](songs/maksim-znaesh-li-ty.md) — 2026-11-20, Moises-минус без лид-вокала (Vocals = бэки), ровные 63.855 bpm без варпа; метроном Moises отстаёт от барабанов на 37–52 мс и начинается со 2-й доли → синтетический клик по атакам, 1.1 = 0.165 с; pitch 0; всё кроме барабанов в плейбек (pb-other = piano/keys/strings/other/бэки, pb-bass = bass); модуляции C#m→Ebm 19→Fm 44→Gm 60 (аутро); 6 cue (playback in 1.1, voice in 7.1, modulation in 19/44, drums in 24 после затакта 23.4a, end in 3 → 59.4); POD Go 32C, GM-800 MUTE; аккорды по частям в Stage Traxx; в Stage Traxx.
 
 ### 28.10 new songs
 

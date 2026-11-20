@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T20:41:22",
+  "generated": "2026-11-20T21:10:05",
   "counts": {
     "total": 127,
     "data": 127,
@@ -15462,13 +15462,19 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 5,
+            "count": 6,
             "list": [
               {
                 "t": 7.517,
                 "text": "Знаешь ли ты playback in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 30.068,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 22.551
               },
               {
                 "t": 75.17,
@@ -15551,14 +15557,14 @@
             "bass": "002ffbe042",
             "other": "2137b2414b",
             "click": "b062a4cc13",
-            "cues": "c552dfffd8"
+            "cues": "aed2467882"
           },
           "versions": {
-            "all": "416217cfeb",
-            "steve": "cd81a4e0a0",
+            "all": "87cdb1674d",
+            "steve": "ca42f6ef64",
             "pb-other": "5f35ea90a4",
             "pb-bass": "002ffbe042",
-            "pb-audition": "71c8ef4452"
+            "pb-audition": "733acbf142"
           },
           "pb_other": {
             "available": true,
@@ -20916,13 +20922,19 @@
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 5,
+            "count": 6,
             "list": [
               {
                 "t": 7.517,
                 "text": "Знаешь ли ты playback in",
                 "bar": 1,
                 "snap": 0.0
+              },
+              {
+                "t": 30.068,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 22.551
               },
               {
                 "t": 75.17,
@@ -21005,14 +21017,14 @@
             "bass": "002ffbe042",
             "other": "2137b2414b",
             "click": "b062a4cc13",
-            "cues": "c552dfffd8"
+            "cues": "aed2467882"
           },
           "versions": {
-            "all": "416217cfeb",
-            "steve": "cd81a4e0a0",
+            "all": "87cdb1674d",
+            "steve": "ca42f6ef64",
             "pb-other": "5f35ea90a4",
             "pb-bass": "002ffbe042",
-            "pb-audition": "71c8ef4452"
+            "pb-audition": "733acbf142"
           },
           "pb_other": {
             "available": true,
