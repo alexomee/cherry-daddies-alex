@@ -56,8 +56,6 @@ def ev(bar, q, l16, pitches):
 # (and 118-125), kick stop 86-89 -> 94-101 (x2, the MIDI has 4 bars), variation 90-95 -> 102-107, build 96-97 ->
 # 108-109. The MIDI's last chorus has no hook (a half-note brass line); ours keeps the hook there in the solo rhythm.
 _G6 = [(1, 1, "G#4"), (3, 1, "G#4"), (5, 1, "G#4"), (7, 1, "G#4"), (9, 1, "G#4"), (11, 1, "G#4")]
-H1 = [(0, 1, "F#4")] + _G6 + [(12, 1, "A#4"), (13, 1, "B4"), (14, 1, "A#4"), (15, 1, "G#4")]
-H2 = [(0, 1, "F#4")] + _G6 + [(12, 1, "F4"), (13, 1, "F#4"), (14, 1, "F4"), (15, 1, "D#4")]
 H4 = [(0, 1, "A#4"), (1, 1, "B4"), (2, 1, "G#4"), (3, 1, "F#4"), (4, 2, "G#4"), (6, 1, "F#4"), (7, 1, "F4"),
       (8, 2, "F#4"), (10, 1, "F4"), (11, 1, "D#4"), (12, 2, "F4"), (14, 1, "D#4"), (15, 1, "C#4")]
 # kick stop / variation: the turn is ONE held note with a bend in the record (Alex 2026-11-20: «во втором проходе,
@@ -66,6 +64,9 @@ H4 = [(0, 1, "A#4"), (1, 1, "B4"), (2, 1, "G#4"), (3, 1, "F#4"), (4, 2, "G#4"), 
 BEND = {"bend": [[0, 0], [0.6, 0], [1.3, 65], [1.95, 65], [2.0, 0], [3.0, 0]]}
 K1 = [(0, 1, "F#4")] + _G6 + [(12, 3, "A#4", BEND), (15, 1, "G#4")]
 K2 = [(0, 1, "F#4")] + _G6 + [(12, 3, "F4", BEND), (15, 1, "D#4")]
+# the same bent turn in every pass (Alex: «да, давай» for the solo; the record bends in 86-93, 110-117, 118-125 as
+# well - pyin; the MIDI writes it there as A# B A# G# / F F# F D#)
+H1, H2 = K1, K2
 K4 = [(0, 2, "A#4")] + H4[2:]
 B1 = [(0, 1, "F#4"), (1, 1, "G#4"), (3, 1, "G#4"), (5, 1, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"), (9, 1, "G#4"),
       (11, 1, "G#4"), (13, 1, "G#4"), (15, 1, "G#4")]
