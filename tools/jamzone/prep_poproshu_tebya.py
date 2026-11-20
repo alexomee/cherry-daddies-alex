@@ -120,7 +120,8 @@ def do_fx():
 # same note, so the Saw Seq parts stay two octaves up as on the guitar.
 MIDI_SRC = os.path.join(SONG, "parts", "poproshu-midifind.mid")
 MIDI_SHIFT = 2                    # our bar = MIDI bar + 2
-BLOCKS = [(11, 19), (20, 28), (44, 52), (53, 61), (85, 93), (94, 102)]    # Alex on scene 29 over the stabs
+BLOCKS = [(11, 19), (20, 28), (44, 52), (53, 61), (85, 93), (94, 102), (111, 119)]   # Alex on scene 29 over the stabs
+                                  # (111-118: the last chorus, Alex 2026-11-20 «вставь ритм синт, я буду играть соло на 029»)
 VOICING = {"Cm": "C5 D#5 C6", "Ab": "C5 G#5 C6", "Eb": "D#5 G5 D#6 G6", "Eb2": "D#5 G5",
            "Bb": "A#4 D5 A#5 D6", "G": "B4 G5 B5"}
 STAB = 1.25                       # 16ths: the record's stab is ~130 ms (a 16th = 107 ms)
