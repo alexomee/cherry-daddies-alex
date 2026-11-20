@@ -29,8 +29,8 @@ set: на бис #1; 12.12 new songs #9; 12.12 all
 
 ## Cue
 
-- **11 cue** (`ready: true` в `web/songs.json`). Устройство cue — [cue-system](../pipelines/cue-system.md).
-- Список: bar 1 «Мелом guitar in» (старт), bar 5 «voice in», bar 29 «drums stop», bar 41 «bass-only in», bar 45 «all in», bar 53 «drums stop», bar 61 «drums in», bar 69 «drums stop», bar 73 «drums-n-voice in», bar 81 «keep going», bar 89 «guitar only ready go».
+- **12 cue** (`ready: true` в `web/songs.json`). Устройство cue — [cue-system](../pipelines/cue-system.md).
+- Список: bar 1 «Мелом guitar in» (старт), bar 5 «voice in», bar 21 «chorus in», bar 29 «drums stop», bar 41 «bass-only in», bar 45 «all in», bar 53 «drums stop», bar 61 «drums in», bar 69 «drums stop», bar 73 «drums-n-voice in», bar 81 «keep going», bar 89 «guitar only ready go».
 - Много drum stop/in — структура с чередованием «барабаны стоп / вступают».
 - **Два `raw: true` cue** (произносятся дословно, без разворота по правилам): bar 81 «keep going» и bar 89 «guitar only ready go».
 - **Вокал (замер 2026-11-20).** Moises разложил голос по двум стемам (`vocals` + `backing_vocals`: припев «Фиолетовая пудра» и половина куплета 1 лежат в бэках), паузы мерить по сумме. Вступления: такт 5 (доля 1&, после 4 тактов интро) и такт 73 (припев 3, доля 1&, после паузы 70–72); короткая пауза в такте 44 — вход на 45 под «all in». Остальное поётся подряд (куплет 1 5–20, припев 21–28, куплет 2 29–40, припев 2 45–52, куплет 3 53–69, припевы 73–88).
@@ -50,6 +50,8 @@ set: на бис #1; 12.12 new songs #9; 12.12 all
 - **2026-11-20** — pb-bass поднят до −19.2 LUFS (`gain_db 4.7`, `peak: limit`); cue «voice in» на такте 5 и «drums-n-voice in» на 73 вместо «drums in» (Alex: подсказки для голоса в начале и после перерывов). Рендер новой версией скрипта: OFF 3.975 → 2.689 с. Stage Traxx `--apply`, 11 регионов.
 
 - **2026-11-20** — Alex: бас и подсказки «всё норм»; POD Go на всю песню **01A** (`"podgo": "01A"`, было 32D), GM-800 MUTE. В Stage Traxx тег `PC0@3`.
+
+- **2026-11-20** — cue «chorus in» на такте 21 (рендер 0:42.7, припев 1 «Фиолетовая пудра»; Alex: «around 0:43»). click/all/pb-bass побайтно прежние. Stage Traxx `--apply`, 12 регионов.
 
 ## Открытое
 

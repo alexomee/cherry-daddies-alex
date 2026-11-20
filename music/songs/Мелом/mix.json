@@ -9,6 +9,7 @@
   "cues": [
     {"bar": 1,  "text": "Мелом guitar in", "abs_sec": 2.714, "snap_sec": 0.0},
     {"bar": 5,  "text": "voice in", "abs_sec": 10.714, "snap_sec": 6.714},
+    {"bar": 21, "text": "chorus in", "abs_sec": 42.714, "snap_sec": 38.714},
     {"bar": 29, "text": "drums stop", "abs_sec": 58.714, "snap_sec": 54.214},
     {"bar": 41, "text": "bass-only in", "abs_sec": 82.714, "snap_sec": 78.714},
     {"bar": 45, "text": "all in", "abs_sec": 90.714, "snap_sec": 86.714},
