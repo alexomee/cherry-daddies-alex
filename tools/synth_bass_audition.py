@@ -96,7 +96,7 @@ def lines(orig, bars, energy, active):
     the riff bars, the pick-up into bar 6 and the last held note come from the original line."""
     by_bar = {}
     for s, l, p in orig: by_bar.setdefault(s // 16 + 1, []).append([s, l, p])
-    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": [], **{k: [] for k in VARS}, "ARR": [], "ARR2": []}
+    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": [], **{k: [] for k in VARS}, "ARR": [], "ARR2": [], "ARR3": []}
     for b in bars:
         own = by_bar.get(b, [])
         if b < 6 or inr(b, RIFF) or b >= 142:
@@ -108,7 +108,7 @@ def lines(orig, bars, energy, active):
                 cell = [(0, 4, F1), (4, 2, F1), (6, 2, fs), (8, 2, fs), (10, 2, fs)]
             elif inr(b, RIFF): cell = [(0, 4, 36), (4, 2, 36), (6, 2, 36), (8, 2, BB1), (10, 2, BB1), (12, 2, 33), (14, 2, AB1)]
             else: cell = []
-            for key in ("B2", "ARR", "ARR2") + VARS: out[key] += [[s0 + k, l, p] for k, l, p in cell]
+            for key in ("B2", "ARR", "ARR2", "ARR3") + VARS: out[key] += [[s0 + k, l, p] for k, l, p in cell]
             continue
         for half, root in enumerate(LOOP[b % 2]):
             s0 = (b - 1) * 16 + half * 8
@@ -148,6 +148,11 @@ def lines(orig, bars, energy, active):
             ph = (b - 6) // 4
             cell = base if not (c == 3 and (b - 6) % 4 == 3) else push if ph % 2 == 0 else walk
             out["ARR2"] += [[s0 + k, 2, p] for k, p in cell]
+            # ARR3 = ARR2 + the quiet bars after the first chorus riff (50-53, before verse 2) on alternating octaves
+            # low-high-low-high, the disco bass (Alex: «в проигрыше после припева перед 2 куплетом что-то поинтереснее,
+            # потом опять ровно»); the passing C leads into the verse
+            if 50 <= b < 54: cell = ((0, root), (2, hi), (4, root), (6, 36 if (b == 53 and half == 1) else hi))
+            out["ARR3"] += [[s0 + k, 2, p] for k, p in cell]
             if e == 0:   cell = [(2, 2, root), (6, 2, root)]
             elif e == 1: cell = [(2, 2, root), (6, 2, hi)]
             else:        cell = [(1, 1, root), (2, 1, hi), (3, 1, root), (5, 1, root), (6, 1, hi), (7, 1, root)]

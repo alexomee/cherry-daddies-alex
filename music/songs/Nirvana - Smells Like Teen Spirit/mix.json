@@ -1,15 +1,15 @@
 {
   "gm800": 1,
   "podgo": [
-    {"bar": 1, "preset": "04D", "abs_sec": 1.505},
-    {"bar": 6, "preset": "32D", "abs_sec": 11.486},
-    {"bar": 14, "preset": "04A", "lead": -0.15, "abs_sec": 26.429},
-    {"bar": 34, "preset": "32D", "abs_sec": 64.457},
-    {"bar": 50, "preset": "04A", "lead": -0.1, "abs_sec": 94.537},
-    {"bar": 70, "preset": "32D", "abs_sec": 132.546},
-    {"bar": 86, "preset": "32A", "lead": -0.15, "abs_sec": 162.479},
-    {"bar": 106, "preset": "04A", "lead": -2, "abs_sec": 199.917},
-    {"bar": 122, "preset": "32D", "abs_sec": 230.025}
+    {"bar": 1, "preset": "04D", "abs_sec": 1.502},
+    {"bar": 6, "preset": "32D", "abs_sec": 11.483},
+    {"bar": 14, "preset": "04A", "lead": -0.15, "abs_sec": 26.427},
+    {"bar": 34, "preset": "32D", "abs_sec": 64.454},
+    {"bar": 50, "preset": "04A", "lead": -0.1, "abs_sec": 94.535},
+    {"bar": 70, "preset": "32D", "abs_sec": 132.544},
+    {"bar": 86, "preset": "32A", "lead": -0.15, "abs_sec": 162.477},
+    {"bar": 106, "preset": "04A", "lead": -2, "abs_sec": 199.915},
+    {"bar": 122, "preset": "32D", "abs_sec": 230.023}
   ],
   "bpm": 128.0,
   "stem_speed": 1.0847458,
@@ -35,6 +35,9 @@
     "tanya": ["13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 2, "text": "Smells Like Teen Spirit guitar in", "abs_sec": 3.521, "snap_sec": 0.0}
+    {"bar": 2, "text": "Smells Like Teen Spirit guitar in", "abs_sec": 3.518, "snap_sec": 0.0},
+    {"bar": 18, "beat": 2, "text": "verse in", "abs_sec": 34.549, "snap_sec": 30.765},
+    {"bar": 86, "beat": 2, "text": "guitar solo ready go", "abs_sec": 162.947, "snap_sec": 159.219},
+    {"bar": 142, "text": "end in", "count": true, "abs_sec": 267.377, "snap_sec": 263.142}
   ]
 }
