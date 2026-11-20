@@ -19,4 +19,4 @@ status: planning
 7. [Медведица — Мумий Тролль](../songs/mumiy-troll-medveditsa.md)
 8. [Мелом — Пропаганда](../songs/melom.md)
 9. [Я сошла с ума — ТАТУ](../songs/ya-soshla-s-uma.md)
-10. [Мама Люба — SEREBRO](../songs/malo-tebya.md)
+10. [Мама Люба — SEREBRO](../songs/serebro-mama-lyuba.md)

@@ -186,7 +186,8 @@ def cmd_record(song, part_file, only=None, tail=4.0):
         for i, tk in enumerate(part["layer"]["takes"]):
             if only is not None and i not in only:
                 continue
-            b0, b1 = tk["bars"]; line = voice_line(song, part, tk["voice"], b0, b1)
+            b0, b1 = tk["bars"]; tr = tk.get("transpose", 0)          # semitones: a tone that sounds an octave off
+            line = [(t, n + tr, d) for t, n, d in voice_line(song, part, tk["voice"], b0, b1)]
             tone_msg = None
             if tk.get("tone"):                               # a ROM tone in part 1 of the TEMP scene
                 scene = tk.get("base", 33); nm, _ = rig.load(scene)
@@ -241,7 +242,7 @@ def cmd_layer(song, part_file):
     import soundfile as sf
     from scipy.signal import resample_poly
     part = json.load(open(part_file, encoding="utf-8")); lay = part["layer"]
-    info = sf.info(os.path.join(song.dir, part.get("stems", ["keys"])[0] + ".wav")); sr = info.samplerate
+    info = sf.info(song.stem(part.get("stems", ["keys"])[0])); sr = info.samplerate
     out = np.zeros((info.frames, 2), dtype=np.float64)
     for tk in lay["takes"]:
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
@@ -253,9 +254,37 @@ def cmd_layer(song, part_file):
             x = resample_poly(x, sr, SR, axis=0)
         a = int(round(song.t_stem(tk["bars"][0]) * sr)); m = min(len(x), len(out) - a)
         out[a:a + m] += x[:m]
+    if lay.get("duck"):                                      # sidechain pumping of the record, keyed by its kick
+        out *= duck_gain(song, lay["duck"], len(out), sr)[:, None]
     dst = os.path.join(song.dir, "parts", lay["file"] + ".wav")
     sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
     print(f"{len(lay['takes'])} takes -> {dst}  peak {20 * np.log10(np.abs(out).max() + 1e-9):.1f} dBFS")
+
+
+def duck_gain(song, spec, n, sr):
+    """Gain curve (stem frame) that ducks the layer on every kick of the record, like the sidechain
+    the producer put on the synths. spec = {"stem": "drums", "db": 7, "release_ms": 120, "lowpass": 150}:
+    kick = the low band of the drum stem, a peak follower (5 ms attack, release_ms) normalised to the
+    typical kick (90th percentile of its peaks); gain = -db x kick (clipped to 1). Where the record has
+    no kick (a kick stop) nothing ducks."""
+    import soundfile as sf
+    from scipy.signal import butter, sosfiltfilt, resample_poly, find_peaks
+    y, ysr = sf.read(song.stem(spec.get("stem", "drums")), always_2d=True)
+    y = sosfiltfilt(butter(4, spec.get("lowpass", 150), "lowpass", fs=ysr, output="sos"), y.mean(1))
+    if ysr != sr:
+        y = resample_poly(y, sr, ysr)
+    k = sr // 1000; m = len(y) // k; ms = k / sr * 1000     # ~1 ms steps (exactly k samples)
+    e = np.abs(y[:m * k]).reshape(m, k).max(1)
+    env = np.zeros(m); a = np.exp(-ms / 5.0); r = np.exp(-ms / spec.get("release_ms", 120)); v = 0.0
+    for i in range(m):                            # peak follower: fast attack, exponential release (ms steps)
+        c = a if e[i] > v else r
+        v = c * v + (1 - c) * e[i]
+        env[i] = v
+    pk, _ = find_peaks(env, distance=int(200 / ms), height=env.max() * 0.1)
+    ref = np.percentile(env[pk], 90) if len(pk) else env.max()
+    g = 10 ** (-spec.get("db", 7) * np.clip(env / ref, 0, 1) / 20)
+    g = np.interp(np.arange(n), (np.arange(m) + 0.5) * k, g, right=1.0)
+    return g
 
 
 def note_profile(x, f0, hold):
@@ -451,9 +480,143 @@ def cmd_preview(song, part_file, b0, b1):
     return takes
 
 
+def cqt_db(x, floor=60.0):
+    """log-CQT, 3 bins a semitone C1..B7 at 22050 Hz, hop 256; dB above (max - floor), >= 0."""
+    import librosa
+    from scipy.signal import resample_poly
+    y = resample_poly(x, 22050, SR).astype(np.float32)
+    C = np.abs(librosa.cqt(y, sr=22050, hop_length=256, fmin=librosa.note_to_hz("C1"), n_bins=36 * 7,
+                           bins_per_octave=36))
+    D = 20 * np.log10(C + 1e-9)
+    return np.maximum(D - (D.max() - floor), 0)
+
+
+def band_pass(x, band):
+    if not band:
+        return x
+    from scipy.signal import butter, sosfiltfilt
+    lo, hi = band
+    return sosfiltfilt(butter(4, [lo, min(hi, SR / 2 - 100)], "bandpass", fs=SR, output="sos"), x)
+
+
+def sweep_score(R, T, semi):
+    """Stem CQT R (original key) vs take CQT T (band key): the take is moved by -semi semitones (and
+    an octave either way: some ROM tones sound an octave off). Cosine of the mean spectra (timbre and
+    voicing) and of the whole time-frequency picture (attacks, length, rhythm). -> (score, spec, tf, oct)"""
+    n = min(R.shape[1], T.shape[1]); R, T = R[:, :n], T[:, :n]
+    best = None
+    for o in (-1, 0, 1):
+        k = 3 * (-semi + 12 * o); Ts = np.zeros_like(T)
+        if k >= 0:
+            Ts[k:] = T[:T.shape[0] - k]
+        else:
+            Ts[:k] = T[-k:]
+        cos = lambda a, b: float(np.dot(a.ravel(), b.ravel()) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-9))
+        sp, tf = cos(R.mean(1), Ts.mean(1)), cos(R, Ts)
+        s = (0.5 * sp + 0.5 * tf, sp, tf, -o)
+        if best is None or s[0] > best[0]:
+            best = s
+    return best
+
+
+HISTORY = os.path.join(REPO, "gear", "gm-800", "tone-sweeps.json")
+
+
+def history():
+    return json.load(open(HISTORY, encoding="utf-8")) if os.path.exists(HISTORY) else {"tones": {}}
+
+
+def history_add(song, role, voices, b0, b1, rows):
+    """Every sweep leaves its ranking here (one run per song/role/voices/bars, replaced on a rescore):
+    the next part of the same role starts from the tones that ranked high before (--from-history)."""
+    h = history(); key = (song.name, role, "+".join(voices), [b0, b1])
+    for i, (sc, num, nm, cat, sp, tf, o) in enumerate(rows, 1):
+        t = h["tones"].setdefault(str(num), {"name": nm, "cat": cat, "runs": []})
+        t["runs"] = [r for r in t["runs"] if (r["song"], r["role"], r["voices"], r["bars"]) != key]
+        t["runs"].append({"song": song.name, "role": role, "voices": key[2], "bars": key[3],
+                          "score": round(sc, 3), "rank": i, "of": len(rows), "oct": o})
+    h["tones"] = dict(sorted(h["tones"].items(), key=lambda kv: int(kv[0])))
+    with open(HISTORY, "w", encoding="utf-8") as f:
+        f.write('{"about": "GM-800 ROM tones ranked by gm800_part.py sweep against song stems (rank 1 = closest); '
+                'tools/gm800_part.py --from-history reads it", "tones": {\n')
+        f.write(",\n".join(f" {json.dumps(k)}: {json.dumps(v, ensure_ascii=False)}" for k, v in h["tones"].items()))
+        f.write("\n}}\n")
+
+
+def history_top(role, n):
+    """The n tones that ranked best in earlier sweeps of this role (mean percentile over the runs)."""
+    best = []
+    for num, t in history()["tones"].items():
+        ps = [1 - (r["rank"] - 1) / max(1, r["of"]) for r in t["runs"] if r["role"] == role]
+        if ps:
+            best.append((sum(ps) / len(ps), int(num)))
+    return [num for _, num in sorted(best, reverse=True)[:n]]
+
+
+def cmd_sweep(song, part_file, voices, b0, b1, nums, base, tail, band, rescore=False, role=None, transpose=0):
+    """The voice(s) of bars [b0, b1) on ROM tones (part 1 of the TEMP scene over an INIT scene, nothing
+    written), each take scored against the summed stems of the part (sweep_score). Takes are kept:
+    --rescore ranks them again without the GM-800 (e.g. with another --band)."""
+    import glob
+    part = json.load(open(part_file, encoding="utf-8"))
+    line = sorted((t, n + transpose, d) for t, n, d in sum((voice_line(song, part, v, b0, b1) for v in voices), []))
+    if not line:
+        raise SystemExit(f"no notes of {voices} in bars {b0}-{b1}")
+    dur = (b1 - b0) * song.bar + tail
+    ref = sum(song.read(f"{s}.wav", song.t_stem(b0), song.t_stem(b0) + dur) for s in part["stems"]).mean(1)
+    R = cqt_db(band_pass(ref, band))
+    base_nm = os.path.basename(part_file).replace(".notes.json", "")
+    tag = f"sweep-{base_nm}-{'+'.join(voices)}-{b0}-{b1}" + (f"-tr{transpose:+d}" if transpose else "")
+    tab = {int(r[0]): r for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t")}
+    path = lambda num: os.path.join(song.out, f"{tag}-t{num:04d}.wav")
+    if not rescore:
+        with gmm.Rig() as rig:
+            nm, _ = rig.load(base)
+            if "INIT" not in nm.upper():
+                raise SystemExit(f"scene {base} is '{nm}', not INIT")
+            ch = rig.part_ch[0]
+            for i, num in enumerate(nums, 1):
+                r = tab[num]; rig.tone(int(r[2]), int(r[3]), int(r[4]))
+                x = play(rig, [(t, n, d, ch) for t, n, d in line], tail=tail + 0.3)
+                gmm.save(path(num), x)
+                print(f"  {i:3}/{len(nums)} {num:4} {r[1]}", flush=True)
+            time.sleep(0.2)
+    rows = []
+    for p in sorted(glob.glob(os.path.join(song.out, f"{tag}-t*.wav"))):
+        num = int(p[-8:-4]); x = gmm.read_wav(p).mean(1)[:int(dur * SR)]
+        if np.sqrt((x ** 2).mean()) < 1e-4:
+            continue
+        sc, sp, tf, o = sweep_score(R, cqt_db(band_pass(x, band)), song.semi)
+        rows.append((sc, num, tab[num][1], tab[num][5], sp, tf, o))
+    rows.sort(reverse=True)
+    print(f"{tag}: {len(rows)} takes, best first (spec = mean spectrum, tf = time x frequency; oct = the tone "
+          f"sounds that many octaves off the note sent)")
+    for sc, num, nm, cat, sp, tf, o in rows[:30]:
+        print(f"  {num:4} {nm:22} {cat:18} score {sc:.3f}  spec {sp:.3f}  tf {tf:.3f}  oct {o:+d}")
+    json.dump([{"tone": r[1], "name": r[2], "cat": r[3], "score": r[0], "spec": r[4], "tf": r[5], "oct": r[6]} for r in rows],
+              open(os.path.join(song.out, tag + ".json"), "w"), ensure_ascii=False, indent=0)
+    role = role or voices[0].split("_")[0]
+    history_add(song, role, voices, b0, b1, rows)
+    print(f"ranking kept in {os.path.relpath(HISTORY, REPO)} as role '{role}'")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
+    p = sub.add_parser("sweep")
+    p.add_argument("song"); p.add_argument("notes"); p.add_argument("voices", help="voice[,voice...]")
+    p.add_argument("--bars", type=int, nargs=2, required=True)
+    p.add_argument("--cat", default="", help="tone categories, e.g. 35,36 (gear/gm-800/tones.tsv)")
+    p.add_argument("--tones", default="", help="tone numbers, e.g. 645,119")
+    p.add_argument("--base", type=int, default=33); p.add_argument("--tail", type=float, default=1.0)
+    p.add_argument("--band", default="", help="compare inside LO-HI Hz only, e.g. 40-200")
+    p.add_argument("--rescore", action="store_true", help="rank the kept takes again, no GM-800")
+    p.add_argument("--role", default="", help="what the part is (lead, pad, stab, pluck, bass...): key of the "
+                   "history; default = first voice without its _suffix")
+    p.add_argument("--transpose", type=int, default=0, help="send the notes this many semitones off (a tone "
+                   "that sounds an octave low: 12); the take is then compared at the written pitch")
+    p.add_argument("--from-history", type=int, default=0, metavar="N",
+                   help="add the N tones that ranked best for this role in earlier sweeps (gear/gm-800/tone-sweeps.json)")
     p = sub.add_parser("probe"); p.add_argument("scenes", type=int, nargs="+")
     p = sub.add_parser("take")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("scene", type=int)
@@ -492,6 +655,19 @@ def main():
         parts = {int(k): int(v) for k, v in (x.split(":") for x in a.parts.split(","))}
         return cmd_scene(a.slot, a.template, a.name, parts, a.octave, a.force)
     song = gmm.Song(a.song)
+    if a.cmd == "sweep":
+        nums = [int(v) for v in a.tones.split(",") if v]
+        cats = {c for c in a.cat.split(",") if c}
+        nums += [int(r[0]) for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t")
+                 if r[5].split(":")[0] in cats]
+        role = a.role or a.voices.split(",")[0].split("_")[0]
+        if a.from_history:
+            nums += [n for n in history_top(role, a.from_history) if n not in nums]
+        if not nums and not a.rescore:
+            raise SystemExit("no tones: --cat, --tones or --from-history (an empty history for this role?)")
+        band = tuple(float(v) for v in a.band.split("-")) if a.band else None
+        return cmd_sweep(song, a.notes, a.voices.split(","), a.bars[0], a.bars[1], nums, a.base, a.tail, band,
+                         a.rescore, role, a.transpose)
     if a.cmd == "tones":
         return cmd_tones(song, a.note, [int(v) for v in a.nums.split(",")], a.base)
     if a.cmd == "record":

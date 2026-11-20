@@ -9,7 +9,13 @@
   ],
   "bpm": 127.5,
   "pitch_semitones": -2,
-  "pb-other": {"stems": ["keys", "strings", "wind"]},
+  "pb-other": {
+    "layers": [
+      {"file": "pb-synths", "frame": "stem", "gain_db": -10.0, "derived": true, "source": ["keys", "wind", "strings"]},
+      {"file": "pb-fx", "frame": "stem", "gain_db": -10.0, "derived": true, "source": ["keys", "wind", "strings"]}
+    ],
+    "roles": {"pb-synths": "musical", "pb-fx": "musical"}
+  },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -6.1}},
   "pb-drums": {"stems": ["drums"], "gain_db": {"drums": -4.8}},
   "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},

@@ -55,7 +55,8 @@ class Song:
         self.off, self.bar = tl["offset_sec"], tl["bar_sec"]
         if self.mix.get("click") == "follow" or self.mix.get("tempo_zone"):
             raise SystemExit("variable tempo (click: follow / tempo_zone) is not supported")
-        ref = [c for c in self.mix.get("cues", []) + self.mix.get("gm800", [])
+        g8 = self.mix.get("gm800", [])
+        ref = [c for c in self.mix.get("cues", []) + (g8 if isinstance(g8, list) else [])
                if isinstance(c, dict) and "abs_sec" in c and str(c.get("beat", 1)).isdigit()]
         if not ref:
             raise SystemExit("no cue with abs_sec: run jamzone_render.py --check first")
@@ -70,10 +71,20 @@ class Song:
     def t_render(self, bar):
         return self.bar1_render + (bar - 1) * self.bar
 
+    def stem(self, name):             # path of a stem: wav, else the Moises mp3 (the render reads the same file)
+        for ext in (".wav", ".mp3"):
+            p = os.path.join(self.dir, name + ext)
+            if os.path.exists(p):
+                return p
+        raise SystemExit(f"no stem '{name}' (.wav/.mp3) in {self.dir}")
+
     def read(self, rel, t0, t1):
         import soundfile as sf
         from scipy.signal import resample_poly
-        x, sr = sf.read(os.path.join(self.dir, rel), always_2d=True, dtype="float32")
+        p = os.path.join(self.dir, rel)
+        if not os.path.exists(p) and p.endswith(".wav"):
+            p = p[:-4] + ".mp3"
+        x, sr = sf.read(p, always_2d=True, dtype="float32")
         x = x[max(0, int(t0 * sr)):int(t1 * sr)]
         return resample_poly(x, SR, sr, axis=0).astype(np.float32) if sr != SR else x
 

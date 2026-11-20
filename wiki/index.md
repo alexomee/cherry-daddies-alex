@@ -55,6 +55,8 @@
 10. [Smells Like Teen Spirit — Nirvana](songs/nirvana-smells-like-teen-spirit.md) — Репетиция 07.10; JamZone cat_11775, click:follow 118 BPM; базовый плейбек (intro cue + click), группа играет живьём; cue bar 2.1 «Smells Like Teen Spirit guitar in ready go».
 11. [Кислотный DJ — Акула](songs/kislotny-dj.md) — СЕТ 2 #1 (28.10 Music Hall, клип №63), Moises 140 bpm, питч 0; 22 cue; pb-other = layers `DJ_arp` (+3.5 dB) + `wind_part` (−8.0 dB, суммарно −21.19 dBFS gated RMS), pb-bass null (Alex живьём), pb-drums (−4.5 dB).
 
+12. [Мама Люба — SEREBRO](songs/serebro-mama-lyuba.md) — СЕТ 2 #12, Moises (mp3), 127.5 bpm, pitch −2 (B♭m → G♯m); синты keys + wind + strings переведены в ноты для GM-800 (2026-11-20): пэд, хук, стабы, бас интро; FX остаются стемом.
+
 ### На бис
 
 1. [Мелом (Пропаганда)](songs/melom.md) — Единственная песня блока «на бис»; без pb-other (только click+cues + pb-bass с 2026-11-17, Рома ушёл), Bb minor / 120 bpm, 10 cue, единственный static lyric-клип в риге.

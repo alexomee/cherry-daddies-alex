@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T11:34:00",
+  "generated": "2026-11-20T13:46:17",
   "counts": {
     "total": 127,
     "data": 125,
@@ -3648,11 +3648,10 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys",
-              "strings",
-              "wind"
+              "pb-synths",
+              "pb-fx"
             ]
           },
           "practice": [
@@ -3710,18 +3709,18 @@
             "guitars": "e23f73271e",
             "other": "af570a6489",
             "click": "49b2efe365",
-            "cues": "2c109b0510"
+            "cues": "13f5371fb8"
           },
           "versions": {
-            "all": "6a5f2f8ae6",
+            "all": "8d5e6cf77b",
             "drums": "e7ae38208a",
-            "alex": "3a7ac7ac27",
-            "steve": "0c054e399a",
-            "tanya": "3689e1bd3d",
-            "trio": "833b377f84",
-            "pb-other": "65611df091",
+            "alex": "09fd51437f",
+            "steve": "224afffee7",
+            "tanya": "4ab3914d3d",
+            "trio": "7e261cc98c",
+            "pb-other": "25cd549d17",
             "pb-bass": "2e8b5c8987",
-            "pb-audition": "b852b63573"
+            "pb-audition": "b55b8822e8"
           },
           "pb_other": {
             "available": true,
@@ -12161,11 +12160,10 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys",
-              "strings",
-              "wind"
+              "pb-synths",
+              "pb-fx"
             ]
           },
           "practice": [
@@ -12223,18 +12221,18 @@
             "guitars": "e23f73271e",
             "other": "af570a6489",
             "click": "49b2efe365",
-            "cues": "2c109b0510"
+            "cues": "13f5371fb8"
           },
           "versions": {
-            "all": "6a5f2f8ae6",
+            "all": "8d5e6cf77b",
             "drums": "e7ae38208a",
-            "alex": "3a7ac7ac27",
-            "steve": "0c054e399a",
-            "tanya": "3689e1bd3d",
-            "trio": "833b377f84",
-            "pb-other": "65611df091",
+            "alex": "09fd51437f",
+            "steve": "224afffee7",
+            "tanya": "4ab3914d3d",
+            "trio": "7e261cc98c",
+            "pb-other": "25cd549d17",
             "pb-bass": "2e8b5c8987",
-            "pb-audition": "b852b63573"
+            "pb-audition": "b55b8822e8"
           },
           "pb_other": {
             "available": true,
@@ -15175,11 +15173,10 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys",
-              "strings",
-              "wind"
+              "pb-synths",
+              "pb-fx"
             ]
           },
           "practice": [
@@ -15237,18 +15234,18 @@
             "guitars": "e23f73271e",
             "other": "af570a6489",
             "click": "49b2efe365",
-            "cues": "2c109b0510"
+            "cues": "13f5371fb8"
           },
           "versions": {
-            "all": "6a5f2f8ae6",
+            "all": "8d5e6cf77b",
             "drums": "e7ae38208a",
-            "alex": "3a7ac7ac27",
-            "steve": "0c054e399a",
-            "tanya": "3689e1bd3d",
-            "trio": "833b377f84",
-            "pb-other": "65611df091",
+            "alex": "09fd51437f",
+            "steve": "224afffee7",
+            "tanya": "4ab3914d3d",
+            "trio": "7e261cc98c",
+            "pb-other": "25cd549d17",
             "pb-bass": "2e8b5c8987",
-            "pb-audition": "b852b63573"
+            "pb-audition": "b55b8822e8"
           },
           "pb_other": {
             "available": true,
@@ -19245,11 +19242,10 @@
             "label": "bass"
           },
           "other": {
-            "kind": "stems",
+            "kind": "layers",
             "items": [
-              "keys",
-              "strings",
-              "wind"
+              "pb-synths",
+              "pb-fx"
             ]
           },
           "practice": [
@@ -19307,18 +19303,18 @@
             "guitars": "e23f73271e",
             "other": "af570a6489",
             "click": "49b2efe365",
-            "cues": "2c109b0510"
+            "cues": "13f5371fb8"
           },
           "versions": {
-            "all": "6a5f2f8ae6",
+            "all": "8d5e6cf77b",
             "drums": "e7ae38208a",
-            "alex": "3a7ac7ac27",
-            "steve": "0c054e399a",
-            "tanya": "3689e1bd3d",
-            "trio": "833b377f84",
-            "pb-other": "65611df091",
+            "alex": "09fd51437f",
+            "steve": "224afffee7",
+            "tanya": "4ab3914d3d",
+            "trio": "7e261cc98c",
+            "pb-other": "25cd549d17",
             "pb-bass": "2e8b5c8987",
-            "pb-audition": "b852b63573"
+            "pb-audition": "b55b8822e8"
           },
           "pb_other": {
             "available": true,
