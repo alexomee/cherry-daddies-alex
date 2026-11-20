@@ -199,7 +199,7 @@ grep '^AGENTIQA_GEMINI_API_KEY=' ~/projects/agentiqa/apps/desktop-next/.env | cu
 
 Перерендер (`jamzone_render.py`) Stage Traxx сам не обновляет. «Синк в риг», «в риг», «на сцену» теперь означают:
 1. Отрендерить: `python3 tools/jamzone/jamzone_render.py "<song>"`.
-2. `tools/stagetraxx_sync.py "<song>"` (dry-run) → `tools/stagetraxx_sync.py --apply "<song>"`. Фильтр по подстроке обновляет только песню, плейлисты не трогает; без фильтра — вся программа и плейлисты `CD · <сет>` из `web/songs.json`. Stage Traxx должен быть закрыт (`--quit` закрывает), бэкап базы скрипт делает сам.
+2. `tools/stagetraxx_sync.py "<song>"` (dry-run) → `tools/stagetraxx_sync.py --apply "<song>"`. Фильтр по подстроке обновляет только песню, плейлисты не трогает; без фильтра — вся программа и плейлисты `CD · <сет>` из `web/songs.json`. Stage Traxx должен быть закрыт (`--quit` закрывает), бэкап базы скрипт делает сам. **После синка Stage Traxx НЕ открывать** — без `--launch` (Alex, 2026-11-20).
 3. Проверить треки песни в базе (Click / Cues / PB Other / PB Bass, длительность = рендер); при сомнении сверить моно-файл `Documents/<папка>/N_*.wav` с `auto-render/*.wav` (сведение в моно = −3 дБ, это норма).
 
 **Выходы карты.** UID Rubix24 меняется с USB-портом, а Stage Traxx хранит разводку по UID. Раскладка прописана на все порты Mac и гнёзда хаба. Проверка после подключения или при «звук не туда» — `tools/stagetraxx_ports.py`: должно быть `routed` и `default output: Rubix24`; при `NOT ROUTED` — `--apply --quit --launch`. Подробности: `wiki/pipelines/stagetraxx-rig.md`.
