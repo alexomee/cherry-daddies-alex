@@ -45,7 +45,7 @@
 
 ### 28.10 new songs
 
-1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k).
+1. [Беги от меня — Гости из будущего](songs/begi-ot-menya.md) — Moises-варп 125 bpm, питч 0; 16 cue в риге; 2026-09-02 пере-варп (баг фазы варпа резал 700 мс интро + сетка на полтакта мимо) → старт на первую ноту клавиш, все cue на «1», рендер +0.96с; координаты пользователя = нетримленные оригиналы (−8.8с, клик k = доля k). Клавиши выписаны нотами из MIDI для GM-800 (2026-11-20, `prep_begi_ot_menya.py`, 7 голосов), ждут слух Alex и прибор.
 2. [Такая любовь](songs/takaya-lyubov.md) — tryout, Moises, 135 bpm, питч 0; 14 cue, cut_after_last_cue 2; pb-other: strings + sfx-pb + acoustic-guitar-solo (такты 92–99) + takaia_lubov_keys (−2.5 dB); pb-bass: layer takaia_lubov_bass (−5.0 dB, replaces bass); pb-drums (−3.1 dB).
 3. [Медведица — Мумий Тролль](songs/mumiy-troll-medveditsa.md) — СЕТ 2 #8 (28.10 Music Hall); Moises-варп 130 BPM, питч 0; 6 cue (такты 1/3/19 + `break in` 83.1 / 2:35.08 + `voice in` 84.1 / 2:36.92 + `stop` 98.3 / 3:03.69); `pb-other` = layer `guitars_on_rap` (−5.5 dB → −22.19 dBFS gated RMS / −17.5 LUFS, medium коридор); фонетический текст рэп-брейкдауна в `lyrics-timed/27.tsv`.
 4. [Кукла колдуна — Король и Шут](songs/korol-i-shut-kukla-kolduna.md) — 148.6 BPM, D minor; pb-bass с 2026-11-17 (Рома ушёл); 4 cue (добавлен финальный «end in 3 3 2 1» на 124.1 / 3:21.88). 2026-10-07: pb-other обновлён на v2 (−14.9 LUFS) по результатам репетиции; синхронизирован в риг.
