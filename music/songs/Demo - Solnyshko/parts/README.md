@@ -16,4 +16,4 @@
 ## pb-synths.wav, pb-fx.wav — 2026-11-20
 
 `pb-synths.wav` — слой клавиш, записанный с GM-800 (25 дублей, `gmp record` → `gmp layer`), stem-фрейм, тональность группы. `pb-fx.wav` — реверс-тарелка из стема `other` (такты 8, 24, 120, 128, выше 3 кГц, транспонирована −2), `prep_solnyshko.py fx`. Оба не в git (wav), пересобираются командами из шапки скрипта; дубли лежат в `analysis/gm800-match/Demo - Solnyshko/rec-synths-*.wav`.
-**В `mix.json` пока не подключены** — в плейбеке стоит `roma-keys-2810`, ждёт слуха Alex.
+В `mix.json` с 2026-11-20: `pb-other.layers`, оба `derived` от `keys` + `other`, `gain_db +0.4`. `roma-keys-2810.wav` больше не используется (оставлен как ориентир по звуку).

@@ -23,7 +23,7 @@ set: СЕТ 2 #1
 
 Стемы (Moises, варпнутые, в корне папки): `bass.wav`, `drums.wav`, `guitars.wav`, `keys.wav`, `other.wav`, `vocals.wav`, `metronome.wav`. Оригиналы Moises → `moises-orig/`.
 
-- **pb-other:** `null` (нет).
+- **pb-other:** слои `pb-synths` (клавиши, записаны с GM-800 по нотам) + `pb-fx` (реверс-тарелка из стема), stem-фрейм, `derived` от `keys` + `other`, `gain_db +0.4` — см. раздел про клавиши ниже.
 - **pb-bass:** layer `synth-bass`, frame **render**, `replaces: ["bass"]`, `gain_db: −10`.
   - Источник layer: `/Users/alex/projects/cherry-daddies/music/songs/Demo - Solnyshko/parts/synth-bass.wav` (read-only). Живой синт-бас Alex-а вместо студийного — студийный `bass` выкидывается из `all`/превью. Layer уже в ключе группы → не питчится. См. [jamzone-render](../pipelines/jamzone-render.md).
 
@@ -116,6 +116,10 @@ set: СЕТ 2 #1
 - **Громкость голосов** (`prep_solnyshko.py calibrate` → `parts/synths.gains.json`): уровень группы = мощность keys + other в тактах, где группа звучит одна (рифф 105–108, стаб 33–40, орган 41–47, дальше остаток по секциям); внутри группы, которая одна не звучит (октавы / акценты, пэд / струнные / брасс), доли из неотрицательной подгонки спектрограммы. Подгонка в одиночку не годится: задавила основной рифф на −14 дБ в пользу верхней октавы. Итог по секциям против оригинала (при равной громкости по песне): от −1.2 до +0.5 дБ, последний припев +2.2.
 - **Слой:** `parts/pb-synths.wav` (stem-фрейм, тональность группы, пик −4.4 dBFS) + `parts/pb-fx.wav` (реверс-тарелка из `other` выше 3 кГц в тактах 8, 24, 120, 128; `prep_solnyshko.py fx`). Собранный слой против оригинала по атакам: от −6 до +1 мс.
 - **Страница результата:** `analysis/gm800-match/Demo - Solnyshko/preview-result/index.html` (`prep_solnyshko.py result`): новый слой / нынешний плейбек (Рома) / оригинал, с группой и без.
-- **В плейбек НЕ поставлено:** `mix.json`, рендер и Stage Traxx без изменений, ждёт слуха Alex. При постановке: `pb-other.layers` = `pb-synths` + `pb-fx`, оба `frame: stem`, `derived` с `source: [keys, other]` вместо `roma-keys-2810`; `mute` с такта 145, `mute_fade_ms` 250 (тоны на стопе звенят: −29 дБ против −43 в записи); `gain_db` под норму роли ([level-anchors](../pipelines/level-anchors.md)); затем рендер, сверка уровня `pb-other` по секциям с прежним, Stage Traxx.
+- **В плейбеке с 2026-11-20, 23:37** (Alex: «да, ставь»). `mix.json`: `pb-other.layers` = `pb-synths` + `pb-fx`, оба `frame: stem`, `derived`, `source: [keys, other]`, `gain_db +0.4`, роли `musical`; у `pb-synths` `mute [[145.15, 147]]`, `mute_fade_ms [250, 5]` (тоны на стопе звенят: −29 дБ против −43 в записи). `roma-keys-2810` из слоёв убран (файл в `parts/` остался). Слой `derived`: в `all`, превью и practice остаются оригинальные Moises-клавиши.
+  - Уровень `pb-other` (метрика `level_audit.py`): было I −20.9 / S90 −18.8 / LRA 11.0, стало **I −21.0 / S90 −18.4 / LRA 8.5**, пик −5.3; активна 97 % песни (было 86 %: Рома молчал в 18–20, 26–40, 70–72).
+  - Атаки `pb-other` против `pb-drums` того же рендера, такты 9–16: −1 мс.
+  - Stage Traxx: `stagetraxx_sync.py --apply`, 7 треков песни длиной 259.13 с, `3_PB_Other.wav` совпадает с моно-свёрткой рендера (остаток −75 дБ), теги сцен на месте.
+- **Замечание Alex после прослушивания:** вводный рифф надо сделать посуше и перезаписать — в [todo](../todo.md).
 
-**Дальше:** Alex слушает страницу результата → постановка в плейбек по его ОК.
+**Дальше:** послушать на репетиции; перезапись риффа по уточнению Alex.

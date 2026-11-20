@@ -20,7 +20,7 @@
 
 ### СЕТ 2
 
-1. [Солнышко (Demo)](songs/solnyshko.md) — СЕТ 2 #1; Moises-варп 138 bpm, pitch −2 (Bb minor); count_in:1 + все cue −1 такт (фикс выравнивания 2026-06-20); pb-bass = live synth-bass layer заменяет студийный бас. Клавиши выписаны нотами из MIDI для GM-800 (2026-11-20, `prep_solnyshko.py`), ждут слуха Alex и записи с прибора.
+1. [Солнышко (Demo)](songs/solnyshko.md) — СЕТ 2 #1; Moises-варп 138 bpm, pitch −2 (Bb minor); count_in:1 + все cue −1 такт (фикс выравнивания 2026-06-20); pb-bass = live synth-bass layer заменяет студийный бас. Клавиши плейбека с 2026-11-20 — слой, записанный с GM-800 по нотам из MIDI (`prep_solnyshko.py`, 14 голосов, `pb-synths` + `pb-fx`, −21.0); открыто: вводный рифф посуше.
 2. [Про красивую жизнь (Банд'Эрос)](songs/pro-krasivuju-zhizn.md) — СЕТ 2 #2, Moises 125 bpm, оригинальная тональность; 10 cue; pb-other = keys + other + layer keys-noise, pb-bass (2026-11-17, Рома ушёл; в Stage Traxx); practice-миксы на 3 игроков.
 3. [Мало тебя — SEREBRO](songs/malo-tebya.md) — SEREBRO «Мало тебя» (СЕТ 2 #3), Moises-стемы, 130 bpm, pitch −2; pb-bass (живой бас layer replaces bass); pb-other (layers malo-guitars на соло/припевах и malo-sfx свипы/разгон); 16 cue. Клавиши выписаны нотами для GM-800 (2026-11-20, подготовка: пэд + сайдчейн, на приборе не записано).
 4. [Я устал — Quest Pistols](songs/ya-ustal.md) — СЕТ 2 #4; half-time брейкдаун с переменным click:"follow" + tempo_zone (subdiv 8-е), живой бас (layer, replaces bass) и backing-vocal layer, 11 cue, practice-миксы на 4 игроков.
