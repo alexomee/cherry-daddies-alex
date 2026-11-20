@@ -66,8 +66,28 @@ Stage Traxx шлёт во все MIDI-порты, виртуальный `LyricL
 
 - **Automatic Queue Handling** (Settings → Audio → Playback Settings → Queue) должен быть включён (`playback_autoQueueHandling = 1`). Если выключен, тап по песне её не загружает, а двойной тап только ставит в очередь («Added to queue»).
 - **Назначения клавиш/MIDI** хранятся не в базе, а в настройках: `~/Library/Containers/de.dikant.StageTraxx4/Data/Library/Preferences/de.dikant.StageTraxx4.plist`, ключ `remote_triggerMappings` = JSON (Data): `[{"isEnabled":true,"action":"startStop","id":"<UUID>","trigger":{"keyboard":{"key":44}}}]`. `key` — HID usage code (пробел 44, Return 40, → 79, ← 80, ↓ 81, ↑ 82). В iCloud не синкаются. Писать при закрытом Stage Traxx через `defaults write … -data <hex>`.
-- Сейчас назначено: пробел = `startStop`, → = `nextSong`, ↑/↓ = `selectionUp`/`selectionDown`, Return = `triggerSelection`. Действия «предыдущая песня» в 4.0.15 нет: очередь идёт только вперёд, назад — через ↑ + Return.
+- Клавиши на 2026-11-20: пробел = `startStop`, ↑/↓ = `selectionUp`/`selectionDown`, Return = `rewind` (→ = `nextSong` больше нет). Действия «предыдущая песня в очереди» в 4.0.15 нет; в окне назначений «Previous Song/Playlist» = `selectionUp` (курсор в списке), «Next Song in Queue» = `nextSong`, «Rewind to Beginning» = `rewind`.
+- Окно назначений в интерфейсе есть: «Remote action assignments», у каждого действия кнопка Learn (ловит клавишу или MIDI). Рядом с AirTurn Setup. AirTurn Support выключен (`AirTurnEnabled = 0`): он пытался взять Ampero как AirTurn и висел в «Connecting».
 - Список action raw values (4.0.15) лежит в бинарнике рядом со `startStop`: `startPlayback`, `stopPlayback`, `nextSong`, `rewind`, `jumpToNextRegion`, `cycleRegionForward/Backward`, `toggleQueueAutoplay`, `toggleMuteGroup1..6`, `midiAction1..16` и др. В 4.0.15 пункт «Remote Control» в меню ⋯ отсутствует (он есть в мануале 4.1).
+
+## Футсвич Ampero Control (2026-11-20)
+
+Hotone Ampero Control (EC-4, 4 кнопки) управляет Stage Traxx по **USB** (кабель; порт `Ampero Control`, class-compliant MIDI).
+
+| Кнопка | Шлёт | Stage Traxx |
+|---|---|---|
+| FS1 | CC 20 = 127, ch 16 | `stopPlayback` + `rewind` — стоп и в начало песни |
+| FS2 | CC 21 = 127, ch 16 | `selectionUp` + `triggerSelection` — предыдущая песня |
+| FS3 | CC 22 = 127, ch 16 | `startStop` — пауза / старт |
+| FS4 | CC 23 = 127, ch 16 | `nextSong` — следующая песня |
+
+- **Stage Traxx:** `tools/stagetraxx_remote.py` (dry-run показывает назначено/нужно; `--apply --quit --launch` пишет). Формат MIDI-триггера снят с Learn: `{"midiCC": {"channel": 16, "controller": 23, "value": 127}}`, канал с 1. Одному CC — несколько записей, по одной на действие. Клавиатурные назначения скрипт не трогает, записи на канале 16 заменяет целиком. Бэкап prefs рядом, `*.bak-remote-*`.
+- **Ampero:** банк 00, все кнопки Mode **Single** (сообщение уходит на отпускании; Momentary шлёт и на нажатие, и на отпускание → `startStop` дважды). Output To = USB. Канал 16 — чтобы не пересекаться с launcher (1), GM-800 (2), POD Go (3).
+- **Программируется только из приложения Ampero Control** (iOS/Android; iPhone-версия стоит и на Mac в `/Applications`). Приложение на Flutter говорит с пультом по своему BLE-сервису `36D70001-A25B-40FE-99A0-36453A1D8704`, не по Bluetooth-MIDI; по USB настройку не записать (на SysEx identity не отвечает).
+- **ГРАБЛЯ Save:** после Save приложение пишет «Connection failed», но банк сохраняется. По логу Mac-версии (`log stream --predicate 'process == "Ampero Control"'`): оба блока банка уходят целиком, через ~2 с пульт сам рвёт Bluetooth (видимо, пишет память), приложение считает это ошибкой. Проверять не по сообщению, а педалями.
+- Без программирования банк 00 пустой: педали ничего не шлют.
+- Bluetooth-MIDI с Mac тоже работает (Audio MIDI Setup → MIDI Studio → Configure Bluetooth → Connect, порт `Ampero Control Bluetooth`), но на сцене — кабель.
+- Вживую на репетиции ещё не проверено; FS1 и FS2 — по два действия на один CC, работают ли оба, проверить нажатием.
 
 ## Заметки песен в центральной области (2026-11-17)
 
