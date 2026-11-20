@@ -9,11 +9,19 @@
   ],
   "gm800_cc": [
     {"bar": 1,  "cc": 81, "value": 127, "abs_sec": 3.426},
+    {"bar": 1,  "cc": 82, "value": 0, "abs_sec": 3.426},
+    {"bar": 21, "cc": 82, "value": 0, "abs_sec": 37.69},
+    {"bar": 22, "cc": 82, "value": 127, "ramp": true, "abs_sec": 39.403},
+    {"bar": 28, "cc": 82, "value": 0, "abs_sec": 49.682},
+    {"bar": 53, "cc": 82, "value": 127, "lead": 0.5, "abs_sec": 92.512},
+    {"bar": 61, "cc": 82, "value": 0, "abs_sec": 106.217},
+    {"bar": 94, "cc": 82, "value": 127, "lead": 0.5, "abs_sec": 162.753},
     {"bar": 94, "cc": 81, "value": 40, "abs_sec": 162.753},
     {"bar": 95, "beat": 3, "cc": 81, "value": 46, "ramp": true, "abs_sec": 165.322},
     {"bar": 97, "beat": "4&", "cc": 81, "value": 113, "ramp": true, "abs_sec": 169.391},
     {"bar": 98, "cc": 81, "value": 24, "abs_sec": 169.605},
-    {"bar": 101, "cc": 81, "value": 127, "ramp": true, "abs_sec": 174.745}
+    {"bar": 101, "cc": 81, "value": 127, "ramp": true, "abs_sec": 174.745},
+    {"bar": 102, "cc": 82, "value": 0, "abs_sec": 176.458}
   ],
   "podgo": "31D",
   "bpm": 140.09,

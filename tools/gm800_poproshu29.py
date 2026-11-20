@@ -14,6 +14,7 @@ them with the record; `store` writes the chosen one into the slot (backups with 
     gm9 match-store                # those settings into slot 29's memory
     gm9 level-test 127 100 80      # harpsichord alone vs the whole scene at these SCENE LEVELs (LUFS)
     gm9 level-store L              # SCENE LEVEL into slot 29's memory
+    gm9 solo-assign                # ASSIGN 3: CC#82 -> SCENE LEVEL 77..127 (solos without the voice at F)
 
 Scene 29 as found (2026-11-20): parts 1-2 Harpsichord 1 (oct +1 / 0), PLAY FEEL 2, TEMPO 120 (the song is 140),
 Chorus/Delay on (SDD-320) but every part's send 0, Reverb on (level 70), sends 30. FX1 = the SuperFilter of bars
@@ -287,6 +288,39 @@ def cmd_level_store(level):
         sx.close()
 
 
+# ---- the solos without the voice at the F level (Alex 2026-11-20: «в местах, где соло без голоса, сделать его на уровне
+# F»). live_levels.py note metric: SCENE LEVEL 77 -> -24.7, 127 -> -20.2 (F = -20.1, level-anchors.md). ASSIGN 3 of the
+# slot: CC#82 -> MASTER SCENE LV (target 0), CC 0 = 77 (the stored level), 127 = 127; the song drives it from
+# mix.json "gm800_cc" (ASSIGN 1-2 = CC#81, the SuperFilter of 94-101).
+SOLO_CC, SOLO_ASSIGN, SOLO_LO, SOLO_HI = 82, 3, 77, 127
+
+
+def cmd_solo_assign():
+    sys.path.insert(0, os.path.join(REPO, "tools"))
+    from live_levels import GM800
+    import gm800_superfilter as sf
+    g = GM800()
+    try:
+        base = sf.slot_base(SLOT); addr = sf.at(base, 0x01, SOLO_ASSIGN - 1, 0x00)
+        old = sf.rq_ok(g, addr, sf.ASSIGN_SIZE); common = sf.rq_ok(g, sf.at(base, 0, 0, 0), 0x29)
+        if bytes(common[3:11]).decode("ascii", "replace") != "POPROSHU":
+            raise SystemExit(f"slot {SLOT} is '{bytes(common[3:19]).decode('ascii', 'replace')}': not writing")
+        if old[0]:
+            raise SystemExit(f"ASSIGN {SOLO_ASSIGN} of slot {SLOT} is in use: {old[:17]}")
+        bp = os.path.join(sf.BACKUPS, f"slot{SLOT:02d}-sololevel-{time.strftime('%Y%m%d-%H%M%S')}.json")
+        json.dump({"slot": SLOT, "blocks": {f"assign{SOLO_ASSIGN}": {"addr": addr, "data": old}}}, open(bp, "w"), indent=1)
+        new = sf.assign_block(SOLO_CC, old, 0, SOLO_LO, SOLO_HI)           # target 0 = MASTER SCENE LV
+        g.dt(addr, new); time.sleep(0.3)
+        g.scene(SLOT, 2); time.sleep(0.5)
+        got = sf.rq_ok(g, addr, sf.ASSIGN_SIZE)
+        print(f"slot {SLOT}: ASSIGN {SOLO_ASSIGN} = CC#{SOLO_CC} -> SCENE LV {SOLO_LO}..{SOLO_HI}: "
+              f"{'OK' if got == new else 'MISMATCH ' + str(got)}; scene level stored {sf.rq_ok(g, sf.at(base, 0, 0, 0x13), 1)[0]}"
+              f"\n  backup {os.path.relpath(bp, REPO)}  (restore: gm800_superfilter.py restore <file>)")
+        g.scene(1, 2)
+    finally:
+        g.close()
+
+
 def cmd_layer_store(level):
     sx = gmm.Sx()
     try:
@@ -345,8 +379,11 @@ if __name__ == "__main__":
     sub.add_parser("match-test"); sub.add_parser("match-store")
     p = sub.add_parser("level-test"); p.add_argument("levels", type=int, nargs="+")
     p = sub.add_parser("level-store"); p.add_argument("level", type=int)
+    sub.add_parser("solo-assign")
     a = ap.parse_args()
-    if a.cmd == "level-test":
+    if a.cmd == "solo-assign":
+        cmd_solo_assign()
+    elif a.cmd == "level-test":
         cmd_level_test(a.levels)
     elif a.cmd == "level-store":
         cmd_level_store(a.level)
