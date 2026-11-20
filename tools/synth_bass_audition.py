@@ -8,6 +8,8 @@ is a sketch: the final sound comes from the GM-800, this only picks the line.
 
   A  the bass guitar line as it is, synth sound
   B  octave eighths low-low-high-high, the pattern of the intro of «Я устал»
+  B2 the same without the sixteenth figure, brighter, and the same even eighths and sound in the chorus
+     (Alex 2026-11-20: «убери шестнадцатые и сделай поярче», «в припеве должны также продолжаться ровные»)
   C  off-beat eurodance bass (eighths in the verse, rolling sixteenths in the chorus)
 
   uv run -q --python 3.12 --with numpy --with scipy --with librosa --with numba --with pyloudnorm \
@@ -86,11 +88,11 @@ def lines(orig, bars, energy, active):
     the riff bars, the pick-up into bar 6 and the last held note come from the original line."""
     by_bar = {}
     for s, l, p in orig: by_bar.setdefault(s // 16 + 1, []).append([s, l, p])
-    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "C": []}
+    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": []}
     for b in bars:
         own = by_bar.get(b, [])
         if b < 6 or inr(b, RIFF) or b >= 142:
-            out["B"] += own; out["C"] += own; continue
+            out["B"] += own; out["B2"] += own; out["C"] += own; continue
         for half, root in enumerate(LOOP[b % 2]):
             s0 = (b - 1) * 16 + half * 8
             if active[s0:s0 + 8].mean() < 0.5: continue
@@ -99,6 +101,7 @@ def lines(orig, bars, energy, active):
             if fill: cell = [(0, 2, root), (2, 2, root), (4, 1, hi), (5, 1, hi), (6, 2, hi)]
             else:    cell = [(0, 2, root), (2, 2, root), (4, 2, hi), (6, 2, hi)]
             out["B"] += [[s0 + k, l, p] for k, l, p in cell]
+            out["B2"] += [[s0 + k, 2, p] for k, p in ((0, root), (2, root), (4, hi), (6, hi))]
             if e == 0:   cell = [(2, 2, root), (6, 2, root)]
             elif e == 1: cell = [(2, 2, root), (6, 2, hi)]
             else:        cell = [(1, 1, root), (2, 1, hi), (3, 1, root), (5, 1, root), (6, 1, hi), (7, 1, root)]
@@ -117,7 +120,7 @@ def lp24(x, fc, q, sr):
         y[i] = w2
     return y
 
-def synth(notes, s16, energy, n, sweep):
+def synth(notes, s16, energy, n, sweep, bright=False):
     """saw + detuned saw + sub sine -> 24 dB low-pass, cutoff falls per note; louder sections open the filter and
     add drive. sweep: slow movement of the cutoff over 8 bars (the filter of the «Я устал» intro moves)."""
     finc = np.zeros(n); amp = np.zeros(n); fc = np.full(n, 120.0); drv = np.ones(n); sub = np.zeros(n)
@@ -128,17 +131,27 @@ def synth(notes, s16, energy, n, sweep):
         if m <= 0: continue
         t = np.arange(m) / SR
         base, amt, tau, lvl, dr = [(190, 1000, 0.09, 1.0, 1.0), (240, 1500, 0.11, 0.9, 1.6), (330, 2900, 0.16, 0.8, 2.6)][e]
-        if sweep: amt *= 1.0 + 0.55 * np.sin(2 * np.pi * (s / 16) / 8 - np.pi / 2)
-        acc = 1.0 if s % 4 == 0 else 0.86
+        if bright:                              # one sound through verse and chorus: the chorus only opens a little further
+            base, amt, tau, lvl, dr = [(320, 2100, 0.12, 1.0, 1.5), (360, 2600, 0.13, 0.97, 1.6), (400, 3200, 0.14, 0.94, 1.8)][e]
+        if sweep: amt *= 1.0 + (0.25 if bright else 0.55) * np.sin(2 * np.pi * (s / 16) / 8 - np.pi / 2)
+        acc = 1.0 if s % 4 == 0 else (0.94 if bright else 0.86)
         env = np.minimum(1, t / 0.003) * (0.62 + 0.38 * np.exp(-t / 0.14)); r = min(m, int(0.035 * SR)); env[-r:] *= np.linspace(1, 0, r)
         f = hz(p)
         finc[a:z] = f / SR; amp[a:z] = env * lvl * acc; fc[a:z] = base + amt * acc * np.exp(-t / tau) + 2.2 * f; drv[a:z] = dr
         sub[a:z] = (2 * f if f < 60 else f) / SR    # below 60 Hz a PA has little: the sine doubles the 2nd harmonic there
     ph = np.cumsum(finc)
     x = 0.6 * (2 * (ph % 1) - 1) + 0.4 * (2 * ((ph * 1.006) % 1) - 1)
-    y = lp24(x * amp, np.minimum(fc, 9000.0), 2.4, float(SR)) + 0.45 * np.sin(2 * np.pi * np.cumsum(sub)) * amp
+    y = lp24(x * amp, np.minimum(fc, 9000.0), 3.2 if bright else 2.4, float(SR)) + 0.45 * np.sin(2 * np.pi * np.cumsum(sub)) * amp
     y = np.tanh(y * drv) / np.tanh(drv)
-    return sosfilt(butter(2, 48, "highpass", fs=SR, output="sos"), y).astype(np.float32)
+    y = sosfilt(butter(2, 48, "highpass", fs=SR, output="sos"), y)
+    if bright:                                  # an even motor: every note as loud as the others (heard level: the
+        w = sosfilt(butter(1, 120, "highpass", fs=SR, output="sos"), y); seg = []   # lows weigh less), within 6 dB
+        for s, l, p in notes:
+            a, z = int(s16[s] * SR), min(int(s16[s + l] * SR), n)
+            if z - a > 64: seg.append((a, z, np.sqrt((w[a:z] ** 2).mean()) + 1e-9))
+        med = np.median([r for _, _, r in seg])
+        for a, z, r in seg: y[a:z] *= np.clip(med / r, 0.5, 2.0)
+    return y.astype(np.float32)
 
 def mp3(path, x):
     p = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-",
@@ -173,12 +186,12 @@ def main():
     ctx = sum(jr.decode(f"{SONG}/{f}").mean(1) for f in stems if "Click" not in f and "Bass" not in f)[i0:i1]
     ref = bass[i0:i1]; meter = pyloudnorm.Meter(SR); target = meter.integrated_loudness(ref)
     takes = {}
-    for key in "ABC":
-        y = synth(v[key], s16, energy, len(bass), sweep=(key == "B"))[i0:i1]
+    for key in v:
+        y = synth(v[key], s16, energy, len(bass), sweep=(key == "B"), bright=(key == "B2"))[i0:i1]
         takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
     mixes = {"0": ctx + ref, **{k: ctx + y for k, y in takes.items()}}
     g = 0.89 / max(np.abs(m).max() for m in mixes.values()); gs = 0.89 / max(np.abs(ref).max(), max(np.abs(y).max() for y in takes.values()))
-    names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "C": "C-offbeat"}
+    names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "B2": "B2-bright-no-16ths", "C": "C-offbeat"}
     for k, m in mixes.items(): mp3(f"{OUT}/ctx-{names[k]}.mp3", m * g)
     mp3(f"{OUT}/solo-original.mp3", ref * gs)
     for k, y in takes.items(): mp3(f"{OUT}/solo-{names[k]}.mp3", y * gs)
@@ -186,7 +199,7 @@ def main():
     json.dump({"bars": [b0, b1], "bar_sec": marks, "energy": {str(b): energy[b] for b in bars},
                "lines": {k: [[s // 16 + 1, s % 16, l, p] for s, l, p in ns] for k, ns in v.items()}},
               open(f"{OUT}/notes.json", "w"))
-    print(f"bars {b0}-{b1 - 1}, {t1 - t0:.1f} s, bass {target:.1f} LUFS; notes A {len(v['A'])} B {len(v['B'])} C {len(v['C'])} -> {OUT}")
+    print(f"bars {b0}-{b1 - 1}, {t1 - t0:.1f} s, bass {target:.1f} LUFS; notes " + " ".join(f"{k} {len(n)}" for k, n in v.items()) + f" -> {OUT}")
 
 if __name__ == "__main__":
     main()
