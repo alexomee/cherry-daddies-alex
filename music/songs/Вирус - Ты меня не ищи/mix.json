@@ -14,7 +14,7 @@
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
     {"bar": 91,  "scene": 32, "lead": 0.1, "abs_sec": 160.477},
     {"bar": 100, "scene": 30, "abs_sec": 176.176},
-    {"bar": 108, "scene": 27, "abs_sec": 190.13}
+    {"bar": 108, "scene": 27, "abs_sec": 190.13, "lead": 1.3}
   ],
   "bpm": 137.59,
   "pitch_semitones": 0,
