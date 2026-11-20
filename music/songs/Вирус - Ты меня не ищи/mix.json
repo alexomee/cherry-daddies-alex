@@ -1,15 +1,18 @@
 {
   "podgo": "31D",
   "gm800_cc": [
-    {"bar": 1,  "cc": 80, "value": 0, "abs_sec": 3.489},
-    {"bar": 17, "cc": 80, "value": 127, "lead": 0.1, "abs_sec": 31.398},
-    {"bar": 25, "cc": 80, "value": 0, "abs_sec": 45.352}
+    {"bar": 1,   "cc": 80, "value": 0,   "abs_sec": 3.489},
+    {"bar": 17,  "cc": 80, "value": 127, "abs_sec": 31.398, "lead": 0.1},
+    {"bar": 41,  "cc": 80, "value": 0,   "abs_sec": 73.261, "lead": 1.0},
+    {"bar": 67,  "cc": 80, "value": 127, "abs_sec": 118.613, "lead": 0.3},
+    {"bar": 100, "cc": 80, "value": 0,   "abs_sec": 176.176, "lead": 0.2},
+    {"bar": 108, "cc": 80, "value": 127, "abs_sec": 190.13, "lead": 1.0}
   ],
   "gm800": [
     {"bar": 1,   "scene": 27, "abs_sec": 3.489},
     {"bar": 9,   "scene": 32, "abs_sec": 17.443},
     {"bar": 17,  "scene": 27, "lead": 0.3, "abs_sec": 31.398},
-    {"bar": 41,  "scene": 30, "abs_sec": 73.261},
+    {"bar": 41,  "scene": 30, "abs_sec": 73.261, "lead": 1.5},
     {"bar": 58,  "scene": 34, "abs_sec": 102.914},
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
     {"bar": 91,  "scene": 32, "lead": 0.1, "abs_sec": 160.477},
