@@ -470,8 +470,9 @@ class Sx:
             self.o.send_message(HDR + [0x11] + body + [csum(body), 0xF7]); self.t = t0 = time.time()
             while time.time() - self.t < 0.6 and time.time() - t0 < 6:
                 time.sleep(0.01)
-            for m in self.buf:
-                out[f"{g:02X} {m[11]:02X} {m[12]:02X}"] = list(m[13:-2])
+            for m in self.buf:                               # the GM-800 also sends blocks on its own
+                if m[9] == b0 and m[10] == b1:               # after a scene load: keep this group only
+                    out[f"{g:02X} {m[11]:02X} {m[12]:02X}"] = list(m[13:-2])
         return out
 
     def write(self, base, blocks):

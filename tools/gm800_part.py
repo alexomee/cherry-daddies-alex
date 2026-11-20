@@ -11,6 +11,8 @@ the same sound Alex plays live on that scene.
     gmp take "<song>" NOTES.json low 57      # voice "low" on scene 57, every part that is on
     gmp take "<song>" NOTES.json low 57 --parts 1,3 [--bars 9 13]   # only these parts
     gmp preview "<song>" NOTES.json [--bars 9 13]                   # stem vs takes, mp3, same loudness
+    gmp balance 51 3:127 1:110,60,30,15      # loudness of part 1 at these PART LEVELs against part 3 at 127
+    gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
 
 NOTES.json (lives in the song's parts/ folder, bars = mix.json bars):
     {"stems": ["keys", "strings"],
@@ -21,7 +23,14 @@ NOTES.json (lives in the song's parts/ folder, bars = mix.json bars):
 Notes go straight to the part's own MIDI channel at sounding pitch (the part's octave shift,
 measured by a probe note, is taken out), not through the guitar strings: the playback does not
 have to be playable. NOTE SOURCE goes to USB for the run and is always put back; scene 1 (MUTE)
-is loaded at the end. Nothing is written to the GM-800's memory.
+is loaded at the end. Nothing is written to the GM-800's memory - except `scene`, which writes one
+user slot (must be INIT unless --force; SysEx dumps before/after in gear/gm-800/backups/sysex/).
+
+`scene` = the template scene with only the listed parts on, at the given PART LEVELs, their
+TONE MOD > OCT SHIFT set (ToneModifyCommon +02: so that a part written high sits in a comfortable
+guitar position; the scene's own Common OCTAVE SHIFT does not move MIDI notes, so it can't be
+checked from here and is left alone) and a new name. `balance` finds the PART LEVEL that puts one part N dB under another: PART LEVEL
+is not in dB, so it is measured (a held chord, each part alone, LUFS of the USB take).
 Output: analysis/gm800-match/<song>/part-*.wav (not in git).
 """
 import argparse, csv, importlib.util, json, os, subprocess, sys, time
@@ -139,6 +148,60 @@ def play(rig, ev, tail=2.5):
     return rec[int(0.4 * SR):]
 
 
+def cmd_balance(tpl, ref, part, chord="E4 A4 C5"):
+    (rp, rl), (pp, levels) = ref, part
+    line = [(0.0, midi_of(n), 3.0) for n in chord.split()]
+    with gmm.Rig() as rig:
+        nm, _ = rig.load(tpl)
+
+        def one(p, level):
+            rig.g.dt([0x10, 0x02, p - 1, 0x06], [level]); time.sleep(0.2)
+            sh = probe_shift(rig, rig.part_ch[p - 1]) or 0; time.sleep(1.2)
+            x = play(rig, [(t, n - sh, d, rig.part_ch[p - 1]) for t, n, d in line], tail=1.0)
+            return gmm.lufs(x[int(0.5 * SR):int(3.0 * SR)])
+        l0 = one(rp, rl)
+        print(f"scene {tpl} '{nm}': part {rp} at level {rl}: {l0:.1f} LUFS (USB, chord {chord})")
+        for v in levels:
+            l = one(pp, v)
+            print(f"   part {pp} at level {v:3}: {l:6.1f} LUFS   {l - l0:+.1f} dB to part {rp}", flush=True)
+
+
+def cmd_scene(slot, tpl, name, parts, octave, force=False):
+    """parts = {part: PART LEVEL}; every other part (1-4, R) is switched off."""
+    sx = gmm.Sx()
+    try:
+        before, pb = gmm.backup(sx, slot, "before")
+        if len(before) != 88:
+            raise SystemExit(f"slot {slot}: read {len(before)} of 88 blocks, not writing")
+        if "INIT" not in gmm.scene_name(before).upper() and not force:
+            raise SystemExit(f"slot {slot} is '{gmm.scene_name(before)}', not INIT: refusing (--force to overwrite)")
+        ch = 2                                               # Scene Rx channel (gm-800.md)
+        sx.o.send_message([0xC0 | (ch - 1), tpl - 1]); time.sleep(2.5)
+        for p in range(1, 6):
+            sx.dt([0x10, 0x02, p - 1, 0x04], [1 if p in parts else 0])
+            if p in parts:
+                sx.dt([0x10, 0x02, p - 1, 0x06], [parts[p]]); sx.dt([0x10, 0x02, p - 1, 0x08], [0])
+                sx.dt([0x10, 0x02, 0x10 + p - 1, 0x02], [32 + octave])     # TONE MOD > OCT SHIFT
+        time.sleep(2.5)
+        # A scene with heavy tones keeps sending partial blocks on its own for a while: keep only
+        # the 88 blocks of the standard layout (the keys of the slot dump), same sizes.
+        new = {k: v for k, v in sx.dump([0x10, 0x00]).items() if k in before and len(v) == len(before[k])}
+        if len(new) != 88:
+            raise SystemExit(f"temp scene: read {len(new)} of 88 blocks, not writing")
+        new["00 00 00"][3:19] = list(name.ljust(16)[:16].encode("ascii"))
+        sx.write(gmm.slot_base(slot), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, slot, "after")
+        bad = [k for k in new if after.get(k) != new[k]]
+        c = after["00 00 00"]
+        print(f"slot {slot}: '{gmm.scene_name(before)}' -> '{gmm.scene_name(after)}' = scene {tpl}, parts "
+              f"{ {p: after[f'02 {p - 1:02X} 00'][6] for p in parts} }, part octave "
+              f"{ {p: after[f'02 {0x10 + p - 1:02X} 00'][2] - 32 for p in parts} }, scene level {c[0x13]}; "
+              f"88 blocks written, mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
+        sx.o.send_message([0xC0 | (ch - 1), 0])              # leave the synth on MUTE
+    finally:
+        sx.close()
+
+
 def cmd_preview(song, part_file, b0, b1):
     """mp3 of the stem part and of every take of these bars, all at the stem's loudness."""
     import glob
@@ -174,9 +237,22 @@ def main():
     p.add_argument("--parts", default=""); p.add_argument("--bars", type=int, nargs=2)
     p = sub.add_parser("preview")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("--bars", type=int, nargs=2)
+    p = sub.add_parser("balance")
+    p.add_argument("template", type=int); p.add_argument("ref"); p.add_argument("part")
+    p.add_argument("--chord", default="E4 A4 C5")
+    p = sub.add_parser("scene")
+    p.add_argument("slot", type=int); p.add_argument("template", type=int); p.add_argument("name")
+    p.add_argument("--parts", required=True); p.add_argument("--octave", type=int, default=0)
+    p.add_argument("--force", action="store_true")
     a = ap.parse_args()
     if a.cmd == "probe":
         return cmd_probe(a.scenes)
+    if a.cmd == "balance":
+        rp, rl = a.ref.split(":"); pp, lv = a.part.split(":")
+        return cmd_balance(a.template, (int(rp), int(rl)), (int(pp), [int(v) for v in lv.split(",")]), a.chord)
+    if a.cmd == "scene":
+        parts = {int(k): int(v) for k, v in (x.split(":") for x in a.parts.split(","))}
+        return cmd_scene(a.slot, a.template, a.name, parts, a.octave, a.force)
     song = gmm.Song(a.song)
     part = json.load(open(a.notes, encoding="utf-8"))
     b0, b1 = a.bars or part.get("bars")
