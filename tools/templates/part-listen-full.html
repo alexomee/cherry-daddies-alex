@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Прослушивание партии</title>
+<!-- Whole-song A/B page for a written-out part (wiki/pipelines/part-transcription-guide.md).
+     Filled by a song's prep script: the META placeholder below becomes
+     {title, sub, tracks: [[key, file, name, note, isRef]], ctx: suffix of the "with the band" files or null,
+      cues: [[bar, text]], marks: [[bar, text]], bar: seconds, bar1: seconds of bar 1, dur, html}.
+     One file plays at a time; switching keeps the position. -->
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --ink: #1c1b19; --mute: #6b6862; --line: #e2dfd8;
+    --accent: #b3261e; --accent-ink: #ffffff; --on: #fbe9e7; --ref: #1f5f8b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161513; --card: #211f1c; --ink: #efece6; --mute: #a09c94; --line: #36332e;
+            --accent: #ef6a5e; --accent-ink: #1a0907; --on: #3a1f1c; --ref: #7fbfe8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.45 -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 140px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .sub { color: var(--mute); margin: 0 0 20px; }
+  h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute);
+       margin: 28px 0 8px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+  button { font: inherit; color: var(--ink); cursor: pointer; }
+  button.t { display: flex; gap: 12px; align-items: center; text-align: left; width: 100%;
+             background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+  button.t:hover, button.c:hover { border-color: var(--mute); }
+  button.t.on { background: var(--on); border-color: var(--accent); }
+  button.t .k { flex: none; width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line);
+                display: grid; place-items: center; font: 600 13px ui-monospace, Menlo, monospace; color: var(--mute); }
+  button.t.on .k { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button.t b { display: block; font-weight: 600; }
+  button.t small { display: block; color: var(--mute); font-size: 13px; }
+  button.t.ref b { color: var(--ref); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  button.c { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+             font-size: 14px; font-variant-numeric: tabular-nums; }
+  button.c.on { background: var(--on); border-color: var(--accent); }
+  button.c i { font-style: normal; color: var(--mute); margin-right: 6px; }
+  table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { font-size: 13px; color: var(--mute); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  td.n { font-family: ui-monospace, Menlo, monospace; font-size: 14px; }
+  .wrap { overflow-x: auto; }
+  .q { color: var(--mute); font-size: 14px; margin: 8px 0 0; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); }
+  .bar > div { max-width: 900px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 12px; align-items: center; }
+  #pp { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--accent);
+        color: var(--accent-ink); font-size: 18px; }
+  #now { flex: 1; min-width: 0; }
+  #now b { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #prog { width: 100%; height: 10px; background: var(--line); border-radius: 5px; margin-top: 6px; cursor: pointer; position: relative; }
+  #fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--accent); border-radius: 5px; }
+  #prog i { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--mute); opacity: .6; }
+  #tm { flex: none; color: var(--mute); font: 13px ui-monospace, Menlo, monospace; text-align: right; }
+  kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="h1"></h1>
+  <p class="sub" id="sub"></p>
+
+  <h2>Что играет — <kbd>1</kbd>…<kbd>9</kbd>, <kbd>пробел</kbd> пауза, <kbd>←</kbd> <kbd>→</kbd> на такт</h2>
+  <div class="grid" id="g-src"></div>
+
+  <h2>Режим</h2>
+  <div class="chips">
+    <button class="c" id="ctx"><i>C</i>с барабанами, басом и вокалом</button>
+    <button class="c" id="loop"><i>L</i>петля по секции</button>
+  </div>
+
+  <h2>Секции (cue)</h2>
+  <div class="chips" id="g-cue"></div>
+
+  <h2 id="h-marks">Места, где ноты расходятся с MIDI</h2>
+  <div class="chips" id="g-mark"></div>
+
+  <div id="extra"></div>
+</main>
+
+<div class="bar"><div>
+  <button id="pp" aria-label="Играть / пауза">▶</button>
+  <div id="now"><b id="title">Загрузка…</b>
+    <div id="prog"><div id="fill"></div></div></div>
+  <div id="tm">такт –<br>0:00</div>
+</div></div>
+
+<script>
+const M = /*META*/;
+document.title = M.title; h1.textContent = M.title; sub.innerHTML = M.sub; extra.innerHTML = M.html || "";
+const $ = id => document.getElementById(id);
+const tOf = bar => M.bar1 + (bar - 1) * M.bar, barOf = t => (t - M.bar1) / M.bar + 1;
+let withCtx = false, looping = false, cur = null, playing = false;
+// Every file is fetched whole and played from a blob: `python3 -m http.server` has no Range support,
+// and without it a browser cannot seek (currentTime snaps back to 0).
+const audio = {}, el = f => audio[f];
+const files = M.tracks.flatMap(t => [t[1]].concat(M.ctx ? [t[1].replace(/\.mp3$/, M.ctx + ".mp3")] : []));
+let ready = false;
+const loaded = Promise.all(files.map(async f => {
+  const blob = await (await fetch(encodeURIComponent(f))).blob();
+  audio[f] = new Audio(URL.createObjectURL(blob)); audio[f].preload = "auto";
+})).then(() => { ready = true; $("title").textContent = "Выбери, что слушать"; },
+         e => { $("title").textContent = "Не загрузилось: " + e; });
+const fileOf = it => it.file.replace(/\.mp3$/, (withCtx && M.ctx ? M.ctx : "") + ".mp3");
+const items = M.tracks.map(([key, file, name, note, ref]) => {
+  const b = document.createElement("button"); b.className = "t" + (ref ? " ref" : "");
+  b.innerHTML = `<span class="k">${key}</span><span><b>${name}</b><small>${note}</small></span>`;
+  $("g-src").appendChild(b);
+  const it = { key, file, name, note, b }; b.onclick = () => pick(it); return it;
+});
+function now() { return cur && ready ? el(fileOf(cur)).currentTime : Math.max(0, tOf(1) - 0.3); }
+function pick(it, at) {                               // switch the source (or the mode), keep the position
+  if (!ready) return;
+  const t = at ?? now();
+  if (cur) el(fileOf(cur)).pause();
+  items.forEach(i => i.b.classList.toggle("on", i === it));
+  cur = it; const a = el(fileOf(it)); a.currentTime = Math.max(0, t);
+  $("title").textContent = it.name + (withCtx ? " · с группой" : "");
+  if (playing || at === undefined) { a.play().catch(() => {}); playing = true; $("pp").textContent = "❚❚"; }
+}
+function seek(t) { if (!ready) return; if (!cur) return pick(items[0], t); el(fileOf(cur)).currentTime = Math.max(0, t); tick(); }
+function toggle() {
+  if (!ready) return;
+  if (!cur) return pick(items[0]);
+  const a = el(fileOf(cur));
+  if (playing) { a.pause(); playing = false; $("pp").textContent = "▶"; }
+  else { a.play().catch(() => {}); playing = true; $("pp").textContent = "❚❚"; }
+}
+function setCtx() { if (!ready) return; const t = now(), it = cur; if (cur) el(fileOf(cur)).pause(); withCtx = !withCtx;
+  $("ctx").classList.toggle("on", withCtx); if (it) pick(it, t); }
+$("pp").onclick = toggle; $("ctx").onclick = setCtx;
+$("loop").onclick = () => { looping = !looping; $("loop").classList.toggle("on", looping); };
+if (!M.ctx) $("ctx").style.display = "none";
+const chip = (grp, bar, text) => { const c = document.createElement("button"); c.className = "c";
+  c.innerHTML = `<i>${bar}</i>${text}`; c.onclick = () => { seek(tOf(bar) - 0.05); if (!playing) toggle(); };
+  $(grp).appendChild(c); return { bar, c }; };
+const cues = M.cues.map(([bar, text]) => chip("g-cue", bar, text));
+(M.marks || []).forEach(([bar, text]) => chip("g-mark", bar, text));
+if (!(M.marks || []).length) $("h-marks").style.display = "none";
+cues.forEach(({ bar }) => { const i = document.createElement("i"); i.style.left = (tOf(bar) / M.dur * 100) + "%"; $("prog").appendChild(i); });
+$("prog").onclick = e => { const r = $("prog").getBoundingClientRect(); seek((e.clientX - r.left) / r.width * M.dur); };
+function tick() {
+  const t = now(), b = barOf(t);
+  $("fill").style.width = (t / M.dur * 100) + "%";
+  const beat = Math.floor((b - Math.floor(b)) * 4) + 1;
+  $("tm").innerHTML = (b >= 1 ? `такт ${Math.floor(b)}.${beat}` : "вступление") + `<br>${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")}`;
+  let k = -1; cues.forEach((c, i) => { if (b >= c.bar - 0.01) k = i; });
+  cues.forEach((c, i) => c.c.classList.toggle("on", i === k));
+  if (looping && playing && k >= 0) {
+    const end = k + 1 < cues.length ? tOf(cues[k + 1].bar) : M.dur;
+    if (t >= end - 0.03) el(fileOf(cur)).currentTime = tOf(cues[k].bar);
+  }
+}
+setInterval(tick, 60);
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.code === "Space") { e.preventDefault(); return toggle(); }
+  if (e.code === "KeyC") return setCtx();
+  if (e.code === "KeyL") return $("loop").click();
+  if (e.code === "ArrowLeft" || e.code === "ArrowRight") { e.preventDefault(); return seek(now() + (e.code === "ArrowLeft" ? -M.bar : M.bar)); }
+  const it = items.find(i => "Digit" + i.key === e.code); if (it) pick(it);
+});
+</script>
+</body>
+</html>

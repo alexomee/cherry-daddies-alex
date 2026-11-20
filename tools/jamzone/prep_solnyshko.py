@@ -1,0 +1,337 @@
+#!/usr/bin/env python3
+"""«Солнышко»: the keys (Moises keys + other) written out as notes for the GM-800
+(wiki/pipelines/part-transcription-guide.md; Alex 2026-11-20: «большая задача на снятие партии клавиш»,
+notes = the MIDI from the web, sound type = Roma's concert take, original stems = reference, the places
+with the cue «alex in» are played live and stay out of the playback).
+
+  P="uv run -q --python 3.12 --with numpy --with scipy --with soundfile --with mido python"
+  $P tools/jamzone/prep_solnyshko.py notes     # MIDI + stem corrections -> parts/synths.notes.json
+                                               #   (+ the MIDI as it is -> analysis/.../synths-midi.notes.json)
+  $P tools/jamzone/prep_solnyshko.py plan      # voices, bars, tone candidates, the sweep commands for the GM-800
+  $P tools/jamzone/prep_solnyshko.py preview   # A/B page: original / my notes / MIDI as it is / Roma (no GM-800)
+  gmp record "Solnyshko" "music/songs/Demo - Solnyshko/parts/synths.notes.json"   # when the GM-800 is free
+  gmp layer  "Solnyshko" "music/songs/Demo - Solnyshko/parts/synths.notes.json"   # -> parts/pb-synths.wav
+
+Source of the notes: parts/solnyshko-rusmidi.mid (rusmidi.com, C minor, 140 bpm, bar 1 = count-in). All notes
+below are in the BAND key (pitch_semitones -2: record Cm, band Bbm), bars = mix.json bars.
+MIDI bar -> our bar: + 3 from MIDI bar 6 on (the MIDI intro is 4 bars, ours 8); every section start then
+lands on its cue (verse 25, arpegiator 49, more-arpegiator 57, soft-verse 73, ... chorus 129).
+
+Voices (MIDI track -> what it is; checked against the stems with tools/part_notes.py --roll):
+  riff     t7  the hook A# A# C# D# C# F, octave 3-4 (the fundamental in the keys stem), 1-25 and 105-128
+  riff_hi  t3  the same an octave up (present in the stem, weaker)
+  live     t8  off-beat two-note stabs 17-24 and 121-127 = cue «alex in»: Alex plays them, NOT in the layer
+  vstab    t8  verse off-beat stab 33-40
+  vfill    t10 verse fill, bars 34 36 38 40
+  organ    t9  off-beat organ: choruses 41-56, 89-104, 129-144 and the riff part 113-127
+  arp      t3  the «arpegiator» gallop 48-72, 96-104, 129-144; arp_lo = an octave below where nothing else
+               covers it (48-56, 96-104)
+  octs     t12 (= t8) octave-alternating 16ths 57-72, 129-144 («more-arpegiator»)
+  stack    t10 octave stabs 57-72, 129-144
+  sweep    t5  slow melody 65-72
+  pad / strings / brass   t14 / t15 / t16  soft verse and verse 2, 73-88;  roll  t16  the stop bar 128
+
+Where the record disagrees with the MIDI, the pitch follows the record (the MIDI version of these voices is
+kept in synths-midi.notes.json for the A/B):
+  intro    the record plays the first riff bar eight times with a filter opening (-42 -> -23 dB); the MIDI
+           has four bars. Here: bar A x 8, a level ramp on the notes.
+  organ    the record plays ONE note, the fifth of the chord (F4 over Bbm, C#4 over F#, D#4 over G#, C4 over F,
+           A#3 over D#m; riff part F4 / D#4 / A#4 / G#4); the MIDI has the root. Here: MIDI + 7 semitones.
+  vstab    the record has the root an octave below as the loudest note (A#3, F#3, F3) under the MIDI pair.
+  vfill    the record plays C -> C# in octaves on 4 and 4& in each of 34 36 38 40; the MIDI has four
+           different fills.
+Not in the MIDI and not written: the part that enters at 137 («outro-solo», scene 9) - Alex live.
+Not notes: the reverse cymbal in `other` (bars 8, 24, 120, 128) and the taiko of the MIDI (percussion: out).
+"""
+import collections, importlib.util, json, os, subprocess, sys
+import numpy as np
+
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+SONG = os.path.join(REPO, "music", "songs", "Demo - Solnyshko")
+MID = os.path.join(SONG, "parts", "solnyshko-rusmidi.mid")
+PART = os.path.join(SONG, "parts", "synths.notes.json")
+OUT = os.path.join(REPO, "analysis", "gm800-match", "Demo - Solnyshko")
+ALT = os.path.join(OUT, "synths-midi.notes.json")
+PAGE = os.path.join(OUT, "preview-part")
+NAMES = "C C# D D# E F F# G G# A A# B".split()
+SEMI = -2
+END = 146                                  # bar after the last one
+
+name = lambda m: f"{NAMES[m % 12]}{m // 12 - 1}"
+midi = lambda s: NAMES.index(s[:-1]) + 12 * (int(s[-1]) + 1)
+
+# tone = provisional pick by patch name (nothing has been played on the GM-800 yet); cand = the short list
+# for `gmp sweep --tones`; solo = bars where the voice is (almost) alone in keys + other, for the sweep.
+VOICES = {
+    "riff":    dict(tone=211, role="lead",  solo=(105, 109), cand=[211, 210, 212, 217, 214, 208, 194, 239, 327, 330, 304],
+                    what="рифф, октава 3–4"),
+    "riff_hi": dict(tone=211, role="lead",  solo=(105, 109), cand=[], what="рифф октавой выше"),
+    "vstab":   dict(tone=316, role="stab",  solo=(33, 37),  cand=[316, 327, 330, 304, 1092, 317], what="офф-бит стаб куплета"),
+    "vfill":   dict(tone=316, role="stab",  solo=(33, 37),  cand=[], what="филл куплета C → C#"),
+    "organ":   dict(tone=527, role="organ", solo=(41, 45),  cand=[527, 530, 27, 33, 34, 518, 522, 38], what="офф-бит орган (квинта)"),
+    "arp":     dict(tone=350, role="pluck", solo=(49, 53),  cand=[350, 352, 354, 1087, 1089, 361, 365, 316], what="«арпеджиатор», галоп"),
+    "arp_lo":  dict(tone=350, role="pluck", solo=(49, 53),  cand=[], what="галоп октавой ниже"),
+    "octs":    dict(tone=316, role="pluck", solo=(57, 61),  cand=[316, 1024, 1092, 322, 199, 350], what="октавы шестнадцатыми"),
+    "stack":   dict(tone=970, role="lead",  solo=(57, 61),  cand=[970, 360, 195, 190, 199], what="октавные акценты"),
+    "sweep":   dict(tone=277, role="pad",   solo=(65, 73),  cand=[277, 278, 1055, 197, 287], what="медленная мелодия"),
+    "pad":     dict(tone=287, role="pad",   solo=(73, 77),  cand=[287, 275, 264, 259, 266, 285], what="пэд тихого куплета"),
+    "strings": dict(tone=148, role="pad",   solo=(73, 77),  cand=[148, 145, 753, 1011, 259], what="струнные, октава"),
+    "brass":   dict(tone=252, role="stab",  solo=(73, 77),  cand=[252, 247, 253, 257, 249, 242], what="триольные аккорды"),
+    "roll":    dict(tone=252, role="stab",  solo=(128, 129), cand=[], what="дробь в стоп-такте 128"),
+}
+GAP = {"arp": 0.002, "arp_lo": 0.002, "octs": 0.002, "stack": 0.002, "roll": 0.002}   # staccato lengths are the MIDI's own
+INTRO_DB = [-17, -12, -8, -6, -4, -1, 0, 0]       # keys stem, bars 1-8 against 9-16 (filter opening), on the notes
+
+
+def tracks():
+    import mido
+    m = mido.MidiFile(MID); tpb = m.ticks_per_beat; out = {}
+    for i, tr in enumerate(m.tracks):
+        t = 0; on = collections.defaultdict(list); ns = []
+        for msg in tr:
+            t += msg.time
+            if msg.type == "note_on" and msg.velocity > 0:
+                on[msg.note].append(t)
+            elif msg.type in ("note_off", "note_on") and on[msg.note]:
+                s = on[msg.note].pop(0); ns.append((s / tpb, (t - s) / tpb, msg.note))
+        out[i] = sorted(ns)
+    return out
+
+
+def cut(ns, mb0, mb1, ours, semi=SEMI):
+    """Notes of MIDI bars [mb0, mb1) (1-based) -> [[our bar, beat, beats, "pitches"]], our bar of mb0 = ours."""
+    grp = collections.OrderedDict()
+    for s, d, p in ns:
+        mb = int(s // 4) + 1
+        if mb0 <= mb < mb1:
+            grp.setdefault((ours + mb - mb0, round(s % 4 + 1, 3), round(d, 3)), set()).add(p + semi)
+    return [[b, bt, d, " ".join(name(p) for p in sorted(ps))] for (b, bt, d), ps in grp.items()]
+
+
+def rebar(notes, bar):
+    return [[bar, *n[1:]] for n in notes]
+
+
+def build(as_midi=False):
+    T = tracks(); V = {}
+    # riff: intro from the record (bar A x 8), then the MIDI
+    for vn, tr in (("riff", 7), ("riff_hi", 3)):
+        A = cut(T[tr], 6, 7, 1); A[-1][2] = 0.5              # the last F is tied over in bar 9+, not in the intro
+        if as_midi:
+            intro = cut(T[tr], 2, 6, 1) + cut(T[tr], 2, 6, 5)
+        else:
+            intro = [n + [{"gain_db": INTRO_DB[b - 1]}] if INTRO_DB[b - 1] else n for b in range(1, 9) for n in rebar(A, b)]
+        V[vn] = intro + cut(T[tr], 6, 23, 9) + cut(T[tr], 102, 126, 105)
+    V["live"] = cut(T[8], 14, 22, 17) + cut(T[8], 118, 125, 121)
+    if as_midi:
+        V["vstab"] = cut(T[8], 30, 38, 33)
+        V["vfill"] = cut(T[10], 30, 38, 33)
+    else:
+        chord = {33: "A#3 F4 A#4", 34: "A#3 F4 A#4", 35: "A#3 F4 A#4", 36: "A#3 F4 A#4",
+                 37: "F#3 C#4 F#4", 38: "F#3 C#4 F#4", 39: "F3 C4 F4", 40: "F3 C4 F4"}
+        V["vstab"] = [[b, bt, 0.25, c] for b, c in chord.items() for bt in (1.5, 2.5, 3.5, 4.5)]
+        V["vfill"] = [n for b in (34, 36, 38, 40) for n in ([b, 4.0, 0.5, "C4 C5"], [b, 4.5, 0.5, "C#4 C#5"])]
+    fifth = SEMI if as_midi else SEMI + 7
+    V["organ"] = (cut(T[9], 38, 54, 41, fifth) + cut(T[9], 86, 102, 89, fifth)
+                  + cut(T[9], 110, 125, 113, fifth) + cut(T[9], 126, 142, 129, fifth))
+    V["arp"] = cut(T[3], 45, 70, 48) + cut(T[3], 93, 102, 96) + cut(T[3], 126, 142, 129)
+    if not as_midi:
+        V["arp_lo"] = cut(T[3], 45, 54, 48, SEMI - 12) + cut(T[3], 93, 102, 96, SEMI - 12)
+    V["octs"] = cut(T[12], 54, 70, 57) + cut(T[12], 126, 142, 129)
+    V["stack"] = cut(T[10], 54, 70, 57) + cut(T[10], 126, 142, 129)
+    V["sweep"] = cut(T[5], 62, 70, 65)
+    V["pad"] = cut(T[14], 70, 86, 73)
+    V["strings"] = cut(T[15], 70, 86, 73)
+    V["brass"] = cut(T[16], 70, 86, 73)
+    V["roll"] = cut(T[16], 125, 126, 128)
+    return {vn: dict({"at": [1], "bars": END - 1, "notes": sorted(ns, key=lambda n: (n[0], n[1]))},
+                     **({"gap": GAP[vn]} if vn in GAP else {})) for vn, ns in V.items()}
+
+
+def spans(notes):
+    """Bar ranges [b0, b1) a voice plays in; a rest of up to two bars stays inside one range (a voice that
+    plays every other bar is one take, not eight)."""
+    out = []
+    for n in notes:
+        b0 = int(n[0]); b1 = int(np.ceil(n[0] + (n[1] - 1 + n[2]) / 4 - 1e-6))
+        b1 = max(b1, b0 + 1)
+        if out and b0 <= out[-1][1] + 2:
+            out[-1][1] = max(out[-1][1], b1)
+        else:
+            out.append([b0, b1])
+    return out
+
+
+def dump(part, path):
+    """One note / one take a line (plain json.dump with an indent makes 15 000 lines of it)."""
+    j = lambda x: json.dumps(x, ensure_ascii=False)
+    out = ["{", f' "_about": {j(part["_about"])},', f' "stems": {j(part["stems"])},', ' "voices": {']
+    vs = list(part["voices"].items())
+    for i, (vn, v) in enumerate(vs):
+        head = ", ".join(f"{j(k)}: {j(x)}" for k, x in v.items() if k != "notes")
+        out.append(f'  {j(vn)}: {{{head}, "notes": [')
+        out += [f"   {j(n)}" + ("," if k < len(v["notes"]) - 1 else "") for k, n in enumerate(v["notes"])]
+        out.append("  ]}" + ("," if i < len(vs) - 1 else ""))
+    out.append(" }" + ("," if "layer" in part else ""))
+    if "layer" in part:
+        tk = part["layer"]["takes"]
+        out.append(f' "layer": {{"file": {j(part["layer"]["file"])}, "takes": [')
+        out += [f"  {j(t)}" + ("," if k < len(tk) - 1 else "") for k, t in enumerate(tk)]
+        out.append(" ]}")
+    out.append("}")
+    open(path, "w", encoding="utf-8").write("\n".join(out) + "\n")
+
+
+def cmd_notes():
+    V = build()
+    takes = [{"voice": vn, "tone": VOICES[vn]["tone"], "base": 33, "bars": sp, "gain_db": 0.0}
+             for vn in VOICES for sp in spans(V[vn]["notes"])]
+    part = {"_about": "Keys of «Солнышко» (Moises keys + other) written out for the GM-800; generated by "
+                      "tools/jamzone/prep_solnyshko.py notes (edit there, not here). Notes: the MIDI from rusmidi "
+                      "(parts/solnyshko-rusmidi.mid) with the record's pitches where they differ. Band key (Bbm), "
+                      "mix.json bars. Voice `live` = cue «alex in», played by Alex, not in the layer. Tones and gains "
+                      "are provisional: nothing has been played on the GM-800 or checked by ear yet (2026-11-20).",
+            "stems": ["keys", "other"], "voices": V, "layer": {"file": "pb-synths", "takes": takes}}
+    dump(part, PART)
+    os.makedirs(OUT, exist_ok=True)
+    dump({"_about": "The MIDI as it is (only the bar mapping and the key changed): A/B against "
+                    "parts/synths.notes.json", "stems": ["keys", "other"], "voices": build(as_midi=True)}, ALT)
+    print(PART)
+    for vn, v in V.items():
+        print(f"  {vn:8} {len(v['notes']):4} notes  bars " + " ".join(f"{a}-{b - 1}" for a, b in spans(v["notes"])))
+    print(f"  layer: {len(takes)} takes, {sum(b - a for t in takes for a, b in [t['bars']])} bars to record")
+    print(ALT)
+
+
+def cmd_plan():
+    part = json.load(open(PART, encoding="utf-8")); rows = {int(r.split("\t")[0]): r.split("\t")[1] for r in
+                                                              open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
+    rel = os.path.relpath(PART, REPO)
+    for vn, spec in VOICES.items():
+        sp = " ".join(f"{a}-{b - 1}" for a, b in spans(part["voices"][vn]["notes"]))
+        print(f"\n{vn}: {spec['what']}; такты {sp}; пока тон {spec['tone']} {rows[spec['tone']]}")
+        if spec["cand"]:
+            print("   кандидаты: " + ", ".join(f"{n} {rows[n]}" for n in spec["cand"]))
+            print(f"   gmp sweep \"Solnyshko\" \"{rel}\" {vn} --bars {spec['solo'][0]} {spec['solo'][1]} "
+                  f"--role {spec['role']} --tones {','.join(map(str, spec['cand']))}")
+
+
+HTML = """
+<h2>Голоса плейбека</h2>
+<div class="wrap"><table>
+<tr><th>Голос</th><th>Такты</th><th>Что играет</th><th>Откуда</th></tr>
+<tr><td>riff + riff_hi</td><td class="n">1–25, 105–128</td><td>рифф A# A# C# D# C# F, две октавы</td><td>MIDI; вступление по записи</td></tr>
+<tr><td>vstab</td><td class="n">33–40</td><td>офф-бит: A#3 F4 A#4 → F#3 C#4 F#4 → F3 C4 F4</td><td>MIDI + нижняя нота из записи</td></tr>
+<tr><td>vfill</td><td class="n">34, 36, 38, 40</td><td>C → C# октавой на 4 и 4&amp;</td><td>запись (в MIDI четыре разных филла)</td></tr>
+<tr><td>organ</td><td class="n">41–56, 89–104, 113–127, 129–144</td><td>офф-бит одной нотой: F4 C#4 D#4 C4 C#4 A#3 D#4 C4</td><td>ритм MIDI, высота по записи</td></tr>
+<tr><td>arp + arp_lo</td><td class="n">48–72, 96–104, 129–144</td><td>галоп «арпеджиатор»</td><td>MIDI; нижняя октава по записи</td></tr>
+<tr><td>octs, stack</td><td class="n">57–72, 129–144</td><td>октавы шестнадцатыми и октавные акценты</td><td>MIDI</td></tr>
+<tr><td>sweep</td><td class="n">65–72</td><td>медленная мелодия октавой</td><td>MIDI</td></tr>
+<tr><td>pad, strings, brass</td><td class="n">73–88</td><td>пэд, струнные, триольные аккорды через такт</td><td>MIDI</td></tr>
+<tr><td>roll</td><td class="n">128</td><td>дробь на A#3 в стоп-такте</td><td>MIDI</td></tr>
+<tr><td><b>live</b> (не в плейбеке)</td><td class="n">17–24, 121–127</td><td>офф-бит стабы F4+A#4 / G#4+C#5 / A#4+D#5</td><td>MIDI; играешь ты</td></tr>
+</table></div>
+<p class="q">В аутро с такта 137 в записи входит ещё одна партия, которой нет в MIDI. Она не выписана: по сценам GM-800
+это твоя живая (сцена 9).</p>
+"""
+
+
+# ---- preview without the GM-800: plain synth, render timeline -------------------------------------------------
+SR = 44100
+TIMBRE = {"riff": ("square", 2600, None, 0.9), "riff_hi": ("square", 3200, None, 0.45), "live": ("saw", 3500, 0.25, 0.7),
+          "vstab": ("saw", 3000, 0.18, 0.6), "vfill": ("saw", 3500, None, 0.6), "organ": ("organ", 0, 0.12, 0.8),
+          "arp": ("saw", 4000, 0.12, 0.5), "arp_lo": ("saw", 3000, 0.12, 0.45), "octs": ("saw", 4500, 0.15, 0.45),
+          "stack": ("saw", 2500, 0.2, 0.4), "sweep": ("pad", 3000, None, 0.5), "pad": ("pad", 1800, None, 0.35),
+          "strings": ("pad", 4000, None, 0.3), "brass": ("saw", 2200, 0.2, 0.45), "roll": ("saw", 2200, 0.08, 0.4)}
+
+
+def synth(kind, fc, dec, f, dur):
+    from scipy.signal import butter, sosfilt
+    n = int((dur + 0.08) * SR); t = np.arange(n) / SR; ph = (f * t) % 1
+    if kind == "square":
+        x = np.where(ph < 0.5, 1.0, -1.0)
+    elif kind == "organ":
+        x = np.sin(2 * np.pi * f * t) + 0.5 * np.sin(4 * np.pi * f * t) + 0.35 * np.sin(6 * np.pi * f * t)
+    elif kind == "pad":
+        x = (2 * ph - 1) + (2 * ((f * 1.006 * t) % 1) - 1) + (2 * ((f * 0.994 * t) % 1) - 1)
+    else:
+        x = 2 * ph - 1
+    if fc:
+        x = sosfilt(butter(2, min(fc, 0.45 * SR), "lowpass", fs=SR, output="sos"), x)
+    a = 0.12 if kind == "pad" else 0.004
+    e = np.minimum(1, t / a)
+    if dec:
+        e = e * np.exp(-t / dec)
+    r = int(0.06 * SR); e[-r:] *= np.linspace(1, 0, r)
+    return x * e * 0.2
+
+
+def render(song, gp, part, voices):
+    n = int(round(song.t_render(END) * SR)) + 2 * SR; buf = np.zeros(n)
+    for vn in voices:
+        if vn not in part["voices"]:
+            continue
+        kind, fc, dec, g = TIMBRE[vn]
+        gains = gp.voice_gains(song, part, vn, 1, END)
+        for t, m, d in gp.voice_line(song, part, vn, 1, END):
+            db = next((x for t0, dd, x in gains if abs(t0 - t) < 1e-6), 0)
+            x = synth(kind, fc, dec, 440 * 2 ** ((m - 69) / 12), max(d, 0.03)) * g * 10 ** (db / 20)
+            a = int((song.t_render(1) + t) * SR); k = min(len(x), n - a)
+            buf[a:a + k] += x[:k]
+    return buf
+
+
+def cmd_preview():
+    import soundfile as sf
+    load = lambda nm: (lambda s: (lambda m: (s.loader.exec_module(m), m)[1])(importlib.util.module_from_spec(s)))(
+        importlib.util.spec_from_file_location(nm, os.path.join(REPO, "tools", nm + ".py")))
+    gp = load("gm800_part"); song = gp.gmm.Song("Solnyshko"); os.makedirs(PAGE, exist_ok=True)
+    n = sf.info(os.path.join(SONG, "auto-render", "all.wav")).frames
+    rd = lambda p: sf.read(p, always_2d=True, dtype="float64")[0].mean(1)
+    fit = lambda x: np.pad(x, (0, max(0, n - len(x))))[:n]
+    rms = lambda x, a, b: np.sqrt((x[int(song.t_render(a) * SR):int(song.t_render(b) * SR)] ** 2).mean()) + 1e-9
+    # original keys: raw stems pitched into the band key the way the render does it, placed at the render offset
+    tmp = os.path.join(OUT, "tmp-orig"); orig = np.zeros(n)
+    for st in ("keys", "other", "guitars"):
+        subprocess.run(["rubberband", "-3", "-F", "-p", str(SEMI), song.stem(st), tmp + ".wav"], capture_output=True, check=True)
+        x = rd(tmp + ".wav"); a = int(round(song.off * SR)); k = min(len(x), n - a); orig[a:a + k] += x[:k]
+    os.remove(tmp + ".wav")
+    mine, alt = json.load(open(PART, encoding="utf-8")), json.load(open(ALT, encoding="utf-8"))
+    pb = [v for v in VOICES]
+    src = {"orig": orig, "mine": fit(render(song, gp, mine, pb)), "midi": fit(render(song, gp, alt, pb)),
+           "mine-live": fit(render(song, gp, mine, pb + ["live"])),
+           "roma": fit(rd(os.path.join(SONG, "parts", "roma-keys-2810.wav")))}
+    ref = rms(orig, 9, 17)
+    for k in ("mine", "midi", "mine-live"):                     # one gain for the three synth renders: same notes, same level
+        src[k] = src[k] * ref / rms(src["mine"], 9, 17)
+    src["roma"] *= ref / rms(src["roma"], 9, 17)
+    ctx = sum(fit(rd(os.path.join(SONG, "auto-render", p))) for p in ("stems/drums.mp3", "stems/vocal.mp3", "pb-bass.mp3"))
+    ctx *= 10 ** (3 / 20) * ref / rms(ctx, 9, 17) * 2.0
+    peak = max(np.abs(v + ctx).max() for v in src.values())
+    for k, v in src.items():
+        for tag, x in (("", v), ("-ctx", v + ctx)):
+            p = os.path.join(PAGE, f"{k}{tag}.mp3")
+            subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-", "-b:a", "128k", p],
+                           input=(x / peak * 0.9).astype(np.float32).tobytes(), check=True)
+            print(p)
+    cues = [(c["bar"], c["text"]) for c in song.mix["cues"] if str(c.get("beat", 1)) == "1"]
+    meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / SR, "ctx": "-ctx",
+            "title": "Солнышко — клавиши нотами для GM-800",
+            "sub": "Вся песня, тональность группы. Синтезаторные варианты сыграны простым синтом: здесь проверяются "
+                   "<b>ноты и ритм</b>, не звук — звук подберём на GM-800. Переключение сохраняет место.",
+            "tracks": [["1", "orig.mp3", "Оригинал", "стемы keys + other + guitars", True],
+                       ["2", "mine.mp3", "Мои ноты", "MIDI + правки по записи; без твоих живых мест"],
+                       ["3", "midi.mp3", "Как в MIDI", "MIDI без правок; без твоих живых мест"],
+                       ["4", "mine-live.mp3", "Мои ноты + твоя партия", "с офф-бит стабами 17–24 и 121–127"],
+                       ["5", "roma.mp3", "Рома, концерт 28.10", "сейчас в плейбеке; ориентир по типу звука", True]],
+            "marks": [[1, "вступление: 8 тактов одного мотива"], [33, "стаб куплета: добавлен низ"],
+                      [34, "филл: C → C#"], [41, "орган: квинта вместо тоники"], [48, "галоп: добавлена нижняя октава"],
+                      [113, "орган в риффе: квинта"]],
+            "html": HTML}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-full.html"), encoding="utf-8").read()
+    open(os.path.join(PAGE, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(PAGE, "index.html"))
+
+
+if __name__ == "__main__":
+    {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview}[sys.argv[1]]()
