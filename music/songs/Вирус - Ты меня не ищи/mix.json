@@ -10,6 +10,7 @@
     {"bar": 9,   "scene": 32, "abs_sec": 17.443},
     {"bar": 17,  "scene": 27, "lead": 0.3, "abs_sec": 31.398},
     {"bar": 41,  "scene": 30, "abs_sec": 73.261},
+    {"bar": 58,  "scene": 34, "abs_sec": 102.914},
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
     {"bar": 91,  "scene": 32, "lead": 0.1, "abs_sec": 160.477},
     {"bar": 100, "scene": 30, "abs_sec": 176.176},

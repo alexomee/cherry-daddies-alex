@@ -16,6 +16,8 @@ the same sound Alex plays live on that scene.
     gmp balance 51 3:127 1:110,60,30,15      # loudness of part 1 at these PART LEVELs against part 3 at 127
     gmp tones "<song>" A6 223,224,886 [--base 33]   # one held note on ROM tones: harmonics, attack, pitch
     gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
+    gmp copy 147 34 "NE ISHI SOLO 2"         # a scene as it is into an INIT slot (scenes above 128
+                                             # can't be called by a plain PC: wiki/pipelines/gm-800.md)
 
 NOTES.json (lives in the song's parts/ folder, bars = mix.json bars):
     {"stems": ["keys", "strings"],
@@ -205,7 +207,7 @@ def cmd_record(song, part_file, only=None, tail=4.0):
             rig.load(SYNC_SCENE)
             msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
             msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
-            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), scene - 1])]
+            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), scene - 1])]     # bank 0 is set: rig.load
             if tone_msg:
                 msgs += [(SYNC_AT + 1.4, tone_msg)]
             for t, n, d in line:
@@ -318,6 +320,7 @@ def cmd_scene(slot, tpl, name, parts, octave, force=False):
         if "INIT" not in gmm.scene_name(before).upper() and not force:
             raise SystemExit(f"slot {slot} is '{gmm.scene_name(before)}', not INIT: refusing (--force to overwrite)")
         ch = 2                                               # Scene Rx channel (gm-800.md)
+        sx.o.send_message([0xB0 | (ch - 1), 0, 0]); sx.o.send_message([0xB0 | (ch - 1), 32, 0])   # bank 0
         sx.o.send_message([0xC0 | (ch - 1), tpl - 1]); time.sleep(2.5)
         for p in range(1, 6):
             sx.dt([0x10, 0x02, p - 1, 0x04], [1 if p in parts else 0])
@@ -340,6 +343,29 @@ def cmd_scene(slot, tpl, name, parts, octave, force=False):
               f"{ {p: after[f'02 {0x10 + p - 1:02X} 00'][2] - 32 for p in parts} }, scene level {c[0x13]}; "
               f"88 blocks written, mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
         sx.o.send_message([0xC0 | (ch - 1), 0])              # leave the synth on MUTE
+    finally:
+        sx.close()
+
+
+def cmd_copy(src, slot, name, force=False):
+    """Scene `src` as stored in memory -> user slot `slot` (INIT unless --force), renamed."""
+    sx = gmm.Sx()
+    try:
+        before, pb = gmm.backup(sx, slot, "before")
+        if len(before) != 88:
+            raise SystemExit(f"slot {slot}: read {len(before)} of 88 blocks, not writing")
+        if "INIT" not in gmm.scene_name(before).upper() and not force:
+            raise SystemExit(f"slot {slot} is '{gmm.scene_name(before)}', not INIT: refusing (--force to overwrite)")
+        new = sx.dump(gmm.slot_base(src))
+        if len(new) != 88 or set(new) != set(before):
+            raise SystemExit(f"scene {src}: read {len(new)} blocks, not writing")
+        old = gmm.scene_name(new)
+        new["00 00 00"][3:19] = list(name.ljust(16)[:16].encode("ascii"))
+        sx.write(gmm.slot_base(slot), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, slot, "after")
+        bad = [k for k in new if after.get(k) != new[k]]
+        print(f"slot {slot}: '{gmm.scene_name(before)}' -> '{gmm.scene_name(after)}' = copy of scene {src} '{old}'; "
+              f"88 blocks written, mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
     finally:
         sx.close()
 
@@ -383,6 +409,8 @@ def main():
     p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes")
     p = sub.add_parser("tones"); p.add_argument("song"); p.add_argument("note"); p.add_argument("nums")
     p.add_argument("--base", type=int, default=33)
+    p = sub.add_parser("copy"); p.add_argument("src", type=int); p.add_argument("slot", type=int)
+    p.add_argument("name"); p.add_argument("--force", action="store_true")
     p = sub.add_parser("balance")
     p.add_argument("template", type=int); p.add_argument("ref"); p.add_argument("part")
     p.add_argument("--chord", default="E4 A4 C5")
@@ -393,6 +421,8 @@ def main():
     a = ap.parse_args()
     if a.cmd == "probe":
         return cmd_probe(a.scenes)
+    if a.cmd == "copy":
+        return cmd_copy(a.src, a.slot, a.name, a.force)
     if a.cmd == "balance":
         rp, rl = a.ref.split(":"); pp, lv = a.part.split(":")
         return cmd_balance(a.template, (int(rp), int(rl)), (int(pp), [int(v) for v in lv.split(",")]), a.chord)

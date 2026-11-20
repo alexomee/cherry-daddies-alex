@@ -73,6 +73,9 @@ class GM800:
         self.out.close_port(); self.inp.close_port()
 
     def scene(self, n, ch):
+        # Bank 0 first: once a scene above 128 was picked on the unit (or bank 0/1 came over MIDI),
+        # the GM-800 stays in bank 1 and ignores plain PCs for scenes 1-128 (seen 2026-11-20).
+        self.out.send_message([0xB0 | (ch - 1), 0, 0]); self.out.send_message([0xB0 | (ch - 1), 32, 0])
         self.out.send_message([0xC0 | (ch - 1), n - 1])
         time.sleep(0.8)
 
