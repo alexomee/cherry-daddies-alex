@@ -1,4 +1,6 @@
 {
+  "gm800": 1,
+  "podgo": "32C",
   "bpm": 63.855,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["piano", "keys", "strings", "other", "backing_vocals"]},
