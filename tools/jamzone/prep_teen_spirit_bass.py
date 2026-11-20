@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Smells Like Teen Spirit: the GM-800 synth bass take -> parts/synth-bass.wav (pb-bass layer, stem frame).
 
-The take (tools/synth_bass_gm800.py B2 25 --dir full-128; scene 25 M&S BASS ONLY, line B2 of
+The take (tools/synth_bass_gm800.py ARR 25 --dir full-128; scene 25 M&S BASS ONLY, line ARR (or B2) of
 tools/synth_bass_audition.py) starts on the bar line of bar 1 = the first click of the click stem. It is
 resampled to 44.1 kHz, put at that time in the stem frame and moved so that its attacks sit on the grid
 where the attacks of the JamZone bass guitar sit (the tone speaks a few ms late).
 
   uv run -q --python 3.12 --with numpy --with scipy --with soundfile --with librosa --with pyloudnorm \
-      python tools/jamzone/prep_teen_spirit_bass.py
+      python tools/jamzone/prep_teen_spirit_bass.py [ARR|B2]
 """
 import os, sys, json, numpy as np, soundfile as sf, librosa, pyloudnorm
 from scipy.signal import resample_poly
@@ -32,7 +32,8 @@ def main():
     d = json.load(open(f"{SRC}/notes.json")); ss = np.array(d["slot_sec"])
     t0 = float(jr.met_onsets(jr.decode(f"{SONG}/01_Click.m4a").mean(1))[0]); slots = ss + t0
     n = len(jr.decode(f"{SONG}/03_Bass.m4a"))
-    y, sr = sf.read(f"{SRC}/gm800-B2-s025.wav", always_2d=True, dtype="float32")
+    take = sys.argv[1] if len(sys.argv) > 1 else "ARR"          # line of notes.json: ARR = the arrangement, B2 = the plain motor
+    y, sr = sf.read(f"{SRC}/gm800-{take}-s025.wav", always_2d=True, dtype="float32")
     y = resample_poly(y, SR, sr, axis=0).astype(np.float32)
     ref = attack_dev(jr.decode(f"{SONG}/03_Bass.m4a").mean(1), slots)
     buf = np.zeros((n, 2), np.float32); a = int(round(t0 * SR)); m = min(len(y), n - a); buf[a:a + m] = y[:m]

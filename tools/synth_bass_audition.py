@@ -30,7 +30,15 @@ OUT = os.path.join(ROOT, "analysis", "teen-spirit-synth-bass")
 F1, AB1, BB1, DB2 = 29, 32, 34, 37
 LOOP = [(F1, BB1), (AB1, DB2)]                 # root of each half bar, bars alternate from bar 2
 PRE = [(26, 34), (62, 70), (114, 122)]         # pre-choruses (JamZone sections), TO exclusive
-RIFF = [(46, 50), (82, 86)]                    # the post-chorus riff: every variant plays the original line
+VERSE = [(18, 26), (54, 62), (106, 114)]
+VARS = ("V1", "V2", "V3", "V4")              # quiet variations of B2 (Alex 2026-11-20: less looped, not overdone)
+RIFF = [(46, 50), (82, 86)]
+# ARR = the arrangement of the whole song (Alex 2026-11-20: «скомпонуй по своему усмотрению, интересно, но не чересчур»):
+# the variations placed by section, so that no two verses are the same and the motor only runs full where the band is loud
+SECT = [(6, 14, "intro"), (14, 18, "vamp"), (18, 26, "verse1"), (26, 34, "pre"), (34, 46, "chorus"), (50, 54, "vamp"),
+        (54, 62, "verse2"), (62, 70, "pre"), (70, 82, "chorus"), (86, 102, "solo"), (102, 106, "intro"), (106, 114, "verse3"),
+        (114, 122, "pre"), (122, 134, "chorus"), (134, 142, "outro")]                    # the post-chorus riff: every variant plays the original line
+GM_ATTACK = 0.007                              # s: the tones of scene 25 speak this late (prep_teen_spirit_bass.py)
 NAMES = "C C# D D# E F F# G G# A A# B".split()
 def nn(m): return f"{NAMES[m % 12]}{m // 12 - 1}"
 def hz(m): return 440.0 * 2 ** ((m - 69) / 12)
@@ -88,7 +96,7 @@ def lines(orig, bars, energy, active):
     the riff bars, the pick-up into bar 6 and the last held note come from the original line."""
     by_bar = {}
     for s, l, p in orig: by_bar.setdefault(s // 16 + 1, []).append([s, l, p])
-    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": []}
+    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": [], **{k: [] for k in VARS}, "ARR": []}
     for b in bars:
         own = by_bar.get(b, [])
         if b < 6 or inr(b, RIFF) or b >= 142:
@@ -100,7 +108,8 @@ def lines(orig, bars, energy, active):
                 cell = [(0, 4, F1), (4, 2, F1), (6, 2, fs), (8, 2, fs), (10, 2, fs)]
             elif inr(b, RIFF): cell = [(0, 4, 36), (4, 2, 36), (6, 2, 36), (8, 2, BB1), (10, 2, BB1), (12, 2, 33), (14, 2, AB1)]
             else: cell = []
-            out["B2"] += [[s0 + k, l, p] for k, l, p in cell]; continue
+            for key in ("B2", "ARR") + VARS: out[key] += [[s0 + k, l, p] for k, l, p in cell]
+            continue
         for half, root in enumerate(LOOP[b % 2]):
             s0 = (b - 1) * 16 + half * 8
             if active[s0:s0 + 8].mean() < 0.5: continue
@@ -109,7 +118,30 @@ def lines(orig, bars, energy, active):
             if fill: cell = [(0, 2, root), (2, 2, root), (4, 1, hi), (5, 1, hi), (6, 2, hi)]
             else:    cell = [(0, 2, root), (2, 2, root), (4, 2, hi), (6, 2, hi)]
             out["B"] += [[s0 + k, l, p] for k, l, p in cell]
-            out["B2"] += [[s0 + k, 2, p] for k, p in ((0, root), (2, root), (4, hi), (6, hi))]
+            base = ((0, root), (2, root), (4, hi), (6, hi))
+            out["B2"] += [[s0 + k, 2, p] for k, p in base]
+            c = (b % 2) * 2 + half; j = (b - 6) // 2        # cell of the two-bar loop (F, Bb, Ab, Db); loop number
+            thin, most = ((0, root), (4, hi)), ((0, root), (2, root), (4, hi))
+            push = ((0, root), (2, root), (6, hi))          # nothing on the beat, the octave on the off-beat
+            walk = ((0, root), (2, root), (4, hi), (6, 36 if c == 3 else 33))   # the bass guitar's own passing notes:
+            # C before the loop starts again, A before A-flat
+            v1 = thin if e == 0 else most if e == 1 else base           # density follows the sections
+            v2 = push if (c in (1, 3) and e < 2) or (c == 3 and e == 2) else base
+            v3 = walk if c == 3 or (c == 1 and j % 2 == 1) else base
+            if e == 0: v4 = most if any(a + 4 <= b < z for a, z in VERSE) else thin   # verse: first half thin
+            elif e == 1: v4 = walk if c == 3 else base
+            else: v4 = walk if c == 3 else push if (c == 1 and j % 2 == 1) else base
+            for key, cell in zip(VARS, (v1, v2, v3, v4)): out[key] += [[s0 + k, 2, p] for k, p in cell]
+            a0, _, sec = next(x for x in SECT if x[0] <= b < x[1]); pos = b - a0; lp = pos // 2   # bar and loop in the section
+            if sec == "vamp": cell = thin
+            elif sec == "verse1": cell = thin if pos < 4 else most                    # wakes up: thin -> a breath on the last eighth
+            elif sec == "verse2": cell = most if pos < 4 else push if c in (1, 3) else base   # busier than verse 1
+            elif sec == "verse3": cell = thin if pos < 4 else push if c in (1, 3) else most   # drops again before the last chorus
+            elif sec == "pre": cell = walk if c == 3 else base                        # full motor, C leads back to F
+            elif sec in ("chorus", "outro"): cell = walk if c == 3 else push if (c == 1 and lp % 2 == 1) else base
+            elif sec == "solo": cell = walk if (c == 3 and lp % 2 == 1) else base     # plain ground under the guitar solo
+            else: cell = walk if c == 3 else base                                     # loud intro
+            out["ARR"] += [[s0 + k, 2, p] for k, p in cell]
             if e == 0:   cell = [(2, 2, root), (6, 2, root)]
             elif e == 1: cell = [(2, 2, root), (6, 2, hi)]
             else:        cell = [(1, 1, root), (2, 1, hi), (3, 1, root), (5, 1, root), (6, 1, hi), (7, 1, root)]
@@ -169,6 +201,7 @@ def mp3(path, x):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--bars", nargs=2, type=int, default=[1, 54]); ap.add_argument("--scan", action="store_true")
     ap.add_argument("--out", default="", help="subfolder of the audition folder (a full-song pass keeps the first audition)")
+    ap.add_argument("--gm800-only", action="store_true", help="no sketch-synth takes: only the gm800-*.wav of the folder")
     ap.add_argument("--notes-only", action="store_true", help="write notes.json only (for tools/synth_bass_gm800.py)")
     a = ap.parse_args(); b0, b1 = a.bars; bars = range(b0, b1)
     beats, s16 = grid()
@@ -202,15 +235,18 @@ def main():
     ctx = sum(jr.decode(f"{SONG}/{f}").mean(1) for f in stems if "Click" not in f and "Bass" not in f)[i0:i1]
     ref = bass[i0:i1]; meter = pyloudnorm.Meter(SR); target = meter.integrated_loudness(ref)
     takes = {}
-    for key in v:
+    for key in ([] if a.gm800_only else v):
         y = synth(v[key], s16, energy, len(bass), sweep=(key == "B"), bright=(key == "B2"))[i0:i1]
         takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
     names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "B2": "B2-bright-no-16ths", "C": "C-offbeat"}
+    gm_gain = None
     for f in sorted(os.listdir(out_dir)):           # takes of the GM-800 (tools/synth_bass_gm800.py): gm800-<line>-s<scene>.wav,
         if f.startswith("gm800-") and f.endswith(".wav"):   # sample 0 = the bar line of the first bar
-            y = jr.decode(f"{out_dir}/{f}").mean(1)[:i1 - i0]; y = np.pad(y, (0, i1 - i0 - len(y)))
+            y = jr.decode(f"{out_dir}/{f}").mean(1)[int(GM_ATTACK * SR):][:i1 - i0]; y = np.pad(y, (0, i1 - i0 - len(y)))
             key = f[6:-4]; names[key] = key + "-gm800"
-            takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
+            if gm_gain is None or not a.gm800_only:     # variations keep their own loudness against the first take
+                gm_gain = 10 ** ((target - meter.integrated_loudness(y)) / 20)   # (B2 sorts first): thinner = quieter
+            takes[key] = y * gm_gain
     mixes = {"0": ctx + ref, **{k: ctx + y for k, y in takes.items()}}
     g = 0.89 / max(np.abs(m).max() for m in mixes.values()); gs = 0.89 / max(np.abs(ref).max(), max(np.abs(y).max() for y in takes.values()))
     for k, m in mixes.items(): mp3(f"{out_dir}/ctx-{names[k]}.mp3", m * g)
