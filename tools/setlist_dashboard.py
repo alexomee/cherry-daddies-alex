@@ -231,7 +231,7 @@ SETS = [
             ("Smells Like Teen Spirit", "Nirvana", "Nirvana - Smells Like Teen Spirit"),
             ("Мама Люба", "SEREBRO", "Мама Люба"),
             ("Нас не догонят", "t.A.T.u.", "t.A.T.u. - Not Gonna Get Us (Нас не догонят)"),
-            ("Знаешь ли ты", "МакSим", None),
+            ("Знаешь ли ты", "МакSим", "МакSим - Знаешь ли ты"),
         ],
     },
     # Whole programme of the 12.12 gig (Alex, 2026-11-19): 29 old + 5 new. Also appended last.
@@ -271,7 +271,7 @@ SETS = [
             ("Beverly Hills", "Zivert", "Beverly Hills"),
             ("Попрошу тебя", "Вирус", "Вирус - Попрошу тебя"),
             ("Ты меня не ищи", "Вирус", "Вирус - Ты меня не ищи"),
-            ("Знаешь ли ты", "МакSим", None),
+            ("Знаешь ли ты", "МакSим", "МакSим - Знаешь ли ты"),
             ("Supermassive Black Hole", "Muse", "Muse - Supermassive Black Hole"),
             ("Нас не догонят", "t.A.T.u.", "t.A.T.u. - Not Gonna Get Us (Нас не догонят)"),
         ],

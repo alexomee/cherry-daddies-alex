@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-20T19:58:12",
+  "generated": "2026-11-20T20:41:22",
   "counts": {
     "total": 127,
-    "data": 125,
-    "cues": 125,
-    "playback": 118,
-    "other": 116,
-    "practice": 114
+    "data": 127,
+    "cues": 127,
+    "playback": 120,
+    "other": 118,
+    "practice": 116
   },
   "sets": [
     {
@@ -15455,10 +15455,126 @@
           "audition": true
         },
         {
-          "sid": "NOFOLDER:Знаешь ли ты",
+          "sid": "МакSим - Знаешь ли ты",
+          "slug": "d25496cbe2d5",
           "title": "Знаешь ли ты",
           "artist": "МакSим",
-          "hasData": false
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 5,
+            "list": [
+              {
+                "t": 7.517,
+                "text": "Знаешь ли ты playback in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 75.17,
+                "text": "modulation in",
+                "bar": 19,
+                "snap": 67.653
+              },
+              {
+                "t": 93.963,
+                "text": "drums in",
+                "bar": 24,
+                "snap": 86.446
+              },
+              {
+                "t": 169.133,
+                "text": "modulation in",
+                "bar": 44,
+                "snap": 161.616
+              },
+              {
+                "t": 228.33,
+                "text": "end in",
+                "bar": 59,
+                "snap": 219.873
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "piano",
+              "keys",
+              "strings",
+              "other",
+              "backing vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve"
+          ],
+          "stems": [
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "back_vox": "522487a617",
+            "drums": "9bd28a900e",
+            "keys": "fee9b2ce63",
+            "bass": "002ffbe042",
+            "other": "2137b2414b",
+            "click": "b062a4cc13",
+            "cues": "c552dfffd8"
+          },
+          "versions": {
+            "all": "416217cfeb",
+            "steve": "cd81a4e0a0",
+            "pb-other": "5f35ea90a4",
+            "pb-bass": "002ffbe042",
+            "pb-audition": "71c8ef4452"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
         }
       ]
     },
@@ -20793,10 +20909,126 @@
           "audition": true
         },
         {
-          "sid": "NOFOLDER:Знаешь ли ты",
+          "sid": "МакSим - Знаешь ли ты",
+          "slug": "d25496cbe2d5",
           "title": "Знаешь ли ты",
           "artist": "МакSим",
-          "hasData": false
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 5,
+            "list": [
+              {
+                "t": 7.517,
+                "text": "Знаешь ли ты playback in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 75.17,
+                "text": "modulation in",
+                "bar": 19,
+                "snap": 67.653
+              },
+              {
+                "t": 93.963,
+                "text": "drums in",
+                "bar": 24,
+                "snap": 86.446
+              },
+              {
+                "t": 169.133,
+                "text": "modulation in",
+                "bar": 44,
+                "snap": 161.616
+              },
+              {
+                "t": 228.33,
+                "text": "end in",
+                "bar": 59,
+                "snap": 219.873
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "piano",
+              "keys",
+              "strings",
+              "other",
+              "backing vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve"
+          ],
+          "stems": [
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "back_vox": "522487a617",
+            "drums": "9bd28a900e",
+            "keys": "fee9b2ce63",
+            "bass": "002ffbe042",
+            "other": "2137b2414b",
+            "click": "b062a4cc13",
+            "cues": "c552dfffd8"
+          },
+          "versions": {
+            "all": "416217cfeb",
+            "steve": "cd81a4e0a0",
+            "pb-other": "5f35ea90a4",
+            "pb-bass": "002ffbe042",
+            "pb-audition": "71c8ef4452"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
         },
         {
           "sid": "Muse - Supermassive Black Hole",
