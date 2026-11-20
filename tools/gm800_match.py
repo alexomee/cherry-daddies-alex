@@ -62,6 +62,11 @@ class Song:
             raise SystemExit("no cue with abs_sec: run jamzone_render.py --check first")
         c = ref[0]
         self.bar1_render = c["abs_sec"] - (c["bar"] - 1 + (int(c.get("beat", 1)) - 1) / 4) * self.bar
+        if "downbeat_sec" in tl:      # the render's own value; a cue's abs_sec can be stale (Malo tebya 2026-11-20:
+            if abs(self.bar1_render - tl["downbeat_sec"]) > 0.005:      # multi-line cues are not refreshed by the render)
+                print(f"! {self.name}: abs_sec of the first cue/scene is {self.bar1_render - tl['downbeat_sec']:+.3f} s off "
+                      f"timeline.json downbeat_sec; using the timeline", file=sys.stderr)
+            self.bar1_render = tl["downbeat_sec"]
         self.semi = self.mix.get("pitch_semitones", 0)
         self.out = os.path.join(OUTROOT, self.name); os.makedirs(self.out, exist_ok=True)
 
