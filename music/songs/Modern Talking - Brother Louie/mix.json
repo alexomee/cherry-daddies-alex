@@ -17,9 +17,9 @@
   },
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["13_Lead_Vocal"]},
   "cues": [
-    {"bar": 1, "beat": 3, "text": "Brother Louie playback in", "abs_sec": 3.303, "snap_sec": 0.0},
-    {"bar": 50, "text": "verse in", "abs_sec": 110.092, "snap_sec": 105.688},
-    {"bar": 89, "beat": 4, "text": "short chorus ready go", "abs_sec": 197.615, "snap_sec": 193.211},
-    {"bar": 105, "beat": 3, "text": "end fill in", "count": true, "abs_sec": 232.294, "snap_sec": 227.339}
+    {"bar": 1, "beat": 3, "text": "Brother Louie playback in", "abs_sec": 3.059, "snap_sec": 0.0},
+    {"bar": 50, "text": "verse in", "abs_sec": 109.848, "snap_sec": 105.444},
+    {"bar": 89, "beat": 4, "text": "short chorus ready go", "abs_sec": 197.371, "snap_sec": 192.967},
+    {"bar": 105, "beat": 3, "text": "end fill in", "count": true, "abs_sec": 232.05, "snap_sec": 227.096}
   ]
 }

@@ -1,23 +1,23 @@
 {
   "gm800": 1,
   "podgo": [
-    {"bar": 1, "preset": "01A", "abs_sec": 3.23},
-    {"bar": 34, "preset": "01B", "abs_sec": 56.528}
+    {"bar": 1, "preset": "01A", "abs_sec": 2.767},
+    {"bar": 34, "preset": "01B", "abs_sec": 56.065}
   ],
   "bpm": 148.6,
   "pitch_semitones": 0,
   "pb-other": {
-    "layers": [{"file": "kukla-pb-other-v2", "frame": "render", "replaces": ["backing_vocals", "strings"], "gain_db": -1.5}],
+    "layers": [{"file": "kukla-pb-other-v2", "rec_off": 3.057926, "frame": "render", "replaces": ["backing_vocals", "strings"], "gain_db": -1.5}],
     "roles": {"kukla-pb-other-v2": "musical"}
   },
   "pb-other-keys": {"stems": ["backing_vocals", "strings", "keys"]},
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 15.5}], "roles": {"живой бас": "musical"}},
+  "pb-bass": {"layers": [{"file": "живой бас", "rec_off": 3.057926, "frame": "render", "replaces": ["bass"], "gain_db": 15.5}], "roles": {"живой бас": "musical"}},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1, "text": "Кукла колдуна strings in", "abs_sec": 3.23, "snap_sec": 0.0},
-    {"bar": 8, "text": "drums in", "abs_sec": 14.536, "snap_sec": 11.306},
-    {"bar": 17, "text": "verse in", "abs_sec": 29.071, "snap_sec": 25.841},
-    {"bar": 124, "text": "end in", "count": true, "abs_sec": 201.884, "snap_sec": 198.25}
+    {"bar": 1, "text": "Кукла колдуна strings in", "abs_sec": 2.767, "snap_sec": 0.0},
+    {"bar": 8, "text": "drums in", "abs_sec": 14.073, "snap_sec": 10.843},
+    {"bar": 17, "text": "verse in", "abs_sec": 28.608, "snap_sec": 25.378},
+    {"bar": 124, "text": "end in", "count": true, "abs_sec": 201.421, "snap_sec": 197.787}
   ]
 }

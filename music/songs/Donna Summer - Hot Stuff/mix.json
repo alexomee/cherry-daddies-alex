@@ -35,10 +35,10 @@
   },
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["13_Lead_Vocal"]},
   "cues": [
-    {"bar": 2, "text": "Hot Stuff all in", "abs_sec": 4.24, "snap_sec": 0.0},
-    {"bar": 17, "beat": 4, "text": "verse in", "abs_sec": 35.7, "snap_sec": 31.726},
-    {"bar": 74, "text": "guitar solo ready go", "abs_sec": 147.89, "snap_sec": 143.916},
-    {"bar": 98, "text": "chorus in ready go", "abs_sec": 195.75, "snap_sec": 191.766},
-    {"bar": 146, "text": "end in", "count": true, "abs_sec": 291.45, "snap_sec": 286.956}
+    {"bar": 2, "text": "Hot Stuff all in", "abs_sec": 3.068, "snap_sec": 0.0},
+    {"bar": 17, "beat": 4, "text": "verse in", "abs_sec": 34.528, "snap_sec": 30.554},
+    {"bar": 74, "text": "guitar solo ready go", "abs_sec": 146.718, "snap_sec": 142.744},
+    {"bar": 98, "text": "chorus in ready go", "abs_sec": 194.578, "snap_sec": 190.594},
+    {"bar": 146, "text": "end in", "count": true, "abs_sec": 290.278, "snap_sec": 285.784}
   ]
 }

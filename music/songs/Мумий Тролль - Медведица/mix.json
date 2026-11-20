@@ -5,17 +5,17 @@
   "pitch_semitones": 0,
   "pb-other": {
     "layers": [
-      {"file": "guitars_on_rap", "frame": "render", "gain_db": -5.5}
+      {"file": "guitars_on_rap", "rec_off": -0.619915, "frame": "render", "gain_db": -5.5}
     ],
     "roles": {"guitars_on_rap": "musical"}
   },
-  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 15.7}], "roles": {"живой бас": "musical"}},
+  "pb-bass": {"layers": [{"file": "живой бас", "rec_off": -0.619915, "frame": "render", "replaces": ["bass"], "gain_db": 15.7}], "roles": {"живой бас": "musical"}},
   "cues": [
-    {"bar": 1, "text": "Медведица drums in", "abs_sec": 3.692, "snap_sec": 0.0},
-    {"bar": 3, "text": "all in", "abs_sec": 7.385, "snap_sec": 3.692},
-    {"bar": 19, "text": "verse in", "abs_sec": 36.923, "snap_sec": 33.231},
-    {"bar": 83, "text": "break in", "abs_sec": 155.077, "snap_sec": 151.385},
-    {"bar": 84, "text": "voice in", "abs_sec": 156.923, "snap_sec": 153.231},
-    {"bar": 98, "beat": 3, "text": "stop", "abs_sec": 183.692, "snap_sec": 179.538}
+    {"bar": 1, "text": "Медведица drums in", "abs_sec": 2.899, "snap_sec": 0.0},
+    {"bar": 3, "text": "all in", "abs_sec": 6.591, "snap_sec": 2.899},
+    {"bar": 19, "text": "verse in", "abs_sec": 36.13, "snap_sec": 32.438},
+    {"bar": 83, "text": "break in", "abs_sec": 154.284, "snap_sec": 150.591},
+    {"bar": 84, "text": "voice in", "abs_sec": 156.13, "snap_sec": 152.438},
+    {"bar": 98, "beat": 3, "text": "stop", "abs_sec": 182.899, "snap_sec": 178.745}
   ]
 }

@@ -1,28 +1,28 @@
 {
   "gm800": 1,
   "podgo": [
-    {"bar": 1, "preset": "32C", "abs_sec": 3.556},
-    {"bar": 24, "beat": 3, "preset": "32D", "abs_sec": 45.333},
-    {"bar": 93, "beat": 4, "preset": "32A", "abs_sec": 168.444},
-    {"bar": 100, "preset": "32C", "abs_sec": 179.556},
-    {"bar": 110, "preset": "32D", "abs_sec": 197.333}
+    {"bar": 1, "preset": "32C", "abs_sec": 2.875},
+    {"bar": 24, "beat": 3, "preset": "32D", "abs_sec": 44.652},
+    {"bar": 93, "beat": 4, "preset": "32A", "abs_sec": 167.763},
+    {"bar": 100, "preset": "32C", "abs_sec": 178.875},
+    {"bar": 110, "preset": "32D", "abs_sec": 196.652}
   ],
   "bpm": 135.0,
   "pitch_semitones": 0,
   "pb-other": {
     "stems": ["strings"],
     "layers": [
-      {"file": "sfx-pb", "frame": "render"},
-      {"file": "acoustic-guitar-solo", "frame": "render", "gain_db": -3.5},
-      {"file": "takaia_lubov_keys", "frame": "render", "gain_db": -2.5},
-      {"file": "roma-keys-2810", "frame": "render", "gain_db": -1.8, "gain_bars": [[43.25, 51, 7], [84.25, 92, 7]]}
+      {"file": "sfx-pb", "rec_off": 2.99542, "frame": "render"},
+      {"file": "acoustic-guitar-solo", "rec_off": 2.99542, "frame": "render", "gain_db": -3.5},
+      {"file": "takaia_lubov_keys", "rec_off": 2.99542, "frame": "render", "gain_db": -2.5},
+      {"file": "roma-keys-2810", "rec_off": 2.99542, "frame": "render", "gain_db": -1.8, "gain_bars": [[43.25, 51, 7], [84.25, 92, 7]]}
     ],
     "roles": {"sfx-pb": "fx", "acoustic-guitar-solo": "musical", "takaia_lubov_keys": "musical", "roma-keys-2810": "musical"},
     "mute": {"acoustic-guitar-solo": [[100, 138]]}
   },
   "pb-bass": {
     "layers": [
-      {"file": "takaia_lubov_bass", "frame": "render", "replaces": ["bass"], "gain_db": -5.0}
+      {"file": "takaia_lubov_bass", "rec_off": 2.99542, "frame": "render", "replaces": ["bass"], "gain_db": -5.0}
     ],
     "roles": {"takaia_lubov_bass": "musical"}
   },
@@ -31,19 +31,19 @@
   "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 2,
   "cues": [
-    {"bar": 1,   "text": "Такая любовь synth fade-in ready go", "abs_sec": 3.556, "snap_sec": 0.0},
-    {"bar": 5,   "text": "chords in", "abs_sec": 10.667, "snap_sec": 7.111},
-    {"bar": 9,   "text": "verse in", "abs_sec": 17.778, "snap_sec": 14.222},
-    {"bar": 26,  "text": "drum fill ready go", "abs_sec": 48.0, "snap_sec": 44.444},
-    {"bar": 43,  "text": "synth solo ready go", "abs_sec": 78.222, "snap_sec": 74.667},
-    {"bar": 51,  "text": "soft verse ready go", "abs_sec": 92.444, "snap_sec": 88.889},
-    {"bar": 67,  "text": "drum fill ready go", "abs_sec": 120.889, "snap_sec": 117.333},
-    {"bar": 84,  "text": "synth solo ready go", "abs_sec": 151.111, "snap_sec": 147.556},
-    {"bar": 92,  "text": "drum stop", "abs_sec": 165.333, "snap_sec": 161.333},
-    {"bar": 93,  "beat": 4, "text": "guitar solo ready go", "abs_sec": 168.444, "snap_sec": 164.889},
-    {"bar": 97,  "text": "solo leak ready go", "abs_sec": 174.222, "snap_sec": 170.667},
-    {"bar": 100, "text": "verse in", "abs_sec": 179.556, "snap_sec": 176.0},
-    {"bar": 111, "text": "chorus in", "abs_sec": 199.111, "snap_sec": 195.556},
-    {"bar": 135, "text": "end in", "count": true, "abs_sec": 241.778, "snap_sec": 237.778}
+    {"bar": 1,   "text": "Такая любовь synth fade-in ready go", "abs_sec": 2.875, "snap_sec": 0.0},
+    {"bar": 5,   "text": "chords in", "abs_sec": 9.986, "snap_sec": 6.43},
+    {"bar": 9,   "text": "verse in", "abs_sec": 17.097, "snap_sec": 13.541},
+    {"bar": 26,  "text": "drum fill ready go", "abs_sec": 47.319, "snap_sec": 43.763},
+    {"bar": 43,  "text": "synth solo ready go", "abs_sec": 77.541, "snap_sec": 73.986},
+    {"bar": 51,  "text": "soft verse ready go", "abs_sec": 91.763, "snap_sec": 88.208},
+    {"bar": 67,  "text": "drum fill ready go", "abs_sec": 120.208, "snap_sec": 116.652},
+    {"bar": 84,  "text": "synth solo ready go", "abs_sec": 150.43, "snap_sec": 146.875},
+    {"bar": 92,  "text": "drum stop", "abs_sec": 164.652, "snap_sec": 160.652},
+    {"bar": 93,  "beat": 4, "text": "guitar solo ready go", "abs_sec": 167.763, "snap_sec": 164.208},
+    {"bar": 97,  "text": "solo leak ready go", "abs_sec": 173.541, "snap_sec": 169.986},
+    {"bar": 100, "text": "verse in", "abs_sec": 178.875, "snap_sec": 175.319},
+    {"bar": 111, "text": "chorus in", "abs_sec": 198.43, "snap_sec": 194.875},
+    {"bar": 135, "text": "end in", "count": true, "abs_sec": 241.097, "snap_sec": 237.097}
   ]
 }

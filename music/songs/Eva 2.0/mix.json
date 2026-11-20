@@ -5,6 +5,6 @@
   "pb-bass": null,
   "players": {"alex": ["guitars", "bass"], "roma": ["keys", "strings", "wind"], "trio": ["guitars", "drums", "vocals", "bass"]},
   "cues": [
-    {"bar": 1, "text": "Ева all in", "abs_sec": 3.636, "snap_sec": 0.0}
+    {"bar": 1, "text": "Ева all in", "abs_sec": 2.487, "snap_sec": 0.0}
   ]
 }

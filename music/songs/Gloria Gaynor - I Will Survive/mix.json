@@ -17,12 +17,12 @@
   },
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["12_Lead_Vocal"], "alex": ["05_Electric_Guitar_(left)", "06_Electric_Guitar_(right)"]},
   "cues": [
-    {"bar": 2, "text": "I Will Survive playback in", "abs_sec": 4.099, "snap_sec": 0.0},
-    {"bar": 5, "text": "guitars in", "abs_sec": 10.249, "snap_sec": 6.134},
-    {"bar": 13, "text": "all in", "abs_sec": 26.759, "snap_sec": 22.645},
-    {"bar": 45, "text": "verse in ready go", "abs_sec": 92.812, "snap_sec": 88.684},
-    {"bar": 76, "text": "music stop", "abs_sec": 156.799, "snap_sec": 152.157},
-    {"bar": 78, "beat": 4, "text": "voice in ready go", "abs_sec": 162.429, "snap_sec": 158.315},
-    {"bar": 103, "text": "end in", "count": true, "abs_sec": 212.569, "snap_sec": 207.92}
+    {"bar": 2, "text": "I Will Survive playback in", "abs_sec": 3.198, "snap_sec": 0.0},
+    {"bar": 5, "text": "guitars in", "abs_sec": 9.348, "snap_sec": 5.233},
+    {"bar": 13, "text": "all in", "abs_sec": 25.858, "snap_sec": 21.744},
+    {"bar": 45, "text": "verse in ready go", "abs_sec": 91.911, "snap_sec": 87.783},
+    {"bar": 76, "text": "music stop", "abs_sec": 155.898, "snap_sec": 151.256},
+    {"bar": 78, "beat": 4, "text": "voice in ready go", "abs_sec": 161.528, "snap_sec": 157.414},
+    {"bar": 103, "text": "end in", "count": true, "abs_sec": 211.668, "snap_sec": 207.018}
   ]
 }

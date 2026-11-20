@@ -2,28 +2,28 @@
   "gm800": 1,
   "switch_lead": 0.3,
   "podgo": [
-    {"bar": 1,  "preset": "32A", "abs_sec": 3.694},
-    {"bar": 5,  "preset": "32B", "abs_sec": 11.081},
-    {"bar": 21, "preset": "32D", "abs_sec": 40.631},
-    {"bar": 62, "preset": "32A", "abs_sec": 116.352},
-    {"bar": 70, "preset": "32D", "abs_sec": 131.127}
+    {"bar": 1,  "preset": "32A", "abs_sec": 3.633},
+    {"bar": 5,  "preset": "32B", "abs_sec": 11.02},
+    {"bar": 21, "preset": "32D", "abs_sec": 40.57},
+    {"bar": 62, "preset": "32A", "abs_sec": 116.292},
+    {"bar": 70, "preset": "32D", "abs_sec": 131.066}
   ],
   "bpm": 129.95,
   "pitch_semitones": 0,
   "pb-other": {
     "layers": [
-      {"file": "guitars-pb", "frame": "render", "gain_db": -4.5}
+      {"file": "guitars-pb", "rec_off": 3.493298, "frame": "render", "gain_db": -4.5}
     ],
     "roles": {"guitars-pb": "musical"}
   },
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -3.0}},
   "cues": [
-    {"bar": 1, "text": "Владивосток 2000 all in", "abs_sec": 3.694, "snap_sec": 0.0},
-    {"bar": 29, "text": "pre-verse break ready go", "abs_sec": 55.406, "snap_sec": 51.712},
-    {"bar": 53, "beat": 3, "text": "keep going", "abs_sec": 100.654, "snap_sec": 97.884},
-    {"bar": 62, "text": "solo in", "abs_sec": 116.352, "snap_sec": 112.659},
-    {"bar": 69, "beat": "4&", "text": "chorus in", "abs_sec": 130.896, "snap_sec": 127.203},
-    {"bar": 78, "text": "outro in", "abs_sec": 145.902, "snap_sec": 142.209},
-    {"bar": 85, "beat": 4, "text": "double hit ending in", "count": true, "abs_sec": 160.215, "snap_sec": 156.06}
+    {"bar": 1, "text": "Владивосток 2000 all in", "abs_sec": 3.633, "snap_sec": 0.0},
+    {"bar": 29, "text": "pre-verse break ready go", "abs_sec": 55.345, "snap_sec": 51.651},
+    {"bar": 53, "beat": 3, "text": "keep going", "abs_sec": 100.593, "snap_sec": 97.823},
+    {"bar": 62, "text": "solo in", "abs_sec": 116.292, "snap_sec": 112.598},
+    {"bar": 69, "beat": "4&", "text": "chorus in", "abs_sec": 130.836, "snap_sec": 127.142},
+    {"bar": 78, "text": "outro in", "abs_sec": 145.841, "snap_sec": 142.148},
+    {"bar": 85, "beat": 4, "text": "double hit ending in", "count": true, "abs_sec": 160.155, "snap_sec": 155.999}
   ]
 }

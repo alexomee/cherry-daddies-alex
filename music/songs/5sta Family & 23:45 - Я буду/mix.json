@@ -8,8 +8,8 @@
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -1.2}},
   "players": {"steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1, "text": "Я буду all in", "abs_sec": 5.333, "snap_sec": 0.0},
-    {"bar": 9, "text": "chorus in", "abs_sec": 26.667, "snap_sec": 21.333},
-    {"bar": 17, "text": "verse in", "abs_sec": 48.0, "snap_sec": 42.667}
+    {"bar": 1, "text": "Я буду all in", "abs_sec": 3.523, "snap_sec": 0.0},
+    {"bar": 9, "text": "chorus in", "abs_sec": 24.856, "snap_sec": 19.523},
+    {"bar": 17, "text": "verse in", "abs_sec": 46.19, "snap_sec": 40.856}
   ]
 }

@@ -1,8 +1,10 @@
 {
- "offset_sec": 1.80826,
+ "offset_sec": 1.009685,
  "bar_sec": 2.105264,
  "bpm": 114.0,
- "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+ "downbeat_sec": 1.306689,
+ "lead_sec": 1.26481,
+ "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
  "cuts": [
   [
    2.401882,

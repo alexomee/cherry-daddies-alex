@@ -22,11 +22,11 @@
   "cat": "cat_5519",
   "click": "follow",
   "cues": [
-    {"bar": 2, "text": "The Best all in", "abs_sec": 4.561, "snap_sec": 0.0},
-    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 13.191, "snap_sec": 8.59},
-    {"bar": 30, "text": "chorus in", "abs_sec": 69.191, "snap_sec": 64.58},
-    {"bar": 81, "beat": "3&", "text": "sax solo ready go", "abs_sec": 188.506, "snap_sec": 183.88},
-    {"bar": 89, "beat": 4, "text": "chorus in ready go", "abs_sec": 207.241, "snap_sec": 202.66},
-    {"bar": 106, "text": "end in", "count": true, "abs_sec": 244.791, "snap_sec": 239.59}
+    {"bar": 2, "text": "The Best all in", "abs_sec": 3.032, "snap_sec": 0.0},
+    {"bar": 5, "beat": 4, "text": "verse in", "abs_sec": 11.663, "snap_sec": 7.062},
+    {"bar": 30, "text": "chorus in", "abs_sec": 67.662, "snap_sec": 63.052},
+    {"bar": 81, "beat": "3&", "text": "sax solo ready go", "abs_sec": 186.978, "snap_sec": 182.352},
+    {"bar": 89, "beat": 4, "text": "chorus in ready go", "abs_sec": 205.713, "snap_sec": 201.132},
+    {"bar": 106, "text": "end in", "count": true, "abs_sec": 243.262, "snap_sec": 238.062}
   ]
 }

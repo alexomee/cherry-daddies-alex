@@ -7,11 +7,11 @@
   "pb-bass": {"stems": ["bass"]},
   "players": {"steve": ["drums"]},
   "cues": [
-    {"bar": 1,  "text": "Знаешь ли ты playback in", "abs_sec": 7.5, "snap_sec": 0.0},
-    {"bar": 7,  "text": "voice in", "abs_sec": 30.0, "snap_sec": 22.5},
-    {"bar": 19, "text": "modulation in", "abs_sec": 75.0, "snap_sec": 67.5},
-    {"bar": 24, "text": "drums in", "abs_sec": 93.75, "snap_sec": 86.25},
-    {"bar": 44, "text": "modulation in", "abs_sec": 168.75, "snap_sec": 161.25},
-    {"bar": 59, "beat": "4&", "text": "end in", "count": true, "abs_sec": 228.281, "snap_sec": 219.844}
+    {"bar": 1,  "text": "Знаешь ли ты playback in", "abs_sec": 4.793, "snap_sec": 0.0},
+    {"bar": 7,  "text": "voice in", "abs_sec": 27.293, "snap_sec": 19.793},
+    {"bar": 19, "text": "modulation in", "abs_sec": 72.293, "snap_sec": 64.793},
+    {"bar": 24, "text": "drums in", "abs_sec": 91.043, "snap_sec": 83.543},
+    {"bar": 44, "text": "modulation in", "abs_sec": 166.043, "snap_sec": 158.543},
+    {"bar": 59, "beat": "4&", "text": "end in", "count": true, "abs_sec": 225.574, "snap_sec": 217.136}
   ]
 }

@@ -21,7 +21,7 @@
     {"bar": 11,  "text": "bass in", "abs_sec": 18.898, "snap_sec": 15.118},
     {"bar": 16,  "text": "vocal in", "abs_sec": 28.346, "snap_sec": 24.567},
     {"bar": 33,  "text": "alex vocal in", "abs_sec": 60.472, "snap_sec": 56.087},
-    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591, "snap_sec": 71.229},
+    {"bar": 41,  "text": "chorus melody in", "abs_sec": 75.591, "snap_sec": 71.228},
     {"bar": 49,  "text": "verse in", "abs_sec": 90.709, "snap_sec": 86.929},
     {"bar": 57,  "text": "stop", "abs_sec": 105.827, "snap_sec": 101.575},
     {"bar": 66,  "text": "alex vocal in", "abs_sec": 122.835, "snap_sec": 118.449},

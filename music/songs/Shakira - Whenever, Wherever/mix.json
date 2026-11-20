@@ -7,17 +7,17 @@
   "pb-drums": {"stems": ["02_Drum_Kit"]},
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["05_Rhythm_Electric_Guitar", "06_Distorted_Electric_Guitar_(left)", "07_Distorted_Electric_Guitar_(right)"]},
   "cues": [
-    {"bar": 2,   "text": "Shakira guitar in ready go", "abs_sec": 4.96, "snap_sec": 0.0},
-    {"bar": 5,   "text": "all in ready go", "abs_sec": 12.4, "snap_sec": 7.788},
-    {"bar": 9,   "text": "verse in", "abs_sec": 21.208, "snap_sec": 16.804},
-    {"bar": 20,  "text": "stop", "abs_sec": 45.428, "snap_sec": 40.474},
-    {"bar": 29,  "text": "flute in", "abs_sec": 65.244, "snap_sec": 60.841},
-    {"bar": 34,  "text": "verse in", "abs_sec": 76.253, "snap_sec": 71.85},
-    {"bar": 45,  "text": "stop", "abs_sec": 100.474, "snap_sec": 95.519},
-    {"bar": 58,  "text": "bridge in", "abs_sec": 129.097, "snap_sec": 124.694},
-    {"bar": 66,  "text": "stop", "abs_sec": 146.712, "snap_sec": 141.758},
-    {"bar": 67,  "text": "all in ready go", "abs_sec": 148.914, "snap_sec": 144.51},
-    {"bar": 78,  "text": "keep going", "abs_sec": 173.134, "snap_sec": 169.831},
-    {"bar": 86,  "text": "end stop", "abs_sec": 190.749, "snap_sec": 185.795}
+    {"bar": 2,   "text": "Shakira guitar in ready go", "abs_sec": 3.26, "snap_sec": 0.0},
+    {"bar": 5,   "text": "all in ready go", "abs_sec": 10.7, "snap_sec": 6.088},
+    {"bar": 9,   "text": "verse in", "abs_sec": 19.507, "snap_sec": 15.024},
+    {"bar": 20,  "text": "stop", "abs_sec": 43.728, "snap_sec": 38.741},
+    {"bar": 29,  "text": "flute in", "abs_sec": 63.544, "snap_sec": 59.03},
+    {"bar": 34,  "text": "verse in", "abs_sec": 74.553, "snap_sec": 70.07},
+    {"bar": 45,  "text": "stop", "abs_sec": 98.773, "snap_sec": 93.787},
+    {"bar": 58,  "text": "bridge in", "abs_sec": 127.397, "snap_sec": 122.964},
+    {"bar": 66,  "text": "stop", "abs_sec": 145.012, "snap_sec": 140.025},
+    {"bar": 67,  "text": "all in ready go", "abs_sec": 147.214, "snap_sec": 142.81},
+    {"bar": 78,  "text": "keep going", "abs_sec": 171.434, "snap_sec": 168.081},
+    {"bar": 86,  "text": "end stop", "abs_sec": 189.049, "snap_sec": 183.88}
   ]
 }

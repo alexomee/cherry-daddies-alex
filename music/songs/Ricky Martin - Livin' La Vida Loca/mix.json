@@ -28,6 +28,6 @@
   },
   "cues": [
     {"bar": 3, "text": "Livin La Vida Loca all in", "abs_sec": 4.052, "snap_sec": 0.0},
-    {"bar": 180, "beat": 1, "text": "end in", "count": true, "abs_sec": 243.102, "snap_sec": 238.379}
+    {"bar": 180, "beat": 1, "text": "end in", "count": true, "abs_sec": 243.102, "snap_sec": 238.38}
   ]
 }

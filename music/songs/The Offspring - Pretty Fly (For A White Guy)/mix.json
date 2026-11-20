@@ -5,13 +5,13 @@
   "pitch_semitones": -2,
   "pb-other": null,
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 13.5}], "roles": {"живой бас": "musical"}},
+  "pb-bass": {"layers": [{"file": "живой бас", "rec_off": 2.573877, "frame": "render", "replaces": ["bass"], "gain_db": 13.5}], "roles": {"живой бас": "musical"}},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1, "text": "Pretty Fly drums in", "abs_sec": 3.357, "snap_sec": 0.0},
-    {"bar": 2, "text": "vocal in", "abs_sec": 5.035, "snap_sec": 1.678},
-    {"bar": 10, "text": "all in", "abs_sec": 18.462, "snap_sec": 15.105},
-    {"bar": 73, "beat": 4, "text": "bass verse ready go", "raw": true, "abs_sec": 125.455, "snap_sec": 122.098},
-    {"bar": 108, "text": "end fill in", "count": true, "abs_sec": 182.937, "snap_sec": 179.161}
+    {"bar": 1, "text": "Pretty Fly drums in", "abs_sec": 2.547, "snap_sec": 0.0},
+    {"bar": 2, "text": "vocal in", "abs_sec": 4.225, "snap_sec": 0.869},
+    {"bar": 10, "text": "all in", "abs_sec": 17.652, "snap_sec": 14.295},
+    {"bar": 73, "beat": 4, "text": "bass verse ready go", "raw": true, "abs_sec": 124.645, "snap_sec": 121.288},
+    {"bar": 108, "text": "end fill in", "count": true, "abs_sec": 182.127, "snap_sec": 178.351}
   ]
 }

@@ -89,6 +89,8 @@ def is_percussion(name):
 # loud FX/back-vox consistent across songs, while a song whose FX already sits below the ceiling is
 # untouched. See docs/plans/2026-06-18-pb-other-autolevel-design.md.
 FX_CEILING, BACKVOX_CEILING = -30.0, -23.0   # dBFS gated-RMS ceilings (seed; tune once by ear)
+LEAD_CLEAR = 0.10    # s of silence before the first cue word at the render start (no whole-bar count-in)
+MUSIC_CLEAR = 0.05   # s before the first music sound when the music starts ahead of its downbeat
 ROLE_PATTERNS = [("fx", re.compile(r"noise|sound.?effects?", re.I)),
                  ("back-vox", re.compile(r"back(ing)?.?vocals?|back.?vox", re.I))]
 ROLE_CEILING = {"fx": FX_CEILING, "back-vox": BACKVOX_CEILING}   # musical -> not in map -> no level
@@ -311,18 +313,20 @@ def wav_tempo_write(path, x, bpm):
     with open(path, "wb") as f:
         f.write(b"RIFF" + struct.pack("<L", 4+len(body)) + b"WAVE" + body)
 
-def build_click(bpm, total, off_samp, bar):
-    """Clean constant JZ-sample click for external songs: downbeat (accent) on every
-    bar line of the output (which starts on a bar line at sample 0), beat elsewhere."""
+def build_click(bpm, total, off_samp, bar, downbeat=0.0):
+    """Clean constant JZ-sample click for external songs: downbeat (accent) on every music
+    bar line, beat elsewhere. `downbeat` = render seconds of music bar 1.1; the grid runs
+    back from it to t>=0 (the output no longer starts on a bar line)."""
     import jamzone_click as JC
     db = JC.wav_read(JC.DB); bt = JC.wav_read(JC.BT)
     beat = 60.0/bpm
     o = np.zeros(total, np.float32)
-    n = int(total/(beat*SR)) + 1
-    for i in range(n):
-        s = round(i*beat*SR)
+    k0 = -int(np.floor(downbeat/beat + 1e-9))          # earliest beat index at t >= 0
+    n = int((total/SR - downbeat)/beat) + 1
+    for i in range(k0, n + 1):
+        s = round((downbeat + i*beat)*SR)
         hit = db if i % 4 == 0 else bt*0.5
-        if s < total: o[s:s+len(hit)] += hit[:total-s]
+        if 0 <= s < total: o[s:s+len(hit)] += hit[:total-s]
     o = o/(np.max(np.abs(o)) or 1)*0.95
     return np.column_stack([o, o])
 
@@ -928,17 +932,23 @@ def cue_first_word_time(c, base, relt, bdur, subdiv=1, song_step=None, folder=No
     """earliest sound of a cue (used to size the front lead so nothing clips off the front)."""
     text = c["text"].strip(); i = cue_beat_index(c); kind = cue_kind(text, c.get("raw"))
     step = _cue_step(c, song_step, subdiv)
-    if kind == "stop" or c.get("count"):
-        return base + relt(i - 5*step)                    # ~announcement + 3-2-1 count
+    if kind == "stop" or c.get("count"):                  # announcement ends 0.35 s before the '3'
+        ann = _say(text.replace("-", " ") + (" in 3" if kind == "stop" else " 3"),
+                   RU_VOICE if _cyrillic(text) else EN_VOICE)
+        return base + relt(i - 3*step) - 0.35 - len(ann)/SR
     intro, metric = cue_words(text, kind)
-    blk0 = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))[0][1]
+    clips = _metric_clips(metric, bdur(i)*step, (step < 1.0) or c.get("squeeze"))
+    blk0 = clips[0][1]
     tone_file = c.get("tone_clip") or c.get("clip")
     pre = c.get("tone_beats", 6) if tone_file else (4 if c.get("chord") else 0)
     t0 = base + relt(i - blk0*step - pre)                 # the block (extra bar for the vocalist)
     if intro:
         clip = _say(intro, RU_VOICE if _cyrillic(intro) else EN_VOICE)
         return t0 - INTRO_GAP - len(clip)/SR
-    return t0
+    if pre:                                               # tone/chord clip starts the cue at t0
+        return t0
+    return t0 - _vowel_onset(clips[0][0])                 # the first word sits vowel-on-beat: its
+                                                          # consonant starts before t0 (Sunny 0.13 s)
 
 def _put(buf, clip, t):
     s = int(t*SR); a0 = max(0, -s); s = max(0, s); n = min(len(clip)-a0, len(buf)-s)
@@ -1415,25 +1425,24 @@ def main():
     if cue_st is not None and insert_bars:
         cue_st = np.concatenate([cue_st[:s_ins_split], np.zeros((ins_samples, 2), np.float32), cue_st[s_ins_split:]])
 
-    # t=0 = bar line at/before all content, stem downbeat lands on a bar line
+    # t=0 = just before all content. The front is NOT padded to whole bars (Alex 2026-11-20:
+    # «слишком долгое вступление… название песни, первая подсказка и поехали как можно быстрее»):
+    # the render starts LEAD_CLEAR before the first sound, so t=0 is usually mid-bar; the click
+    # ticks whatever beats of the grid fall after t=0 (accents stay on the music's bar lines).
     srcs = list(audio.values()) + ([cue_st] if cue_st is not None else [])
     OFF = -db0
     earliest = min(t for a in srcs if (t := first_sound(a)) is not None)
-    if earliest + OFF < -0.010:
-        OFF += np.ceil(-(earliest+OFF)/bar_intro)*bar_intro
-    # front lead: whole extra bars so the longest cue phrase (e.g. song-title start cue) fits
-    # before its event instead of clipping off the front. Shifts music + cues + click together.
-    # Counted from the PRE-LEAD cue base (OFF+db0): bars the earliest-sound fix already added
-    # give the phrase room too — without this, push songs get a wasted extra count-in bar.
+    if earliest + OFF < MUSIC_CLEAR:               # music starting before its downbeat (pickup/run-in)
+        OFF += MUSIC_CLEAR - (earliest + OFF)
+    # front lead: just enough room for the earliest cue phrase (the song-title start cue) to start
+    # LEAD_CLEAR after t=0 instead of clipping off the front. Shifts music + cues + click together.
     lead = 0.0
     daw = mix.get("daw_align")                     # DAW-align: WAV time == stem (song) time, no
     if mix.get("cues") and not daw:                # count-in — drop at bar 1 and project SMPTE =
         min_word = min(cue_first_word_time(c, OFF + db0, relt, bdur, cue_subdiv, cue_step, folder) for c in mix["cues"])  # song
-        if min_word < 0.05:                        # only when the cue would actually clip the front
-            lead = np.ceil((0.05 - min_word)/bar_intro)*bar_intro   # (0.05s onset clearance). A cue that fits
-            print(f"lead: +{lead/bar_intro:.0f} bar(s) so the longest cue fits the front")  # gets no
-            #                                            wasted count-in bar — the silent intro bars
-            #                                            already carry the click before the music.
+        if min_word < LEAD_CLEAR:                  # only when the cue would actually clip the front
+            lead = LEAD_CLEAR - min_word
+            print(f"lead: +{lead:.3f}s so the start cue fits the front (first word at {LEAD_CLEAR:.2f}s)")
     # forced count-in: songs whose music's own intro starts under the start cue (no clean
     # count-in space) set "count_in": N to push N whole silent bars in front — the click ticks
     # them (JZ count-in) and the start cue gets room before the first note. Shifts music+cues+
@@ -1501,8 +1510,9 @@ def main():
         if rel >= span[-1]: return (len(bt)-1) + (rel-span[-1])/beatB
         j = max(0, min(int(np.searchsorted(span, rel)) - 1, len(span)-2))
         return j + (rel - span[j])/(span[j+1]-span[j])
-    def logic_of_sec(t): b = t/bar; return int(b)+1, (b-int(b))*4 + 1   # ruler: bar1=t=0, const tempo
-    def sec_of_logic(bn, be=1): return ((bn-1) + (be-1)/4)*bar
+    bl0 = cue_base - np.ceil(cue_base/bar - 1e-9)*bar  # music bar line at/before render t=0 (<= 0)
+    def logic_of_sec(t): b = (t - bl0)/bar; return int(b)+1, (b-int(b))*4 + 1   # ruler: bar1 = bl0
+    def sec_of_logic(bn, be=1): return ((bn-1) + (be-1)/4)*bar + bl0   # (import render at Logic 1.1 + {-bl0:.3f}s)
     def report(t, src):
         mb, mbe = idx_to_barbeat(sec_to_idx(t)); lb, lbe = logic_of_sec(t)
         write = f'"bar": {mb}' if mbe == 1 else f'"bar": {mb}, "beat": {_disp_beat(mbe)}'
@@ -1512,6 +1522,8 @@ def main():
     if "--map" in sys.argv:
         q = True
         print("cue map — mix.json bar  ->  render sec  ->  Logic ruler bar.beat:")
+        if bl0 < -1e-6:
+            print(f"  (render t=0 is {-bl0:.3f}s after a bar line: import the render at Logic 1.1 + {-bl0:.3f}s for this ruler)")
         for c in mix.get("cues", []):
             i = cue_beat_index(c); t = render_sec(i); lb, lbe = logic_of_sec(t)
             print(f"  bar {int(c['bar']):>3} beat {_disp_beat(c.get('beat',1)):>3} | {t:8.3f}s "
@@ -1603,7 +1615,7 @@ def main():
                 m += 1
         out = {"click": cbuf}
     elif external:                                 # built clean click, downbeat on every bar line
-        out = {"click": build_click(60/beat, total, off_samp, bar)}
+        out = {"click": build_click(60/beat, total, off_samp, bar, downbeat=cue_base)}
     else:                                           # JamZone: the click stem itself, aligned
         cbuf = np.zeros((total, 2), np.float32); place(cbuf, click_st, off_samp)
         t0c = cue_base                              # stem downbeat in cbuf
@@ -1776,7 +1788,10 @@ def main():
         for ent in (m or {}).get("layers", []):    # entry: "name" (render-frame) | {file, frame, offset_ms}
             ent = ent if isinstance(ent, dict) else {"file": ent}
             nm, frame = ent["file"], ent.get("frame", "render")   # render-frame = cut vs auto-render
-            base = off_samp if frame == "stem" else 0             # (placed at render t=0); stem-frame =
+            base = off_samp if frame == "stem" else \
+                round((OFF - float(ent.get("rec_off", OFF)))*SR)  # render-frame: t=0 of the render it was
+            #   recorded to; "rec_off" = that render's OFF -> shifted by the OFF change (no manual offset_ms)
+            #   (placed at render t=0 when rec_off is absent); stem-frame =
             start = base + round(ent.get("offset_ms", 0)/1000*SR) # cut vs Moises stems (native, placed at OFF)
             lbuf = load_layer(nm, start)               # fx/back-vox layers auto-leveled like stems;
             role = classify(nm, (m.get("roles") or {}))   # gain_db = trim for those, absolute for musical
@@ -1864,7 +1879,8 @@ def main():
 
     pre = 1000
     v = onsets(np.concatenate([np.zeros(pre, np.float32), out["click"].mean(1)])) - pre/SR
-    ph0 = v[0] if daw else 0.0                      # daw_align: downbeat sits at stem db0, not on a
+    ph0 = v[0] if daw else cue_base                 # grid phase = music bar 1.1 (t=0 is no longer a bar
+                                                    # line, 2026-11-20); daw_align: downbeat sits at stem db0, not on a
     eall = np.array([((t-ph0) - round((t-ph0)/beat)*beat)*1000 for t in v])   # each onset's spacing err
     # Grid health = the MEDIAN onset error (robust). A wrong bpm makes the error RAMP across the
     # song (median blows up -> caught); a clean click sits ~1ms; a jittery JZ click (Destination
@@ -1872,9 +1888,10 @@ def main():
     # opening — a minority of onsets) leaves the median small, so neither false-fails. The first-8
     # spacing + downbeat bar-line are still reported for clean songs as before.
     med = float(np.median(np.abs(eall))); p90 = float(np.percentile(np.abs(eall), 90))
-    bar_err = ((v[0]-ph0) - round((v[0]-ph0)/bar)*bar)*1000
+    t_db = v[int(np.argmin(np.abs(v - ph0)))]       # the click nearest music bar 1.1
+    bar_err = (t_db - ph0)*1000
     print(f"verify click: median err {med:.1f}ms (p90 {p90:.1f}ms), first onset {v[0]*1000:.1f}ms "
-          f"(bar-line err {bar_err:+.1f}ms), beat err {[f'{e:+.1f}' for e in eall[:8]]} ms"
+          f"(bar 1.1 err {bar_err:+.1f}ms), beat err {[f'{e:+.1f}' for e in eall[:8]]} ms"
           + ("  [follow: err vs constant beat is the tracked drift, not a fault]" if follow else ""))
     if med > 8 and not follow:                      # gross drift / wrong bpm — cues would walk off.
         sys.exit("verification failed — nothing written")  # follow rebuilds click+cues ON the metronome's
@@ -1902,8 +1919,10 @@ def main():
     for n, buf in out.items():
         wav_tempo_write(os.path.join(adir, n + ".wav"), buf, bpm)  # ST + MainStage (tempo label)
     tl_obj = {"offset_sec": round(OFF, 6), "bar_sec": round(bar, 6), "bpm": round(60/beat, 4),
+              "downbeat_sec": round(cue_base, 6), "lead_sec": round(float(lead), 6),
               "note": "add offset_sec to stem-timeline times (cues.json/structure.json); "
-                      "t=0 = bar line; downbeat of stem grid on a bar line"}
+                      "downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line "
+                      "(front = just enough room for the start cue, 2026-11-20)"}
     if stem_cut_ranges:
         tl_obj["cuts"] = [[round(a, 6), round(b, 6)] for a, b in stem_cut_ranges]
     json.dump(tl_obj, open(os.path.join(adir, "timeline.json"), "w"), indent=1)

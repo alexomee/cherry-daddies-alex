@@ -35,11 +35,11 @@
   "cat": "cat_9455",
   "click": "follow",
   "cues": [
-    {"bar": 2, "text": "I Love Rock n Roll guitar in", "abs_sec": 5.062, "snap_sec": 0.0},
-    {"bar": 7, "beat": 3, "text": "verse in", "abs_sec": 18.592, "snap_sec": 13.57},
-    {"bar": 18, "text": "chorus in", "abs_sec": 45.172, "snap_sec": 40.07},
-    {"bar": 40, "beat": 2, "text": "guitar solo ready go", "abs_sec": 101.672, "snap_sec": 96.62},
-    {"bar": 51, "text": "bridge in ready go", "abs_sec": 129.242, "snap_sec": 124.12},
-    {"bar": 55, "text": "end in", "count": true, "abs_sec": 139.532, "snap_sec": 133.79}
+    {"bar": 2, "text": "I Love Rock n Roll guitar in", "abs_sec": 3.861, "snap_sec": 0.0},
+    {"bar": 7, "beat": 3, "text": "verse in", "abs_sec": 17.391, "snap_sec": 12.369},
+    {"bar": 18, "text": "chorus in", "abs_sec": 43.971, "snap_sec": 38.869},
+    {"bar": 40, "beat": 2, "text": "guitar solo ready go", "abs_sec": 100.471, "snap_sec": 95.419},
+    {"bar": 51, "text": "bridge in ready go", "abs_sec": 128.041, "snap_sec": 122.919},
+    {"bar": 55, "text": "end in", "count": true, "abs_sec": 138.331, "snap_sec": 132.589}
   ]
 }

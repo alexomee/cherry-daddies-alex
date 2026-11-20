@@ -7,13 +7,13 @@
   "pb-bass": {"stems": ["03_Bass"], "gain_db": {"03_Bass": -1.0}},
   "players": {},
   "cues": [
-    {"bar": 1, "text": "Rock & Roll Queen guitar in", "abs_sec": 3.404, "snap_sec": 0.0},
-    {"bar": 13, "text": "all in", "abs_sec": 23.83, "snap_sec": 20.426},
-    {"bar": 33, "text": "verse in", "abs_sec": 57.872, "snap_sec": 54.468},
-    {"bar": 57, "text": "guitar only ready go", "raw": true, "abs_sec": 98.723, "snap_sec": 95.319},
-    {"bar": 61, "text": "verse in", "abs_sec": 105.532, "snap_sec": 102.128},
-    {"bar": 69, "text": "solo in", "abs_sec": 119.149, "snap_sec": 115.745},
-    {"bar": 77, "text": "chorus in", "abs_sec": 132.766, "snap_sec": 129.362},
-    {"bar": 93, "text": "end in", "count": true, "abs_sec": 160.0, "snap_sec": 156.17}
+    {"bar": 1, "text": "Rock & Roll Queen guitar in", "abs_sec": 2.932, "snap_sec": 0.0},
+    {"bar": 13, "text": "all in", "abs_sec": 23.357, "snap_sec": 19.953},
+    {"bar": 33, "text": "verse in", "abs_sec": 57.4, "snap_sec": 53.996},
+    {"bar": 57, "text": "guitar only ready go", "raw": true, "abs_sec": 98.251, "snap_sec": 94.847},
+    {"bar": 61, "text": "verse in", "abs_sec": 105.06, "snap_sec": 101.655},
+    {"bar": 69, "text": "solo in", "abs_sec": 118.677, "snap_sec": 115.272},
+    {"bar": 77, "text": "chorus in", "abs_sec": 132.294, "snap_sec": 128.889},
+    {"bar": 93, "text": "end in", "count": true, "abs_sec": 159.528, "snap_sec": 155.698}
   ]
 }

@@ -29,10 +29,10 @@
   },
   "players": {"steve": ["02_Drum_Kit"], "tanya": ["14_Lead_Vocal"], "alex": ["06_Electric_Guitar", "07_Rhythm_Electric_Guitar"]},
   "cues": [
-    {"bar": 2, "text": "You're My Heart all in", "abs_sec": 4.085, "snap_sec": 0.0},
-    {"bar": 10, "beat": 3, "text": "verse in", "abs_sec": 21.435, "snap_sec": 17.362},
-    {"bar": 44, "beat": 3, "text": "melody in ready go", "abs_sec": 90.882, "snap_sec": 86.797},
-    {"bar": 61, "text": "verse in ready go", "abs_sec": 124.575, "snap_sec": 120.499},
-    {"bar": 111, "text": "end fill in", "count": true, "abs_sec": 226.703, "snap_sec": 222.107}
+    {"bar": 2, "text": "You're My Heart all in", "abs_sec": 3.111, "snap_sec": 0.0},
+    {"bar": 10, "beat": 3, "text": "verse in", "abs_sec": 20.461, "snap_sec": 16.388},
+    {"bar": 44, "beat": 3, "text": "melody in ready go", "abs_sec": 89.908, "snap_sec": 85.823},
+    {"bar": 61, "text": "verse in ready go", "abs_sec": 123.601, "snap_sec": 119.525},
+    {"bar": 111, "text": "end fill in", "count": true, "abs_sec": 225.728, "snap_sec": 221.133}
   ]
 }

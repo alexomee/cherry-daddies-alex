@@ -31,11 +31,11 @@
   "cat": "cat_5468",
   "click": "follow",
   "cues": [
-    {"bar": 2, "text": "I Wanna Dance all in", "abs_sec": 4.06, "snap_sec": 0.0},
-    {"bar": 4, "beat": 4, "text": "vocal in", "abs_sec": 9.59, "snap_sec": 5.56},
-    {"bar": 18, "text": "verse in", "abs_sec": 36.35, "snap_sec": 32.32},
-    {"bar": 113, "beat": 2, "text": "break in ready go", "abs_sec": 228.74, "snap_sec": 224.69},
-    {"bar": 121, "beat": 2, "text": "bridge in ready go", "abs_sec": 244.9, "snap_sec": 240.84},
-    {"bar": 137, "beat": 2, "text": "end in", "count": true, "abs_sec": 277.22, "snap_sec": 272.67}
+    {"bar": 2, "text": "I Wanna Dance all in", "abs_sec": 3.113, "snap_sec": 0.0},
+    {"bar": 4, "beat": 4, "text": "vocal in", "abs_sec": 8.643, "snap_sec": 4.613},
+    {"bar": 18, "text": "verse in", "abs_sec": 35.403, "snap_sec": 31.373},
+    {"bar": 113, "beat": 2, "text": "break in ready go", "abs_sec": 227.793, "snap_sec": 223.743},
+    {"bar": 121, "beat": 2, "text": "bridge in ready go", "abs_sec": 243.953, "snap_sec": 239.893},
+    {"bar": 137, "beat": 2, "text": "end in", "count": true, "abs_sec": 276.273, "snap_sec": 271.723}
   ]
 }

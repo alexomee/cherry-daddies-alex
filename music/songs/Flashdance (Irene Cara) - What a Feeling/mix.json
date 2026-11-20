@@ -30,15 +30,15 @@
   "cat": "cat_10091",
   "click": "follow",
   "cues": [
-    {"bar": 2, "text": "What a Feeling guitars in", "abs_sec": 5.218, "snap_sec": 0.0},
-    {"bar": 6, "text": "verse in", "abs_sec": 15.652, "snap_sec": 11.055},
-    {"bar": 20, "text": "all in", "lead_tempo": "post", "abs_sec": 52.098, "snap_sec": 48.17},
-    {"bar": 48, "text": "solo in ready go", "abs_sec": 106.379, "snap_sec": 102.452},
-    {"bar": 55, "beat": 4, "text": "vocal in", "abs_sec": 121.403, "snap_sec": 117.476},
-    {"bar": 80, "text": "bridge in", "abs_sec": 168.414, "snap_sec": 164.487},
-    {"bar": 88, "text": "chorus variation ready go", "abs_sec": 183.923, "snap_sec": 179.996},
-    {"bar": 96, "text": "outro in ready go", "abs_sec": 199.432, "snap_sec": 195.505},
-    {"bar": 104, "text": "keep going", "abs_sec": 214.941, "snap_sec": 211.983},
-    {"bar": 114, "text": "end in", "count": true, "abs_sec": 234.327, "snap_sec": 229.915}
+    {"bar": 2, "text": "What a Feeling guitars in", "abs_sec": 3.458, "snap_sec": 0.0},
+    {"bar": 6, "text": "verse in", "abs_sec": 13.893, "snap_sec": 9.296},
+    {"bar": 20, "text": "all in", "lead_tempo": "post", "abs_sec": 50.338, "snap_sec": 46.411},
+    {"bar": 48, "text": "solo in ready go", "abs_sec": 104.619, "snap_sec": 100.692},
+    {"bar": 55, "beat": 4, "text": "vocal in", "abs_sec": 119.643, "snap_sec": 115.716},
+    {"bar": 80, "text": "bridge in", "abs_sec": 166.655, "snap_sec": 162.727},
+    {"bar": 88, "text": "chorus variation ready go", "abs_sec": 182.164, "snap_sec": 178.236},
+    {"bar": 96, "text": "outro in ready go", "abs_sec": 197.672, "snap_sec": 193.745},
+    {"bar": 104, "text": "keep going", "abs_sec": 213.181, "snap_sec": 210.224},
+    {"bar": 114, "text": "end in", "count": true, "abs_sec": 232.567, "snap_sec": 228.156}
   ]
 }

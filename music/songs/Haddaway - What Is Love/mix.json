@@ -29,13 +29,13 @@
   },
   "cat": "cat_19903",
   "cues": [
-    {"bar": 1, "text": "What Is Love playback in", "abs_sec": 3.871, "snap_sec": 0.0},
-    {"bar": 5, "text": "all in", "abs_sec": 11.613, "snap_sec": 7.742},
-    {"bar": 22, "beat": 2, "text": "verse in", "abs_sec": 45.002, "snap_sec": 41.131},
-    {"bar": 38, "beat": 2, "text": "main in ready go", "abs_sec": 75.971, "snap_sec": 72.099},
-    {"bar": 46, "beat": 2, "text": "chorus in ready go", "abs_sec": 91.455, "snap_sec": 87.584},
-    {"bar": 93, "beat": 4, "text": "break in ready go", "abs_sec": 183.394, "snap_sec": 179.523},
-    {"bar": 97, "beat": 4, "text": "bridge in ready go", "abs_sec": 191.136, "snap_sec": 187.265},
-    {"bar": 129, "beat": 3, "text": "end in", "count": true, "abs_sec": 252.59, "snap_sec": 248.235}
+    {"bar": 1, "text": "What Is Love playback in", "abs_sec": 2.831, "snap_sec": 0.0},
+    {"bar": 5, "text": "all in", "abs_sec": 10.573, "snap_sec": 6.702},
+    {"bar": 22, "beat": 2, "text": "verse in", "abs_sec": 43.961, "snap_sec": 40.09},
+    {"bar": 38, "beat": 2, "text": "main in ready go", "abs_sec": 74.93, "snap_sec": 71.059},
+    {"bar": 46, "beat": 2, "text": "chorus in ready go", "abs_sec": 90.415, "snap_sec": 86.544},
+    {"bar": 93, "beat": 4, "text": "break in ready go", "abs_sec": 182.354, "snap_sec": 178.483},
+    {"bar": 97, "beat": 4, "text": "bridge in ready go", "abs_sec": 190.096, "snap_sec": 186.225},
+    {"bar": 129, "beat": 3, "text": "end in", "count": true, "abs_sec": 251.55, "snap_sec": 247.195}
   ]
 }

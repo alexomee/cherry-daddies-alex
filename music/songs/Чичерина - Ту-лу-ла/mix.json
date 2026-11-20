@@ -1,36 +1,36 @@
 {
   "gm800": 1,
   "podgo": [
-    {"bar": 1, "preset": "32A", "abs_sec": 3.675},
-    {"bar": 13, "preset": "32B", "abs_sec": 25.727},
-    {"bar": 25, "preset": "32D", "abs_sec": 47.779},
-    {"bar": 32, "beat": 4, "preset": "32A", "abs_sec": 62.021},
-    {"bar": 41, "preset": "32B", "abs_sec": 77.182},
-    {"bar": 53, "preset": "32D", "abs_sec": 99.234},
-    {"bar": 68, "beat": 4, "preset": "32A", "abs_sec": 128.178}
+    {"bar": 1, "preset": "32A", "abs_sec": 2.564},
+    {"bar": 13, "preset": "32B", "abs_sec": 24.616},
+    {"bar": 25, "preset": "32D", "abs_sec": 46.668},
+    {"bar": 32, "beat": 4, "preset": "32A", "abs_sec": 60.91},
+    {"bar": 41, "preset": "32B", "abs_sec": 76.071},
+    {"bar": 53, "preset": "32D", "abs_sec": 98.123},
+    {"bar": 68, "beat": 4, "preset": "32A", "abs_sec": 127.066}
   ],
   "bpm": 130.6,
   "pitch_semitones": -1,
   "pb-other": {
     "layers": [
-      {"file": "pb-guitars", "frame": "render", "gain_db": -7.0}
+      {"file": "pb-guitars", "rec_off": 3.233145, "frame": "render", "gain_db": -7.0}
     ],
     "roles": {"pb-guitars": "musical"}
   },
   "pb-drums": {"stems": ["drums"]},
-  "pb-bass": {"layers": [{"file": "живой бас", "frame": "render", "replaces": ["bass"], "gain_db": 14.2}], "roles": {"живой бас": "musical"}},
+  "pb-bass": {"layers": [{"file": "живой бас", "rec_off": 3.233145, "frame": "render", "replaces": ["bass"], "gain_db": 14.2}], "roles": {"живой бас": "musical"}},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cut_after_last_cue": 1,
   "cues": [
-    {"bar": 1, "text": "Ту-лу-ла drums in", "abs_sec": 3.675, "snap_sec": 0.0},
-    {"bar": 4, "beat": 4, "text": "guitar in", "abs_sec": 10.567, "snap_sec": 6.891},
-    {"bar": 13, "text": "verse in", "abs_sec": 25.727, "snap_sec": 22.052},
-    {"bar": 32, "beat": 4, "text": "solo in", "abs_sec": 62.021, "snap_sec": 58.346},
-    {"bar": 41, "text": "verse in", "abs_sec": 77.182, "snap_sec": 73.507},
-    {"bar": 51, "text": "drums only ready go", "raw": true, "abs_sec": 95.559, "snap_sec": 91.884},
-    {"bar": 53, "text": "all in", "abs_sec": 99.234, "snap_sec": 95.559},
-    {"bar": 65, "text": "keep going", "raw": true, "abs_sec": 121.286, "snap_sec": 118.53},
-    {"bar": 68, "beat": 4, "text": "solo in", "abs_sec": 128.178, "snap_sec": 124.502},
-    {"bar": 77, "text": "end in", "count": true, "abs_sec": 143.338, "snap_sec": 139.204}
+    {"bar": 1, "text": "Ту-лу-ла drums in", "abs_sec": 2.564, "snap_sec": 0.0},
+    {"bar": 4, "beat": 4, "text": "guitar in", "abs_sec": 9.455, "snap_sec": 5.78},
+    {"bar": 13, "text": "verse in", "abs_sec": 24.616, "snap_sec": 20.941},
+    {"bar": 32, "beat": 4, "text": "solo in", "abs_sec": 60.91, "snap_sec": 57.235},
+    {"bar": 41, "text": "verse in", "abs_sec": 76.071, "snap_sec": 72.395},
+    {"bar": 51, "text": "drums only ready go", "raw": true, "abs_sec": 94.447, "snap_sec": 90.772},
+    {"bar": 53, "text": "all in", "abs_sec": 98.123, "snap_sec": 94.447},
+    {"bar": 65, "text": "keep going", "raw": true, "abs_sec": 120.175, "snap_sec": 117.418},
+    {"bar": 68, "beat": 4, "text": "solo in", "abs_sec": 127.066, "snap_sec": 123.391},
+    {"bar": 77, "text": "end in", "count": true, "abs_sec": 142.227, "snap_sec": 138.092}
   ]
 }

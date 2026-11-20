@@ -6,25 +6,25 @@
   "tempo_zone": {"from_bar": 53, "from_beat": 3, "to_bar": 63, "to_beat": 2, "bpm": 89.919, "anchor_sec": 102.083742, "accent": 4, "accent_from": 211, "subdiv": 2, "return_sec": 131.766742},
   "pb-other": {
     "layers": [
-      {"file": "backing-vocal", "frame": "render", "gain_db": 0},
-      {"file": "other-breakdown", "frame": "render", "gain_db": 0},
-      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -4.1}
+      {"file": "backing-vocal", "rec_off": 3.706342, "frame": "render", "gain_db": 0},
+      {"file": "other-breakdown", "rec_off": 3.706342, "frame": "render", "gain_db": 0},
+      {"file": "roma-keys-2810", "rec_off": 3.706342, "frame": "render", "replaces": ["keys", "other"], "gain_db": -4.1}
     ],
     "roles": {"roma-keys-2810": "musical"}
   },
-  "pb-bass": {"layers": [{"file": "live-bass", "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
+  "pb-bass": {"layers": [{"file": "live-bass", "rec_off": 3.706342, "frame": "render", "gain_db": -10, "replaces": ["bass"]}]},
   "players": {"steve": ["drums"], "tanya": ["vocals"], "alex": ["guitars"]},
   "cues": [
-    {"bar": 1, "text": "Я устал bass in", "abs_sec": 3.871, "snap_sec": 0.0},
-    {"bar": 3, "text": "drums in", "abs_sec": 7.742, "snap_sec": 3.871},
-    {"bar": 13, "text": "stop", "abs_sec": 27.097, "snap_sec": 22.742},
-    {"bar": 25, "text": "verse in", "abs_sec": 50.323, "snap_sec": 46.452},
-    {"bar": 33, "text": "stop", "abs_sec": 65.806, "snap_sec": 61.452},
-    {"bar": 44, "text": "keep going", "abs_sec": 87.097, "snap_sec": 84.194},
-    {"bar": 53, "text": "stop", "abs_sec": 104.516, "snap_sec": 100.161},
-    {"bar": 54, "beat": 1, "text": "vocal in", "fast": true, "abs_sec": 107.125, "snap_sec": 103.855},
-    {"bar": 55, "beat": 4, "text": "drums in", "fast": true, "abs_sec": 111.795, "snap_sec": 108.525},
-    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 134.505, "snap_sec": 130.634},
-    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 181.925, "snap_sec": 177.57}
+    {"bar": 1, "text": "Я устал bass in", "abs_sec": 2.878, "snap_sec": 0.0},
+    {"bar": 3, "text": "drums in", "abs_sec": 6.749, "snap_sec": 2.878},
+    {"bar": 13, "text": "stop", "abs_sec": 26.104, "snap_sec": 21.749},
+    {"bar": 25, "text": "verse in", "abs_sec": 49.33, "snap_sec": 45.459},
+    {"bar": 33, "text": "stop", "abs_sec": 64.814, "snap_sec": 60.459},
+    {"bar": 44, "text": "keep going", "abs_sec": 86.104, "snap_sec": 83.201},
+    {"bar": 53, "text": "stop", "abs_sec": 103.524, "snap_sec": 99.169},
+    {"bar": 54, "beat": 1, "text": "vocal in", "fast": true, "abs_sec": 106.132, "snap_sec": 102.862},
+    {"bar": 55, "beat": 4, "text": "drums in", "fast": true, "abs_sec": 110.803, "snap_sec": 107.533},
+    {"bar": 65, "beat": 3, "text": "chorus in", "abs_sec": 133.513, "snap_sec": 129.642},
+    {"bar": 90, "text": "bass-only in", "count": true, "abs_sec": 180.932, "snap_sec": 176.577}
   ]
 }

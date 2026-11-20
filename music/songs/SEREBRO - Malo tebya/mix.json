@@ -1,33 +1,33 @@
 {
   "gm800": [
-    {"bar": 1, "scene": 1, "abs_sec": 3.692},
-    {"bar": 37, "scene": 12, "abs_sec": 70.154},
-    {"bar": 45, "scene": 1, "abs_sec": 84.923},
-    {"bar": 77, "scene": 12, "abs_sec": 144.0},
-    {"bar": 85, "scene": 1, "abs_sec": 158.769},
-    {"bar": 95, "scene": 12, "abs_sec": 177.231},
-    {"bar": 103, "scene": 1, "abs_sec": 192.0}
+    {"bar": 1, "scene": 1, "abs_sec": 2.856},
+    {"bar": 37, "scene": 12, "abs_sec": 69.318},
+    {"bar": 45, "scene": 1, "abs_sec": 84.087},
+    {"bar": 77, "scene": 12, "abs_sec": 143.164},
+    {"bar": 85, "scene": 1, "abs_sec": 157.933},
+    {"bar": 95, "scene": 12, "abs_sec": 176.395},
+    {"bar": 103, "scene": 1, "abs_sec": 191.164}
   ],
   "podgo": [
-    {"bar": 1, "preset": "32B", "abs_sec": 3.692},
-    {"bar": 21, "preset": "32D", "abs_sec": 40.615},
-    {"bar": 45, "preset": "32B", "abs_sec": 84.923},
-    {"bar": 61, "preset": "32D", "abs_sec": 114.462}
+    {"bar": 1, "preset": "32B", "abs_sec": 2.856},
+    {"bar": 21, "preset": "32D", "abs_sec": 39.779},
+    {"bar": 45, "preset": "32B", "abs_sec": 84.087},
+    {"bar": 61, "preset": "32D", "abs_sec": 113.625}
   ],
   "bpm": 130.0,
   "pb-other": {
     "layers": [
       {
-        "file": "malo-guitars",
+        "file": "malo-guitars", "rec_off": 3.186911,
         "frame": "render",
         "gain_db": -7.0
       },
       {
-        "file": "malo-sfx",
+        "file": "malo-sfx", "rec_off": 3.186911,
         "frame": "render",
         "gain_db": -4.0
       },
-      {"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 4.9}
+      {"file": "roma-keys-2810", "rec_off": 3.186911, "frame": "render", "replaces": ["keys", "other"], "gain_db": 4.9}
     ],
     "roles": {
       "malo-guitars": "musical",

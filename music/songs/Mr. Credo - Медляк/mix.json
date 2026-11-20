@@ -8,11 +8,11 @@
   "pb-bass": {"stems": ["bass"], "gain_db": {"bass": -2.0}},
   "players": {"steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1, "text": "Медляк synth in", "abs_sec": 4.571, "snap_sec": 0.0},
-    {"bar": 9, "text": "drums in", "abs_sec": 22.857, "snap_sec": 18.286},
-    {"bar": 17, "text": "verse in", "abs_sec": 41.143, "snap_sec": 36.571},
-    {"bar": 81, "text": "stop", "abs_sec": 187.429, "snap_sec": 182.286},
-    {"bar": 96, "text": "drum in", "abs_sec": 221.714, "snap_sec": 217.143},
-    {"bar": 113, "text": "end in", "count": true, "abs_sec": 260.571, "snap_sec": 255.429}
+    {"bar": 1, "text": "Медляк synth in", "abs_sec": 3.028, "snap_sec": 0.0},
+    {"bar": 9, "text": "drums in", "abs_sec": 21.314, "snap_sec": 16.742},
+    {"bar": 17, "text": "verse in", "abs_sec": 39.599, "snap_sec": 35.028},
+    {"bar": 81, "text": "stop", "abs_sec": 185.885, "snap_sec": 180.742},
+    {"bar": 96, "text": "drum in", "abs_sec": 220.171, "snap_sec": 215.599},
+    {"bar": 113, "text": "end in", "count": true, "abs_sec": 259.028, "snap_sec": 253.885}
   ]
 }
