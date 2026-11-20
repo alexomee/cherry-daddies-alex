@@ -1,10 +1,12 @@
 {
   "gm800": 1,
-  "bpm": 118.0,
+  "bpm": 128.0,
+  "stem_speed": 1.0847458,
+  "note": "128 bpm instead of the original 118 (Alex 2026-11-20): stems stretched by tools/jamzone/prep_teen_spirit_tempo.py, JamZone originals in jamzone-orig/. Bass = GM-800 synth bass in the playback (parts/synth-bass.wav, tools/jamzone/prep_teen_spirit_bass.py).",
   "pitch_semitones": 0,
   "click": "follow",
   "pb-other": null,
-  "pb-bass": null,
+  "pb-bass": {"layers": [{"file": "synth-bass", "frame": "stem", "gain_db": 1.7, "replaces": ["03_Bass"]}]},
   "players": {
     "alex": [
       "04_Electric_Guitar_(feedback)",
@@ -22,6 +24,6 @@
     "tanya": ["13_Lead_Vocal"]
   },
   "cues": [
-    {"bar": 2, "text": "Smells Like Teen Spirit guitar in", "abs_sec": 4.221, "snap_sec": 0.0}
+    {"bar": 2, "text": "Smells Like Teen Spirit guitar in", "abs_sec": 3.521, "snap_sec": 0.0}
   ]
 }

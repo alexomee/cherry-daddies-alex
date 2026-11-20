@@ -92,7 +92,15 @@ def lines(orig, bars, energy, active):
     for b in bars:
         own = by_bar.get(b, [])
         if b < 6 or inr(b, RIFF) or b >= 142:
-            out["B"] += own; out["B2"] += own; out["C"] += own; continue
+            out["B"] += own; out["C"] += own
+            s0 = (b - 1) * 16; fs = F1 + 1      # B2 = the line that goes to the playback: these bars written by hand
+            if b == 5: cell = [(12, 4, F1)]     # (the transcription of them moves a sixteenth from run to run)
+            elif b == 142: cell = [(0, 32, F1)] # the last hit rings for two bars, like the guitars
+            elif inr(b, RIFF) and (b - [r for r in RIFF if r[0] <= b < r[1]][0][0]) % 2 == 0:
+                cell = [(0, 4, F1), (4, 2, F1), (6, 2, fs), (8, 2, fs), (10, 2, fs)]
+            elif inr(b, RIFF): cell = [(0, 4, 36), (4, 2, 36), (6, 2, 36), (8, 2, BB1), (10, 2, BB1), (12, 2, 33), (14, 2, AB1)]
+            else: cell = []
+            out["B2"] += [[s0 + k, l, p] for k, l, p in cell]; continue
         for half, root in enumerate(LOOP[b % 2]):
             s0 = (b - 1) * 16 + half * 8
             if active[s0:s0 + 8].mean() < 0.5: continue
@@ -160,6 +168,8 @@ def mp3(path, x):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--bars", nargs=2, type=int, default=[1, 54]); ap.add_argument("--scan", action="store_true")
+    ap.add_argument("--out", default="", help="subfolder of the audition folder (a full-song pass keeps the first audition)")
+    ap.add_argument("--notes-only", action="store_true", help="write notes.json only (for tools/synth_bass_gm800.py)")
     a = ap.parse_args(); b0, b1 = a.bars; bars = range(b0, b1)
     beats, s16 = grid()
     bass = jr.decode(f"{SONG}/03_Bass.m4a").mean(1)
@@ -180,9 +190,15 @@ def main():
                 for j in range(k + 1, min(16, k + l)): row[j] = "~"
             print(f"{b:3d} e{energy[b]} " + " ".join("|" * (i % 4 == 0) + f"{c:3s}" for i, c in enumerate(row)))
         return
-    os.makedirs(OUT, exist_ok=True)
+    out_dir = os.path.join(OUT, a.out) if a.out else OUT; os.makedirs(out_dir, exist_ok=True)
     v = lines(orig, bars, energy, active)
     t0, t1 = s16[(b0 - 1) * 16], s16[(b1 - 1) * 16]; i0, i1 = int(t0 * SR), int(t1 * SR)
+    marks = [[b, round(float(s16[(b - 1) * 16] - t0), 3)] for b in bars]
+    json.dump({"bars": [b0, b1], "bar_sec": marks, "slot_sec": [round(float(s16[k] - t0), 4) for k in range((b0 - 1) * 16, (b1 - 1) * 16 + 1)], "energy": {str(b): energy[b] for b in bars},
+               "lines": {k: [[s // 16 + 1, s % 16, l, p] for s, l, p in ns] for k, ns in v.items()}},
+              open(f"{out_dir}/notes.json", "w"))
+    if a.notes_only:
+        print(f"notes -> {out_dir}/notes.json"); return
     ctx = sum(jr.decode(f"{SONG}/{f}").mean(1) for f in stems if "Click" not in f and "Bass" not in f)[i0:i1]
     ref = bass[i0:i1]; meter = pyloudnorm.Meter(SR); target = meter.integrated_loudness(ref)
     takes = {}
@@ -190,21 +206,17 @@ def main():
         y = synth(v[key], s16, energy, len(bass), sweep=(key == "B"), bright=(key == "B2"))[i0:i1]
         takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
     names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "B2": "B2-bright-no-16ths", "C": "C-offbeat"}
-    for f in sorted(os.listdir(OUT)):           # takes of the GM-800 (tools/synth_bass_gm800.py): gm800-<line>-s<scene>.wav,
+    for f in sorted(os.listdir(out_dir)):           # takes of the GM-800 (tools/synth_bass_gm800.py): gm800-<line>-s<scene>.wav,
         if f.startswith("gm800-") and f.endswith(".wav"):   # sample 0 = the bar line of the first bar
-            y = jr.decode(f"{OUT}/{f}").mean(1)[:i1 - i0]; y = np.pad(y, (0, i1 - i0 - len(y)))
+            y = jr.decode(f"{out_dir}/{f}").mean(1)[:i1 - i0]; y = np.pad(y, (0, i1 - i0 - len(y)))
             key = f[6:-4]; names[key] = key + "-gm800"
             takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
     mixes = {"0": ctx + ref, **{k: ctx + y for k, y in takes.items()}}
     g = 0.89 / max(np.abs(m).max() for m in mixes.values()); gs = 0.89 / max(np.abs(ref).max(), max(np.abs(y).max() for y in takes.values()))
-    for k, m in mixes.items(): mp3(f"{OUT}/ctx-{names[k]}.mp3", m * g)
-    mp3(f"{OUT}/solo-original.mp3", ref * gs)
-    for k, y in takes.items(): mp3(f"{OUT}/solo-{names[k]}.mp3", y * gs)
-    marks = [[b, round(float(s16[(b - 1) * 16] - t0), 3)] for b in bars]
-    json.dump({"bars": [b0, b1], "bar_sec": marks, "slot_sec": [round(float(s16[k] - t0), 4) for k in range((b0 - 1) * 16, (b1 - 1) * 16 + 1)], "energy": {str(b): energy[b] for b in bars},
-               "lines": {k: [[s // 16 + 1, s % 16, l, p] for s, l, p in ns] for k, ns in v.items()}},
-              open(f"{OUT}/notes.json", "w"))
-    print(f"bars {b0}-{b1 - 1}, {t1 - t0:.1f} s, bass {target:.1f} LUFS; notes " + " ".join(f"{k} {len(n)}" for k, n in v.items()) + f" -> {OUT}")
+    for k, m in mixes.items(): mp3(f"{out_dir}/ctx-{names[k]}.mp3", m * g)
+    mp3(f"{out_dir}/solo-original.mp3", ref * gs)
+    for k, y in takes.items(): mp3(f"{out_dir}/solo-{names[k]}.mp3", y * gs)
+    print(f"bars {b0}-{b1 - 1}, {t1 - t0:.1f} s, bass {target:.1f} LUFS; notes " + " ".join(f"{k} {len(n)}" for k, n in v.items()) + f" -> {out_dir}")
 
 if __name__ == "__main__":
     main()

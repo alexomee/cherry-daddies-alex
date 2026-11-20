@@ -1122,9 +1122,10 @@ def _dump_jamzone_sections(folder, mix, idx_to_barbeat, render_sec, logic_of_sec
             cut_ranges = cut_range
         else:
             cut_ranges = [cut_range]
-    for s in st:
+    speed = float(mix.get("stem_speed", 1.0))   # stems made faster/slower than the JamZone originals (Teen Spirit
+    for s in st:                                # 128/118, tools/jamzone/prep_teen_spirit_tempo.py): JamZone times / speed
         cap = s.get("caption", "")
-        b = s.get("begin", 0.0)
+        b = s.get("begin", 0.0) / speed
         b_eff = b
         shift = 0.0
         for c_fr, c_to in cut_ranges:

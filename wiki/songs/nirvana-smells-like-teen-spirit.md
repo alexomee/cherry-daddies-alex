@@ -1,6 +1,6 @@
 ---
 type: song
-updated: 2026-10-07
+updated: 2026-11-20
 title: Smells Like Teen Spirit
 artist: Nirvana
 set: 07.10 rehearsal
@@ -8,22 +8,29 @@ set: 07.10 rehearsal
 
 # Smells Like Teen Spirit (Nirvana)
 
-Сет репетиции 07.10.2026 (`07.10 rehearsal`). **Базовый плейбек: intro cue + click**, все участники играют живьём (`pb-other: null`, `pb-bass: null`).
+Сет репетиции 07.10.2026 (`07.10 rehearsal`). С 2026-11-20 — **128 bpm вместо 118 и синти-поп бас в плейбеке** (идея Alex: чтобы песня встала рядом с русской попсой 2000-х, бас по типу интро «Я устал»). Гитара, барабаны и вокал живьём, `pb-other: null`.
 
 ## Сводка
 
-- **bpm:** 118.0 · `"click": "follow"` (следует реальной сетке JamZone-метронома, от 110 BPM на интро до 117.6 BPM в теле песни, ошибка привязки к онсетам <4.2 мс).
-- **pitch_semitones:** 0 · `pb-other: null`, `pb-bass: null`.
-- **players:** `alex` (все гитары), `roma` (`03_Bass`), `steve` (`02_Drum_Kit`), `tanya` (`13_Lead_Vocal`).
-- **Источник:** JamZone **cat_11775**, 13 HQ M4A-стемов: `01_Click`, `02_Drum_Kit`, `03_Bass`, `04_Electric_Guitar_(feedback)`, `05_Electric_Guitar_(intro)`, `06_Rhythm_Electric_Guitar_(left_1)`, `07_Rhythm_Electric_Guitar_(left_2)`, `08_Rhythm_Electric_Guitar_(right_1)`, `09_Rhythm_Electric_Guitar_(right_2)`, `10_Lead_Electric_Guitar`, `11_Arr._Electric_Guitar_1`, `12_Arr._Electric_Guitar_2`, `13_Lead_Vocal`.
-- **mix.json:** `music/songs/Nirvana - Smells Like Teen Spirit/mix.json`.
-- **Рендер:** OFF `+1.73499 с`, lead `+1 такт` (2.034 с) для свободного звучания названия песни; общая длина 150 тактов / 305.085 с.
-- **Файлы:** `auto-render/` содержит `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `timeline.json`, раздельные mp3 в `stems/`, а также practice-миксы для всех участников (`practice-alex.mp3`, `practice-roma.mp3`, `practice-steve.mp3`, `practice-tanya.mp3`).
+- **bpm:** 128.0 (оригинал JamZone 118) · `"click": "follow"`: клик идёт по сетке JamZone-метронома, ускоренной в 128/118 раза (интро ~119, тело песни 127.6).
+- **Темп.** В рендере смены темпа нет, поэтому ускорены сами стемы: `tools/jamzone/prep_teen_spirit_tempo.py` (rubberband R3, один коэффициент на все стемы; клик не растянут, а пересобран по ударам). Оригиналы JamZone лежат в `jamzone-orig/`, ускоренные — ALAC `.m4a` под прежними именами. Сверка: кик относительно клика +6.4…+7.1 мс до и +6.8…+7.3 мс после. `"stem_speed": 1.0847` в `mix.json` — на него рендер делит времена `structure.json` для `--sections`. Вернуть 118: удалить ускоренные `NN_*.m4a`, вернуть файлы из `jamzone-orig/`, `bpm` 118, убрать `stem_speed`, перезаписать бас.
+- **pitch_semitones:** 0.
+- **pb-bass:** слой `synth-bass` (`parts/synth-bass.wav`, stem-фрейм, `gain_db 1.7`, `replaces: ["03_Bass"]`), в рендере −19.2 LUFS (норма баса), пик −8.5 dBFS.
+- **players:** `alex` (все гитары), `steve` (`02_Drum_Kit`), `tanya` (`13_Lead_Vocal`); `roma` (`03_Bass`) — запись осталась, баса живьём нет.
+- **Источник:** JamZone **cat_11775**, 13 стемов.
+- **Рендер:** OFF `+1.229 с`, 149 тактов / 279.375 с. В `auto-render/`: `all.wav` (с синт-басом, без бас-гитары), `click.wav`, `cues.wav`, `pb-bass.wav`, `cue_preview.mp3`, practice-миксы.
+- **Stage Traxx:** Click, Cues, PB Bass, Drums, Vocals, All; 279.37 с; обновлено 2026-11-20.
+
+## Синт-бас (2026-11-20)
+
+- **Линия** (B2): ровные октавные восьмые низ-низ-верх-верх на каждый аккорд, без шестнадцатых, одинаково в куплете и припеве. Гармония — петля F–B♭ | A♭–D♭ по полтакта (чётные такты F–B♭). Низ на высоте бас-гитары (F1, B♭1, A♭1, D♭2), верх октавой выше.
+- **Написано руками:** затакт в такт 6 (F1 на 5.4), рифф после припева в унисон с гитарой (такты 46–49 и 82–85: F–G♭ | C–B♭–A–A♭), последний удар 142.1 тянется два такта.
+- **Звук:** GM-800, сцена 25 M&S BASS ONLY (партии 3 — 98 MG Saw Bass, окт. −1, и 4 — 100 Acid Bass, октавой выше), velocity 100. Alex сказал «тон 025»: ROM-тон 25 — электропиано, взята сцена; он ответил «хорошо».
+- **Как собрано:** `tools/synth_bass_audition.py --bars 1 148 --out full-128 --notes-only` (ноты и времена шестнадцатых по клику) → `tools/synth_bass_gm800.py B2 25 --dir full-128` (прибор играет по USB, 1074 ноты, привязка по синк-ноте) → `tools/jamzone/prep_teen_spirit_bass.py` (слой; атаки тона опаздывали на 7 мс, сдвинуты на сетку) → рендер. `gm800_part.py` и `part_notes.py` здесь не работают: им нужен ровный темп.
+- **Замеры в рендере:** атаки баса относительно клика −0.8 / +0.2 / +1.2 мс по третям песни.
+- **Черновики** (118 bpm, такты 1–53, страница прослушивания): `analysis/teen-spirit-synth-bass/index.html` — оригинал, A (та же линия), B (с шестнадцатыми), B2, C (оффбит) на софт-синте и B2 на сцене 25.
+- **Не проверено на слух Alex:** полный рендер в 128. Под вопросом: много саба ниже 60 Гц (у сцены −5 дБ от всей энергии, у бас-гитары было −22), низкие восьмые на 4–5 дБ тише верхних на слух, рифф после припева оставлен линией бас-гитары.
 
 ## Cue
 
-1 cue (стартовый intro cue):
-1. `bar 2.1` (**4.221 с**) — `"Smells Like Teen Spirit guitar in"`:
-   - В добавленном lead-такте 0 (0.00–2.03 с) под клик естественным темпом звучит название **«Smells Like Teen Spirit»** (0.65–1.80 с).
-   - В такте 1 (исходный прекаунт JamZone, 2.03–4.22 с) на каждый клик звучат слова отсчёта: **«guitar»** (2.03 с), **«in»** (2.58 с), **«ready»** (3.12 с), **«go»** (3.67 с).
-   - На сильную долю такта 2 (**4.221 с**) вступает вступительный гитарный рифф Курта Кобейна (`05_Electric_Guitar_(intro)`).
+1 cue (стартовый): `bar 2.1` (**3.521 с**) — `"Smells Like Teen Spirit guitar in"`: название песни, затем «guitar in ready go» по клику прекаунта; на 2.1 вступает гитарный рифф.

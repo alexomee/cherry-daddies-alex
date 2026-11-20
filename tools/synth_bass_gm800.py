@@ -25,8 +25,10 @@ def main():
     ap.add_argument("line"); ap.add_argument("scene", type=int)
     ap.add_argument("--parts", default=""); ap.add_argument("--vel", type=int, default=gmm.VEL)
     ap.add_argument("--gap", type=float, default=0.03, help="s of silence before the next note")
+    ap.add_argument("--dir", default="", help="subfolder of the audition folder with notes.json")
     a = ap.parse_args(); parts = [int(x) for x in a.parts.split(",") if x]
-    d = json.load(open(f"{OUT}/notes.json")); b0 = d["bars"][0]; ss = d["slot_sec"]
+    out_dir = os.path.join(OUT, a.dir) if a.dir else OUT
+    d = json.load(open(f"{out_dir}/notes.json")); b0 = d["bars"][0]; ss = d["slot_sec"]
     line = []
     for bar, k, ln, p in d["lines"][a.line]:
         i = (bar - b0) * 16 + k; j = min(i + ln, len(ss) - 1)
@@ -67,7 +69,7 @@ def main():
     if not -0.01 < lat < 0.2:
         raise SystemExit(f"latency {lat * 1000:.0f} ms - not plausible")
     y = x[int(round((T0 + lat) * SR)):]
-    out = f"{OUT}/gm800-{a.line}-s{a.scene:03d}" + (f"-p{''.join(map(str, parts))}" if parts else "") + ".wav"
+    out = f"{out_dir}/gm800-{a.line}-s{a.scene:03d}" + (f"-p{''.join(map(str, parts))}" if parts else "") + ".wav"
     gmm.save(out, y)
     print(f"{len(line)} notes x {len(shifts)} parts, latency {lat * 1000:.1f} ms, LUFS {gmm.lufs(y):.1f}, "
           f"peak {20 * np.log10(np.abs(y).max() + 1e-9):.1f} dBFS -> {out}")
