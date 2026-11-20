@@ -11,6 +11,7 @@ original stems = reference; nothing played on the GM-800 yet: «пока gm 800 
   $P tools/jamzone/prep_begi_ot_menya.py fx        # the two reverse swells cut from the stems -> parts/pb-fx.wav
   $P tools/jamzone/prep_begi_ot_menya.py plan      # voices, bars, candidates: scenes (gmp take) and tones (gmp sweep)
   $P tools/jamzone/prep_begi_ot_menya.py rank      # after the takes: scenes and tones in one ranking against the stems
+  $P tools/jamzone/prep_begi_ot_menya.py sound     # the page where Alex picks the sound: best takes of every voice
   $P tools/jamzone/prep_begi_ot_menya.py preview   # A/B page: original / my notes / MIDI as it is / Roma
   gmp record "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # when the GM-800 is free
   gmp layer  "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # -> parts/pb-synths.wav
@@ -91,30 +92,32 @@ def shared():
 # tone = provisional pick by patch name (nothing has been played on the GM-800 yet); cand = the short list for
 # `gmp sweep --tones`; solo = bars where the voice is (almost) alone in keys + strings, for the sweep.
 VOICES = {
-    "lead":      dict(tone=316, role="lead",  solo=(144, 148), cand=[316, 1024, 1092, 352, 350, 1073, 314, 349, 980],
+    "lead":      dict(tone=316, role="lead",  solo=(144, 148), cand=[316, 1024, 1092, 352, 350, 1073, 314, 349, 980, 315],
                       what="лид, верхняя октава (G#4 B4 E5 F#5→D#5)"),
     "lead_lo":   dict(tone=316, role="lead",  solo=(144, 148), cand=[], what="лид октавой ниже (в записи основная)"),
     "lead_echo": dict(tone=316, role="lead",  solo=(144, 148), cand=[], what="эхо лида, −10 дБ (или дилей тона)"),
-    "whistle":   dict(tone=880, role="whistle", solo=(1, 5),   cand=[880, 881, 882, 883, 886, 223, 224, 957, 205],
+    "whistle":   dict(tone=880, role="whistle", solo=(1, 5),   cand=[880, 881, 882, 883, 886, 223, 224, 957, 205, 213, 167],
                       what="«свист» восьмыми D#5 E5 D#5 E5 D#5 C#5 · C#5"),
-    "stab":      dict(tone=1024, role="stab", solo=(43, 47),   cand=[1024, 316, 1092, 322, 314, 317, 1019, 352],
+    "stab":      dict(tone=1024, role="stab", solo=(43, 47),   cand=[1024, 316, 1092, 322, 314, 317, 1019, 352, 315],
                       what="удары припева квинтами, 1 · 2 · 2.75 · 3.5 · 4.25"),
     "arp":       dict(tone=350, role="pluck", solo=(76, 80),   cand=[350, 351, 1089, 1073, 1083, 1078, 354, 680, 676],
                       what="фигура шестнадцатыми C#4 D#4 E4 G#3"),
-    "pad":       dict(tone=287, role="pad",   solo=(112, 116), cand=[287, 286, 284, 753, 1011, 275, 264, 285],
+    "pad":       dict(tone=287, role="pad",   solo=(112, 116), cand=[287, 286, 284, 753, 1011, 275, 264, 285, 281],
                       what="пэд, аккорды по такту"),
 }
 # Scenes (presets) first, single ROM tones second (Alex 2026-11-20: «ты по одному тону собрался перебирать? кандидатов из
 # пресетов нет?»). Picked from the contents of all 150 scenes of gear/gm-800/livesets/2026-11-17-v3.tsl (tones of every
 # part); (scene, parts or None = the whole scene). Slot 50 + N = factory scene N. Scene 3 BEGI OT MENYA is Alex's own
 # scene for this song (= factory SWEEP STRINGS at scene level 68): OB Bright Str + Voyager Pad + Aurora Pad.
+# Only slots up to 128: gm800_part.py take loads a scene with bank 0, so slot 129+ comes out as slot N - 128 (first run
+# 2026-11-20: 130 -> 2, 136 -> 8, 137 -> 9, 144 -> 16, 148 -> 20; those takes were thrown away). The tones of factory
+# scenes 80, 86, 87, 94, 98 are in the single-tone lists instead (315, 286, 281, 167, 213, 223).
 SCENES = {
-    "lead":    [(76, [4]), (114, [2]), (28, [4]), (19, None), (84, None), (101, None), (79, None), (17, [1]), (121, None), (130, [1]),
-                (112, None)],
-    "whistle": [(116, [3]), (148, [2]), (144, None), (83, None), (8, [1]), (137, None), (80, [3])],
-    "stab":    [(76, [4]), (114, [2]), (121, None), (130, None), (60, None), (101, None), (23, [4]), (119, None)],
+    "lead":    [(76, [4]), (114, [2]), (28, [4]), (19, None), (84, None), (101, None), (79, None), (17, [1]), (121, None), (112, None)],
+    "whistle": [(116, [3]), (83, None), (8, [1]), (80, [3])],
+    "stab":    [(76, [4]), (114, [2]), (121, None), (60, None), (101, None), (23, [4]), (119, None)],
     "arp":     [(84, None), (112, [4]), (19, [2, 4]), (28, [3]), (25, [4]), (93, [4]), (105, None), (87, [1])],
-    "pad":     [(3, None), (136, None), (81, None), (70, None), (57, None), (16, None), (62, None), (91, None), (11, None)],
+    "pad":     [(3, None), (81, None), (70, None), (57, None), (16, None), (62, None), (91, None), (11, None)],
 }
 GAP = {"lead": 0.002, "lead_lo": 0.002, "lead_echo": 0.002, "stab": 0.002, "arp": 0.002}   # 16th-long notes: keep the length
 
@@ -267,31 +270,93 @@ def cmd_plan():
     print(f"\nвсего: {n_sc} дублей на сценах, {n_t} тонов; потом `prep_begi_ot_menya.py rank` — общий рейтинг сцен и тонов против стема")
 
 
+def ranked(gp, song, part, sct, rows, vn):
+    """[(score, spectrum, picture, octave, what, file)] of the kept takes of a voice, best first; + the stem of its bars."""
+    import glob, re
+    b0, b1 = VOICES[vn]["solo"]
+    files = glob.glob(os.path.join(song.out, f"part-synths-{vn}-s*-{b0}-{b1}*.wav")) \
+        + glob.glob(os.path.join(song.out, f"sweep-synths-{vn}*-{b0}-{b1}-t*.wav"))
+    dur = (b1 - b0) * song.bar + 1.0
+    ref = sum(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + dur) for st in part["stems"]).mean(1)
+    R = gp.cqt_db(ref); out = []
+    for f in files:
+        x = gp.gmm.read_wav(f).mean(1)[:len(ref)]
+        sc, spc, tf, o = gp.sweep_score(R, gp.cqt_db(x), song.semi); nm = os.path.basename(f)
+        m = re.search(r"-s(\d+)-(all|p\d+)-", nm); t = re.search(r"-t(\d+)\.wav$", nm)
+        what = (f"сцена {int(m[1])} {sct[int(m[1])][0]}" + ("" if m[2] == "all" else " · партия " + ",".join(m[2][1:])) if m
+                else f"тон {int(t[1])} {rows[int(t[1])]}")
+        out.append((sc, spc, tf, o, what, f))
+    return sorted(out, reverse=True), ref
+
+
 def cmd_rank():
     """Scene takes (gmp take) and tone takes (gmp sweep) of every voice in one ranking against the stems of its solo
     bars (gm800_part.sweep_score: mean spectrum + time-frequency picture). No GM-800: reads the kept takes."""
-    import glob, re
     gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); sct = scene_table()
     rows = {int(r.split("\t")[0]): r.split("\t")[1].split("  ")[0] for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
     for vn, spec in VOICES.items():
-        b0, b1 = spec["solo"]
-        files = glob.glob(os.path.join(song.out, f"part-synths-{vn}-s*-{b0}-{b1}*.wav")) \
-            + glob.glob(os.path.join(song.out, f"sweep-synths-{vn}*-{b0}-{b1}-t*.wav"))
-        if not files:
+        out, _ = ranked(gp, song, part, sct, rows, vn)
+        if out:
+            print(f"\n{vn}, такты {spec['solo'][0]}-{spec['solo'][1] - 1}:")
+            for sc, spc, tf, o, what, f in out:
+                print(f"  {sc:.3f}  спектр {spc:.3f}  картина {tf:.3f}  окт {o:+d}  {what}")
+
+
+SOUND_TOP = 7                              # candidates a voice on the page
+SOUND_KEEP = {"pad": ["-s003-"]}           # always on the page: Alex's own scene of this song
+SOUND_TITLE = {"lead": "Лид (такты 144–147: в оригинале лид + пэд)", "whistle": "Свист (такты 1–4: в оригинале свист + лид + пэд)",
+               "stab": "Удары припева (такты 43–46: в оригинале удары + свист)", "arp": "Арп (такты 76–79: в оригинале один)",
+               "pad": "Пэд (такты 112–115: в оригинале пэд + арп)"}
+
+
+def cmd_sound():
+    """The page where Alex picks the sound: per voice the stem of its bars and the best takes (scenes and tones in one
+    ranking), all at the stem's loudness, all the same length, in sync (tools/templates/part-listen-page.example.html)."""
+    import re
+    gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); sct = scene_table(); gmm = gp.gmm
+    rows = {int(r.split("\t")[0]): r.split("\t")[1].split("  ")[0] for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
+    os.makedirs(PAGE, exist_ok=True); n = int((4 * song.bar + 1.0) * gmm.SR); T = []; groups = []
+    keys = list("1234567890QWERTYUIOPASDFGHJKLZXCVBNM") + [""] * 60; k = 0
+
+    def mp3(name, x):
+        x = np.asarray(x, dtype=np.float32); x = x if x.ndim == 2 else np.stack([x, x], 1)
+        x = np.vstack([x, np.zeros((max(0, n - len(x)), 2), np.float32)])[:n]
+        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(gmm.SR), "-ac", "2", "-i", "-", "-b:a", "160k",
+                        os.path.join(PAGE, name)], input=x.tobytes(), check=True)
+
+    for vn in ("lead", "whistle", "stab", "arp", "pad"):
+        out, _ = ranked(gp, song, part, sct, rows, vn)
+        if not out:
             continue
-        dur = (b1 - b0) * song.bar + 1.0
-        ref = sum(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + dur) for st in part["stems"]).mean(1)
-        R = gp.cqt_db(ref); out = []
-        for f in files:
-            x = gp.gmm.read_wav(f).mean(1)[:len(ref)]
-            sc, spc, tf, o = gp.sweep_score(R, gp.cqt_db(x), song.semi); nm = os.path.basename(f)
-            m = re.search(r"-s(\d+)-(all|p\d+)-", nm); t = re.search(r"-t(\d+)\.wav$", nm)
-            what = (f"сцена {int(m[1])} {sct[int(m[1])][0]} ({'вся' if m[2] == 'all' else 'партия ' + ','.join(m[2][1:])})" if m
-                    else f"тон {int(t[1])} {rows[int(t[1])]}")
-            out.append((sc, spc, tf, o, what))
-        print(f"\n{vn}, такты {b0}-{b1 - 1}:")
-        for sc, spc, tf, o, what in sorted(out, reverse=True):
-            print(f"  {sc:.3f}  спектр {spc:.3f}  картина {tf:.3f}  окт {o:+d}  {what}")
+        b0, b1 = VOICES[vn]["solo"]
+        ref = sum(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + n / gmm.SR) for st in part["stems"])
+        L = gmm.lufs(ref); gid = "g-" + vn; groups.append(f'<h2>{SOUND_TITLE[vn]}</h2>\n<div class="grid" id="{gid}"></div>')
+        mp3(f"snd-{vn}-00-stem.mp3", ref); T.append([gid, keys[k], f"snd-{vn}-00-stem.mp3", "Оригинал", "стемы keys + strings", True]); k += 1
+        pick = out[:SOUND_TOP] + [r for r in out[SOUND_TOP:] if any(t in os.path.basename(r[5]) for t in SOUND_KEEP.get(vn, []))]
+        for i, (sc, spc, tf, o, what, f) in enumerate(pick, 1):
+            x = gmm.read_wav(f); x = x * 10 ** ((L - gmm.lufs(x)) / 20)
+            fn = f"snd-{vn}-{i:02d}.mp3"; mp3(fn, x)
+            m = re.search(r"-s(\d+)-(all|p\d+)-", os.path.basename(f))
+            tones = " + ".join(f"{num} {tn}" for q, num, tn in sct[int(m[1])][1] if m[2] == "all" or str(q) in m[2][1:]) if m else "отдельный тон, сухой"
+            T.append([gid, keys[k], fn, what, f"{tones} · сходство {sc:.2f}", False]); k += 1
+            print(f"  {vn:8} {i}. {sc:.3f} {what}  [{tones}]")
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-page.example.html"), encoding="utf-8").read()
+    head, rest = tpl.split("<main>", 1); body, tail = rest.split("</main>", 1); script = tail[tail.index("<script>"):]
+    bar_html = tail[:tail.index("<script>")]
+    bar_html = re.sub(r'<i style="left:[\d.]+%"></i>', "", bar_html)
+    marks = "".join(f'<i style="left:{100 * q * song.bar / (n / gmm.SR):.1f}%"></i>' for q in (1, 2, 3, 4))
+    bar_html = bar_html.replace('<div id="fill"></div>', '<div id="fill"></div>' + marks)
+    script = re.sub(r"const BAR = [^;]+;", f"const BAR = {song.bar};", script)
+    script = re.sub(r"const T = \[.*?\n\];", "const T = " + json.dumps(T, ensure_ascii=False) + ";", script, flags=re.S)
+    script = re.sub(r"const KEYCODE = \{[^}]*\};", "const KEYCODE = {" + ", ".join(f'{c}: "Key{c}"' for c in "QWERTYUIOPASDFGHJKLZXCVBNM") + "};", script)
+    main = ("<main>\n  <h1>Беги от меня — выбор звука</h1>\n  <p class=\"sub\">Четыре такта на голос, всё на одной громкости, играет по кругу; "
+            "переключение идёт с того же места. В каждой группе оригинал и лучшие кандидаты — сцены и отдельные тоны в одном "
+            "рейтинге (сходство с оригиналом: спектр и рисунок во времени). Цифры — только подсказка, выбираешь ты. "
+            "<kbd>пробел</kbd> пауза, клавиши на кнопках.</p>\n" + "\n".join(groups) + "\n</main>")
+    head = head.replace("<title>Прослушивание партии</title>", "<title>Беги от меня — выбор звука</title>")
+    head = re.sub(r"<title>.*?</title>", "<title>Беги от меня — выбор звука</title>", head, flags=re.S)
+    open(os.path.join(PAGE, "sound.html"), "w", encoding="utf-8").write(head + main + bar_html + script)
+    print(os.path.join(PAGE, "sound.html"))
 
 
 HTML = """
@@ -398,4 +463,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "preview": cmd_preview}[sys.argv[1]]()
