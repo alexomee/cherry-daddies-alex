@@ -10,6 +10,8 @@ them with the record; `store` writes the chosen one into the slot (backups with 
     gm9 store NAME                 # that variant into slot 29's memory
     gm9 layer-test [--level L] [--alone]   # 198 Fat Mask Dist Ld in part 3 (TEMP), lead 77-80 vs the record
     gm9 layer-store --level L              # the layer into slot 29's memory
+    gm9 match-test                 # part 3 (198) with the harpsichord's play settings, legato line, before/after
+    gm9 match-store                # those settings into slot 29's memory
 
 Scene 29 as found (2026-11-20): parts 1-2 Harpsichord 1 (oct +1 / 0), PLAY FEEL 2, TEMPO 120 (the song is 140),
 Chorus/Delay on (SDD-320) but every part's send 0, Reverb on (level 70), sends 30. FX1 = the SuperFilter of bars
@@ -161,6 +163,84 @@ def cmd_layer_test(level, alone):
           f"  (record: dip {rd:.1f}, centroid {rc:.0f})")
 
 
+# ---- the layer plays together with the harpsichord (Alex 2026-11-20: «звуки как будто не вместе играют, атака разная?»).
+# Same MIDI clock: onsets equal (< 1 ms), pitch steady. The difference is in ToneOthers (02 6P): 198 came with its lead
+# defaults (CHROMATIC OFF, MONO, LEGATO ON, PORTA ON time 3), the harpsichord parts are CHROMATIC TYPE2, POLY, HOLD 3,
+# legato/porta off. From the guitar the strings overlap: 198 then slides into the next note without a new attack while
+# the harpsichord plucks every note. `match` copies parts 1-2's play settings to part 3.
+OTHERS = 0x60                                          # SceneToneOthers P: chromatic, mono/poly, hold, legato, porta sw,
+                                                       # porta time, porta type, unison, bend range (+ fixed 0)
+
+
+def set_match(rig_or_dt, src=0):
+    """Part 3's ToneOthers = part `src`+1's (read from TEMP). rig_or_dt = (rq, dt)."""
+    rq, dt = rig_or_dt
+    v = rq([TEMP, 0x02, OTHERS + src, 0], 9)
+    dt([TEMP, 0x02, OTHERS + LAYER_PART - 1, 0], v); time.sleep(0.3)
+    return v
+
+
+def legato_line(line, over=0.03):
+    """Each note held until the next note-on + `over` s, like ringing strings."""
+    return [(t, n, (line[i + 1][0] - t + over) if i + 1 < len(line) else d) for i, (t, n, d) in enumerate(line)]
+
+
+def retrig(song, x, line):
+    """Per note of the layer alone: rise of the envelope at the note-on (dB: max of 0-30 ms vs 15 ms before)."""
+    y = x.mean(1) if x.ndim > 1 else x; n = int(0.002 * SR); out = []
+    for t, m, d in line[1:]:
+        a = int(t * SR)
+        pre = np.sqrt(np.mean(y[a - int(0.015 * SR):a] ** 2)) + 1e-9
+        post = max(np.sqrt(np.mean(y[i:i + n] ** 2)) for i in range(a, a + int(0.03 * SR), n))
+        out.append(20 * np.log10(post / pre))
+    return np.array(out)
+
+
+def cmd_match_test():
+    song = gmm.Song("Попрошу"); line = legato_line(lead_line(song)); res = {}
+    with gmm.Rig() as rig:
+        for tag in ("before", "after"):
+            rig.load(SLOT)
+            if tag == "after":
+                print("part 3 ToneOthers <- part 1:", set_match((rig.g.rq, rig.g.dt)))
+            print(f"{tag}: part 3 ToneOthers", rig.g.rq([TEMP, 0x02, OTHERS + LAYER_PART - 1, 0], 9))
+            res[tag] = take(rig, song, line, f"legato-{tag}")
+            for q in (0, 1):
+                rig.g.dt([TEMP, 0x02, q, 0x04], [0])
+            res[tag + "-198"] = take(rig, song, line, f"legato-{tag}-198alone")
+    for tag in ("before", "after"):
+        r = retrig(song, gmm.read_wav(res[tag + "-198"]), line)
+        print(f"  198 alone, {tag:6}: new attack per note (rise dB) median {np.median(r):5.1f}, "
+              f"notes with a rise < 3 dB: {int((r < 3).sum())} of {len(r)}")
+
+
+def cmd_match_store():
+    sx = gmm.Sx()
+    try:
+        stamp = time.strftime("%H%M%S")
+        before, pb = gmm.backup(sx, SLOT, f"before-match-{stamp}")
+        if len(before) != 88 or not gmm.scene_name(before).startswith("POPROSHU"):
+            raise SystemExit(f"slot {SLOT}: '{gmm.scene_name(before)}' / {len(before)} blocks: not writing")
+        for m in ([0xB1, 0, 0], [0xB1, 32, 0], [0xC1, SLOT - 1]):
+            sx.o.send_message(m)
+        time.sleep(1.5)
+        src = before.get("02 60 00")                      # part 1's ToneOthers in the slot (Sx has no single read)
+        if not src:
+            raise SystemExit(f"slot {SLOT}: no block 02 60 00 in the dump ({sorted(before)[:5]}...)")
+        v = list(src[:9]); sx.dt([TEMP, 0x02, OTHERS + LAYER_PART - 1, 0], v, 0.3); time.sleep(0.5)
+        new = sx.dump([TEMP, 0x00])
+        if len(new) != 88:
+            raise SystemExit(f"temp scene: read {len(new)} of 88 blocks, not writing")
+        sx.write(gmm.slot_base(SLOT), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, SLOT, f"after-match-{stamp}")
+        bad = [k for k in new if after.get(k) != new[k]]
+        print(f"slot {SLOT} '{gmm.scene_name(after)}': part 3 ToneOthers = {v}, 88 blocks written, "
+              f"mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
+        sx.o.send_message([0xC1, 0])
+    finally:
+        sx.close()
+
+
 def cmd_layer_store(level):
     sx = gmm.Sx()
     try:
@@ -216,8 +296,13 @@ if __name__ == "__main__":
     p = sub.add_parser("store"); p.add_argument("name", choices=list(VARIANTS))
     p = sub.add_parser("layer-test"); p.add_argument("--level", type=int, default=100); p.add_argument("--alone", action="store_true")
     p = sub.add_parser("layer-store"); p.add_argument("--level", type=int, required=True)
+    sub.add_parser("match-test"); sub.add_parser("match-store")
     a = ap.parse_args()
-    if a.cmd == "test":
+    if a.cmd == "match-test":
+        cmd_match_test()
+    elif a.cmd == "match-store":
+        cmd_match_store()
+    elif a.cmd == "test":
         cmd_test(a.names)
     elif a.cmd == "store":
         cmd_store(a.name)
