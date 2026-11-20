@@ -96,7 +96,7 @@ def lines(orig, bars, energy, active):
     the riff bars, the pick-up into bar 6 and the last held note come from the original line."""
     by_bar = {}
     for s, l, p in orig: by_bar.setdefault(s // 16 + 1, []).append([s, l, p])
-    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": [], **{k: [] for k in VARS}, "ARR": []}
+    out = {"A": [n for b in bars for n in by_bar.get(b, [])], "B": [], "B2": [], "C": [], **{k: [] for k in VARS}, "ARR": [], "ARR2": []}
     for b in bars:
         own = by_bar.get(b, [])
         if b < 6 or inr(b, RIFF) or b >= 142:
@@ -108,7 +108,7 @@ def lines(orig, bars, energy, active):
                 cell = [(0, 4, F1), (4, 2, F1), (6, 2, fs), (8, 2, fs), (10, 2, fs)]
             elif inr(b, RIFF): cell = [(0, 4, 36), (4, 2, 36), (6, 2, 36), (8, 2, BB1), (10, 2, BB1), (12, 2, 33), (14, 2, AB1)]
             else: cell = []
-            for key in ("B2", "ARR") + VARS: out[key] += [[s0 + k, l, p] for k, l, p in cell]
+            for key in ("B2", "ARR", "ARR2") + VARS: out[key] += [[s0 + k, l, p] for k, l, p in cell]
             continue
         for half, root in enumerate(LOOP[b % 2]):
             s0 = (b - 1) * 16 + half * 8
@@ -142,6 +142,12 @@ def lines(orig, bars, energy, active):
             elif sec == "solo": cell = walk if (c == 3 and lp % 2 == 1) else base     # plain ground under the guitar solo
             else: cell = walk if c == 3 else base                                     # loud intro
             out["ARR"] += [[s0 + k, 2, p] for k, p in cell]
+            # ARR2 (Alex after hearing ARR: «одиночные нигде не нужны, основной паттерн прямые, каждые 4 такта небольшая
+            # вариация типа синкопы»): straight everywhere, the last cell of every 4th bar varies - syncopation and the
+            # passing C in turn. In the playback it is spliced from the B2 and ARR takes (prep_teen_spirit_bass.py splice)
+            ph = (b - 6) // 4
+            cell = base if not (c == 3 and (b - 6) % 4 == 3) else push if ph % 2 == 0 else walk
+            out["ARR2"] += [[s0 + k, 2, p] for k, p in cell]
             if e == 0:   cell = [(2, 2, root), (6, 2, root)]
             elif e == 1: cell = [(2, 2, root), (6, 2, hi)]
             else:        cell = [(1, 1, root), (2, 1, hi), (3, 1, root), (5, 1, root), (6, 1, hi), (7, 1, root)]
