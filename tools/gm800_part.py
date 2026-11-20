@@ -239,7 +239,8 @@ def take_path(song, part_file, voice, scene, parts, b0, b1):
 
 def cmd_take(song, part_file, voice, scene, parts, b0, b1, as_played=False, vel=None):
     part = json.load(open(part_file, encoding="utf-8")); tones = tone_names()
-    line = voice_line(song, part, voice, b0, b1)
+    line = sorted(sum((voice_line(song, part, v, b0, b1) for v in voice.split(",")), []))   # "a,b" = both voices at once,
+    voice = voice.replace(",", "+")                                                         # as sweep does (file: a+b)
     if not line:
         raise SystemExit(f"voice '{voice}' has no notes in bars {b0}-{b1}")
     with gmm.Rig() as rig:
