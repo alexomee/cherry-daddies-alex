@@ -41,6 +41,7 @@ The playback layer is described in NOTES.json:
 (a take is a scene, whole or some of its parts, or one ROM tone in part 1 of an INIT scene - for
 a part nobody plays live, so no scene is kept for it)
 A take may carry "delay": {"beats": 0.5, "db": -5, "fb": 0.25} - an echo added by `layer`, offline.
+"shift": N (semitones) skips the octave probe of the take: the notes are sent N below the written pitch.
 `record` plays each take and cuts it so that sample 0 is the bar line of its first bar: the USB
 record chain has a latency that changes from run to run, so every take starts with a short note
 on a sharp scene (SYNC_SCENE), its onset gives the latency of this very recording, then the
@@ -318,7 +319,8 @@ def cmd_record(song, part_file, only=None, tail=4.0):
                 sp = [x for x in scene_parts(rig, tones) if (x[0] in tk["parts"] if tk.get("parts") else x[2])]
             shifts = {}
             for pnum, ch, on, num, name, level in sp:
-                sh = probe_shift(rig, ch)
+                sh = tk["shift"] if "shift" in tk else probe_shift(rig, ch)   # "shift": 0 = send the notes as written: the
+                # probe reads a tone with a sub-octave or a built-in fifth an octave or two low (537 Mad Organ, 970 5th Saw Lead)
                 if sh is not None:
                     shifts[ch] = sh
             if not shifts or not line:
@@ -326,23 +328,36 @@ def cmd_record(song, part_file, only=None, tail=4.0):
             if tk.get("as_played") and shifts:       # the scene as Alex plays it: every part gets the same note
                 ref = min(shifts.values())           # (its lowest part sounds at the written pitch, the parts
                 shifts = {ch: ref for ch in shifts}  # shifted up stay above it, as on the guitar)
-            rig.load(SYNC_SCENE)
-            msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
-            msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
-            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), scene - 1])]     # bank 0 is set: rig.load
-            if tone_msg:
-                msgs += [(SYNC_AT + 1.4, tone_msg)]
-            for t, n, d in line:
-                for ch, sh in shifts.items():
-                    msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, tk.get("vel", gmm.VEL)]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
-            dur = SYNC_T0 + (b1 - b0) * song.bar + tail
-            rec = rig.sd.rec(int((dur + 0.4) * SR), SR, channels=2, device=rig.dev)
-            t0 = time.perf_counter() + 0.4
-            for t, m in sorted(msgs, key=lambda e: (e[0], e[1][0] & 0xF0 == 0x90)):
-                while time.perf_counter() < t0 + t:
-                    time.sleep(0.0005)
-                rig.g.out.send_message(m)
-            rig.sd.wait(); x = rec[int(0.4 * SR):]
+            scene_nm = rig.g.name()                          # the take is repeated when the GM-800 is not on the
+            for attempt in range(4):                         # take's own scene / tone afterwards: a PC from elsewhere
+                rig.load(SYNC_SCENE)
+                msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
+                msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
+                msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), scene - 1])]     # bank 0 is set: rig.load
+                if tone_msg:
+                    msgs += [(SYNC_AT + 1.4, tone_msg)]
+                for t, n, d in line:
+                    for ch, sh in shifts.items():
+                        msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, tk.get("vel", gmm.VEL)]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
+                dur = SYNC_T0 + (b1 - b0) * song.bar + tail
+                rec = rig.sd.rec(int((dur + 0.4) * SR), SR, channels=2, device=rig.dev)
+                t0 = time.perf_counter() + 0.4
+                for t, m in sorted(msgs, key=lambda e: (e[0], e[1][0] & 0xF0 == 0x90)):
+                    while time.perf_counter() < t0 + t:
+                        time.sleep(0.0005)
+                    rig.g.out.send_message(m)
+                rig.sd.wait(); x = rec[int(0.4 * SR):]
+                if tone_msg:                                 # (Stage Traxx launched by another session, 2026-11-20)
+                    got = rig.g.rq([0x10, 0x02, 0x00, 0x00], 3)
+                    ok = bool(got) and list(got[:3]) == body[4:7] and "INIT" in rig.g.name().upper()
+                else:
+                    ok = rig.g.name() == scene_nm
+                if ok:
+                    break
+                print(f"take {i}: the scene changed under the take - repeated", flush=True)
+                rig.load(scene)
+            else:
+                raise SystemExit(f"take {i}: the scene keeps changing - something is sending PCs to the GM-800")
             env = np.abs(x[:int((SYNC_AT + 0.45) * SR)]).max(1); pk = env.max()
             if pk < 1e-3:
                 raise SystemExit(f"take {i}: no sync note in the recording")
