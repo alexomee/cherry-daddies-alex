@@ -15,6 +15,7 @@ the same sound Alex plays live on that scene.
     gmp layer "<song>" NOTES.json            # takes -> parts/<file>.wav (stem frame), offline
     gmp balance 51 3:127 1:110,60,30,15      # loudness of part 1 at these PART LEVELs against part 3 at 127
     gmp tones "<song>" A6 223,224,886 [--base 33]   # one held note on ROM tones: harmonics, attack, pitch
+    gmp loudness 30 34 [--phrase "A3 C4 E4 A4"]   # scenes against each other: same phrase, LUFS by USB
     gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
     gmp copy 147 34 "NE ISHI SOLO 2"         # a scene as it is into an INIT slot (scenes above 128
                                              # can't be called by a plain PC: wiki/pipelines/gm-800.md)
@@ -294,6 +295,23 @@ def cmd_tones(song, note, nums, base, hold=4.0):
                   f"{gmm.lufs(x[:int(hold * SR)]):6.1f}", flush=True)
 
 
+def cmd_loudness(scenes, phrase, parts=None):
+    """The same short phrase on every scene (each sounding part, at sounding pitch): LUFS of the
+    USB take. For 'make scene X n dB quieter' and 'is the new scene level with the old one'."""
+    ns = [midi_of(s) for s in phrase.split()]
+    line = [(0.5 * i, n, 0.4) for i, n in enumerate(ns[:-1])] + [(0.5 * (len(ns) - 1), ns[-1], 1.2)]
+    end = line[-1][0] + 1.3; tones = tone_names()
+    with gmm.Rig() as rig:
+        for sc in scenes:
+            nm, _ = rig.load(sc)
+            sp = [x for x in scene_parts(rig, tones) if (x[0] in parts if parts else x[2])]
+            sh = {ch: (probe_shift(rig, ch) or 0) for _p, ch, *_ in sp}; time.sleep(1.2)
+            x = play(rig, [(t, n - v, d, ch) for t, n, d in line for ch, v in sh.items()], tail=1.0)
+            lvl = rig.g.rq([0x10, 0, 0, 0x13], 1)
+            print(f"scene {sc} '{nm}' scene level {lvl[0] if lvl else '?'}, parts {[q[0] for q in sp]}: "
+                  f"LUFS {gmm.lufs(x[:int(end * SR)]):.1f}  peak {20 * np.log10(np.abs(x).max() + 1e-9):.1f}", flush=True)
+
+
 def cmd_balance(tpl, ref, part, chord="E4 A4 C5"):
     (rp, rl), (pp, levels) = ref, part
     line = [(0.0, midi_of(n), 3.0) for n in chord.split()]
@@ -449,6 +467,8 @@ def main():
     p = sub.add_parser("part"); p.add_argument("src"); p.add_argument("dst"); p.add_argument("--level", type=int)
     p = sub.add_parser("copy"); p.add_argument("src", type=int); p.add_argument("slot", type=int)
     p.add_argument("name"); p.add_argument("--force", action="store_true")
+    p = sub.add_parser("loudness"); p.add_argument("scenes", type=int, nargs="+")
+    p.add_argument("--phrase", default="A3 C4 E4 A4"); p.add_argument("--parts", default="")
     p = sub.add_parser("balance")
     p.add_argument("template", type=int); p.add_argument("ref"); p.add_argument("part")
     p.add_argument("--chord", default="E4 A4 C5")
@@ -463,6 +483,8 @@ def main():
         return cmd_part(tuple(int(v) for v in a.src.split(":")), tuple(int(v) for v in a.dst.split(":")), a.level)
     if a.cmd == "copy":
         return cmd_copy(a.src, a.slot, a.name, a.force)
+    if a.cmd == "loudness":
+        return cmd_loudness(a.scenes, a.phrase, [int(v) for v in a.parts.split(",") if v] or None)
     if a.cmd == "balance":
         rp, rl = a.ref.split(":"); pp, lv = a.part.split(":")
         return cmd_balance(a.template, (int(rp), int(rl)), (int(pp), [int(v) for v in lv.split(",")]), a.chord)

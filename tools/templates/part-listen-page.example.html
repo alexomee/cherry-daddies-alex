@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ты меня не ищи — клавиши куплета</title>
+<style>
+  :root {
+    --bg: #f6f5f2; --card: #ffffff; --ink: #1c1b19; --mute: #6b6862; --line: #e2dfd8;
+    --accent: #b3261e; --accent-ink: #ffffff; --on: #fbe9e7; --ref: #1f5f8b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161513; --card: #211f1c; --ink: #efece6; --mute: #a09c94; --line: #36332e;
+            --accent: #ef6a5e; --accent-ink: #1a0907; --on: #3a1f1c; --ref: #7fbfe8; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.45 -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 120px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  .sub { color: var(--mute); margin: 0 0 20px; }
+  h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--mute);
+       margin: 28px 0 8px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+  button.t { display: flex; gap: 12px; align-items: center; text-align: left; width: 100%;
+             background: var(--card); color: var(--ink); border: 1px solid var(--line);
+             border-radius: 10px; padding: 10px 12px; font: inherit; cursor: pointer; }
+  button.t:hover { border-color: var(--mute); }
+  button.t.on { background: var(--on); border-color: var(--accent); }
+  button.t .k { flex: none; width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--line);
+                display: grid; place-items: center; font: 600 13px ui-monospace, Menlo, monospace; color: var(--mute); }
+  button.t.on .k { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  button.t b { display: block; font-weight: 600; }
+  button.t small { display: block; color: var(--mute); font-size: 13px; }
+  button.t.ref b { color: var(--ref); }
+  table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--line);
+          border-radius: 10px; overflow: hidden; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left;
+           font-variant-numeric: tabular-nums; }
+  th { font-size: 13px; color: var(--mute); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  td.n { font-family: ui-monospace, Menlo, monospace; }
+  td.cur { background: var(--on); }
+  .wrap { overflow-x: auto; }
+  .q { color: var(--mute); font-size: 14px; margin: 8px 0 0; }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; background: var(--card); border-top: 1px solid var(--line); }
+  .bar > div { max-width: 860px; margin: 0 auto; padding: 10px 16px; display: flex; gap: 12px; align-items: center; }
+  #pp { flex: none; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--accent);
+        color: var(--accent-ink); font-size: 18px; cursor: pointer; }
+  #now { flex: 1; min-width: 0; }
+  #now b { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #prog { width: 100%; height: 6px; background: var(--line); border-radius: 3px; margin-top: 6px; cursor: pointer; position: relative; }
+  #fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--accent); border-radius: 3px; }
+  #prog i { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--mute); opacity: .6; }
+  #tm { flex: none; color: var(--mute); font: 13px ui-monospace, Menlo, monospace; }
+  kbd { font: 12px ui-monospace, Menlo, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 1px 5px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Ты меня не ищи — клавиши куплета</h1>
+  <p class="sub">Такты 9–12, все файлы на одной громкости. Нажми любой вариант: он играет по кругу, а переключение
+    между вариантами идёт с того же места. Клавиши: <kbd>пробел</kbd> пауза, <kbd>0</kbd> оригинал,
+    <kbd>1</kbd>–<kbd>9</kbd> смеси, <kbd>Q</kbd> <kbd>W</kbd> <kbd>E</kbd> <kbd>R</kbd> и <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> <kbd>F</kbd> отдельные партии.
+    <b>Новое: в такте 3 добавлена верхняя До (C6)</b> — варианты 2, 3, 5, 6, 8, 9.</p>
+
+  <h2>Смесь B — подобранные партии (JP Soft Strings + Aurora Pad + немного OB Bright Str)</h2>
+  <div class="grid" id="g-main"></div>
+
+  <h2>Смесь A — обе сцены целиком</h2>
+  <div class="grid" id="g-a"></div>
+
+  <h2>С барабанами и вокалом</h2>
+  <div class="grid" id="g-ctx"></div>
+
+  <h2>Верхний голос (dreamy) — сцена 51 SWEEP STRINGS</h2>
+  <div class="grid" id="g-high"></div>
+
+  <h2>Низкий голос (смычковый) — сцена 57 ABOVE STRINGS</h2>
+  <div class="grid" id="g-low"></div>
+
+  <h2>Длинная высокая нота на соло (A6, такты 41–56) — <kbd>Z</kbd> оригинал, <kbd>X</kbd> <kbd>C</kbd> <kbd>V</kbd> <kbd>B</kbd> тоны</h2>
+  <div class="grid" id="g-a6"></div>
+
+  <h2>Ноты, которые играет прибор</h2>
+  <div class="wrap">
+  <table>
+    <tr><th>Голос</th><th id="c0">Такт 9 · Am</th><th id="c1">Такт 10 · F</th><th id="c2">Такт 11 · C</th><th id="c3">Такт 12 · G</th></tr>
+    <tr><td>Верхний</td><td class="n" data-c="0">E4 A4 C5</td><td class="n" data-c="1">F4 A4 C5</td><td class="n" data-c="2">(E4) C5 E5 G5 + C6</td><td class="n" data-c="3">B4 D5 G5</td></tr>
+    <tr><td>Низкий</td><td class="n" data-c="0">A1 + A3</td><td class="n" data-c="1">A1 + A3</td><td class="n" data-c="2">G1 + G3</td><td class="n" data-c="3">G1 + G3</td></tr>
+  </table>
+  </div>
+  <p class="q">Такт 3: в стеме есть верхняя До (C6), входит с началом такта; нижняя Ми (E4) тоже есть, тише — она в вариантах 3, 6, 9.
+    Отдельные партии внизу записаны без C6. Под вопросом ещё: E5 в Am, G5 в такте G.</p>
+</main>
+
+<div class="bar"><div>
+  <button id="pp" aria-label="Играть / пауза">▶</button>
+  <div id="now"><b id="title">Выбери вариант</b>
+    <div id="prog"><div id="fill"></div><i style="left:18.4%"></i><i style="left:36.8%"></i><i style="left:55.2%"></i><i style="left:73.6%"></i></div></div>
+  <div id="tm">0.0</div>
+</div></div>
+
+<script>
+const BAR = 240 / 137.59;
+const T = [
+  ["g-main", "0", "00-stem-9-13.mp3", "Оригинал", "клавиши из стема (keys + strings)", true],
+  ["g-main", "1", "11-mix-B-JPSoftStr+Aurora+OBBright.mp3", "B — как было", "такт 3: C5 E5 G5"],
+  ["g-main", "2", "12-mix-B-c6.mp3", "B + верхняя До", "такт 3: C5 E5 G5 C6"],
+  ["g-main", "3", "12-mix-B-c6-e4.mp3", "B + верхняя До + нижняя Ми", "такт 3: E4 C5 E5 G5 C6"],
+  ["g-a", "4", "10-mix-A-57all+51all.mp3", "A — как было", "такт 3: C5 E5 G5"],
+  ["g-a", "5", "14-mix-A-c6.mp3", "A + верхняя До", "такт 3: C5 E5 G5 C6"],
+  ["g-a", "6", "14-mix-A-c6-e4.mp3", "A + верхняя До + нижняя Ми", "такт 3: E4 C5 E5 G5 C6"],
+  ["g-ctx", "7", "20-context-stem.mp3", "Оригинал в контексте", "стем + барабаны + вокал", true],
+  ["g-ctx", "8", "23-context-mix-B-c6.mp3", "B + верхняя До в контексте", "+ барабаны + вокал"],
+  ["g-ctx", "9", "23-context-mix-B-c6-e4.mp3", "B + До + Ми в контексте", "+ барабаны + вокал"],
+  ["g-high", "Q", "01-high-s051-all-9-13.mp3", "Сцена 51 целиком", "все три партии"],
+  ["g-high", "W", "02-high-s051-p1-9-13.mp3", "Партия 1", "260 OB Bright Str"],
+  ["g-high", "E", "03-high-s051-p2-9-13.mp3", "Партия 2", "283 Voyager Pad"],
+  ["g-high", "R", "04-high-s051-p3-9-13.mp3", "Партия 3", "287 Aurora Pad"],
+  ["g-low", "A", "05-low-s057-all-9-13.mp3", "Сцена 57 целиком", "все три партии"],
+  ["g-low", "S", "06-low-s057-p1-9-13.mp3", "Партия 1", "744 Hybrid Strings"],
+  ["g-low", "D", "07-low-s057-p2-9-13.mp3", "Партия 2", "743 Small Strings"],
+  ["g-low", "F", "08-low-s057-p3-9-13.mp3", "Партия 3", "259 JP Soft Strings"],
+  ["g-a6", "Z", "30-a6-stem-41.mp3", "Оригинал", "стем strings, такты 41–44", true],
+  ["g-a6", "X", "31-a6-tone-272.mp3", "272 Soft Glass Pad", "стоит в плейбеке сейчас"],
+  ["g-a6", "C", "31-a6-tone-221.mp3", "221 Simple Tri Ld", "чище, без атаки"],
+  ["g-a6", "V", "31-a6-tone-866.mp3", "866 Piccolo", ""],
+  ["g-a6", "B", "31-a6-tone-224.mp3", "224 Warm Sine Lead", ""],
+];
+const KEYCODE = { Q: "KeyQ", W: "KeyW", E: "KeyE", R: "KeyR", A: "KeyA", S: "KeyS", D: "KeyD", F: "KeyF", Z: "KeyZ", X: "KeyX", C: "KeyC", V: "KeyV", B: "KeyB" };
+const items = T.map(([grp, key, file, name, note, ref]) => {
+  const a = new Audio(encodeURIComponent(file)); a.preload = "auto"; a.muted = true;
+  const b = document.createElement("button"); b.className = "t" + (ref ? " ref" : "");
+  b.innerHTML = `<span class="k">${key}</span><span><b>${name}</b><small>${note}</small></span>`;
+  document.getElementById(grp).appendChild(b);
+  const it = { a, b, key, name, note };
+  b.onclick = () => pick(it);
+  return it;
+});
+let cur = null;
+const pp = document.getElementById("pp"), title = document.getElementById("title"),
+      fill = document.getElementById("fill"), tm = document.getElementById("tm"), prog = document.getElementById("prog");
+// Every variant plays at once, in sync; switching only moves the mute. No seeking, no gap.
+let playing = false;
+const master = items[0].a;                       // the longest file: its end restarts the loop
+function startAll(from0) {
+  items.forEach(i => { if (from0) i.a.currentTime = 0; i.a.play().catch(() => {}); });
+  playing = true; pp.textContent = "❚❚";
+}
+function stopAll() { items.forEach(i => i.a.pause()); playing = false; pp.textContent = "▶"; }
+master.addEventListener("ended", () => { if (playing) startAll(true); });
+function pick(it) {
+  if (cur === it) return toggle();
+  if (cur) cur.b.classList.remove("on");
+  cur = it; it.b.classList.add("on");
+  items.forEach(i => { i.a.muted = i !== it; });
+  title.textContent = `${it.name} — ${it.note}`;
+  if (!playing) startAll(master.ended);
+}
+function toggle() {
+  if (!cur) return pick(items[0]);
+  playing ? stopAll() : startAll(master.ended);
+}
+pp.onclick = toggle;
+prog.onclick = e => {
+  if (!master.duration) return;
+  const t = (e.offsetX / prog.clientWidth) * master.duration;
+  items.forEach(i => { i.a.currentTime = Math.min(t, (i.a.duration || t) - 0.05); });
+};
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.code === "Space") { e.preventDefault(); return toggle(); }
+  const it = items.find(i => e.code === "Digit" + i.key || e.code === KEYCODE[i.key]);
+  if (it) { e.preventDefault(); pick(it); }
+});
+(function tick() {
+  if (cur && master.duration) {
+    const t = master.currentTime; fill.style.width = (100 * t / master.duration) + "%"; tm.textContent = t.toFixed(1);
+    const c = Math.min(3, Math.floor(t / BAR));
+    document.querySelectorAll("td[data-c]").forEach(td => td.classList.toggle("cur", t < 4 * BAR && +td.dataset.c === c));
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
