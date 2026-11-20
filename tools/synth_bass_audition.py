@@ -189,14 +189,19 @@ def main():
     for key in v:
         y = synth(v[key], s16, energy, len(bass), sweep=(key == "B"), bright=(key == "B2"))[i0:i1]
         takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
+    names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "B2": "B2-bright-no-16ths", "C": "C-offbeat"}
+    for f in sorted(os.listdir(OUT)):           # takes of the GM-800 (tools/synth_bass_gm800.py): gm800-<line>-s<scene>.wav,
+        if f.startswith("gm800-") and f.endswith(".wav"):   # sample 0 = the bar line of the first bar
+            y = jr.decode(f"{OUT}/{f}").mean(1)[:i1 - i0]; y = np.pad(y, (0, i1 - i0 - len(y)))
+            key = f[6:-4]; names[key] = key + "-gm800"
+            takes[key] = y * 10 ** ((target - meter.integrated_loudness(y)) / 20)
     mixes = {"0": ctx + ref, **{k: ctx + y for k, y in takes.items()}}
     g = 0.89 / max(np.abs(m).max() for m in mixes.values()); gs = 0.89 / max(np.abs(ref).max(), max(np.abs(y).max() for y in takes.values()))
-    names = {"0": "original", "A": "A-same-line", "B": "B-ya-ustal-octaves", "B2": "B2-bright-no-16ths", "C": "C-offbeat"}
     for k, m in mixes.items(): mp3(f"{OUT}/ctx-{names[k]}.mp3", m * g)
     mp3(f"{OUT}/solo-original.mp3", ref * gs)
     for k, y in takes.items(): mp3(f"{OUT}/solo-{names[k]}.mp3", y * gs)
     marks = [[b, round(float(s16[(b - 1) * 16] - t0), 3)] for b in bars]
-    json.dump({"bars": [b0, b1], "bar_sec": marks, "energy": {str(b): energy[b] for b in bars},
+    json.dump({"bars": [b0, b1], "bar_sec": marks, "slot_sec": [round(float(s16[k] - t0), 4) for k in range((b0 - 1) * 16, (b1 - 1) * 16 + 1)], "energy": {str(b): energy[b] for b in bars},
                "lines": {k: [[s // 16 + 1, s % 16, l, p] for s, l, p in ns] for k, ns in v.items()}},
               open(f"{OUT}/notes.json", "w"))
     print(f"bars {b0}-{b1 - 1}, {t1 - t0:.1f} s, bass {target:.1f} LUFS; notes " + " ".join(f"{k} {len(n)}" for k, n in v.items()) + f" -> {OUT}")
