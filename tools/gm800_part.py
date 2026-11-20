@@ -18,6 +18,8 @@ the same sound Alex plays live on that scene.
     gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
     gmp copy 147 34 "NE ISHI SOLO 2"         # a scene as it is into an INIT slot (scenes above 128
                                              # can't be called by a plain PC: wiki/pipelines/gm-800.md)
+    gmp part 30:1 34:4 [--level 127]        # one part of a scene into a part of another scene
+                                             # (tone, modify, MFX, output; the target's strings stay)
 
 NOTES.json (lives in the song's parts/ folder, bars = mix.json bars):
     {"stems": ["keys", "strings"],
@@ -370,6 +372,41 @@ def cmd_copy(src, slot, name, force=False):
         sx.close()
 
 
+# One part = these blocks (group 02: xP, P = part index; 05 P0 = the part's MFX). The string
+# block (02 2P: mutes, levels, pans per string) is left to the target scene.
+PART_BLOCKS = ["02 0{p} 00", "02 0{e} 00", "02 1{p} 00", "02 3{p} 00", "02 4{p} 00", "02 5{p} 00",
+               "02 6{p} 00", "02 7{p} 00", "05 {p}0 00"]
+
+
+def cmd_part(src, dst, level=None):
+    """Part `src` = (scene, part) -> part `dst` = (scene, part) in memory, switched on. The target
+    part's strings and the scene's control functions are not touched. Backups before/after."""
+    (s_sc, s_p), (d_sc, d_p) = src, dst
+    sx = gmm.Sx()
+    try:
+        a = sx.dump(gmm.slot_base(s_sc)); before, pb = gmm.backup(sx, d_sc, "before")
+        if len(a) != 88 or len(before) != 88:
+            raise SystemExit(f"read {len(a)} / {len(before)} of 88 blocks, not writing")
+        new = {}
+        for k in PART_BLOCKS:
+            ks = k.format(p=s_p - 1, e=f"{8 + s_p - 1:X}"); kd = k.format(p=d_p - 1, e=f"{8 + d_p - 1:X}")
+            if len(a[ks]) != len(before[kd]):
+                raise SystemExit(f"block {ks} -> {kd}: sizes differ")
+            new[kd] = list(a[ks])
+        ts = new[f"02 0{d_p - 1} 00"]; ts[4], ts[8] = 1, 0
+        if level is not None:
+            ts[6] = level
+        sx.write(gmm.slot_base(d_sc), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, d_sc, "after")
+        bad = [k for k in new if after.get(k) != new[k]]
+        other = [k for k in before if k not in new and after.get(k) != before[k]]
+        print(f"scene {s_sc} '{gmm.scene_name(a)}' part {s_p} -> scene {d_sc} '{gmm.scene_name(after)}' part {d_p}: "
+              f"{len(new)} blocks written, part level {after[f'02 0{d_p - 1} 00'][6]}, mismatches {bad or 'none'}, "
+              f"other blocks changed {other or 'none'}\n  backups: {pb}\n           {pa}")
+    finally:
+        sx.close()
+
+
 def cmd_preview(song, part_file, b0, b1):
     """mp3 of the stem part and of every take of these bars, all at the stem's loudness."""
     import glob
@@ -409,6 +446,7 @@ def main():
     p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes")
     p = sub.add_parser("tones"); p.add_argument("song"); p.add_argument("note"); p.add_argument("nums")
     p.add_argument("--base", type=int, default=33)
+    p = sub.add_parser("part"); p.add_argument("src"); p.add_argument("dst"); p.add_argument("--level", type=int)
     p = sub.add_parser("copy"); p.add_argument("src", type=int); p.add_argument("slot", type=int)
     p.add_argument("name"); p.add_argument("--force", action="store_true")
     p = sub.add_parser("balance")
@@ -421,6 +459,8 @@ def main():
     a = ap.parse_args()
     if a.cmd == "probe":
         return cmd_probe(a.scenes)
+    if a.cmd == "part":
+        return cmd_part(tuple(int(v) for v in a.src.split(":")), tuple(int(v) for v in a.dst.split(":")), a.level)
     if a.cmd == "copy":
         return cmd_copy(a.src, a.slot, a.name, a.force)
     if a.cmd == "balance":
