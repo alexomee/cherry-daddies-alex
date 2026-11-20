@@ -60,8 +60,12 @@ H1 = [(0, 1, "F#4")] + _G6 + [(12, 1, "A#4"), (13, 1, "B4"), (14, 1, "A#4"), (15
 H2 = [(0, 1, "F#4")] + _G6 + [(12, 1, "F4"), (13, 1, "F#4"), (14, 1, "F4"), (15, 1, "D#4")]
 H4 = [(0, 1, "A#4"), (1, 1, "B4"), (2, 1, "G#4"), (3, 1, "F#4"), (4, 2, "G#4"), (6, 1, "F#4"), (7, 1, "F4"),
       (8, 2, "F#4"), (10, 1, "F4"), (11, 1, "D#4"), (12, 2, "F4"), (14, 1, "D#4"), (15, 1, "C#4")]
-K1 = [(0, 1, "F#4")] + _G6 + [(12, 3, "A#4"), (15, 1, "G#4")]          # kick stop / variation: the turn held
-K2 = [(0, 1, "F#4")] + _G6 + [(12, 3, "F4"), (15, 1, "D#4")]
+# kick stop / variation: the turn is ONE held note with a bend in the record (Alex 2026-11-20: «во втором проходе,
+# где длинные остановки на нотах, в оригинале что-то типа бенда»; pyin, 6 ms: flat to 12.6, up ~65 cents to the
+# next semitone by 13.3, held, back at 14.0, flat to 15). The GM-800 ignores MIDI bend here: `layer` bends the take.
+BEND = {"bend": [[0, 0], [0.6, 0], [1.3, 65], [1.95, 65], [2.0, 0], [3.0, 0]]}
+K1 = [(0, 1, "F#4")] + _G6 + [(12, 3, "A#4", BEND), (15, 1, "G#4")]
+K2 = [(0, 1, "F#4")] + _G6 + [(12, 3, "F4", BEND), (15, 1, "D#4")]
 K4 = [(0, 2, "A#4")] + H4[2:]
 B1 = [(0, 1, "F#4"), (1, 1, "G#4"), (3, 1, "G#4"), (5, 1, "G#4"), (7, 1, "G#4"), (8, 1, "F#4"), (9, 1, "G#4"),
       (11, 1, "G#4"), (13, 1, "G#4"), (15, 1, "G#4")]
@@ -80,8 +84,10 @@ LEGATO = 0.5          # 16ths a legato note is held past the next note's start (
 def lead_notes(bars, shift=0):
     out = []
     for i, pat in enumerate(bars, 1):
-        for q, l, r, *leg in pat:
-            out.append(ev(i, q, l + (LEGATO if leg else 0), name(midi(r) + shift)))
+        for q, l, r, *opt in pat:
+            o = opt[0] if opt else None
+            n = ev(i, q, l + (LEGATO if o == "L" else 0), name(midi(r) + shift))
+            out.append(n + [o] if isinstance(o, dict) else n)
     return out
 
 

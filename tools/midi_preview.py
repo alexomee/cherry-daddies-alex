@@ -80,7 +80,7 @@ else:                                              # notes.json voices (band key
         prog = 33 if vn.startswith("bass") else 81 if vn.startswith("lead") else 61
         gain = {"lead5": 10 ** (-4 / 20), "leadsub": 10 ** (-6 / 20)}.get(vn.split("_")[0], 1.0) * (0.6 if vn.startswith("pad") else 1.0)
         for at in v["at"]:
-            for bb, bt, ln, p in v["notes"]:
+            for bb, bt, ln, p, *_ in v["notes"]:
                 pos = at + bb - 1 + (bt - 1) / 4
                 if not (b0 <= pos < b1): continue
                 for s in p.split():

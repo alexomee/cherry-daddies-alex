@@ -114,12 +114,75 @@ def voice_line(song, part, voice, b0, b1):
     v = part["voices"][voice]; beat = song.bar / 4; line = []
     gap = v.get("gap", 0.03)            # s of silence before the next note; a brass with a short release opens
     for at in v["at"]:                  # an audible hole with 30 ms: chords played back to back use 0.002
-        for bar, bt, ln, pitches in v["notes"]:
+        for bar, bt, ln, pitches, *_ in v["notes"]:   # a 5th element = options of the note ({"bend": ...})
             pos = at + bar - 1 + (bt - 1) / 4
             if b0 <= pos < b1:
                 for s in pitches.split():
                     line.append(((pos - b0) * song.bar, midi_of(s), ln * beat - gap))
     return sorted(line)
+
+
+def voice_bends(song, part, voice, b0, b1):
+    """Bends of a voice inside bars [b0, b1): [[(seconds from bar b0, semitones), ...], ...], one curve a note.
+    A note may carry {"bend": [[16ths from the note start, cents], ...]} as its 5th element; the GM-800 ignores
+    MIDI pitch bend in the TEMP scene (measured 2026-11-20), so `layer` bends the recorded take instead."""
+    v = part["voices"][voice]; out = []
+    for at in v["at"]:
+        for n in v["notes"]:
+            opt = n[4] if len(n) > 4 and isinstance(n[4], dict) else {}
+            pos = at + n[0] - 1 + (n[1] - 1) / 4
+            if opt.get("bend") and b0 <= pos < b1:
+                t0 = (pos - b0) * song.bar
+                out.append([(t0 + q * song.bar / 16, c / 100) for q, c in opt["bend"]])
+    return out
+
+
+PITCHMAP_EARLY = 0.064    # s: a step in a rubberband 4.0 --pitchmap is half way 64 ms BEFORE its frame (measured
+                          # 2026-11-20 on a 220 Hz saw, 48 kHz), and smoothed over ~40 ms
+
+
+def apply_bends(x, curves, sr):
+    """Bend the take x (stereo, sample 0 = its first bar) along the curves with rubberband --pitchmap; the
+    bent audio replaces the take only inside each curve (+-15 ms, 10 ms crossfades). The rubberband delay
+    is measured against the take (cross-correlation outside the curves) and taken out."""
+    import tempfile, soundfile as sf
+    if not curves:
+        return x
+    step = int(0.004 * sr); pts = [(0, 0.0)]
+    early = int(PITCHMAP_EARLY * sr)       # rubberband applies the map this much ahead: write it that much later
+    for cv in curves:
+        (ta, _), (tb, _) = cv[0], cv[-1]
+        for i in range(int(ta * sr), int(tb * sr) + step, step):
+            t = i / sr; ts = [p[0] for p in cv]; vs = [p[1] for p in cv]
+            pts.append((i + early, float(np.interp(t, ts, vs))))
+        pts.append((int(tb * sr) + step + early, 0.0))
+    pts = sorted(dict(pts).items())
+    with tempfile.TemporaryDirectory() as td:
+        fi, fo, fm = (os.path.join(td, n) for n in ("in.wav", "out.wav", "map.txt"))
+        sf.write(fi, x.astype(np.float32), sr, subtype="FLOAT")
+        open(fm, "w").write("".join(f"{i} {v:.4f}\n" for i, v in pts))
+        r = subprocess.run(["rubberband", "--pitchmap", fm, fi, fo], capture_output=True, text=True)
+        if r.returncode:
+            raise SystemExit("rubberband: " + r.stderr[-300:])
+        y, _ = sf.read(fo, always_2d=True)
+    # delay of the realtime engine: correlate the envelopes before the first curve
+    k = int(min(curves[0][0][0], 4.0) * sr)
+    if k > sr // 2:
+        a, b = np.abs(x[:k].mean(1)), np.abs(y[:k + sr // 4].mean(1))
+        c = [np.dot(a[:k - sr // 20], b[d:d + k - sr // 20]) for d in range(0, sr // 20, 8)]
+        lag = int(np.argmax(c)) * 8
+    else:
+        lag = 0
+    y = np.vstack([y[lag:], np.zeros((lag, 2))])[:len(x)]
+    if len(y) < len(x):
+        y = np.vstack([y, np.zeros((len(x) - len(y), 2))])
+    out = x.copy(); f = int(0.010 * sr)
+    for cv in curves:
+        i, j = int((cv[0][0] - 0.015) * sr), int((cv[-1][0] + 0.015 + PITCHMAP_EARLY) * sr)
+        w = np.zeros(len(x)); w[i:j] = 1; w[i - f:i] = np.linspace(0, 1, f); w[j:j + f] = np.linspace(1, 0, f)
+        out = out * (1 - w[:, None]) + y * w[:, None]
+    print(f"   bent {len(curves)} notes (rubberband delay {lag / sr * 1000:.1f} ms taken out)")
+    return out
 
 
 def take_path(song, part_file, voice, scene, parts, b0, b1):
@@ -247,6 +310,7 @@ def cmd_layer(song, part_file):
     out = np.zeros((info.frames, 2), dtype=np.float64)
     for tk in lay["takes"]:
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
+        x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
         if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
             f0, f1 = (int((b - tk["bars"][0]) * song.bar * SR) for b in tk["fade"])
