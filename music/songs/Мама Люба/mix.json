@@ -12,7 +12,7 @@
   "pb-other": {
     "layers": [
       {"file": "pb-synths", "frame": "stem", "gain_db": -10.0, "derived": true, "source": ["keys", "wind", "strings"]},
-      {"file": "pb-fx", "frame": "stem", "gain_db": -10.0, "derived": true, "source": ["keys", "wind", "strings"]}
+      {"file": "pb-fx", "frame": "stem", "gain_db": -8.3, "derived": true, "source": ["keys", "wind", "strings"]}
     ],
     "roles": {"pb-synths": "musical", "pb-fx": "musical"}
   },

@@ -7,7 +7,8 @@ all three synth stems, everything goes to the playback, Alex plays guitar; sound
   gmp record "Мама Люба" "music/songs/Мама Люба/parts/synths.notes.json"   # takes from the GM-800
   python3 tools/jamzone/prep_mama_lyuba.py calibrate  # each voice vs the stems where it plays -> GAIN below
   gmp layer "Мама Люба" "music/songs/Мама Люба/parts/synths.notes.json"    # -> parts/pb-synths.wav
-  python3 tools/jamzone/prep_mama_lyuba.py fx         # keys+wind+strings inside the FX windows only -> parts/pb-fx.wav
+  python3 tools/jamzone/prep_mama_lyuba.py fx         # keys+wind+strings inside the FX windows only, pitched into
+                                                      # the band key -> parts/pb-fx.wav
 (python3 = uv run -q --python 3.12 --with numpy --with scipy --with soundfile --with pyloudnorm ...; gmp: see
 tools/gm800_part.py)
 
@@ -102,6 +103,8 @@ PAD = {"G#m": "G#3 D#4 G#4 B4 D#5 G#5", "B": "F#3 B3 D#4 F#4 B4 D#5 F#5", "C#": 
 LOW = {"G#m": "G#2", "B": "B2", "C#": "C#3", "E": "E3"}
 BASS = {"G#m": "G#1", "B": "B1", "C#": "C#2"}
 P_RHYTHM = [("G#m", 1, 0, 8), ("B", 1, 8, 6), ("C#", 1, 14, 18)]          # 2-bar pattern
+# Bright Brass Oct swells on B and strikes C# ~2 dB above the record's balance of the riff (fold by 32nds)
+CHORD_DB = {"B": -2.0, "C#": -2.0}
 P_AT = [1, 3, 5] + list(range(36, 52, 2)) + list(range(70, 86, 2)) + list(range(86, 94, 2)) \
        + list(range(110, 118, 2)) + list(range(118, 126, 2))
 
@@ -116,10 +119,13 @@ SOUND = {"pad": [(256, 0.0), (287, -3.0)], "padlow": [(256, 0.0), (287, -3.0)], 
                                                                                    # Lo-Fi Comp Pluck
 TRANSPOSE = {}        # voice -> semitones sent off the written pitch (a tone that sounds an octave low: 12)
 GAIN = {"pad": 10.6, "padlow": 12.1, "lead": 17.5, "stab": 7.2, "pluck": 6.1, "bass": -2.3}   # `calibrate`, 2026-11-20 (v2: MIDI hook, chords back to back)
-DUCK = {"stem": "drums", "db": 7, "release_ms": 70}     # the record's sidechain on the synths
+# the record's sidechain on the synths, fitted to its envelope by 32nds over every pass of the riff (2026-11-20, v5:
+# Alex «на третьей ноте рифа мини-перерыв, рывок»: the old 7 dB / 70 ms duck was deepest 60-180 ms after the kick and
+# let go right as the C# struck on 4.3)
+DUCK = {"stem": "drums", "db": 6, "release_ms": 35, "advance_ms": 30}
 # per section, against the stems there after `calibrate` (the record mixes the same part differently):
 # the hook sits low under the vocal in 110-117 and 102-109, the intro is a bit hotter, the final hit quiet
-ADJ = {"intro": 2.1, "var": -4.1, "build": -4.1, "chorus": -6.8, "end": -10.4,
+ADJ = {"intro": 3.1, "var": -4.1, "build": -4.1, "chorus": -6.8, "end": -9.4,
        "lead": 1.5, "lead5": 1.5, "leadsub": 1.5}      # by voice name: the hook of the two solos
 INTRO_TO = 12
 
@@ -157,21 +163,24 @@ def layer(voices):
 # the chords follow each other with no hole (Alex 2026-11-20: «третья нота в основном риффе — обрыв, должно быть
 # легато»: with the default 30 ms gap Bright Brass Oct drops 15-19 dB before every chord); each chord is still struck
 GAP = 0.002
+# v5 (Alex: «на третьей ноте рифа мини-перерыв, рывок между 2 и 3»): back to back still left a ~60 ms hole while the
+# next brass attack builds up - heard at 4.3 where no kick masks it. The pad chords now overlap the next by 40 ms.
+PAD_GAP = -0.040
 
 
 def chord_voice(table, at, extra=()):
-    notes = [ev(b, q, l, table[c]) for c, b, q, l in P_RHYTHM]
-    return {"at": at, "bars": 2, "gap": GAP, "notes": notes}
+    notes = [ev(b, q, l, table[c]) + ([{"gain_db": CHORD_DB[c]}] if c in CHORD_DB else []) for c, b, q, l in P_RHYTHM]
+    return {"at": at, "bars": 2, "gap": PAD_GAP, "notes": notes}
 
 
 def build():
     voices = {
         "pad": chord_voice(PAD, P_AT),
         "padlow": chord_voice(LOW, P_AT),
-        "pad_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, PAD["E"]), ev(1, 14, 66, PAD["C#"])]},
-        "padlow_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, LOW["E"]), ev(1, 14, 66, LOW["C#"])]},
-        "pad_end": {"gap": GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, PAD["G#m"])]},
-        "padlow_end": {"gap": GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, LOW["G#m"])]},
+        "pad_intro": {"gap": PAD_GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, PAD["E"]), ev(1, 14, 66, PAD["C#"]) + [{"gain_db": CHORD_DB["C#"]}]]},
+        "padlow_intro": {"gap": PAD_GAP, "at": [7], "bars": 5, "notes": [ev(1, 0, 14, LOW["E"]), ev(1, 14, 66, LOW["C#"]) + [{"gain_db": CHORD_DB["C#"]}]]},
+        "pad_end": {"gap": PAD_GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, PAD["G#m"])]},
+        "padlow_end": {"gap": PAD_GAP, "at": [126], "bars": 1, "notes": [ev(1, 0, 8, LOW["G#m"])]},
         "bass": {"at": [1, 3, 5], "bars": 2, "gap": GAP, "notes": [ev(b, q, l, BASS[c]) for c, b, q, l in P_RHYTHM]},
         "bass_intro": {"gap": GAP, "at": [7], "bars": 5, "notes": [ev(1, 14, 66, BASS["C#"])]},
         "stab": {"at": list(range(13, 36, 2)) + list(range(53, 68, 2)), "bars": 2,      # 2: one take a verse
@@ -259,6 +268,20 @@ def cmd_fx():
     keep = mask(FX_KEEP) * (1 - mask(FX_CUT)) + mask(FX_TAIL)
     low = sosfiltfilt(butter(4, 150, "lowpass", fs=sr, output="sos"), x, axis=0)
     out = x * keep[:, None] + low * mask(FX_LOW)[:, None]
+    # into the BAND key: a layer is never pitched by the render, and these are cut from the stems (B♭m); without
+    # this the verse hits sounded a tone above the GM-800 parts (Alex 2026-11-20: «вступление/куплет в разных»).
+    # Same rubberband call as jamzone_render.pitch_shift (R3, formants kept, guard against its clip at 1.0).
+    semi = mix.get("pitch_semitones", 0)
+    if semi:
+        import tempfile
+        pk = float(np.abs(out).max()); guard = 0.98 / pk if pk > 0.98 else 1.0
+        with tempfile.TemporaryDirectory() as d:
+            fi, fo = os.path.join(d, "in.wav"), os.path.join(d, "out.wav")
+            sf.write(fi, (out * guard).astype(np.float32), sr, subtype="FLOAT")
+            subprocess.run(["rubberband", "-3", "-F", "-p", str(semi), fi, fo], capture_output=True, check=True)
+            y, _ = sf.read(fo, always_2d=True)
+        y = y / guard
+        out = np.vstack([y, np.zeros((max(0, n - len(y)), 2))])[:n]
     dst = os.path.join(SONG, "parts", "pb-fx.wav")
     sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
     r = lambda y: 10 * np.log10(np.mean(y ** 2) + 1e-20)

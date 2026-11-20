@@ -113,13 +113,21 @@ def voice_line(song, part, voice, b0, b1):
     """[(seconds from bar b0, midi, seconds)] of a voice inside bars [b0, b1)."""
     v = part["voices"][voice]; beat = song.bar / 4; line = []
     gap = v.get("gap", 0.03)            # s of silence before the next note; a brass with a short release opens
-    for at in v["at"]:                  # an audible hole with 30 ms: chords played back to back use 0.002
-        for bar, bt, ln, pitches, *_ in v["notes"]:   # a 5th element = options of the note ({"bend": ...})
-            pos = at + bar - 1 + (bt - 1) / 4
+    for at in v["at"]:                  # an audible hole with 30 ms: chords played back to back use 0.002, and a
+        for bar, bt, ln, pitches, *_ in v["notes"]:   # NEGATIVE gap overlaps the next chord (legato: no hole
+            pos = at + bar - 1 + (bt - 1) / 4          # while the next attack builds up). 5th element = options
             if b0 <= pos < b1:
                 for s in pitches.split():
                     line.append(((pos - b0) * song.bar, midi_of(s), ln * beat - gap))
-    return sorted(line)
+    line.sort()
+    if gap < 0:                         # an overlap must not run into the same pitch struck again: its note-off
+        nxt = {}                        # would cut the new note - such a note ends 2 ms before it instead
+        for i in range(len(line) - 1, -1, -1):
+            t, n, d = line[i]
+            if n in nxt and t + d > nxt[n] - 0.002:
+                line[i] = (t, n, nxt[n] - 0.002 - t)
+            nxt[n] = t
+    return line
 
 
 def voice_bends(song, part, voice, b0, b1):
@@ -139,6 +147,31 @@ def voice_bends(song, part, voice, b0, b1):
 
 PITCHMAP_EARLY = 0.064    # s: a step in a rubberband 4.0 --pitchmap is half way 64 ms BEFORE its frame (measured
                           # 2026-11-20 on a 220 Hz saw, 48 kHz), and smoothed over ~40 ms
+
+
+def voice_gains(song, part, voice, b0, b1):
+    """[(seconds from bar b0, seconds, dB)] of the notes of a voice that carry {"gain_db": x} (5th element):
+    the take is turned down/up over that note, like playing it softer (a chord of a brass that comes out
+    louder than in the record)."""
+    v = part["voices"][voice]; out = []
+    for at in v["at"]:
+        for n in v["notes"]:
+            opt = n[4] if len(n) > 4 and isinstance(n[4], dict) else {}
+            pos = at + n[0] - 1 + (n[1] - 1) / 4
+            if opt.get("gain_db") and b0 <= pos < b1:
+                out.append(((pos - b0) * song.bar, n[2] * song.bar / 4, opt["gain_db"]))
+    return out
+
+
+def apply_gains(x, spans, sr, ramp=0.008):
+    if not spans:
+        return x
+    g = np.zeros(len(x)); r = int(ramp * sr)
+    for t0, d, db in spans:
+        i, j = int(t0 * sr), int((t0 + d) * sr); w = np.zeros(len(x)); w[i:j] = 1
+        w[max(0, i - r):i] = np.linspace(0, 1, i - max(0, i - r)); w[j:j + r] = np.linspace(1, 0, len(w[j:j + r]))
+        g += w * db
+    return x * (10 ** (g / 20))[:, None]
 
 
 def apply_bends(x, curves, sr):
@@ -310,6 +343,7 @@ def cmd_layer(song, part_file):
     out = np.zeros((info.frames, 2), dtype=np.float64)
     for tk in lay["takes"]:
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
+        x = apply_gains(x, voice_gains(song, part, tk["voice"], *tk["bars"]), SR)
         x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
         if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
@@ -328,7 +362,8 @@ def cmd_layer(song, part_file):
 
 def duck_gain(song, spec, n, sr):
     """Gain curve (stem frame) that ducks the layer on every kick of the record, like the sidechain
-    the producer put on the synths. spec = {"stem": "drums", "db": 7, "release_ms": 120, "lowpass": 150}:
+    the producer put on the synths. spec = {"stem": "drums", "db": 7, "release_ms": 120, "lowpass": 150,
+    "advance_ms": 0}:
     kick = the low band of the drum stem, a peak follower (5 ms attack, release_ms) normalised to the
     typical kick (90th percentile of its peaks); gain = -db x kick (clipped to 1). Where the record has
     no kick (a kick stop) nothing ducks."""
@@ -348,7 +383,8 @@ def duck_gain(song, spec, n, sr):
     pk, _ = find_peaks(env, distance=int(200 / ms), height=env.max() * 0.1)
     ref = np.percentile(env[pk], 90) if len(pk) else env.max()
     g = 10 ** (-spec.get("db", 7) * np.clip(env / ref, 0, 1) / 20)
-    g = np.interp(np.arange(n), (np.arange(m) + 0.5) * k, g, right=1.0)
+    adv = int(spec.get("advance_ms", 0) / 1000 * sr)       # a compressor's lookahead: duck that much before the kick
+    g = np.interp(np.arange(n) + adv, (np.arange(m) + 0.5) * k, g, right=1.0)
     return g
 
 
