@@ -41,3 +41,11 @@ Alex: между cue 1:42 → 1:56 и 3:10 → 3:37 плейбек не игра
 ## pb-solo-bass.wav — 2026-11-18
 
 Бас для соло-кусков, где Alex играет синт-соло на GM-800 (сцена 30), пока из плейбека (потом записать живой — `wiki/todo.md`). Moises `bass` в соло-кусках пустой, синт-бас записи сидит в `other` → `other.wav` целиком через ФНЧ 400 Гц (2 biquad, 24 дБ/окт), без изменения громкости. Сборка: `python3 tools/jamzone/prep_ty_menya_ne_ishchi.py solobass`. Где звучит — мьютом в `mix.json` `pb-bass` (`[[1, 58], [66, 100], [116, 130]]` → такты 58–66 и 100–116, фейды 30/5 мс). `derived: true` без `source`: в `all` бас уже есть, а `source: ["other"]` заставил бы сайт в режиме pb-bass глушить весь `other`.
+
+## pb-keys-verse.wav — 2026-11-20
+
+Клавиши куплетов (такты 9–24 и 67–82), сыгранные самим GM-800 вместо вырезанного Moises-стема: Alex играет эту партию вживую в 9–16 на сцене 32 NE ISHI PAD, дальше она идёт из плейбека тем же звуком. Ноты и список дублей — `verse-keys.notes.json` (голоса `low`, `high`, `low2`, `live`; раздел `layer`). Stem-фрейм, 44.1 кГц.
+
+- Сборка: `tools/gm800_part.py record "Ты меня не ищи" parts/verse-keys.notes.json` (нужен прибор по USB, пишет дубли в `analysis/gm800-match/`), затем `tools/gm800_part.py layer …` (офлайн).
+- В `mix.json`: `derived` + `source: ["keys", "strings"]`, `gain_db` +6.5 → `pb-other` в куплетах −21.0. У `pb-keys` на эти такты `mute` `[9, 25]`, `[67, 83]`.
+- Подход, состав звука, табы: `wiki/pipelines/gm-800-parts.md`.

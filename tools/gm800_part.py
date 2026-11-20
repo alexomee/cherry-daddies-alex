@@ -11,6 +11,8 @@ the same sound Alex plays live on that scene.
     gmp take "<song>" NOTES.json low 57      # voice "low" on scene 57, every part that is on
     gmp take "<song>" NOTES.json low 57 --parts 1,3 [--bars 9 13]   # only these parts
     gmp preview "<song>" NOTES.json [--bars 9 13]                   # stem vs takes, mp3, same loudness
+    gmp record "<song>" NOTES.json           # every take of the "layer" spec, time-locked (see below)
+    gmp layer "<song>" NOTES.json            # takes -> parts/<file>.wav (stem frame), offline
     gmp balance 51 3:127 1:110,60,30,15      # loudness of part 1 at these PART LEVELs against part 3 at 127
     gmp scene 32 51 "NE ISHI PAD" --parts 3:127,1:24 --octave 1     # new scene in an INIT slot
 
@@ -25,6 +27,15 @@ measured by a probe note, is taken out), not through the guitar strings: the pla
 have to be playable. NOTE SOURCE goes to USB for the run and is always put back; scene 1 (MUTE)
 is loaded at the end. Nothing is written to the GM-800's memory - except `scene`, which writes one
 user slot (must be INIT unless --force; SysEx dumps before/after in gear/gm-800/backups/sysex/).
+
+The playback layer is described in NOTES.json:
+    "layer": {"file": "pb-keys-verse", "takes": [
+        {"voice": "low", "scene": 57, "parts": [3], "bars": [9, 25], "gain_db": -6.0}, ...]}
+`record` plays each take and cuts it so that sample 0 is the bar line of its first bar: the USB
+record chain has a latency that changes from run to run, so every take starts with a short note
+on a sharp scene (SYNC_SCENE), its onset gives the latency of this very recording, then the
+target scene is loaded and the part starts SYNC_T0 seconds in. `layer` sums the takes with their
+gains at their bars into parts/<file>.wav in the stem frame (a "frame": "stem" layer of mix.json).
 
 `scene` = the template scene with only the listed parts on, at the given PART LEVELs, their
 TONE MOD > OCT SHIFT set (ToneModifyCommon +02: so that a part written high sits in a comfortable
@@ -148,6 +159,77 @@ def play(rig, ev, tail=2.5):
     return rec[int(0.4 * SR):]
 
 
+SYNC_SCENE, SYNC_AT, SYNC_T0 = 7, 0.3, 3.0     # sharp bass scene; marker time; part start (s)
+
+
+def rec_path(song, part_file, tk):
+    base = os.path.basename(part_file).replace(".notes.json", "")
+    tag = "all" if not tk.get("parts") else "p" + "".join(map(str, tk["parts"]))
+    return os.path.join(song.out, f"rec-{base}-{tk['voice']}-s{tk['scene']:03d}-{tag}-{tk['bars'][0]}-{tk['bars'][1]}.wav")
+
+
+def cmd_record(song, part_file, only=None, tail=4.0):
+    part = json.load(open(part_file, encoding="utf-8")); tones = tone_names()
+    with gmm.Rig() as rig:
+        for i, tk in enumerate(part["layer"]["takes"]):
+            if only is not None and i not in only:
+                continue
+            b0, b1 = tk["bars"]; line = voice_line(song, part, tk["voice"], b0, b1)
+            nm, _ = rig.load(tk["scene"])
+            sp = [x for x in scene_parts(rig, tones) if (x[0] in tk["parts"] if tk.get("parts") else x[2])]
+            shifts = {}
+            for pnum, ch, on, num, name, level in sp:
+                sh = probe_shift(rig, ch)
+                if sh is not None:
+                    shifts[ch] = sh
+            if not shifts or not line:
+                raise SystemExit(f"take {i}: nothing to play")
+            rig.load(SYNC_SCENE)
+            msgs = [(SYNC_AT, [0x90 | ch, 45, 110]) for ch in rig.part_ch[:4]]
+            msgs += [(SYNC_AT + 0.08, [0x80 | ch, 45, 0]) for ch in rig.part_ch[:4]]
+            msgs += [(SYNC_AT + 0.5, [0xC0 | (rig.scene_ch - 1), tk["scene"] - 1])]
+            for t, n, d in line:
+                for ch, sh in shifts.items():
+                    msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, gmm.VEL]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
+            dur = SYNC_T0 + (b1 - b0) * song.bar + tail
+            rec = rig.sd.rec(int((dur + 0.4) * SR), SR, channels=2, device=rig.dev)
+            t0 = time.perf_counter() + 0.4
+            for t, m in sorted(msgs, key=lambda e: (e[0], e[1][0] & 0xF0 == 0x90)):
+                while time.perf_counter() < t0 + t:
+                    time.sleep(0.0005)
+                rig.g.out.send_message(m)
+            rig.sd.wait(); x = rec[int(0.4 * SR):]
+            env = np.abs(x[:int((SYNC_AT + 0.45) * SR)]).max(1); pk = env.max()
+            if pk < 1e-3:
+                raise SystemExit(f"take {i}: no sync note in the recording")
+            on = int(np.argmax(env > 0.2 * pk)) / SR; lat = on - SYNC_AT
+            if not -0.01 < lat < 0.2:
+                raise SystemExit(f"take {i}: sync onset at {on:.3f} s, latency {lat * 1000:.0f} ms - not plausible")
+            y = x[int(round((SYNC_T0 + lat) * SR)):]
+            out = rec_path(song, part_file, tk); gmm.save(out, y)
+            print(f"take {i}: {tk['voice']} bars {b0}-{b1} on scene {tk['scene']} '{nm}' parts "
+                  f"{[q[0] for q in sp]}: latency {lat * 1000:.1f} ms, LUFS {gmm.lufs(y):.1f}, peak "
+                  f"{20 * np.log10(np.abs(y).max() + 1e-9):.1f} -> {os.path.basename(out)}", flush=True)
+
+
+def cmd_layer(song, part_file):
+    import soundfile as sf
+    from scipy.signal import resample_poly
+    part = json.load(open(part_file, encoding="utf-8")); lay = part["layer"]
+    info = sf.info(os.path.join(song.dir, part.get("stems", ["keys"])[0] + ".wav")); sr = info.samplerate
+    out = np.zeros((info.frames, 2), dtype=np.float64)
+    for tk in lay["takes"]:
+        x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
+        n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
+        if sr != SR:
+            x = resample_poly(x, sr, SR, axis=0)
+        a = int(round(song.t_stem(tk["bars"][0]) * sr)); m = min(len(x), len(out) - a)
+        out[a:a + m] += x[:m]
+    dst = os.path.join(song.dir, "parts", lay["file"] + ".wav")
+    sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
+    print(f"{len(lay['takes'])} takes -> {dst}  peak {20 * np.log10(np.abs(out).max() + 1e-9):.1f} dBFS")
+
+
 def cmd_balance(tpl, ref, part, chord="E4 A4 C5"):
     (rp, rl), (pp, levels) = ref, part
     line = [(0.0, midi_of(n), 3.0) for n in chord.split()]
@@ -237,6 +319,8 @@ def main():
     p.add_argument("--parts", default=""); p.add_argument("--bars", type=int, nargs=2)
     p = sub.add_parser("preview")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("--bars", type=int, nargs=2)
+    p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--only", default="")
+    p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes")
     p = sub.add_parser("balance")
     p.add_argument("template", type=int); p.add_argument("ref"); p.add_argument("part")
     p.add_argument("--chord", default="E4 A4 C5")
@@ -254,6 +338,10 @@ def main():
         parts = {int(k): int(v) for k, v in (x.split(":") for x in a.parts.split(","))}
         return cmd_scene(a.slot, a.template, a.name, parts, a.octave, a.force)
     song = gmm.Song(a.song)
+    if a.cmd == "record":
+        return cmd_record(song, a.notes, [int(v) for v in a.only.split(",") if v] or None)
+    if a.cmd == "layer":
+        return cmd_layer(song, a.notes)
     part = json.load(open(a.notes, encoding="utf-8"))
     b0, b1 = a.bars or part.get("bars")
     if a.cmd == "take":

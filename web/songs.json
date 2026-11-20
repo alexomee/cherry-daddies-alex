@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T08:22:37",
+  "generated": "2026-11-20T09:14:59",
   "counts": {
     "total": 127,
     "data": 125,
@@ -14387,6 +14387,7 @@
             "items": [
               "pb-fx",
               "pb-keys",
+              "pb-keys-verse",
               "pb-wah"
             ]
           },
@@ -14446,9 +14447,9 @@
           "versions": {
             "all": "f81a146754",
             "alex": "78375f39fc",
-            "pb-other": "069ea4647e",
+            "pb-other": "044a56fbcc",
             "pb-bass": "33797ce323",
-            "pb-audition": "e20500965c"
+            "pb-audition": "aa281f0d08"
           },
           "pb_other": {
             "available": true,
@@ -20713,6 +20714,7 @@
             "items": [
               "pb-fx",
               "pb-keys",
+              "pb-keys-verse",
               "pb-wah"
             ]
           },
@@ -20772,9 +20774,9 @@
           "versions": {
             "all": "f81a146754",
             "alex": "78375f39fc",
-            "pb-other": "069ea4647e",
+            "pb-other": "044a56fbcc",
             "pb-bass": "33797ce323",
-            "pb-audition": "e20500965c"
+            "pb-audition": "aa281f0d08"
           },
           "pb_other": {
             "available": true,
