@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-20T21:12:14",
+  "generated": "2026-11-20T21:20:08",
   "counts": {
     "total": 128,
     "data": 128,
@@ -15465,40 +15465,40 @@
             "count": 6,
             "list": [
               {
-                "t": 7.517,
+                "t": 7.5,
                 "text": "Знаешь ли ты playback in",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 30.068,
+                "t": 30.0,
                 "text": "voice in",
                 "bar": 7,
-                "snap": 22.551
+                "snap": 22.5
               },
               {
-                "t": 75.17,
+                "t": 75.0,
                 "text": "modulation in",
                 "bar": 19,
-                "snap": 67.653
+                "snap": 67.5
               },
               {
-                "t": 93.963,
+                "t": 93.75,
                 "text": "drums in",
                 "bar": 24,
-                "snap": 86.446
+                "snap": 86.25
               },
               {
-                "t": 169.133,
+                "t": 168.75,
                 "text": "modulation in",
                 "bar": 44,
-                "snap": 161.616
+                "snap": 161.25
               },
               {
-                "t": 228.33,
+                "t": 228.281,
                 "text": "end in",
                 "bar": 59,
-                "snap": 219.873
+                "snap": 219.844
               }
             ]
           },
@@ -15551,20 +15551,20 @@
             }
           ],
           "stem_versions": {
-            "back_vox": "522487a617",
-            "drums": "9bd28a900e",
-            "keys": "fee9b2ce63",
-            "bass": "002ffbe042",
-            "other": "2137b2414b",
-            "click": "b062a4cc13",
-            "cues": "aed2467882"
+            "back_vox": "ab7e253490",
+            "drums": "e6bb324617",
+            "keys": "fe83d8fa5c",
+            "bass": "b5d688eeb3",
+            "other": "80b4ea1b87",
+            "click": "f2e3b393eb",
+            "cues": "b41043a323"
           },
           "versions": {
-            "all": "87cdb1674d",
-            "steve": "ca42f6ef64",
-            "pb-other": "5f35ea90a4",
-            "pb-bass": "002ffbe042",
-            "pb-audition": "733acbf142"
+            "all": "dcc305a82a",
+            "steve": "3e88122183",
+            "pb-other": "38734c274a",
+            "pb-bass": "b5d688eeb3",
+            "pb-audition": "737b6d5d86"
           },
           "pb_other": {
             "available": true,
@@ -21079,40 +21079,40 @@
             "count": 6,
             "list": [
               {
-                "t": 7.517,
+                "t": 7.5,
                 "text": "Знаешь ли ты playback in",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 30.068,
+                "t": 30.0,
                 "text": "voice in",
                 "bar": 7,
-                "snap": 22.551
+                "snap": 22.5
               },
               {
-                "t": 75.17,
+                "t": 75.0,
                 "text": "modulation in",
                 "bar": 19,
-                "snap": 67.653
+                "snap": 67.5
               },
               {
-                "t": 93.963,
+                "t": 93.75,
                 "text": "drums in",
                 "bar": 24,
-                "snap": 86.446
+                "snap": 86.25
               },
               {
-                "t": 169.133,
+                "t": 168.75,
                 "text": "modulation in",
                 "bar": 44,
-                "snap": 161.616
+                "snap": 161.25
               },
               {
-                "t": 228.33,
+                "t": 228.281,
                 "text": "end in",
                 "bar": 59,
-                "snap": 219.873
+                "snap": 219.844
               }
             ]
           },
@@ -21165,20 +21165,20 @@
             }
           ],
           "stem_versions": {
-            "back_vox": "522487a617",
-            "drums": "9bd28a900e",
-            "keys": "fee9b2ce63",
-            "bass": "002ffbe042",
-            "other": "2137b2414b",
-            "click": "b062a4cc13",
-            "cues": "aed2467882"
+            "back_vox": "ab7e253490",
+            "drums": "e6bb324617",
+            "keys": "fe83d8fa5c",
+            "bass": "b5d688eeb3",
+            "other": "80b4ea1b87",
+            "click": "f2e3b393eb",
+            "cues": "b41043a323"
           },
           "versions": {
-            "all": "87cdb1674d",
-            "steve": "ca42f6ef64",
-            "pb-other": "5f35ea90a4",
-            "pb-bass": "002ffbe042",
-            "pb-audition": "733acbf142"
+            "all": "dcc305a82a",
+            "steve": "3e88122183",
+            "pb-other": "38734c274a",
+            "pb-bass": "b5d688eeb3",
+            "pb-audition": "737b6d5d86"
           },
           "pb_other": {
             "available": true,

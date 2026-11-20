@@ -10,15 +10,18 @@ Source: Moises «Знаешь ли ты _minus_-Db minor-64bpm-441hz.zip» — a
 the backing vocals only -> backing_vocals.wav (back-vox role, ceiling-leveled by the render).
 
 Measured on the raw stems (wiki/songs/maksim-znaesh-li-ty.md):
-  * tempo dead-constant 63.855 bpm: drum transients (knock 150-1k / snare 1-5k / hats 6-16k spectral flux,
-    beat-synchronous fold per 16 beats) sit on one straight line through the whole drum part, ±1 ms, all
-    bands agree -> no warp.
-  * the Moises metronome is NOT usable: it LAGS the drums by ~37 ms at 84 s growing to ~52 ms at 219 s
-    (its own tempo is 63.848, and its intervals are quantized to 20 ms frames: 0.942 / 0.922 s), and
+  * tempo dead-constant 64.000 bpm: drum transients (knock 150-1k / snare 1-5k / hats 6-16k spectral flux,
+    beat-synchronous fold per 16 beats, exact-sample hop) sit on one straight line through the whole drum
+    part, -1..-2 ms, all bands agree -> no warp.
+    (2026-11-20 fix: the first version said 63.855 — my analysis used hop=int(sr*0.0005)=22 samples read
+    as 0.5 ms, which stretches every time by 0.23 %; the click drifted ~0.5 beat late by the end.)
+  * the Moises metronome is NOT usable: it LAGS the drums by ~38 ms at 84 s growing to ~52 ms at 219 s
+    (its own tempo is 63.993, and its intervals are quantized to 20 ms frames: 0.94 / 0.92 s), and
     its first click (raw 1.135 s) is beat 2, not a downbeat: chord changes land on Moises click k%4 == 3
     and the snare on k%4 == 0/2 (= beats 2/4). So bar 1.1 = raw Moises beat k = -1, where the piano
     starts (raw ~0.15 s).
-  * no padding/trim: bar 1.1 sits at raw P0 - B = 0.165 s; the stems stay byte-identical to Moises.
+  * no padding/trim: bar 1.1 sits at raw P0 - B = 0.164 s; the stems stay byte-identical to Moises.
+  * drums + bass enter ON bar 24.1; the band's last hit is 59.4& (snare 4, kick 4e, hats 4&).
 Beat index k = raw Moises click index (k=0 at its first click); bar = (k+1)//4 + 1.
 """
 import os, sys, glob, shutil, subprocess, zipfile
@@ -27,9 +30,9 @@ import numpy as np
 SR = 44100
 SONG = os.path.expanduser("~/projects/cherry-daddies/music/songs/МакSим - Знаешь ли ты")
 ORIG = os.path.join(SONG, "moises-orig")
-BPM = 63.855
+BPM = 64.0
 B = 60.0 / BPM
-P0 = 1.10415                      # raw time of k=0 on the DRUM grid (Moises' own click there: 1.135 s)
+P0 = 1.1012                       # raw time of k=0 on the DRUM grid (Moises' own click there: 1.133 s)
 K_BAR1 = -1                       # raw beat index of bar 1.1
 
 # Moises file tag -> stem name in the song folder (None = kept out of the stem glob, in moises-orig/)
