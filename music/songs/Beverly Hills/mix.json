@@ -2,7 +2,7 @@
   "podgo": "31D",
   "gm800": 6,
   "bpm": 115,
-  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": 3.0}], "roles": {"roma-keys-2810": "musical"}},
+  "pb-other": {"layers": [{"file": "roma-keys-2810", "frame": "render", "replaces": ["keys", "other"], "gain_db": -1.0}], "roles": {"roma-keys-2810": "musical"}},
   "pb-bass": {"layers": [{"file": "zivert-bass", "frame": "render", "replaces": ["bass"], "gain_db": -7.5, "offset_ms": -23.9}]},
   "click": "follow",
   "players": {"steve": ["drums"], "tanya": ["vocals"]},

@@ -17,7 +17,7 @@
   "podgo": "31D",
   "bpm": 140.09,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["keys"], "gain_db": {"keys": 3.5}, "peak": "limit"},
+  "pb-other": {"stems": ["keys"], "gain_db": {"keys": 1.6}, "peak": "limit"},
   "pb-bass": {"stems": ["bass"], "mute": {"bass": [[28, 44]]}},
   "cut_after_last_cue": 1,
   "cues": [
