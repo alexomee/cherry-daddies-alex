@@ -40,6 +40,7 @@ The playback layer is described in NOTES.json:
         {"voice": "line", "tone": 272, "base": 33, "bars": [41, 57], "gain_db": 0, "fade": [54, 56.25]}]}
 (a take is a scene, whole or some of its parts, or one ROM tone in part 1 of an INIT scene - for
 a part nobody plays live, so no scene is kept for it)
+A take may carry "delay": {"beats": 0.5, "db": -5, "fb": 0.25} - an echo added by `layer`, offline.
 `record` plays each take and cuts it so that sample 0 is the bar line of its first bar: the USB
 record chain has a latency that changes from run to run, so every take starts with a short note
 on a sharp scene (SYNC_SCENE), its onset gives the latency of this very recording, then the
@@ -160,6 +161,17 @@ def voice_gains(song, part, voice, b0, b1):
             pos = at + n[0] - 1 + (n[1] - 1) / 4
             if opt.get("gain_db") and b0 <= pos < b1:
                 out.append(((pos - b0) * song.bar, n[2] * song.bar / 4, opt["gain_db"]))
+    return out
+
+
+def apply_delay(x, sr, sec, db=-6.0, fb=0.25, repeats=6):
+    """A plain echo on a take (a playback-only voice that needs an FX the dry ROM tone does not have; «Солнышко»
+    verse stab, 2026-11-20): the take delayed by `sec`, `db` under the dry sound, each further repeat * fb."""
+    out = x.copy(); n = int(round(sec * sr)); g = 10 ** (db / 20)
+    for k in range(1, repeats + 1):
+        if k * n >= len(x) or g < 1e-3:
+            break
+        out[k * n:] += g * x[:len(x) - k * n]; g *= fb
     return out
 
 
@@ -354,6 +366,8 @@ def cmd_layer(song, part_file):
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
         x = apply_gains(x, voice_gains(song, part, tk["voice"], *tk["bars"]), SR)
         x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
+        if tk.get("delay"):                                  # {"beats": 0.5, "db": -5, "fb": 0.25}: echo, offline
+            d = tk["delay"]; x = apply_delay(x, SR, d["beats"] * song.bar / 4, d.get("db", -6.0), d.get("fb", 0.25))
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
         if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
             f0, f1 = (int((b - tk["bars"][0]) * song.bar * SR) for b in tk["fade"])

@@ -62,21 +62,23 @@ END = 146                                  # bar after the last one
 name = lambda m: f"{NAMES[m % 12]}{m // 12 - 1}"
 midi = lambda s: NAMES.index(s[:-1]) + 12 * (int(s[-1]) + 1)
 
-# tone = first place of the sweep of 2026-11-20 against the stems (not chosen by ear yet); cand = the short list
+# tone = Alex's pick by ear on the tone page, 2026-11-20 (330 riff - wants a layer like Roma's on top; 317 stab -
+# wants an FX; 316 arp and octs; 970; 287 sweep and pad; 1011; 249). organ: none of the first list fits («нет
+# трубного / перегруз звука») - 33 is a placeholder until the second sweep. cand = the short list
 # for `gmp sweep --tones`; solo = bars where the voice is (almost) alone in keys + other, for the sweep.
 VOICES = {
     "riff":    dict(tone=330, role="lead",  solo=(105, 109), cand=[211, 210, 212, 217, 214, 208, 194, 239, 327, 330, 304],
                     what="рифф, октава 3–4"),
     "riff_hi": dict(tone=330, role="lead",  solo=(105, 109), cand=[], what="рифф октавой выше"),
-    "vstab":   dict(tone=316, role="stab",  solo=(33, 37),  cand=[316, 327, 330, 304, 1092, 317], what="офф-бит стаб куплета"),
-    "vfill":   dict(tone=316, role="stab",  solo=(33, 37),  cand=[], what="филл куплета C → C#"),
+    "vstab":   dict(tone=317, role="stab",  solo=(33, 37),  cand=[316, 327, 330, 304, 1092, 317], what="офф-бит стаб куплета"),
+    "vfill":   dict(tone=317, role="stab",  solo=(33, 37),  cand=[], what="филл куплета C → C#"),
     "organ":   dict(tone=33, role="organ", solo=(41, 45),  cand=[527, 530, 27, 33, 34, 518, 522, 38], what="офф-бит орган (квинта)"),
-    "arp":     dict(tone=352, role="pluck", solo=(49, 53),  cand=[350, 352, 354, 1087, 1089, 361, 365, 316], what="«арпеджиатор», галоп"),
-    "arp_lo":  dict(tone=352, role="pluck", solo=(49, 53),  cand=[], what="галоп октавой ниже"),
+    "arp":     dict(tone=316, role="pluck", solo=(49, 53),  cand=[350, 352, 354, 1087, 1089, 361, 365, 316], what="«арпеджиатор», галоп"),
+    "arp_lo":  dict(tone=316, role="pluck", solo=(49, 53),  cand=[], what="галоп октавой ниже"),
     "octs":    dict(tone=316, role="pluck", solo=(57, 61),  cand=[316, 1024, 1092, 322, 199, 350], what="октавы шестнадцатыми"),
     "stack":   dict(tone=970, role="lead",  solo=(57, 61),  cand=[970, 360, 195, 190, 199], what="октавные акценты"),
-    "sweep":   dict(tone=197, role="pad",   solo=(65, 73),  cand=[277, 278, 1055, 197, 287], what="медленная мелодия"),
-    "pad":     dict(tone=285, role="pad",   solo=(73, 77),  cand=[287, 275, 264, 259, 266, 285], what="пэд тихого куплета"),
+    "sweep":   dict(tone=287, role="pad",   solo=(65, 73),  cand=[277, 278, 1055, 197, 287], what="медленная мелодия"),
+    "pad":     dict(tone=287, role="pad",   solo=(73, 77),  cand=[287, 275, 264, 259, 266, 285], what="пэд тихого куплета"),
     "strings": dict(tone=1011, role="pad",   solo=(73, 77),  cand=[148, 145, 753, 1011, 259], what="струнные, октава"),
     "brass":   dict(tone=249, role="stab",  solo=(73, 77),  cand=[252, 247, 253, 257, 249, 242], what="триольные аккорды"),
     "roll":    dict(tone=249, role="stab",  solo=(128, 129), cand=[], what="дробь в стоп-такте 128"),
@@ -394,9 +396,107 @@ def cmd_tones(top=5):
     print(os.path.join(dst, "index.html"))
 
 
+ORGAN2 = [35, 36, 32, 537, 538, 539, 540, 541, 543, 542, 42, 43, 546, 548, 550, 554, 552, 30]   # overdriven + pipes
+STAB_FX = [("сухой", None), ("эхо 1/8, как в записи", dict(beats=0.5, db=-5, fb=0.25)),
+           ("эхо 1/8 тише", dict(beats=0.5, db=-9, fb=0.25)), ("эхо 1/8 с длинным хвостом", dict(beats=0.5, db=-5, fb=0.5)),
+           ("эхо 1/16", dict(beats=0.25, db=-6, fb=0.4)), ("эхо 1/8 с точкой", dict(beats=0.75, db=-6, fb=0.35))]
+
+
+def cmd_tones2(top=6):
+    """Second round after Alex's answers (2026-11-20): a sustaining layer under the riff's 330 (scored against
+    ROMA's take, that is what he asked for), echo variants for the verse stab's 317, the overdriven / pipe organs.
+    -> analysis/.../preview-tones2/index.html"""
+    import glob, soundfile as sf, librosa
+    from scipy.signal import resample_poly
+    load = lambda nm: (lambda s: (lambda m: (s.loader.exec_module(m), m)[1])(importlib.util.module_from_spec(s)))(
+        importlib.util.spec_from_file_location(nm, os.path.join(REPO, "tools", nm + ".py")))
+    gp = load("gm800_part"); song = gp.gmm.Song("Solnyshko"); dst = os.path.join(OUT, "preview-tones2"); os.makedirs(dst, exist_ok=True)
+    src = os.path.join(OUT, "preview-tones")
+    names = {int(r.split("\t")[0]): r.split("\t")[1].split("  ")[0].strip() for r in open(os.path.join(REPO, "gear", "gm-800", "tones.tsv"), encoding="utf-8")}
+    hist = json.load(open(gp.HISTORY, encoding="utf-8"))["tones"]
+    rms = lambda x: np.sqrt((x ** 2).mean()) + 1e-9
+    rd = lambda p: sf.read(p, always_2d=True)[0].mean(1)
+
+    def take(vn, num):
+        b0, b1 = VOICES[vn]["solo"]; n = int(round((b1 - b0) * song.bar * SR))
+        x = resample_poly(rd(os.path.join(song.out, f"sweep-synths-{vn}-{b0}-{b1}-t{num:04d}.wav")), 147, 160)
+        return np.pad(x, (0, max(0, n - len(x))))[:n]
+
+    def feat(x):
+        C = np.abs(librosa.cqt(librosa.resample(x.astype(np.float32), orig_sr=SR, target_sr=22050), sr=22050, hop_length=512,
+                               fmin=librosa.note_to_hz("C2"), n_bins=84))
+        return np.log1p(30 * C / (C.max() + 1e-9))
+
+    def sim(a, b):                                           # time x frequency cosine, best of small lags (USB latency)
+        best = 0
+        for l in range(-4, 5):
+            p, q = (a[:, l:], b[:, :b.shape[1] - l]) if l >= 0 else (a[:, :l], b[:, -l:])
+            k = min(p.shape[1], q.shape[1]); best = max(best, float((p[:, :k] * q[:, :k]).sum() / (np.linalg.norm(p[:, :k]) * np.linalg.norm(q[:, :k]) + 1e-9)))
+        return best
+
+    def write(group, clips):                                 # [(tag, x, name, note, ref)] -> same loudness, wav loops
+        ref = rms(clips[0][1]); peak = max(np.abs(x * ref / rms(x)).max() for _, x, *_ in clips); out = []
+        for tag, x, nm, note, isref in clips:
+            x = x * ref / rms(x) / peak * 0.8; k = int(0.008 * SR); x[:k] *= np.linspace(0, 1, k); x[-k:] *= np.linspace(1, 0, k)
+            sf.write(os.path.join(dst, f"{group}-{tag}.wav"), x.astype(np.float32), SR, subtype="PCM_16"); out.append([f"{group}-{tag}.wav", nm, note, isref])
+        return out
+
+    groups = []
+    # 1. riff: 330 + a sustaining layer, against Roma
+    b0, b1 = VOICES["riff"]["solo"]; roma, orig = rd(os.path.join(src, "riff-roma.wav")), rd(os.path.join(src, "riff-orig.wav"))
+    base = take("riff", 330); R = feat(roma); cand = []
+    for p in glob.glob(os.path.join(song.out, f"sweep-synths-riff-{b0}-{b1}-t*.wav")):
+        num = int(p[-8:-4])
+        if num == 330:
+            continue
+        x = take("riff", num)
+        for g in (-9, -6, -3, 0, 3):                          # the layer against 330, dB (both at the same RMS first)
+            cand.append((sim(feat(base / rms(base) + x / rms(x) * 10 ** (g / 20)), R), num, g, x))
+    alone = sim(feat(base), R); best = {}
+    for sc, num, g, x in sorted(cand, key=lambda c: -c[0]):
+        best.setdefault(num, (sc, g, x))
+    clips = [("roma", roma, "Рома, концерт", "к нему и подбирался слой", True), ("orig", orig, "Оригинал", "стемы keys + other", True),
+             ("t330", base, "330 Bright Pulse Key один", f"близость к Роме {alone:.2f}", False)]
+    for num, (sc, g, x) in list(best.items())[:top]:
+        clips.append((f"t330+{num}", base / rms(base) + x / rms(x) * 10 ** (g / 20), f"330 + {num} {names[num]}",
+                      f"слой {g:+d} дБ к 330; близость к Роме {sc:.2f}", False))
+        print(f"riff 330 + {num} {names[num]} at {g:+d} dB: {sc:.3f} (330 alone {alone:.3f})")
+    top1 = next(iter(best))
+    for num, g in ((top1, -3), (194, -3)):                     # the best layer quieter, and a sustaining pulse lead
+        sc, x = next((c[0], c[3]) for c in cand if c[1] == num and c[2] == g)
+        clips.append((f"t330+{num}q", base / rms(base) + x / rms(x) * 10 ** (g / 20), f"330 + {num} {names[num]}",
+                      f"слой {g:+d} дБ к 330; близость к Роме {sc:.2f}", False))
+    groups.append({"name": "Рифф: 330 и тянущийся слой, как у Ромы", "note": f"такты {b0}–{b1 - 1}. У Ромы нота держится (через 0.3 с −5 дБ), "
+                   "у 330 гаснет (−14 дБ). Слой подобран по близости к записи Ромы из 17 тонов; лучше всего легли пилы.", "clips": write("riff", clips)})
+    # 2. verse stab: 317 with an echo
+    b0, b1 = VOICES["vstab"]["solo"]; dry = take("vstab", 317); orig = rd(os.path.join(src, "vstab-orig.wav"))
+    clips = [("orig", orig, "Оригинал", "стемы keys + other", True)]
+    for i, (nm, fx) in enumerate(STAB_FX):
+        x = dry if fx is None else gp.apply_delay(dry[:, None], SR, fx["beats"] * song.bar / 4, fx["db"], fx["fb"])[:, 0]
+        clips.append((f"t317-fx{i}", x, "317 " + nm, "без обработки" if fx is None else f"{fx['db']} дБ, повтор ×{fx['fb']}", False))
+    groups.append({"name": "Стаб куплета: 317 Super Saw Key + FX", "note": f"такты {b0}–{b1 - 1}. В записи после каждого стаба слышен повтор через восьмую, "
+                   "около −5 дБ. Эхо добавляется при сборке слоя, не в приборе (голос только в плейбеке).", "clips": write("vstab", clips)})
+    # 3. organ: overdriven and pipe tones
+    b0, b1 = VOICES["organ"]["solo"]
+    runs = sorted((r["rank"], int(num), r["score"], r["oct"]) for num, t in hist.items() for r in t["runs"]
+                  if r["song"] == song.name and r["voices"] == "organ" and r["bars"] == [b0, b1] and int(num) in ORGAN2)
+    clips = [("orig", rd(os.path.join(src, "organ-orig.wav")), "Оригинал", "стем other", True),
+             ("roma", rd(os.path.join(src, "organ-roma.wav")), "Рома, концерт", "ориентир", True)]
+    for rank, num, sc, o in runs[:top + 4]:
+        clips.append((f"t{num}", take("organ", num), f"{num} {names[num]}", f"близость {sc:.2f}" + (f"; звучит на {abs(o)} окт. {'ниже' if o < 0 else 'выше'}" if o else ""), False))
+    groups.append({"name": "Офф-бит орган: с перегрузом и трубные", "note": f"такты {b0}–{b1 - 1}. Второй список: VK Rotary Dist, Rock / Mad / Full OD, "
+                   "церковные и Puff.", "clips": write("organ", clips)})
+    meta = {"title": "Солнышко — звук, второй круг", "sub": "Три места, где ты попросил другое: слой к риффу, FX на стаб, орган. "
+            "Внутри группы переключение сохраняет место; <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза.",
+            "groups": groups}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(dst, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(dst, "index.html"))
+
+
 def sr_pad(info):
     return int(0.2 * info.samplerate)
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview, "tones": cmd_tones}[sys.argv[1]]()
+    {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview, "tones": cmd_tones, "tones2": cmd_tones2}[sys.argv[1]]()
