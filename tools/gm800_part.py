@@ -224,7 +224,7 @@ def take_path(song, part_file, voice, scene, parts, b0, b1):
     return os.path.join(song.out, f"part-{base}-{voice}-s{scene:03d}-{tag}-{b0}-{b1}.wav")
 
 
-def cmd_take(song, part_file, voice, scene, parts, b0, b1, as_played=False):
+def cmd_take(song, part_file, voice, scene, parts, b0, b1, as_played=False, vel=None):
     part = json.load(open(part_file, encoding="utf-8")); tones = tone_names()
     line = voice_line(song, part, voice, b0, b1)
     if not line:
@@ -243,10 +243,14 @@ def cmd_take(song, part_file, voice, scene, parts, b0, b1, as_played=False):
             raise SystemExit("no sounding part")
         if as_played:                                       # every part the same note, as on the guitar
             ref = min(shifts.values()); shifts = {ch: ref for ch in shifts}
+        if vel:
+            gmm.VEL = vel                                   # how hard: a resonant poly opens its filter with it
         time.sleep(1.5)                                     # let the probe tails die
         ev = [(t, n - sh, d, ch) for t, n, d in line for ch, sh in shifts.items()]
         x = play(rig, ev)
     out = take_path(song, part_file, voice, scene, parts, b0, b1)
+    if vel:
+        out = out.replace(".wav", f"-v{vel}.wav")
     gmm.save(out, x)
     print(f"{len(line)} notes x {len(shifts)} parts -> {out}  LUFS {gmm.lufs(x):.1f}  peak "
           f"{20 * np.log10(np.abs(x).max() + 1e-9):.1f} dBFS")
@@ -318,7 +322,7 @@ def cmd_record(song, part_file, only=None, tail=4.0):
                 msgs += [(SYNC_AT + 1.4, tone_msg)]
             for t, n, d in line:
                 for ch, sh in shifts.items():
-                    msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, gmm.VEL]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
+                    msgs += [(SYNC_T0 + t, [0x90 | ch, n - sh, tk.get("vel", gmm.VEL)]), (SYNC_T0 + t + d, [0x80 | ch, n - sh, 0])]
             dur = SYNC_T0 + (b1 - b0) * song.bar + tail
             rec = rig.sd.rec(int((dur + 0.4) * SR), SR, channels=2, device=rig.dev)
             t0 = time.perf_counter() + 0.4
@@ -659,7 +663,7 @@ def history_top(role, n):
     return [num for _, num in sorted(best, reverse=True)[:n]]
 
 
-def cmd_sweep(song, part_file, voices, b0, b1, nums, base, tail, band, rescore=False, role=None, transpose=0):
+def cmd_sweep(song, part_file, voices, b0, b1, nums, base, tail, band, rescore=False, role=None, transpose=0, vel=None):
     """The voice(s) of bars [b0, b1) on ROM tones (part 1 of the TEMP scene over an INIT scene, nothing
     written), each take scored against the summed stems of the part (sweep_score). Takes are kept:
     --rescore ranks them again without the GM-800 (e.g. with another --band)."""
@@ -675,6 +679,8 @@ def cmd_sweep(song, part_file, voices, b0, b1, nums, base, tail, band, rescore=F
     tag = f"sweep-{base_nm}-{'+'.join(voices)}-{b0}-{b1}" + (f"-tr{transpose:+d}" if transpose else "")
     tab = {int(r[0]): r for r in csv.reader(open(gmm.TONES, encoding="utf-8"), delimiter="\t")}
     path = lambda num: os.path.join(song.out, f"{tag}-t{num:04d}.wav")
+    if vel:
+        gmm.VEL = vel
     if not rescore:
         with gmm.Rig() as rig:
             nm, _ = rig.load(base)
@@ -719,6 +725,7 @@ def main():
     p.add_argument("--rescore", action="store_true", help="rank the kept takes again, no GM-800")
     p.add_argument("--role", default="", help="what the part is (lead, pad, stab, pluck, bass...): key of the "
                    "history; default = first voice without its _suffix")
+    p.add_argument("--vel", type=int, default=0, help="MIDI velocity of the takes (default 100)")
     p.add_argument("--transpose", type=int, default=0, help="send the notes this many semitones off (a tone "
                    "that sounds an octave low: 12); the take is then compared at the written pitch")
     p.add_argument("--from-history", type=int, default=0, metavar="N",
@@ -727,6 +734,7 @@ def main():
     p = sub.add_parser("take")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("scene", type=int)
     p.add_argument("--parts", default=""); p.add_argument("--bars", type=int, nargs=2)
+    p.add_argument("--vel", type=int, default=0, help="MIDI velocity (default gm800_match.VEL = 100)")
     p.add_argument("--as-played", action="store_true", help="every part gets the same note (the scene as played "
                    "on the guitar: parts shifted by octaves stay shifted); default = each part at the written pitch")
     p = sub.add_parser("preview")
@@ -775,7 +783,7 @@ def main():
             raise SystemExit("no tones: --cat, --tones or --from-history (an empty history for this role?)")
         band = tuple(float(v) for v in a.band.split("-")) if a.band else None
         return cmd_sweep(song, a.notes, a.voices.split(","), a.bars[0], a.bars[1], nums, a.base, a.tail, band,
-                         a.rescore, role, a.transpose)
+                         a.rescore, role, a.transpose, a.vel or None)
     if a.cmd == "tones":
         return cmd_tones(song, a.note, [int(v) for v in a.nums.split(",")], a.base)
     if a.cmd == "record":
@@ -785,7 +793,8 @@ def main():
     part = json.load(open(a.notes, encoding="utf-8"))
     b0, b1 = a.bars or part.get("bars")
     if a.cmd == "take":
-        cmd_take(song, a.notes, a.voice, a.scene, [int(v) for v in a.parts.split(",") if v], b0, b1, a.as_played)
+        cmd_take(song, a.notes, a.voice, a.scene, [int(v) for v in a.parts.split(",") if v], b0, b1, a.as_played,
+                 a.vel or None)
     else:
         cmd_preview(song, a.notes, b0, b1)
 

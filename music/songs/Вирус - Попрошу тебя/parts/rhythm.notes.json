@@ -1172,61 +1172,67 @@
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 11,
 19
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 },
 {
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 20,
 28
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 },
 {
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 44,
 52
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 },
 {
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 53,
 61
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 },
 {
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 85,
 93
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 },
 {
 "voice": "rhythm",
 "scene": 28,
 "as_played": true,
+"vel": 63,
 "bars": [
 94,
 102
 ],
-"gain_db": -1.4
+"gain_db": 4.2
 }
 ]
 }

@@ -126,7 +126,10 @@ VOICING = {"Cm": "C5 D#5 C6", "Ab": "C5 G#5 C6", "Eb": "D#5 G5 D#6 G6", "Eb2": "
 STAB = 1.25                       # 16ths: the record's stab is ~130 ms (a 16th = 107 ms)
 OCT = 0                           # semitones on top of the record's pitch (the scene as played): at the record's pitch
                                   # scene 28 matches the stem 0.841 with no octave shift; an octave down only shifted
-TAKE_DB = -1.4                    # take (USB) -> the stem's stabs (bars 3-6: -23.2 vs -24.6 LUFS); + the keys gain
+VEL = 63                          # how hard: scene 28 opens its filter with velocity; 63 = the record's brightness
+                                  # (spectral centroid 3.46 vs 3.50 kHz; 100 gave 5.2 kHz: «звучит по-другому», Alex)
+TAKE_DB = 4.2                     # take (USB) -> the stem's stabs, bars 3-6 (mono LUFS -28.7 vs -24.6, slot 28 + 316 + echo,
+                                  # vel 63; was -1.4 for the old preset at vel 100); + the keys gain
                                   # of pb-other (+1.6) on the layer in mix.json
 RHYTHM_PART = os.path.join(SONG, "parts", "rhythm.notes.json")
 
@@ -167,7 +170,8 @@ def do_rhythm(blocks=BLOCKS, path=RHYTHM_PART, oct_=OCT, voice="rhythm", extra=N
             "stems": ["keys"], "voices": {voice: {"at": [1], "bars": 200, "notes": notes}}}
     if extra is None and path == RHYTHM_PART:       # the playback layer: one take of scene 28 a block
         extra = {"layer": {"file": "pb-rhythm", "takes": [
-            {"voice": voice, "scene": 28, "as_played": True, "bars": [a, b], "gain_db": TAKE_DB} for a, b in blocks]}}
+            {"voice": voice, "scene": 28, "as_played": True, "vel": VEL, "bars": [a, b], "gain_db": TAKE_DB}
+            for a, b in blocks]}}
     if extra:
         part.update(extra)
     with open(path, "w", encoding="utf-8") as f:

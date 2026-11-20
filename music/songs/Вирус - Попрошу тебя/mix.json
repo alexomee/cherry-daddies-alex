@@ -18,7 +18,7 @@
   "bpm": 140.09,
   "pitch_semitones": 0,
   "pb-other": {"stems": ["keys"], "gain_db": {"keys": 1.6}, "peak": "limit",
-    "mute": {"keys": [[11, 19], [20, 28], [44, 52], [53, 93], [94, 102]]}, "mute_fade_ms": [60, 15],
+    "mute": {"keys": [[3, 19], [20, 28], [44, 52], [53, 93], [94, 130]]}, "mute_fade_ms": [60, 15],
     "layers": [{"file": "pb-rhythm", "frame": "stem", "gain_db": 1.6, "derived": true, "source": ["keys"]}],
     "roles": {"pb-rhythm": "musical"}},
   "pb-bass": {"stems": ["bass"], "mute": {"bass": [[28, 44]]}},
