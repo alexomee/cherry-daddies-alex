@@ -61,7 +61,7 @@
 
 ### На бис
 
-1. [Мелом (Пропаганда)](songs/melom.md) — На бис #1, с 2026-11-20 и в «12.12 new songs»; без pb-other (только click+cues + pb-bass из стема с 2026-11-17, Рома ушёл), Bb minor / 120 bpm, 10 cue, единственный static lyric-клип в риге.
+1. [Мелом (Пропаганда)](songs/melom.md) — На бис #1, с 2026-11-20 и в «12.12 new songs»; без pb-other (только click+cues + pb-bass из стема с 2026-11-17, Рома ушёл), Bb minor / 120 bpm, 11 cue (voice in на 5, drums-n-voice in на 73), pb-bass −19.2 LUFS, единственный static lyric-клип в риге.
 2. [t.A.T.u. — Я сошла с ума](songs/ya-soshla-s-uma.md) — На бис #2, JamZone-стемы (cat_54835), 90 bpm без питча; pb-bass из стема с 2026-11-17 (Рома ушёл); все секции входят на долю 3 (cue-гоча), перкуссия вычищена, pb-other fade_out в 0 за 2 доли до финального удара 77.3 (3:24), дуэт-lyric-launcher две колонки.
 
 ### 24.10 Lefkara (27 песен)

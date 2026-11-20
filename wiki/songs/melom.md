@@ -20,19 +20,20 @@ set: на бис #1; 12.12 new songs #9; 12.12 all
 
 - **Плейбек = click + cues + pb-bass** (`pb-other: null`; `pb-bass` = Moises `bass`, см. ниже). До 2026-11-17 плейбека не было вовсе (живой квартет, рантайм в MainStage = только click + cues, [mainstage-rig](../pipelines/mainstage-rig.md)).
 - **Играем с кликом** (Alex, 2026-11-17; на концерте 28.10 играли без метронома — поэтому концертный бас не рассматривался). pb-bass из стема остаётся.
-- **С 2026-11-17 pb-bass** (Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`, `gain_db +3.1` → −20.8 LUFS. До медианы −19.2 не дотянуть: бас тихий с высокими пиками, +4.7 дБ упёрлись бы в нормализацию (пик −0.5 при +3.1). Остаток против стема −76 дБ; all/click прежние, cues.wav прежний. В Stage Traxx: Click, Cues, PB Bass. Есть запись живого баса с концерта 28.10 (`~/Downloads/Set 2/13 Мелом/07 Bass Guitar.wav`) — не сравнивалась.
+- **С 2026-11-17 pb-bass** (Рома ушёл, бас везде в плейбеке — Alex): Moises `bass`. **С 2026-11-20: `gain_db +4.7` + `"peak": "limit"` → −19.2 LUFS** (медиана баса; лимитер −0.4 dBFS задел 169 сэмплов, остаток против прежнего −41 дБ). До этого `gain_db +3.1` → −20.8 LUFS. До медианы −19.2 не дотянуть: бас тихий с высокими пиками, +4.7 дБ упёрлись бы в нормализацию (пик −0.5 при +3.1). Остаток против стема −76 дБ; all/click прежние, cues.wav прежний. В Stage Traxx: Click, Cues, PB Bass. Есть запись живого баса с концерта 28.10 (`~/Downloads/Set 2/13 Мелом/07 Bass Guitar.wav`) — не сравнивалась.
 - **layers нет.**
 - **Стемы (Moises)** в `/Users/alex/projects/cherry-daddies/music/songs/Мелом/`: `bass`, `drums`, `guitars`, `keys`, `other`, `vocals`, `backing_vocals`, `metronome`. Оригиналы Moises (`Bb minor / 120bpm / 442hz`, id `OaXj5OMqYtE`) в `moises-orig/`. См. [moises-import](../pipelines/moises-import.md).
 - **players:** `alex → guitars`, `steve → drums`, `tanya → vocals` (roma убран 2026-11-17).
 - **practice-миксы** в `auto-render/`: `practice-alex.mp3`, `practice-steve.mp3`, `practice-tanya.mp3` (`practice-roma.mp3` убран 2026-11-17) (каждый = микс без своих стемов + клик + cue).
-- **Рендеры** в `/Users/alex/projects/cherry-daddies/music/songs/Мелом/auto-render/`: `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `timeline.json` (offset 3.97 с, bar = 2.0 с, 120 bpm). См. [jamzone-render](../pipelines/jamzone-render.md).
+- **Рендеры** в `/Users/alex/projects/cherry-daddies/music/songs/Мелом/auto-render/`: `all.wav`, `click.wav`, `cues.wav`, `cue_preview.mp3`, `timeline.json` (с 2026-11-20 offset 2.689 с, такт 1.1 = 2.714 с — короткое вступление без добивки до целых тактов; раньше 3.97 с; bar = 2.0 с, 120 bpm). См. [jamzone-render](../pipelines/jamzone-render.md).
 
 ## Cue
 
-- **10 cue** (`ready: true` в `web/songs.json`). Устройство cue — [cue-system](../pipelines/cue-system.md).
-- Список: bar 1 «Мелом guitar in» (старт), bar 29 «drums stop», bar 41 «bass-only in», bar 45 «all in», bar 53 «drums stop», bar 61 «drums in», bar 69 «drums stop», bar 73 «drums in», bar 81 «keep going», bar 89 «guitar only ready go».
+- **11 cue** (`ready: true` в `web/songs.json`). Устройство cue — [cue-system](../pipelines/cue-system.md).
+- Список: bar 1 «Мелом guitar in» (старт), bar 5 «voice in», bar 29 «drums stop», bar 41 «bass-only in», bar 45 «all in», bar 53 «drums stop», bar 61 «drums in», bar 69 «drums stop», bar 73 «drums-n-voice in», bar 81 «keep going», bar 89 «guitar only ready go».
 - Много drum stop/in — структура с чередованием «барабаны стоп / вступают».
 - **Два `raw: true` cue** (произносятся дословно, без разворота по правилам): bar 81 «keep going» и bar 89 «guitar only ready go».
+- **Вокал (замер 2026-11-20).** Moises разложил голос по двум стемам (`vocals` + `backing_vocals`: припев «Фиолетовая пудра» и половина куплета 1 лежат в бэках), паузы мерить по сумме. Вступления: такт 5 (доля 1&, после 4 тактов интро) и такт 73 (припев 3, доля 1&, после паузы 70–72); короткая пауза в такте 44 — вход на 45 под «all in». Остальное поётся подряд (куплет 1 5–20, припев 21–28, куплет 2 29–40, припев 2 45–52, куплет 3 53–69, припевы 73–88).
 - Счётных входов (`count: true`) нет; `cue_step` не задан.
 
 ## Тексты на сцене
@@ -45,6 +46,8 @@ set: на бис #1; 12.12 new songs #9; 12.12 all
 - **2026-06-20** — все 24 сета разведены в `2000.concert` (`wire_concert.py`), включая Мелом (set 23).
 
 - **2026-11-20** — добавлена в сет «12.12 new songs» (Alex). pb-bass проверен: `auto-render/pb-bass.wav` 188 с, −20.8 LUFS, пик −0.5; в Stage Traxx трек PB Bass на шине 4, 10 регионов.
+
+- **2026-11-20** — pb-bass поднят до −19.2 LUFS (`gain_db 4.7`, `peak: limit`); cue «voice in» на такте 5 и «drums-n-voice in» на 73 вместо «drums in» (Alex: подсказки для голоса в начале и после перерывов). Рендер новой версией скрипта: OFF 3.975 → 2.689 с. Stage Traxx `--apply`, 11 регионов.
 
 ## Открытое
 

@@ -4,18 +4,19 @@
   "bpm": 120,
   "pitch_semitones": 0,
   "pb-other": null,
-  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 3.1}},
+  "pb-bass": {"stems": ["bass"], "gain_db": {"bass": 4.7}, "peak": "limit"},
   "players": {"alex": ["guitars"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
-    {"bar": 1,  "text": "Мелом guitar in", "abs_sec": 4.0, "snap_sec": 0.0},
-    {"bar": 29, "text": "drums stop", "abs_sec": 60.0, "snap_sec": 55.5},
-    {"bar": 41, "text": "bass-only in", "abs_sec": 84.0, "snap_sec": 80.0},
-    {"bar": 45, "text": "all in", "abs_sec": 92.0, "snap_sec": 88.0},
-    {"bar": 53, "text": "drums stop", "abs_sec": 108.0, "snap_sec": 103.5},
-    {"bar": 61, "text": "drums in", "abs_sec": 124.0, "snap_sec": 120.0},
-    {"bar": 69, "text": "drums stop", "abs_sec": 140.0, "snap_sec": 135.5},
-    {"bar": 73, "text": "drums in", "abs_sec": 148.0, "snap_sec": 144.0},
-    {"bar": 81, "text": "keep going", "raw": true, "abs_sec": 164.0, "snap_sec": 161.0},
-    {"bar": 89, "text": "guitar only ready go", "raw": true, "abs_sec": 180.0, "snap_sec": 176.0}
+    {"bar": 1,  "text": "Мелом guitar in", "abs_sec": 2.714, "snap_sec": 0.0},
+    {"bar": 5,  "text": "voice in", "abs_sec": 10.714, "snap_sec": 6.714},
+    {"bar": 29, "text": "drums stop", "abs_sec": 58.714, "snap_sec": 54.214},
+    {"bar": 41, "text": "bass-only in", "abs_sec": 82.714, "snap_sec": 78.714},
+    {"bar": 45, "text": "all in", "abs_sec": 90.714, "snap_sec": 86.714},
+    {"bar": 53, "text": "drums stop", "abs_sec": 106.714, "snap_sec": 102.214},
+    {"bar": 61, "text": "drums in", "abs_sec": 122.714, "snap_sec": 118.714},
+    {"bar": 69, "text": "drums stop", "abs_sec": 138.714, "snap_sec": 134.214},
+    {"bar": 73, "text": "drums-n-voice in", "abs_sec": 146.714, "snap_sec": 142.214},
+    {"bar": 81, "text": "keep going", "raw": true, "abs_sec": 162.714, "snap_sec": 159.714},
+    {"bar": 89, "text": "guitar only ready go", "raw": true, "abs_sec": 178.714, "snap_sec": 174.714}
   ]
 }
