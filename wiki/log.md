@@ -2071,3 +2071,7 @@ Alex: «да, делай» на разбор свипа 94–101. `stagetraxx_sy
 ## [2026-11-20] song | Попрошу тебя: GM-800 сцена 28 на «pause in» 102
 
 Alex: «после 102 на pause in должно быть переключение на 028». `gm800` + `{"bar": 102, "scene": 28}` (стандартные 0.5 с → 2:55.958). Сцены: 28 → 29 (11) → 31 (28) → 29 (44) → 28 (102). Stage Traxx `--apply`, PC27@2 на 2:55.958 в базе, CC81 без изменений. [virus-poproshu-tebya](songs/virus-poproshu-tebya.md).
+
+## [2026-11-20] pipeline | Практис-дорожки Drums / Vocals / All: уровень рядом с плейбеком
+
+Alex: «эти стемы надо по громкости убавить, сейчас после калибровки бас тихо на фоне их». Замер 65 песен: стемы сайта на громкости оригинального мастера, барабаны −23.8…−10.5 при pb-bass около −19. `tools/stagetraxx_sync.py`: `PRACTICE_LEVEL` (Drums −17, Vocals −21, All −16), громкость дорожки = цель − замер, не выше 0 дБ, кэш замеров `~/.cache/cherry-daddies/stagetraxx-levels.json`. Применено ко всей программе (66 песен). Ручные фейдеры Alex на «Ты меня не ищи» (Drums −6.3, Vocals −7.0) заменены расчётом (−6.2, −5.4). Страницы: [level-anchors](pipelines/level-anchors.md), [stagetraxx-rig](pipelines/stagetraxx-rig.md). На слух не проверено.

@@ -10,6 +10,8 @@ For every song of the setlist (web/songs.json) builds/updates a Stage Traxx song
     Drums     bus 3   MUTED (practice: unmute in the mixer to hear the drum kit)
     Vocals    bus 3   MUTED (practice: lead vocal)
     All       bus 3   MUTED (practice: auto-render/all.wav, the whole song in the band key)
+  Drums/Vocals/All carry a track volume that puts them on a fixed level next to the playback
+  (PRACTICE_LEVEL); every other track stays at 0 dB.
 
 Mute group 1 = the playback parts All already contains (not All/Click/Cues) (MUTE_GROUPS).
 
@@ -146,6 +148,14 @@ MUTED = {"drums", "vocal", "all"}
 # muted them). To listen to the song: unmute All in the mixer, then press 1.
 MUTE_GROUPS = {"click": 0, "cues": 0, "pb-other": 0b01, "pb-bass": 0b01,
                "drums": 0b01, "vocal": 0b01, "all": 0}
+# Practice tracks get a level of their own (wiki/pipelines/level-anchors.md). The site stems come
+# at the loudness of the original master, 13 dB apart from song to song, while the playback sits
+# on the norms (pb-bass about -19): unmuted, they buried the live bass. Track volume = target -
+# measured (playback metric: LUFS of the mono fold + 3.01), never above 0 dB — a quiet stem stays
+# quiet. Drums 2 dB over the bass norm (the median drums-to-bass ratio of the originals), the
+# vocal a guide on the accompaniment norm; All = the median of the program (only evened out).
+PRACTICE_LEVEL = {"drums": -17.0, "vocal": -21.0, "all": -16.0}
+LEVEL_CACHE = os.path.expanduser("~/.cache/cherry-daddies/stagetraxx-levels.json")
 
 
 def stem_src(render, stem):
@@ -595,6 +605,48 @@ def downmix(src, dst):
     return True
 
 
+def measure_level(path):
+    """Playback metric of a file (LUFS of the mono fold + 3.01); None = silent/unreadable."""
+    out = subprocess.run(["ffmpeg", "-v", "info", "-nostats", "-i", path, "-af",
+                          "pan=mono|c0=0.5*c0+0.5*c1,ebur128=framelog=quiet", "-f", "null", "-"],
+                         capture_output=True).stderr.decode(errors="replace")
+    try:
+        v = float(out.split("Integrated loudness:")[-1].split("I:")[1].split("LUFS")[0])
+    except (IndexError, ValueError):
+        return None
+    return None if v < -60 else round(v + 3.01, 2)
+
+
+def practice_trims(songs):
+    """Fill info["trim"] = {stem: track volume, dB} for the practice tracks (PRACTICE_LEVEL).
+    Measurements are cached per source file (path, mtime, size)."""
+    from concurrent.futures import ThreadPoolExecutor
+    try:
+        cache = json.load(open(LEVEL_CACHE, encoding="utf-8"))
+    except (OSError, ValueError):
+        cache = {}
+    jobs = {}
+    for info in songs.values():
+        for stem, *_ in info["stems"]:
+            if stem in PRACTICE_LEVEL:
+                src = stem_src(info["render"], stem)
+                jobs[(info["sid"], stem)] = (f"{src}|{int(os.path.getmtime(src))}|"
+                                             f"{os.path.getsize(src)}", src)
+    todo = {k: src for k, src in jobs.values() if k not in cache}
+    if todo:
+        with ThreadPoolExecutor(8) as ex:
+            cache.update(zip(todo, ex.map(measure_level, todo.values())))
+        os.makedirs(os.path.dirname(LEVEL_CACHE), exist_ok=True)
+        with open(LEVEL_CACHE, "w", encoding="utf-8") as f:
+            json.dump(cache, f, ensure_ascii=False, indent=0)
+    for info in songs.values():
+        info["trim"] = {}
+    for (sid, stem), (key, _src) in jobs.items():
+        lvl = cache.get(key)
+        if lvl is not None:
+            songs[sid]["trim"][stem] = round(min(0.0, PRACTICE_LEVEL[stem] - lvl), 1)
+
+
 def live_bass(sid):
     """True when pb-bass carries a live-played bass layer (file name contains "живой бас")."""
     try:
@@ -709,7 +761,8 @@ def upsert_song(c, info, docs, channel, dev_channels=None):
         c.execute("""INSERT INTO track (id,songID,filePath,duration,volume,pan,mute,bus,number,
           hasMarkers,equalizer,lastModified,name,color,transpose,muteGroupMask)
           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
-                  (uuid.uuid4().bytes, sid, f"{folder}/{fn}", dur, 0.0, pan, int(stem in MUTED), bus, n,
+                  (uuid.uuid4().bytes, sid, f"{folder}/{fn}", dur,
+                   (info.get("trim") or {}).get(stem, 0.0), pan, int(stem in MUTED), bus, n,
                    0, EQ, t, nm, 0, 1, MUTE_GROUPS.get(stem, 0)))
     return sid, converted, bool(row)
 
@@ -755,10 +808,12 @@ def main():
     shown = current_texts(a.db)
     if not songs:
         sys.exit("nothing matched")
+    practice_trims(songs)
     partial = bool(a.songs)       # a song filter never rewrites playlists (they'd shrink)
 
     for info in songs.values():
-        stems = " ".join(nm for _s, _f, nm, *_ in info["stems"]).replace("PB ", "pb-")
+        stems = " ".join(nm + (f"{info['trim'][st_]:+.1f}" if info["trim"].get(st_) else "")
+                         for st_, _f, nm, *_ in info["stems"]).replace("PB ", "pb-")
         clip = f"PC{info['clip']:<3}" if info["clip"] is not None else "no-clip"
         gm = ""
         for key, ch in info["devices"].items():
