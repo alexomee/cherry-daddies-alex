@@ -17,6 +17,7 @@
     {"bar": 67,  "scene": 27, "abs_sec": 118.613},
     {"bar": 91,  "scene": 32, "lead": 0.1, "abs_sec": 160.477},
     {"bar": 100, "scene": 30, "abs_sec": 176.176},
+    {"bar": 104, "scene": 34, "lead": 0.1, "abs_sec": 183.153},
     {"bar": 108, "scene": 27, "lead": 1.3, "abs_sec": 190.13}
   ],
   "bpm": 137.59,
@@ -24,7 +25,7 @@
   "pb-other": {
     "layers": [
       {"file": "pb-fx", "frame": "stem"},
-      {"file": "pb-keys-pad", "frame": "stem", "gain_db": 6.5, "derived": true, "source": ["keys", "strings"], "mute": [[41, 67], [98.5, 130]], "mute_fade_ms": [250, 5]},
+      {"file": "pb-keys-pad", "frame": "stem", "gain_db": 6.5, "derived": true, "source": ["keys", "strings"], "mute": [[41, 67], [98.5, 108], [124.25, 130]], "mute_fade_ms": [250, 5]},
       {"file": "pb-keys-solo-pad", "frame": "stem", "gain_db": 11.1, "derived": true, "source": ["keys", "strings"]},
       {"file": "pb-wah", "frame": "stem", "derived": true, "source": ["backing_vocals", "other"], "mute": [[58, 66], [107.75, 130]]}
     ],
