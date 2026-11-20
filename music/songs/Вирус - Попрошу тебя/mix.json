@@ -2,7 +2,7 @@
   "gm800": [
     {"bar": 1,  "scene": 28, "abs_sec": 3.426},
     {"bar": 11, "scene": 29, "abs_sec": 20.558},
-    {"bar": 28, "scene": 31, "lead": 0, "abs_sec": 49.682},
+    {"bar": 28, "scene": 1, "lead": 0, "abs_sec": 49.682},
     {"bar": 44, "scene": 29, "abs_sec": 77.093},
     {"bar": 102, "scene": 28, "abs_sec": 176.458},
     {"bar": 111, "scene": 29, "abs_sec": 191.877}
@@ -22,7 +22,7 @@
     "mute": {"keys": [[3, 19], [20, 28], [44, 52], [53, 93], [94, 130]]}, "mute_fade_ms": [60, 15],
     "layers": [{"file": "pb-rhythm", "frame": "stem", "gain_db": 1.6, "derived": true, "source": ["keys"]}],
     "roles": {"pb-rhythm": "musical"}},
-  "pb-bass": {"stems": ["bass"], "mute": {"bass": [[28, 44]]}},
+  "pb-bass": {"stems": ["bass"]},
   "cut_after_last_cue": 1,
   "cues": [
     {"bar": 1,   "beat": 3, "text": "Попрошу тебя playback in", "abs_sec": 4.283, "snap_sec": 0.0},

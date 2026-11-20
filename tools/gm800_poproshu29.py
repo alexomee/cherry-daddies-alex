@@ -12,6 +12,8 @@ them with the record; `store` writes the chosen one into the slot (backups with 
     gm9 layer-store --level L              # the layer into slot 29's memory
     gm9 match-test                 # part 3 (198) with the harpsichord's play settings, legato line, before/after
     gm9 match-store                # those settings into slot 29's memory
+    gm9 level-test 127 100 80      # harpsichord alone vs the whole scene at these SCENE LEVELs (LUFS)
+    gm9 level-store L              # SCENE LEVEL into slot 29's memory
 
 Scene 29 as found (2026-11-20): parts 1-2 Harpsichord 1 (oct +1 / 0), PLAY FEEL 2, TEMPO 120 (the song is 140),
 Chorus/Delay on (SDD-320) but every part's send 0, Reverb on (level 70), sends 30. FX1 = the SuperFilter of bars
@@ -241,6 +243,50 @@ def cmd_match_store():
         sx.close()
 
 
+# ---- SCENE LEVEL (Alex 2026-11-20: «громче получилось? убавь»): the 198 layer made the scene louder than the
+# harpsichord alone, which Alex's live level was set with. SceneCommon 0x13 = SCENE LEVEL (keeps the part balance).
+SCENE_LEVEL = [TEMP, 0x00, 0x00, 0x13]
+
+
+def cmd_level_test(levels):
+    """Harpsichord alone at the stored scene level (the reference) and the whole scene at each of `levels`."""
+    song = gmm.Song("Попрошу"); line = lead_line(song); res = []
+    with gmm.Rig() as rig:
+        rig.load(SLOT); sl = rig.g.rq(SCENE_LEVEL, 1)[0]
+        rig.g.dt([TEMP, 0x02, LAYER_PART - 1, 0x04], [0]); time.sleep(0.3)
+        ref = gmm.lufs(gmm.read_wav(take(rig, song, line, f"level-harp-alone-sl{sl}")))
+        print(f"stored SCENE LEVEL {sl}; harpsichord alone {ref:.1f} LUFS")
+        for lv in levels:
+            rig.load(SLOT); rig.g.dt(SCENE_LEVEL, [lv]); time.sleep(0.3)
+            x = gmm.lufs(gmm.read_wav(take(rig, song, line, f"level-all-sl{lv}")))
+            res.append((lv, x)); print(f"  scene level {lv:3}: {x:.1f} LUFS ({x - ref:+.1f} dB to the harpsichord alone)")
+    return ref, res
+
+
+def cmd_level_store(level):
+    sx = gmm.Sx()
+    try:
+        stamp = time.strftime("%H%M%S")
+        before, pb = gmm.backup(sx, SLOT, f"before-level-{stamp}")
+        if len(before) != 88 or not gmm.scene_name(before).startswith("POPROSHU"):
+            raise SystemExit(f"slot {SLOT}: '{gmm.scene_name(before)}' / {len(before)} blocks: not writing")
+        for m in ([0xB1, 0, 0], [0xB1, 32, 0], [0xC1, SLOT - 1]):
+            sx.o.send_message(m)
+        time.sleep(1.5)
+        sx.dt(SCENE_LEVEL, [level], 0.3); time.sleep(0.5)
+        new = sx.dump([TEMP, 0x00])
+        if len(new) != 88:
+            raise SystemExit(f"temp scene: read {len(new)} of 88 blocks, not writing")
+        sx.write(gmm.slot_base(SLOT), new); time.sleep(0.5)
+        after, pa = gmm.backup(sx, SLOT, f"after-level-{stamp}")
+        bad = [k for k in new if after.get(k) != new[k]]
+        print(f"slot {SLOT} '{gmm.scene_name(after)}': SCENE LEVEL {before['00 00 00'][0x13]} -> {after['00 00 00'][0x13]}, "
+              f"88 blocks written, mismatches {bad or 'none'}\n  backups: {pb}\n           {pa}")
+        sx.o.send_message([0xC1, 0])
+    finally:
+        sx.close()
+
+
 def cmd_layer_store(level):
     sx = gmm.Sx()
     try:
@@ -297,8 +343,14 @@ if __name__ == "__main__":
     p = sub.add_parser("layer-test"); p.add_argument("--level", type=int, default=100); p.add_argument("--alone", action="store_true")
     p = sub.add_parser("layer-store"); p.add_argument("--level", type=int, required=True)
     sub.add_parser("match-test"); sub.add_parser("match-store")
+    p = sub.add_parser("level-test"); p.add_argument("levels", type=int, nargs="+")
+    p = sub.add_parser("level-store"); p.add_argument("level", type=int)
     a = ap.parse_args()
-    if a.cmd == "match-test":
+    if a.cmd == "level-test":
+        cmd_level_test(a.levels)
+    elif a.cmd == "level-store":
+        cmd_level_store(a.level)
+    elif a.cmd == "match-test":
         cmd_match_test()
     elif a.cmd == "match-store":
         cmd_match_store()
