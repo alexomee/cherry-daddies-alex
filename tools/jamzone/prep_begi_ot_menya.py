@@ -12,6 +12,8 @@ original stems = reference; nothing played on the GM-800 yet: «пока gm 800 
   $P tools/jamzone/prep_begi_ot_menya.py plan      # voices, bars, candidates: scenes (gmp take) and tones (gmp sweep)
   $P tools/jamzone/prep_begi_ot_menya.py rank      # after the takes: scenes and tones in one ranking against the stems
   $P tools/jamzone/prep_begi_ot_menya.py sound     # the page where Alex picks the sound: best takes of every voice
+  $P tools/jamzone/prep_begi_ot_menya.py zenpicks  # after `zenology_render.py sweep` of every voice: his GM-800 choice as the
+                                                   #   first take of each ZENOLOGY ranking (then `zenology_render.py page`)
   $P tools/jamzone/prep_begi_ot_menya.py preview   # A/B page: original / my notes / MIDI as it is / Roma
   gmp record "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # when the GM-800 is free
   gmp layer  "Беги от меня" "music/songs/Беги от меня/parts/synths.notes.json"   # -> parts/pb-synths.wav
@@ -302,6 +304,77 @@ def cmd_rank():
                 print(f"  {sc:.3f}  спектр {spc:.3f}  картина {tf:.3f}  окт {o:+d}  {what}")
 
 
+# What Alex chose on the GM-800 page (2026-11-21): lead «2», whistle «0 но звучит не так мягко и сглажено», stab «0»
+# (no such key in that group: read as the letter O = scene 60 - NOT confirmed by him), arp «X но не хватает обработки
+# какой то тоже чтобы сглаженнее звучало», pad «сцена 3 BEGI OT MENYA». Then: «перезапусти подбор звука на ZENOLOGY».
+PICKS = {"lead":    ("part-synths-lead-s084-all-144-148.wav", "сцена 84 SYNTH PLEDGE"),
+         "whistle": ("sweep-synths-whistle-1-5-t0886.wav", "тон 886 Sine Lead"),
+         "stab":    ("part-synths-stab-s060-all-43-47.wav", "сцена 60 JP POLY SYNTH"),
+         "arp":     ("sweep-synths-arp-76-80-t0680.wav", "тон 680 TB Bass 2"),
+         "pad":     ("part-synths-pad-s003-all-112-116.wav", "сцена 3 BEGI OT MENYA")}
+
+
+# The two picks Alex found too raw, as the SAME tone out of the plugin (PRST_F Essential carries the GM-800's second
+# tone bank under the same names: 477 Sine Lead = GM 886, 271 TB Bass 2 = GM 680; scores match within 0.01) with
+# processing on the take (pedalboard). (label, [(effect, {parameters})]); delay times in bars.
+ZEN_FX = {
+    "whistle": ("PRST_F Essential/477", [
+        ("Sine Lead мягче: фильтр 3 кГц + реверб", [("LowpassFilter", {"cutoff_frequency_hz": 3000}), ("Reverb", {"room_size": 0.5, "wet_level": 0.22, "dry_level": 0.8})]),
+        ("Sine Lead ещё мягче: фильтр 1.8 кГц + хорус + реверб", [("LowpassFilter", {"cutoff_frequency_hz": 1800}), ("Chorus", {"rate_hz": 0.8, "depth": 0.2, "mix": 0.3}),
+                                                                 ("Reverb", {"room_size": 0.65, "wet_level": 0.3, "dry_level": 0.75})])]),
+    "arp": ("PRST_F Essential/271", [
+        ("TB Bass 2 с обработкой: фильтр 2.5 кГц + дилей 1/8 + реверб", [("LowpassFilter", {"cutoff_frequency_hz": 2500}), ("Delay", {"delay_bars": 1 / 8, "feedback": 0.3, "mix": 0.22}),
+                                                                        ("Reverb", {"room_size": 0.45, "wet_level": 0.18, "dry_level": 0.85})]),
+        ("TB Bass 2 глубже: фильтр 1.5 кГц + дилей 3/16 + реверб", [("LowpassFilter", {"cutoff_frequency_hz": 1500}), ("Delay", {"delay_bars": 3 / 16, "feedback": 0.35, "mix": 0.3}),
+                                                                   ("Reverb", {"room_size": 0.6, "wet_level": 0.28, "dry_level": 0.8})])]),
+}
+
+
+def zen_fx(song, zen, vn, rk, ref, gp):
+    """The processed variants of ZEN_FX[vn] as takes right after the GM-800 pick (needs pedalboard: run in the zr env)."""
+    import pedalboard, re, soundfile as sf
+    tag, variants = ZEN_FX[vn]; b0, b1 = VOICES[vn]["solo"]; dry = os.path.join(zen, f"fxsrc-{vn}.wav")
+    subprocess.run([sys.executable, os.path.join(REPO, "tools", "zenology_render.py"), "render", tag, "Беги от меня", PART, vn, str(b0), str(b1), dry],
+                   check=True, capture_output=True)
+    x, sr = sf.read(dry, always_2d=True, dtype="float32"); rk["top"] = [t for t in rk["top"] if not t.get("fx")]; new = []
+    for i, (label, chain) in enumerate(variants, 1):
+        fx = []
+        for nm, kw in chain:
+            kw = dict(kw)
+            if "delay_bars" in kw:
+                kw["delay_seconds"] = kw.pop("delay_bars") * song.bar
+            fx.append(getattr(pedalboard, nm)(**kw))
+        y = pedalboard.Pedalboard(fx)(x.T, sr).T; fn = f"zen-synths-{vn}-{b0}-{b1}-fx{i}.wav"; sf.write(os.path.join(zen, fn), y, sr, subtype="PCM_16")
+        sc = gp.sweep_score(gp.cqt_db(ref), gp.cqt_db(y.mean(1)[:len(ref)]), song.semi)[0]
+        bank, num = tag.split("/")
+        new.append({"bank": bank, "number": num, "name": label, "category": "тон плагина + обработка", "score": round(sc, 3), "oct": 0, "file": fn, "fx": True, "tone": tag})
+        print(f"   {label}: {sc:.3f}")
+    rk["top"] = rk["top"][:1] + new + rk["top"][1:]
+
+
+def cmd_zenpicks():
+    """Alex's GM-800 choice of every voice as the first take of that voice's ZENOLOGY sweep (tools/zenology_render.py
+    sweep), so `zenology_render.py page` plays it next to the plugin's tones. Run after the sweeps, before `page`."""
+    import shutil
+    gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); zen = os.path.join(song.out, "zenology")
+    for vn, (fn, what) in PICKS.items():
+        b0, b1 = VOICES[vn]["solo"]; jf = os.path.join(zen, f"zen-synths-{vn}-{b0}-{b1}.json")
+        if not os.path.exists(jf):
+            print(f"{vn}: no ZENOLOGY sweep yet"); continue
+        dur = (b1 - b0) * song.bar + 1.0
+        ref = sum(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + dur) for st in part["stems"]).mean(1)
+        x = gp.gmm.read_wav(os.path.join(song.out, fn)).mean(1)[:len(ref)]
+        sc = gp.sweep_score(gp.cqt_db(ref), gp.cqt_db(x), song.semi)[0]
+        shutil.copyfile(os.path.join(song.out, fn), os.path.join(zen, "gm800-" + fn))
+        rk = json.load(open(jf, encoding="utf-8"))
+        rk["top"] = [{"bank": "GM-800", "number": "", "name": what + " — выбрано на приборе", "category": "прибор", "score": round(sc, 3),
+                      "oct": 0, "file": "gm800-" + fn, "gm": True}] + [t for t in rk["top"] if not t.get("gm")]
+        if vn in ZEN_FX:
+            zen_fx(song, zen, vn, rk, ref, gp)
+        json.dump(rk, open(jf, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(f"{vn}: {what} ({sc:.3f}) first of {len(rk['top'])}; best ZENOLOGY: " + ", ".join(f"{t['name']} {t['score']:.2f}" for t in rk["top"][1:4]))
+
+
 SOUND_TOP = 7                              # candidates a voice on the page
 SOUND_KEEP = {"pad": ["-s003-"]}           # always on the page: Alex's own scene of this song
 SOUND_TITLE = {"lead": "Лид (такты 144–147: в оригинале лид + пэд)", "whistle": "Свист (такты 1–4: в оригинале свист + лид + пэд)",
@@ -463,4 +536,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "preview": cmd_preview}[sys.argv[1]]()
