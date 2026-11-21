@@ -576,14 +576,14 @@ def cmd_round5():
         return sf.read(out, always_2d=True, dtype="float32")[0]
 
     groups = []
-    def group(voice, b0, b1, hint, clips, ref_note="стем keys"):
+    def group(voice, b0, b1, hint, clips, ref_note="стем keys", roma_note="его клавиши: ноты для сравнения"):
         n = int(round((b1 - b0) * bar * 44100))
         orig = resample_poly(song.read("keys.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar).mean(1), 147, 160)
         orig = np.pad(orig, (0, max(0, n - len(orig))))[:n]; out = [("orig", orig, "Оригинал", ref_note, True)]
         if os.path.exists(ROMA):
             sr_ = sf.info(ROMA).samplerate; r, _ = sf.read(ROMA, start=int(song.t_stem(b0) * sr_), stop=int(song.t_stem(b1) * sr_), always_2d=True)
             r = resample_poly(r.mean(1), 44100, sr_); r = np.pad(r, (0, max(0, n - len(r))))[:n]
-            out.append(("roma", r * rms(orig) / rms(r), "Рома, концерт 28.10", "его клавиши: ноты для сравнения", True))
+            out.append(("roma", r * rms(orig) / rms(r), "Рома, концерт 28.10", roma_note, True))
         for k, (nm, note, x) in enumerate(clips, 1):
             y = resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]
             out.append((f"{k:02d}", y * rms(orig) / rms(y), nm, note, False))
@@ -610,7 +610,8 @@ def cmd_round5():
     for tone, nm, chain in SOFT_TPT:
         x = render(tone, "hookline", 9, 13, 80)
         clips.append((nm, f"{tone.split()[0]}/{tone.split('/')[-1]} · сила 80" + (" · дилей 3/16 + реверб" if chain else " · своё эхо тона"), fx(x, chain, bar) if chain else x))
-    group("hookline", 9, 13, HINT["hookline"] + ". Trumpet Echo мягче (сила нажатия, фильтр) и похожие мягкие трубы", clips)
+    group("hookline", 9, 13, HINT["hookline"] + ". Trumpet Echo мягче (сила нажатия, фильтр) и похожие мягкие трубы", clips,
+          roma_note="подголосок он не играл, тут у него линия интро")
     meta = {"title": "Медляк — тоны, круг 5", "sub": "lead на нотах, исправленных по концерту Ромы (его дорожка — вторая кнопка, для сравнения нот); "
             "hookline — Trumpet Echo мягче и похожие тоны. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза.",
             "groups": groups, "v": int(time.time())}
