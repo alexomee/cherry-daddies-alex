@@ -195,6 +195,27 @@ def apply_reverb(x, sr, rt60=2.5, db=-6.0, predelay=0.02, lowcut=250.0, hicut=60
     return x + wet * 10 ** (db / 20)
 
 
+def apply_decay(x, sr, line, hold=0.05, at10=0.12):
+    """Every note of a take made to die away like a struck sound (a sustaining tone that has to be snappy:
+    «Солнышко» off-beat organ, 2026-11-21): full level for `hold` s from the note's start, then down by 10 dB at
+    `at10` s and on at that rate until the next note starts. line = [(seconds, midi, seconds)] of the take's voice."""
+    g = np.ones(len(x)); on = sorted({t for t, _, _ in line}) + [len(x) / sr]
+    for a, b in zip(on, on[1:]):
+        i, j = int(a * sr), min(len(x), int(b * sr)); dt = np.maximum(np.arange(j - i) / sr - hold, 0)
+        g[i:j] = 10 ** (-10 * dt / (at10 - hold) / 20)
+    w = int(0.002 * sr); g = np.minimum(g, np.convolve(g, np.ones(w) / w, "same"))     # 2 ms: no step where the next note opens it
+    return x * g[:, None]
+
+
+def apply_shelf(x, sr, hz=1200.0, db=12.0):
+    """High shelf (RBJ biquad, slope 1): the highs of a dull tone lifted, offline."""
+    from scipy.signal import lfilter
+    A = 10 ** (db / 40); w = 2 * np.pi * hz / sr; al = np.sin(w) / 2 * np.sqrt(2); c = np.cos(w)
+    b = [A * ((A + 1) + (A - 1) * c + 2 * np.sqrt(A) * al), -2 * A * ((A - 1) + (A + 1) * c), A * ((A + 1) + (A - 1) * c - 2 * np.sqrt(A) * al)]
+    a = [(A + 1) - (A - 1) * c + 2 * np.sqrt(A) * al, 2 * ((A - 1) - (A + 1) * c), (A + 1) - (A - 1) * c - 2 * np.sqrt(A) * al]
+    return lfilter(np.array(b) / a[0], np.array(a) / a[0], x, axis=0)
+
+
 def apply_gains(x, spans, sr, ramp=0.008):
     if not spans:
         return x
@@ -405,6 +426,10 @@ def cmd_layer(song, part_file, out_path=None):
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
         x = apply_gains(x, voice_gains(song, part, tk["voice"], *tk["bars"]), SR)
         x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
+        if tk.get("decay"):                                  # {"hold": 0.06, "at10": 0.17}: every note dies away (apply_decay)
+            x = apply_decay(x, SR, voice_line(song, part, tk["voice"], *tk["bars"]), **tk["decay"])
+        if tk.get("shelf"):                                  # {"hz": 1200, "db": 12}: highs lifted (apply_shelf)
+            x = apply_shelf(x, SR, **tk["shelf"])
         if tk.get("lowpass"):                                # Hz: the highs of a tone cut (12 dB an octave), offline
             from scipy.signal import butter, sosfiltfilt
             x = sosfiltfilt(butter(2, tk["lowpass"], "lowpass", fs=SR, output="sos"), x, axis=0)

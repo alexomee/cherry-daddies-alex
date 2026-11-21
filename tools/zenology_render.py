@@ -517,7 +517,7 @@ def cmd_record(a):
     import soundfile as sf
     gp, sg = gp_song(a.song); part = json.load(open(a.notes, encoding="utf-8")); n = 0
     for tk in part["layer"]["takes"]:
-        if tk.get("zen"):
+        if tk.get("zen") and (not a.voice or tk["voice"] in a.voice.split(",")):
             x, _, _ = render(tk["zen"], a.song, a.notes, tk["voice"], *tk["bars"], tk.get("vel", 100), tail=4.0)
             dst = gp.rec_path(sg, a.notes, tk); sf.write(dst, x, SR, subtype="FLOAT"); n += 1   # float: the plugin goes over 0 dBFS
             print(f"  {tk['voice']} {tk['bars'][0]}-{tk['bars'][1] - 1}  {tk['zen']}  peak {20 * np.log10(np.abs(x).max() + 1e-9):.1f} dBFS -> {os.path.basename(dst)}")
@@ -683,7 +683,7 @@ def main():
     p = sub.add_parser("page"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--top", type=int, default=8)
     p.add_argument("--only", default="", help="regular expression on the sweep files (zen-<notes>-<voice>-<bars>.json) to show")
     p.add_argument("--dir", default="page", help="folder of the page inside <song>/zenology/ (another page beside the main one)")
-    p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes")
+    p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--voice", default="", help="only the takes of these voices (comma separated); the others keep their files")
     p = sub.add_parser("variant"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int)
     p.add_argument("b1", type=int); p.add_argument("tag"); p.add_argument("--name", default=""); p.add_argument("--vel", type=int, default=100)
     for nm in ("render", "compare"):
