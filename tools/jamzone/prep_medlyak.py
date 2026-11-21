@@ -103,6 +103,10 @@ FIG = ([[1, 1 + k / 2, 0.5, n] for k, n in enumerate("A5 A#5 G5 A#5 A5 A#5 G5 A#
           [4, 3.5, 0.5, "F#5"], [4, 4.0, 0.5, "F#5"], [4, 4.5, 0.5, "A#5"]])
 FIG = FIG + [[n[0] + 4, *n[1:]] for n in FIG if n[0] < 4] + [
     [8, 1.0, 0.5, "D5 D6"], [8, 1.5, 0.5, "A5"], [8, 2.0, 0.5, "D6"], [8, 2.5, 2.0, "F#5"]]           # last bar: D
+# the figure is played in two octaves, the lower one louder (keys stem, 6 passes: A4 on 1 and 3 at 0 dB vs A5 -7, G4 on 2
+# and 4 -1 vs G5 -6, A#4 on the &s 0 vs A#5 -5; Eb: D#4 0 vs D#5 -8)
+_lo = lambda ps: " ".join(sorted({p for q in ps.split() for p in (q, NAMES[midi_of(q) % 12] + str(midi_of(q) // 12 - 2))}, key=midi_of))
+FIG = [[b, bt, d, _lo(ps)] for b, bt, d, ps in FIG]
 MEL = [[1, 1.75, 0.75, "A#5"], [1, 3.0, 0.5, "A#5"], [1, 3.5, 0.5, "A5"], [1, 4.0, 0.5, "G5"], [1, 4.5, 0.5, "D5"],
        [2, 1.0, 0.5, "F5"], [2, 1.5, 1.5, "D#5"], [2, 3.0, 1.5, "D#5"], [2, 4.5, 0.5, "D5"],
        [3, 1.0, 0.5, "D5"], [3, 1.5, 1.0, "D5"], [3, 3.0, 0.5, "D5"], [3, 3.5, 1.0, "C5"],
@@ -308,6 +312,7 @@ def cmd_bp():
         print(st, len(ev), "notes")
 
 
+TRIM = {"mel": 6.0, "fig": 9.0, "cpad": -2.0}                                        # dB on top of the fitted gain (see cmd_calibrate)
 GAINS = os.path.join(SONG, "parts", "keys.gains.json")      # "voice@tone" -> dB of its takes: written by `calibrate`
 
 
@@ -396,9 +401,51 @@ def cmd_calibrate():
         f = os.path.join(d, "keys.notes.json"); json.dump(q, open(f, "w", encoding="utf-8"), ensure_ascii=False)   # same basename:
         out = os.path.join(d, "layer.wav"); gp.cmd_layer(song, f, out)                                        # same take files
         y, ysr = sf.read(out, always_2d=True, dtype="float64"); cols.append(bar_bands(y, ysr, song)); names.append(f"{vn}@{z}")
+    # the saw under AX Analog Dream sits where Alex picked it: 6 dB under AX at the same RMS -> one column, fixed ratio
+    ax, saw = f"fig@{ZEN['fig']}", f"fig@{ZEN_LAYER['fig'][0]}"; ia, isw = names.index(ax), names.index(saw)
+    pw = lambda c: c.sum() + 1e-12
+    ratio = 10 ** (ZEN_LAYER["fig"][1] / 10) * pw(cols[ia]) / pw(cols[isw])          # power ratio saw : ax
+    fit_cols = [c for i, c in enumerate(cols) if i != isw]; fit_cols[ia] = cols[ia] + ratio * cols[isw]
+    fit_names = [n for i, n in enumerate(names) if i != isw]
+    # bounds: a voice can not be louder than if it alone made all the energy of its band (its notes x 0.9 .. x 2.2) in its
+    # bars of the stem it replaces, nor 9 dB under that (a plain fit drowned the chorus figure under the pads, -30 dB)
+    from scipy.optimize import lsq_linear
+    from scipy.signal import stft
+    stem_p = {}
+    def band_prior(nm, c_all):
+        vn = nm.split("@")[0]; st = "strings" if vn == "strings" else "keys"
+        if st not in stem_p:
+            y, ysr = sf.read(song.stem(st), always_2d=True); f, t, Z = stft(y.mean(1), fs=ysr, nperseg=4096, noverlap=2048); stem_p[st] = (f, t, np.abs(Z) ** 2)
+        tks = [t_ for t_ in part["layer"]["takes"] if f"{t_['voice']}@{t_['zen']}" == nm]
+        notes = [n for t_ in tks for _, n, _ in gp.voice_line(song, part, vn, *t_["bars"])]
+        lo, hi = 440 * 2 ** ((min(notes) - 69) / 12) * 0.9, 440 * 2 ** ((max(notes) - 69) / 12) * 2.2
+        def bp(f, t, P):
+            m = np.zeros(len(t), bool)
+            for t_ in tks:
+                m |= (t >= song.t_stem(t_["bars"][0])) & (t < song.t_stem(t_["bars"][1]))
+            return P[(f >= lo) & (f < hi)][:, m].sum()
+        y, ysr = c_all; f, t, Z = stft(y.mean(1), fs=ysr, nperseg=4096, noverlap=2048)
+        return 10 * np.log10(bp(*stem_p[st]) / (bp(f, t, np.abs(Z) ** 2) + 1e-12))
+    audio = {nm: sf.read(os.path.join(cal, re.sub(r"[^A-Za-z0-9]+", "_", nm.replace("@", "_")), "layer.wav"), always_2d=True) for nm in names}
+    prior = {nm: band_prior(nm, audio[nm]) for nm in fit_names}
     w = 1 / (T.mean(0) + 1e-12)
-    A = np.stack([(c * w).ravel() for c in cols], 1); g, _ = nnls(A, (T * w).ravel())
-    db = {nm: float(np.clip(10 * np.log10(x + 1e-12), -30, 20)) for nm, x in zip(names, g)}
+    A = np.stack([(c * w).ravel() for c in fit_cols], 1)
+    lb = np.array([10 ** ((prior[nm] - 9) / 10) for nm in fit_names]); ub = np.array([10 ** ((prior[nm] + 3) / 10) for nm in fit_names])
+    g = lsq_linear(A, (T * w).ravel(), bounds=(lb, ub)).x
+    db = {nm: float(10 * np.log10(x + 1e-12)) for nm, x in zip(fit_names, g)}
+    print("band bounds (dB):", {k: round(v, 1) for k, v in prior.items()})
+    db[saw] = db[ax] + 10 * np.log10(ratio)
+    # by the notes (pn --take, candidate against the stem, chorus 89-92): the melody stood 8 dB lower against the pad
+    # than in the record -> lifted after the fit
+    for nm in names:
+        db[nm] += TRIM.get(nm.split("@")[0], 0.0)
+    # voices that play alone in their section are levelled to it (the global fit leaves the breakdown +3.6 dB, the end -3.7)
+    for (b0, b1), vs in {(81, 89): ["brk", "brk_pad"], (113, 115): ["end"]}.items():
+        Lc = sum(10 ** (db[nm] / 10) * c for nm, c in zip(names, cols))
+        d = 10 * np.log10(T[b0 - 1:b1 - 1].sum() / (Lc[b0 - 1:b1 - 1].sum() + 1e-12))
+        for nm in names:
+            if nm.split("@")[0] in vs:
+                db[nm] += d
     json.dump({k: round(v, 1) for k, v in db.items()}, open(GAINS, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("gains (dB):"); [print(f"  {k:48} {v:+6.1f}") for k, v in db.items()]
     L = sum(10 ** (db[nm] / 10) * c for nm, c in zip(names, cols))
