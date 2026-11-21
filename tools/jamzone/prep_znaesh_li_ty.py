@@ -558,6 +558,55 @@ def cmd_bells(top=12):
     print(os.path.join(zen, tag + ".json"))
 
 
+# Alex after the bell sweeps: «не получается похоже; может взять этот кусок прямо из фул mp3 ... там вроде ничего больше не
+# играет в этом куске только колокольчики? проверь». The minus mp3 = the sum of the Moises stems (lag 0, the rest -30 dB).
+# In 8.3-9.1 and 10.3-11.1 only piano / keys / other sound (strings, bass, drums, backing vocals silent); the arp holds a
+# note there, and above 1.2 kHz the bells are 11-14 dB over the arp alone just before; under 1.2 kHz the tail of the held
+# arp note and the piano (-47 / -51 dB). In bar 23 the strings and the backing vocals sound with the bells (-30 / -35 dB
+# above 1.2 kHz): not clean, not cut.
+MINUS = os.path.join(OUT, "bells-mp3", "minus.wav")      # the mp3 Alex gave (Downloads), decoded; same timeline as the stems
+BELL_CUT = [(8, 2.875, 9, 2.0), (10, 2.875, 11, 2.0)]    # from just before the first bell to where its ring is under the arp
+BELL_CUT_FILE = os.path.join(OUT, "bells-mp3", "bells-cut.wav")   # stem frame, whole song length
+
+
+def cut_bells(hp_hz=1200, fade_out=0.45):
+    import soundfile as sf
+    from scipy.signal import butter, sosfiltfilt
+    gp = load_tool("gm800_part"); song = gp.gmm.Song("Знаешь ли ты")
+    x, sr = sf.read(MINUS, always_2d=True); out = np.zeros_like(x)
+    if hp_hz:
+        x = sosfiltfilt(butter(2, hp_hz, "highpass", fs=sr, output="sos"), x, axis=0)
+    for b0, t0, b1, t1 in BELL_CUT:
+        a, b = int(song.t_stem(b0 + (t0 - 1) / 4) * sr), int(song.t_stem(b1 + (t1 - 1) / 4) * sr)
+        g = np.ones(b - a); fi, fo = int(0.02 * sr), int(fade_out * sr)
+        g[:fi] = np.linspace(0, 1, fi); g[-fo:] = np.linspace(1, 0, fo) ** 2
+        out[a:b] += x[a:b] * g[:, None]
+    return out, sr, song, gp
+
+
+def cmd_bellcut():
+    """The bells of bars 8 and 10 cut out of the minus mp3 (high-pass 1.2 kHz, and without it), next to our arp + low:
+    a page group to compare with the original and with the best plugin tone (Sunrise)."""
+    import soundfile as sf
+    from scipy.signal import resample_poly
+    zen = os.path.join(OUT, "zenology"); tag = "zen-mp3-bells-8-11"; G = json.load(open(GAINS, encoding="utf-8"))
+    part = json.load(open(PART, encoding="utf-8")); top = []
+    for name, hp in (("колокольчики из mp3, выше 1.2 кГц", 1200), ("колокольчики из mp3, без фильтра", 0), ("колокольчики из mp3, выше 2 кГц", 2000)):
+        cut, sr, song, gp = cut_bells(hp)
+        if hp == 1200:
+            sf.write(BELL_CUT_FILE, cut.astype(np.float32), sr, subtype="FLOAT")
+        a = int(song.t_stem(8) * sr); seg = resample_poly(cut[a:a + int((3 * song.bar + 1.0) * sr)].mean(1), gp.SR, sr)
+        ctx = sum(_voice_sig(gp, song, part, [v], 8, 11) * 10 ** (G[v] / 20) for v in ("arp", "low"))
+        n = len(ctx); y = np.pad(seg, (0, max(0, n - len(seg))))[:n] + ctx
+        fn = f"{tag}-hp{hp}.wav"; sf.write(os.path.join(zen, fn), np.stack([y, y], 1).astype(np.float32), gp.SR, subtype="PCM_16")
+        top.append({"bank": "mp3", "number": hp, "name": name + " + наше арпеджио", "category": "вырезано из записи", "score": 0.0, "oct": 0, "file": fn})
+    sun = json.load(open(os.path.join(zen, "zen-keys-bells2-8-11.json"), encoding="utf-8"))["top"][0]
+    top.append(dict(sun, name="для сравнения: " + sun["name"]))
+    json.dump({"voice": "колокольчики: вырезать из минуса", "bars": [8, 11], "stems": ["piano", "keys", "other"], "tried": 0, "played": 0, "top": top},
+              open(os.path.join(zen, tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(BELL_CUT_FILE, os.path.join(zen, tag + ".json"))
+
+
 # where each voice group is measured against its stems: (voices, stems, bars [b0, b1)); one gain for the voices of a row
 CAL = [(["piano"], ["piano"], 1, 7),                       # intro: the piano stem is the piano alone
        (["strings"], ["strings"], 12, 19),
@@ -697,6 +746,8 @@ if __name__ == "__main__":
         cmd_leadwind()
     elif cmd == "bells":
         cmd_bells()
+    elif cmd == "bellcut":
+        cmd_bellcut()
     elif cmd == "calibrate":
         cmd_calibrate()
     elif cmd == "result":
