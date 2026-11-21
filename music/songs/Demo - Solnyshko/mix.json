@@ -22,7 +22,7 @@
   "cues": [
     {"bar": 1,   "text": "Солнышко all in", "abs_sec": 2.756, "snap_sec": 0.0},
     {"bar": 7,   "beat": 4, "text": "stop", "abs_sec": 14.495, "snap_sec": 10.318},
-    {"bar": 9,  "text": "all in", "abs_sec": 16.669, "snap_sec": 13.18},
+    {"bar": 9,  "text": "all in", "abs_sec": 16.669, "snap_sec": 13.19},
     {"bar": 17,  "text": "alex in", "abs_sec": 30.582, "snap_sec": 27.103},
     {"bar": 25,  "text": "verse in", "abs_sec": 44.495, "snap_sec": 40.966},
     {"bar": 49,  "text": "arpegiator in", "abs_sec": 86.234, "snap_sec": 82.321},

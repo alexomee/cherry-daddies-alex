@@ -84,7 +84,8 @@ RIFF_ZEN = "PRST_A Factory Presets/32{p1.level=0,p*.release=450}"
 # not `calibrate`'s.
 ORGAN_ZEN = "PRST_D Basic Synth/456"      # JP80 FatPoly: a second layer under the 537 organ, 6 dB under it at equal RMS (Alex 2026-11-21:
                                           # «537 + JP80 FatPoly, JP80 тише на 6 дБ»); level in synths.gains.json "organ@zen" (`softgains`)
-ORGAN_FX = {}                             # options of the 537 takes ("decay", "shelf"): set when Alex has chosen a variant of `organmix`
+ORGAN_FX = {"decay": {"hold": 0.05, "at10": 0.12}, "shelf": {"hz": 1200, "db": 12}}   # the 537 takes: every note dies away like the record's
+                                          # stab and the highs are lifted - Alex's pick in the mix (`organmix`), 2026-11-21: «537 гаснет и ярче + JP80 −6 дБ»
 STRINGS_ZEN = "PRST_E XV Collection/292"
 STRINGS_CURVE = [[73, -12], [76.5, -12], [78, -5]]
 CAND = os.path.join(OUT, "pb-synths-candidate.wav")
