@@ -4,7 +4,10 @@
  "arp": -1.0,
  "low": -1.0,
  "lead_acc": -5.0,
- "lead_lo": 5.9,
- "lead_mid": 5.9,
- "lead_hi": 5.9
+ "lead_lo": 3.2,
+ "lead_mid": 3.2,
+ "lead_hi": 3.2,
+ "strings_hi": 3.6,
+ "bells": 0.5,
+ "swell": 7.6
 }

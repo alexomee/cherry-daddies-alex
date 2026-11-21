@@ -110,7 +110,9 @@ NN = "C C# D D# E F F# G G# A A# B".split()
 END = 65                                            # bar after the last one
 # voice -> (MIDI track, file = stem group, what)
 VOICES = {"piano":   (3, "piano", "пиано: арпеджио вступления, потом аккомпанемент"),
-          "bells":   (8, "piano", "колокольчики A6–G#8 (в записи не слышны)"),
+          "bells":   (8, "keys", "колокольчики, такты 8, 10, 23 (во вступлении их в записи нет)"),
+          "swell":   (None, "keys", "фраза октавами D# - E - D# - B, такты 3-4 (в MIDI нет; по стему keys)"),
+          "strings_hi": (6, "strings", "струнные октавой выше верхней ноты, с такта 24 (верхи записи)"),
           "arp":     (5, "keys", "арпеджио с такта 7"),
           "low":     (4, "keys", "держанные корни аккордов"),
           "strings": (6, "strings", "струнные"),
@@ -189,7 +191,21 @@ def cmd_notes(src=None):
     if src:
         shutil.copyfile(src, MID)
     T = midi_tracks()
-    Q = {vn: quantize(T[tr]) for vn, (tr, _, _) in VOICES.items()}
+    Q = {vn: quantize(T[tr]) if tr is not None else [] for vn, (tr, _, _) in VOICES.items()}
+    # Alex on the first layer: «в начале потеряли колокольчики типа как на 0:33 и 0:42» = bars 8.3 and 10.3: the bells
+    # of the MIDI are in the record there (keys stem, B6 D#7 F#7 A#7), not in the intro 1-5 (0 % of their notes heard)
+    Q["bells"] = [n for n in Q["bells"] if n[0] >= 6 * 4]
+    # «0:13 в оригинале длинная протяжная нота» = bar 3: keys stem, octaves (roll by 16ths) D#5/6 3.1, E5/6 3.1.5 held to
+    # 3.4, D#5/6 3.4, B4/5 4.1 ringing ~1.75 beats. Not in the MIDI.
+    Q["swell"] = sorted((s0, d, p + o) for s0, d, p in ((8.0, 0.5, 75), (8.5, 2.5, 76), (11.0, 1.0, 75), (12.0, 1.75, 71)) for o in (0, 12))
+    # «в припеве не хватает верхов смычковых»: the strings take against the strings stem by octave bands, bars 32-43:
+    # +4 dB at 125-500 Hz, -7 / -11.5 / -11 dB at 2 / 4 / 8 kHz (44-55 alike; 12-18 within 3 dB). The record has a
+    # voice over the MIDI chords (D#7 -10 dB at the top note D#5 0 in bar 37) -> the top note of each chord an octave up.
+    top = collections.defaultdict(int)
+    for s0, d, p in Q["strings_hi"]:
+        if s0 >= 23 * 4:
+            top[(s0, d)] = max(top[(s0, d)], p)
+    Q["strings_hi"] = sorted((s0, d, p + 12) for (s0, d), p in top.items())
     # Alex 2026-11-21 on the lead: «две партии пытаешься подобрать одним тоном, там аккомпанемент и мелодия отдельно,
     # возможно в MIDI упростили». Measured in `other` 48-55 (note levels by half bar / eighth): the melody is the
     # loudest, in the rhythm of the MIDI's octave pairs (3+3+2), each pair with the FIFTH above the upper note
@@ -226,15 +242,15 @@ def cmd_notes(src=None):
     for g, stems in GROUPS.items():
         write_part(os.path.join(NOTES, f"{g}.notes.json"), about + " Sweep file of one stem group.", stems,
                    {vn: v for vn, v in V.items() if VOICES[vn][1] == g})
-    P = {vn: v for vn, v in V.items() if vn not in ("bells", "lead_fig", "lead")}
+    P = {vn: v for vn, v in V.items() if vn not in ("lead_fig", "lead")}
     for k, nm in enumerate(("lead_lo", "lead_mid", "lead_hi")):   # the melody stack as three single-note voices: Alex chose
         P[nm] = {"at": [1], "bars": END - 1, "notes": [[n[0], n[1], n[2], n[3].split()[k]] for n in V["lead"]["notes"]]}   # it so
     gains = json.load(open(GAINS, encoding="utf-8")) if os.path.exists(GAINS) else {}
     takes = []
     for vn, spec in LAYER.items():
         for sp in spans(P[vn]["notes"]):
-            takes.append(dict({"voice": vn, "zen": spec["zen"], "bars": sp, "gain_db": round(gains.get(vn, 0.0), 1)},
-                              **({"reverb": spec["reverb"]} if spec.get("reverb") else {})))
+            takes.append(dict({"voice": vn, "zen": spec["zen"], "bars": sp, "gain_db": round(gains.get(vn, 0.0) + EXTRA.get(vn, 0.0), 1)},
+                              **{k: spec[k] for k in ("delay", "reverb") if spec.get(k)}))
     write_part(PART, about + " Not in it: the MIDI bells (track 8) and the single 16ths of track 7 - not heard in the "
                "record. Piano notes held to the bar line (pedal). The melody of the lead (`lead_lo` / `lead_mid` / `lead_hi`) "
                "= the MIDI octave pairs + the record's fifth on top, one voice a note. Layer: ZENOLOGY tones chosen by Alex "
@@ -355,7 +371,13 @@ PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "ar
 LAYER = {"piano": {"zen": PICKS["piano"], "reverb": {"rt60": 2.5, "db": -7}},
          "arp": {"zen": PICKS["arp"]}, "low": {"zen": PICKS["arp"]},      # low: the arp's tone - proposal, not Alex's pick
          "strings": {"zen": PICKS["strings"]}, "lead_acc": {"zen": PICKS["lead_acc"]},
-         "lead_lo": {"zen": PICKS["lead"]}, "lead_mid": {"zen": PICKS["lead"]}, "lead_hi": {"zen": PICKS["lead"]}}
+         "strings_hi": {"zen": PICKS["strings"]}, "bells": {"zen": "PRST_I Sun Gate/33"}, "swell": {"zen": "PRST_D Basic Synth/477"}}
+# bells = Into the dreams, swell = Fantasy 2: the first places of their sweeps (bells 8-10 against keys + other, swell 3-4),
+# put in for the candidate, NOT Alex's picks yet (scores 0.48-0.70 / 0.70-0.80 - the arp is louder than the bells there)
+# «на соло больше размазать ревербом/делеем»: the melody of the lead with a dotted-eighth echo and a longer room
+SOLO_FX = {"delay": {"beats": 0.75, "db": -7, "fb": 0.35}, "reverb": {"rt60": 3.0, "db": -5}}
+LAYER.update({v: dict({"zen": PICKS["lead"]}, **SOLO_FX) for v in ("lead_lo", "lead_mid", "lead_hi")})
+EXTRA = {"piano": 3.0}                                      # dB over the stem level: Alex «пианино громче»
 GAINS = os.path.join(SONG, "parts", "keys.gains.json")      # voice -> dB of its takes, written by `calibrate`
 CAND = os.path.join(OUT, "pb-keys-candidate.wav")           # the layer to listen to before it goes to parts/
 
@@ -505,6 +527,20 @@ def cmd_calibrate():
     rest = ms(_stem_sig(song, ["other"], 48, 56)) - ms(_voice_sig(gp, song, part, ["lead_acc"], 48, 56)) * 10 ** (G["lead_acc"] / 10)
     g = 10 * np.log10(max(rest, 1e-20) / ms(_voice_sig(gp, song, part, mel, 48, 56)))
     G.update({v: round(g, 1) for v in mel}); print(f"  melody       vs other - accomp. bars 48-55: {g:+.1f} dB")
+    from scipy.signal import butter, sosfiltfilt
+    bp = lambda y, band: sosfiltfilt(butter(4, band, "bandpass", fs=gp.SR, output="sos"), y)
+    # voices added over others: their band of the stem minus what the voices already levelled give there (powers add)
+    RES = [(["strings_hi"], ["strings"], 32, 44, (2000, 8000), ["strings"]),
+           (["bells"], ["keys", "other"], 8, 11, (1500, 8000), ["arp", "low"]),
+           (["swell"], ["keys", "other"], 3, 5, (500, 3000), ["low"])]
+    for voices, stems, b0, b1, band, under in RES:
+        u = sum(_voice_sig(gp, song, part, [v], b0, b1) * 10 ** (G[v] / 20) for v in under)
+        st, me = ms(bp(_stem_sig(song, stems, b0, b1), band)), ms(bp(_voice_sig(gp, song, part, voices, b0, b1), band))
+        rest = st - ms(bp(u, band))
+        g = 10 * np.log10(rest / me) if rest > 0.1 * st else 10 * np.log10(0.1 * st / me)
+        G.update({v: round(g, 1) for v in voices})
+        print(f"  {'+'.join(voices):12} vs {'+'.join(stems):13} bars {b0}-{b1 - 1}, {band[0]}-{band[1]} Hz over "
+              f"{'+'.join(under)} ({10 * np.log10(ms(bp(u, band)) / st):+.1f} dB of the stem there): {g:+.1f} dB")
     json.dump(G, open(GAINS, "w", encoding="utf-8"), ensure_ascii=False, indent=1); print(GAINS)
 
 
