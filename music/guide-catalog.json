@@ -6,82 +6,86 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 189.333311,
-      "key": "cherry-dash/d039501d8749/guides/9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b/all.wav",
-      "mix_sha256": "36040791b68d970dc693830fa566804315a5d90ebbd6b2a44c476878beb87870",
+      "key": "cherry-dash/d039501d8749/guides/971365e98d93dea5e50b4e1d0ac1c2ef78ce826d583016263121a43a05d71d88/all.wav",
+      "mix_sha256": "2fe9c8e4b5a392e9bc8f7e43ec338773b9096bc2c63fc7a401a2f023609bd76f",
       "render_audio": {
-        "click.wav": "8a46eb0f1d2e91e9e1e541f222d18b5588b15e47292d78e567341b87ed2b150c",
-        "cues.wav": "a9c52b74a3021b54e4aaa2e7fb479652ed0a2bb82681a09b12f2f50b31763952",
-        "pb-bass.wav": "c8cb1405e28bae97a6606ca38c09511fc1b204de5e665c820ef63d6a35d8964e",
-        "pb-drums.wav": "f13fb2618dee27aee7efd2fc041d9e36569c5a0cf89b1da40f4c1c0f1cbf9780",
-        "pb-other.wav": "7111d32957e798992e185ff224e9cd1a3b315375260926de998cc1a59af721ab"
+        "click.wav": "80605792ccf560a126af07e11d9fc9e00d7e908ed57c4204e64eba4d22789aa8",
+        "cues.wav": "32da809798a096abacbf1036a421bbbf2d8b56354945273b85159716aa5cf36e",
+        "pb-bass.wav": "c91827731b58db4a8d63fa9b256a01125e2788adcecf96f44f539cccd88d6b4a",
+        "pb-drums.wav": "94b5803274ab76cc19fc14328571f9680f89776eb6e5a536e32c23ed3d7f6c83",
+        "pb-other.wav": "6188eb047c9893b2e9fb731152695e0acd6448fd5dd5d62803915052ade090c8"
       },
       "render_pcm": {
-        "click.wav": "7a36a9c4c209b5b8fc04a90b4b1db51acf7045819fcb92534077e82c75a6e749",
-        "pb-bass.wav": "e7964f8f2ef7dd703bb82a6adbde3bace81f3e5cb6ac4978fc9655d61e6a42b2",
-        "pb-other.wav": "7405cd1fd846975dc716fba0c49c6d25ed93de3e92376e0a63ecf1eac66a0559"
+        "click.wav": "99bb932ccd692757b9e9dd67b393446f9bf75e9a2fb21eaa22c07565c6c31d85",
+        "pb-bass.wav": "e0c9bd6efbfc67724e0038c048768e25e0a9215e97a4dcb81d53bc9509ac5b32",
+        "pb-other.wav": "b409306279cddf12f86a1649661e0c25958fcb117744f4a9f0ce42798ef497e7"
       },
       "sample_rate": 44100,
-      "sha256": "9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b",
+      "sha256": "971365e98d93dea5e50b4e1d0ac1c2ef78ce826d583016263121a43a05d71d88",
       "status": "available",
       "timeline": {
         "bar_sec": 2.666667,
         "bpm": 90.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 5.241111
+        "downbeat_sec": 3.522948,
+        "lead_sec": 3.457846,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 3.430726
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d039501d8749/guides/9af4a0bebc0162c86923cd6701a8e22d91c95553e917171832864320a2a88f5b/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d039501d8749/guides/971365e98d93dea5e50b4e1d0ac1c2ef78ce826d583016263121a43a05d71d88/all.wav"
     },
     "music/songs/A Touch of Class - Around the World (La La La La La)": {
-      "bytes": 38808122,
+      "bytes": 38487394,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 220.000023,
-      "key": "cherry-dash/dfa18d189118/guides/be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548/all.wav",
-      "mix_sha256": "06c4229fa3604fda87c8aa75ed213d4b362cc3db3d0d5763a7fc844ecc7489d7",
+      "duration_sec": 218.181837,
+      "key": "cherry-dash/dfa18d189118/guides/73e3737d6120267a9cbc06526ef781e66802d810319aba604154dde179da631e/all.wav",
+      "mix_sha256": "2ebeaeeecc9457c9d7e44ac564c6a9f34129d6d4c472ea2a8512d6e593e758e7",
       "render_audio": {
-        "click.wav": "2e3af95763f2655f9167b74c7b1f6d2ed3c53b896f5dbb652b90b77408097e2a",
-        "cues.wav": "cda6a009b732ef4b6d42d0190fba1c1486d8a285a62b209a71f187ddd544ab15",
-        "pb-bass.wav": "dac34f75e0e3d120ba83535efdf38634ecaf5d937d988eda2aa55c3783f6dcfb",
-        "pb-drums.wav": "81ada56dc558d83f3331dcfbd308a6c36696cf49b1ecf383323ea57bc0bfe351",
-        "pb-other.wav": "ed9fde381240d9b7c028b952a67ece0c619d2facc1af6e8a3efa1fb7d61628ef"
+        "click.wav": "c2f523f57f0fd5d429665251f76590d601a450eaaa3d2d1b3a6501bff6324a20",
+        "cues.wav": "96e4885526be1fdabc78295ff2f9ada47e9dad28aa41ef49c25411bb21b01bb0",
+        "pb-bass.wav": "32659624ffbff60817c8864e8ddcac68fa9793f9e5591ca30ae1d4a792175065",
+        "pb-drums.wav": "af646bf9ee2778af6c36184991816a4b74fe0c6587d3d5e0d10656432b92e7d8",
+        "pb-other.wav": "d01c0b6b865265be8f74616827b6f1a99e5cb2c55e01a13a18a9190054af1e88"
       },
       "render_pcm": {
-        "click.wav": "dcceebf79594d3f343e7ad6f7d0be0e540d63604106c1d8fea4d5272c5934e7f",
-        "pb-bass.wav": "02c01735b5a4102d3cf30c7bd7f1c77a0e1efbf5c342ba50a216ad9bc35d568c",
-        "pb-other.wav": "7c084a3cfb30697f3d090ac4c9deb2e4ddccb5fcf6c27bf4802fe94f7cd94d1e"
+        "click.wav": "a3ead25b4be7362b14fd806980538f4870f274f492e1da4a4d2370f1c5f8f4cc",
+        "pb-bass.wav": "a4bd54c07bcc2df9b45c372d01a228ab6958352efce8a7595904ac5ca4ddad04",
+        "pb-other.wav": "450779bf13894852a607bf0408f0726833bf0e21fe3d685e382c47f8d8d19adf"
       },
       "sample_rate": 44100,
-      "sha256": "be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548",
+      "sha256": "73e3737d6120267a9cbc06526ef781e66802d810319aba604154dde179da631e",
       "status": "available",
       "timeline": {
         "bar_sec": 1.818182,
         "bpm": 132.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.296882
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/dfa18d189118/guides/be6c91cf89faa2c83de0e2163c5dafafb6434adf6f1601735e3a85d63697e548/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/dfa18d189118/guides/73e3737d6120267a9cbc06526ef781e66802d810319aba604154dde179da631e/all.wav"
     },
     "music/songs/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight)": {
-      "bytes": 36246710,
+      "bytes": 35891354,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 205.479546,
-      "key": "cherry-dash/acbf0b681733/guides/d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd/all.wav",
-      "mix_sha256": "00800ecfd6e592ace223da4da1651269e9d87cc4d984acd736de13208bf45064",
+      "duration_sec": 203.465057,
+      "key": "cherry-dash/acbf0b681733/guides/ec967b834abd2642b17bfdb7437052b65b2811f55a01ac900b0afe9f2ee63448/all.wav",
+      "mix_sha256": "4b9e6ba69d85177578f8a90aa89263c4ed4b44303e47f69d9f57634ed2267635",
       "render_audio": {
-        "click.wav": "10fb3a8158009400a05bf5fafae5473cc45aa14ddc9824a997bd7f7a2f8b6c74",
-        "cues.wav": "cafa1cfd997b875886a9de8564c5d424480d6bb4950b55f2b7420223d42041cf",
-        "pb-bass.wav": "f3d215341a2d009e2e8f37c9f353ef90e5361e388a3687794e0456504448169b",
-        "pb-drums.wav": "b67e5b1c39890a90607e36fc95b849cb7f7f5eded937106aec8564e6e8d186e4",
-        "pb-other.wav": "cc91a6eda3fbe85a7d10f7d5136ebd5994ad9d8e6a6a36f65e8dcbb6af1294c5"
+        "click.wav": "af133f68e28bb61d6c850574448f40b0a94b96367eb73c285acfc7b98f86ed7f",
+        "cues.wav": "6c0b72c21a5f358c435a78503066506cc6bad2145c7da57009e170b9883c7ed4",
+        "pb-bass.wav": "f6ed3972cbdf62491b277b54757363a8ab01b72974defe349f507b03a5954fed",
+        "pb-drums.wav": "69c6d2293855a36def8713b37833ff8b3c8299556af05a48b6fa6bff5ebfc64c",
+        "pb-other.wav": "3b5063e7c45fb3217a965d597dc9f4837b6173f8fe78fa27bf069a25c2a235c6"
       },
       "render_pcm": {
-        "click.wav": "789bf688b2f43f71bce8b4b3499b0850d3a05d0db79fb7247d15944bc7d65d93",
-        "pb-bass.wav": "dfcac507baecfee7f1550a1d0f9258c6c9257e487240bc00ded34d6572af899e",
-        "pb-other.wav": "c24263d2465f0dbef77e805d1f038b33226c88d4dab34065063eaf2d4fdc3e68"
+        "click.wav": "b5f0922ef22e826dcf6158d340c0be399dcf14df995489deed147bf7074605b4",
+        "pb-bass.wav": "64eaaee46035ba91e8df17d5951b554c86ffa03ac1a48918d3e0199941cf65e3",
+        "pb-other.wav": "ef3e10f3d02e477789e40bc7f22e990f023cced40cbbc118104d7ba340654b6c"
       },
       "sample_rate": 44100,
-      "sha256": "d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd",
+      "sha256": "ec967b834abd2642b17bfdb7437052b65b2811f55a01ac900b0afe9f2ee63448",
       "status": "available",
       "timeline": {
         "bar_sec": 2.014506,
@@ -92,68 +96,74 @@
             265.421066
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.936825
+        "downbeat_sec": 1.19161,
+        "lead_sec": 1.19161,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.892698
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/d2320e6dd5b784886d16f953666c90ddaa76796257c5214a7c493ab0674d7dcd/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/acbf0b681733/guides/ec967b834abd2642b17bfdb7437052b65b2811f55a01ac900b0afe9f2ee63448/all.wav"
     },
     "music/songs/ABBA - Money, Money, Money": {
-      "bytes": 33759454,
+      "bytes": 33407794,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 191.379456,
-      "key": "cherry-dash/3529f2e4cef5/guides/82754b52afbcdbf5595a9c08b58239956f5b2a7369f2f22562bf486b4f1565a1/all.wav",
-      "mix_sha256": "c12a1c67e3737d9c097da9855d111e863e57f6fe4b91b299a3a2d9d7e07449da",
+      "duration_sec": 189.385918,
+      "key": "cherry-dash/3529f2e4cef5/guides/1c5c2e6849377d969de8479768051912d694b61ae6815adc273778d3f2ffe784/all.wav",
+      "mix_sha256": "0a30bb6ae588a0e7bf836b77e47851efb5741b29e49af7edf8ef9e2121f3a3c4",
       "render_audio": {
-        "click.wav": "f7fbb7d4c5b7650206d5ffc9ec2f57566daf0ad248370e697b8cbb8202241b35",
-        "cues.wav": "ccccee15b3b5999696898f1426f8837a65b272093f14dcb24550d188ff2fbd07",
-        "pb-drums.wav": "0f1126b94062b8325858b6b3c7ab3807cc0af76c540bd934d73d3a637ab76674",
-        "pb-other.wav": "b0f08f50e812907c588bd0e4d690f34635a08cd62ee0c35784e0048cddb3cdb1"
+        "click.wav": "e45ad72fd2eec72efabffe64f24e68daffa8175c490a6e692f7d2cf7300ee873",
+        "cues.wav": "5bb65605ee386112368e9e2fb8292fa7e1c4a28d4ac90beecf72de989574f9ca",
+        "pb-drums.wav": "69bdb5f783ee45294a7e96cf6dce3ec1cab2a7b4e7bdac707f2b8ff34103f241",
+        "pb-other.wav": "291c2d7d7a2f0a796096fa4a27022eceebb8ab5e281948bc70cfc01543aeedce"
       },
       "render_pcm": {
-        "click.wav": "6c483528bbf17152f71dde23a6e4aabf79bb0e72b87e3b98789088a8941e7c56",
-        "pb-other.wav": "4232325ceaceabafbe07412d095852bc6997d7a7549582ff314ff3b0be947402"
+        "click.wav": "c8aad49cc0e72ef3684c2818e21fe6972edaf2b39bc4173577aa9b450beab022",
+        "pb-other.wav": "c9a87c83324d94d18081a2b8a17eb89d0b6a918570cc5df1e16b8c1429a9d8af"
       },
       "sample_rate": 44100,
-      "sha256": "82754b52afbcdbf5595a9c08b58239956f5b2a7369f2f22562bf486b4f1565a1",
+      "sha256": "1c5c2e6849377d969de8479768051912d694b61ae6815adc273778d3f2ffe784",
       "status": "available",
       "timeline": {
         "bar_sec": 1.993536,
         "bpm": 120.3891,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.692742
+        "downbeat_sec": 1.030522,
+        "lead_sec": 1.030522,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.729728
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/3529f2e4cef5/guides/82754b52afbcdbf5595a9c08b58239956f5b2a7369f2f22562bf486b4f1565a1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/3529f2e4cef5/guides/1c5c2e6849377d969de8479768051912d694b61ae6815adc273778d3f2ffe784/all.wav"
     },
     "music/songs/Al Bano & Romina Power - Felicità": {
       "bytes": 35409922,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 200.73585,
-      "key": "cherry-dash/8cdf237765d9/guides/3580179db5825c711d7e010ea6691b87487c17fc12884443a3986c5fff66fc14/all.wav",
-      "mix_sha256": "b04590b234f911128a4a35b5e543086bb62b7a70802f67361e2da1f46e02bee8",
+      "key": "cherry-dash/8cdf237765d9/guides/0b10fd2cea74df974086810a0e44149f8944566c224a4b9d1d7e8482bef58815/all.wav",
+      "mix_sha256": "9e4a0db5831ee75c0d3d72ab7f55f4e861f8646ab9b2f17a533f920a7f2660d8",
       "render_audio": {
-        "click.wav": "928fe2e6efa3396c09149b14952da824b2f8bf26f220c3a385f344bf23792e89",
-        "cues.wav": "232145da2581b59592a5d51cba6a8b7026228a86d04ad3cd25b8f41df4b74900",
-        "pb-bass.wav": "9f2ae84c27996cb4428a097c447f54df957f9b33d703720a27257017c54df602",
-        "pb-drums.wav": "255fb3a15e6dbd3d0d879cad6f48c496c46f6f111cb580841ad41d8d8d5295c6",
-        "pb-other.wav": "53e7e3c15e0ac4edf0a8e2dbcb664c447adc69641aac3d935860115246aa91d8"
+        "click.wav": "5695d8a7cd45caba2f647728cccc5aabc3460393ff6d4ad13bdd3fdf14c17845",
+        "cues.wav": "709d9b5fb2fed5115c6775fc5f4da8d55dd46dd8f5faa29e666baaf3269ad870",
+        "pb-bass.wav": "ad1ba654feef2408001b0cffcbdba7c7f7cd981818abeb9a8537355e2bb369df",
+        "pb-drums.wav": "b57abd56f64f9608c587b2118841ea55065974479275a36e5e331fa2353ed5fa",
+        "pb-other.wav": "6cddb1b31be5783671d6066b52c73bafc7ab91ddc49621f163dc07c313097101"
       },
       "render_pcm": {
-        "click.wav": "18425aebf76bc5263e5d353919668c73569a2dab929b515cc4cfcde59fc7d07b",
-        "pb-bass.wav": "96830035b955ce9ae71b0807b46f74cae9b3d84458220f0294dfdcdb8e2a5d59",
-        "pb-other.wav": "bb5ff2664d77bc6801c31cdf4d4b84bafd90e2b2aac28a5055387072911ce967"
+        "click.wav": "fc65b61fcefa968177a15fb5107f884099fa4909eba9d27862e986dfa3c096dd",
+        "pb-bass.wav": "cf69bc8b75945d1e81c525df7e7d44d78bc3752048e861b45e88545e768b0cf5",
+        "pb-other.wav": "aff2d1ff1e392fb45b89d2ea7a2c5903d70b0bd26abb17cea42fbe90145adefe"
       },
       "sample_rate": 44100,
-      "sha256": "3580179db5825c711d7e010ea6691b87487c17fc12884443a3986c5fff66fc14",
+      "sha256": "0b10fd2cea74df974086810a0e44149f8944566c224a4b9d1d7e8482bef58815",
       "status": "available",
       "timeline": {
         "bar_sec": 2.230399,
         "bpm": 107.6041,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.934954
+        "downbeat_sec": 0.7076,
+        "lead_sec": 0.7076,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.412155
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/8cdf237765d9/guides/3580179db5825c711d7e010ea6691b87487c17fc12884443a3986c5fff66fc14/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/8cdf237765d9/guides/0b10fd2cea74df974086810a0e44149f8944566c224a4b9d1d7e8482bef58815/all.wav"
     },
     "music/songs/Alex Gaudino - Destination Calabria": {
       "bytes": 32412190,
@@ -164,7 +174,7 @@
       "mix_sha256": "fec7f65b229c14ca3de1e1e17521077352c74e795a524f2cc76cbd20bd6da94a",
       "render_audio": {
         "click.wav": "2d329a5ef972ad8c518098c2ee50cea7dd90ca3afb12b84c4a29d83da6b510ec",
-        "cues.wav": "e0c777ddf4d2940fd0e7878dacfe3bf5d041dbdbdcccd57a2bd684297130d903",
+        "cues.wav": "6af13465369f466315176aa226e0e088b7d533a6b6992b26e24dfd66b45f4d8f",
         "pb-bass.wav": "3230fd2d1598c9140686bb8a0be08bec25180a2592785f3d136eb2b1e1af169e",
         "pb-other.wav": "9be13a34fe746bac64884ee2cc15c92ca7e72bfc37f7bf7b0bede8fb2fb434e2"
       },
@@ -193,7 +203,9 @@
             132.25619
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.300794
       },
       "url": "https://releases.agentiqa.com/cherry-dash/351bca043e8d/guides/b1866c201de2cb7b9dbc8375a3bcd588bd425ee653e861b8128783f65f86f8ad/all.wav"
@@ -204,10 +216,10 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 196.535465,
       "key": "cherry-dash/297f69dca0f1/guides/401d7fd0ad1b5f2e5dba5b778800ede390837935b5de607be7e0cbc9a56236eb/all.wav",
-      "mix_sha256": "18b6a65775a239351e255746ac3cf983d8b7d7e0fff985bd08a9ad6abe507a99",
+      "mix_sha256": "ef66ae1b53073ee6c9852789377e476e32be9ed9605f7e2870d3f27eede6aa3f",
       "render_audio": {
         "click.wav": "ab4a468c581298707ed371555ca18e07fe2a987fa6a483d6f2cf93a122fb67c9",
-        "cues.wav": "ee7523b48952b9e70b4ea3bcb62b8a777bbadd6b2aab55461833c0771932fd59",
+        "cues.wav": "8cf2890eaa9a1887686c1393818657b561eb2331fca3a63fae7a7f4af13b0b66",
         "pb-bass.wav": "78657ce939a04baf4444805711e12b7466fbd8edd5dccfad48158cc830102466",
         "pb-drums.wav": "e22e93cde58d5acc5c1e18e6593557696def61846c5ce4baa58568ba27e75fce",
         "pb-other.wav": "e2908b8e97d28ec8419d8577ff0068b2076641150f0396f3c35758443a18cdba"
@@ -223,7 +235,9 @@
       "timeline": {
         "bar_sec": 1.889764,
         "bpm": 127.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.29508
       },
       "url": "https://releases.agentiqa.com/cherry-dash/297f69dca0f1/guides/401d7fd0ad1b5f2e5dba5b778800ede390837935b5de607be7e0cbc9a56236eb/all.wav"
@@ -237,7 +251,7 @@
       "mix_sha256": "050928c9d6fa80658284e401c3dcbabdf78eb6992b34d0c727cd66a73d0ee0f4",
       "render_audio": {
         "click.wav": "8eab20371a691f4d12cfb5fa4db54d1e29063201d364ed6d9193b09896e8ebc0",
-        "cues.wav": "1f55873ff587925fadb02049c03094290f8c2d523efbe3e1688b6234cbadc486",
+        "cues.wav": "d4471c249a86432b54708f3a2ace25f0b201ef66dda0b44cbf3d99f3947e36fe",
         "pb-bass.wav": "01b19761f151e0fe008824c10b783b6570a8a77a6da50440de61d7d14eea169f",
         "pb-other.wav": "b2ad230bc8dbce86ac4bf2d361ad15561733c5ed854f2c0a487f8d95eac566de"
       },
@@ -252,7 +266,9 @@
       "timeline": {
         "bar_sec": 1.752081,
         "bpm": 136.98,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.297038
       },
       "url": "https://releases.agentiqa.com/cherry-dash/3d16441c6169/guides/383172e7e87f940a5acd5cab77a29a6d5ff534296e577d371d27352ef98bcd4e/all.wav"
@@ -262,169 +278,179 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 222.72,
-      "key": "cherry-dash/ab33e65bf629/guides/e299c08f4691f62b211e479caad887d69aa30a4bf6b57a4d72d2c05b3f8f6978/all.wav",
-      "mix_sha256": "16d6c087d350c8fdde544be48e5a79723a2b265f04bc2799ba5576daa7b3bd7d",
+      "key": "cherry-dash/ab33e65bf629/guides/bd7b67e15714b57d14d59a2ae702b26c109cc7a6f5a24008f20f07f4c5791d34/all.wav",
+      "mix_sha256": "6bf49420af282b1be1c899aa8cfa7578d551c0fb4dbf698e2708f4c6ded3d084",
       "render_audio": {
-        "click.wav": "b5f42b1d713844f703f6a17bbafc7c9afb85081d04b097f38cf64fac50df49e5",
-        "cues.wav": "89653574eb9cebbd1455c52116894fd296c1736843b0fd22dfffef602caf012a",
-        "pb-bass.wav": "7713199f9791693b6e0129c453e28a30feeaa7abfae302bc92d9d93ef5ae12b9",
-        "pb-other.wav": "4ae5548c4925f41544f49cca015d40a5f0f1a94a1678e329f218b306fc4fdf1e"
+        "click.wav": "622f01aef53e6072cc68aa83ec2d1a5f9453eb0ef2ba9b1615f0ab8154012a77",
+        "cues.wav": "92a04a5b49ac0652f7e85c06d3bc808afb2dedcd6b06844cd26e8db33b65c371",
+        "pb-bass.wav": "7d88c8b434497f27d82d969bf927db6600466b83d81f87ceb5fc9f81726897bf",
+        "pb-other.wav": "fd92a77923a5dcdfb3e32dc340bf7eef6a18803c5e62023f60bab53ddd35d60e"
       },
       "render_pcm": {
-        "click.wav": "7b4bf7437820500f0568007d8bff4852e6b7ae3b3fd38d1111b858fd8de865cd",
-        "pb-bass.wav": "1be6bea4f2abc50b676efbacab68e8ac506e87960474f45cdb2c8fcd48b550a1",
-        "pb-other.wav": "3669b1eadb8a6f90686af5e08dafee9cb6e67d8bf2c52ffe585db868343d24ec"
+        "click.wav": "b3cb6853a723020e44e89b04d91e66ac9e19c34be3920c55823c1f08ddf780f3",
+        "pb-bass.wav": "64bee17fadb1d95c6e13996be7d704caf5406604bd92f6d7c87a95b6b688c005",
+        "pb-other.wav": "4b519421f85d52a4490a1434fbb5d2b843d94039b93301758a0dec81a4eba605"
       },
       "sample_rate": 44100,
-      "sha256": "e299c08f4691f62b211e479caad887d69aa30a4bf6b57a4d72d2c05b3f8f6978",
+      "sha256": "bd7b67e15714b57d14d59a2ae702b26c109cc7a6f5a24008f20f07f4c5791d34",
       "status": "available",
       "timeline": {
         "bar_sec": 1.92,
         "bpm": 125.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.724671
+        "downbeat_sec": 1.827687,
+        "lead_sec": 1.679909,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.632358
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/ab33e65bf629/guides/e299c08f4691f62b211e479caad887d69aa30a4bf6b57a4d72d2c05b3f8f6978/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/ab33e65bf629/guides/bd7b67e15714b57d14d59a2ae702b26c109cc7a6f5a24008f20f07f4c5791d34/all.wav"
     },
     "music/songs/Basshunter - Now You're Gone": {
       "bytes": 26421062,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 149.778594,
-      "key": "cherry-dash/7988839c0526/guides/1147373c48880d4bf22bd06173a40308020212a6af3af152329899c81e8043d6/all.wav",
-      "mix_sha256": "5574d8f66da91423511b8be4d90948e245c703647b487f2fab4e7c4b49241af9",
+      "key": "cherry-dash/7988839c0526/guides/d61c35116de3fa5a489480dcf225e3607ba239212110380ec0e8c0abe57507e0/all.wav",
+      "mix_sha256": "533e5c25f3d032ab0ab5dadc7ee80ce5c3ef4d6d747688a9900a0aa3574b76cd",
       "render_audio": {
-        "click.wav": "33698f40788fc10d6c5cf3c0f1290103a61ed4ff78499ea3814acf5ba58a8b12",
-        "cues.wav": "24dc7f50bb3c21e73086dc5564930d9bf0fcfec422b8008e5f9e0c9adc862dce",
-        "pb-bass.wav": "5136e7fa92171d711220087dafc9b0d218f35ec69fbc6df8d3bba4f3ae8be178",
-        "pb-other.wav": "616fb8807cc9e2df04450d62138cc3666b3448263da0459e9d6cff5d0ede476c"
+        "click.wav": "5914ece764a1dbdfeccc4c008eb65c0f1345b0dd56f6ae453444e0b3d50b9da3",
+        "cues.wav": "6ec8e2e624d5301bb9027047ac4d738fde043eefcc3742ad124837c55105a816",
+        "pb-bass.wav": "2dcb1833c2e4e0fccec6c6490b83d3215c924582865ef0dfc6ffceffd46c41a5",
+        "pb-other.wav": "e367a9f7d7d494c8be399a0fb9d81de2ddf062310e0186564150fba1638ed068"
       },
       "render_pcm": {
-        "click.wav": "1eb12fdfab1dd739b193183039ce92bbe948e449e0a1f4f40beef1f0aa19f423",
-        "pb-bass.wav": "3b6a302167f3ccd10c45b2b67d56351c57e49742da903032dbef0cdd9ef81f93",
-        "pb-other.wav": "a68e039796a0531617d6a48ccf8831c7e3dc6dc34cb55a682b24d9faab8a90f6"
+        "click.wav": "c51fed4dc758576f7c3a19d302958c4990208813849a7b14d8b4ccb068360689",
+        "pb-bass.wav": "6047be3f206feadd8b0b4e94df9bde5b3aa5d9284318b16944cccb70437f362b",
+        "pb-other.wav": "46de00388ae9b56db70f5df8f4268d4070471e9ee7e39c1a7350f0be983878b0"
       },
       "sample_rate": 44100,
-      "sha256": "1147373c48880d4bf22bd06173a40308020212a6af3af152329899c81e8043d6",
+      "sha256": "d61c35116de3fa5a489480dcf225e3607ba239212110380ec0e8c0abe57507e0",
       "status": "available",
       "timeline": {
         "bar_sec": 1.610523,
         "bpm": 149.0199,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": -0.296951
+        "downbeat_sec": 0.005963,
+        "lead_sec": 0.005963,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": -0.290988
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/7988839c0526/guides/1147373c48880d4bf22bd06173a40308020212a6af3af152329899c81e8043d6/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/7988839c0526/guides/d61c35116de3fa5a489480dcf225e3607ba239212110380ec0e8c0abe57507e0/all.wav"
     },
     "music/songs/Bee Gees - Stayin' Alive": {
       "bytes": 51206518,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 290.285714,
-      "key": "cherry-dash/dae192c9d9a8/guides/9669fb799fa76027e1cdd3fa478a627a3e7a770be5cae4b21bc2f0e5cfa93e90/all.wav",
-      "mix_sha256": "96c517bb604c1bf6145b42a4c52705fd528949fc829132362a2fb84ab81f9a0d",
+      "key": "cherry-dash/dae192c9d9a8/guides/410a2ba46f2424b1d64e43180a5305e4a7570802a8512b00014ae2adeabd0d62/all.wav",
+      "mix_sha256": "5030260112cb292b8d09c4d4a2af02c5ad34aa14d9c502dd7a4c7bc275bc5afe",
       "render_audio": {
-        "click.wav": "080de83bc40eb2ad55095b7314069c4a8f5e500c208c3eaa104eebffc01e0059",
-        "cues.wav": "614ce0bd7945afbb7063587f9c57d08c0ac0dba83310b2aae7ab278324978a9b",
-        "pb-bass.wav": "659281c9fea002bd3fcd7c7da705df47eebd8e89a00bfaed0d2d944e13d0d297",
-        "pb-drums.wav": "9b7edd05ecc29d5e36b04f221b2428eac5b832bb90fd990e5e1fce63d8538646",
-        "pb-other.wav": "703b9b763a0eb867107be830894768dc47f772a08e7c879365ae0084df6c8d32"
+        "click.wav": "682459df48329de5d5108a7cc4cde087e4c991fb4a15ba48245bd11e9884f268",
+        "cues.wav": "f8b43eea2f45d9631101498d8e2e2edc93b91d4556fb694808b605277b64aa3f",
+        "pb-bass.wav": "acc271cee1874bb98cf4cfe32edab42967fd1baf4b25d5eb9337ecc9ecba0d79",
+        "pb-drums.wav": "ee40fa32667f522343e501396543df23a9f5abfbbb50de096bb35d4e8715388e",
+        "pb-other.wav": "37936d15a6993fbc7ddbed39ad7a9b010ae7f882e166ae072c25dd9175f2e928"
       },
       "render_pcm": {
-        "click.wav": "bd6ee4115caaed6970bd491eeb29f9510b0d9d99ea15d6cf4c1f4d78285c3179",
-        "pb-bass.wav": "b6ac1ed0daf9d60d519d2b02ade3c42d852b7d7d8c0acbbbecae86d9ecbaa17c",
-        "pb-other.wav": "dbc116fc7463e750b255128c5ab376d1c7078ca9fcd17680acb19218885b359c"
+        "click.wav": "f6349c8ecd8d3603d698e4dde25825c31bfd49f11c0e322836a2c4333271a1c7",
+        "pb-bass.wav": "ddf38a28e6826988c227f03e68bc947eaf06d2424e1a65ca83b31325c1e1e5db",
+        "pb-other.wav": "f466661608818b8c8676351dc60cf4fc692806bc0bb87a1018ebb602863c8f05"
       },
       "sample_rate": 44100,
-      "sha256": "9669fb799fa76027e1cdd3fa478a627a3e7a770be5cae4b21bc2f0e5cfa93e90",
+      "sha256": "410a2ba46f2424b1d64e43180a5305e4a7570802a8512b00014ae2adeabd0d62",
       "status": "available",
       "timeline": {
         "bar_sec": 2.285714,
         "bpm": 105.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.985102
+        "downbeat_sec": 1.133424,
+        "lead_sec": 1.133424,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.83263
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/dae192c9d9a8/guides/9669fb799fa76027e1cdd3fa478a627a3e7a770be5cae4b21bc2f0e5cfa93e90/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/dae192c9d9a8/guides/410a2ba46f2424b1d64e43180a5305e4a7570802a8512b00014ae2adeabd0d62/all.wav"
     },
     "music/songs/Beverly Hills": {
       "bytes": 39391002,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 223.304331,
-      "key": "cherry-dash/06185b95940b/guides/76c0707e4db6c510e28614e16a390981d6e004b5ecba1e0052876061eb47b1a7/all.wav",
-      "mix_sha256": "9c8bab17859f0cf96354edbf490e3efd2ac3bd2c177cb5d54ce26e002d9aa9aa",
+      "key": "cherry-dash/06185b95940b/guides/5e844cf1489c351f5bb9007b432857c15e58d16e451202878900a6d9870e56af/all.wav",
+      "mix_sha256": "02dee32f63f9818669427488a94137bb318bb7da0aee449234153dc15cc19f3c",
       "render_audio": {
-        "click.wav": "18b96219c6d012e85b790099423c9bb0684806e1fdcda6e4f44b870a7bddad03",
-        "cues.wav": "f053c71cab85929dcdc3ab2d333fbae0e0fdc1c8d38752cc36c1c8dd1889da78",
-        "pb-bass.wav": "f6685121fabed6f9df374c9f983b04e70b8a1a148fa7f355375e95ad68a09bf3",
-        "pb-other.wav": "612b7c6a88a3a6f6000091d6bb87a314ac1c922ea8086c8424853fd8ae8a6ad1"
+        "click.wav": "17baf2b5ce1796a966ddd9a6a82f9bd057681593e3bf240a5519267a0ccaf27c",
+        "cues.wav": "48867a30f8fb552bb208facd9f570c28fd7b7def8af9b51b2115e6a739cb8241",
+        "pb-bass.wav": "279cfbef12589925174f860ea985301d3e2f15973c00c369c39c96401572447b",
+        "pb-other.wav": "622ad6d8c4d78ba6b187e5fd52ae947b936988c96c3b9efd1c9e14acb5a84864"
       },
       "render_pcm": {
-        "click.wav": "eb5c72ee529e65ec728d8ff51607ce340da87adc29236fca830d303fc0b793ba",
-        "pb-bass.wav": "25e2b588e9d6230c98d83bde20c96f2f229ee97b108b3e8632b9df0921892df7",
-        "pb-other.wav": "250f7018aa40896d382d2a227db9742d2df50e1c628ef16ecb05e748798cac03"
+        "click.wav": "4b2bee4783821886a2844ca15b0f9749a1f5eb0af79c78f4bfcc822cb6d7586c",
+        "pb-bass.wav": "d2868e492013f496ad1b0c11372875a961c74a3fae2bb569b0d8ddc952090f96",
+        "pb-other.wav": "e38a8ad6a8f80f399e1ea96b0169491fef08bd69132f772755c1a685d4582d50"
       },
       "sample_rate": 44100,
-      "sha256": "76c0707e4db6c510e28614e16a390981d6e004b5ecba1e0052876061eb47b1a7",
+      "sha256": "5e844cf1489c351f5bb9007b432857c15e58d16e451202878900a6d9870e56af",
       "status": "available",
       "timeline": {
         "bar_sec": 2.086957,
         "bpm": 115.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.587868
+        "downbeat_sec": 3.212517,
+        "lead_sec": 3.12483,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.650363
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/06185b95940b/guides/76c0707e4db6c510e28614e16a390981d6e004b5ecba1e0052876061eb47b1a7/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/06185b95940b/guides/5e844cf1489c351f5bb9007b432857c15e58d16e451202878900a6d9870e56af/all.wav"
     },
     "music/songs/Blondie - Heart of Glass": {
-      "bytes": 46520974,
+      "bytes": 46151762,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 263.723673,
-      "key": "cherry-dash/bfcf5ddf04bc/guides/4810539260f33ba3f9b10dbc4c20afa3cf7a68a4dee7385fb5acf32f720fa3e2/all.wav",
-      "mix_sha256": "8630dee43f62c409ec467b699c78deee175e390525a5700c302be752deec2afa",
+      "duration_sec": 261.630635,
+      "key": "cherry-dash/bfcf5ddf04bc/guides/526c5cb19ef6a5b5849e608fd9822016c4321070918a518bdf2ad92352399b62/all.wav",
+      "mix_sha256": "07b88a0d7076ac04908881a5184970d857b81ad5b98468bdfd5e546d1292c574",
       "render_audio": {
-        "click.wav": "a3a1e145335d8727567c7c0964e135ad60d4a3c0496355359fb01029cc1e7461",
-        "cues.wav": "c44b1da143dd88594cd26340b509397023decf7be81b3db25ad355efcfa4d443",
-        "pb-bass.wav": "20961929d805863c82117ae48cfbcd1c95120bbfd4fdb585530bd56bea44ccb6",
-        "pb-drums.wav": "ffd7c2708d6a58497beb5b17f94212a40cf248ac465bb7890f717ebf0e278456",
-        "pb-other.wav": "603c270e427c187ddf3ad1331047793e9a88b63da004d2bd44a3eeb3245a1c85"
+        "click.wav": "e180a124d5ba83c1b89ba60ac2e97090e79c43501253023e7785407778bb034d",
+        "cues.wav": "9d029b93b2e13a3315b1ce5962f4e7f891e5fc4ae06df39e39fd5804a3e54b83",
+        "pb-bass.wav": "0bfeb7badd12686895eb334419fa905f4d573c65f61b79f0ec42e9c5ea96fda1",
+        "pb-drums.wav": "aa5876c78f9f5a30dfe87515bdb2a31f73b32df3fd6763f766ad221153222154",
+        "pb-other.wav": "fbc381265aae91e01c33559895303241f57d64ff60311538b2b6fad630b8d900"
       },
       "render_pcm": {
-        "click.wav": "102d947b027a7195e5ded0fa116fd03d571afc41d90fba9684d90e9c509666c5",
-        "pb-bass.wav": "5852dc4e9fac68e3f5c6a0bf7d68e933124095b929fc017b411e5121f5d6d955",
-        "pb-other.wav": "432875e512426f8707120e66769dbf5330507d55ba4d50432bcbf71e72dcc399"
+        "click.wav": "4cb37293be5f7f414530bc4e65d29fe914c46a1ba77d850f767094a32bfe0140",
+        "pb-bass.wav": "3cccf23b6962a5a9c40dc57120fc28f20ae37099976a66e5e42173a1c13a22f9",
+        "pb-other.wav": "10d0b130a68966962643dbc96c391259d5c78a21f2b6d63aec548c02959d8f0b"
       },
       "sample_rate": 44100,
-      "sha256": "4810539260f33ba3f9b10dbc4c20afa3cf7a68a4dee7385fb5acf32f720fa3e2",
+      "sha256": "526c5cb19ef6a5b5849e608fd9822016c4321070918a518bdf2ad92352399b62",
       "status": "available",
       "timeline": {
         "bar_sec": 2.093045,
         "bpm": 114.6655,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.861814
+        "downbeat_sec": 1.070476,
+        "lead_sec": 1.070476,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.771565
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/bfcf5ddf04bc/guides/4810539260f33ba3f9b10dbc4c20afa3cf7a68a4dee7385fb5acf32f720fa3e2/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/bfcf5ddf04bc/guides/526c5cb19ef6a5b5849e608fd9822016c4321070918a518bdf2ad92352399b62/all.wav"
     },
     "music/songs/Boney M. - Sunny": {
       "bytes": 35160518,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 199.321995,
-      "key": "cherry-dash/8b0f4b8c27d3/guides/d82f47973ef16a00d37e4f3b9412ef61be82589966443dbce7604e8e653d9c58/all.wav",
-      "mix_sha256": "2e9344fb2a0b5b4e89afc729f8713e4c0d8b42f4c37bb40c8ff2ee101c61fcbc",
+      "key": "cherry-dash/8b0f4b8c27d3/guides/5f068c4421cac8820c555f1e1f02eb32c50e500522c1cb0342d1c859da8df9d8/all.wav",
+      "mix_sha256": "a456fdfd5ed01d8243acaee94255f2ae1f48a35347c5057b3e3d18469fcd0aa6",
       "render_audio": {
-        "click.wav": "8516e2d28c5904bf8888d002a1df7ab4600aa7e41e37a833a7e8280d9e3acdc7",
-        "cues.wav": "9a56cfaf621416999d519153aa6afac7f37aa29ac88971111e53b5f8efc17847",
-        "pb-bass.wav": "78655bb9c7d9403bcaffccd9eeefa217988a022e46699f68e0945dde2c09584a",
-        "pb-drums.wav": "2bc7a27fd183bfca74cdeec9920689502e4231028e91521645e316c5b52c4719",
-        "pb-other.wav": "0ca864004b706491107cd79be4316fad633b4092fff6183ba7df08fdced83e88"
+        "click.wav": "788c29b91452de41ba703f331568713648bc83e284041af1d716bbbe2372d40a",
+        "cues.wav": "dde9c8acebe359acd7688b9facb73c1ba89dd9d08d917ccb24326e9a24348e52",
+        "pb-bass.wav": "a2e894474b438dedc3e2edd61d8ce73450c99aea5d508d61803b358e774534e0",
+        "pb-drums.wav": "1f5f03f588f5fa7c36c22eda7916262fac4db35f7d7b593bcb6ddd548c16158c",
+        "pb-other.wav": "0c355b950f7cfc58e3788d33a073f2fd538ecc1addbd797428600c3bc4f0f2da"
       },
       "render_pcm": {
-        "click.wav": "34d5768959165fd54bdaa0920243210c3c6ad6da3f2cd0187c508899a89f3c7c",
-        "pb-bass.wav": "abad77c57537d9a1e9b2c641c5c39ab4e788ed1a029f6f422fa6313363206f2c",
-        "pb-other.wav": "c463c8957226db39d2ea17a6ce23a38a31a47cf27c6ac7cca748c1211f43f3a0"
+        "click.wav": "2039f3cbef8c639bf90a6e5d0d3dceef8434e3b049621ff99ce19ad156740bf6",
+        "pb-bass.wav": "4182228f00d4ea4c7933aca5c745c80877cec59c670a012ad532d6eb8d199392",
+        "pb-other.wav": "270d572dcc7d7faf62a0f5cbaa50bb9533b2580c46fe1319a51e427217687029"
       },
       "sample_rate": 44100,
-      "sha256": "d82f47973ef16a00d37e4f3b9412ef61be82589966443dbce7604e8e653d9c58",
+      "sha256": "5f068c4421cac8820c555f1e1f02eb32c50e500522c1cb0342d1c859da8df9d8",
       "status": "available",
       "timeline": {
         "bar_sec": 2.033898,
@@ -435,98 +461,106 @@
             10.4661
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.736899
+        "downbeat_sec": 0.738474,
+        "lead_sec": 0.738474,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.441475
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/8b0f4b8c27d3/guides/d82f47973ef16a00d37e4f3b9412ef61be82589966443dbce7604e8e653d9c58/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/8b0f4b8c27d3/guides/5f068c4421cac8820c555f1e1f02eb32c50e500522c1cb0342d1c859da8df9d8/all.wav"
     },
     "music/songs/Bruno Mars & Mark Ronson - Uptown Funk": {
       "bytes": 48594482,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 275.478254,
-      "key": "cherry-dash/cc8aac87e388/guides/19e47a47d209ed255e5faacb97fb58fd63e2e9e58e85569e30550f0cad89dad3/all.wav",
-      "mix_sha256": "74df5f9fb4e07b08fd2f12ba6ba902a1b7b473db3237e3d28d8a0886027ae8af",
+      "key": "cherry-dash/cc8aac87e388/guides/094b3546cdb7ebf4bb96aca3b7d0949ffb69c2356b6c026860bfb6c066a1def3/all.wav",
+      "mix_sha256": "13078465ad7905351035a81bfcaf0deff78c6d2a791b28dc0c3044e3a33fc141",
       "render_audio": {
-        "click.wav": "4efb1f7c5a5bf8ad214fd24cf4e19944183b95f0d235347cda75896fb7878148",
-        "cues.wav": "5f1dc932708cfc7accfd4cb27bb8b87bbfae43d542ac20cffdc59ab88f642e3e",
-        "pb-bass.wav": "b0e4545227e11d972845b002d2ee174942943a78f9d8372a8bcd97f658458f12",
-        "pb-drums.wav": "917fb9ba98e0a5ea55ca7c27c4eb42f7d50188126500fd7fc7f42c34528882bd",
-        "pb-other.wav": "346ec0bcd7caf6993959cfdea0a0a04725294d6115f466320975bf7427e2526b"
+        "click.wav": "6942e55f59a9b951e1d2fa3cee5dc7912e277fc9c5ea9348ca7f4d6cc5c011cb",
+        "cues.wav": "fba58c6b6eb5ecc62e1fbdc79b09991595806f0f60238892345290df43f1114b",
+        "pb-bass.wav": "ae9b4104658bef6c84fbad38384c7a1f78aa4b462d2558f7c31cbc46b8dd9f25",
+        "pb-drums.wav": "0fbad14d7dc60b741391606ee6307aaacfea397a262734feea0fbc74a4c6b980",
+        "pb-other.wav": "aa69459bf3854fb6a4197b305c72c24efa4f2142dc92d98ca1df4a854172acdc"
       },
       "render_pcm": {
-        "click.wav": "ad93e60b57217eb7d4b3c6ec989c3224db8899d5c5daa38af875b07dfa10d47f",
-        "pb-bass.wav": "d76ce99b9e4fa9351d91733c13298b5242ae4862a3b2ca0f49b63ed3f3789de7",
-        "pb-other.wav": "4f4446069078070a6d3ff4f6da99c8afa325bbdee59d3cfdbaf5bb4695595bd2"
+        "click.wav": "2864b5cc25e5b27873581c827190c21500d02c68c13da3c400cf8fcbcca9070e",
+        "pb-bass.wav": "8c781c20d9c5abfa690ad5097960317dcb362cff7e36c413cccec8c39d68cc96",
+        "pb-other.wav": "1869595c870812129090fc39f29483344423c2764d5fee6baeb4c03a125fbf8e"
       },
       "sample_rate": 44100,
-      "sha256": "19e47a47d209ed255e5faacb97fb58fd63e2e9e58e85569e30550f0cad89dad3",
+      "sha256": "094b3546cdb7ebf4bb96aca3b7d0949ffb69c2356b6c026860bfb6c066a1def3",
       "status": "available",
       "timeline": {
         "bar_sec": 2.086957,
         "bpm": 115.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.791876
+        "downbeat_sec": 1.143478,
+        "lead_sec": 1.072729,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.848397
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/cc8aac87e388/guides/19e47a47d209ed255e5faacb97fb58fd63e2e9e58e85569e30550f0cad89dad3/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/cc8aac87e388/guides/094b3546cdb7ebf4bb96aca3b7d0949ffb69c2356b6c026860bfb6c066a1def3/all.wav"
     },
     "music/songs/Cascada - Everytime We Touch": {
       "bytes": 35180746,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 199.436667,
-      "key": "cherry-dash/cadd346666dc/guides/4964e802ac6d57177a87044f11b315ee38746e40b5e948fd128d077700d4342b/all.wav",
-      "mix_sha256": "29a90401e51d40c15c52c19d370b64e4403a5b4f5b8784da29a835ed35d488d1",
+      "key": "cherry-dash/cadd346666dc/guides/96876749040f0ff286ed974e56a24eb3865776faab66861a4c6348ae9b2342d8/all.wav",
+      "mix_sha256": "0ba0f00484068c5fb831e94e1a604ba9281105174ac681912109d00b821de338",
       "render_audio": {
-        "click.wav": "434b3aa661932aa363d4fe5a33de4996e053261a0e70e08cf7f4cb1c82af6689",
-        "cues.wav": "19afbad13a2c7a797c6ccdebb04d29f16c76f41dfb0a02417b6e3191c4ff60fc",
-        "pb-bass.wav": "f325b308e1b2b473a0173c9b47bb93901c63fa2d4daa4870d166437168bef3b1",
-        "pb-other.wav": "f9823f9c576cb8aa35d550eb901ddb35be487adca80e88936625d3950a0a87df"
+        "click.wav": "7ed5c2665af302d036cd5d43f61c9af157ce4c278a885b6dcb2f984a4f2bff57",
+        "cues.wav": "08e508f9416b6cf175aa62419459ede43ef39f68737484ed13ddd14e1fa6d2be",
+        "pb-bass.wav": "13e034c528312af97797aff1cf7416e4d236c44067b7506ac83321b59ef210a9",
+        "pb-other.wav": "4a300c4ee5791e2a00d016013b5ab2c50f3d53a519e6d8d37c16ca290496ce3b"
       },
       "render_pcm": {
-        "click.wav": "5cb2d0eaba8d6d87ad82994d2dc4fe7bb440604e87192a1f31874cd04601d205",
-        "pb-bass.wav": "9f748d4a41b761c97bb845fe4f7e0a9e699b7d4935a0480aa5fb7990ec4c0d62",
-        "pb-other.wav": "7d7f73c08f34173eebf5505e92519817b66cea505c4d33739ae0e7f90fbe0784"
+        "click.wav": "b26bc443635c9d47eb0c3ee5c59e92d240bd545b787d5ab71d6c0ed1d59918c6",
+        "pb-bass.wav": "caea793d4678d9f9ba5d93f04da1163ef08d606b3b21393abe437bf88b876e1e",
+        "pb-other.wav": "157de2b361fd3c89edb9df474ccb48fb43af228b943e8be078f94dcda2964828"
       },
       "sample_rate": 44100,
-      "sha256": "4964e802ac6d57177a87044f11b315ee38746e40b5e948fd128d077700d4342b",
+      "sha256": "96876749040f0ff286ed974e56a24eb3865776faab66861a4c6348ae9b2342d8",
       "status": "available",
       "timeline": {
         "bar_sec": 1.690141,
         "bpm": 142.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": -0.296991
+        "downbeat_sec": 0.028516,
+        "lead_sec": 0.028516,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": -0.268475
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/cadd346666dc/guides/4964e802ac6d57177a87044f11b315ee38746e40b5e948fd128d077700d4342b/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/cadd346666dc/guides/96876749040f0ff286ed974e56a24eb3865776faab66861a4c6348ae9b2342d8/all.wav"
     },
     "music/songs/Coldplay - Adventure of a Lifetime": {
-      "bytes": 47250126,
+      "bytes": 46872126,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 267.857188,
-      "key": "cherry-dash/369f5f6cb7e3/guides/8b9fba8425bed91b1cedbaaf419edd245eb681ae204ef7611945c96ebe37bf0d/all.wav",
-      "mix_sha256": "42eb629d352b6acc4cb25a32b7f212a742cfd35b68a4714685ae0c7a75c64afe",
+      "duration_sec": 265.714331,
+      "key": "cherry-dash/369f5f6cb7e3/guides/fcefc8855fc94714aa2e720081155524eab6e18843d078b0a34f81a5e06ef75c/all.wav",
+      "mix_sha256": "2b131b1747caff059937c328238811a674eb7fa9a8860bee4f6fec01c7688da1",
       "render_audio": {
-        "click.wav": "5d876a2708776706f8611be0b56cdbd67a72d1cf0b278a00ff27d0326fcc102e",
-        "cues.wav": "1601e9a729194c3e0255fc8d9ce4f5a7095d5993900f8fc63d8d3ddd9e8efeb6",
-        "pb-bass.wav": "1ab311b68654dccdc192b11b9247b7ec98eb041afbe33a130035cfdb433002a4",
-        "pb-other.wav": "9feb0ca60f102a31d297625615ce723dcd9eecadc6e6796e4d38fb2d1aa7d663"
+        "click.wav": "73c4b361cac85b415617fe06bd95f0c0fd0ad7e1893b2b47428774a302b63994",
+        "cues.wav": "68d0b340c1ad7474ab53e2b9f097a5a5c5307960f1015ba73b7df521adfa936c",
+        "pb-bass.wav": "f7a9895a413b07a3da8cd716c129db1fc9b3c8241995897144a3701aba022d43",
+        "pb-other.wav": "e1c7307341a1fb1723b64eab4b24e907e67a29fb2b1e06bacc18b79606c19eb7"
       },
       "render_pcm": {
-        "click.wav": "0e6f961a05015c57204005f938fabd2bfa0216a07cbdc4319aa104bb3f143c8e",
-        "pb-bass.wav": "e858dcc822c2eb07b7cd781e455d622180fa9d378c71ccdaaee8be91571c640c",
-        "pb-other.wav": "5bb07c37fe5b24c3c3c5654e0751dba5aa759a2935d3a1dc38abfd61edf2aad5"
+        "click.wav": "33a7c2217fe98a298361841381000f5f0b7df9abbfa65369995edd837e3b4da0",
+        "pb-bass.wav": "b31b1fdd0fd8318a2bb6cc9d1647b0613917fcb22b80085e5488d26cafbd3ca5",
+        "pb-other.wav": "5c54e566ead7d505f5923e42efdbf6cde5bef96a0a1eb4186e0352c13da26079"
       },
       "sample_rate": 44100,
-      "sha256": "8b9fba8425bed91b1cedbaaf419edd245eb681ae204ef7611945c96ebe37bf0d",
+      "sha256": "fcefc8855fc94714aa2e720081155524eab6e18843d078b0a34f81a5e06ef75c",
       "status": "available",
       "timeline": {
         "bar_sec": 2.142858,
         "bpm": 112.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.845903
+        "downbeat_sec": 0.635714,
+        "lead_sec": 0.583091,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.33876
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/369f5f6cb7e3/guides/8b9fba8425bed91b1cedbaaf419edd245eb681ae204ef7611945c96ebe37bf0d/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/369f5f6cb7e3/guides/fcefc8855fc94714aa2e720081155524eab6e18843d078b0a34f81a5e06ef75c/all.wav"
     },
     "music/songs/Cyndi Lauper - Girls Just Want to Have Fun": {
       "bytes": 41137162,
@@ -551,40 +585,44 @@
       "timeline": {
         "bar_sec": 1.99319,
         "bpm": 120.41,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.295063
       },
       "url": "https://releases.agentiqa.com/cherry-dash/b6695283b14d/guides/958eb513695543b396a96fe7f8da38bf6bdabef861333b1570434be8ec3dc87a/all.wav"
     },
     "music/songs/Demo - Solnyshko": {
-      "bytes": 46017506,
+      "bytes": 45710726,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 260.869546,
-      "key": "cherry-dash/c1b741b6747a/guides/a2a2e0841d8772ee7764ac922093a29a2500cf75fbecee67a0691e96527174c8/all.wav",
-      "mix_sha256": "09d31d9d6a1afc1ed9c05803fc1457cfdc64972d4dbffd969648814cece0a451",
+      "duration_sec": 259.130431,
+      "key": "cherry-dash/c1b741b6747a/guides/fbd990106a42b6a05dfc7a36738f141ddc99f0970dc106616ce10ff2248a8ff6/all.wav",
+      "mix_sha256": "2258a1a21fd47d1bf7ae5e6d47597aec4ad1b8385007360b1da6023b5a2f285c",
       "render_audio": {
-        "click.wav": "72522926d95c5f24d31d3e5a86d4d29fd6ba536a9af71e7ee7f67e3a4a979a2f",
-        "cues.wav": "3820e335ea28d6de6f285e853b3703eecccaeb09a3d8f2e3380ded8789d890fc",
-        "pb-bass.wav": "386ba73e06df26f1462e141ac9050d72b414d3d0aee771356242a644b5fa8d0c",
-        "pb-drums.wav": "d2c0b49a3c0d4b4f48e3bc6fd410070168a1cf3d879fd893e4a7303ce91dd926",
-        "pb-other.wav": "bc758b702bfab00735778e2fe3e7cbd6fcd26f1e702d18b78c5a483c52f58cd6"
+        "click.wav": "911fce28cdd8fa5b581036d7c687dcf903f9977870d4a8ba1f55815dc32d209e",
+        "cues.wav": "cde0bedaa52855216d0b5d5f25342496f275b3a30dbfb025765d2efe42ddc5f4",
+        "pb-bass.wav": "5acd98648510e53e37e2317bd6c035cf29bc2768f29e7db4f321960a667731d5",
+        "pb-drums.wav": "6857d7d560d251f3d1b3ed8059e97a3e76163400072933ebb4ddecef525fa631",
+        "pb-other.wav": "7330f59b1a3836f9be73b5fb3437772e00efae23923aa0998a01b9a65b5ed443"
       },
       "render_pcm": {
-        "click.wav": "a86049557321d60cde7d5c1a86435a1cfa9a78fbe44248f8dced266316aab9bb",
-        "pb-bass.wav": "050b160a7894579b6c611adaa07bef2274e16de5ac02589659e9398f4e89d4fd",
-        "pb-other.wav": "6dd7b250e65aa5e19ceace0ba4a31de461bf74f62124061f8ebf15feabd93870"
+        "click.wav": "4cbf6f5ee3ef15f1ee3d2c0d6aed93cdb094f71641233594a6ce2b270de6e5dd",
+        "pb-bass.wav": "c877c64c1e15f11c85a1f503e89e127ee7ee33d65b8002ce577dbcbea5e2a1f4",
+        "pb-other.wav": "426dcc14f2d3aeed8b715dded34aee58bf0d2e61ca3607162af943dfe135b375"
       },
       "sample_rate": 44100,
-      "sha256": "a2a2e0841d8772ee7764ac922093a29a2500cf75fbecee67a0691e96527174c8",
+      "sha256": "fbd990106a42b6a05dfc7a36738f141ddc99f0970dc106616ce10ff2248a8ff6",
       "status": "available",
       "timeline": {
         "bar_sec": 1.73913,
         "bpm": 138.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.227172
+        "downbeat_sec": 2.755525,
+        "lead_sec": 1.743598,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.504437
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/c1b741b6747a/guides/a2a2e0841d8772ee7764ac922093a29a2500cf75fbecee67a0691e96527174c8/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/c1b741b6747a/guides/fbd990106a42b6a05dfc7a36738f141ddc99f0970dc106616ce10ff2248a8ff6/all.wav"
     },
     "music/songs/Depeche Mode - Personal Jesus": {
       "bytes": 39079502,
@@ -595,7 +633,7 @@
       "mix_sha256": "fcac9860acacb30e205b3f2e0dc6ab7c242ceabb8bd6dff2c4c4cb6cf3523378",
       "render_audio": {
         "click.wav": "c55f0d734c0d633a8875a3b6d83cfaff7078278e2a5d7b1783233a7451c71090",
-        "cues.wav": "0550851fa505b4888c8d30b18173d2a18ddf6dff82e92d192ae907a246304585",
+        "cues.wav": "e0cf6caa4654152426f81a61e820e3bd048244f708fd11d0fcd3c9a886ad4750",
         "pb-drums.wav": "48593f74501159d81082168eff77e3dd91af042435316049d1786391d8dca2c1",
         "pb-other.wav": "48fe7af2243bcda6e815d4ed54c85bb9dcb19099e93adbb65e8c03e6344e1603"
       },
@@ -609,32 +647,34 @@
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.296999
       },
       "url": "https://releases.agentiqa.com/cherry-dash/0aca68e98890/guides/cd1893462e2ac53a35df515d67020c8c1bb3c3467352944a4e61450d118671ed/all.wav"
     },
     "music/songs/Donna Summer - Hot Stuff": {
-      "bytes": 52061442,
+      "bytes": 51709678,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 295.132222,
-      "key": "cherry-dash/51d6efe06e45/guides/7797b7bd8516643ded29792dd7a51ae08f0cff78e739b815cf3295043b47646c/all.wav",
-      "mix_sha256": "96d548831c63de3deb4c9f0604c558e9aafc02bd975aaafc458ff7fe27084ee5",
+      "duration_sec": 293.138095,
+      "key": "cherry-dash/51d6efe06e45/guides/30e0c071e07785acd8355d1a17b959c024a1a9c7c17534ff79400aa4c4adafb6/all.wav",
+      "mix_sha256": "550f27d8d24fc7022eef8308641ce6329650d8979f1bc53e80fbb0cf549f62ae",
       "render_audio": {
-        "click.wav": "9e322f655924aa753f30c097a09e7e610fd1f88ea58b6a6649d99628705dcc9e",
-        "cues.wav": "232e27cdd76bbdaa450378edf812e03654f288e8f2994e3f24de7301c58021a5",
-        "pb-bass.wav": "f74e4bbf33d6d9e6b027b6886a805bee70398636cf030c24fcdff9453e90431d",
-        "pb-drums.wav": "d2571845ffd41dbe8b072e491dfdc363f7f9935e0ccbf11673bd0a57b5292b02",
-        "pb-other.wav": "e87a3919cab4efcf1d634cc78b71ff91ee711e158fe4c17da31a4291524ee0ec"
+        "click.wav": "458611b04f0531fcad87649187c2542860d0ac7d3168fdcc58b0f64617363c86",
+        "cues.wav": "9da9e94987ea247cac4d30677f6e41bc60e7413d1bc670827ad1cdd09f8acb64",
+        "pb-bass.wav": "f8cfa686bc0d94d9547c833be74b291c1ed32275b801a4bf8ca4105a5bb173e5",
+        "pb-drums.wav": "0a498e13777956bf3af38fb77dd626bf36bb1c559b222974b13ba6a7663d6d52",
+        "pb-other.wav": "c0001e8f450f13bfc2a2e3af5439f121c0ebe6f2596ff1aab2451f0e9d6ccd4d"
       },
       "render_pcm": {
-        "click.wav": "0e3e0d402d7a9ed60503ed2854bd49312a3d578075cf48062e0c8a337b0d5af3",
-        "pb-bass.wav": "439190ca6153e52408866ec7fcb354102dbe91132dd007902c2f6634ca1c1d76",
-        "pb-other.wav": "7eaeab41760c1dcdd8fa52e8f4b158ce0d0e2c7aa6e740b53b03fc9f4f82b8f5"
+        "click.wav": "3eaab89b92412082b08a7b6cb4d00d07a5631f9ad2946e2a4659f8658cf6cf14",
+        "pb-bass.wav": "ae464f1b9006dbec623ee8048753f6b33c91251948974d868f0e62e27b2244f8",
+        "pb-other.wav": "67866854a44d63420ce9487307712f3b9c56548e0d77e2c3f18d80eb30cdf270"
       },
       "sample_rate": 44100,
-      "sha256": "7797b7bd8516643ded29792dd7a51ae08f0cff78e739b815cf3295043b47646c",
+      "sha256": "30e0c071e07785acd8355d1a17b959c024a1a9c7c17534ff79400aa4c4adafb6",
       "status": "available",
       "timeline": {
         "bar_sec": 1.994137,
@@ -645,10 +685,12 @@
             277.664739
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.820998
+        "downbeat_sec": 0.948209,
+        "lead_sec": 0.948209,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.649297
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/51d6efe06e45/guides/7797b7bd8516643ded29792dd7a51ae08f0cff78e739b815cf3295043b47646c/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/51d6efe06e45/guides/30e0c071e07785acd8355d1a17b959c024a1a9c7c17534ff79400aa4c4adafb6/all.wav"
     },
     "music/songs/Eurythmics - Sweet Dreams (Are Made of This)": {
       "bytes": 38889322,
@@ -673,67 +715,71 @@
       "timeline": {
         "bar_sec": 1.917047,
         "bpm": 125.1926,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.31287
       },
       "url": "https://releases.agentiqa.com/cherry-dash/e2d7c7c6348d/guides/5f7a90265ca8a551eba6274556d47af1cba4d176397b61744a295440aad85d71/all.wav"
     },
     "music/songs/Eva 2.0": {
-      "bytes": 37525206,
+      "bytes": 37204478,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 212.727256,
-      "key": "cherry-dash/3e37ea786167/guides/01797083e9b29936a42b22e41727c1b80d8292b54c2489476aef4d766eeda4c4/all.wav",
-      "mix_sha256": "9ca8c2b59d53dc0439728ccd1b1f01adc04f6b9259917c2a2e246f7ad1f01640",
+      "duration_sec": 210.90907,
+      "key": "cherry-dash/3e37ea786167/guides/589e569b1f83dd51ef0760b4626d13661664731da5066ea04e729b68647a1322/all.wav",
+      "mix_sha256": "9b4840648b26570c5e14479a83c7392f36572a5fc310259d0434e9e5c1a38b9f",
       "render_audio": {
-        "click.wav": "7f81ff29171acef3cf40362776f20471772a87b2cc2ad5c1c052a27448f44457",
-        "cues.wav": "9ea8f3c7e75018e3052740b63d18f1afc9b37758eb72addbd28f4943a10b583a",
-        "pb-bass.wav": "08843bf2fbcdc026201a7e9c8077c250ad5071988a3a416cf5d931050a44f78d"
+        "click.wav": "a8aab7641f8e3f3b2e0fae22811e989b70279f070114aa8763736d12966a221d",
+        "cues.wav": "3e3d73eb4cf44d20476d7b149824d6560dae14972b49bce1a726f5afd2205a7a"
       },
       "render_pcm": {
-        "click.wav": "c68e7b1a3d4c8b9bccd470e515a147cce85a080f51cfc03bfe013728f9af74b4",
-        "pb-bass.wav": "a15a7ff9bfe8b37c585816e9a73cf921c379ea63ad6589a8ab3deca8e36e68f9"
+        "click.wav": "2e30be91adcf5a4e8c3201c24a028a6c59243d8c80d19b192caaf19f1140a71c"
       },
       "sample_rate": 44100,
-      "sha256": "01797083e9b29936a42b22e41727c1b80d8292b54c2489476aef4d766eeda4c4",
+      "sha256": "589e569b1f83dd51ef0760b4626d13661664731da5066ea04e729b68647a1322",
       "status": "available",
       "timeline": {
         "bar_sec": 1.818182,
         "bpm": 132.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.786228
+        "downbeat_sec": 2.487343,
+        "lead_sec": 0.587365,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.637207
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/3e37ea786167/guides/01797083e9b29936a42b22e41727c1b80d8292b54c2489476aef4d766eeda4c4/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/3e37ea786167/guides/589e569b1f83dd51ef0760b4626d13661664731da5066ea04e729b68647a1322/all.wav"
     },
     "music/songs/Flashdance (Irene Cara) - What a Feeling": {
-      "bytes": 42092902,
+      "bytes": 41742130,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 238.621224,
-      "key": "cherry-dash/b8302f019fa7/guides/7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1/all.wav",
-      "mix_sha256": "313b7297d07eb8b73f1da13565449a3e5cb73e0bb6874870f6162ea4e6734292",
+      "duration_sec": 236.632721,
+      "key": "cherry-dash/b8302f019fa7/guides/3b8ebfac3b6a84ba3a6985a0a3fec817376e30f234a276a0cc8569e18c7bb96e/all.wav",
+      "mix_sha256": "e7d93f4cbe7efdafeb7455a04f4bd64f203bdc645fcfeca03074b3c7e3d2dc68",
       "render_audio": {
-        "click.wav": "374a1926ff5eb56dcb4a02cb900ccfe5264fe53fdba6aa89823d614e17d08836",
-        "cues.wav": "7fff9a295c07a4ddb04c826e6e1936b5ef5de3c2e93b3a01e9dadbcde7e0ead1",
-        "pb-bass.wav": "8fb633f4d64446369305d893c929c71024fb77538227605baf1de351b8aeae6b",
-        "pb-drums.wav": "f54e966dc27d561531cfd5c3aa32e5232f19e533b9cdb74233753e7a8c579da4",
-        "pb-other.wav": "599b1c7bee765d02e0d7ecd4727082596fd24b1f8ffad06bac14868d4c1a7f27"
+        "click.wav": "054a4f35cd567652a7f87ecd42eb5e7e8ed60fd8a839e8c3da61b2d74b8fe648",
+        "cues.wav": "a71b84331b3728b46ef3d05aeb86888de21c16de7c2ab6257b639f4c5c6cc169",
+        "pb-bass.wav": "34be72b2bfa5c9b4d2346713c44ebf76343f0c1be8686fc3c2a7c8516f9f1fa9",
+        "pb-drums.wav": "6fa37ea3fd997df4fbcfef44dbadccd52e93502cff17a49892a085d917ca78a4",
+        "pb-other.wav": "93ef42e3d03265b8e31775c5b29b354045a6d6a54c15dc497859ea6c5877660d"
       },
       "render_pcm": {
-        "click.wav": "cf146575cca148d99c32b2411e5f53c55e97afedd8f91a95e0b4d107175fbe63",
-        "pb-bass.wav": "d11d1531c8c4ac091e69d41e4c1940281205a45e43facfbf9d1dbe3ee58f4ddc",
-        "pb-other.wav": "a2b97fc676c96aafe47420a92d6f4aa8bac592833aaaef43c6bfeb36cea3f335"
+        "click.wav": "2984ebf0e2831639821357b56f04801a0e21b668f697a1ee8153439c517433b6",
+        "pb-bass.wav": "b457d59d76a1bbea21bc4599bf4db8d3844d240396d8675af69addebc2d6c0c9",
+        "pb-other.wav": "c361e4c91103be1bd9eddfbfb0865aa3aa8dc501f07db11cf1b34e24b7b4888a"
       },
       "sample_rate": 44100,
-      "sha256": "7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1",
+      "sha256": "3b8ebfac3b6a84ba3a6985a0a3fec817376e30f234a276a0cc8569e18c7bb96e",
       "status": "available",
       "timeline": {
         "bar_sec": 1.98851,
         "bpm": 120.6934,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.308095
+        "downbeat_sec": 0.849297,
+        "lead_sec": 0.849297,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.548503
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/b8302f019fa7/guides/7d877f2ca4f1a1db5ed7f186b476344eed13962c92f69cb71ca410b51f9775f1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/b8302f019fa7/guides/3b8ebfac3b6a84ba3a6985a0a3fec817376e30f234a276a0cc8569e18c7bb96e/all.wav"
     },
     "music/songs/Flashdance (Michael Sembello) - Maniac": {
       "bytes": 46054954,
@@ -744,7 +790,7 @@
       "mix_sha256": "d4e9d8b9a611e00a06a7f2aa7620fde9c7bd4ddd37c8760302f71e027e88370b",
       "render_audio": {
         "click.wav": "fa72d9d271d25d9dd92bf7018c68ccd8d3a024e5b95c49990ccb7d35b27d5fbb",
-        "cues.wav": "305cbdd15c060e8fac26d15c7b377506f019f560cee349c3c6aba59a38f9a34e",
+        "cues.wav": "87d37a26139cf679d505d527795da9859cfef5dcfcb43d35ec7e545ade94b1d9",
         "pb-bass.wav": "de695a53bfc943c7fbf7075dc06b49fc14224430f07626651207d83a08f96bf7",
         "pb-drums.wav": "44cd6aba732cceab2e3b6542dd275519d8cea418fafde8c6ada1a374d3f9ab3b",
         "pb-other.wav": "f9127cae728e8a8d90304e356b8c60f452ea58d2dd1524dcfc04c3b363aa5c70"
@@ -760,7 +806,9 @@
       "timeline": {
         "bar_sec": 1.509144,
         "bpm": 159.0306,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.300794
       },
       "url": "https://releases.agentiqa.com/cherry-dash/321ef16c254c/guides/c37c373c1d86fb21bb4692ee2e4b4dda0dbe36f20dde20fa72016d63c2731c27/all.wav"
@@ -774,7 +822,7 @@
       "mix_sha256": "666f8e529fa1f511a0fec02857fd003f308897e2e4624b884e18f2b5efea5202",
       "render_audio": {
         "click.wav": "fb92dc0082b24abf6644e2c1c00908c776095298bc1a029adcd171592f36d7e1",
-        "cues.wav": "4bb138449b50bf0015f3506421082d67f6f1e7e48150914a571f613d61b4e0d6",
+        "cues.wav": "114498da2c0915e79afd03195a3f415df93d85b3a88e1fb58173d234766cb8a7",
         "pb-bass.wav": "3b66d67d19be2af2f89c48f52a77c2022a5f3fb7d30f45d1eaec846368278fa3",
         "pb-drums.wav": "7aaf7248c23b084e0350f62448a3a23d576d6d4be864b4f43ee825228273aeb5",
         "pb-other.wav": "b5eb84f0057130b6113cb09eac5c6ed158140544c3b6688eee89558e1599f5c5"
@@ -790,7 +838,9 @@
       "timeline": {
         "bar_sec": 1.60251,
         "bpm": 149.7651,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.298912
       },
       "url": "https://releases.agentiqa.com/cherry-dash/b2705ef3b0bb/guides/c567a5f61b1652f6b530ad0c396dc6a8906f6814d4ecbcca69062be6d4f7a975/all.wav"
@@ -804,7 +854,7 @@
       "mix_sha256": "2cdfaeb156059a9167adffbe5a88be67a597035a8413367c232e38c311631ecd",
       "render_audio": {
         "click.wav": "aa7661ea6660f5780a3f0516c84ba2166ba6356abb59ba0bab469f472bcf6a55",
-        "cues.wav": "ca801459b83eb37425c053e03a68a62a512581da07b0f2c796f20171f11e58a1",
+        "cues.wav": "7782575e4d810e862ec17532b721d79fd67b6a569c157c60be992d4c5ddc47e6",
         "pb-bass.wav": "98f4a2d86a9ec71848e8508e89f9be2bbbadd1f96f154277607335e7ea20eccd",
         "pb-other.wav": "e0df381bf8bbce14ce3eda35f28a5fc194e03014917a5fda796143066d032464"
       },
@@ -819,40 +869,44 @@
       "timeline": {
         "bar_sec": 1.860465,
         "bpm": 129.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.297046
       },
       "url": "https://releases.agentiqa.com/cherry-dash/a234bff4f98d/guides/86980928a99b53749cdcd124e075abfa6beff0112bf8750b97d65a3983f420dc/all.wav"
     },
     "music/songs/Gloria Gaynor - I Will Survive": {
-      "bytes": 38592946,
+      "bytes": 38228862,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 218.780204,
-      "key": "cherry-dash/5924f634d9e9/guides/e0878d4c2aa08a1fb978e3b82cc34de1308381939c3c778ffdc8f93ffd4ea562/all.wav",
-      "mix_sha256": "7b5529808592e8906199b06258ca399539c09398a07ee23f09903957e33b059e",
+      "duration_sec": 216.716236,
+      "key": "cherry-dash/5924f634d9e9/guides/20e5ef60b70e63890e8328854416e43eb13ec3690a58d42ef872f3cf8e4d0863/all.wav",
+      "mix_sha256": "937afa334f4fcd5c70c6f99fd593cce30fcb9010469a74c46305c845e9103dcd",
       "render_audio": {
-        "click.wav": "4a42784ba0dec3c57ee976275c038cb4e664d3d45f19eded71cf3d11d3923158",
-        "cues.wav": "5bf7a18beade46572cf55c2806690dd255606ced7ea652ba510cd635a59007da",
-        "pb-bass.wav": "e6986edfc880bbf9c1cce0181c88ba7add92243386d7325eafd07c34b205924d",
-        "pb-drums.wav": "ac4aacb639ad5033751eb57a6298c2e34f7051f4f5af53d209d3e48f0791f536",
-        "pb-other.wav": "d45736fd20f4c87a7b821e50cfb46eb55efaea5d8a634bb99ab0c70cbe71c130"
+        "click.wav": "d7c757924fd9b3df02518b8f3162fea8dc84e317ce042c283ae1a8aac9802886",
+        "cues.wav": "ab10629d1be25f59d3726629c18755100b8854d125f71890a813fc1dd35a5b48",
+        "pb-bass.wav": "d35253c0fcb9fda6608e678e2139d4cc0d16f9b0a961fda0010ebe49202d740b",
+        "pb-drums.wav": "323701bfa0676bfe1aa0aa521d9d3807a10daa0900aab54f80646122c95b060d",
+        "pb-other.wav": "5279466c56d0623dfdb33688c753ca69344525dc023bdecaacfe3dc8bc801e0c"
       },
       "render_pcm": {
-        "click.wav": "ff06606f476c3459d34eaa4ee3481c9fdbd77eac22167b1eb6636b47c11872e4",
-        "pb-bass.wav": "f9ba7eea4cad0c04ee183552cc30aae8170e9f6810ea3b45506f139002713202",
-        "pb-other.wav": "cf8cb08d2ef76b54be8c7660be1cd7389073ea3e20ca11dc0668c0d97faec8bb"
+        "click.wav": "1703019e5f197c673f2bc9818fa95490aa08017adfe987b1feaebf92877e3c76",
+        "pb-bass.wav": "680a07baa854a3d86f892e2afb0779fca7b92048bbc8c18098ddd094e10c2598",
+        "pb-other.wav": "d52aaace3d98ac548edc173c8c6fa8f10c24a8ad2aa63ca6c25ec598fb3a7c30"
       },
       "sample_rate": 44100,
-      "sha256": "e0878d4c2aa08a1fb978e3b82cc34de1308381939c3c778ffdc8f93ffd4ea562",
+      "sha256": "20e5ef60b70e63890e8328854416e43eb13ec3690a58d42ef872f3cf8e4d0863",
       "status": "available",
       "timeline": {
         "bar_sec": 2.063964,
         "bpm": 116.2811,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.748912
+        "downbeat_sec": 1.148073,
+        "lead_sec": 1.148073,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.847279
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/5924f634d9e9/guides/e0878d4c2aa08a1fb978e3b82cc34de1308381939c3c778ffdc8f93ffd4ea562/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/5924f634d9e9/guides/20e5ef60b70e63890e8328854416e43eb13ec3690a58d42ef872f3cf8e4d0863/all.wav"
     },
     "music/songs/Guru Josh - Infinity 2008": {
       "bytes": 34398114,
@@ -863,7 +917,7 @@
       "mix_sha256": "e6e9af39de83146d85ca7841d2f48cbf730e0e926a6ef1652a17b9d3991c3089",
       "render_audio": {
         "click.wav": "02e50be90514495c826640c59c33a000d61df2511d2095b61f4e370e06898f7b",
-        "cues.wav": "21f8b14b512a1bf5ef60b68138641c507e2fbc529991029dd157358d93c24fbb",
+        "cues.wav": "2d81984ef51973791b219d80ee59c661034ae458c7f4d83e445f308f3f88d438",
         "pb-bass.wav": "aeb2ae6ace76924b1fc5b67aedb2c406007430e86363898a166c595552ac0da9",
         "pb-other.wav": "ae74efd89e08c0bb9675ed7ba7bde05636f8a8e3afbabda6cb3d945de7ea39cd"
       },
@@ -878,38 +932,42 @@
       "timeline": {
         "bar_sec": 1.875,
         "bpm": 128.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.295125
       },
       "url": "https://releases.agentiqa.com/cherry-dash/38db2519ed89/guides/947d20d972ce29fb243d003effbd60e8b10f43455297e5c76414ae3619c30e73/all.wav"
     },
     "music/songs/Haddaway - What Is Love": {
-      "bytes": 48142030,
+      "bytes": 47800598,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 272.913333,
-      "key": "cherry-dash/d3ca49619d9f/guides/eaa4599339bd748a8709560ac4e18d8bec8f835bc884cfc518b4a5731c5b2d49/all.wav",
-      "mix_sha256": "283179acea99fe391ff4eeead10a38bf0760dc1f3f91c323ac7d6b23dc4a2a61",
+      "duration_sec": 270.977778,
+      "key": "cherry-dash/d3ca49619d9f/guides/4330313a76862e63960b81d0009513c623b01cea7e6153ad4441d3723117c935/all.wav",
+      "mix_sha256": "9bd116f8826bb71483fcc7103b8d01274a8d0780272cea7d6d654a533518fca6",
       "render_audio": {
-        "click.wav": "42f9a92ce671f4f0d9c14f945204b0af8c5e93864623a34ecdbaf8fda4b55f85",
-        "cues.wav": "4b51652683f5035f463b509a68a8c7cc1e308146372714c6a4ee331034764282",
-        "pb-drums.wav": "b0d55083048d4f9ee21ed49e95dfb81be4cbb3a140aea6e25f5a8a9e16538d17",
-        "pb-other.wav": "a7488e0a39ce04ac6d51b744dd58069ba0af7617e6b8e6298fc22b7f400fd00a"
+        "click.wav": "be8981237b0cdf30fff4340fd6d80c9cd75f1693229e403fcf60645bd727b308",
+        "cues.wav": "f94c61490f8bd2e96832caad09b5bd2d892a4b14800ccdf1dd7e5f61273bd25d",
+        "pb-drums.wav": "d7afc30ccc6f62d09142cef1435973b657d2dd1fb5528a16f08443500a7abf7f",
+        "pb-other.wav": "984829e8c2aeb46578fd032851742a48d2143446ea429b6e18284f7857595db4"
       },
       "render_pcm": {
-        "click.wav": "d223923a31dc94d65fa6d27fa896c1166c8016b6fb05f17d782096f7f916b8f6",
-        "pb-other.wav": "2a44968644e98ea4405d26a09b5d23483f31ea059e4bb9de1f563241b9aa8d43"
+        "click.wav": "7d0a90cf943964b4ca1e34c4dc60d82720f4a169ab4b95498d2122699e7892df",
+        "pb-other.wav": "89920ef1e32d10bccb14ba0815bcd33fe26e4e26ca4ef4629ca909a3092ff41a"
       },
       "sample_rate": 44100,
-      "sha256": "eaa4599339bd748a8709560ac4e18d8bec8f835bc884cfc518b4a5731c5b2d49",
+      "sha256": "4330313a76862e63960b81d0009513c623b01cea7e6153ad4441d3723117c935",
       "status": "available",
       "timeline": {
         "bar_sec": 1.935556,
         "bpm": 123.9954,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.38918
+        "downbeat_sec": 2.830907,
+        "lead_sec": 2.830907,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.348976
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d3ca49619d9f/guides/eaa4599339bd748a8709560ac4e18d8bec8f835bc884cfc518b4a5731c5b2d49/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d3ca49619d9f/guides/4330313a76862e63960b81d0009513c623b01cea7e6153ad4441d3723117c935/all.wav"
     },
     "music/songs/Icona Pop & Charli XCX - I Love It": {
       "bytes": 28224118,
@@ -920,7 +978,7 @@
       "mix_sha256": "dd306704b447890673316a3964220d208ea611d84815a69df389c0703b62282c",
       "render_audio": {
         "click.wav": "af6b0f239cc06668bf4f7686c6b2fbb5d713022b0ac6bbe8fb1fef5a44b4a270",
-        "cues.wav": "383eb48bdfed3f2d1c72d1b83e028750cfc949c141f92b242ea9c25eeb3196dc",
+        "cues.wav": "5e49deef84f400472fcb5dce0a76710b2f220786ca83158772fcc470696f75b0",
         "pb-bass.wav": "7389a08a0df5a097eb56bca4cd6cec2db297961dfa1a02ae684c8fedf18d0022",
         "pb-drums.wav": "92b1c0d2a8a13cf30999cf4e64178f0ed7f288b9b9fde7c19f02f9fcc86b3a3b",
         "pb-other.wav": "9d4454c86c2d13a96edb899e2119ed4838caa2f88cab76c12399762182216f94"
@@ -936,38 +994,42 @@
       "timeline": {
         "bar_sec": 1.904762,
         "bpm": 126.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.28443
       },
       "url": "https://releases.agentiqa.com/cherry-dash/278090c6fbe3/guides/9ffdc12e0811a90715d56bfb7ac8f2ea7259bcfc157d8e4a7c83d83c1ea8d1f8/all.wav"
     },
     "music/songs/Joan Jett - I Love Rock 'n' Roll": {
-      "bytes": 31839800,
+      "bytes": 31391356,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 180.497075,
-      "key": "cherry-dash/4d3a45e5fcd3/guides/b21baecf70332c04adc9f6861f03b2a4856ef3f242fffd7fe99d7f00940c6d90/all.wav",
-      "mix_sha256": "bd54fc72aed81c20b27e2a971b013351850ce20dce021b351ec9c86832bf3d6b",
+      "duration_sec": 177.954875,
+      "key": "cherry-dash/4d3a45e5fcd3/guides/617380020d4eee9371859f225a9fed7b98d001c36d782ec42ef1168598b71a11/all.wav",
+      "mix_sha256": "c2a0dd6656ff6654cf6444376fc4267b34cf2604857166758f9bf44fa5bde6bc",
       "render_audio": {
-        "click.wav": "c0cd0eda327430bcb1f8900bb1be5164ded21c10fe4eeb5b5cf7b389d4bf9bc7",
-        "cues.wav": "2d434406df433568c112772107375cca2936e47b49933e7f13c9a6d64e88067e",
-        "pb-drums.wav": "e0cbd31ddf1775aee70d7300ebd8f6580ffc86756a4ef871afcb44c3a4158a71",
-        "pb-other.wav": "0203465cdd72e5b7ea75c151fd1f2470fdb48ceed0af5513cbe980d8f130672a"
+        "click.wav": "c307602b3035a9ddc490158e169f015c7a922e9d63bd96dc881e03da62681a36",
+        "cues.wav": "5298029a4d013c5e27d71880e21c0343fc66fb6006297a7c99d1b4b12b3d44b5",
+        "pb-drums.wav": "2c942fc9f084c33332643993024b9b3b18b997468a9030ceee87088669319d27",
+        "pb-other.wav": "45a8272c388f0f9b879b8282bb65865927fcfd8340697e4cac709616b2c8b4f0"
       },
       "render_pcm": {
-        "click.wav": "3cdb467ff9c48311e59c3eca824b11fea628174c2ab489f86a258a837b2bb556",
-        "pb-other.wav": "49f5ac3da9a2cf341e29eae7e86a8d95c8a15d36fcbbbeca8bba5648b8a6fd1e"
+        "click.wav": "0ce384eef53d91cf5867c85804b265aa520d5514bd45d8d487354b3b6db2de96",
+        "pb-other.wav": "566cca114baaaf99454bd0ed2e7415b794ef7cdf0537d03091200583fbbc09c0"
       },
       "sample_rate": 44100,
-      "sha256": "b21baecf70332c04adc9f6861f03b2a4856ef3f242fffd7fe99d7f00940c6d90",
+      "sha256": "617380020d4eee9371859f225a9fed7b98d001c36d782ec42ef1168598b71a11",
       "status": "available",
       "timeline": {
         "bar_sec": 2.542213,
         "bpm": 94.406,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.241419
+        "downbeat_sec": 1.340794,
+        "lead_sec": 1.340794,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.04
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/4d3a45e5fcd3/guides/b21baecf70332c04adc9f6861f03b2a4856ef3f242fffd7fe99d7f00940c6d90/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/4d3a45e5fcd3/guides/617380020d4eee9371859f225a9fed7b98d001c36d782ec42ef1168598b71a11/all.wav"
     },
     "music/songs/Kings of Leon - Sex on Fire": {
       "bytes": 36728202,
@@ -993,7 +1055,9 @@
       "timeline": {
         "bar_sec": 1.565482,
         "bpm": 153.3074,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.300794
       },
       "url": "https://releases.agentiqa.com/cherry-dash/bbcf1941bb32/guides/2db06816431afa6d924879815222379094b4691457c09253024fbd80053bd316/all.wav"
@@ -1003,79 +1067,83 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 204.923061,
-      "key": "cherry-dash/39c9137c546c/guides/629ad768c122f41dd3f3b1ff21bb639fcaa626cb1d9c855f311dbb4a7557ee50/all.wav",
-      "mix_sha256": "145d3b78b69eb54dd7496dcc9871abbee52f00b3ab078742e1c8f57b12dbc9e7",
+      "key": "cherry-dash/39c9137c546c/guides/2634a51512c111bcd45e7abb0a5515e13fccc1ed47aeb3d316378224b0f3addc/all.wav",
+      "mix_sha256": "9661e5a9ddb5d695d9066879b9db3da80212ec1f9b391a15339c603c0ce18d79",
       "render_audio": {
-        "click.wav": "80cad254f9287c45ac1eca73a5066de2cf9d007d8d4eb0f6fa907e2b968e6028",
-        "cues.wav": "817be9acc5e0825a14b4d032f845253845ee48b34e449c20a968ebe637dec4fc",
-        "pb-other.wav": "6bfa392d984b6a53b5bf2d6d82e96192acda9d5e0bbefc9b41a38dc6ad18e6c3"
+        "click.wav": "f7d564b926aecffa566dbe80a544a9a9aad8d7f722fcf216135e4c77b7a5272d",
+        "cues.wav": "408ca6d385b2b39a16d0b189b3a04be418882f9e541ed1795216f45c488b7a5b",
+        "pb-other.wav": "2d9cc86bdc553ca77c72e071cbfecb58298d0953dffad5564439b9964c5a5338"
       },
       "render_pcm": {
-        "click.wav": "a7a51393edb295337d9489a1f551b9e86f707fe03e83fe09ffd2a865342f9d66",
-        "pb-other.wav": "bc1773f0b8a2852a3c2c4e1299a480abb04c0323d19d1b5fa8f157886f344560"
+        "click.wav": "bacbc2e6ae668792ce248d2dc7acf97f63c64a4c8513cff6e013ec1c0a55094a",
+        "pb-other.wav": "3ef06f5f738f45d82087c36d9a7cc3885fc2e6d65836a00ef024509669beefef"
       },
       "sample_rate": 44100,
-      "sha256": "629ad768c122f41dd3f3b1ff21bb639fcaa626cb1d9c855f311dbb4a7557ee50",
+      "sha256": "2634a51512c111bcd45e7abb0a5515e13fccc1ed47aeb3d316378224b0f3addc",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.549152
+        "downbeat_sec": 0.882721,
+        "lead_sec": 0.882721,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.58572
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/39c9137c546c/guides/629ad768c122f41dd3f3b1ff21bb639fcaa626cb1d9c855f311dbb4a7557ee50/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/39c9137c546c/guides/2634a51512c111bcd45e7abb0a5515e13fccc1ed47aeb3d316378224b0f3addc/all.wav"
     },
     "music/songs/Modern Talking - Brother Louie": {
       "bytes": 41947710,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 237.798141,
-      "key": "cherry-dash/d7d854b72c4b/guides/be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40/all.wav",
-      "mix_sha256": "3a946a66bdaedb5cd4b03ba63c62fd633873757d017f0af8fc794a0fe8d275e9",
+      "key": "cherry-dash/d7d854b72c4b/guides/0cee26d261efe92bcb43a2a22efaa686be8ce94377f95a529a70ab98aa7928ba/all.wav",
+      "mix_sha256": "65154fb844dd21536780be2312c7ad228716f362ce46d012301edb00640e50f7",
       "render_audio": {
-        "click.wav": "4021ad7b77afa9323b98ef0fe36d15607c6f212b5e03f9cde617a2adc0dd454c",
-        "cues.wav": "dcdb9ac916872af20dc9677a96b87eefcad34d6f113e32be124a09355fd03094",
-        "pb-bass.wav": "eba697cb5f5c76a8547d0ad68b9f92fefef0a95edcab36dc934ed21ea0386128",
-        "pb-drums.wav": "9fbc231a9d0fccc24ea101e979fe7256efb7c90c56964c6907c6497609e558c9",
-        "pb-other.wav": "076ff7ef23b8639209a39cf208e035f25199bf39a9ede68065253c6f80e2e70c"
+        "click.wav": "340c26ed3858e3c2493f13547ad982f5da859123723bddb378b3d3ee24a3556b",
+        "cues.wav": "0fa417a973ff1352a8a373c5df1662266ff9550ae80c96e9e5d10f6ae01fba85",
+        "pb-bass.wav": "d450cbeee455fbbb242d70031818713544a1339b49b68456ed5b39d6dc1926ba",
+        "pb-drums.wav": "55962fd6f345fcca4b9f0b20f4a0c5345a45f32d74e0a9e0731b89014d3c6448",
+        "pb-other.wav": "f6c8237d5604c4360ec8dc02eefe25a14718825622374542970a98d04d54e2ae"
       },
       "render_pcm": {
-        "click.wav": "c6ff553bf9839f3e0a1207d0934555af3a5c5704662120ad1e635826e8b176b2",
-        "pb-bass.wav": "d6488e307b2439d9f77a9967188563454958640b0293b63476585e9e32054e7a",
-        "pb-other.wav": "b8a235707271a05408a3c6f26c55008ae86ba060caa6cafb8c383b902caa9271"
+        "click.wav": "78d12877416a3dc07315c8d4032b86bef57e447e0c1b98f1272a24d4cf9a9f5c",
+        "pb-bass.wav": "b0f5d3d9f08ed16ba5b9ff6716d692096fe509cf534bcfa9a368260ca6b8675b",
+        "pb-other.wav": "b9c2c2dac0be8f9265dc19657c70ad40055408aec0e65c32977f6caec8da3a78"
       },
       "sample_rate": 44100,
-      "sha256": "be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40",
+      "sha256": "0cee26d261efe92bcb43a2a22efaa686be8ce94377f95a529a70ab98aa7928ba",
       "status": "available",
       "timeline": {
         "bar_sec": 2.201835,
         "bpm": 109.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.904882
+        "downbeat_sec": 1.958038,
+        "lead_sec": 1.958038,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.661085
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d7d854b72c4b/guides/be5673e8906639c00d301c571e6b3ece71b434885f3cb4122a15b9b1d13a6b40/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d7d854b72c4b/guides/0cee26d261efe92bcb43a2a22efaa686be8ce94377f95a529a70ab98aa7928ba/all.wav"
     },
     "music/songs/Modern Talking - Cheri, Cheri Lady": {
       "bytes": 39736546,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 225.263197,
-      "key": "cherry-dash/a243a76d7323/guides/7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0/all.wav",
-      "mix_sha256": "ec2630e8a3023cbf9a12c582144494cc02e89211c8d3265520b933ffd65afa38",
+      "key": "cherry-dash/a243a76d7323/guides/ae4ab2fbd148b76bca32d7b67c7c95170d4312cedf3e9f2a068ca3d4a42aae39/all.wav",
+      "mix_sha256": "f26e0525283a5cc3ebb6a9f549ad5eef940a542b79954edd15b8620ab023f07f",
       "render_audio": {
-        "click.wav": "215a8251d44dd4564ca2abcbc67d48e883b3fd9530079cc645f745a97b2b6e9f",
-        "cues.wav": "6255cc8c7ea1609dfbeb196657d05a08b96b70e52fba3a226644faf1564a8fcc",
-        "pb-bass.wav": "3c14e5b386ad3afc86787203b6917ef785f71e2a0b1069b02be07f50b6a42f2b",
-        "pb-drums.wav": "22383074defe36d28364b931f10fba6e03d7d1333bd9cc762301cf9f5bb09379",
-        "pb-other.wav": "5a6e1a1f5960636a6b9153b3ebba42f9780d48eef09ffc35537eff88a8ed64f0"
+        "click.wav": "d6ab5c7f090ed605c676bfeb3f7500d41164743416c0621bc3e36cd777c11be6",
+        "cues.wav": "8dbc8b2de5d9cc48f53cc874491ef3bff7ed93b1590ed8181a4288b7db2918df",
+        "pb-bass.wav": "eceee35a61dfcd1e330b60656e215bf14f5aa3ac6f6615d7d0940d6bbb23ef08",
+        "pb-drums.wav": "2c717c4edf1230608f05d3c798e2213d53ca7dab3e785fe39e17b0f82961b8dd",
+        "pb-other.wav": "b86e4667e8232a9fac24dac0d03fe9ab8045f2cc79c12083460692918951464f"
       },
       "render_pcm": {
-        "click.wav": "61a1f6c3ceeac8a07d41a238d188703f983a83231b85be0462dc5d6944d24fd7",
-        "pb-bass.wav": "695c685a528cae177b104b5cf56c100b609cca6ead455a885132cfb3c41dbc02",
-        "pb-other.wav": "d002047c9cadbd8d246fdde79da29b38f394b58ae23e478aecd29799ac1a41b5"
+        "click.wav": "e51187adc1b8271ddf03b3be3c5b3e0c561fd4db3319c5110d3c48b48e690329",
+        "pb-bass.wav": "5935aaa85f0d7127f48bdbcdbf720200b406f32def57fb8a6914e576f857f61b",
+        "pb-other.wav": "ed07cd7fb570d83a56a938554c2704677b2ad5886aaff224d41bc3c6c99da3e0"
       },
       "sample_rate": 44100,
-      "sha256": "7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0",
+      "sha256": "ae4ab2fbd148b76bca32d7b67c7c95170d4312cedf3e9f2a068ca3d4a42aae39",
       "status": "available",
       "timeline": {
         "bar_sec": 2.105264,
@@ -1086,183 +1154,199 @@
             10.822925
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.80826
+        "downbeat_sec": 1.306689,
+        "lead_sec": 1.26481,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.009685
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/a243a76d7323/guides/7f9907c95b276789d60fd1a76b0c529662bb958433fb283415555cffae265ae0/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/a243a76d7323/guides/ae4ab2fbd148b76bca32d7b67c7c95170d4312cedf3e9f2a068ca3d4a42aae39/all.wav"
     },
     "music/songs/Modern Talking - You're My Heart, You're My Soul (Mix '98)": {
-      "bytes": 41071630,
+      "bytes": 40711354,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 232.831701,
-      "key": "cherry-dash/7c9e3b9eb401/guides/f9b9499e0aa960d5f5384d34801602664e0a205d0ab37db64df3a9ba63d64b9a/all.wav",
-      "mix_sha256": "3576f8a217228f97e6a10f308cc532a07f5e40b84a6cd93e8af901772ef4c7db",
+      "duration_sec": 230.78932,
+      "key": "cherry-dash/7c9e3b9eb401/guides/6974ebd0d1af4cbd4c47a86ab5966129087eb547f84d5dafca442f1cd10da0fb/all.wav",
+      "mix_sha256": "a1530cf9f3de5e7822b0057d9fd59d670e73a91419d9faa0dacfc0b20c66325d",
       "render_audio": {
-        "click.wav": "0ffce50307a68b26254478af54151b697552080f01f6e60429db8b4a8f3b252c",
-        "cues.wav": "5d3128b1e8dca80826cff683e5b087f4d0ace743418e088ed761680613adbcc5",
-        "pb-bass.wav": "45f65fcad594b4c82697c9b5dd98e1af4d5285bdc3623ec7d0d08fd581b21f13",
-        "pb-drums.wav": "8d6ba374fa64d76c81e0db7e30d735853a92219f6f7ca10868579dd8c15d2b24",
-        "pb-other.wav": "8d55edff0fd4aff3e1ba596eb473ba2b14462cbec0281c212da391ffab8ece31"
+        "click.wav": "7af9beed542f75aef6ee4e421eafb458c8573a999b21afa710b2ca8884dcc052",
+        "cues.wav": "242a49cd02623a22807f1fde7f7502549cadacf84df81178516210c0a54664e2",
+        "pb-bass.wav": "b1829c3969ac3793e0c03d4529ea1d0faf58b19d6d54d99f53f1d72ef9fc474c",
+        "pb-drums.wav": "5800d710de40fee882801e29d9e78c29cd7bac32e6261bad5833123a9470ce2c",
+        "pb-other.wav": "d9bf1cdb9b626b90b280648057a3ae7876d2a79b039b8e42e5b1935e17a40bee"
       },
       "render_pcm": {
-        "click.wav": "964169cc8ac29cf16f15f2e748d9a74b01ecde8da51f0b9cb8023c36beaad61e",
-        "pb-bass.wav": "2fe063119ee9d121bf164a2a72841b3efeb42d3f1e1b4edfbb00b622319eb1af",
-        "pb-other.wav": "66e3bd0d0be452b5946ce29caac20be4e74059034fbfe556e0a3006011eae3fc"
+        "click.wav": "521c062fb07210731eb008767979224fbc99f61f8c2bbb12ae6507f43e44e73b",
+        "pb-bass.wav": "1a23e71ae9f865f108cefc9f09c7b710eb7bee6637f22ccb81eaf6b0fe1fe46a",
+        "pb-other.wav": "cb84418915426e7373bf64078806330db0056d847bf1431c57fc9f372d62290d"
       },
       "sample_rate": 44100,
-      "sha256": "f9b9499e0aa960d5f5384d34801602664e0a205d0ab37db64df3a9ba63d64b9a",
+      "sha256": "6974ebd0d1af4cbd4c47a86ab5966129087eb547f84d5dafca442f1cd10da0fb",
       "status": "available",
       "timeline": {
         "bar_sec": 2.042383,
         "bpm": 117.5098,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 0.67449
+        "downbeat_sec": 1.068254,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": -0.299977
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/7c9e3b9eb401/guides/f9b9499e0aa960d5f5384d34801602664e0a205d0ab37db64df3a9ba63d64b9a/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/7c9e3b9eb401/guides/6974ebd0d1af4cbd4c47a86ab5966129087eb547f84d5dafca442f1cd10da0fb/all.wav"
     },
     "music/songs/Mr. Credo - Медляк": {
-      "bytes": 47577718,
+      "bytes": 47174514,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 269.714286,
-      "key": "cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav",
-      "mix_sha256": "6a9663c194d768623b7c31dd003b3fb79f121d9f4ad52aabab0d78e935940c98",
+      "duration_sec": 267.428549,
+      "key": "cherry-dash/a207e9a0dae0/guides/587c9e0c6e66ab34fce54de093a17ee3e8dd191707424b5ac9dfd03be92448e2/all.wav",
+      "mix_sha256": "157419bb0d19604c5e490ed2babdc8aa644971c37f102becdc71fbde604242ce",
       "render_audio": {
-        "click.wav": "1e44ceed7a3a65ad0d8bbeefa0063a1ae4261a330f76f695e434c0269f250a41",
-        "cues.wav": "5420a6163994cd800ee79bd8b954be8193f1f96338eaf5ee602345b0fad65244",
-        "pb-bass.wav": "5b1c72e5e95afedd7ff471a0cd33090d211bee157c5eba63b2248c9579e76f7f",
-        "pb-drums.wav": "cd5062d5299bf63586eb9b58a68092bbc86b3584fff58486d09388dfa4abd15c",
-        "pb-other.wav": "a35a4877c768db4b345a1856be15be8929fea458c1d30beaae40d28a65f4e3bf"
+        "click.wav": "7adf55b5d8ec806e3961a3fc42c82fc8898d4dc9a3adb915bd25df553c918b6a",
+        "cues.wav": "c7c36d40f55f3254cd3edadeae8c386e448b94f2c1f92ae34d223b882e1f516b",
+        "pb-bass.wav": "bf713a1a65ee78dc9002a88d5292c31fd4d542c68d0c6652b2201e48ca56e016",
+        "pb-drums.wav": "aaa54718c463e3e20e2a8722b783641bfef4a70ea1ae6f97a003478d6799b85f",
+        "pb-other.wav": "819509f2c32efc39178ba845718b2280c171f89b39abab882792678689e02f54"
       },
       "render_pcm": {
-        "click.wav": "0476ce0edb51cf50ef2266f5101ff690497e758055aab8fcd7777f18f5b15fb0",
-        "pb-bass.wav": "7b00368b01b6a9910e063539e51da773e30a28f98470fb4871e10ddb8a590e7d",
-        "pb-other.wav": "1755d5cdee6da97aa234447fa2c5ea8ea1bbd4704099877ce4b6775ba9d84fee"
+        "click.wav": "041526468288dea6f99d7807f1c936ffaaff16d2d653b779ef4272948045c1d2",
+        "pb-bass.wav": "f6d691a2297d19922b079e817744c5e4d4ffa8392caebaaa3a736f9e4559508c",
+        "pb-other.wav": "4eb70e520b766146b10433721432f983fe7da4a7e322461e93fb2ea605a0cc9b"
       },
       "sample_rate": 44100,
-      "sha256": "a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d",
+      "sha256": "587c9e0c6e66ab34fce54de093a17ee3e8dd191707424b5ac9dfd03be92448e2",
       "status": "available",
       "timeline": {
         "bar_sec": 2.285714,
         "bpm": 105.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 4.229229
+        "downbeat_sec": 3.027982,
+        "lead_sec": 3.00424,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.685782
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/a207e9a0dae0/guides/a4acc6fe2b2db21e0904d1bbff3a214d1281b57e81d5b3cbdfe86b053f2a8f9d/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/a207e9a0dae0/guides/587c9e0c6e66ab34fce54de093a17ee3e8dd191707424b5ac9dfd03be92448e2/all.wav"
     },
     "music/songs/Muse - Supermassive Black Hole": {
       "bytes": 37749718,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 214.0,
-      "key": "cherry-dash/ebdf7d5b7b57/guides/e4d9f256a0d4cfa5c26a7ae022a6ac5d553d70bdacc7737a360b99be0afd5d1e/all.wav",
-      "mix_sha256": "39cd00817b85afe87b19599eb33cf50488d91a9dc9c90a06d1b178dee021904f",
+      "key": "cherry-dash/ebdf7d5b7b57/guides/37ed1888c8f45cec2ff211e6bacdc367394bc74d4ed9a4fbf1b930a5d7a28be0/all.wav",
+      "mix_sha256": "4af095b412beb3fb48277d5e78881bc9c628368e2115b451b49574bef80b86a6",
       "render_audio": {
-        "click.wav": "df2c6fbf3599e4d3c1ef34d8d884d51be3d779b511c95188cfb2cd6f697ba1db",
-        "cues.wav": "d8afdc7610f510c0748646ed676c55880ab4e4de83679b4431b2b6dae35785a9",
-        "pb-bass.wav": "a7e2fd8f88572743ddcf9970067a758bfaac7b69363d8260257d95bc34f31bf7",
-        "pb-other.wav": "54cc933681ef45aa7e84b2ec580d7be7c4fcf4c731a6ac6c60e108a45cdc71e1"
+        "click.wav": "b6db532f0e3e31f8a543814d59f94b5ab96fabe222afbb4a11a9d87d06807ef0",
+        "cues.wav": "892bac87d035fbf9eeb802a788bfa6fe628f0cab925ac46e0a9f250705a1543c",
+        "pb-bass.wav": "466e14ede357335e68de9a1c3ee664daadc6ad8bf2c53d0d6099522f9c0e026b",
+        "pb-other.wav": "4c341614f71d0f6b8c3eba403371dfa981c5fa09a8379d3ab86e47c677d5b2db"
       },
       "render_pcm": {
-        "click.wav": "1188ac0e635335c19d143e70762584e08960a439e20275de728b64ca5135588f",
-        "pb-bass.wav": "1b31902160c9969ca74ec00035baec292086aaffdcbfd5441cf9ccf59d96dcb5",
-        "pb-other.wav": "633071c6793b1cbd91dcba592d196f4e37914daa5e53dc92cda23cafdcc601cb"
+        "click.wav": "08cd41abf199fede4257053a3c5ed9f2652f86095a8c27607ebf56c9425b0030",
+        "pb-bass.wav": "2aad7f1999748b79c74985def6ed16e120f090eaf1f06e355280508754a23dda",
+        "pb-other.wav": "899301bc4b836243369f014004a8d455a96ce48f316f420ab43756db62fca0e5"
       },
       "sample_rate": 44100,
-      "sha256": "e4d9f256a0d4cfa5c26a7ae022a6ac5d553d70bdacc7737a360b99be0afd5d1e",
+      "sha256": "37ed1888c8f45cec2ff211e6bacdc367394bc74d4ed9a4fbf1b930a5d7a28be0",
       "status": "available",
       "timeline": {
         "bar_sec": 2.0,
         "bpm": 120.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.703008
+        "downbeat_sec": 1.659048,
+        "lead_sec": 1.659048,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.362056
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/ebdf7d5b7b57/guides/e4d9f256a0d4cfa5c26a7ae022a6ac5d553d70bdacc7737a360b99be0afd5d1e/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/ebdf7d5b7b57/guides/37ed1888c8f45cec2ff211e6bacdc367394bc74d4ed9a4fbf1b930a5d7a28be0/all.wav"
     },
     "music/songs/Nirvana - Smells Like Teen Spirit": {
-      "bytes": 53817066,
+      "bytes": 49281866,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 305.084739,
-      "key": "cherry-dash/53a4ff952038/guides/98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68/all.wav",
-      "mix_sha256": "1df8fa65902567a9303597ee7b405a61b41ff086320976252cf843c4447a85d4",
+      "duration_sec": 279.374989,
+      "key": "cherry-dash/53a4ff952038/guides/7858507d7d2b04eccb31669b65dc4f47baa9e4496e31554dc3fd6f7d5c030fca/all.wav",
+      "mix_sha256": "88f109eea06f953e4b8f940e4df3bfebe26e9a7a846f250cdd4ad0a3da286472",
       "render_audio": {
-        "click.wav": "e7d4eeaf1d5c7cd9b51f4f78894ea43527db44313576298e057520af02e0a02b",
-        "cues.wav": "8507baedd9a8939a8440b44c1d4cbf3df0c1788cf6590b7b2cfbb355c289d65e"
+        "click.wav": "18dc1357b282f2f6c0ab86dc200342680a8a9b5f776df0fb39c7cf63c8807f25",
+        "cues.wav": "4e8cd8a63112ca2ca3d3dc0c65ff218fb2bd8237ffc9a6dcd5d1055be56dbb70",
+        "pb-bass.wav": "e8f49bea4d6431a5f0f382d88d595c910c04550518003a49c5e8c19061a3cc73"
       },
       "render_pcm": {
-        "click.wav": "ace19ea88ae55dc1e5974bb7f3384c7fb787d04dfff34bae77945ef5f16e10af"
+        "click.wav": "2d693cb3f46f8812c48262f583ccf99020fc3449175a97c61996aee4664a9fec",
+        "pb-bass.wav": "a8442cb65a6ac1284d7976d1e04b826b99fae3bbb55c6f264ca6e2349e163900"
       },
       "sample_rate": 44100,
-      "sha256": "98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68",
+      "sha256": "7858507d7d2b04eccb31669b65dc4f47baa9e4496e31554dc3fd6f7d5c030fca",
       "status": "available",
       "timeline": {
-        "bar_sec": 2.033898,
-        "bpm": 118.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.734987
+        "bar_sec": 1.875,
+        "bpm": 128.0,
+        "downbeat_sec": 1.502381,
+        "lead_sec": 1.502381,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.226825
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/53a4ff952038/guides/98d61e28f0ef204de3c70b53e2013fc18520ec8b588aa6ae979c3f51dd118e68/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/53a4ff952038/guides/7858507d7d2b04eccb31669b65dc4f47baa9e4496e31554dc3fd6f7d5c030fca/all.wav"
     },
     "music/songs/Quest Pistols - Я устал": {
       "bytes": 32776374,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 185.80644,
-      "key": "cherry-dash/cfc3bca52e8c/guides/32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce/all.wav",
-      "mix_sha256": "51208fc1e42c30079d5c2ff71aa4e7f673c241a7dc7bf87b4c3e57342aff06f7",
+      "key": "cherry-dash/cfc3bca52e8c/guides/9d70cec186f61716ad31d740ef0e156cdfa29e23fa11588a9c40004717386a4e/all.wav",
+      "mix_sha256": "61fcba0e69d405572ff5e25bdc70e04ea43257f6c8cfc3ba610fdc5d282c9bce",
       "render_audio": {
-        "click.wav": "31e1a17b6ccc6caf4209e4d035844ce6b2b3b81f846c1ca1c8a699d7c35bb032",
-        "cues.wav": "32e93d8705e42b62ea052d793c2b386d398fb312f7bfe4ec00f81030c8636bf1",
-        "pb-bass.wav": "ad5bb0470f1ee085256721e31655c2ad0be1ec7c29639e16c7a31cdf93db3a8c",
-        "pb-other.wav": "98095c51324911b8ad22267f255675c406a433ddaa1295aba18427d6b805a2a2"
+        "click.wav": "1c16b7e2565a146161ec4d4f09bfb003203fc534ce65a5cb84fe98dba535c414",
+        "cues.wav": "a452ca567551968be3cb08466b81687485262c6a7c6a31f5fb581301704eee82",
+        "pb-bass.wav": "ca124ebd8759f1b5a2cc638fef4720300e6fce974fd24a3d94a57cfb051098d4",
+        "pb-other.wav": "4b098cdc5ee0084188dde04f545e8f15e2194fccaa6c56f5a1d941e3b71e5bd8"
       },
       "render_pcm": {
-        "click.wav": "dc87987f63b451e3a7d8c2f3f93a9897c58123861965d86934de2f79b675eb52",
-        "pb-bass.wav": "17872f7dff642719062e9e1801cb590c848d080252a4ccbeed20c2ae993f7cd9",
-        "pb-other.wav": "a6d89c92181e9fc423a2c589ace1faf5e7be68ef2909d8a00abd583b27d60509"
+        "click.wav": "af88992a7a35965014bb0ffea9417a7aafe8b1e5689050b59cafa2e4867b9f15",
+        "pb-bass.wav": "0f093ecbdcbf169dafeb1b14c20e677c046f76c18bf3218f21f1defc932e7637",
+        "pb-other.wav": "4d3813e2f91a4c43d8b580708e3bd79cf031a5fa1a390fec4b0c71abd4111328"
       },
       "sample_rate": 44100,
-      "sha256": "32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce",
+      "sha256": "9d70cec186f61716ad31d740ef0e156cdfa29e23fa11588a9c40004717386a4e",
       "status": "available",
       "timeline": {
         "bar_sec": 1.935484,
         "bpm": 124.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.706342
+        "downbeat_sec": 2.878454,
+        "lead_sec": 2.793126,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.713829
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/32027e3b03e98b8c1129b6836bcdd7bfe92ab4d987ee1c5f7a0e0d2ab99002ce/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/cfc3bca52e8c/guides/9d70cec186f61716ad31d740ef0e156cdfa29e23fa11588a9c40004717386a4e/all.wav"
     },
     "music/songs/Ray Parker Jr. - Ghostbusters": {
       "bytes": 43072382,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 244.173832,
-      "key": "cherry-dash/5a15a70cbdbb/guides/9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a/all.wav",
-      "mix_sha256": "563e524509369b186b890ae2fbc4cc7158e7eaadf1124cab3a23bd5d05dc2d07",
+      "key": "cherry-dash/5a15a70cbdbb/guides/64f2e5d6e2b6699469e5ecfbe59d4229a6ece9c70b25ff42b62e4515c337d478/all.wav",
+      "mix_sha256": "320a9efe62bf815c53a0d95d0749d564f3cf7ff878fe156b324fde835783c867",
       "render_audio": {
-        "click.wav": "18d406a9947c3c7ac6169171b352cf58f5a05487f5f39080d03093721016aee0",
-        "cues.wav": "eca637f7172749ac8ca037bdb9d0bfdda462b767e1de4cb1c2755ab779ed9124",
-        "pb-bass.wav": "66df9cff296fdb6e874793d72dbc37489b1dc751ba0c28c22b2157005cee0e00",
-        "pb-drums.wav": "61b3b3de482080b4c0de28f0afbcb812470ad311e83063fcc78bc23daec745fd",
-        "pb-other.wav": "32ab2ccf069719505f2f79daa0eec94b36fc175277ff412233e92b38fc9de4db"
+        "click.wav": "1ec2b8b4ce89abc9641a752cebd175b4dd16457946e829d553f409fd5536a3c1",
+        "cues.wav": "c27ef88bf645bc180ec8b32e5b7a40ce2eb7f1f2438c54cfe89fcf0bccb40ac8",
+        "pb-bass.wav": "e9a9b13fd1543bb780fb4317b361b46654692b27d815d7c177d7fad1d2651896",
+        "pb-drums.wav": "a87e1512539869209defbbcfbac52beea9480d6adcecfc1337d66c9788cee3b6",
+        "pb-other.wav": "4857c227c33a6fe46a48172844c70ea9ef07064739405020327efd43ec9585f2"
       },
       "render_pcm": {
-        "click.wav": "f0a7850836ffa0d467020b32fd713146beabe1b1957636c6962ff7ede040cec2",
-        "pb-bass.wav": "6db7552e5cb0ab719679d95a912a039a19768340940a3f471e3f25f104c3495d",
-        "pb-other.wav": "7939ead9b1469f0ce818771e1cf87e89a562570781ce3890e27f4a6c076cb11b"
+        "click.wav": "c28bbf778f96db7b231b2b81ed1a6d9c9659d9ceb6b9884fca1f1b0ae0cf1bf2",
+        "pb-bass.wav": "6fcddeac9c91734296615aa439e4e0fa0ae3137bbf922d1bae1f2c55d0b7752d",
+        "pb-other.wav": "87167929eb9ebed1fe73872be4d5a9cbc77d459f6049c65da1cabb333c6c6a7e"
       },
       "sample_rate": 44100,
-      "sha256": "9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a",
+      "sha256": "64f2e5d6e2b6699469e5ecfbe59d4229a6ece9c70b25ff42b62e4515c337d478",
       "status": "available",
       "timeline": {
         "bar_sec": 2.086956,
         "bpm": 115.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.723841
+        "downbeat_sec": 3.023668,
+        "lead_sec": 2.655071,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.573597
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/9e7c46c3747306253c6339cacdaa81b9be89dd0aaba22ebc01cf90da2a96515a/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/5a15a70cbdbb/guides/64f2e5d6e2b6699469e5ecfbe59d4229a6ece9c70b25ff42b62e4515c337d478/all.wav"
     },
     "music/songs/Ricchi e Poveri - Mamma María": {
       "bytes": 33965786,
@@ -1273,7 +1357,7 @@
       "mix_sha256": "95540c93f0183eec51845d72d80cc4bb28f3712238c3b3c555c7750f9399d3b8",
       "render_audio": {
         "click.wav": "2c103c2cf2ac572448ce2f19ac273bf8b1a5ce0de8e79d0cc864e9d68362edd4",
-        "cues.wav": "be7c70092a609c92e870db365657b370d78c75fd899c108fc46e78276ea70c39",
+        "cues.wav": "249fa9148e9651348bb4d198f570ce50034012e51fedf81b162a514408985709",
         "pb-bass.wav": "d347a122b0ac06e796ec0ef9659310a1ccf35b8af12b22c04aa29e626c4f7676",
         "pb-drums.wav": "5003728761e1fe2cce2f611f4cb039f433f9d2323480deb8fa0227943fcc9ff1",
         "pb-other.wav": "d5a85172a36d448df2d94c5f293533d5d522eaf6590d8e5a12df873d6d56e705"
@@ -1289,7 +1373,9 @@
       "timeline": {
         "bar_sec": 1.782863,
         "bpm": 134.615,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.295057
       },
       "url": "https://releases.agentiqa.com/cherry-dash/435296700537/guides/72941687bcf9062b72e6fd50221c0a30830b5322bd7d5cc514b660621ee0eb45/all.wav"
@@ -1303,7 +1389,7 @@
       "mix_sha256": "dfba0fbaa445df0b280b62abf38fb09e4556694df6aa07820cf2695d3aa4989f",
       "render_audio": {
         "click.wav": "4950d99a11ca1cedb7066c2347160e3e94d0b2f76ecb7ae183909cf146c5d4fc",
-        "cues.wav": "a5ac1cd8ef694b636fea714119a71d6ac25aa782c58e5e704a8f56379134c7ac",
+        "cues.wav": "cbbdc91690df6e01e0fdfc0510f4e01245608a15350cd70e6edceae2bd52a78c",
         "pb-bass.wav": "c22a6169ff27e761bf69122a77660432f0cc085253ba410f4bdbcffe8dc8f748",
         "pb-drums.wav": "8819c141ddd84635a59cc16d2c19ee3cf91beffe90edc73834a42bfedd62b40f",
         "pb-other.wav": "50355e40ede31bdb4a6e2eeb47894622c2661a3c43fc8d36debf4d7b4d128c7b"
@@ -1319,7 +1405,9 @@
       "timeline": {
         "bar_sec": 1.989143,
         "bpm": 120.655,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.29692
       },
       "url": "https://releases.agentiqa.com/cherry-dash/45d6f546a2e3/guides/a11d84080d9977fecbd102a4fa76cd8dc7b4cc7c2021c94bd208c5fca18ca2ff/all.wav"
@@ -1329,28 +1417,30 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 245.807483,
-      "key": "cherry-dash/31b2b41becd6/guides/cbcafa88b3c4f285673bf1d984cfa034ac66826585f679cdcd3cba3fed8ab498/all.wav",
-      "mix_sha256": "6d4358ee07d1b406a59402b573723699e954f0691b7f1c7b1bf82b706cedbb68",
+      "key": "cherry-dash/31b2b41becd6/guides/a22146852aa3d3d129581e1a471ba0b962bc023459f710e7ab0a3713dd662d55/all.wav",
+      "mix_sha256": "d137e8d25cce824088b2dbc8530fd9409d40fd9bd3b24420e182cfe16c0f8772",
       "render_audio": {
-        "click.wav": "083869370854ec550d1f492299fd6a090f1727442a33fb5dadfbdd5c9f0d7a5f",
-        "cues.wav": "7cb27398a0c0a85650242398d0ee707a8c07b96fb25cfff5e2027f300cb2724a",
-        "pb-drums.wav": "0fe2ef978094f57186851a9eefe41b7531c90ed4d7625ab760e6ed9ac7df7100",
-        "pb-other.wav": "b5d8dcd76822f9fd8bd6f701361bfbd9ce32b0dd7d08744fa2688776fd985b6d"
+        "click.wav": "bbd033245d611f7bce430f179e602063a74371fcdc13e61f791a94b9ff76dd44",
+        "cues.wav": "6c634c59300cac4db1845eb0446d5c4b0b892e9cc296b6c54360983e00ae6c70",
+        "pb-drums.wav": "2636e1bfe3e7e30ea420fb339f460c51df55d259b7cb9de7f897f8aa3e36433b",
+        "pb-other.wav": "df7ba832ad431d39680a6aa24d11dc35f41ee42a5e2f059ab59753e1f99271d8"
       },
       "render_pcm": {
-        "click.wav": "121d8a7a17a7643fc19488ba57313a53706e50fbf510ae5a85cd13e03fa0b553",
-        "pb-other.wav": "b618cd1421a04f4cddddde519fe5375f6290dd33a4a48182cac2f1f03b976de9"
+        "click.wav": "f869f52637316b8f1fb41bf575589d31746a7fa4ee3494f1a3502ec36ac5fb32",
+        "pb-other.wav": "ee6b9b77629f9157851f5fb694bed9b07c21300355e0f99e12291336c277d505"
       },
       "sample_rate": 44100,
-      "sha256": "cbcafa88b3c4f285673bf1d984cfa034ac66826585f679cdcd3cba3fed8ab498",
+      "sha256": "a22146852aa3d3d129581e1a471ba0b962bc023459f710e7ab0a3713dd662d55",
       "status": "available",
       "timeline": {
         "bar_sec": 1.350591,
         "bpm": 177.7,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.049797
+        "downbeat_sec": 1.351111,
+        "lead_sec": 1.351111,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.050317
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/31b2b41becd6/guides/cbcafa88b3c4f285673bf1d984cfa034ac66826585f679cdcd3cba3fed8ab498/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/31b2b41becd6/guides/a22146852aa3d3d129581e1a471ba0b962bc023459f710e7ab0a3713dd662d55/all.wav"
     },
     "music/songs/Rihanna & Calvin Harris - We Found Love": {
       "bytes": 38367114,
@@ -1361,7 +1451,7 @@
       "mix_sha256": "2b57b709ad134dbece006912d752ff8002f21a8ce46275c84838a5a6ad7b197e",
       "render_audio": {
         "click.wav": "e9f10a613acc2889fd6f2707aac8f93284add806805457b241ae96acf1e3b51f",
-        "cues.wav": "93c8d5adcea393ffe5adde4385969af8f836ed257249cb7b526d4900c2cd52b0",
+        "cues.wav": "d2cc4a6eb8d611d1da070b48fccd4319ae8a8aa41b9a20ca40b71af7d621ca51",
         "pb-bass.wav": "2f939c59343ef2b576dd352a128621ebc4cf0624ec8a22975d1855c366d6297a",
         "pb-other.wav": "18c58c9056a648fb5b24e08f3225b9e24fbbc0e6a165e34ba59650dcb93becb3"
       },
@@ -1376,7 +1466,9 @@
       "timeline": {
         "bar_sec": 1.875,
         "bpm": 128.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.295128
       },
       "url": "https://releases.agentiqa.com/cherry-dash/e2b0f300fbae/guides/491fa685580a65539ce102955d811208a12970f6c8ac7a4ed7cd04ced371a6fc/all.wav"
@@ -1386,88 +1478,94 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 247.500045,
-      "key": "cherry-dash/3101b8a72732/guides/d19cb4265232dfa05f985f8a686ab2a55c216c4cdfafc10d7047fcf7da2813bb/all.wav",
-      "mix_sha256": "bc87bd690beae0c7618ffa08271b5991f63721d7da7c58e4cbbad85d167f9e75",
+      "key": "cherry-dash/3101b8a72732/guides/9a2098c3271ee616cc5ab22dff7e596b60dc2669f30f038c6c7ac14de7143ddc/all.wav",
+      "mix_sha256": "1bf01dda8ed59d37bd48d6f4926946b246f8a7043242b288ec5af564c29ab3e4",
       "render_audio": {
-        "click.wav": "a2dc5073b4b634348f7c752b85b165f72296329d423d33e68dfc4db9995b1054",
-        "cues.wav": "31c8a1b3420c9d9bb4455ee4e6a0204cff5419d794547f637302cd580cde1fb2",
-        "pb-bass.wav": "a2edfeb6ecf1db6741a0fa4a3dd3a8946f3fb33d685a5433a4e40e1639c32909",
-        "pb-other.wav": "4f59cf53181a011215ac3e9523f9ecb84b475ac3adacd7f254313a13d5c249c2"
+        "click.wav": "743ee70c0202adf2b2f9d4cc74d2a410405dbef0b5bd5879993e5297794f73b4",
+        "cues.wav": "9e734a653f28089eb1c4e5d2888307a5f6870598d836098e1c21a8a170237abf",
+        "pb-bass.wav": "27a1fd9452e74c9f818605a1def342c3ae10c581acf443062e7230631fd26048",
+        "pb-other.wav": "933ef35a18adcd25fb2b519b782461bef1df9fcebfd1fa206eb44d807ff87d34"
       },
       "render_pcm": {
-        "click.wav": "01cdf5b89cc64370ea517ace527c05168359193f3fcd567c7bc3c4383e1f82fc",
-        "pb-bass.wav": "8cab354c757d50a19a2909e2f57decdcbbad8a73cddd2b823101440675332f4b",
-        "pb-other.wav": "6db162e2a79d70de3ae03c9748514b5c313a8e9a9bee12afeef9056489eefe0d"
+        "click.wav": "d40721179ba428a21a18ad902246b0d39a968424b5603022fa1120a7e67047f5",
+        "pb-bass.wav": "e902ac9e2a9df10027fd53099af4d1216abf32886574b0ba6557353812d40e0d",
+        "pb-other.wav": "50592712843c38636d9dd9f79409f6173d6e262c4fcd48a412e08b2de969325e"
       },
       "sample_rate": 44100,
-      "sha256": "d19cb4265232dfa05f985f8a686ab2a55c216c4cdfafc10d7047fcf7da2813bb",
+      "sha256": "9a2098c3271ee616cc5ab22dff7e596b60dc2669f30f038c6c7ac14de7143ddc",
       "status": "available",
       "timeline": {
         "bar_sec": 1.875,
         "bpm": 128.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.578021
+        "downbeat_sec": 1.843555,
+        "lead_sec": 1.699387,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.546575
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/3101b8a72732/guides/d19cb4265232dfa05f985f8a686ab2a55c216c4cdfafc10d7047fcf7da2813bb/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/3101b8a72732/guides/9a2098c3271ee616cc5ab22dff7e596b60dc2669f30f038c6c7ac14de7143ddc/all.wav"
     },
     "music/songs/SEREBRO - Malo tebya": {
       "bytes": 40056486,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 227.076916,
-      "key": "cherry-dash/ace2a923452e/guides/11904632e67fc6f5dc75666476e5db16324bb2569cc2b992e256674e40e6cc15/all.wav",
-      "mix_sha256": "a407127ac24e8791c087fe487ef180c8d2317510b0366962a50e1011ab08a3b0",
+      "key": "cherry-dash/ace2a923452e/guides/ab93cc2418ac393109fc8d5af055a75ca88f80ea60642bc4d9f989b738ed5931/all.wav",
+      "mix_sha256": "2ae68d0b1331da27687846749d6560db2a0ee907cd2056a4601838f37786a187",
       "render_audio": {
-        "click.wav": "2fa219a12470b14af8fdeef68b21e91f035b0fad1bbb4c79a5d2bc3b91527fcf",
-        "cues.wav": "f1ed5c85e1842626e71473ccc48a5eb823fbdd23aea3b57284bc127b6924df32",
-        "pb-bass.wav": "116e0a96d5f0586ede3cd732a8aaa98813e4fdd7e826a1b6d37e7a9620460365",
-        "pb-other.wav": "ae0c0b86005e7a79c889a72e567830cfb05a87fc630e41684715335d29cd4f03"
+        "click.wav": "6423fbc55e2e3f7d4014e614df25a9abebb6b441c263ff3902d13ffdca1eb449",
+        "cues.wav": "21d730bfb51c3e3903d751dbe71cb409e7904b0ba4c9470de50d98a1e60ada65",
+        "pb-bass.wav": "d93327e6d0cd84a023bd0788f34ffafe2d84c47d7e0331e14021866833cbfc84",
+        "pb-other.wav": "21db09e775cab48541d54afcfedcf5091db8b39ba8dcc827fafae28054cd2677"
       },
       "render_pcm": {
-        "click.wav": "b73dc5b28da447f18fbce38e356dbb8c8da506ef9bd46ef5ecfc910d0f387d68",
-        "pb-bass.wav": "570dad14a4e456add5c527a40956b7414369f51f3e852a8d96471eadba3f51da",
-        "pb-other.wav": "76b0545f6f957de861e1375d78b4836fab0b1dd58cd24a05c745c161302c4892"
+        "click.wav": "4f05280ba21bdc1b917c1bfb2e6392f0144afbb4ae0fe03f4ea3b57bc26000a7",
+        "pb-bass.wav": "094a48fce3f0bcbe099231f86a72d03ecf593266427bb1a4705a7a7730992fde",
+        "pb-other.wav": "f965827ea8982658fa7ccf7c76d4855288a89f29d8410e9c8a182a65b250ca83"
       },
       "sample_rate": 44100,
-      "sha256": "11904632e67fc6f5dc75666476e5db16324bb2569cc2b992e256674e40e6cc15",
+      "sha256": "ab93cc2418ac393109fc8d5af055a75ca88f80ea60642bc4d9f989b738ed5931",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.186911
+        "downbeat_sec": 2.856177,
+        "lead_sec": 2.786245,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.35078
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/ace2a923452e/guides/11904632e67fc6f5dc75666476e5db16324bb2569cc2b992e256674e40e6cc15/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/ace2a923452e/guides/ab93cc2418ac393109fc8d5af055a75ca88f80ea60642bc4d9f989b738ed5931/all.wav"
     },
     "music/songs/Shakira - Whenever, Wherever": {
       "bytes": 34956966,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 198.168073,
-      "key": "cherry-dash/1876a74e9617/guides/1b97064de2ed599e609a3ede02b8dcb1a212dfc7f542c8079b76992eb93e7378/all.wav",
-      "mix_sha256": "99f9ddc6460403538e304ded0809d9db753d80e6ab02d019d2c80772425d9d71",
+      "key": "cherry-dash/1876a74e9617/guides/567281f374036ff7cf7896694816b978fc001e4ba541f253ac861de8cbbd73fa/all.wav",
+      "mix_sha256": "cc16b536fd272b04f6746cace16291afc85d3be3e3bfaa8be0412ddc77c73d5b",
       "render_audio": {
-        "click.wav": "c2396b9380801c079b6f94d16a7a51f3bf417fff7eec8fa31be57a85c06bcc4c",
-        "cues.wav": "5525e77830c811b16c3081b3a9421365813f17657e9b8cabdbce237e7c82ce24",
-        "pb-bass.wav": "e93906556890b07f9d6f75f71dc502701e6cce82ee25acb2f84c2dcc6dea5475",
-        "pb-drums.wav": "7d6ae722790747ef7a82d2ee3f94950b50bea44e28ec95653a6a701a55b53eb1",
-        "pb-other.wav": "1b5699f650d5f278fbd6693c3e1840f957bfe72b969fbf1f7f46dc5893014bac"
+        "click.wav": "ab3d5ddbd1be9051291351cab417eab041bd017667a9220aa52b1ea53841833b",
+        "cues.wav": "ea7ebe688627e199e6d0b178ab2e8dd9b6e2b3d840e23e58775573ba8cb3f098",
+        "pb-bass.wav": "3328f798f12786b76dafd642493f8522637e7cddd69758d426df33c9ef02a4f3",
+        "pb-drums.wav": "9f88710b83f69be4ffd3d395d89144b502aaaef51454f0e8b80db29c61f78189",
+        "pb-other.wav": "a51a66b2b3f97c6d94b8b4ab5d5344bf0484bc3dfadc75ad123948aa3d83747f"
       },
       "render_pcm": {
-        "click.wav": "c599b852e61c460e1856a00d470a5763c7634f4c3db6db0f95c0824143ce0b4b",
-        "pb-bass.wav": "2e895fc1e37c499b121e34c660c7a0918ad86e1a0099723beb4a4e9974c8abf1",
-        "pb-other.wav": "82a30855baf51d0d810f4417f0142f394be44d866dd5edcffc1131477933ecb0"
+        "click.wav": "22ff9162a2ea7cadcdfd5793cd86db5266f1825acbe236b1dbeaae13dd3ecc2b",
+        "pb-bass.wav": "3e9c3156c177d95ab6425d8c3d80c546df2f57fdd98abbfd68ec267d95edf8a6",
+        "pb-other.wav": "aaf25951ca02f31f40618151cc6f5c791255f2d1e2beb4bcc0f7c277cfb81034"
       },
       "sample_rate": 44100,
-      "sha256": "1b97064de2ed599e609a3ede02b8dcb1a212dfc7f542c8079b76992eb93e7378",
+      "sha256": "567281f374036ff7cf7896694816b978fc001e4ba541f253ac861de8cbbd73fa",
       "status": "available",
       "timeline": {
         "bar_sec": 2.201868,
         "bpm": 108.9984,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.179388
+        "downbeat_sec": 0.780045,
+        "lead_sec": 0.429252,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.479252
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/1876a74e9617/guides/1b97064de2ed599e609a3ede02b8dcb1a212dfc7f542c8079b76992eb93e7378/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/1876a74e9617/guides/567281f374036ff7cf7896694816b978fc001e4ba541f253ac861de8cbbd73fa/all.wav"
     },
     "music/songs/Shocking Blue - Venus": {
       "bytes": 35383962,
@@ -1478,7 +1576,7 @@
       "mix_sha256": "6c205080c6de8fc7da9d547a8beb838a7d8d52830419ce494d9fafa53ed1f0a8",
       "render_audio": {
         "click.wav": "bcb3f4f26bb4466ab6b39f031bc7e9b398ed41d76839ed63ac8fcdecbe7a1559",
-        "cues.wav": "b73fab22186b24381620c5688dc5f26a3dd3c6a8109326459c91d46f1aff87c6",
+        "cues.wav": "66e725f41f327a3a2fd3fdedb276df884a451a5be8a2d9e06470b6112b9cd44c",
         "pb-bass.wav": "2f36e6c908f91853911959587e1d6b8ec319d84031ac20421c9e9bcf1c0ab113",
         "pb-drums.wav": "a7241bef39daafe91256a776695b52386e88748039b1510c40821c91da4ddc71",
         "pb-other.wav": "0d1142c479627b8dc96975c08ecb757fb6966564d0efe630c17e544c28011cde"
@@ -1494,97 +1592,105 @@
       "timeline": {
         "bar_sec": 1.874661,
         "bpm": 128.0232,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.298912
       },
       "url": "https://releases.agentiqa.com/cherry-dash/2515a3c01f07/guides/319ad84fc8444e26826e04f2a2ac5f7cbada47882dc9f302caa7b250903078bb/all.wav"
     },
     "music/songs/Suzi Quatro & Chris Norman - Stumblin' In": {
-      "bytes": 43889526,
+      "bytes": 43561994,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 248.806168,
-      "key": "cherry-dash/3a0153697414/guides/fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e/all.wav",
-      "mix_sha256": "3cd9bd6e4c680243517da032a7474c1655fddaa61c6b7f56b7b1abb299d1a864",
+      "duration_sec": 246.94941,
+      "key": "cherry-dash/3a0153697414/guides/d60a399fac3627368a6e525c87a1b1ff4bee7dd18ee665fce3c5e120991d2379/all.wav",
+      "mix_sha256": "d3c176d6ae987d9184a1dbd5aaec60effcda02cf91b9f71e4468b2baa7549808",
       "render_audio": {
-        "click.wav": "979a42b805f3169becc6ab9e354103cd69c33ee23f8cb85752eac8095d7cf9c6",
-        "cues.wav": "4adf9a7eaa0f10e91a6dfebf6ed22b1cc02a527296ca798100553c107e4cbb8f",
-        "pb-bass.wav": "51f9154ebd4da71adf29b99b459fb62744468c94ce9362d50e5f0778e0ca0f13",
-        "pb-drums.wav": "94752ca1e3bdf7d5e0b754ccd3173605dc86f492f9e0e6c4ac5239bf4f817843",
-        "pb-other.wav": "a2295aa4c73c55d7aae995e36ef55106211f1736ce83985d998599b394731c22"
+        "click.wav": "06363dc3aad1155c9111f13b4fe85029c4920a52f0ab6420e1e81922da7d62b4",
+        "cues.wav": "7c8c4ae2945e6619930a8c84e25a1a2023fa48897942dac0dd325a0d0e5542f4",
+        "pb-bass.wav": "ff3925c79887f9f1efc74e6b5a2f5ee301c9c176584fb8f0ffd5efb0c31fdf2c",
+        "pb-drums.wav": "8b353a0d9570279de64d5641493571268d5582396d8612224a4755be90aefd26",
+        "pb-other.wav": "8e39a47e2f6fd1cbec0ed96e1f5f65761f9fa2f5988207dc904103ef8cb9a725"
       },
       "render_pcm": {
-        "click.wav": "a74d25d4a243b837b43a1f51b6dbbe714d07f9d13bbd3d2237d5cdbf78cd27e0",
-        "pb-bass.wav": "9773fe74dbda2c351b3120d689080b9ae27722d6463f7a6e31e8b6ea311011ac",
-        "pb-other.wav": "d5ea9a41676023060e691ecd3a3c9bc4a7843697b3dbf08ba6d28f9acc865cbf"
+        "click.wav": "e3212c2e40aae26ff12151dcf53c4178ef331e3719415387b77e0da7cbe7ce33",
+        "pb-bass.wav": "06feaed6a686251db5d5cf4f453d84ef9b6853d79166ff4a833e077aa92788d5",
+        "pb-other.wav": "49e9b1cb6775d479689a8eaf3079a80c1dc44bfa1b6960df9ef0586897e16779"
       },
       "sample_rate": 44100,
-      "sha256": "fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e",
+      "sha256": "d60a399fac3627368a6e525c87a1b1ff4bee7dd18ee665fce3c5e120991d2379",
       "status": "available",
       "timeline": {
         "bar_sec": 1.856763,
         "bpm": 129.2572,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.397959
+        "downbeat_sec": 4.662925,
+        "lead_sec": 2.717574,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.42034
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/3a0153697414/guides/fc8a1aa1c58324baae9e86039afc2b268dd855f264e1cd8700fcab07bc61958e/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/3a0153697414/guides/d60a399fac3627368a6e525c87a1b1ff4bee7dd18ee665fce3c5e120991d2379/all.wav"
     },
     "music/songs/The Offspring - Pretty Fly (For A White Guy)": {
-      "bytes": 33158382,
+      "bytes": 32862326,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 187.972018,
-      "key": "cherry-dash/54244363ae3e/guides/662525c585ee27ddec7d4fb0f5bb8434a0eaa067c0d83f2cb34c729316aceb82/all.wav",
-      "mix_sha256": "dc6b9f208905d6e75e6ad481c44e716ed1d45d33ca7f7fde5d93efe174b68d76",
+      "duration_sec": 186.293696,
+      "key": "cherry-dash/54244363ae3e/guides/ea4d81b5b382d2e147277dba6033c5aa46aeb60a29159e23156a594ee7b8667b/all.wav",
+      "mix_sha256": "23396dc31decc4b7832682d5de20e52801d1c202ffdd7b9a06a7faa2e1802b42",
       "render_audio": {
-        "click.wav": "8e0da423e39e6ab8968b338b2f31e4aa0925416a6c529e7db145b34f8225fa87",
-        "cues.wav": "86b6bf6f4e2de95713016d12873b7e9c75b9f4846a46290f68ca0a33475933cb",
-        "pb-bass.wav": "6441558dd6d3e16d524c74cd3e1aff2a212178b11d1da1203b7bb92358314b36",
-        "pb-drums.wav": "f5066639398edf6530976c65fca3793aebedff95dc8ff15b848494e88b93f0fc"
+        "click.wav": "74a8aa0d21b481deea1fc98ad1b1099b00505276f913eeed9bafccf0d219038e",
+        "cues.wav": "63cd2061eb80f106a515dba8f506d0fc83950d505876b6b51eea642eebc5d4d6",
+        "pb-bass.wav": "c8f0a4930cc1e9a87ec2095ae4fb82d2b4ff97e91326f6955547472584f12551",
+        "pb-drums.wav": "c2764e156f4b2bb2a6d3a8dc2dbf0418e9b484bd4f0d1f53b69beae8a235af73"
       },
       "render_pcm": {
-        "click.wav": "d39f99a9163d2ee3464bfb1920cab7f809b1c5aa2fb737d99875949a958c2b35",
-        "pb-bass.wav": "ce89d940f69b532fe153f9604d16951016cfa1c5a560ddc47ca376d81d3b88b2"
+        "click.wav": "4018679e6f3f5e85ddb56e9a9a25f437870e13034302bc33320ae92b41a34666",
+        "pb-bass.wav": "9e742e068f67a1bee69879bc8c40f7f1c4663b7346afc7743e73d4ef050869f6"
       },
       "sample_rate": 44100,
-      "sha256": "662525c585ee27ddec7d4fb0f5bb8434a0eaa067c0d83f2cb34c729316aceb82",
+      "sha256": "ea4d81b5b382d2e147277dba6033c5aa46aeb60a29159e23156a594ee7b8667b",
       "status": "available",
       "timeline": {
         "bar_sec": 1.678322,
         "bpm": 143.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.573877
+        "downbeat_sec": 2.546984,
+        "lead_sec": 2.493265,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.764217
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/54244363ae3e/guides/662525c585ee27ddec7d4fb0f5bb8434a0eaa067c0d83f2cb34c729316aceb82/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/54244363ae3e/guides/ea4d81b5b382d2e147277dba6033c5aa46aeb60a29159e23156a594ee7b8667b/all.wav"
     },
     "music/songs/The Subways - Rock & Roll Queen": {
-      "bytes": 30626158,
+      "bytes": 30325902,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 173.617007,
-      "key": "cherry-dash/305504ec84ac/guides/270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f/all.wav",
-      "mix_sha256": "5c83116945ab19eef210c9b9a0b2c759e0de9dd1a38b2c735e0e5c5f06b0302f",
+      "duration_sec": 171.914875,
+      "key": "cherry-dash/305504ec84ac/guides/55c1ccdf55c6fbd5b8a0487fced629a3cfec4df087fe0bf3a738df484b03eb31/all.wav",
+      "mix_sha256": "a9b3da77f074e044700349da4a906175e238b45db72feca05c082c264669c782",
       "render_audio": {
-        "click.wav": "f0f7b4a5d1abf184b3a5e1637fe6665f8537ef710281bad94db891c20c6ce781",
-        "cues.wav": "0b5c7e64476e5215a9256fcb1bfb8731d34221bea8f8fe67a47a80f150341510",
-        "pb-bass.wav": "475da5ab0d1fe89c4d60bb024f7c52d22de6163300fb6246e21673b75a8ec0c8",
-        "pb-other.wav": "cf72dd86ae822ec4a6238e8f40ac13afbc8fd3844ae6be5958001770488a9b6b"
+        "click.wav": "953b5e6ba822afa706cbe6da15836a209c803a989c3941ed6c5eec093fcc797d",
+        "cues.wav": "1741310632d53b27614fa01966a9507590f604294f62978f6b8dbee9c7ae1be3",
+        "pb-bass.wav": "dd81156168576f43e5132a9f43428d79fbe2a7ef9b6d2f30aba3a791249ee05b",
+        "pb-other.wav": "6435e4853311742e563021563a94f43705de61eb9ea80f247f83760b579525bd"
       },
       "render_pcm": {
-        "click.wav": "e5d25b17f3504a8fa44dbe447aa879c5245e96f0385c262f065980a14a6bc54e",
-        "pb-bass.wav": "f6a956b571acac3d3f1d461e4880ed94fb44666d0a823d8043db7f35dd2f0c9d",
-        "pb-other.wav": "976c48a08a3bd129a83c1ab3a811c5fa447defd1d82add6ad8f9652be940653d"
+        "click.wav": "3bcb0dfbff5e9c70bdb341903b74eeaecbe6ad5c8e54622a3569874dafebfd52",
+        "pb-bass.wav": "d578e3dab513c983cf9fed63bae32e4d3e0de7e76d5784bec3b4049a2012629c",
+        "pb-other.wav": "5a70f4bc84e585f55cd24a107ee1ebfb69454585eba252194d50acb781f49999"
       },
       "sample_rate": 44100,
-      "sha256": "270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f",
+      "sha256": "55c1ccdf55c6fbd5b8a0487fced629a3cfec4df087fe0bf3a738df484b03eb31",
       "status": "available",
       "timeline": {
         "bar_sec": 1.702128,
         "bpm": 141.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.015956
+        "downbeat_sec": 2.931924,
+        "lead_sec": 2.869792,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.543624
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/305504ec84ac/guides/270ed82fa3fd60637b27e4e045a922b31c561fd49775d1d7ab00aff8d586c08f/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/305504ec84ac/guides/55c1ccdf55c6fbd5b8a0487fced629a3cfec4df087fe0bf3a738df484b03eb31/all.wav"
     },
     "music/songs/The Weeknd - Blinding Lights": {
       "bytes": 35651478,
@@ -1595,7 +1701,7 @@
       "mix_sha256": "0bc1365c3db24137e5675b95ad8fd5242ee3def9fb8399f0f163ec0a19472ea4",
       "render_audio": {
         "click.wav": "4d9ab275b5591e1b70a3589d4695f2d0062d309ed0ce54038aa72562f2616582",
-        "cues.wav": "b77fd1f6b7d9b43ca189f4c9b43a4f3a3e1cbc7b18b54cf046573cc18c4a260b",
+        "cues.wav": "d3ed77dd62808c057c4cbfdc23f9e57bae25945bb56e63325ee2d9e9f366cd11",
         "pb-bass.wav": "a8131bcf8b083d7a7569dfd45550ba55c05bdccd3fc0541bcf04f5dec86658c0",
         "pb-other.wav": "2abef52bb0aa32334ef0b03077a97fce311f1ddb7875c0226d8d4a1da8bd3fa3"
       },
@@ -1610,40 +1716,44 @@
       "timeline": {
         "bar_sec": 1.403508,
         "bpm": 171.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.295123
       },
       "url": "https://releases.agentiqa.com/cherry-dash/ce6a8891a4b7/guides/6755f5435c6ee4ba2f506b91c75f2faaedf21ef8376945961579cd80549c3922/all.wav"
     },
     "music/songs/Tina Turner - The Best": {
-      "bytes": 45237966,
+      "bytes": 44830418,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 256.450385,
-      "key": "cherry-dash/ebeb49ea89ca/guides/72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e/all.wav",
-      "mix_sha256": "2f84835d3d925f1b11aa874142dba4bebf8f482065fc287f0dec52c631a62ced",
+      "duration_sec": 254.140023,
+      "key": "cherry-dash/ebeb49ea89ca/guides/2bcbc1cd78cce227996b6ad7090e2e6d7bf4df47562db1255363c5a2a161f9ab/all.wav",
+      "mix_sha256": "5505066509fd26cf066ad64898f2226641e6472e4a897ba2c09f3c40fccad441",
       "render_audio": {
-        "click.wav": "352c1a7ea01eda6217325aea7be0cd05056ab7f3091aac6564223d8f34034ead",
-        "cues.wav": "c0ce98d9c1ea1ee491c49c8f6d5d5feca056f1166257f34866789f3899475626",
-        "pb-bass.wav": "7c398c1b31aa3b8aab61721c1f35622a5324b2bc5c9eaf587be4deae4bf57dc0",
-        "pb-drums.wav": "8c1591d52d92a2a9306755061601cc701635a1b06ef1be83e9e78f29fec2953f",
-        "pb-other.wav": "15353cd0cbfd2cb636d3b3c0704d73164e466afd3ad3b5e73af8b124ed62be6f"
+        "click.wav": "3795a39ce9afd19dfe4007da51160145e65c775a123015604d8e99414807de4b",
+        "cues.wav": "face49cb68e5a24321ab2c14ec6884d694f7e80a9dca84563dbae8bd83297998",
+        "pb-bass.wav": "9c61fda6e365552216a81a0c671114c7b4006f6b2f0f15f20a8e6f90466c06b0",
+        "pb-drums.wav": "1c522d53305e02ccde02d5e04a74dd5c00c772fb55c25472933cf91d90c5c86d",
+        "pb-other.wav": "eaccd1c65a2428160f1ee6ffde4053f50e1521ebd89da3e409960c0ab287d506"
       },
       "render_pcm": {
-        "click.wav": "0acff7a1f77f6d956a802609c3fe0a3c28c8e7f812b07f51d9efdbd8b85b38f9",
-        "pb-bass.wav": "ef14a2ca9b6286f09dada5a62a66612f825f3c1b0aeaf2b73abf7b31449d7b56",
-        "pb-other.wav": "c9eb863554f07415894635b71d7ee3c2a2708f515c199c3b0da1954fd05479ee"
+        "click.wav": "160462c078d72773cb100b55ab7ea87c9b79d1ca61a5af2c3354ef6d51ff2b3d",
+        "pb-bass.wav": "10a67cede7e1b2a89c6319ce0ca9e00f250e658a92c41b349f56b8c9aed1345f",
+        "pb-other.wav": "6f79cacfca50e3e17e019ae530cf61f17817514855d0ec719b3cf185ddcc01e5"
       },
       "sample_rate": 44100,
-      "sha256": "72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e",
+      "sha256": "2bcbc1cd78cce227996b6ad7090e2e6d7bf4df47562db1255363c5a2a161f9ab",
       "status": "available",
       "timeline": {
         "bar_sec": 2.310364,
         "bpm": 103.8797,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.981451
+        "downbeat_sec": 0.752336,
+        "lead_sec": 0.752336,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.453424
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/ebeb49ea89ca/guides/72f9b9808f1d4c892bdd8e60e5d0e74ab89ae6bd12d6f638c4cd4dc112f34c7e/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/ebeb49ea89ca/guides/2bcbc1cd78cce227996b6ad7090e2e6d7bf4df47562db1255363c5a2a161f9ab/all.wav"
     },
     "music/songs/Village People - Y.M.C.A.": {
       "bytes": 49680186,
@@ -1676,7 +1786,9 @@
             19.556599
           ]
         ],
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.300794
       },
       "url": "https://releases.agentiqa.com/cherry-dash/d98efd79f3f1/guides/e790f280744b1af8ea115cef73beab1b7659d0d08aab9aea681d652f04eeda1b/all.wav"
@@ -1686,58 +1798,62 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 226.004853,
-      "key": "cherry-dash/27083695f860/guides/36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1/all.wav",
-      "mix_sha256": "91824796e22d301457fb2f25c2c0f4a8328f9cabaa09f91336539b3b262d0711",
+      "key": "cherry-dash/27083695f860/guides/b51d065ba1648bb09537220966f8cd8f4bad16089bdc22dc2b5324025191324c/all.wav",
+      "mix_sha256": "5088ff10bb21e5e2155635e0714f52a51540674dbb9fe083c8c5153895a50e0d",
       "render_audio": {
-        "click.wav": "9f63282cc6e8458f35d554a7dfe5fd39f56617c009ffb6578bec59c720ffc4ca",
-        "cues.wav": "6dc17f65b84c0705ecd527b18b764eb0e5046242fe0794e3e50cd275444b9ff1",
-        "pb-bass.wav": "da5531fb76a7805268316d0cdf6202950ec17571d1bfa5861ce49dc47812ef23",
-        "pb-drums.wav": "0100f31fc77a195e12b9a315a6073add196d349d9c66fed4502ec57044660fc9",
-        "pb-other.wav": "2af50cbfd3cda6c776b9670fbacf9e267f63c0758e0d04e1e97047cf3d8546c3"
+        "click.wav": "0a95217fac79fd43865d945bf29e4934e10554fd6133c73bc39af5720e35a28e",
+        "cues.wav": "97e4a5e8fda615e2e03a44d2da563fcf5d1b8338a5b745e51f33bf5a020d6168",
+        "pb-bass.wav": "e769ac5ad4a881c0b76824e59470c4136f3975e081ec5af8d5ba7cb5deebb053",
+        "pb-drums.wav": "ad750da8fed20f8ff7de03e1e46c8606925a581d5adeeeda06000f2cfda2959a",
+        "pb-other.wav": "97a18a6bc06f1c8e629012554a88b298f49a87be2b484eb6fca76e960b82b9eb"
       },
       "render_pcm": {
-        "click.wav": "eddc15ac04254ae04ff2d9567b7141c86b11806304e8007398d90e4be3e6e8ef",
-        "pb-bass.wav": "26214a333a3f25981b16350d4915ec52663c856ebd79c4ab80a4f799f2e8d578",
-        "pb-other.wav": "a6827b392670cf9c1e11556a6949df6adba1933330baee1ab7853dca069af50b"
+        "click.wav": "e2095d50a4725504709c5e66ac084be93726623a25cb86e89efed4100556b843",
+        "pb-bass.wav": "7f7319b6ae3c63b1096438abe3a00747431630f7e2e50b50820d6ef41064bf20",
+        "pb-other.wav": "e8bb9a0d94fa1cca953ce626482b9fae645e5cb003bf8dd5f2b93a2aeb2eed1e"
       },
       "sample_rate": 44100,
-      "sha256": "36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1",
+      "sha256": "b51d065ba1648bb09537220966f8cd8f4bad16089bdc22dc2b5324025191324c",
       "status": "available",
       "timeline": {
         "bar_sec": 1.751976,
         "bpm": 136.9882,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.780907
+        "downbeat_sec": 2.641338,
+        "lead_sec": 2.290159,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.982426
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/36f34ad9c82f1f858ef3146f3595c021712ef1553184e6cb15b465981f79e1e1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/27083695f860/guides/b51d065ba1648bb09537220966f8cd8f4bad16089bdc22dc2b5324025191324c/all.wav"
     },
     "music/songs/Whitney Houston - I Wanna Dance with Somebody (Who Loves Me)": {
-      "bytes": 52730438,
+      "bytes": 52374154,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 298.924717,
-      "key": "cherry-dash/222e9b9abd0a/guides/4f0a0e3319e2f76a1a4d3936eeb55e90f28d6484cbb08e5f09a68ee9ce3f41c1/all.wav",
-      "mix_sha256": "951a2c63218923a9c029ecec24b8f8d4aa6f7a682fa0f7e4a74db41be1d70171",
+      "duration_sec": 296.904966,
+      "key": "cherry-dash/222e9b9abd0a/guides/c56a86e24051d16b2eec3543b3502e62aacde3305fb2838313d6badba61e88c4/all.wav",
+      "mix_sha256": "1fc8821dba3617259ab9323a74b3829f07f6ee2c3085b0cd7e1d7b49bc01a6f1",
       "render_audio": {
-        "click.wav": "6406b4acf79ae4f948e97da7568020278d5588b22e0fb924f7af399dd9934328",
-        "cues.wav": "4e443e215633d0f393cc8dbcb04bd5ed8301b1f446d1fc8aee906b33228b8742",
-        "pb-drums.wav": "d7081fb0d739f7611da7fce4204aedf821e7fc1ae7543e0fe4063821cc781298",
-        "pb-other.wav": "049f90ff086866f6dd9bd0c5eb19da79959159b617ef960ce197fcc39f08c6bf"
+        "click.wav": "8c7c9f63758c9a0b31753f0be6e4647aac0b0ae9bd89dc827ae6d4b519b7d130",
+        "cues.wav": "1b8ea304bb51a22b0f774e0aa35a0fedbf195c3485944352d405085514d0c4bb",
+        "pb-drums.wav": "5e9bfdd9a00b9ede47951f60c949202e9e6383b93c8de1e27516375185b0b747",
+        "pb-other.wav": "ec7ab942525d45dc76ebe25142c6e6e4aa9be4fc6d520438269610cd1cc63ee1"
       },
       "render_pcm": {
-        "click.wav": "aa165abcbe359cbb204a1b5925faf3ac43cd041ab67e52af64d0c00ea82edb67",
-        "pb-other.wav": "df27f6b275abfd485fa2b7503cf4c0bdd9a2163535b1972ace42cde1791c4908"
+        "click.wav": "4544bc3d4a4525e490773ef01571f09f10340032a5451a004d6089b7b3f7f6c2",
+        "pb-other.wav": "98ecd1df275815b80919ba7ee2cde416d8fc5a5d9fe9475eb4a54c8febe05f40"
       },
       "sample_rate": 44100,
-      "sha256": "4f0a0e3319e2f76a1a4d3936eeb55e90f28d6484cbb08e5f09a68ee9ce3f41c1",
+      "sha256": "c56a86e24051d16b2eec3543b3502e62aacde3305fb2838313d6badba61e88c4",
       "status": "available",
       "timeline": {
         "bar_sec": 2.019762,
         "bpm": 118.8259,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 1.72085
+        "downbeat_sec": 1.07288,
+        "lead_sec": 1.07288,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 0.773968
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/222e9b9abd0a/guides/4f0a0e3319e2f76a1a4d3936eeb55e90f28d6484cbb08e5f09a68ee9ce3f41c1/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/222e9b9abd0a/guides/c56a86e24051d16b2eec3543b3502e62aacde3305fb2838313d6badba61e88c4/all.wav"
     },
     "music/songs/Yeah Yeah Yeahs - Heads Will Roll": {
       "bytes": 39775306,
@@ -1748,7 +1864,7 @@
       "mix_sha256": "36bdf5cc565a3a140a9d1c858b06a5ae788f5f23a848e0bf48569daa9fde4fff",
       "render_audio": {
         "click.wav": "000376d3cb02ef08c593b97c42266409152d63cc2da120b7a4a96b720ee0748d",
-        "cues.wav": "be9707fb1022c33744098a6b7eba583792d33e47cd0b55b451f80c13e18e706d",
+        "cues.wav": "ef6d7d959a55665c40d5015bedf77935252036e61920f676f7d2c902f525cfef",
         "pb-bass.wav": "16571312db1072aa04b44a984a8c5cbe8f65d2413d571e0d9373e65262b56746",
         "pb-drums.wav": "dd539c7f88d50baa863a8d521b6f52f00059022a73a13de0f8b65eb9756976dd",
         "pb-other.wav": "f234d619c58b4d43fa7b2a796704796fa4afd6c9ef6f87c623122748050057d2"
@@ -1764,7 +1880,9 @@
       "timeline": {
         "bar_sec": 1.818411,
         "bpm": 131.9834,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.0,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": -0.286361
       },
       "url": "https://releases.agentiqa.com/cherry-dash/38c4670831f0/guides/9a8ba97172c1eede63384d56659d78c5c1da2ce565bdc203d72f9269c3c9f82a/all.wav"
@@ -1777,239 +1895,286 @@
       "status": "missing"
     },
     "music/songs/t.A.T.u. - Not Gonna Get Us (Нас не догонят)": {
-      "bytes": 36148546,
+      "bytes": 36474210,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 204.923061,
-      "key": "cherry-dash/003a4f299383/guides/2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792/all.wav",
-      "mix_sha256": "1f7f23c4521cef85bb0975ac1558e9b9b5517d1d818dd412dfd770fbefb73b8b",
+      "duration_sec": 206.769229,
+      "key": "cherry-dash/003a4f299383/guides/128564aba71887ef055eab9e23548b9f139c95b5053e6eda15feb4d45ea582c6/all.wav",
+      "mix_sha256": "988681fe9fbc7ab5dd1836a29a68aed5209ed2ccd01ffd14f0980e8c24656744",
       "render_audio": {
-        "click.wav": "723ce7ae2c3581b2ce6cc5389c5d8f76f319e3699b6e74e704eb548d56bb57f0",
-        "cues.wav": "07947986f3b28cf1a7f0990086fdec63351dfa48b038563971c3f0e1abc55505",
-        "pb-bass.wav": "15f1338f66161ee7e6d29044ab02428497f9f54e25c3f0a864bc4a8b47c4fab9",
-        "pb-other.wav": "72795f41b661ccb6e3982391954faf84f0947591c9e6761947fd0ea261c154bb"
+        "click.wav": "f2c908192d6a292bdf75f6a16b5145721bf9d67e2891c7c99a0c002fa9782330",
+        "cues.wav": "f4b7874979c1927e6bb58829f146c280a111d156067990c9235423eec186f98f",
+        "pb-bass.wav": "150163e19e04d413514ca923507906e85fc744835f4cd5bbf510cedb6954cd28",
+        "pb-other.wav": "e1bca17c7553110e4655a29a63a88fa5bf1dbd3f7075d1cca0111d9693f0e674"
       },
       "render_pcm": {
-        "click.wav": "f6c3cf48e9ada1441bffeea400b5c11016bd1ef39d525478d5dee093379ca36b",
-        "pb-bass.wav": "004b7df51ce1c82f4ae850ac724131c6330edde20a86c8140e1600a6c318ed33",
-        "pb-other.wav": "389c9f7274cc0d69e139ae949edaed5a82e45d4eb8564e8e8bf92c7af791b8e0"
+        "click.wav": "4792f25f9ef048379827534a8512d64537a0c77780141ae45d9a5edd868f44c7",
+        "pb-bass.wav": "01d252c5afc6c4dedac271a720711de5b60e27a1e577a6bea70a7886d2fcd656",
+        "pb-other.wav": "fc6ca7e4577f5529907b3fe3c61a11b660e65084e484932e78bd16427217017b"
       },
       "sample_rate": 44100,
-      "sha256": "2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792",
+      "sha256": "128564aba71887ef055eab9e23548b9f139c95b5053e6eda15feb4d45ea582c6",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": -0.296997
+        "downbeat_sec": 0.043755,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": -0.253243
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/003a4f299383/guides/2fb7d2e132677a98b6129709358d960501923fb366b44437d892858908d70792/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/003a4f299383/guides/128564aba71887ef055eab9e23548b9f139c95b5053e6eda15feb4d45ea582c6/all.wav"
     },
     "music/songs/t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)": {
-      "bytes": 38572916,
+      "bytes": 37510988,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 218.666667,
-      "key": "cherry-dash/fde163f34bf4/guides/c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf/all.wav",
-      "mix_sha256": "cf2db0b3d3b5c9eeb084c8289058e982ff193d44a66eb66da39c061f89795214",
+      "duration_sec": 212.646667,
+      "key": "cherry-dash/fde163f34bf4/guides/ce328efe6406264f2de508461ed42d9f7e7c680ec829fc52d4f1e7b98f7c74de/all.wav",
+      "mix_sha256": "6f2096d0aef54145a5bb5705551c2ccaf3080c2e34c4485445ee6311e1949d70",
       "render_audio": {
-        "click.wav": "9b8ff5c3295c63ce2debc3a54a1b6a760105e1282b910cdadab5b83bf0b50225",
-        "cues.wav": "758ded6944289f282f23e44bb70776a1e4ee6c592d3aef1affc992e08c451e7a",
-        "pb-bass.wav": "3de9baef8a9249d388e69c0a2a812a535e53bb0878ba636040ed5e8303e01570",
-        "pb-other.wav": "733f8a85f878cffecea6b56fbf2fc3e754d42386e3c98865e50604e280a7044b"
+        "click.wav": "5caeb7c96ff729981714a6073b5b608a7f93840a696a9cbe1755059ead015279",
+        "cues.wav": "3d33926d50d579b3a71bbbbfacea8126b0e74702021ac8dbc79cce4848ba08ef",
+        "pb-bass.wav": "201b1a17dd0a611c8107092da0f82275864961e7898176192adbecdfe74650e9",
+        "pb-other.wav": "439782249add60a7970527f535c0b52609cec59e1cc7ca1215c897e3f7a53767"
       },
       "render_pcm": {
-        "click.wav": "1c8b9d1fcdc103c8b5f62c549cf45ccb156a5ada69ee716afcc222de73e7c1bd",
-        "pb-bass.wav": "d5b0990c0e8eab798f286534af6a79bbeedf8f8f62fc6d5528c6885ad3163b04",
-        "pb-other.wav": "70b530c7c904afa08b1610a6383d84af5e0204bc4ae6b9bea10e5a7f698d6094"
+        "click.wav": "7cae179c12f206dd4cb95cf60c13780e190a76dacb90c57b7de700a48457cbad",
+        "pb-bass.wav": "3bf665d1d5b99a509285c22b0894e5323421db433a1ceab431f01cb85cf02704",
+        "pb-other.wav": "26141f8c7ddf3b5519bde2d6baa3a8ef4bbefcb31fa2c891139ba47a43fd160e"
       },
       "sample_rate": 44100,
-      "sha256": "c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf",
+      "sha256": "ce328efe6406264f2de508461ed42d9f7e7c680ec829fc52d4f1e7b98f7c74de",
       "status": "available",
       "timeline": {
         "bar_sec": 2.666667,
         "bpm": 90.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
+        "downbeat_sec": 0.297096,
+        "lead_sec": 0.0,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
         "offset_sec": 0.0
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/fde163f34bf4/guides/c6a98399327c52bd7367bc9f6db843c7553149249e1d2e0d3b9da52073cb0edf/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/fde163f34bf4/guides/ce328efe6406264f2de508461ed42d9f7e7c680ec829fc52d4f1e7b98f7c74de/all.wav"
     },
     "music/songs/Беги от меня": {
       "bytes": 52496754,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 297.599977,
-      "key": "cherry-dash/e773956ecaa6/guides/d6141c6270d4e9e2fb23f38358310ec2269bbf2b4c189ad0c72cf0eedf79e83e/all.wav",
-      "mix_sha256": "708373017452f006f0848298db2df71db0b86f0389c26b8bdc5cfa50427b81b9",
+      "key": "cherry-dash/e773956ecaa6/guides/2cd7626a0f19648fce34e4056b43cfa9f2150c02a25d3651720a0e0ce2cadcc3/all.wav",
+      "mix_sha256": "bb14166c95f6d8a19c052e757378f1d053fdc0fcdfdb789d6d1ad8797e29f947",
       "render_audio": {
-        "click.wav": "74017c5b73cb229e97fc1d6f032be0d481234fa6c74b559dd2fc5153402102c3",
-        "cues.wav": "9f2a8e5d73451829038352c0857db756a0ba0ac320278945b2167cf73396d4ef",
-        "pb-bass.wav": "569985940f36ad5432d6be31b76fcafbc4280e57711a60103bc7f333d0594fa4",
-        "pb-drums.wav": "f12355e52b57ff5a876d25e6b686e7dd2c60f1fe6885201f5d59b3fbcd147fc3",
-        "pb-other.wav": "03760ebdcf56a6b21481e8d76d21862459dc62712f917003e4f5cfb096e31cba"
+        "click.wav": "0c7ea116420bfb20e8e8b7484734046a090ef4e3f91c085b63acb87f0274b8b0",
+        "cues.wav": "9b62d5d057d7b6ec31eb4b1de540c9d998ba78bb7b1e5d4542deafc8e580b07a",
+        "pb-bass.wav": "309593b5f6e75c46c342f4bac748ee96dcc9848b437cc0ca1293c5a3c2a6a9f1",
+        "pb-drums.wav": "94191ec9f6bdc263e19e8a61afaacc3e02c34740f1200246ad764395b095dd54",
+        "pb-other.wav": "ee7ef047d6cf37622fb129e73810885e79dcc4548de547045bea998eaee99b07"
       },
       "render_pcm": {
-        "click.wav": "cae602364f864cd89a25e915d837f284a0157ee7afc1c0369c10a082e8b9c683",
-        "pb-bass.wav": "7ce779e525bc35e8b93415529a93a68117466840cf61a100bad4c23808beddc4",
-        "pb-other.wav": "e440c8589eaadcfad327864858d323227ca4c977988eaf666cc2904cef4e8e6c"
+        "click.wav": "419954618864f5dc33ff66e0bbc418504af0fda3c332862a54ca172c51ddfb6b",
+        "pb-bass.wav": "4e83bc43d5eea5924e7951d1cd8c03f82a6637caa712f3999c4a5273d1ec94c8",
+        "pb-other.wav": "7e2b7aefa14dc010a87e12f05a409e4282f8930571d87dfd946ea1df2f4a09d0"
       },
       "sample_rate": 44100,
-      "sha256": "d6141c6270d4e9e2fb23f38358310ec2269bbf2b4c189ad0c72cf0eedf79e83e",
+      "sha256": "2cd7626a0f19648fce34e4056b43cfa9f2150c02a25d3651720a0e0ce2cadcc3",
       "status": "available",
       "timeline": {
         "bar_sec": 1.92,
         "bpm": 125.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.774785
+        "downbeat_sec": 3.002449,
+        "lead_sec": 2.887234,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.937234
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/d6141c6270d4e9e2fb23f38358310ec2269bbf2b4c189ad0c72cf0eedf79e83e/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/e773956ecaa6/guides/2cd7626a0f19648fce34e4056b43cfa9f2150c02a25d3651720a0e0ce2cadcc3/all.wav"
     },
     "music/songs/Вирус - Попрошу тебя": {
       "bytes": 36567010,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 207.295306,
-      "key": "cherry-dash/4bfe90ef136b/guides/62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635/all.wav",
-      "mix_sha256": "614e533869c4d21ba02f477f6e1b84ad867c07c529219e6a918104da03b6329c",
+      "key": "cherry-dash/4bfe90ef136b/guides/b69009eca9c3ff94142e216fff88a71e7f8f25fe45caaa922870062f52e85edb/all.wav",
+      "mix_sha256": "a539dd117b4253a8c23d4c748bf183eef21f5fc978a4ecb9fb6c57e0eff15e8c",
       "render_audio": {
-        "click.wav": "e139a9e0e9f0b3ff419dc08c6e704f2b898d71f17825a7660c12e61144bc3604",
-        "cues.wav": "23f92b5d4a319ea0080ae6069b3cbfc8ff9cf2ff63d8ae60cecf7e70ccc9a0a0",
-        "pb-bass.wav": "d16e034e216c5b98fed785d684aae7a047bbf5b8798245eff9b48ac9b28935a0",
-        "pb-other.wav": "e256dd73900ff5312a37949552fff79cc7ef707c4407faf30f152c62dc3d49c1"
+        "click.wav": "2f4a2f8472d2a00ef54124c97307d263a09d8a743171274a4e791e5071f4d60b",
+        "cues.wav": "159feb03b46481ef1c477b2488c801bdc497f781ba16a89157d46f6105318742",
+        "pb-bass.wav": "f71c51cf75dd92649a7f208f61a402eab6ef46c8ab420fe6c8d544b2e10e5387",
+        "pb-other.wav": "7c44258df6217fcf347b1d9a58137f7e6ce9e8ef7fa9a7a8fd99a09427b1c5b8"
       },
       "render_pcm": {
-        "click.wav": "26edc07aee07dd6e750991da03c1e93b077a2fb746e4035a9b7aa990a566aef6",
-        "pb-bass.wav": "dcc07b28fe04ee01decd70b998a265f5417e526c2c2437eb46b10c503c014bf7",
-        "pb-other.wav": "b038388aa700049e9dc1285016506c6896de18095110dff8fc9a72cc22241f65"
+        "click.wav": "63681f0435e181647e8592ccfd8b292bced3fe129ca2a07f57646924126019bc",
+        "pb-bass.wav": "e40219e9bf4732fd64a6d9a0755fca7ea88a39f5a79faa588fc837098bd4a286",
+        "pb-other.wav": "0dcbd6f1d451049d8778cc9345c6f583cf6aa5690483db69c92a053e5a45e6cd"
       },
       "sample_rate": 44100,
-      "sha256": "62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635",
+      "sha256": "b69009eca9c3ff94142e216fff88a71e7f8f25fe45caaa922870062f52e85edb",
       "status": "available",
       "timeline": {
         "bar_sec": 1.713184,
         "bpm": 140.09,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.378682
+        "downbeat_sec": 1.981717,
+        "lead_sec": 1.981717,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 1.93403
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/4bfe90ef136b/guides/62a20a2eec85b7d1821056691d88ae9c78c57613d9af0b213ec91be4a3980635/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/4bfe90ef136b/guides/b69009eca9c3ff94142e216fff88a71e7f8f25fe45caaa922870062f52e85edb/all.wav"
     },
     "music/songs/Вирус - Ты меня не ищи": {
       "bytes": 39077606,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 221.52771,
-      "key": "cherry-dash/13127f359691/guides/b505bde2b10b6f38edd64379b96c7144a52002d9f9b7af67de4ee4e75a09d8bd/all.wav",
-      "mix_sha256": "3875609a82eaf84a61dc71f99ed9b3f60cd55d917e33888bc640347306e84a36",
+      "key": "cherry-dash/13127f359691/guides/9dd065c65fc3a14ca0b903d9e48903a5bd4c6dd4028b3c6f00d4a46b00e46715/all.wav",
+      "mix_sha256": "44a6d96618d712d7322fd3f8d468bb0604b4938dffa83706e14d7b866a0b65ec",
       "render_audio": {
-        "click.wav": "21a7325ecea910d3e966ce2a48bc2c25e59fb0da0dd3f88edcf7fb1b308cd9e8",
-        "cues.wav": "c2dabdc86fedc2aa716b4b9f9d8bced3a500419e7ed7e5ac20c48331394cb92c",
-        "pb-bass.wav": "f6cb5abe5d951f4604f0a2a56ee46e69dad85335fd1a4a4d3a9947ab376e0872",
-        "pb-other.wav": "b43e6ef1262de72691bc51b2c0bf8e65fc4d756ff1ddb3a01124680b9d0b861b"
+        "click.wav": "b24fb8b25433122d2b132327743a1b78c1b345fb0d80029b537193943adec0e2",
+        "cues.wav": "3daf189c0745014d0cb9d7aad83cbc4d1b99c85b405663532065aeecfc006d5e",
+        "pb-bass.wav": "6cb44720149a35aa10f2223e018c4a14d6a704e657b98151b43b703098ecd389",
+        "pb-other.wav": "ac319b6e0e1ffa3679f2fd6a55483e88e7814ea0347d093cc4dd6a6d270a4631"
       },
       "render_pcm": {
-        "click.wav": "13cf7d410abc504a3f25a3e71e8bef75a427fa9a0338e1b7ff2ba89cf9fb6869",
-        "pb-bass.wav": "6ae1e75e7ca81340cb5ace1c4b40c9ba894cd4619bdb92c375bc5b1416115bf4",
-        "pb-other.wav": "690662243606381944e29a919d4a491b5d3a155f17b58c2f7bb204bccaed2b53"
+        "click.wav": "6f899ce25e1602e25fc1c82fe16dfa93acb61f4d0725c3b7c969ffc9524297b7",
+        "pb-bass.wav": "a49c7224143cbc1e7b16364b1adc57ff4d2c24d021124b50b6f0c4bd828b820d",
+        "pb-other.wav": "74490a632486a55ab597c1b2856be6928d2371b1a6e695abb90295f0dcd113f3"
       },
       "sample_rate": 44100,
-      "sha256": "b505bde2b10b6f38edd64379b96c7144a52002d9f9b7af67de4ee4e75a09d8bd",
+      "sha256": "9dd065c65fc3a14ca0b903d9e48903a5bd4c6dd4028b3c6f00d4a46b00e46715",
       "status": "available",
       "timeline": {
         "bar_sec": 1.744313,
         "bpm": 137.59,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.440939
+        "downbeat_sec": 2.880594,
+        "lead_sec": 2.783156,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.832907
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/b505bde2b10b6f38edd64379b96c7144a52002d9f9b7af67de4ee4e75a09d8bd/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/13127f359691/guides/9dd065c65fc3a14ca0b903d9e48903a5bd4c6dd4028b3c6f00d4a46b00e46715/all.wav"
     },
     "music/songs/Елена Терлеева - Солнце": {
-      "bytes": 38753838,
+      "bytes": 37287014,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 219.69229,
-      "key": "cherry-dash/8aed085975f2/guides/17253a4e5e91085e07b80ba6fc3a7b3d56c070cc56f30b56535b037f08634165/all.wav",
-      "mix_sha256": "2da6397e6697f21c5a0dfb90ddf91ecc2d017cf50a6c38b154c4e30876ea776b",
+      "duration_sec": 211.376961,
+      "key": "cherry-dash/8aed085975f2/guides/0758534f6c0dd1ed4efe2d8908990d63a96407eea3bf53fb3c8f2c067a2de882/all.wav",
+      "mix_sha256": "4a5c1d75fa26f1b4161b4e68dba2511c94c7216fe32c6a72e30b5f5a00552ca7",
       "render_audio": {
-        "click.wav": "680f506e69a9da4bf475b041b9db44290017379f7c57d511d4174b18d45c80f9",
-        "cues.wav": "3f9766198dbcd62ac7c6c68de5c8962bddd48a7cf1c3aa881c0e1905c92aba2b",
-        "pb-bass.wav": "314f46b1bdc00ba8232d478a8b9ddd4b8ff6a9b48ce820c81c999476cf034d1c",
-        "pb-drums.wav": "775fceb818453e611525fa7f4cbeb33a7875b9bbc3c14132d829d5de870569ee",
-        "pb-other.wav": "bab591c5397b8905cde4fcddf068e6bffe7f04896ab388bf77443273da9ff8f1"
+        "click.wav": "ab3a6df1f8a2bbc2fda79a1cde03fdb07a3240792a9b92d5f3da8b608200e8e5",
+        "cues.wav": "403d6b1c0236052624f91fa14b4440b70024877796cafacc756aed0e54fbd258",
+        "pb-bass.wav": "4c8fc5ed7938d6f4c7d75405c6393380ad05051fd66204812b5b85c5fb66326a",
+        "pb-drums.wav": "8f778684602f69a27a125389477256f2590cb9a53256af1969555eca7529acb2",
+        "pb-other.wav": "080aa5b490f752bf72ad7802a8622cc00b070e781fc6e303e5652f86e30fb790"
       },
       "render_pcm": {
-        "click.wav": "2f7f4813006a182cc9b62ee71a46dd24bf5436494f5f9639b280c4312ea8a4eb",
-        "pb-bass.wav": "d4949e4d844bcfec5ea7befc6686df5bce5802841e6f608bc5ca509ed8ada1a2",
-        "pb-other.wav": "0c23e7ca4003990d57a090f0bd5b298a7373f2506638ff47848decec92ed1ed3"
+        "click.wav": "b7d0b731f754d0539d0e33dd6e250284f34bf880f1f49674265f8b176d574b72",
+        "pb-bass.wav": "a93e6a8f984b84b2934d25f1fb215799ea4211d6cfb9b182f334ea6c15a4883e",
+        "pb-other.wav": "a1cd8f3cfe2c576e8d8d90a97f605c884715641156d568f7f51756ac306cb5bb"
       },
       "sample_rate": 44100,
-      "sha256": "17253a4e5e91085e07b80ba6fc3a7b3d56c070cc56f30b56535b037f08634165",
+      "sha256": "0758534f6c0dd1ed4efe2d8908990d63a96407eea3bf53fb3c8f2c067a2de882",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.632194
+        "downbeat_sec": 2.761573,
+        "lead_sec": 2.663841,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.70146
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/17253a4e5e91085e07b80ba6fc3a7b3d56c070cc56f30b56535b037f08634165/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/8aed085975f2/guides/0758534f6c0dd1ed4efe2d8908990d63a96407eea3bf53fb3c8f2c067a2de882/all.wav"
     },
     "music/songs/Кислотный DJ": {
       "bytes": 41731318,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 236.571429,
-      "key": "cherry-dash/fd31c4f9ad95/guides/750e30e1a7eacd7984662e7e2d276dee1a29a33f270d6552641b3b37ede07e00/all.wav",
-      "mix_sha256": "47c96edcc23b05c4f482ebc0f491f29ca6c2598f49632a6fc0f80245f55459fd",
+      "key": "cherry-dash/fd31c4f9ad95/guides/c2d3eced2b19826e34a0db066dfeb06a89da001a3a664c9352c019bf336cbdfc/all.wav",
+      "mix_sha256": "4d6607e4eccaec251d0cafc3c732eab4ba8c19fe0080fc3ba1d2816b1a896fd9",
       "render_audio": {
-        "click.wav": "01d701010e7f6b2b08981be13d55b69a8a91122d55bed571b04d7043ff88c927",
-        "cues.wav": "dd0afc2d3827650678fd400f5e1ea3535c7aeb992fe983fc545e6921787267f7",
-        "pb-drums.wav": "b6de50e198881619e84e3b363cf0ad0b98ee4c42c0ae192b318280a1148a42df",
-        "pb-other.wav": "9e73af0232b4bd59be94a4da2025eeae809d1518254db8fa170defaf400be0dc"
+        "click.wav": "ae3d59e4d48aff3eebbddbc6306e467cd6a2d80f1ccbbf42815a5b7645f5252a",
+        "cues.wav": "20e4a4cc6aba33a03a95936ba91ba89b891c96af7a5c40fb3f3dbb851f37e2f2",
+        "pb-drums.wav": "0ed3c921c7480d3d537f0354a55ab77b48ceea6ff58e0aa72952b6e3bfcc4a38",
+        "pb-other.wav": "53bb158830ff21fbfbf040d63a1ff47e2a8e6e73dfc130aa843550975ef44217"
       },
       "render_pcm": {
-        "click.wav": "abcfa0154385b24d27f45db2ac5df3aac59dbb757a6aee29e7443cd7e774544b",
-        "pb-other.wav": "d1c12cc17de42a38dc6ad71e4c10288d0124d5728c3fbe6658cbdf308ed56408"
+        "click.wav": "803e14d529241b76d834723919d4d2720706598f8f3c6ca50fa3c601e467fd64",
+        "pb-other.wav": "88db57d6e92348774ff718fbf239973a0a33de44d26b7bbfeae86f7c9104de52"
       },
       "sample_rate": 44100,
-      "sha256": "750e30e1a7eacd7984662e7e2d276dee1a29a33f270d6552641b3b37ede07e00",
+      "sha256": "c2d3eced2b19826e34a0db066dfeb06a89da001a3a664c9352c019bf336cbdfc",
       "status": "available",
       "timeline": {
         "bar_sec": 1.714286,
         "bpm": 140.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.798458
+        "downbeat_sec": 2.9961,
+        "lead_sec": 2.928889,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.365986
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/750e30e1a7eacd7984662e7e2d276dee1a29a33f270d6552641b3b37ede07e00/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/fd31c4f9ad95/guides/c2d3eced2b19826e34a0db066dfeb06a89da001a3a664c9352c019bf336cbdfc/all.wav"
     },
     "music/songs/Король и Шут - Кукла колдуна": {
       "bytes": 36182298,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 205.114399,
-      "key": "cherry-dash/ccbcf0c2cad9/guides/68d73d61e443cea9465fb810a104a24bc0734535bb97715546664ef932769072/all.wav",
-      "mix_sha256": "ef188b5e9829b58a27e5e55b6f3d4ef2c4ae4c41e1e2f68b47aeaf1a80728262",
+      "key": "cherry-dash/ccbcf0c2cad9/guides/1a1a47a3fa03a4dc0bde1fed1a33d6916d9a9c02e86e10e1da4bf6aceb026875/all.wav",
+      "mix_sha256": "454aeff6b3f40abba1e0f9e47934991b41aab718b10c65e8cffb5b3138ceea44",
       "render_audio": {
-        "click.wav": "84fabe3d85a0eec01dd84d9ce2a76d2f9b8b25989321de247252eb5d5d1be33d",
-        "cues.wav": "813d308099bce22f7b2dea65a9302f138d611731376307d2d898a779e98962fa",
-        "pb-bass.wav": "c32060477aa95edb141665928592c8e6f965c1a3d0e1058074db862d9866001f",
-        "pb-drums.wav": "42d7b5e02a270703827bcecb2a0431cf53c0424c9f4bd7234bf15e3b60247908",
-        "pb-other-keys.wav": "2af86eb6044a72b9b2b73fe3391cc20f44bda07a5909b3e05065f4fb23025dcc",
-        "pb-other.wav": "bf279b8b493a6b79e0790a1dcd162ec320d981b337f24717517a83f008fdd1ef"
+        "click.wav": "66557532425f60a9c788e9e8f8c16170a345ddbf2045a041bb6ae4d6d1dcbe23",
+        "cues.wav": "5b3562a0c5a12f648a194f3532de23e89a31bdf2239502232090bd10ae3b1d96",
+        "pb-bass.wav": "6c055ce8a09d935bce6059138f413eb33e3030b4134b1d034ea77551e1023c30",
+        "pb-drums.wav": "527909102de3437d2600b1c1eec3b7bdfaca95d861bb6d147fbead5fe9183574",
+        "pb-other-keys.wav": "abbcc5dcce6207eec85f3a10e56d211f14497e2aaa8c2a64a6e9587af1b8e497",
+        "pb-other.wav": "2d0966defec41fbe2fce274b5fa6467e92158d9d6f2cad84a3cdcd15b81179f1"
       },
       "render_pcm": {
-        "click.wav": "aab5c95204a70ed048818c5a88b5cda2306ebe726ed8a5b0bc6061c4b854c0c4",
-        "pb-bass.wav": "82cacae7309361fe833ea0b08af4261597121c6427f555fd817ce2e2ba45575d",
-        "pb-other.wav": "5f3d621392617b27d97d2f9d9e4cb55d59b031280d827d6ddd663ba1c6851cab"
+        "click.wav": "a994dcc9b11a67369b1ae61b2bca30a0504b36c00dbb23b5418a3115437cdb4d",
+        "pb-bass.wav": "296c5d786baa2b800dcb4aa1a83c99e3ea78106e1c158104be7a001db75e85e0",
+        "pb-other.wav": "ec98b4bf18ecdb57f074a4021b1e52f8fcfa79ef2dae67563a0a5f3b38cdb7c6"
       },
       "sample_rate": 44100,
-      "sha256": "68d73d61e443cea9465fb810a104a24bc0734535bb97715546664ef932769072",
+      "sha256": "1a1a47a3fa03a4dc0bde1fed1a33d6916d9a9c02e86e10e1da4bf6aceb026875",
       "status": "available",
       "timeline": {
         "bar_sec": 1.615074,
         "bpm": 148.6,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.057926
+        "downbeat_sec": 2.767183,
+        "lead_sec": 2.596525,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.594961
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/ccbcf0c2cad9/guides/68d73d61e443cea9465fb810a104a24bc0734535bb97715546664ef932769072/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/ccbcf0c2cad9/guides/1a1a47a3fa03a4dc0bde1fed1a33d6916d9a9c02e86e10e1da4bf6aceb026875/all.wav"
+    },
+    "music/songs/МакSим - Знаешь ли ты": {
+      "bytes": 42997616,
+      "channels": 2,
+      "content": "clean full music/vocal render; no added click or cues",
+      "duration_sec": 243.75,
+      "key": "cherry-dash/d25496cbe2d5/guides/7d253d31fac66823f5657af4f9c31138476bec046d9232a25f5592ddc24adf6b/all.wav",
+      "mix_sha256": "a51f6f4f4f4c7a1b5f21428320c26106197f0173e949e2e22b63ad56dc0e316a",
+      "render_audio": {
+        "click.wav": "36e8407a82fef42bc33009c72945166e1bced3f07c3cd4dd88292f4bd5dcb4d2",
+        "cues.wav": "2fbe0d46e061860b361551b353d15a267ac352468b11e0b833af21b217bd3fce",
+        "pb-bass.wav": "989299f8e3c6312d82392a3439ec4fa4c19a76873d456598d21e9f4b8b15a9d5",
+        "pb-other.wav": "f6d0bdd0821a0be854a2e496fd14966172b04e5e95ceba671c8983ed05d92218"
+      },
+      "render_pcm": {
+        "click.wav": "60d3988114d9d93fd3582576e7ce551d505765149472bc26d1aa2e0646a1a1aa",
+        "pb-bass.wav": "2f0424252e586619202986350781d151974310eaca83d4577029c13617527866",
+        "pb-other.wav": "92fd1dc7dfbe616f55e324a0fb628d41d8321b3468d837fd842f5c6ee045e9f1"
+      },
+      "sample_rate": 44100,
+      "sha256": "7d253d31fac66823f5657af4f9c31138476bec046d9232a25f5592ddc24adf6b",
+      "status": "available",
+      "timeline": {
+        "bar_sec": 3.75,
+        "bpm": 64.0,
+        "downbeat_sec": 4.792676,
+        "lead_sec": 4.729297,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 4.631293
+      },
+      "url": "https://releases.agentiqa.com/cherry-dash/d25496cbe2d5/guides/7d253d31fac66823f5657af4f9c31138476bec046d9232a25f5592ddc24adf6b/all.wav"
     },
     "music/songs/Мама Люба": {
       "bytes": 43498282,
@@ -2017,7 +2182,7 @@
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 246.588231,
       "key": "cherry-dash/bfc10db79749/guides/0ae6e014af2ed6ddb497fec835fed8a9e957ec53bd78dd47c0fbd72170ade553/all.wav",
-      "mix_sha256": "9e12260b1ae69209ea84e8b54bdeb4e08f1ca3631e60805f036256415de53cab",
+      "mix_sha256": "338ba947027a0585d9894eed4a34052dc40316d43f71a459fc8a33345c6664e0",
       "render_audio": {
         "click.wav": "9ee0d229a1ea292539f7dee8c17823e487bcf99d2cf7a306a7d174d285a3053b",
         "cues.wav": "fff496f9d7f94520bdfadd475273c88d0ed85f3f76171e835b8ab9a9994aa055",
@@ -2046,146 +2211,156 @@
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 188.0,
-      "key": "cherry-dash/b581fa388c98/guides/c7e689eebd6c6b2f35f4d4bedd44c31e2836701aab1cff4ee2d5cb1124ac2fe6/all.wav",
-      "mix_sha256": "8685f9f560bbfaea4bb436aaf6784b16d22bafa0de1149b7a84350238da2950a",
+      "key": "cherry-dash/b581fa388c98/guides/6dbd20e87c7a72a0327c96f96fdb62dba034ff0c4eb67af1755762448a38d2db/all.wav",
+      "mix_sha256": "018692b0d8fae8b7d22a3310b29b7f482d1ad4bc44a1867a31c0a0050ae343ac",
       "render_audio": {
-        "click.wav": "554739a2d7fe9e0829538e95694cb3cbdbb43a440a4ed3f639dd6ab8ef310b82",
-        "cues.wav": "5fbfd45cbabf1cba9396e0d83fb41710613cc94a37f5abde3dad1c6b94a421a6",
-        "pb-bass.wav": "3bcacacde7c37419802fbd286ffd3d15d421c0876bef27441df21db463dbebbe"
+        "click.wav": "4b96219012227cf675055c0060aa5d5ee67108ee1825c2af3ec656d71546f233",
+        "cues.wav": "85ebb3d212297096bd768c727969c7c15adff72d089705ab1e8a6537e568d87a",
+        "pb-bass.wav": "3da767795711ab9594c74455c01ba1c15ca04a09a5a6749ebd5213c678b219f1"
       },
       "render_pcm": {
-        "click.wav": "07fe17a2fef23118d36a2eddb30011dd51065cd0f0b42868b9ea2ff4761b7445",
-        "pb-bass.wav": "71eb9905383714fa5354790bc2366d8a77413dd7d7c9ae20ade358c15d849e01"
+        "click.wav": "4531bc8e7aad784c47edde5432b7d154262b51e78c923bfdb1c0140beaf7692d",
+        "pb-bass.wav": "96e76e5100fbf51a847563bbad59cbf7c2261ee0b3fb281f2fe5279b5bb90a72"
       },
       "sample_rate": 44100,
-      "sha256": "c7e689eebd6c6b2f35f4d4bedd44c31e2836701aab1cff4ee2d5cb1124ac2fe6",
+      "sha256": "6dbd20e87c7a72a0327c96f96fdb62dba034ff0c4eb67af1755762448a38d2db",
       "status": "available",
       "timeline": {
         "bar_sec": 2.0,
         "bpm": 120.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.97458
+        "downbeat_sec": 2.713923,
+        "lead_sec": 2.66356,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.688503
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/b581fa388c98/guides/c7e689eebd6c6b2f35f4d4bedd44c31e2836701aab1cff4ee2d5cb1124ac2fe6/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/b581fa388c98/guides/6dbd20e87c7a72a0327c96f96fdb62dba034ff0c4eb67af1755762448a38d2db/all.wav"
     },
     "music/songs/Мумий Тролль - Владивосток 2000": {
       "bytes": 28995146,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 164.370907,
-      "key": "cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav",
-      "mix_sha256": "1d404a94601372ef136f64186dd820f9baa571a4fa3e56563248f63a3df500ff",
+      "key": "cherry-dash/d19286157d3c/guides/2bc25a02d5315331dff5615965294cd6d68563162820ca23f8c39f5ad8435d7d/all.wav",
+      "mix_sha256": "1110bff16c8d46b7304d014f56b185d54bea421343515241c6eaad28ab5dfcd8",
       "render_audio": {
-        "click.wav": "c7f9d408bde75823fbbff4335295fc95becd49a0be2de754e2d7aa7ecee56fcd",
-        "cues.wav": "dc6380c147daf783969f666c2b6ebe55f13f5eab2384c4cc511eb3b4dea67840",
-        "pb-bass.wav": "2c6a356c3538159b4b5b3a0d780a820c543ce42e33332c42e3dfb2037644df0c",
-        "pb-other.wav": "985681ca64741a02edcca66c69b6233a1d2360b7d9cfe2d6e64eccaeab3ff5a2"
+        "click.wav": "526ce0b680ae8f7d74c9882795124471c0a4227acd75b9fc9aabb7eb4fc69374",
+        "cues.wav": "0ffa7409b7fc0f43bba423afcdb0a5226901ccd688b6227795e04218407ea40d",
+        "pb-bass.wav": "0e0a768e6cc45ce68ace6d9caec3290568fcaaa518567303ea60444792650e0c",
+        "pb-other.wav": "fb8b7430e2e3d67475dc660112da12e1e0500e9c6751a660b02003527d760e26"
       },
       "render_pcm": {
-        "click.wav": "e095d4184260ef8453f0f6fc57f34742db6326737fdc5d10c6a4cedc42ed387b",
-        "pb-bass.wav": "02d64c37afdff94301d39703cc41a75a87e245c4df27e0b11665c9e3ed9791e4",
-        "pb-other.wav": "372cf60a2586eb4186a649c4260e0236cd7c9d9ab4842eed2192f883396eafd2"
+        "click.wav": "6bb2c37c69f4d0c27177c9aa1639521a9c0676e18afca87e997142269ce231ba",
+        "pb-bass.wav": "44a1c5f9ab85633f30bee72ccde6546aa6f6bef4e217c0b23bc28ca451ba299a",
+        "pb-other.wav": "551557b8019c8e3a6fef9ae35d910f161f7940ef7355bfca232a8632b2d4bb0d"
       },
       "sample_rate": 44100,
-      "sha256": "0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79",
+      "sha256": "2bc25a02d5315331dff5615965294cd6d68563162820ca23f8c39f5ad8435d7d",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846864,
         "bpm": 129.95,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.493298
+        "downbeat_sec": 3.632805,
+        "lead_sec": 3.54598,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 3.432374
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/d19286157d3c/guides/0066cb86f7fb6db3860407e01a2999e44cc10d1dd55ed3955a4f854e241ebe79/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/d19286157d3c/guides/2bc25a02d5315331dff5615965294cd6d68563162820ca23f8c39f5ad8435d7d/all.wav"
     },
     "music/songs/Мумий Тролль - Медведица": {
-      "bytes": 41684794,
+      "bytes": 41359130,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
-      "duration_sec": 236.307687,
-      "key": "cherry-dash/42a10b949a41/guides/7e5732cb1698b243aa709471222c6e5c0f735571cb4ad7046d0b148864d27ed8/all.wav",
-      "mix_sha256": "afaa645156ba954725b9225e5c42a7a714aaab187011bd5974bcf413c5a98eb3",
+      "duration_sec": 234.461519,
+      "key": "cherry-dash/42a10b949a41/guides/ffe420a28590835488ed1a79d15b1a9aa3b118fe35b2288b29c97fd46485b20f/all.wav",
+      "mix_sha256": "aba1b338b650315d06e6abfec05ce6cca6a9e98be5ca3e2e005e1f3c8191f0e2",
       "render_audio": {
-        "click.wav": "a58975af38f033c796f452e4be7f9651d3de0aa775bbf2dc2d812cb8927a48c6",
-        "cues.wav": "f887c1117bc833eb700000e26c208423b7b1ef3d9e65fe79fb7929212ce48fd3",
-        "pb-bass.wav": "58dd0ba71f6f288ddd89c905098735a1d8c969c5f732f49500b398e1021af77c",
-        "pb-other.wav": "f60d3c4daf60cd28167e9f40e387fefedbfc44718f524a5ea3fe3c9eb2ce5b60"
+        "click.wav": "98f9bd69dc16af0657b857a975ed3c3fe3395743cca4755ccfda5eec5b8a0bdc",
+        "cues.wav": "4ea0b003b94719370205b5f736ba98599a4a2b7c0cf44d4a3489926a36a0df4e",
+        "pb-bass.wav": "ac1773e5655238109548434d3214dcf988d87ef454550b02899038e88c099db2",
+        "pb-other.wav": "cdff0f4961bc83d774669b138b12efb27a7587a2701b9bff0f2ead5805a0c278"
       },
       "render_pcm": {
-        "click.wav": "04ae74fff2f99523e8cf7b5b077bcb45cfd8d23f421bacfb622fe13e771bb4f0",
-        "pb-bass.wav": "0578e86a3404fe23b1c8c31c60b569686c6d054686f5dfb50e06accedde50d07",
-        "pb-other.wav": "6981cd2cc6d078b3a91b9c9c76f2f56257a5f9933b8f8b1b721f89f0db2a0718"
+        "click.wav": "40806994e5f17a9b9e4f23d53b08b196cb2eccabbafe97239d451b754ca66e2e",
+        "pb-bass.wav": "8514d2d3329297a5f73931887c3c75e8091e4a780f3944cac283bf812fd982cf",
+        "pb-other.wav": "16138ca477e41414fa21caa839526083063d1cbf2de65a99d97bc299e0fe32a4"
       },
       "sample_rate": 44100,
-      "sha256": "7e5732cb1698b243aa709471222c6e5c0f735571cb4ad7046d0b148864d27ed8",
+      "sha256": "ffe420a28590835488ed1a79d15b1a9aa3b118fe35b2288b29c97fd46485b20f",
       "status": "available",
       "timeline": {
         "bar_sec": 1.846154,
         "bpm": 130.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": -0.619915
+        "downbeat_sec": 2.899079,
+        "lead_sec": 2.830304,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": -1.413143
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/42a10b949a41/guides/7e5732cb1698b243aa709471222c6e5c0f735571cb4ad7046d0b148864d27ed8/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/42a10b949a41/guides/ffe420a28590835488ed1a79d15b1a9aa3b118fe35b2288b29c97fd46485b20f/all.wav"
     },
     "music/songs/Такая любовь": {
       "bytes": 43276918,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 245.333333,
-      "key": "cherry-dash/059476adbfec/guides/25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5/all.wav",
-      "mix_sha256": "192c64d4a8b3cf3e1100183f18f826e7ee22cf21266d66d51b50a286093a817f",
+      "key": "cherry-dash/059476adbfec/guides/dc85dac05498864f19b5b187e2c3349523a6047494578e027a7b93ecff53be0b/all.wav",
+      "mix_sha256": "7eff68a60eb02c3429136b46a5492bab9c106e33612219cf39c2f228b1ee19ad",
       "render_audio": {
-        "click.wav": "b96149fd22a0226fdf14057793015f95beb3205ba3a6ffaf9cf44506bf165a69",
-        "cues.wav": "ac58512650d85b5d6dabd48927112ec7964897dfd9a7a5853c3578d6bd7c3728",
-        "pb-bass.wav": "52bc1fff82b608c5677cf5820e780ce3496db2b836d0cc7a3886ee2ae2307e89",
-        "pb-drums.wav": "05ecb1236f71945177df69e8149126918af8459a3ed3f54ce877f20b4ae8535d",
-        "pb-other-keys.wav": "31cf5b727706ae852489ea96809ebc4d57985c300f24e12fb89b21622a9f66c3",
-        "pb-other.wav": "12e076a06b2c77994a698f676cc82e07640a435fd70fa6305cf9a3d760a0fcf0"
+        "click.wav": "2804c35f8cb8df65fa4d54a3ab819cd316c303a7910380eb4d288815817b7e5f",
+        "cues.wav": "34664cfd2bb65f535d0c510021b74661d23f4493f2e37d964c31699cb566890f",
+        "pb-bass.wav": "70480b9c3e76fc6a2babe29428ab89cf749a05e128f15007d3f1be9312513725",
+        "pb-drums.wav": "8d8f48031989b641bb116244771eafc36609e67fcf96a782682dbec5cc7a3962",
+        "pb-other-keys.wav": "49085caee7fc79f70736b23a717cf5a6f63c82e3ef94b9d07e98efa68e62d1ea",
+        "pb-other.wav": "91318aff0ad96a8402fddcf1c5bed78d7683c3bdb2ed83e442b592f683487843"
       },
       "render_pcm": {
-        "click.wav": "a0ca6a3daea81fe8ab4bf164a27b5cf381368ab5e9295c98628c774d8f855d3a",
-        "pb-bass.wav": "646542b3f769d0317c17de6b9c039fb60d0bb521aed8a779eea51021aa15f9b2",
-        "pb-other.wav": "e04d56dbeddc5c65a14e63156e4c2a98a8356abf7087396f39edceb26c46a7c6"
+        "click.wav": "af7728607da50dfb736f31005f4465e254321ffcf0e08a0f808c7a13f40b90cd",
+        "pb-bass.wav": "cd760de0c4ae77a38f46d5d6f45e28d4907aac361fc0c32e1888d479eaa62bd3",
+        "pb-other.wav": "3665fb1e179055a2db82eee29005d3db77bd1498cf1a55a0641aa2c61c1dbb3a"
       },
       "sample_rate": 44100,
-      "sha256": "25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5",
+      "sha256": "dc85dac05498864f19b5b187e2c3349523a6047494578e027a7b93ecff53be0b",
       "status": "available",
       "timeline": {
         "bar_sec": 1.777778,
         "bpm": 135.0,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 2.99542
+        "downbeat_sec": 2.874603,
+        "lead_sec": 2.604626,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.314467
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/25ad1d50349ba29e225f28df8b4885968b70abb353c5711a2652017fe967dfb5/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/059476adbfec/guides/dc85dac05498864f19b5b187e2c3349523a6047494578e027a7b93ecff53be0b/all.wav"
     },
     "music/songs/Чичерина - Ту-лу-ла": {
       "bytes": 25609182,
       "channels": 2,
       "content": "clean full music/vocal render; no added click or cues",
       "duration_sec": 145.1761,
-      "key": "cherry-dash/fb79a34f990d/guides/05e7d5e65cf3b0b5fe58869a43fdbd794331136f680d3f0625af6a79587d434f/all.wav",
-      "mix_sha256": "9b581a3785fea7f3c346b61c2873e86fc17f6cba3c084ea51572105a37fe5fc3",
+      "key": "cherry-dash/fb79a34f990d/guides/3dd5b0143dc8d7f4b14d4362c99899fc6fc778f69471036096ff3d635b58ea83/all.wav",
+      "mix_sha256": "0350323877488cec12b367463efeeb355c9a13e1589ebc38f2ed8917dbb690db",
       "render_audio": {
-        "click.wav": "a1b6f611f585e766546796fdb444dff902910e82a36a007b785f30fc86df5efc",
-        "cues.wav": "36a7549e2c214d4ed9d660a42a28ff314770a2b46ab3db1a85763c1ce40e02ec",
-        "pb-bass.wav": "0137455cd31e195ce26807cf73bd174547aa7166dee0d3a8b3ec4503c222fbc1",
-        "pb-drums.wav": "4b6652f0befb03e39cd5f41538ef845ee04500e3b269b2ed315dd49ac292d569",
-        "pb-other.wav": "601be1524bd43d5aa4a80ab455010521bc759132e17f4ee2c3729f796c5c333d"
+        "click.wav": "412226717cb6fec727ca1a8c3de854f97bf3262188860d9a44ee4e72262ae1d0",
+        "cues.wav": "a8c3c421a1ab4cad943dec6bc0c78529268262290f2a5159b06f3189f75ec4b7",
+        "pb-bass.wav": "67ff07004de2dc26e9a111554a2de90c5e9a9af4a7ea982985221544edc02091",
+        "pb-drums.wav": "b70c6dbbab4aa24b78afc46ac8c3ebd4eccde2548eeb5c41d668229e1d161b0e",
+        "pb-other.wav": "1c6a9a06eab476fe53da169bbf39cb16bd2b81439207dd4d8a78ff8eb77a5290"
       },
       "render_pcm": {
-        "click.wav": "bda5bd9ecaca2a29d1c5c6fa7ff90bbd07144d77bc5b2fd9164aadf844104c8a",
-        "pb-bass.wav": "cd96d9ce449450d466ffedec1be23ada154d5550b9648a818cea5988da0dc5f1",
-        "pb-other.wav": "6715db5cfddcb607787bde6ab348e11b97381be658abde7a3c8b54f4f7a28e13"
+        "click.wav": "0d6c444e1fd1c3c0451ce8658a86a321a9285e05773e10afbb43621f9e671e09",
+        "pb-bass.wav": "b4d91c3adebd6412e2a3d2461dcafd9df0619c0f68598ad8285309e1aefd1a35",
+        "pb-other.wav": "37fcd7dcc9714cb91d51f7f32faa26f05b6a9658e600ff1d19f77076a835b2ef"
       },
       "sample_rate": 44100,
-      "sha256": "05e7d5e65cf3b0b5fe58869a43fdbd794331136f680d3f0625af6a79587d434f",
+      "sha256": "3dd5b0143dc8d7f4b14d4362c99899fc6fc778f69471036096ff3d635b58ea83",
       "status": "available",
       "timeline": {
         "bar_sec": 1.837672,
         "bpm": 130.6,
-        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); t=0 = bar line; downbeat of stem grid on a bar line",
-        "offset_sec": 3.233145
+        "downbeat_sec": 2.563817,
+        "lead_sec": 2.523568,
+        "note": "add offset_sec to stem-timeline times (cues.json/structure.json); downbeat_sec = render time of music bar 1.1; t=0 is NOT a bar line (front = just enough room for the start cue, 2026-11-20)",
+        "offset_sec": 2.121618
       },
-      "url": "https://releases.agentiqa.com/cherry-dash/fb79a34f990d/guides/05e7d5e65cf3b0b5fe58869a43fdbd794331136f680d3f0625af6a79587d434f/all.wav"
+      "url": "https://releases.agentiqa.com/cherry-dash/fb79a34f990d/guides/3dd5b0143dc8d7f4b14d4362c99899fc6fc778f69471036096ff3d635b58ea83/all.wav"
     }
   }
 }
