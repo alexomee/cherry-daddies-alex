@@ -1016,6 +1016,7 @@ LAYER = [("lead",    LEAD_TONE,                "lead,lead_lo",     None,        
          ("stab",    "PRST_J Nebulous Forms/31", "stab",           None,        STAB_FX),
          ("arp",     "PRST_F Essential/271",   "arp",              None,        ARP_FX),
          ("pad",     "PRST_L Essential 2/207", "pad",              None,        [])]
+LEAD_PICK = "s84"                            # which lead goes into the layer: "s84" (the GM-800 scene, recorded), "" (LAYER's plugin tone), "margherita", "blend"
 VOICE_DB = {"whistle": 7.0}                  # by ear, on top of the gain from the stems (Alex 2026-11-21: «whistle очень тихо надо ему +4db», then «давай еще громче на 3дб»)
 LAYER_LIMIT = {"lead": -4.0}                 # dBFS ceiling of a voice after its gain (pedalboard Limiter)
 ZEN_LAYER = os.path.join(OUT, "zenology", "layer", "pb-synths-zen.wav")
@@ -1079,6 +1080,11 @@ def cmd_zenlayer():
     stems_n = int(sf.info(song.stem("keys")).frames * SRZ / sf.info(song.stem("keys")).samplerate)
     orms = lambda a, b: 20 * np.log10(np.sqrt(stem("keys", a, b) ** 2 + stem("strings", a, b, 3.5) ** 2))
     pbfx = resample_poly(sf.read(FX, always_2d=True, dtype="float32")[0], 160, 147, axis=0).astype(np.float32) if os.path.exists(FX) else None
+    # Alex 2026-11-21, after hearing all of them in the mix: «в итоге Слой: лид сцена 84 SYNTH PLEDGE лучше всех звучит -
+    # видимо в слоевых пресетах гм800 что то есть». LEAD_PICK is written as the layer itself, the others keep a suffix.
+    leads = [(("" if nm == LEAD_PICK else (nm or "saws")), x, w) for nm, x, w in leads]; leads.sort(key=lambda v: v[0] != "")
+    if leads[0][0] != "":
+        raise SystemExit(f"the take of the picked lead '{LEAD_PICK}' is missing")
     for name, lead, what in leads:
         V["lead"] = lead; g["lead"] = left(stem("keys", 59, 67), cal_whistle * rms(V["whistle"], 59, 67)) / rms(lead, 59, 67)   # solo = lead + whistle
         n = max(len(x) for x in V.values()) + head; layer = np.zeros((n, 2), np.float32)
@@ -1252,10 +1258,10 @@ def cmd_preview():
     src = {"orig": orig, "mine": mix(vm) + fx, "midi": mix(va),
            "roma": fit(rd(os.path.join(SONG, "parts", "roma-keys-2810.wav")))}
     src["roma"] *= rms(orig, 9, 17) / rms(src["roma"], 9, 17)
-    ZT = [("zen", "", "Слой: лид Saws Key 10", "выбранные тоны, вся песня; лид «слишком электрический»"),
-          ("zen-marg", "-margherita", "Слой: лид Margherita Pizz", "тот же слой, лид — Margherita Pizz + объём + повтор 1/8"),
-          ("zen-s84", "-s84", "Слой: лид сцена 84 SYNTH PLEDGE", "тот же слой, лид — твой первый выбор с GM-800 + повтор 1/8"),
-          ("zen-blend", "-blend", "Слой: лид слияние", "тот же слой, лид — Saws Key 10 приглушённый + стопка «как SYNTH PLEDGE», поровну")]
+    ZT = [("zen", "", "Слой — выбран: лид сцена 84 SYNTH PLEDGE", "так будет в плейбеке: лид с GM-800 + повтор 1/8, остальное тоны плагина"),
+          ("zen-saws", "-saws", "Слой: лид Saws Key 10", "для сравнения; «слишком электрический»"),
+          ("zen-marg", "-margherita", "Слой: лид Margherita Pizz", "для сравнения: Margherita Pizz + объём + повтор 1/8"),
+          ("zen-blend", "-blend", "Слой: лид слияние", "для сравнения: Saws Key 10 приглушённый + стопка, образцы нот")]
     from scipy.signal import resample_poly
     for key, suf, _, _ in ZT:                                   # the layers of cmd_zenlayer, stem frame
         if os.path.exists(ZEN_LAYER.replace(".wav", suf + ".wav")):
