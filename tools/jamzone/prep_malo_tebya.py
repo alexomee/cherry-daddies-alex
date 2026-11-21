@@ -276,10 +276,23 @@ SOUND_TITLE = {"pad_ch": "Пэд припева (такты 21–24), с кач�
                "pad_v": "Пэд куплета (такты 13–16, барабанов ещё нет)"}
 
 
+def orig_bandkey(song):
+    """The original keys + other for the ear: the raw Moises stems (NOT the site stems - with Roma's layer "replaces"
+    them they ARE Roma's take) transposed to the band key (cached, stereo, 44.1 kHz, raw-stem time)."""
+    op = os.path.join(OUT, "orig-keys-other-bandkey.wav")
+    if not os.path.exists(op):
+        tmp = op[:-4] + "-src.wav"
+        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-i", song.stem("keys"), "-i", song.stem("other"), "-filter_complex",
+                        "amix=inputs=2:normalize=0", "-ar", "44100", tmp], check=True)
+        subprocess.run(["rubberband", "-q", "-3", "-p", str(song.semi), tmp, op], check=True); os.remove(tmp)
+    return op
+
+
 def cmd_sound():
     """The page where Alex picks the sound: per voice the record, Roma and the best takes (scenes and tones in one
     ranking), all at the record's loudness, in sync. The chorus takes get the layer's duck (the pumping is half of
-    that sound); the record is in its own key (D minor), the takes in the band's (C minor)."""
+    that sound). The record is heard in the band key (orig_bandkey: Alex compares by ear, a tone apart is no
+    comparison); the scores and the hints are measured against the untouched stems."""
     import re, soundfile as sf
     gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); sct = begi().scene_table(); gmm = gp.gmm; rows = tone_rows()
     os.makedirs(PAGE, exist_ok=True); n = int((4 * song.bar + 1.0) * gmm.SR); T = []; groups = []
@@ -312,7 +325,8 @@ def cmd_sound():
         hint = ((lambda x: (lambda c, h: f"верха {h - h0:+.0f} дБ к записи · стерео {c:+.1f}")(*stat(x))) if vn == "pad_ch" else
                 (lambda x: f"центр спектра {cen(x):.0f} Гц (запись {cen(ref):.0f}) · стерео {stat(x)[0]:+.1f}"))
         L = gmm.lufs(ref); gid = "g-" + vn; groups.append(f'<h2>{SOUND_TITLE[vn]}</h2>\n<div class="grid" id="{gid}"></div>')
-        mp3(f"snd-{vn}-00-stem.mp3", ref); T.append([gid, keys[k], f"snd-{vn}-00-stem.mp3", "Оригинал", f"стемы keys + other, ре минор (на тон выше) · стерео {c0:+.1f}", True]); k += 1
+        rk = song.read(orig_bandkey(song), t0, t0 + n / gmm.SR); rk = rk * 10 ** ((L - gmm.lufs(rk)) / 20)
+        mp3(f"snd-{vn}-00-stem.mp3", rk); T.append([gid, keys[k], f"snd-{vn}-00-stem.mp3", "Оригинал", f"стемы keys + other, −2 полутона (наша тональность) · стерео {c0:+.1f}", True]); k += 1
         ro = song.read(os.path.join("parts", "roma-keys-2810.wav"), t0 + lay["rec_off"], t0 + lay["rec_off"] + n / gmm.SR)
         ro = ro * 10 ** ((L - gmm.lufs(ro)) / 20); mp3(f"snd-{vn}-00-roma.mp3", ro)
         T.append([gid, keys[k], f"snd-{vn}-00-roma.mp3", "Рома, концерт 28.10", "сейчас в плейбеке · " + hint(ro), False]); k += 1
@@ -347,7 +361,7 @@ def cmd_sound():
     script = re.sub(r"const KEYCODE = \{[^}]*\};", "const KEYCODE = {" + ", ".join(f'{c}: "Key{c}"' for c in "QWERTYUIOPASDFGHJKLZXCVBNM") + "};", script)
     main = ("<main>\n  <h1>Мало тебя — выбор звука пэда</h1>\n  <p class=\"sub\">Четыре такта на голос, всё на одной громкости, играет по кругу; "
             "переключение идёт с того же места. В каждой группе оригинал, Рома и лучшие кандидаты — твои сцены и отдельные тоны в одном "
-            "рейтинге (сходство с оригиналом — только подсказка, выбираешь ты). Оригинал звучит на тон выше: он в своей тональности. "
+            "рейтинге (сходство с оригиналом — только подсказка, выбираешь ты). Оригинал опущен на тон, в нашу тональность. "
             "Дубли с прибора в стерео. <kbd>пробел</kbd> пауза, клавиши на кнопках.</p>\n" + "\n".join(groups) + "\n</main>")
     head = re.sub(r"<title>.*?</title>", "<title>Мало тебя — выбор звука</title>", head, flags=re.S)
     open(os.path.join(PAGE, "sound.html"), "w", encoding="utf-8").write(head + main + bar_html + script)
@@ -400,15 +414,7 @@ def cmd_preview():
     rms = lambda x, a, b: np.sqrt((seg(x, a, b) ** 2).mean()) + 1e-12
     st = lambda p: fit(rd(os.path.join(SONG, "auto-render", "stems", p)))      # site stems: render time, band key
     off = int(round(song.off * SR))
-    # NOT the site stems keys / other: with Roma's layer "replaces" them they ARE Roma's take. The original =
-    # the raw Moises stems, transposed to the band key here (cached), placed at the render offset.
-    op = os.path.join(OUT, "orig-keys-other-bandkey.wav")
-    if not os.path.exists(op):
-        tmp = op[:-4] + "-src.wav"
-        subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-i", song.stem("keys"), "-i", song.stem("other"), "-filter_complex",
-                        "amix=inputs=2:normalize=0", "-ar", str(SR), tmp], check=True)
-        subprocess.run(["rubberband", "-q", "-3", "-p", str(song.semi), tmp, op], check=True); os.remove(tmp)
-    orig = fit(np.concatenate([np.zeros(off), rd(op)]))
+    orig = fit(np.concatenate([np.zeros(off), rd(orig_bandkey(song))]))        # the original in the band key, at the render offset
     duck = fit(np.concatenate([np.ones(off), gp.duck_gain(song, DUCK, int(sf.info(song.stem("drums")).duration * SR), SR)]))
     duck[len(duck) - 1] = 1.0
     mine, alt = json.load(open(PART, encoding="utf-8")), json.load(open(ALT, encoding="utf-8"))
