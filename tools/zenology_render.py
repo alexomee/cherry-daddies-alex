@@ -16,6 +16,10 @@ and bring him as variants). ZEN-Core is the engine of both; a tone goes ZENOLOGY
                                      #   against the song's stems like gm800_part.py sweep; the best takes stay
     zr page "<song>" NOTES.json      # listening page of this song's sweeps: original + the best takes per voice
     zr render "PRST_B AX Collection/196" "<song>" NOTES.json riff 105 109 out.wav [--vel 100]
+    zr record "<song>" NOTES.json    # the layer takes that name a plugin tone ("zen": "BANK/NUMBER{edits}") -> take
+                                     #   files for gm800_part.py layer: a playback voice without the GM-800
+    zr index                         # once: a fingerprint of every tone (probe notes) -> sweep plays only the
+                                     #   --pre 150 tones the fingerprints promise most of; gear/zenology/traits.tsv
     zr pick NAME                     # by hand: opens the window, the chosen tone -> gear/zenology/states/NAME.bin
     zr variant "<song>" NOTES.json riff 105 109 "PRST_A Factory Presets/32{p1.level=0}" --name "Sunrise без слоя"
                                      # an EDITED tone as one more take of that sweep (next to its tone on the page)
@@ -319,6 +323,9 @@ def cmd_sweep(a):
     ev = sorted([Message("note_on", note=n, velocity=a.vel, time=t) for t, n, d in line] + [Message("note_off", note=n, time=t + d) for t, n, d in line],
                 key=lambda m: (m.time, m.type == "note_on"))
     ref = sum(sg.read(f"{st}.wav", sg.t_stem(a.b0), sg.t_stem(a.b0) + dur) for st in part["stems"]).mean(1); R = gp.cqt_db(ref)
+    tried = len(rows)
+    if a.pre and len(rows) > a.pre:                          # fingerprints first: only the promising tones are played
+        rows, _ = prefilter(gp, sg, rows, line, R, a.pre)
     p = plugin(); out = os.path.join(sg.out, "zenology"); os.makedirs(out, exist_ok=True); res = []; t0 = time.time()
     for i, r in enumerate(rows, 1):
         p.raw_state = zlib.decompress(open(os.path.join(CACHE, r["file"]), "rb").read())
@@ -338,10 +345,167 @@ def cmd_sweep(a):
         fn = f"{tag}-{r['file'][:-2]}.wav"; sf.write(os.path.join(out, fn), x, SR, subtype="PCM_16")
         top.append({"bank": r["bank"], "number": r["number"], "name": r["name"], "category": r["category"], "score": round(sc, 3), "oct": o, "file": fn})
         print(f"  {r['bank']}/{r['number']:>4}  {r['name']:18} {r['category']:16} score {sc:.3f}  spec {sp:.3f}  tf {tf:.3f}  oct {o:+d}")
-    json.dump({"voice": a.voice, "bars": [a.b0, a.b1], "tried": len(rows), "top": top,
+    json.dump({"voice": a.voice, "bars": [a.b0, a.b1], "tried": tried, "played": len(rows), "top": top,
                "all": [{"tone": f"{v[4]['bank']}/{v[4]['number']}", "name": v[4]["name"], "score": round(v[0], 3)} for v in res]},
               open(os.path.join(out, tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"takes of the best {len(top)} and the ranking: {out}/{tag}*")
+
+
+# ---- fingerprints: every tone analysed ONCE, so a sweep does not have to play all of them (Alex 2026-11-21:
+# «никакого предварительного анализа нет? зачем каждый раз все 1000 проверять») ----
+INDEX = os.path.expanduser("~/.cache/cherry-daddies/zenology/index")   # fingerprints, a few .npz shards; not in git
+TRAITS = os.path.join(REPO, "gear", "zenology", "traits.tsv")          # what the fingerprints say in numbers; in git
+PROBES = [(36, 0.75), (48, 0.75), (66, 0.75), (72, 0.75), (60, 1.5)]   # (note, seconds held), then as long of release
+FPS = 22050 / 512                                                      # frames a second of a fingerprint
+TRAIT_COLS = ("level", "attack_ms", "sustain_db", "release_s", "bright", "fixed", "wobble")
+SHARD = 300
+
+
+def probe_plan():
+    """[(note, start s, held s)] of the probe phrase and its length."""
+    t, plan = 0.0, []
+    for n, h in PROBES:
+        plan.append((n, t, h)); t += 2 * h + 0.75      # a pause, so a long release does not run into the next probe
+    return plan, t
+
+
+def fingerprint(p, gp, state):
+    """The probe notes played by a tone -> (their CQT picture: gm800_part.cqt_db at every 2nd frame, uint8 in
+    0.25 dB; traits). None for a tone that stays silent. The picture is what `emulate` builds a voice from."""
+    from mido import Message
+    plan, dur = probe_plan(); p.raw_state = state; p([], duration=1.5, sample_rate=SR, reset=False)
+    ev = sorted([Message("note_on", note=n, velocity=100, time=t) for n, t, h in plan] + [Message("note_off", note=n, time=t + h) for n, t, h in plan],
+                key=lambda m: (m.time, m.type == "note_on"))
+    m = p(ev, duration=dur, sample_rate=SR, reset=False).mean(0).astype(np.float32); rms = float(np.sqrt((m ** 2).mean()))
+    if rms < 1e-4:
+        return None
+    nf = int(dur * FPS); D = gp.cqt_db(m)[:, ::2]; D = np.pad(D, ((0, 0), (0, max(0, nf - D.shape[1]))))[:, :nf]
+    _, t0, h = plan[-1]; w = int(0.01 * SR); env = np.sqrt(np.convolve(m ** 2, np.ones(w) / w, "same")) + 1e-9
+    seg, rel = env[int(t0 * SR):int((t0 + h) * SR)], env[int((t0 + h) * SR):int((t0 + 2 * h) * SR)]; pk = seg.max()
+    low = np.nonzero(rel < seg[-int(0.05 * SR):].mean() * 0.1)[0]; tail = 20 * np.log10(seg[int(0.5 * SR):] / pk)
+    pw = lambda note: (lambda a, hh: np.where(D[:, int(a * FPS):int((a + hh) * FPS)] > 0, 10 ** (D[:, int(a * FPS):int((a + hh) * FPS)] / 10), 0).mean(1))(
+        *next((t, hh) for n, t, hh in plan if n == note))
+    s60, s66 = pw(60), pw(66)
+    traits = [20 * np.log10(rms),                                         # level, dBFS
+              float(np.argmax(seg >= 0.8 * pk)) / SR * 1000,              # attack: ms to 80 % of the peak
+              20 * np.log10(seg[-int(0.1 * SR):].mean() / pk),            # sustain: the end of a 1.5 s note against its peak, dB
+              (low[0] / SR) if len(low) else h,                           # release: s to -20 dB after the key is let go (1.5 = longer)
+              float((np.arange(len(s60)) * s60).sum() / (s60.sum() + 1e-12)) / 3 + 24 - 60,   # brightness: centre of the spectrum, semitones above the note
+              float(np.minimum(s60 / (s60.sum() + 1e-12), s66 / (s66.sum() + 1e-12)).sum()),  # fixed: share of the sound that does NOT move with the key
+              float(np.std(tail - np.polyval(np.polyfit(np.arange(len(tail)), tail, 1), np.arange(len(tail)))))]  # wobble: dB the held note pulses by
+    return np.round(D * 4).astype(np.uint8), np.array(traits, np.float32)
+
+
+def shard_path(bank, start):
+    import re
+    return os.path.join(INDEX, re.sub(r"[^A-Za-z0-9]+", "_", bank).strip("_") + f"-{start:04d}.npz")
+
+
+def cmd_index(a):
+    """Fingerprints of every tone of the catalog (once; a re-run adds only the tones that have none): shards of 300
+    tones in several processes, then gear/zenology/traits.tsv. About 0.3 s a tone a process."""
+    import re, subprocess, zlib, collections, concurrent.futures as cf
+    os.makedirs(INDEX, exist_ok=True); by = collections.defaultdict(list)
+    for r in read_catalog():
+        by[r["bank"]].append(r)
+    if a.shard:                                                            # a worker: one shard
+        bank, start = a.shard.rsplit("|", 1); rows = by[bank][int(start):int(start) + SHARD]; gp = gp_mod()
+        p = plugin(); nums, F, T = [], [], []
+        for r in rows:
+            fp = fingerprint(p, gp, zlib.decompress(open(os.path.join(CACHE, r["file"]), "rb").read()))
+            if fp is not None:
+                nums.append(int(r["number"])); F.append(fp[0]); T.append(fp[1])
+        np.savez_compressed(shard_path(bank, int(start)), numbers=np.array(nums), F=np.stack(F) if F else np.zeros((0, 252, 1), np.uint8),
+                            T=np.stack(T) if T else np.zeros((0, len(TRAIT_COLS)), np.float32), tried=len(rows))
+        print(f"  {bank} from {start}: {len(nums)} of {len(rows)} tones", flush=True); return
+    todo = [(b, s) for b, rows in by.items() if re.search(a.banks, b, re.I) for s in range(0, len(rows), SHARD)
+            if a.redo or not os.path.exists(shard_path(b, s))]
+    print(f"index: {len(todo)} shards to make, {a.jobs} at a time", flush=True); t0 = time.time()
+    run = lambda bs: subprocess.run([sys.executable, os.path.abspath(__file__), "index", "--shard", f"{bs[0]}|{bs[1]}"])
+    with cf.ThreadPoolExecutor(a.jobs) as ex:
+        list(ex.map(run, todo))
+    idx = load_index(); cat = {f"{r['bank']}/{r['number']}": r for r in read_catalog()}
+    with open(TRAITS, "w", encoding="utf-8") as f:
+        f.write("\t".join(("bank", "number", "name", "category") + TRAIT_COLS) + "\n")
+        for k, r in cat.items():
+            if k in idx:
+                f.write("\t".join([r["bank"], r["number"], r["name"], r["category"]] + [f"{v:.3g}" for v in idx[k][1]]) + "\n")
+    print(f"index: {len(idx)} of {len(cat)} tones have a fingerprint, {time.time() - t0:.0f} s -> {INDEX}, {TRAITS}")
+
+
+def gp_mod():
+    s = importlib.util.spec_from_file_location("gp", os.path.join(REPO, "tools", "gm800_part.py"))
+    gp = importlib.util.module_from_spec(s); s.loader.exec_module(gp); return gp
+
+
+def load_index(banks=None):
+    """{'BANK/NUMBER': (fingerprint, traits)} of the shards (of some banks only: a shard is 30 MB in memory)."""
+    import glob, re, collections
+    by = collections.defaultdict(list); out = {}
+    for r in read_catalog():
+        by[r["bank"]].append(r)
+    for bank in by:
+        if banks is not None and bank not in banks:
+            continue
+        for s in range(0, len(by[bank]), SHARD):
+            if os.path.exists(shard_path(bank, s)):
+                z = np.load(shard_path(bank, s))
+                for n, F, T in zip(z["numbers"], z["F"], z["T"]):
+                    out[f"{bank}/{n}"] = (F, T)
+    return out
+
+
+def emulate(F, line, nf):
+    """The CQT picture (cqt_db scale, every 2nd frame) a tone would give on a voice, put together from its
+    fingerprint: every note = the nearest probe note moved to its pitch, cut or held to its length, with the
+    probe's release after it. No plugin: a few ms a tone. Good enough to throw out the tones that cannot match;
+    the ones that stay are played for real."""
+    A = np.where(F > 0, 10.0 ** ((F.astype(np.float32) / 4 - 60) / 10), 0).astype(np.float32)      # power
+    P = np.zeros((F.shape[0], nf), np.float32); plan, _ = probe_plan(); lev = A.sum(0) + 1e-12
+    for t, n, d in line:
+        q, t0, h = min(plan, key=lambda v: abs(v[0] - n)); a, hf = int(round(t0 * FPS)), int(round(h * FPS))
+        df = max(1, int(round(d * FPS)))
+        if df <= hf:
+            note = np.concatenate([A[:, a:a + df], A[:, a + hf:a + 2 * hf] * min(16.0, lev[a + df - 1] / lev[a + hf - 1])], 1)
+        else:
+            note = np.concatenate([A[:, a:a + hf], np.repeat(A[:, a + hf - 1:a + hf], df - hf, 1), A[:, a + hf:a + 2 * hf]], 1)
+        k, f = 3 * (n - q), int(round(t * FPS)); L = min(note.shape[1], nf - f)
+        if L <= 0 or abs(k) >= F.shape[0]:
+            continue
+        if k >= 0:
+            P[k:, f:f + L] += note[:F.shape[0] - k, :L]
+        else:
+            P[:k, f:f + L] += note[-k:, :L]
+    D = 10 * np.log10(P + 1e-12); return np.maximum(D - (D.max() - 60), 0)
+
+
+def prefilter(gp, sg, rows, line, R, keep):
+    """The `keep` tones whose fingerprints promise the best match with the stems, plus the tones that have no
+    fingerprint yet. -> (rows to play, [(predicted score, row)] of all)"""
+    idx = load_index({r["bank"] for r in rows}); R2 = R[:, ::2]; t0 = time.time(); sc, rest = [], []
+    for r in rows:
+        fp = idx.get(f"{r['bank']}/{r['number']}")
+        if fp is None:
+            rest.append(r)
+        else:
+            sc.append((gp.sweep_score(R2, emulate(fp[0], line, R2.shape[1]), sg.semi)[0], r))
+    sc.sort(key=lambda v: -v[0])
+    print(f"fingerprints: {len(sc)} tones ranked in {time.time() - t0:.0f} s, the best {min(keep, len(sc))} are played"
+          + (f"; {len(rest)} tones without a fingerprint are played too (zr index)" if rest else ""), flush=True)
+    return [r for _, r in sc[:keep]] + rest, sc
+
+
+def cmd_record(a):
+    """The takes of a part's layer that name a plugin tone ("zen": "BANK/NUMBER{edits}" instead of "tone" / "scene")
+    -> the take files gm800_part.py layer reads. Sample 0 = the bar line of the take's first bar, 4 s of tail."""
+    import soundfile as sf
+    gp, sg = gp_song(a.song); part = json.load(open(a.notes, encoding="utf-8")); n = 0
+    for tk in part["layer"]["takes"]:
+        if tk.get("zen"):
+            x, _, _ = render(tk["zen"], a.song, a.notes, tk["voice"], *tk["bars"], tk.get("vel", 100), tail=4.0)
+            dst = gp.rec_path(sg, a.notes, tk); sf.write(dst, x, SR, subtype="FLOAT"); n += 1   # float: the plugin goes over 0 dBFS
+            print(f"  {tk['voice']} {tk['bars'][0]}-{tk['bars'][1] - 1}  {tk['zen']}  peak {20 * np.log10(np.abs(x).max() + 1e-9):.1f} dBFS -> {os.path.basename(dst)}")
+    print(f"{n} plugin takes of {len(part['layer']['takes'])} takes of the layer")
 
 
 def cmd_variant(a):
@@ -466,7 +630,11 @@ def main():
     p = sub.add_parser("list"); filt(p)
     p = sub.add_parser("sweep"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int); p.add_argument("b1", type=int)
     filt(p); p.add_argument("--top", type=int, default=12); p.add_argument("--limit", type=int, default=100000); p.add_argument("--vel", type=int, default=100)
+    p.add_argument("--pre", type=int, default=150, help="tones kept by the fingerprints and really played (0 = play every selected tone)")
+    p = sub.add_parser("index"); p.add_argument("--banks", default="."); p.add_argument("--jobs", type=int, default=4)
+    p.add_argument("--redo", action="store_true"); p.add_argument("--shard", default="", help="(worker) 'BANK|START'")
     p = sub.add_parser("page"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--top", type=int, default=8)
+    p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes")
     p = sub.add_parser("variant"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int)
     p.add_argument("b1", type=int); p.add_argument("tag"); p.add_argument("--name", default=""); p.add_argument("--vel", type=int, default=100)
     for nm in ("render", "compare"):
@@ -478,7 +646,7 @@ def main():
             p.add_argument("--gm", default="", help="GM-800 tone number of the sweep take to compare with (default: the tag)")
         p.add_argument("--vel", type=int, default=100)
     a = ap.parse_args()
-    return {"pick": lambda: cmd_pick(a.tag), "catalog": lambda: cmd_catalog(a), "list": lambda: cmd_list(a), "sweep": lambda: cmd_sweep(a), "page": lambda: cmd_page(a), "variant": lambda: cmd_variant(a),
+    return {"pick": lambda: cmd_pick(a.tag), "catalog": lambda: cmd_catalog(a), "list": lambda: cmd_list(a), "sweep": lambda: cmd_sweep(a), "page": lambda: cmd_page(a), "variant": lambda: cmd_variant(a), "index": lambda: cmd_index(a), "record": lambda: cmd_record(a),
             "render": lambda: cmd_render(a), "compare": lambda: cmd_compare(a)}[a.cmd]()
 
 

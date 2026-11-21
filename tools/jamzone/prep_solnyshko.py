@@ -73,8 +73,13 @@ midi = lambda s: NAMES.index(s[:-1]) + 12 * (int(s[-1]) + 1)
 # and pad, 1011 strings, 249 brass. cand = the short list of the first sweep; solo = the bars of the sweep.
 # All takes are sent as written ("shift": 0), the way the sweeps were heard: the octave probe misreads 537 (sub-octave
 # drawbar) and 970 (a built-in fifth; it is also mono - of the octave pair of `stack` one note sounds, as in the sweep).
+# 2026-11-21: the riff moved to a ZENOLOGY tone - Alex: «по солнышку берем Sunrise полусухой» (Sunrise without its bell
+# partial, which does not follow the keys, and with a shorter release: at 658 the notes piled up into a chord). `zen`
+# wins over tone / layers in the layer; tone and layers stay as the reference `calibrate` and `zen` level it against.
+RIFF_ZEN = "PRST_A Factory Presets/32{p1.level=0,p*.release=450}"
+CAND = os.path.join(OUT, "pb-synths-candidate.wav")      # `candidate`: the layer to listen to before it goes to parts/
 VOICES = {
-    "riff":    dict(tone=330, layers=[(1024, 3.0)], role="lead",  solo=(105, 109), cand=[211, 210, 212, 217, 214, 208, 194, 239, 327, 330, 304],
+    "riff":    dict(zen=RIFF_ZEN, tone=330, layers=[(1024, 3.0)], role="lead",  solo=(105, 109), cand=[211, 210, 212, 217, 214, 208, 194, 239, 327, 330, 304],
                     what="рифф, октава 3–4"),
     "riff_hi": dict(tone=330, role="lead",  solo=(105, 109), cand=[], what="рифф октавой выше"),
     "vstab":   dict(tone=317, delay=dict(beats=0.5, db=-5, fb=0.25), role="stab",  solo=(33, 37),  cand=[316, 327, 330, 304, 1092, 317], what="офф-бит стаб куплета"),
@@ -92,7 +97,7 @@ VOICES = {
 }
 GAP = {"arp": 0.002, "arp_lo": 0.002, "octs": 0.002, "stack": 0.002, "roll": 0.002}   # staccato lengths are the MIDI's own
 GAINS = os.path.join(SONG, "parts", "synths.gains.json")   # "voice@tone" -> dB of its takes: written by `calibrate`
-GAIN = ({tuple([k.split("@")[0], int(k.split("@")[1])]): v for k, v in json.load(open(GAINS, encoding="utf-8")).items()}
+GAIN = ({tuple([k.split("@")[0], int(k.split("@")[1]) if k.split("@")[1].isdigit() else k.split("@")[1]]): v for k, v in json.load(open(GAINS, encoding="utf-8")).items()}
         if os.path.exists(GAINS) else {})
 FX_WIN = [(8, 2.5, 9, 1.0), (24, 2.3, 25, 1.0), (120, 2.3, 121, 1.0), (128, 2.3, 129, 1.0)]   # reverse cymbal in `other`
 INTRO_DB = [-17, -12, -8, -6, -4, -1, 0, 0]       # keys stem, bars 1-8 against 9-16 (filter opening), on the notes
@@ -202,6 +207,8 @@ def cmd_notes():
     takes = []
     for vn, spec in VOICES.items():
         for sp in spans(V[vn]["notes"]):
+            if spec.get("zen"):                              # played by the plugin (zenology_render.py record)
+                takes.append({"voice": vn, "zen": spec["zen"], "bars": sp, "gain_db": round(GAIN.get((vn, "zen"), 0.0), 1)}); continue
             for tone, rel in [(spec["tone"], 0.0)] + spec.get("layers", []):
                 tk = {"voice": vn, "tone": tone, "base": 33, "shift": 0, "bars": sp, "gain_db": round(GAIN.get((vn, tone), rel), 1)}
                 if spec.get("delay"):
@@ -543,7 +550,7 @@ def voice_audio(gp, song, part, n):
             d = tk["delay"]; x = gp.apply_delay(x, gp.SR, d["beats"] * song.bar / 4, d.get("db", -6.0), d.get("fb", 0.25))
         k = int(0.3 * gp.SR); x[-k:] *= np.linspace(1, 0, k)[:, None]
         y = resample_poly(x.mean(1), 147, 160); a = int(round(song.t_stem(tk["bars"][0]) * SR))
-        buf = out.setdefault((tk["voice"], tk["tone"]), np.zeros(n)); m = min(len(y), n - a); buf[a:a + m] += y[:m]
+        buf = out.setdefault((tk["voice"], tk.get("tone") or "zen"), np.zeros(n)); m = min(len(y), n - a); buf[a:a + m] += y[:m]
     return out
 
 
@@ -586,7 +593,7 @@ def cmd_calibrate():
     seg = lambda x, b0, b1: x[int(song.t_stem(b0) * SR):int(song.t_stem(b1) * SR)]
     tie = {}                                                 # layers of a voice: tied to its main tone
     for vn, spec in VOICES.items():
-        for tone, rel in spec.get("layers", []):
+        for tone, rel in ([] if spec.get("zen") else spec.get("layers", [])):   # a plugin voice has one take, key (voice, "zen")
             b0, b1 = spec["solo"]; tie[(vn, tone)] = rel + 20 * np.log10(rms(seg(va[(vn, spec["tone"])], b0, b1)) / rms(seg(va[(vn, tone)], b0, b1)))
             va[(vn, spec["tone"])] = va[(vn, spec["tone"])] + va.pop((vn, tone)) * 10 ** (tie[(vn, tone)] / 20)
     def feat(x):
@@ -596,7 +603,7 @@ def cmd_calibrate():
         for k in range((END - 1) * 16):
             a, e = int((t0 + k * six) * 22050 / 512), int((t0 + (k + 1) * six) * 22050 / 512); cols.append(C[:, a:max(e, a + 1)].mean(1))
         return np.array(cols).T.ravel()
-    keys = list(va); A = np.array([feat(va[k]) for k in keys]).T; b = feat(ref); lo, hi = [], []
+    keys = list(va); A = np.array([feat(va[k]) for k in keys], np.float64).T; b = feat(ref).astype(np.float64); lo, hi = [], []
     for k in keys:
         sp = spans(part["voices"][k[0]]["notes"]); r = np.sqrt(np.mean([rms(seg(ref, *s)) ** 2 for s in sp])); v = np.sqrt(np.mean([rms(seg(va[k], *s)) ** 2 for s in sp]))
         hi.append((r / v) ** 2); lo.append((r / v) ** 2 * 10 ** (-15 / 10))
@@ -625,7 +632,7 @@ def cmd_calibrate():
     for v, x in g2.items():
         k = K[v]; sp = spans(part["voices"][v]["notes"]); own = np.mean([P(va[k], *q) for q in sp]) * x / np.mean([P(ref, *q) for q in sp])
         gains[f"{k[0]}@{k[1]}"] = round(float(10 * np.log10(x)), 1)
-        print(f"  {v:8} t{k[1]:<4} {10 * np.log10(x):+6.1f} dB   (in its bars {10 * np.log10(own):+5.1f} dB to keys + other; the fit alone said {10 * np.log10(fit[k]):+5.1f})")
+        print(f"  {v:8} {k[1]:<5} {10 * np.log10(x):+6.1f} dB   (in its bars {10 * np.log10(own):+5.1f} dB to keys + other; the fit alone said {10 * np.log10(fit[k]):+5.1f})")
     for (vn, tone), r in tie.items():
         gains[f"{vn}@{tone}"] = round(gains[f"{vn}@{VOICES[vn]['tone']}"] + float(r), 1); print(f"  {vn:8} t{tone:<4} {gains[f'{vn}@{tone}']:+6.1f} dB   (tied to {VOICES[vn]['tone']})")
     json.dump(gains, open(GAINS, "w", encoding="utf-8"), indent=1); print(GAINS)
@@ -663,10 +670,12 @@ def cmd_result():
     at_off = lambda x: fit(np.concatenate([np.zeros(off), x]))
     seg = lambda x, a, b: x[int(song.t_render(a) * SR):int(song.t_render(b) * SR)]
     rms = lambda x: np.sqrt((x ** 2).mean()) + 1e-9
-    new = at_off(rd(os.path.join(SONG, "parts", "pb-synths.wav")) + rd(os.path.join(SONG, "parts", "pb-fx.wav")))
-    a, k = int(song.t_render(145) * SR), int(0.25 * SR)       # the stop on 145: the tones ring on (-29 dB against -43
-    new[a:a + k] *= np.linspace(1, 0, k); new[a + k:] = 0      # in the record) - the mix.json layer gets this mute too
-    src = {"new": new, "roma": fit(rd(os.path.join(SONG, "parts", "roma-keys-2810.wav"))[max(0, int(round(roma_at(song, 0) * SR))):]),
+    cand = os.path.exists(CAND)                                # a candidate layer (`candidate`) against the playback's
+    def lay(path):
+        x = at_off(rd(path) + rd(os.path.join(SONG, "parts", "pb-fx.wav")))
+        a, k = int(song.t_render(145) * SR), int(0.25 * SR)   # the stop on 145: the tones ring on (-29 dB against -43
+        x[a:a + k] *= np.linspace(1, 0, k); x[a + k:] = 0; return x   # in the record) - the mix.json layer has this mute too
+    src = {"new": lay(CAND if cand else os.path.join(SONG, "parts", "pb-synths.wav")), "roma": lay(os.path.join(SONG, "parts", "pb-synths.wav")),
            "orig": at_off(ref_band(song))}
     ref = rms(seg(src["orig"], 9, 145))
     for k in src:                                             # one loudness over the song for all three
@@ -681,21 +690,29 @@ def cmd_result():
     print("section levels, dB to keys + other of the record (both at the same loudness over the song):")
     for b0, b1, nm in [(1, 9, "intro"), (9, 17, "riff"), (17, 25, "alex in"), (33, 41, "verse"), (41, 49, "chorus"), (49, 57, "arp"), (57, 73, "more arp"),
                        (73, 81, "soft verse"), (81, 89, "verse 2"), (89, 105, "chorus 2"), (105, 113, "riff solo"), (113, 129, "riff + organ"), (129, 145, "last chorus")]:
-        o = rms(seg(src["orig"], b0, b1)); print(f"  {b0:3}-{b1 - 1:<3} {nm:13} new {20 * np.log10(rms(seg(src['new'], b0, b1)) / o):+5.1f}   Roma {20 * np.log10(rms(seg(src['roma'], b0, b1)) / o):+5.1f}")
+        o = rms(seg(src["orig"], b0, b1)); print(f"  {b0:3}-{b1 - 1:<3} {nm:13} new {20 * np.log10(rms(seg(src['new'], b0, b1)) / o):+5.1f}   in the playback {20 * np.log10(rms(seg(src['roma'], b0, b1)) / o):+5.1f}")
     part = json.load(open(PART, encoding="utf-8"))
     cues = [(c["bar"], c["text"]) for c in song.mix["cues"] if str(c.get("beat", 1)) == "1"]
-    rows = "".join(f"<tr><td>{vn}</td><td>{VOICES[vn]['what']}</td><td class=n>{' + '.join(str(t) for t in dict.fromkeys(tk['tone'] for tk in part['layer']['takes'] if tk['voice'] == vn))}</td></tr>" for vn in VOICES)
+    rows = "".join(f"<tr><td>{vn}</td><td>{VOICES[vn]['what']}</td><td class=n>{' + '.join(str(t) for t in dict.fromkeys(tk.get('tone') or 'ZENOLOGY ' + tk['zen'] for tk in part['layer']['takes'] if tk['voice'] == vn))}</td></tr>" for vn in VOICES)
     meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / SR, "ctx": "-ctx", "marks": [],
-            "title": "Солнышко — новый слой клавиш с GM-800",
-            "sub": "Записанный слой против того, что сейчас в плейбеке. Все три источника на одной громкости по песне. "
-                   "В плейбек новый слой ещё <b>не поставлен</b>. Твоих живых партий (17–24, 121–127, аутро) в нём нет.",
-            "tracks": [["1", "new.mp3", "Новый слой GM-800", "14 голосов + реверс-тарелка из стема"],
-                       ["2", "roma.mp3", "Сейчас в плейбеке", "Рома, концерт 28.10", True],
+            "title": "Солнышко — рифф тоном Sunrise (ZENOLOGY)" if cand else "Солнышко — слой клавиш в плейбеке",
+            "sub": ("Кандидат: рифф сыгран плагином ZENOLOGY, тон Sunrise полусухой; остальные голоса — прежние дубли GM-800. "
+                    "Все три источника на одной громкости по песне. В плейбек кандидат ещё <b>не поставлен</b>. "
+                    "Твоих живых партий (17–24, 121–127, аутро) в слое нет.") if cand else "Слой, который стоит в плейбеке, против оригинала.",
+            "tracks": [["1", "new.mp3", "Новый слой" if cand else "Слой в плейбеке", "рифф — Sunrise полусухой (ZENOLOGY)" if cand else "как в parts/pb-synths.wav"],
+                       ["2", "roma.mp3", "Сейчас в плейбеке", "рифф — GM-800, 330 + 1024", True],
                        ["3", "orig.mp3", "Оригинал", "стемы keys + other", True]],
             "html": "<h2>Что записано</h2><div class=wrap><table><tr><th>Голос</th><th>Что</th><th>Тон</th></tr>" + rows + "</table></div>"}
     tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-full.html"), encoding="utf-8").read()
     open(os.path.join(dst, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
     print(os.path.join(dst, "index.html"))
+
+
+def cmd_candidate():
+    """The layer of parts/synths.notes.json -> analysis/.../pb-synths-candidate.wav (not parts/: the playback keeps
+    its layer until Alex says so); `result` then compares it with the playback's. To put it in: copy it over
+    parts/pb-synths.wav (or `gmp layer`), render, sync Stage Traxx, delete the candidate."""
+    gp, song = _gp(); gp.cmd_layer(song, PART, CAND)
 
 
 def sr_pad(info):
@@ -704,4 +721,4 @@ def sr_pad(info):
 
 if __name__ == "__main__":
     {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview, "tones": cmd_tones, "tones2": cmd_tones2, "check": cmd_check,
-     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result}[sys.argv[1]]()
+     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result, "candidate": cmd_candidate}[sys.argv[1]]()

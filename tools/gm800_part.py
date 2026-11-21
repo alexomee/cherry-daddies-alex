@@ -290,7 +290,10 @@ SYNC_SCENE, SYNC_AT, SYNC_T0 = 7, 0.3, 3.0     # sharp bass scene; marker time; 
 
 def rec_path(song, part_file, tk):
     base = os.path.basename(part_file).replace(".notes.json", "")
-    if tk.get("tone"):
+    if tk.get("zen"):                    # a take played by the ZENOLOGY plugin, not the GM-800: "zen": "BANK/NUMBER{edits}"
+        import re                        # (tools/zenology_render.py record writes it; `record` here passes it by)
+        src = "zen-" + re.sub(r"[^A-Za-z0-9]+", "_", tk["zen"]).strip("_")
+    elif tk.get("tone"):
         src = f"t{tk['tone']:04d}"
     else:
         src = f"s{tk['scene']:03d}-" + ("all" if not tk.get("parts") else "p" + "".join(map(str, tk["parts"])))
@@ -301,7 +304,7 @@ def cmd_record(song, part_file, only=None, tail=4.0):
     part = json.load(open(part_file, encoding="utf-8")); tones = tone_names()
     with gmm.Rig() as rig:
         for i, tk in enumerate(part["layer"]["takes"]):
-            if only is not None and i not in only:
+            if (only is not None and i not in only) or tk.get("zen"):
                 continue
             b0, b1 = tk["bars"]; tr = tk.get("transpose", 0)          # semitones: a tone that sounds an octave off
             line = [(t, n + tr, d) for t, n, d in voice_line(song, part, tk["voice"], b0, b1)]
@@ -372,7 +375,8 @@ def cmd_record(song, part_file, only=None, tail=4.0):
                   f"{20 * np.log10(np.abs(y).max() + 1e-9):.1f} -> {os.path.basename(out)}", flush=True)
 
 
-def cmd_layer(song, part_file):
+def cmd_layer(song, part_file, out_path=None):
+    """out_path = another place for the layer file: a candidate to listen to, the playback's own file stays as it is."""
     import soundfile as sf
     from scipy.signal import resample_poly
     part = json.load(open(part_file, encoding="utf-8")); lay = part["layer"]
@@ -394,7 +398,7 @@ def cmd_layer(song, part_file):
         out[a:a + m] += x[:m]
     if lay.get("duck"):                                      # sidechain pumping of the record, keyed by its kick
         out *= duck_gain(song, lay["duck"], len(out), sr)[:, None]
-    dst = os.path.join(song.dir, "parts", lay["file"] + ".wav")
+    dst = out_path or os.path.join(song.dir, "parts", lay["file"] + ".wav")
     sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
     print(f"{len(lay['takes'])} takes -> {dst}  peak {20 * np.log10(np.abs(out).max() + 1e-9):.1f} dBFS")
 
@@ -780,7 +784,7 @@ def main():
     p = sub.add_parser("preview")
     p.add_argument("song"); p.add_argument("notes"); p.add_argument("--bars", type=int, nargs=2)
     p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--only", default="")
-    p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes")
+    p = sub.add_parser("layer"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--out", default="", help="write the layer there instead of parts/<file>.wav")
     p = sub.add_parser("tones"); p.add_argument("song"); p.add_argument("note"); p.add_argument("nums")
     p.add_argument("--base", type=int, default=33)
     p = sub.add_parser("part"); p.add_argument("src"); p.add_argument("dst"); p.add_argument("--level", type=int)
@@ -829,7 +833,7 @@ def main():
     if a.cmd == "record":
         return cmd_record(song, a.notes, [int(v) for v in a.only.split(",") if v] or None)
     if a.cmd == "layer":
-        return cmd_layer(song, a.notes)
+        return cmd_layer(song, a.notes, a.out or None)
     part = json.load(open(a.notes, encoding="utf-8"))
     b0, b1 = a.bars or part.get("bars")
     if a.cmd == "take":
