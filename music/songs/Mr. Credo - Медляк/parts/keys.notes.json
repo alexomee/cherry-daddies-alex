@@ -1047,5 +1047,35 @@
   "end": {"at": [1], "bars": 114, "notes": [
    [113, 1.0, 8.0, "G2 D3 G3 A#3 D4 G4"]
   ]}
- }
+ },
+ "layer": {"file": "pb-keys", "takes": [
+  {"voice": "arp", "bars": [1, 33], "gain_db": 0.0, "zen": "ZEZ001 Hazy Pop/1"},
+  {"voice": "arp", "bars": [41, 65], "gain_db": 0.0, "zen": "ZEZ001 Hazy Pop/1"},
+  {"voice": "arp", "bars": [105, 113], "gain_db": 0.0, "zen": "ZEZ001 Hazy Pop/1"},
+  {"voice": "lead", "bars": [1, 9], "gain_db": 0.0, "zen": "PRST_D Basic Synth/381", "fx": [["Chorus", {"rate_hz": 0.6, "depth": 0.25, "mix": 0.35}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.3, "mix": 0.2}], ["Reverb", {"room_size": 0.6, "wet_level": 0.22, "dry_level": 0.85}]]},
+  {"voice": "lead", "bars": [17, 33], "gain_db": 0.0, "zen": "PRST_D Basic Synth/381", "fx": [["Chorus", {"rate_hz": 0.6, "depth": 0.25, "mix": 0.35}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.3, "mix": 0.2}], ["Reverb", {"room_size": 0.6, "wet_level": 0.22, "dry_level": 0.85}]]},
+  {"voice": "lead", "bars": [49, 65], "gain_db": 0.0, "zen": "PRST_D Basic Synth/381", "fx": [["Chorus", {"rate_hz": 0.6, "depth": 0.25, "mix": 0.35}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.3, "mix": 0.2}], ["Reverb", {"room_size": 0.6, "wet_level": 0.22, "dry_level": 0.85}]]},
+  {"voice": "hookline", "bars": [9, 17], "gain_db": 0.0, "zen": "PRST_F Essential/382", "vel": 80, "fx": [["LowpassFilter", {"cutoff_frequency_hz": 3000}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.35, "mix": 0.25}], ["Reverb", {"room_size": 0.4, "wet_level": 0.12, "dry_level": 0.9}]]},
+  {"voice": "hookline", "bars": [41, 49], "gain_db": 0.0, "zen": "PRST_F Essential/382", "vel": 80, "fx": [["LowpassFilter", {"cutoff_frequency_hz": 3000}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.35, "mix": 0.25}], ["Reverb", {"room_size": 0.4, "wet_level": 0.12, "dry_level": 0.9}]]},
+  {"voice": "hookline", "bars": [105, 113], "gain_db": 0.0, "zen": "PRST_F Essential/382", "vel": 80, "fx": [["LowpassFilter", {"cutoff_frequency_hz": 3000}], ["Delay", {"delay_bars": 0.1875, "feedback": 0.35, "mix": 0.25}], ["Reverb", {"room_size": 0.4, "wet_level": 0.12, "dry_level": 0.9}]]},
+  {"voice": "strings", "bars": [6, 81], "gain_db": 0.0, "zen": "ZEZ003 Liquid/7"},
+  {"voice": "strings", "bars": [89, 105], "gain_db": 0.0, "zen": "ZEZ003 Liquid/7"},
+  {"voice": "strings", "bars": [108, 113], "gain_db": 0.0, "zen": "ZEZ003 Liquid/7"},
+  {"voice": "cpad", "bars": [33, 41], "gain_db": 0.0, "zen": "PRST_D Basic Synth/490"},
+  {"voice": "cpad", "bars": [65, 81], "gain_db": 0.0, "zen": "PRST_D Basic Synth/490"},
+  {"voice": "cpad", "bars": [89, 105], "gain_db": 0.0, "zen": "PRST_D Basic Synth/490"},
+  {"voice": "mel", "bars": [65, 73], "gain_db": 0.0, "zen": "PRST_F Essential/582"},
+  {"voice": "mel", "bars": [89, 97], "gain_db": 0.0, "zen": "PRST_F Essential/582"},
+  {"voice": "mel_lo", "bars": [67, 73], "gain_db": 0.0, "zen": "PRST_F Essential/582"},
+  {"voice": "mel_lo", "bars": [91, 97], "gain_db": 0.0, "zen": "PRST_F Essential/582"},
+  {"voice": "fig", "bars": [33, 41], "gain_db": 0.0, "zen": "PRST_A Factory Presets/38"},
+  {"voice": "fig", "bars": [33, 41], "gain_db": 0.0, "zen": "PRST_D Basic Synth/891"},
+  {"voice": "fig", "bars": [73, 81], "gain_db": 0.0, "zen": "PRST_A Factory Presets/38"},
+  {"voice": "fig", "bars": [73, 81], "gain_db": 0.0, "zen": "PRST_D Basic Synth/891"},
+  {"voice": "fig", "bars": [97, 105], "gain_db": 0.0, "zen": "PRST_A Factory Presets/38"},
+  {"voice": "fig", "bars": [97, 105], "gain_db": 0.0, "zen": "PRST_D Basic Synth/891"},
+  {"voice": "brk", "bars": [81, 90], "gain_db": 0.0, "zen": "PRST_J Nebulous Forms/6"},
+  {"voice": "brk_pad", "bars": [81, 89], "gain_db": 0.0, "zen": "ZEZ003 Liquid/7"},
+  {"voice": "end", "bars": [113, 115], "gain_db": 0.0, "zen": "ZEZ003 Liquid/7"}
+ ]}
 }

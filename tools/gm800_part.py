@@ -435,6 +435,9 @@ def cmd_layer(song, part_file, out_path=None):
             x = sosfiltfilt(butter(2, tk["lowpass"], "lowpass", fs=SR, output="sos"), x, axis=0)
         if tk.get("delay"):                                  # {"beats": 0.5, "db": -5, "fb": 0.25}: echo, offline
             d = tk["delay"]; x = apply_delay(x, SR, d["beats"] * song.bar / 4, d.get("db", -6.0), d.get("fb", 0.25))
+        if tk.get("fx"):                                     # [[unit, {params}], ...]: a pedalboard chain (Chorus, Delay with
+            x = apply_fx(x, SR, tk["fx"], song.bar)          # "delay_bars", Reverb, LowpassFilter) - the same chain as on a
+                                                             # ZENOLOGY listening page (prep_medlyak.py); needs pedalboard
         if tk.get("reverb"):                                 # {"rt60": 4.0, "db": 3}: reverb, offline (apply_reverb)
             x = apply_reverb(x, SR, **tk["reverb"])
         if tk.get("gain_curve"):                             # [[bar, dB], ...]: level over the take, straight lines in dB
@@ -453,6 +456,18 @@ def cmd_layer(song, part_file, out_path=None):
     dst = out_path or os.path.join(song.dir, "parts", lay["file"] + ".wav")
     sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
     print(f"{len(lay['takes'])} takes -> {dst}  peak {20 * np.log10(np.abs(out).max() + 1e-9):.1f} dBFS")
+
+
+def apply_fx(x, sr, chain, bar):
+    """A pedalboard chain on a take (samples x channels): [[unit name, {parameters}], ...]; "delay_bars" -> seconds."""
+    import pedalboard
+    units = []
+    for nm, kw in chain:
+        kw = dict(kw)
+        if "delay_bars" in kw:
+            kw["delay_seconds"] = kw.pop("delay_bars") * bar
+        units.append(getattr(pedalboard, nm)(**kw))
+    return pedalboard.Pedalboard(units)(x.T.astype(np.float32), sr).T.astype(np.float64)
 
 
 def duck_gain(song, spec, n, sr):

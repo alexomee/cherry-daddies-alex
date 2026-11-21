@@ -121,7 +121,8 @@ MEL_AT, FIG_AT = [65, 89], [33, 73, 97]
 ZEN = {"strings": "ZEZ003 Liquid/7", "brk": "PRST_J Nebulous Forms/6",     # Mercurial, Dreamer Keys
        "arp": "ZEZ001 Hazy Pop/1", "cpad": "PRST_D Basic Synth/490",        # Rocket Pad, Dreaming 5
        "fig": "PRST_A Factory Presets/38",                                  # AX Analog Dream ...
-       "mel": "PRST_F Essential/582"}                                       # Fantasy 2 (F/582 or D/477: Alex to say)
+       "mel": "PRST_F Essential/582",                                       # Fantasy 2 (F/582 or D/477: Alex to say)
+       "lead": "PRST_D Basic Synth/381", "hookline": "PRST_F Essential/382"}  # Saw Dtune + FX, Trumpet + filter (round 5)
 ZEN_LAYER = {"fig": ("PRST_D Basic Synth/891", -6.0)}                       # ... + Dance Saw 2 at -6 dB («жирок»)
 ROMA = os.path.join(OUT, "roma", "roma-keys-stemframe.wav")   # Roma's keys of the 28.10 concert (ch 08) in the stem frame:
 # concert_t = a + b * render_t of the render of 2026-11-17 (OFF 4.229 s), a/b from 472 clicks (tools/concert-2810);
@@ -277,7 +278,12 @@ def dump(part, path):
         out.append(f'  {j(vn)}: {{{head}, "notes": [')
         out += [f"   {j(n)}" + ("," if k < len(v["notes"]) - 1 else "") for k, n in enumerate(v["notes"])]
         out.append("  ]}" + ("," if i < len(vs) - 1 else ""))
-    out.append(" }")
+    out.append(" }" + ("," if "layer" in part else ""))
+    if "layer" in part:
+        tk = part["layer"]["takes"]
+        out.append(f' "layer": {{"file": {j(part["layer"]["file"])}, "takes": [')
+        out += [f"  {j(t)}" + ("," if k < len(tk) - 1 else "") for k, t in enumerate(tk)]
+        out.append(" ]}")
     out.append("}")
     open(path, "w", encoding="utf-8").write("\n".join(out) + "\n")
 
@@ -302,6 +308,34 @@ def cmd_bp():
         print(st, len(ev), "notes")
 
 
+GAINS = os.path.join(SONG, "parts", "keys.gains.json")      # "voice@tone" -> dB of its takes: written by `calibrate`
+
+
+def layer_spec():
+    """Voice -> [(take key, {zen, vel, fx})]: Alex's tones (ZEN), the effects he heard them with on the pages."""
+    L = lambda nm, kw: [nm, kw]
+    fxj = lambda chain: [L(nm, kw) for nm, kw in chain]
+    sp = {"arp": [{"zen": ZEN["arp"]}], "lead": [{"zen": ZEN["lead"], "fx": fxj(FX_LEAD)}],
+          "hookline": [{"zen": ZEN["hookline"], "vel": 80, "fx": [L("LowpassFilter", {"cutoff_frequency_hz": 3000})] + fxj(FX_BRASS)}],
+          "strings": [{"zen": ZEN["strings"]}], "cpad": [{"zen": ZEN["cpad"]}], "mel": [{"zen": ZEN["mel"]}],
+          "mel_lo": [{"zen": ZEN["mel"]}],                    # the low answer: the melody's tone (not picked on its own)
+          "fig": [{"zen": ZEN["fig"]}, {"zen": ZEN_LAYER["fig"][0]}],
+          "brk": [{"zen": ZEN["brk"]}], "brk_pad": [{"zen": ZEN["strings"]}],   # chords under the breakdown, the end chord:
+          "end": [{"zen": ZEN["strings"]}]}                                      # Mercurial until Alex says otherwise
+    return sp
+
+
+def layer_takes(V):
+    gains = json.load(open(GAINS, encoding="utf-8")) if os.path.exists(GAINS) else {}
+    takes = []
+    for vn, specs in layer_spec().items():
+        for sp in spans(V[vn]["notes"]):
+            for spec in specs:
+                tk = dict({"voice": vn, "bars": sp, "gain_db": round(gains.get(f"{vn}@{spec['zen']}", 0.0), 1)}, **spec)
+                takes.append(tk)
+    return takes
+
+
 def cmd_notes():
     song = load("gm800_match").Song(NAME)
     V = build(song)
@@ -309,7 +343,7 @@ def cmd_notes():
                       "tools/jamzone/prep_medlyak.py notes (edit there, not here). The MIDI from midifind "
                       "(parts/medlyak-midifind.mid, bars 1-32) with the record's pitches where they differ, chorus "
                       "and breakdown from the stem. G minor, mix.json bars. All voices go to the playback.",
-            "stems": ["keys", "strings"], "voices": V}
+            "stems": ["keys", "strings"], "voices": V, "layer": {"file": "pb-keys", "takes": layer_takes(V)}}
     dump(part, PART)
     os.makedirs(OUT, exist_ok=True)
     dump({"_about": "The MIDI as it is (bars 1-32 and their repeats): A/B against parts/keys.notes.json",
@@ -317,7 +351,68 @@ def cmd_notes():
     print(PART)
     for vn, v in V.items():
         print(f"  {vn:8} {len(v['notes']):4} notes  bars " + " ".join(f"{a}-{b - 1}" for a, b in spans(v["notes"])))
+    print(f"  layer: {len(part['layer']['takes'])} takes")
     print(ALT)
+
+
+CAND = os.path.join(OUT, "pb-keys-candidate.wav")          # the layer to listen to before it goes to parts/ and mix.json
+BANDS = [60, 120, 240, 480, 960, 1920, 3840, 7680, 15000]
+
+
+def target_audio(song):
+    """What the layer replaces: Moises keys + strings; in 82-88 the two stems are the same audio -> strings muted there."""
+    import soundfile as sf
+    rd = lambda p: sf.read(p, always_2d=True, dtype="float64")
+    (k, sr), (st, _) = rd(song.stem("keys")), rd(song.stem("strings"))
+    g = np.ones(len(st)); a, b = int(song.t_stem(81.5) * sr), int(song.t_stem(89) * sr); r = int(0.05 * sr)
+    g[a:b] = 0; g[a - r:a] = np.linspace(1, 0, r); g[b:b + r] = np.linspace(0, 1, r)
+    return k + st * g[:, None], sr
+
+
+def bar_bands(x, sr, song):
+    """Power by bar (1..END-1) and octave band: the picture the voice gains are fitted on."""
+    from scipy.signal import stft
+    f, t, Z = stft(x.mean(1) if x.ndim == 2 else x, fs=sr, nperseg=4096, noverlap=2048); P = np.abs(Z) ** 2
+    out = np.zeros((END - 1, len(BANDS) - 1))
+    for b in range(1, END):
+        m = (t >= song.t_stem(b)) & (t < song.t_stem(b + 1))
+        for i in range(len(BANDS) - 1):
+            out[b - 1, i] = P[(f >= BANDS[i]) & (f < BANDS[i + 1])][:, m].sum() if m.any() else 0
+    return out
+
+
+def cmd_calibrate():
+    """One gain per voice@tone: non-negative least squares of the bar x octave-band powers of every voice's own layer
+    against keys + strings (each band weighted by its mean, so the lows do not decide alone) -> parts/keys.gains.json.
+    Needs the takes (zr record) and pedalboard (the fx chains): run in the zr env."""
+    import re, soundfile as sf
+    from scipy.optimize import nnls
+    gp = load("gm800_part"); song = gp.gmm.Song(NAME); part = json.load(open(PART, encoding="utf-8"))
+    cal = os.path.join(OUT, "cal"); keys = sorted({(t["voice"], t["zen"]) for t in part["layer"]["takes"]}, key=lambda k: list(layer_spec()).index(k[0]))
+    tgt, sr = target_audio(song); T = bar_bands(tgt, sr, song); cols = []; names = []
+    for vn, z in keys:
+        d = os.path.join(cal, re.sub(r"[^A-Za-z0-9]+", "_", f"{vn}_{z}")); os.makedirs(d, exist_ok=True)
+        q = dict(part); q["layer"] = {"file": "x", "takes": [dict(t, gain_db=0.0) for t in part["layer"]["takes"] if (t["voice"], t["zen"]) == (vn, z)]}
+        f = os.path.join(d, "keys.notes.json"); json.dump(q, open(f, "w", encoding="utf-8"), ensure_ascii=False)   # same basename:
+        out = os.path.join(d, "layer.wav"); gp.cmd_layer(song, f, out)                                        # same take files
+        y, ysr = sf.read(out, always_2d=True, dtype="float64"); cols.append(bar_bands(y, ysr, song)); names.append(f"{vn}@{z}")
+    w = 1 / (T.mean(0) + 1e-12)
+    A = np.stack([(c * w).ravel() for c in cols], 1); g, _ = nnls(A, (T * w).ravel())
+    db = {nm: float(np.clip(10 * np.log10(x + 1e-12), -30, 20)) for nm, x in zip(names, g)}
+    json.dump({k: round(v, 1) for k, v in db.items()}, open(GAINS, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("gains (dB):"); [print(f"  {k:48} {v:+6.1f}") for k, v in db.items()]
+    L = sum(10 ** (db[nm] / 10) * c for nm, c in zip(names, cols))
+    lvl = lambda M, b0, b1: 10 * np.log10(M[b0 - 1:b1 - 1].sum() + 1e-12)
+    print("section    record   layer   (dB, all bands)")
+    for (b0, nm), (b1, _) in zip(SECTIONS, SECTIONS[1:] + [(END, "")]):
+        print(f"  {b0:3}-{b1 - 1:<3} {nm:24} {lvl(T, b0, b1) - lvl(T, 17, 33):+6.1f}  {lvl(L, b0, b1) - lvl(T, 17, 33):+6.1f}")
+    print(GAINS)
+
+
+def cmd_candidate():
+    """The layer with the calibrated gains -> analysis/.../pb-keys-candidate.wav (stem frame); then `preview` puts it on
+    the notes page next to the original. parts/ and mix.json stay as they are until Alex says so."""
+    gp = load("gm800_part"); song = gp.gmm.Song(NAME); gp.cmd_layer(song, PART, CAND); print(CAND)
 
 
 # ---- preview: plain synth, render timeline ----------------------------------------------------------------------
@@ -400,6 +495,8 @@ def cmd_preview():
     src = {"orig": orig, "mine": fit(render(song, gp, mine, list(TIMBRE))), "midi": fit(render(song, gp, alt, list(TIMBRE)))}
     if os.path.exists(ROMA):                                   # Roma at the concert, stem frame -> render frame
         r = rd(ROMA); rr = np.zeros(n); k = min(len(r), n - o); rr[o:o + k] = r[:k]; src["roma"] = rr
+    if os.path.exists(CAND):                                   # the candidate layer at its calibrated level (no matching)
+        r = rd(CAND); cc = np.zeros(n); k = min(len(r), n - o); cc[o:o + k] = r[:k]; src["cand"] = cc
     ref = rms(orig, 9, 17)
     for kk in ("mine", "midi"):
         src[kk] = src[kk] * ref / rms(src["mine"], 9, 17)
@@ -423,7 +520,8 @@ def cmd_preview():
             "tracks": [["1", "orig.mp3", "Оригинал", "стемы keys + strings", True],
                        ["2", "mine.mp3", "Мои ноты", "MIDI + правки по записи, припев и брейкдаун по записи"],
                        ["3", "midi.mp3", "Как в MIDI", "MIDI без правок (только такты 1–32 и их повторы)"]]
-                      + ([["4", "roma.mp3", "Рома, концерт 28.10", "его клавиши с пульта; брейкдаун он не играл", True]] if "roma" in src else []),
+                      + ([["4", "roma.mp3", "Рома, концерт 28.10", "его клавиши с пульта; брейкдаун он не играл", True]] if "roma" in src else [])
+                      + ([["5", "cand.mp3", "Слой: выбранные тоны", "все голоса тонами ZENOLOGY с эффектами, уровни по стему — кандидат в плейбек"]] if "cand" in src else []),
             "marks": [[1, "интро: мелодия как у Ромы (A G | F D# D D# | D C C | G F# G A)"], [4, "D: F#3 A3 C4 + G4 F#4 G4 A4, как в куплете"], [17, "куплет: та же линия, как у Ромы"], [9, "проигрыш: арпеджио + подголосок"], [33, "припев: фигура восьмыми + подложка"], [65, "припев: мелодия + подложка"], [73, "фигура"], [89, "мелодия"], [97, "фигура"],
                       [81, "брейкдаун: арпеджио"]],
             "html": HTML}
@@ -621,4 +719,4 @@ def cmd_round5():
 
 
 if __name__ == "__main__":
-    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage, "round4": cmd_round4, "round5": cmd_round5}[sys.argv[1]]()
+    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "calibrate": cmd_calibrate, "candidate": cmd_candidate, "tonepage": cmd_tonepage, "round4": cmd_round4, "round5": cmd_round5}[sys.argv[1]]()
