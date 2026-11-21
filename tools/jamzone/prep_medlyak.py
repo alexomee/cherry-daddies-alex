@@ -185,6 +185,50 @@ def fix_counter(ns):
     return out
 
 
+# the line (intro melody = verse second line) by chord: Roma's notes (concert 28.10), lengths as in the record (keys stem,
+# narrow band, end = 9 dB under the note's peak; Alex: «сильно долго ноты зажаты, на которых заканчиваются фразы»:
+# the phrase ends G4 / C4 / A4 sound 3/4-1 beat, the first version held G4 1.5 beats)
+LINE = {"Gm": [[2.5, 1.0, "A4"], [3.5, 0.75, "G4"]],
+        "Eb": [[2.5, 1.0, "F4"], [3.5, 0.5, "D#4"], [4.0, 0.5, "D4"], [4.5, 0.5, "D#4"]],
+        "Cm": [[2.5, 1.0, "D4"], [3.5, 1.0, "C4"]],
+        "D": [[2.5, 1.0, "G4"], [3.5, 0.5, "F#4"], [4.0, 0.5, "G4"], [4.5, 0.75, "A4"]]}
+
+
+def line_notes(bars):
+    return [[b, bt, d, p] for b in bars for bt, d, p in LINE[chord_of(b)]]
+
+
+def roma_events():
+    p = os.path.join(BPDIR, "roma.events.json")
+    return json.load(open(p)) if os.path.exists(p) else None
+
+
+def roma_intro_arp(song):
+    """Intro bars 1-8, the chord under the line as Roma played it (Alex: «нужно чтобы играли те же ноты, которые играет
+    Рома»): his Basic Pitch notes up to D4, amplitude >= 0.5 - the arpeggio on 1 1& 2 and his chord repeats under the
+    line (A#3 / A3 D4 on 2& 3&); each rings until the same pitch comes again or the bar ends (the record sustains)."""
+    ev = roma_events(); t1 = song.t_stem(1); B = song.bar; hits = {}
+    for s_, e, p, a in ev:
+        q = int(round((s_ - t1) / B * 16)); bar = q // 16 + 1
+        if 1 <= bar <= 8 and a >= 0.5 and p <= midi_of("D4"):
+            hits[(bar, 1 + (q % 16) / 4, p)] = True
+    ns = sorted(hits)
+    out = []
+    for i, (bar, bt, p) in enumerate(ns):
+        t = bar + (bt - 1) / 4; nxt = min([b2 + (bt2 - 1) / 4 for b2, bt2, p2 in ns if p2 == p and b2 + (bt2 - 1) / 4 > t + 1e-6] + [bar + 1.0])
+        out.append([bar, bt, round((nxt - t) * 4, 3), name(p)])
+    return out
+
+
+# breakdown solo (Alex: «на 3:08 потерялось соло, там должно быть ярко выраженное»): the long notes over the 16th-note
+# arpeggio, keys stem 81-88, narrow-band envelopes by 16ths folded over the two passes; each 4 bars
+SOLO = [[1, 3.0, 2.0, "C6"], [2, 1.0, 0.5, "C6"], [2, 1.5, 2.5, "A5"], [2, 4.0, 1.0, "F5"],
+        [3, 1.0, 2.0, "D#5"], [3, 3.0, 2.0, "A#5"], [4, 1.75, 1.25, "A5"], [4, 3.0, 1.0, "C6"], [4, 4.25, 0.75, "D5"]]
+# bar 88 leads into the chorus instead: A5 A5, then C5 ... A#4 C5 B4 A#4 (Basic Pitch on keys: C5 0.6-0.7, B4 0.77 on 4&)
+SOLO_88 = [[88, 1.75, 0.75, "A5"], [88, 2.5, 0.5, "A5"], [88, 3.0, 0.5, "C5"], [88, 3.5, 0.5, "C5"],
+           [88, 4.0, 0.25, "A#4"], [88, 4.25, 0.25, "C5"], [88, 4.5, 0.25, "B4"], [88, 4.75, 0.25, "A#4"]]
+
+
 def held(ns, bars):
     """The arpeggio notes (1 1& 2, up to ARP_TOP) of the given bars ring to the end of the bar, or until the same
     pitch is struck again; every other note stays as it is. Duplicates (same bar, beat, pitch) are merged."""
@@ -237,12 +281,11 @@ def build(song, as_midi=False):
     else:   # three parts (Alex: «две разные партии пытаемся в одну запихнуть»)
         # arp: the chord on 1 1& 2 - intro (MIDI track 0), verses (track 0), interludes (the verse's, keys stem: D#3 G3
         # A#3 on 1 1& 2 of bar 10, the MIDI has none); rings through the bar in the intro and the interludes
-        arp = ([n for n in cut(T[0], 1, 9, 1) if n[1] in (1.0, 1.5, 2.0)] + cut(T[0], 17, 33, 17) + cut(T[0], 17, 33, 49)
-               + [n for h in HOOK for n in cut(T[0], 17, 25, h) if n[1] in (1.0, 1.5, 2.0)])
-        V["arp"] = held(fix_poly(arp), set(range(1, 9)) | {h + i for h in HOOK for i in range(8)})
-        # lead: the verse's second line (track 2), the same line is the intro's melody; bar 8 D4 held, D#4 pickup
-        V["lead"] = (fix_counter(cut(T[2], 17, 21, 1) + cut(T[2], 17, 20, 5) + cut(T[2], 17, 33, 17) + cut(T[2], 17, 33, 49))
-                     + [[8, 2.5, 2.0, "D4"], [8, 4.5, 0.5, "D#4"]])
+        arp = (cut(T[0], 17, 33, 17) + cut(T[0], 17, 33, 49) + [n for h in HOOK for n in cut(T[0], 17, 25, h) if n[1] in (1.0, 1.5, 2.0)])
+        arp = held(fix_poly(arp), {h + i for h in HOOK for i in range(8)})
+        V["arp"] = (roma_intro_arp(song) if roma_events() else held(fix_poly([n for n in cut(T[0], 1, 9, 1) if n[1] in (1.0, 1.5, 2.0)]), set(range(1, 9)))) + arp
+        # lead: the verse's second line, the same line is the intro's melody (LINE); bar 8: D4 only (Roma, no pickup)
+        V["lead"] = line_notes(list(range(1, 8)) + list(range(17, 33)) + list(range(49, 65))) + [[8, 2.5, 1.5, "D4"]]
         # hookline: the interlude's line (track 0, bars 9-16: C5 A#4 on 2& 3, ...)
         V["hookline"] = [n for h in HOOK for n in cut(T[0], 9, 17, h)]
     if as_midi:
@@ -254,7 +297,12 @@ def build(song, as_midi=False):
     V["mel"] = [[at + n[0] - 1, *n[1:]] for at in MEL_AT for n in MEL]
     V["mel_lo"] = [[at + n[0] - 1, *n[1:]] for at in MEL_AT for n in MEL_LO]
     V["fig"] = [[at + n[0] - 1, *n[1:]] for at in FIG_AT for n in FIG]
-    V["brk"] = brk_notes(song)
+    solo = [[at + n[0] - 1, *n[1:]] for at in (81, 85) for n in SOLO if at + n[0] - 1 != 88] + SOLO_88
+    V["solo"] = solo
+    taken = {(b, bt, p) for b, bt, d, p in solo}                 # the arpeggio without the solo's own notes (no doubling)
+    V["brk"] = [[b, bt, d, " ".join(q for q in ps.split() if not any((b, bt + dd, q) in taken for dd in (-0.25, 0, 0.25)))]
+                for b, bt, d, ps in brk_notes(song)]
+    V["brk"] = [n for n in V["brk"] if n[3]]
     V["brk_pad"] = [[b, 1.0 + 2 * h, 2.0, BRK_PAD[b][h]] for b in range(81, 89) for h in (0, 1)]
     V["end"] = [[113, 1.0, 8.0, "G2 D3 G3 A#3 D4 G4"]]
     return {vn: dict({"at": [1], "bars": END - 1, "notes": sorted(ns, key=lambda n: (n[0], n[1]))},
@@ -304,15 +352,17 @@ def cmd_bp():
     import basic_pitch
     model = Path(basic_pitch.__file__).parent / "saved_models/icassp_2022/nmp.onnx"
     os.makedirs(BPDIR, exist_ok=True)
-    for st in ("keys", "strings"):
-        _, midi, ev = predict(os.path.join(SONG, f"{st}.wav"), model, onset_threshold=0.4, frame_threshold=0.25,
+    for st, src in (("keys", os.path.join(SONG, "keys.wav")), ("strings", os.path.join(SONG, "strings.wav")), ("roma", ROMA)):
+        if not os.path.exists(src):
+            continue
+        _, midi, ev = predict(src, model, onset_threshold=0.4, frame_threshold=0.25,
                               minimum_note_length=60, minimum_frequency=60, maximum_frequency=2500)
         midi.write(os.path.join(BPDIR, f"{st}.mid"))
         json.dump([[float(s), float(e), int(p), float(a)] for s, e, p, a, *_ in ev], open(os.path.join(BPDIR, f"{st}.events.json"), "w"))
         print(st, len(ev), "notes")
 
 
-TRIM = {"mel": 6.0, "fig": 9.0, "cpad": -2.0}                                        # dB on top of the fitted gain (see cmd_calibrate)
+TRIM = {"mel": 6.0, "fig": 9.0, "cpad": -2.0, "solo": 9.0, "brk": 10.0, "brk_pad": -3.0}                                        # dB on top of the fitted gain (see cmd_calibrate)
 GAINS = os.path.join(SONG, "parts", "keys.gains.json")      # "voice@tone" -> dB of its takes: written by `calibrate`
 
 
@@ -325,6 +375,7 @@ def layer_spec():
           "strings": [{"zen": ZEN["strings"]}], "cpad": [{"zen": ZEN["cpad"]}], "mel": [{"zen": ZEN["mel"]}],
           "mel_lo": [{"zen": ZEN["mel"]}],                    # the low answer: the melody's tone (not picked on its own)
           "fig": [{"zen": ZEN["fig"]}, {"zen": ZEN_LAYER["fig"][0]}],
+          "solo": [{"zen": ZEN.get("solo", ZEN["lead"]), "fx": fxj(FX_LEAD)}],                    # solo: lead's tone until picked
           "brk": [{"zen": ZEN["brk"]}], "brk_pad": [{"zen": ZEN["strings"]}],   # chords under the breakdown, the end chord:
           "end": [{"zen": ZEN["strings"]}]}                                      # Mercurial until Alex says otherwise
     return sp
@@ -440,7 +491,7 @@ def cmd_calibrate():
     for nm in names:
         db[nm] += TRIM.get(nm.split("@")[0], 0.0)
     # voices that play alone in their section are levelled to it (the global fit leaves the breakdown +3.6 dB, the end -3.7)
-    for (b0, b1), vs in {(81, 89): ["brk", "brk_pad"], (113, 115): ["end"]}.items():
+    for (b0, b1), vs in {(81, 89): ["brk", "brk_pad", "solo"], (113, 115): ["end"]}.items():
         Lc = sum(10 ** (db[nm] / 10) * c for nm, c in zip(names, cols))
         d = 10 * np.log10(T[b0 - 1:b1 - 1].sum() / (Lc[b0 - 1:b1 - 1].sum() + 1e-12))
         for nm in names:
@@ -465,7 +516,7 @@ def cmd_candidate():
 # ---- preview: plain synth, render timeline ----------------------------------------------------------------------
 SR = 44100
 TIMBRE = {"arp": ("saw", 3000, 0.9, 0.5), "lead": ("square", 2400, None, 0.45), "hookline": ("square", 2400, None, 0.45),
-          "cpad": ("pad", 2000, None, 0.2), "mel": ("saw", 3500, None, 0.45), "mel_lo": ("saw", 2500, None, 0.45), "fig": ("square", 3000, 0.2, 0.35),
+          "cpad": ("pad", 2000, None, 0.2), "mel": ("saw", 3500, None, 0.45), "mel_lo": ("saw", 2500, None, 0.45), "solo": ("saw", 3500, None, 0.5), "fig": ("square", 3000, 0.2, 0.35),
           "poly": ("saw", 3000, 0.9, 0.6), "pad": ("pad", 2200, None, 0.22), "counter": ("square", 2200, None, 0.45), "strings": ("pad", 2500, None, 0.3),
           "stab": ("saw", 3500, 0.15, 0.4), "brk": ("square", 2600, 0.25, 0.45), "brk_pad": ("pad", 1800, None, 0.25),
           "end": ("pad", 2500, None, 0.4), "bright": ("square", 2600, None, 0.5)}
@@ -515,6 +566,7 @@ HTML = """
 <tr><td>mel</td><td class="n">65–72, 89–96</td><td>мелодия припева: A#5 A5 G5 D5 | F5 D#5 … | D5 C5 | C5 D5 C5</td><td>запись</td></tr>
 <tr><td>mel_lo</td><td class="n">67–69, 72, 91–93, 96</td><td>низкий ответ под мелодией: C4 A#3 A3 | A#3 C4 | A#3</td><td>запись</td></tr>
 <tr><td>fig</td><td class="n">33–40, 73–80, 97–104</td><td>фигура восьмыми: A5 A#5 G5 A#5 … (на Eb D#5, на Bb F5), на D сбег</td><td>запись</td></tr>
+<tr><td>solo</td><td class="n">81–88</td><td>соло брейкдауна: C6 | C6 A5 … F5 | D#5 A#5 | A5 C6 D5</td><td>запись</td></tr>
 <tr><td>brk + brk_pad</td><td class="n">81–88</td><td>брейкдаун: арпеджио шестнадцатыми и аккорды под ним</td><td>запись (в MIDI нет)</td></tr>
 <tr><td>end</td><td class="n">113</td><td>последний Gm</td><td>запись</td></tr>
 </table></div>
@@ -765,5 +817,42 @@ def cmd_round5():
     print(os.path.join(page, "round5.html"))
 
 
+def cmd_round6():
+    """The breakdown solo (Alex: «на 3:08 потерялось соло, ярко выраженное»): what it plays now (the lead's tone + FX),
+    the sweep's best (zr sweep ... keys-r6 solo 82 86), the tones of the melody and of the trumpet -> round6.html."""
+    import soundfile as sf, subprocess, time
+    from scipy.signal import resample_poly
+    zr = load("zenology_render"); gp, song = zr.gp_song(NAME); zen = os.path.join(song.out, "zenology"); page = os.path.join(zen, "page")
+    bar = song.bar; rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; notes = os.path.join(OUT, "keys-r6.notes.json"); b0, b1 = 82, 86
+
+    def render(tone, vel=100):
+        out = os.path.join(zen, f"r6-solo-{tone.replace('/', '-').replace(' ', '_')}-v{vel}.wav")
+        if not os.path.exists(out):
+            subprocess.run([sys.executable, os.path.join(REPO, "tools", "zenology_render.py"), "render", tone, NAME, notes, "solo",
+                            str(b0), str(b1), out, "--vel", str(vel)], check=True, capture_output=True)
+        return sf.read(out, always_2d=True, dtype="float32")[0]
+    rk = json.load(open(os.path.join(zen, "zen-keys-r6-solo-82-86.json"), encoding="utf-8"))["top"][:10]
+    clips = [("Saw Dtune (сейчас)", "тон lead + хорус, дилей, реверб — так соло звучит в кандидате", fx(render(ZEN["lead"]), FX_LEAD, bar)),
+             ("Fantasy 2", "тон мелодии припева", render(ZEN["mel"])),
+             ("Trumpet + фильтр", "тон подголоска проигрыша", fx(render(ZEN["hookline"], 80), [("LowpassFilter", {"cutoff_frequency_hz": 3000})] + FX_BRASS, bar))]
+    clips += [(t["name"], f"{t['bank'].split()[0]}/{t['number']} · {t['category']}", sf.read(os.path.join(zen, t["file"]), always_2d=True, dtype="float32")[0]) for t in rk]
+    n = int(round((b1 - b0) * bar * 44100))
+    orig = resample_poly(song.read("keys.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar).mean(1), 147, 160)
+    orig = np.pad(orig, (0, max(0, n - len(orig))))[:n]; out = [("orig", orig, "Оригинал", "стем keys (брейкдаун: соло над арпеджио)", True)]
+    for k, (nm, note, x) in enumerate(clips, 1):
+        y = resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]; out.append((f"{k:02d}", y * rms(orig) / rms(y), nm, note, False))
+    peak = max(np.abs(c[1]).max() for c in out); files = []
+    for cid, x, nm, note, ref in out:
+        x = x / peak * 0.8; k = int(0.008 * 44100); x[:k] *= np.linspace(0, 1, k); x[-k:] *= np.linspace(1, 0, k)
+        fn = f"r6-solo-{cid}.wav"; sf.write(os.path.join(page, fn), x.astype(np.float32), 44100, subtype="PCM_16"); files.append([fn, nm, note, ref])
+    meta = {"title": "Медляк — тон соло брейкдауна", "sub": "Соло отдельно (C6 | C6 A5 … F5 | D♯5 A♯5 | A5 C6 D5), в оригинале под ним арпеджио. "
+            "<kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза.",
+            "groups": [{"name": "solo, такты 82–85", "note": "<b>в оригинале слушай длинные ноты сверху</b><br>по кругу, одна громкость", "clips": files}],
+            "v": int(time.time())}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(page, "round6.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(page, "round6.html"))
+
+
 if __name__ == "__main__":
-    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "calibrate": cmd_calibrate, "candidate": cmd_candidate, "tonepage": cmd_tonepage, "round4": cmd_round4, "round5": cmd_round5}[sys.argv[1]]()
+    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "calibrate": cmd_calibrate, "candidate": cmd_candidate, "tonepage": cmd_tonepage, "round4": cmd_round4, "round5": cmd_round5, "round6": cmd_round6}[sys.argv[1]]()

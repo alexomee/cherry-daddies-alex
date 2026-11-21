@@ -1,14 +1,15 @@
 {
  "arp@ZEZ001 Hazy Pop/1": -1.7,
- "lead@PRST_D Basic Synth/381": 7.5,
+ "lead@PRST_D Basic Synth/381": 7.8,
  "hookline@PRST_F Essential/382": 11.1,
  "strings@ZEZ003 Liquid/7": -2.1,
  "cpad@PRST_D Basic Synth/490": -3.7,
  "mel@PRST_F Essential/582": 7.4,
  "mel_lo@PRST_F Essential/582": 6.8,
  "fig@PRST_A Factory Presets/38": 2.1,
- "brk@PRST_J Nebulous Forms/6": -16.1,
- "brk_pad@ZEZ003 Liquid/7": 4.1,
- "end@ZEZ003 Liquid/7": -9.8,
+ "solo@PRST_D Basic Synth/381": 5.2,
+ "brk@PRST_J Nebulous Forms/6": -10.7,
+ "brk_pad@ZEZ003 Liquid/7": -1.4,
+ "end@ZEZ003 Liquid/7": -9.7,
  "fig@PRST_D Basic Synth/891": -3.3
 }
