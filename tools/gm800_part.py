@@ -182,6 +182,19 @@ def apply_delay(x, sr, sec, db=-6.0, fb=0.25, repeats=6):
     return out
 
 
+def apply_reverb(x, sr, rt60=2.5, db=-6.0, predelay=0.02, lowcut=250.0, hicut=6000.0, seed=7):
+    """A plain reverb on a take (a playback-only voice the record has washed out: «Солнышко» soft-verse chords,
+    2026-11-21): the take convolved with decaying stereo noise (rt60 s to -60 dB, band-limited, the same noise every
+    time), `db` under / over the dry sound for a steady input. Same length as the take: its 4 s of tail hold the rest."""
+    from scipy.signal import fftconvolve, butter, sosfiltfilt
+    rng = np.random.default_rng(seed); n = int(min(rt60 * 1.3, 12.0) * sr); t = np.arange(n) / sr
+    ir = rng.standard_normal((n, 2)) * (10 ** (-3 * t / rt60))[:, None]
+    ir = sosfiltfilt(butter(2, [lowcut, hicut], "bandpass", fs=sr, output="sos"), ir, axis=0); ir /= np.sqrt((ir ** 2).sum(0))
+    ir = np.concatenate([np.zeros((int(predelay * sr), 2)), ir])
+    wet = np.stack([fftconvolve(x[:, c], ir[:, c])[:len(x)] for c in (0, 1)], 1)
+    return x + wet * 10 ** (db / 20)
+
+
 def apply_gains(x, spans, sr, ramp=0.008):
     if not spans:
         return x
@@ -394,6 +407,8 @@ def cmd_layer(song, part_file, out_path=None):
         x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
         if tk.get("delay"):                                  # {"beats": 0.5, "db": -5, "fb": 0.25}: echo, offline
             d = tk["delay"]; x = apply_delay(x, SR, d["beats"] * song.bar / 4, d.get("db", -6.0), d.get("fb", 0.25))
+        if tk.get("reverb"):                                 # {"rt60": 4.0, "db": 3}: reverb, offline (apply_reverb)
+            x = apply_reverb(x, SR, **tk["reverb"])
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
         if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
             f0, f1 = (int((b - tk["bars"][0]) * song.bar * SR) for b in tk["fade"])

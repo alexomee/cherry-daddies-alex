@@ -339,13 +339,19 @@ def cmd_sweep(a):
         if i % 25 == 0:
             print(f"  {i}/{len(rows)}  {(time.time() - t0) / i:.2f} s a tone", flush=True)
     tag = f"zen-{os.path.basename(a.notes).replace('.notes.json', '')}-{a.voice}-{a.b0}-{a.b1}"
+    if not a.dirty:                      # the takes that go to the page are played again, each alone: reset (nothing of the
+        best = []                        # tone before in the delay lines - a sweep take carries its tails) and clean_take
+        for sc, sp, tf, o, r, x in res[:a.top]:      # (no dropped notes); about 12 s a tone. The score is taken again too.
+            p.raw_state = zlib.decompress(open(os.path.join(CACHE, r["file"]), "rb").read()); p([], duration=0.5, sample_rate=SR, reset=True)
+            x, dev, n = clean_take(p, ev, dur); sc, sp, tf, o = gp.sweep_score(R, gp.cqt_db(x.mean(1)), sg.semi); best.append((sc, sp, tf, o, r, x))
+        res = sorted(best, key=lambda v: -v[0]) + res[a.top:]
     print(f"{tag}: {len(res)} tones of {len(rows)}, best first (spec = mean spectrum, tf = time x frequency, oct = octaves off)")
     top = []
     for k, (sc, sp, tf, o, r, x) in enumerate(res[:a.top]):
         fn = f"{tag}-{r['file'][:-2]}.wav"; sf.write(os.path.join(out, fn), x, SR, subtype="PCM_16")
         top.append({"bank": r["bank"], "number": r["number"], "name": r["name"], "category": r["category"], "score": round(sc, 3), "oct": o, "file": fn})
         print(f"  {r['bank']}/{r['number']:>4}  {r['name']:18} {r['category']:16} score {sc:.3f}  spec {sp:.3f}  tf {tf:.3f}  oct {o:+d}")
-    json.dump({"voice": a.voice, "bars": [a.b0, a.b1], "tried": tried, "played": len(rows), "top": top,
+    json.dump({"voice": a.voice, "bars": [a.b0, a.b1], "stems": part["stems"], "tried": tried, "played": len(rows), "top": top,
                "all": [{"tone": f"{v[4]['bank']}/{v[4]['number']}", "name": v[4]["name"], "score": round(v[0], 3)} for v in res]},
               open(os.path.join(out, tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"takes of the best {len(top)} and the ranking: {out}/{tag}*")
@@ -540,7 +546,8 @@ def cmd_page(a):
     os.makedirs(dst, exist_ok=True); rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; groups = []
     for jf in sorted(glob.glob(os.path.join(src, "zen-*.json")), key=os.path.getmtime):
         rk = json.load(open(jf, encoding="utf-8")); b0, b1 = rk["bars"]; n = int(round((b1 - b0) * sg.bar * 44100)); orig = np.zeros(n)
-        for st in part["stems"]:                                 # the same bars of the stems, pitched into the band key
+        stems = rk.get("stems") or part["stems"]                 # a sweep made on another notes file (a voice heard in
+        for st in stems:                                         # another stem) is shown against ITS stems; band key
             info = sf.info(sg.stem(st)); i0 = int(sg.t_stem(b0) * info.samplerate)
             x, sr = sf.read(sg.stem(st), start=i0, stop=i0 + int(((b1 - b0) * sg.bar + 0.2) * info.samplerate), always_2d=True)
             if sg.semi:
@@ -548,7 +555,7 @@ def cmd_page(a):
                 subprocess.run(["rubberband", "-3", "-F", "-p", str(sg.semi), os.path.join(dst, "tmp-in.wav"), os.path.join(dst, "tmp-out.wav")], capture_output=True, check=True)
                 x = sf.read(os.path.join(dst, "tmp-out.wav"), always_2d=True)[0]
             y = x.mean(1); y = resample_poly(y, 44100, sr) if sr != 44100 else y; orig += np.pad(y, (0, max(0, n - len(y))))[:n]
-        clips = [("orig", orig, "Оригинал", "стемы " + " + ".join(part["stems"]), True)]
+        clips = [("orig", orig, "Оригинал", "стемы " + " + ".join(stems), True)]
         for k, t in enumerate(rk["top"][:a.top], 1):
             x = resample_poly(sf.read(os.path.join(src, t["file"]), always_2d=True)[0].mean(1), 147, 160); x = np.pad(x, (0, max(0, n - len(x))))[:n]
             clips.append((f"{k:02d}", x * rms(orig) / rms(x), f"{t['name']}", f"{t['bank']} {t['number']} · {t['category']} · "
@@ -650,6 +657,7 @@ def main():
     p = sub.add_parser("list"); filt(p)
     p = sub.add_parser("sweep"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int); p.add_argument("b1", type=int)
     filt(p); p.add_argument("--top", type=int, default=12); p.add_argument("--limit", type=int, default=100000); p.add_argument("--vel", type=int, default=100)
+    p.add_argument("--dirty", action="store_true", help="keep the sweep's own takes of the best tones (faster; they carry tails of other tones)")
     p.add_argument("--pre", type=int, default=150, help="tones kept by the fingerprints and really played (0 = play every selected tone)")
     p = sub.add_parser("index"); p.add_argument("--banks", default="."); p.add_argument("--jobs", type=int, default=4)
     p.add_argument("--redo", action="store_true"); p.add_argument("--shard", default="", help="(worker) 'BANK|START'")

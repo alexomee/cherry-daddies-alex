@@ -709,6 +709,80 @@ def cmd_result():
     print(os.path.join(dst, "index.html"))
 
 
+def cmd_soft():
+    """Soft verse (73-88), after Alex 2026-11-21: «прерывную партию должна быть более мокрая… string тише и тембр
+    поинтереснее, в оригинале она становится слышна около 2:17, более смычковая». Measures how wet the record is
+    (pulsing at the triplet rate, level of the bars after the chords), fits a reverb for the brass take to it and
+    builds a page: the chords alone dry / wet, the strings alone on bowed plugin tones (zenology sweep of
+    `strings` 77-81, if made), the whole soft verse now and with the changes. Does not touch the layer.
+    -> analysis/.../preview-soft/index.html"""
+    import soundfile as sf
+    from scipy.signal import butter, sosfiltfilt, resample_poly
+    gp, song = _gp(); part = json.load(open(PART, encoding="utf-8")); dst = os.path.join(OUT, "preview-soft"); os.makedirs(dst, exist_ok=True)
+    R = gp.SR; bar = song.bar; rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-12
+    def take(voice):                                         # stereo 48k from bar 73 on, with its layer gain
+        tk = next(t for t in part["layer"]["takes"] if t["voice"] == voice)
+        x = gp.gmm.read_wav(gp.rec_path(song, PART, tk)).astype(np.float64) * 10 ** (tk["gain_db"] / 20)
+        return x[int((73 - tk["bars"][0]) * bar * R):]
+    seg = lambda v, b0, b1: v[int((b0 - 73) * bar * R):int((b1 - 73) * bar * R)]
+    ref = ref_band(song); ref = resample_poly(ref[int(song.t_stem(73) * SR):int(song.t_stem(89) * SR)], 160, 147)
+    pad, st, br = take("pad"), take("strings"), take("brass"); n = int(16 * bar * R)
+    fit3 = lambda v: np.pad(v, ((0, max(0, n - len(v))), (0, 0)))[:n]; pad, st, br = fit3(pad), fit3(st), fit3(br); ref = np.pad(ref, (0, max(0, n - len(ref))))[:n]
+    def swing(v, b):                                         # pulsing of the 600-2000 Hz envelope at the triplet-eighth rate
+        y = sosfiltfilt(butter(4, [600, 2000], "bandpass", fs=R, output="sos"), seg(v, b, b + 1)); w = int(0.01 * R)
+        e = np.sqrt((y[:len(y) // w * w].reshape(-1, w) ** 2).mean(1)); e = e / e.mean() - 1
+        sp = np.abs(np.fft.rfft(e * np.hanning(len(e)))) / len(e) * 4; return float(sp[np.argmin(np.abs(np.fft.rfftfreq(len(e), 0.01) - 6 / bar))])
+    odd, even = (73, 75, 77, 79), (74, 76, 78, 80); mono = lambda v: v.mean(1) if v.ndim > 1 else v
+    meas = lambda v: (float(np.mean([swing(mono(v), b) for b in odd])),
+                      float(np.mean([20 * np.log10(rms(seg(mono(v), b + 1, b + 2)) / rms(seg(mono(v), b, b + 1))) for b in odd])))
+    wet = lambda rt, db: (lambda y: y * rms(seg(br, 73, 74)) / rms(seg(y, 73, 74)))(gp.apply_reverb(br, R, rt, db))   # as loud in a played bar as the dry take
+    tgt = meas(ref); now = meas(pad + st + br); print(f"record (keys + other): triplet pulsing {tgt[0]:.2f}, the bar after the chords {tgt[1]:+.1f} dB to the bar with them")
+    print(f"layer now:             triplet pulsing {now[0]:.2f}, the bar after {now[1]:+.1f} dB")
+    res = []
+    for rt in (1.5, 2.5, 4.0, 6.0):
+        for db in (-6, -3, 0, 3, 6, 9):
+            m = meas(pad + st * 10 ** (-6 / 20) + wet(rt, db)); res.append((abs(m[0] - tgt[0]) / 0.1 + abs(m[1] - tgt[1]) / 3, rt, db, m))
+    res.sort(); print("reverb on the chords (strings 6 dB down), closest to the record first:")
+    for d, rt, db, m in res[:6]:
+        print(f"  rt60 {rt} s, wet {db:+d} dB to the dry sound: pulsing {m[0]:.2f}, the bar after {m[1]:+.1f} dB")
+    _, rt, db, _ = res[0]; light = (min(rt, 2.5), db - 6); groups = []
+    def put(group, clips, norm_to=None):                     # [(id, audio, name, note, is_ref)] -> looped files of one loudness
+        k = int(0.01 * R); out = []; lv = norm_to or rms(mono(clips[0][1])); peak = max(np.abs(c[1] * lv / rms(mono(c[1]))).max() for c in clips)
+        for cid, x, nm, note, isref in clips:
+            x = x * lv / rms(mono(x)) / peak * 0.8; x = x.copy(); ramp = np.linspace(0, 1, k); x[:k] = (x[:k].T * ramp).T; x[-k:] = (x[-k:].T * ramp[::-1]).T
+            fn = f"{group}-{cid}.wav"; sf.write(os.path.join(dst, fn), x.astype(np.float32), R, subtype="PCM_16"); out.append([fn, nm, note, isref])
+        return out
+    g1 = [("orig", seg(ref, 73, 77), "Оригинал", "все клавиши записи (keys + other): партия там не отдельно", True),
+          ("dry", seg(br, 73, 77), "Сейчас в плейбеке", "тон 249, сухо", True),
+          ("light", seg(wet(*light), 73, 77), "Реверб лёгкий", f"хвост {light[0]} с, {light[1]:+d} дБ к сухому", False),
+          ("fit", seg(wet(rt, db), 73, 77), "Реверб по оригиналу", f"хвост {rt} с, {db:+d} дБ к сухому — ближе всего к записи по измерению", False),
+          ("deep", seg(wet(min(rt * 1.5, 8.0), db + 3), 73, 77), "Реверб глубже", f"хвост {min(rt * 1.5, 8.0):.1f} с, {db + 3:+d} дБ к сухому", False)]
+    groups.append({"name": "Прерывная партия одна, такты 73–76", "note": "триольные аккорды; в оригинале они размыты и звенят в следующем такте", "clips": put("chords", g1)})
+    zj = os.path.join(OUT, "zenology", "zen-synths-strings-77-81.json")
+    if os.path.exists(zj):
+        rk = json.load(open(zj, encoding="utf-8")); m = int(4 * bar * R)
+        g2 = [("orig", seg(ref, 77, 81), "Оригинал", "все клавиши записи: струнные там под пэдом и аккордами", True),
+              ("now", seg(st, 77, 81), "Сейчас в плейбеке", "тон 1011 с GM-800", True)]
+        for k, t in enumerate(rk["top"], 1):
+            x = sf.read(os.path.join(OUT, "zenology", t["file"]), always_2d=True)[0][:m]
+            g2.append((f"{k:02d}", np.pad(x, ((0, m - len(x)), (0, 0))), t["name"], f"{t['bank']} {t['number']} · {t['category']}", False))
+        groups.append({"name": "Струнные одни, такты 77–80", "note": f"смычковые тоны ZENOLOGY, перебрано {rk['tried']}; чистые дубли", "clips": put("strings", g2)})
+    w = wet(rt, db); lv = rms(seg(ref, 73, 81))
+    g3 = [("orig", seg(ref, 73, 81), "Оригинал", "все клавиши записи", True),
+          ("now", seg(pad + st + br, 73, 81), "Сейчас в плейбеке", "пэд + струнные + сухие аккорды", True),
+          ("wet6", seg(pad + st * 10 ** (-6 / 20) + w, 73, 81), "Мокрые аккорды, струнные −6 дБ", "реверб по оригиналу; тон струнных прежний", False),
+          ("wet10", seg(pad + st * 10 ** (-10 / 20) + w, 73, 81), "Мокрые аккорды, струнные −10 дБ", "реверб по оригиналу; тон струнных прежний", False),
+          ("wetsw", seg(pad + st * (10 ** (-12 / 20) + (10 ** (-5 / 20) - 10 ** (-12 / 20)) * np.clip((np.arange(len(st)) / R / bar - 3.5) / 1.5, 0, 1))[:, None] + w, 73, 81),
+           "Мокрые аккорды, струнные выходят к такту 78", "струнные −12 дБ до такта 76, к такту 78 поднимаются до −5 дБ", False)]
+    groups.append({"name": "Тихий куплет целиком, такты 73–80", "note": "только клавиши слоя, без группы", "clips": put("all", g3)})
+    meta = {"title": "Солнышко — тихий куплет", "v": int(time.time()), "groups": groups,
+            "sub": "Прерывная партия с ревербом и струнные: варианты. Внутри группы переключение сохраняет место; <kbd>←</kbd> <kbd>→</kbd> соседний вариант, "
+                   "<kbd>пробел</kbd> пауза. В плейбеке ничего не менялось."}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(dst, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(dst, "index.html"))
+
+
 def cmd_candidate():
     """The layer of parts/synths.notes.json -> analysis/.../pb-synths-candidate.wav (not parts/: the playback keeps
     its layer until Alex says so); `result` then compares it with the playback's. To put it in: copy it over
@@ -722,4 +796,4 @@ def sr_pad(info):
 
 if __name__ == "__main__":
     {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview, "tones": cmd_tones, "tones2": cmd_tones2, "check": cmd_check,
-     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result, "candidate": cmd_candidate}[sys.argv[1]]()
+     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result, "candidate": cmd_candidate, "soft": cmd_soft}[sys.argv[1]]()
