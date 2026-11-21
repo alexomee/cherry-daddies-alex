@@ -12,6 +12,7 @@ original stems = reference; nothing played on the GM-800 yet: «пока gm 800 
   $P tools/jamzone/prep_begi_ot_menya.py plan      # voices, bars, candidates: scenes (gmp take) and tones (gmp sweep)
   $P tools/jamzone/prep_begi_ot_menya.py rank      # after the takes: scenes and tones in one ranking against the stems
   $P tools/jamzone/prep_begi_ot_menya.py sound     # the page where Alex picks the sound: best takes of every voice
+  $P tools/jamzone/prep_begi_ot_menya.py round2    # second round: the picked plugin tones rendered clean + the asked variants
   $P tools/jamzone/prep_begi_ot_menya.py zenpicks  # after `zenology_render.py sweep` of every voice: his GM-800 choice as the
                                                    #   first take of each ZENOLOGY ranking (then `zenology_render.py page`)
   $P tools/jamzone/prep_begi_ot_menya.py preview   # A/B page: original / my notes / MIDI as it is / Roma
@@ -375,6 +376,147 @@ def cmd_zenpicks():
         print(f"{vn}: {what} ({sc:.3f}) first of {len(rk['top'])}; best ZENOLOGY: " + ", ".join(f"{t['name']} {t['score']:.2f}" for t in rk["top"][1:4]))
 
 
+# ---- round 2 on ZENOLOGY: clean renders ------------------------------------------------------------------------
+# Measured 2026-11-21: `zenology_render.py sweep` swaps tone states inside one plugin instance (reset=False), and a take
+# then carries what the tones loaded before it left behind - echoes, reverb tails, sometimes dropped notes (Margherita
+# Pizz: bar by 16ths -2 -12 -19 in the sweep take, -1 -18 -38 on its own; the 1/8 echo of the «Wheel of Chaos» take is
+# not in that tone at all). A render in a process of its own with reset=True (10 s a call) is the same every time. So the
+# sweep is a rough short list, and whatever Alex picks is rendered again here, clean, before it goes anywhere.
+# What he picked on the ZENOLOGY page (2026-11-21): lead «Margherita Pizz, НО нужен эффект как на Wheel of Chaos который
+# вызывает чувство быстрого повторения нажатой ноты»; whistle «Porta Sine Lead но ... в оригинале вообще нет ощущения
+# нажатия ноты ("молоточка") между нотами»; stab «Scented»; arp «TB Bass 2 глубже: фильтр 1.5 кГц + дилей 3/16 + реверб»;
+# pad «Soft Storm Pad».
+ZEN = {"lead": "PRST_I Sun Gate/62", "whistle": "PRST_F Essential/478", "stab": "PRST_J Nebulous Forms/31",
+       "arp": "PRST_F Essential/271", "pad": "PRST_L Essential 2/207"}
+ZEN_TAKE = {"lead": "zen-synths-lead-144-148-PRST_I_Sun_Gate-0062.wav", "whistle": "zen-synths-whistle-1-5-PRST_F_Essential-0478.wav",
+            "stab": "zen-synths-stab-43-47-PRST_J_Nebulous_Forms-0031.wav", "arp": "zen-synths-arp-76-80-fx2.wav",
+            "pad": "zen-synths-pad-112-116-PRST_L_Essential_2-0207.wav"}
+WOC_TAKE = "zen-synths-lead-144-148-PRST_K_Volatile_Memories-0043.wav"
+ARP_FX = ZEN_FX["arp"][1][1][1]                       # the chain of «TB Bass 2 глубже»
+
+
+def cmd_zenrender():
+    """_zenrender TAG VOICE[,VOICE] B0 B1 OUT [GAP]: the voices together on a plugin tone, clean (a process of its own,
+    reset=True), note gains of the first voice applied. Called by round2 / zenlayer; needs the zr environment."""
+    import soundfile as sf
+    from mido import Message
+    tag, voices, b0, b1, out = sys.argv[2], sys.argv[3].split(","), float(sys.argv[4]), float(sys.argv[5]), sys.argv[6]
+    load = lambda nm: (lambda sp: (lambda m: (sp.loader.exec_module(m), m)[1])(importlib.util.module_from_spec(sp)))(
+        importlib.util.spec_from_file_location(nm, os.path.join(REPO, "tools", nm + ".py")))
+    zr = load("zenology_render"); gp, song = zr.gp_song("Беги от меня"); part = json.load(open(PART, encoding="utf-8"))
+    if len(sys.argv) > 7:
+        for vn in voices:
+            part["voices"][vn]["gap"] = float(sys.argv[7])
+    b0, b1 = (int(b0) if b0 == int(b0) else b0), (int(b1) if b1 == int(b1) else b1)
+    line = sorted(sum((gp.voice_line(song, part, vn, b0, b1) for vn in voices), []))
+    ev = sorted([Message("note_on", note=n, velocity=100, time=t) for t, n, d in line] + [Message("note_off", note=n, time=t + d) for t, n, d in line],
+                key=lambda m: (m.time, m.type == "note_on"))
+    x = zr.plugin(tag)(ev, duration=(b1 - b0) * song.bar + 3.0, sample_rate=zr.SR, reset=True).T.astype(np.float32)
+    x = gp.apply_gains(x, gp.voice_gains(song, part, voices[0], b0, b1), zr.SR)
+    sf.write(out, x, zr.SR, subtype="FLOAT"); print(out, f"{len(line)} notes, peak {20 * np.log10(np.abs(x).max() + 1e-9):.1f} dBFS")
+
+
+def zen_clean(tag, voices, b0, b1, out, gap=None):
+    if not os.path.exists(out):
+        r = subprocess.run([sys.executable, os.path.abspath(__file__), "_zenrender", tag, voices, str(b0), str(b1), out] + ([str(gap)] if gap is not None else []),
+                           capture_output=True, text=True)
+        if r.returncode:
+            raise SystemExit(r.stderr[-2000:])
+    import soundfile as sf
+    return sf.read(out, always_2d=True, dtype="float32")[0]
+
+
+def fx(x, chain, bar, sr=48000):
+    import pedalboard
+    units = []
+    for nm, kw in chain:
+        kw = dict(kw)
+        if "delay_bars" in kw:
+            kw["delay_seconds"] = kw.pop("delay_bars") * bar
+        units.append(getattr(pedalboard, nm)(**kw))
+    return pedalboard.Pedalboard(units)(x.T, sr).T
+
+
+def cmd_round2():
+    """Second listening round on clean renders -> analysis/.../zenology/page/round2.html: per voice the original, the take
+    Alex chose (as he heard it), the same tone clean, and the variants he asked for (lead: the repeat; whistle: legato)."""
+    import soundfile as sf
+    from scipy.signal import resample_poly
+    gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); zen = os.path.join(song.out, "zenology")
+    r2 = os.path.join(zen, "round2"); page = os.path.join(zen, "page"); os.makedirs(r2, exist_ok=True); os.makedirs(page, exist_ok=True)
+    bar = song.bar; cos = lambda A, B: float((A[:, :min(A.shape[1], B.shape[1])] * B[:, :min(A.shape[1], B.shape[1])]).sum()
+                                             / (np.linalg.norm(A[:, :min(A.shape[1], B.shape[1])]) * np.linalg.norm(B[:, :min(A.shape[1], B.shape[1])]) + 1e-9))
+    pic = lambda x: gp.cqt_db(x.mean(1) if x.ndim == 2 else x)
+    rev = lambda room, wet: ("Reverb", {"room_size": room, "wet_level": wet, "dry_level": 1 - wet * 0.6})
+    dly = lambda bars, fb, mix: ("Delay", {"delay_bars": bars, "feedback": fb, "mix": mix})
+
+    def like(x, take):
+        """Reverb + 1/8 delay on a clean render that brings it closest to a sweep take (what Alex heard)."""
+        T = pic(take); best = (cos(T, pic(x)), None)
+        for room in (0.3, 0.5, 0.7):
+            for wet in (0.08, 0.16, 0.25):
+                for mix in (0.0, 0.1, 0.18):
+                    ch = [rev(room, wet)] + ([dly(1 / 8, 0.3, mix)] if mix else [])
+                    c = cos(T, pic(fx(x, ch, bar)))
+                    if c > best[0]:
+                        best = (c, ch)
+        return best
+
+    groups = []; rd = lambda f: sf.read(os.path.join(zen, f), always_2d=True, dtype="float32")[0]; report = {}
+    for vn in ("lead", "whistle", "stab", "arp", "pad"):
+        b0, b1 = VOICES[vn]["solo"]; n = int(round((b1 - b0) * bar * 44100)); tag = ZEN[vn]; clips = []
+        orig = sum(resample_poly(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar + 0.2).mean(1), 147, 160) for st in part["stems"])
+        add = lambda nm, note, x, ref=False: clips.append((nm, note, np.asarray(x), ref))
+        add("Оригинал", "стемы keys + strings", orig, True)
+        take = rd(ZEN_TAKE[vn]); voices = "lead,lead_lo" if vn == "lead" else vn
+        clean = zen_clean(tag, voices, b0, b1, os.path.join(r2, f"{vn}-clean.wav")); c0 = cos(pic(take), pic(clean)); report[vn] = [round(c0, 2)]
+        name = tag.split("/")[0].split()[0] + "/" + tag.split("/")[1]
+        if vn == "arp":
+            add("TB Bass 2 глубже — как ты выбрал", "файл со страницы", take)
+            add("TB Bass 2 глубже — чистый рендер", f"{name} + фильтр 1.5 кГц + дилей 3/16 + реверб; так будет в слое", fx(clean, ARP_FX, bar))
+        else:
+            add(f"{'Margherita Pizz' if vn == 'lead' else 'Porta Sine Lead' if vn == 'whistle' else 'Scented' if vn == 'stab' else 'Soft Storm Pad'} — как ты слышал",
+                "дубль из перебора: в нём хвосты от чужих тонов, точно так не повторить", take)
+            add("Тот же тон, чистый рендер", f"{name} как он есть; близость к дублю {c0:.2f}", clean)
+        if vn in ("lead", "stab"):
+            c, ch = like(clean, take); report[vn].append(round(c, 2))
+            if ch:
+                what = " + ".join(f"реверб {k['room_size']:.1f}/{k['wet_level']:.2f}" if u == "Reverb" else f"дилей 1/8 {k['mix']:.2f}" for u, k in ch)
+                add("Чистый + хвост, как в дубле", f"{what}; близость к дублю {c:.2f}", fx(clean, ch, bar)); report[vn].append(what)
+        if vn == "lead":
+            woc = rd(WOC_TAKE); add("Wheel of Chaos — дубль из перебора", "эффект, который ты назвал: это эхо в 1/8 такта на −12 дБ, в самом тоне его нет", woc)
+            for nm, note, ch in (("Margherita + повтор 1/8", "дилей 1/8 такта, −12 дБ, обратная связь 0.4 — как в том дубле", [dly(1 / 8, 0.4, 0.25), rev(0.3, 0.08)]),
+                                 ("Margherita + повтор 1/8, плотнее", "дилей 1/8, обратная связь 0.55, громче", [dly(1 / 8, 0.55, 0.33), rev(0.3, 0.08)]),
+                                 ("Margherita + повтор 1/16", "дилей 1/16 такта: повтор вдвое быстрее", [dly(1 / 16, 0.5, 0.3), rev(0.3, 0.08)]),
+                                 ("Margherita + повтор 3/16", "дилей 3/16 такта: повторы попадают между нотами", [dly(3 / 16, 0.45, 0.28), rev(0.3, 0.08)])):
+                add(nm, note, fx(clean, ch, bar))
+            echo = zen_clean(tag, "lead_echo", b0, b1, os.path.join(r2, "lead-echo.wav"))
+            add("Margherita + повтор нотами", "повторы сыграны нотами, как в MIDI (−10 дБ), без дилея", fx(clean + echo[:len(clean)], [rev(0.3, 0.08)], bar))
+        if vn == "whistle":
+            leg = zen_clean(tag, vn, b0, b1, os.path.join(r2, "whistle-legato.wav"), gap=-0.04)
+            add("Porta Sine Lead легато", "ноты внахлёст: новая нота без атаки, подъезд по высоте", leg)
+            add("Легато + мягче", "ноты внахлёст + фильтр 2.5 кГц + реверб", fx(leg, [("LowpassFilter", {"cutoff_frequency_hz": 2500}), rev(0.5, 0.2)], bar))
+            sine = zen_clean("PRST_F Essential/477", vn, b0, b1, os.path.join(r2, "whistle-sine-legato.wav"), gap=-0.04)
+            add("Sine Lead легато + мягче", "F/477 (твой первый выбор) внахлёст + фильтр 2.5 кГц + реверб", fx(sine, [("LowpassFilter", {"cutoff_frequency_hz": 2500}), rev(0.5, 0.2)], bar))
+        # one loudness, one length, 44.1 kHz
+        rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; out = []; fitted = []
+        for nm, note, x, ref in clips:
+            y = x if ref else resample_poly(x.mean(1) if x.ndim == 2 else x, 147, 160)
+            y = np.pad(y, (0, max(0, n - len(y))))[:n]; fitted.append(y if ref else y * rms(clips[0][2][:n]) / rms(y))
+        peak = max(np.abs(y).max() for y in fitted)
+        for k, ((nm, note, x, ref), y) in enumerate(zip(clips, fitted)):
+            y = y / peak * 0.8; f = int(0.008 * 44100); y[:f] *= np.linspace(0, 1, f); y[-f:] *= np.linspace(1, 0, f)
+            fn = f"r2-{vn}-{k:02d}.wav"; sf.write(os.path.join(page, fn), y.astype(np.float32), 44100, subtype="PCM_16"); out.append([fn, nm, note, ref])
+        groups.append({"name": f"{SOUND_TITLE[vn].split(' (')[0]}, такты {b0}–{b1 - 1}", "note": "по кругу, одна громкость", "clips": out})
+        print(vn, report[vn], [c[0] for c in clips])
+    meta = {"title": "Беги от меня — второй круг, чистые рендеры", "groups": groups,
+            "sub": "Дубли быстрого перебора несли хвосты и эхо от тонов, загруженных перед ними. Здесь каждый выбранный тон отрендерен "
+                   "заново и чисто: так он будет звучать в слое. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза."}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(page, "round2.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(page, "round2.html"))
+
+
 SOUND_TOP = 7                              # candidates a voice on the page
 SOUND_KEEP = {"pad": ["-s003-"]}           # always on the page: Alex's own scene of this song
 SOUND_TITLE = {"lead": "Лид (такты 144–147: в оригинале лид + пэд)", "whistle": "Свист (такты 1–4: в оригинале свист + лид + пэд)",
@@ -536,4 +678,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "round2": cmd_round2, "preview": cmd_preview}[sys.argv[1]]()
