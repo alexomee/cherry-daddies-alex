@@ -9,6 +9,8 @@ the MIDI is the one Alex found: parts/medlyak-midifind.mid).
   $BP tools/jamzone/prep_medlyak.py bp        # Basic Pitch note events of the keys / strings stems (analysis/)
   $P tools/jamzone/prep_medlyak.py notes      # -> parts/keys.notes.json (+ the MIDI as it is, for A/B)
   $P tools/jamzone/prep_medlyak.py preview    # page: original / my notes / MIDI as it is, whole song
+  zr sweep ... / zr page ...                  # tone candidates (analysis/.../sweeps*.sh), then:
+  $P tools/jamzone/prep_medlyak.py tonepage   # the tone page: what to listen for, Alex's picks, voice order
 
 Key: G minor, pitch_semitones 0 (the band plays it in the record's key). Bars = mix.json bars, 105 bpm.
 The MIDI (midifind, 7 tracks, 105 bpm, 4/4) is only 32 bars long: intro 1-8, interlude 9-16, verse 17-32.
@@ -412,5 +414,37 @@ def cmd_preview():
     print(os.path.join(PAGE, "index.html"))
 
 
+# ---- the ZENOLOGY tone page (zenology_render.py page) with what to listen for in the original -----------------
+HINT = {"arp": "в оригинале слушай арпеджио на 1 1& 2 (G3 A♯3 D4…, тянется весь такт); мелодия над ним — голос lead",
+        "lead": "в оригинале слушай мелодию интро A4 G4 A♯4 | F4 D♯4 D4 D♯4 | D4 C4 A♯4 | G4 F♯4 G4 A4 (она же второй "
+                "голос куплета); арпеджио под ней — голос arp",
+        "hookline": "в оригинале слушай подголосок проигрыша C5 A♯4 на 2& 3; под ним арпеджио и струнные",
+        "mel": "в оригинале слушай мелодию припева A♯5 A5 G5 D5 | F5 D♯5 … ; под ней подложка (cpad)",
+        "fig": "в оригинале слушай фигуру восьмыми A5 A♯5 G5 A♯5 … ; под ней подложка (cpad)",
+        "cpad": "в оригинале слушай подложку (трезвучия); над ней мелодия (mel)",
+        "strings": "стем strings", "brk": "арпеджио брейкдауна шестнадцатыми; аккорды под ним — brk_pad"}
+ORDER = ["arp", "lead", "hookline", "mel", "fig", "cpad", "strings", "brk"]
+
+
+def cmd_tonepage():
+    """Adds to the page of `zr page` what part to listen for in each original, marks Alex's picks, orders the voices."""
+    import re, time
+    page = os.path.join(OUT, "zenology", "page", "index.html"); html = open(page, encoding="utf-8").read()
+    m = re.search(r"const M = (\{.*\});", html); M = json.loads(m.group(1))
+    picked = {v: z.split("/") for v, z in ZEN.items()}
+    for g in M["groups"]:
+        vn = g["name"].split(",")[0]
+        if vn in picked:
+            g["name"] += " — выбрано"
+        g["note"] = f"<b>{HINT.get(vn, '')}</b><br>" + g["note"].split("<br>")[-1]
+        for c in g["clips"]:
+            if vn in picked and c[1] and picked[vn][1] in c[2].split(" · ")[0].split()[-1:] and picked[vn][0] in c[2]:
+                c[1] = "✓ " + c[1]
+    M["groups"].sort(key=lambda g: ORDER.index(g["name"].split(",")[0]) if g["name"].split(",")[0] in ORDER else 99)
+    M["v"] = int(time.time())
+    open(page, "w", encoding="utf-8").write(html[:m.start(1)] + json.dumps(M, ensure_ascii=False) + html[m.end(1):])
+    print(page, [g["name"] for g in M["groups"]])
+
+
 if __name__ == "__main__":
-    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview}[sys.argv[1]]()
+    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage}[sys.argv[1]]()
