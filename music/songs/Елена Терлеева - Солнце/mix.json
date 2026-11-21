@@ -22,16 +22,16 @@
   "players": {"alex": ["guitars"], "trio": ["guitars", "drums", "vocals"], "steve": ["drums"], "tanya": ["vocals"]},
   "cues": [
     {"bar": 1,   "text": "Солнце all in", "abs_sec": 2.762, "snap_sec": 0.0},
-    {"bar": 8,   "text": "stop", "abs_sec": 15.685, "snap_sec": 11.531},
-    {"bar": 17,  "beat": 2, "text": "verse in", "abs_sec": 32.762, "snap_sec": 29.069},
-    {"bar": 32,  "text": "stop", "abs_sec": 59.992, "snap_sec": 55.838},
-    {"bar": 48,  "text": "stop", "abs_sec": 89.531, "snap_sec": 85.377},
-    {"bar": 49,  "text": "verse in", "abs_sec": 91.377, "snap_sec": 87.685},
-    {"bar": 64,  "text": "stop", "abs_sec": 119.069, "snap_sec": 114.915},
-    {"bar": 81,  "text": "keys stop", "abs_sec": 150.454, "snap_sec": 146.3},
-    {"bar": 89,  "text": "keys in", "abs_sec": 165.223, "snap_sec": 161.531},
-    {"bar": 96,  "text": "stop", "abs_sec": 178.146, "snap_sec": 173.992},
-    {"bar": 97,  "text": "chorus in", "abs_sec": 179.992, "snap_sec": 176.3},
-    {"bar": 113, "text": "end in", "count": true, "abs_sec": 209.531, "snap_sec": 205.377}
+    {"bar": 8,   "text": "stop", "abs_sec": 15.685, "snap_sec": 11.321},
+    {"bar": 17,  "beat": 2, "text": "verse in", "abs_sec": 32.762, "snap_sec": 29.019},
+    {"bar": 32,  "text": "stop", "abs_sec": 59.992, "snap_sec": 55.628},
+    {"bar": 48,  "text": "stop", "abs_sec": 89.531, "snap_sec": 85.167},
+    {"bar": 49,  "text": "verse in", "abs_sec": 91.377, "snap_sec": 87.635},
+    {"bar": 64,  "text": "stop", "abs_sec": 119.069, "snap_sec": 114.705},
+    {"bar": 81,  "text": "keys stop", "abs_sec": 150.454, "snap_sec": 145.874},
+    {"bar": 89,  "text": "keys in", "abs_sec": 165.223, "snap_sec": 161.501},
+    {"bar": 96,  "text": "stop", "abs_sec": 178.146, "snap_sec": 173.782},
+    {"bar": 97,  "text": "chorus in", "abs_sec": 179.992, "snap_sec": 176.26},
+    {"bar": 113, "text": "end in", "count": true, "abs_sec": 209.531, "snap_sec": 205.257}
   ]
 }

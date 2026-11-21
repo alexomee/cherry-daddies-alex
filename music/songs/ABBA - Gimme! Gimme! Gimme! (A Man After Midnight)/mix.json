@@ -28,12 +28,12 @@
   },
   "cues": [
     {"bar": 2, "text": "Gimme Gimme Gimme guitar in", "abs_sec": 3.427, "snap_sec": 0.0},
-    {"bar": 10, "beat": 2, "text": "drums in", "abs_sec": 20.677, "snap_sec": 16.623},
-    {"bar": 19, "beat": 3, "text": "verse in", "abs_sec": 39.307, "snap_sec": 35.293},
+    {"bar": 10, "beat": 2, "text": "drums in", "abs_sec": 20.677, "snap_sec": 16.583},
+    {"bar": 19, "beat": 3, "text": "verse in", "abs_sec": 39.307, "snap_sec": 35.243},
     {"bar": 43, "text": "intro in ready go", "abs_sec": 86.777, "snap_sec": 82.763},
-    {"bar": 53, "beat": 3, "text": "verse in ready go", "abs_sec": 107.697, "snap_sec": 103.653},
-    {"bar": 69, "beat": 3, "text": "chorus in ready go", "abs_sec": 140.097, "snap_sec": 136.063},
+    {"bar": 53, "beat": 3, "text": "verse in ready go", "abs_sec": 107.697, "snap_sec": 103.573},
+    {"bar": 69, "beat": 3, "text": "chorus in ready go", "abs_sec": 140.097, "snap_sec": 136.023},
     {"bar": 86, "beat": 4, "text": "intro in ready go", "abs_sec": 174.727, "snap_sec": 170.713},
-    {"bar": 99, "text": "end in", "count": true, "abs_sec": 198.897, "snap_sec": 194.403}
+    {"bar": 99, "text": "end in", "count": true, "abs_sec": 198.897, "snap_sec": 194.35}
   ]
 }

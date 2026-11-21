@@ -262,6 +262,27 @@ def last_sound(a, thr=10 ** (-55 / 20.0)):
     nz = np.nonzero(amp > thr)[0]
     return int(nz[-1]) + 1 if len(nz) else len(a)
 
+
+def last_hit(bufs, rel_db=20.0, rise_db=8.0):
+    """Seconds (into the buffers) of the LAST strong attack of their sum, or None.
+    10 ms RMS frames (exact 441-sample hop); an attack = a frame no quieter than the song's loud
+    level (95th percentile frame) - rel_db that rises >= rise_db over the quietest frame of the
+    previous 100 ms. A fade-out or a ringing final chord has no such rise, a reverb tail is far
+    below the loud level -> the result is the band's / playback's last hit, not the last sound."""
+    n = max(len(a) for a in bufs)
+    m = np.zeros(n, np.float32)
+    for a in bufs:
+        m[:len(a)] += a.mean(1) if a.ndim == 2 else a
+    H = SR // 100
+    k = n // H
+    if k < 11: return None
+    db = 20*np.log10(np.sqrt((m[:k*H].reshape(k, H).astype(np.float64)**2).mean(1)) + 1e-9)
+    ref = np.percentile(db, 95)
+    pad = np.concatenate([np.full(10, db[0]), db])    # window i = db[i-10 .. i-1]
+    prev = np.lib.stride_tricks.sliding_window_view(pad, 10)[:k].min(1)
+    att = np.nonzero((db >= ref - rel_db) & (db - prev >= rise_db))[0]
+    return att[-1]*H/SR if len(att) else None
+
 def place(buf, audio, at_samp):
     s0 = max(0, at_samp); a0 = max(0, -at_samp)
     n = min(len(audio)-a0, len(buf)-s0)
@@ -1460,6 +1481,60 @@ def main():
     # before its downbeat), and the cues must shift with the music, not stay on `lead`.
     cue_base = OFF + db0
     off_samp = round(OFF*SR)
+    def fade_times(spec):
+        """mix.json "fade_out" spec -> (t0, t1) render seconds, or None."""
+        if not spec: return None
+        def to_time(val, beat_val=1):
+            if isinstance(val, (list, tuple)):
+                b = float(val[0])
+                bt = _parse_beat(val[1]) if len(val) > 1 else 1.0
+            elif isinstance(val, dict):
+                b = float(val.get("bar", 1))
+                bt = _parse_beat(val.get("beat", 1))
+            else:
+                b = float(val)
+                bt = _parse_beat(beat_val)
+            idx = 4.0 * (b - 1.0) + (bt - 1.0)
+            return cue_base + relt(idx)
+
+        t0, t1 = None, None
+        if isinstance(spec, dict):
+            if "from_sec" in spec and "to_sec" in spec:
+                t0, t1 = float(spec["from_sec"]), float(spec["to_sec"])
+            elif any(k in spec for k in ("from_bar", "to_bar", "from", "to")):
+                fb = spec.get("from_bar", spec.get("from", 1))
+                fbt = spec.get("from_beat", 1)
+                tb = spec.get("to_bar", spec.get("to", 1))
+                tbt = spec.get("to_beat", 1)
+                t0 = to_time(fb, fbt)
+                t1 = to_time(tb, tbt)
+        elif isinstance(spec, (list, tuple)) and len(spec) == 2:
+            t0 = to_time(spec[0])
+            t1 = to_time(spec[1])
+        if t0 is None or t1 is None: return None
+        return (t0, t1)
+
+    fade_t, fade_msgs = {}, []                     # stem -> (t0, t1) render s of its fade_out (song or pb group)
+    song_fspec = mix.get("fade_out")
+    if (ft := fade_times(song_fspec)):
+        fade_msgs.append(f"  fade_out all music stems: {ft[0]:.3f}s -> {ft[1]:.3f}s ({ft[1]-ft[0]:.2f}s ramp) -> silent")
+        for st in music:
+            fade_t[st] = ft
+    for grp in pb_group_names(mix):
+        m = mix.get(grp) or {}
+        fspec = m.get("fade_out")
+        if not fspec: continue
+        gstems = [s for s in m.get("stems", []) if s not in perc]
+        if isinstance(fspec, dict) and any(k in audio for k in fspec):
+            for st, st_spec in fspec.items():
+                if (ft := fade_times(st_spec)):
+                    fade_t[st] = ft
+                    fade_msgs.append(f"  fade_out {grp}/{st}: {ft[0]:.3f}s -> {ft[1]:.3f}s ({ft[1]-ft[0]:.2f}s ramp) -> silent")
+        elif (ft := fade_times(fspec)):
+            fade_msgs.append(f"  fade_out {grp}: {ft[0]:.3f}s -> {ft[1]:.3f}s ({ft[1]-ft[0]:.2f}s ramp) -> silent")
+            for st in gstems:
+                fade_t[st] = ft
+
     # trailing-silence trim: end on the last REAL sound (not the zero-padded stem length),
     # rounded up to a whole bar, + (tail_bars-1) extra bars. "tail_bars" (mix.json, default 1)
     # tunes the clean tail. The cue tail still holds 2 bars after the last cue so an "end" cue
@@ -1471,15 +1546,33 @@ def main():
     # (true -> 2 bars.) Absent -> normal: extend to the last real sound, +2 bars of cue-tail room.
     cut = mix.get("cut_after_last_cue")
     cut_tail_bars = (2.0 if cut is True else float(cut)) if (cut is not None and mix.get("cues")) else None
+    # JZ_TAIL=hit (TRIAL 2026-11-21, Alex: «норма 1 такт после последнего удара»): the render ends
+    # tail_bars bar(s) after the LAST HIT (last strong attack of the music stems, or the last cue
+    # event if later), no whole-bar rounding (t=0 is not a bar line since 2026-11-20); whatever
+    # still rings fades out over the second half of that bar (tail_fade: stems, layers, all, pb-*).
+    tail_hit = os.environ.get("JZ_TAIL", "").strip().lower() == "hit" and cut_tail_bars is None
+    tail_fade = None
     if cut_tail_bars is not None:
         last_ev = max(cue_event_time(c, cue_base, relt) for c in mix["cues"])
         end = int((last_ev + cut_tail_bars*bar)*SR)
         print(f"cut: render ends {cut_tail_bars:g} bar(s) after the last cue event — song tail dropped")
+    elif tail_hit:
+        h = last_hit([a[:max(0, round(fade_t[n][1]*SR) - off_samp)] if n in fade_t else a   # a faded-out
+                      for n, a in audio.items()])                                           # stem is silent after its fade
+        hit_t, why = ((h + OFF), "last hit") if h is not None else \
+                     (max(last_sound(a) for a in srcs)/SR + OFF, "last sound (no attack found)")
+        if mix.get("cues"):
+            ce = max(cue_event_time(c, cue_base, relt) for c in mix["cues"])
+            if ce > hit_t: hit_t, why = ce, "last cue event"
+        end = int(round((hit_t + tail_bars*bar)*SR))
+        tail_fade = (int(round((hit_t + 0.5*tail_bars*bar)*SR)), end)
+        print(f"tail: {why} at {hit_t:.3f}s -> render ends {tail_bars} bar(s) after it, "
+              f"fade {tail_fade[0]/SR:.3f}-{end/SR:.3f}s")
     else:
         end = max(last_sound(a) for a in srcs) + off_samp
         if mix.get("cues"):
             end = max(end, int((max(cue_event_time(c, cue_base, relt) for c in mix["cues"]) + 2*bar)*SR))
-    total = int((np.ceil(end/(bar*SR)) + (tail_bars - 1))*bar*SR)
+    total = end if tail_hit else int((np.ceil(end/(bar*SR)) + (tail_bars - 1))*bar*SR)
     print(f"timeline = stem {OFF:+.5f}s, length {total/SR:.3f}s = {total/SR/bar:.0f} bars "
           f"(tail {tail_bars}b, trailing silence trimmed)")
 
@@ -1653,66 +1746,22 @@ def main():
                 print(f"click: bar {k0//4+1} ({k1-k0} beats before bar {k1//4+1}.{k1%4+1}) switched to post-tempo {60/b_post:.1f} bpm ({t_first:.3f}s..{t_ev:.3f}s)")
         out = {"click": cbuf}
     def parse_fade_range(spec):
-        if not spec: return None
-        def to_time(val, beat_val=1):
-            if isinstance(val, (list, tuple)):
-                b = float(val[0])
-                bt = _parse_beat(val[1]) if len(val) > 1 else 1.0
-            elif isinstance(val, dict):
-                b = float(val.get("bar", 1))
-                bt = _parse_beat(val.get("beat", 1))
-            else:
-                b = float(val)
-                bt = _parse_beat(beat_val)
-            idx = 4.0 * (b - 1.0) + (bt - 1.0)
-            return cue_base + relt(idx)
-
-        t0, t1 = None, None
-        if isinstance(spec, dict):
-            if "from_sec" in spec and "to_sec" in spec:
-                t0, t1 = float(spec["from_sec"]), float(spec["to_sec"])
-            elif any(k in spec for k in ("from_bar", "to_bar", "from", "to")):
-                fb = spec.get("from_bar", spec.get("from", 1))
-                fbt = spec.get("from_beat", 1)
-                tb = spec.get("to_bar", spec.get("to", 1))
-                tbt = spec.get("to_beat", 1)
-                t0 = to_time(fb, fbt)
-                t1 = to_time(tb, tbt)
-        elif isinstance(spec, (list, tuple)) and len(spec) == 2:
-            t0 = to_time(spec[0])
-            t1 = to_time(spec[1])
-
-        if t0 is None or t1 is None: return None
+        ft = fade_times(spec)
+        if ft is None: return None
+        t0, t1 = ft
         s0 = max(0, min(total, round(t0 * SR)))
         s1 = max(s0, min(total, round(t1 * SR)))
         return (s0, s1, t0, t1)
 
-    all_fades = {}
-    song_fspec = mix.get("fade_out")
-    if song_fspec:
-        fr = parse_fade_range(song_fspec)
-        if fr:
-            print(f"  fade_out all music stems: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
-            for st in music:
-                all_fades[st] = (fr[0], fr[1])
-    for grp in pb_group_names(mix):
-        m = mix.get(grp) or {}
-        fspec = m.get("fade_out")
-        if not fspec: continue
-        gstems = [s for s in m.get("stems", []) if s not in perc]
-        if isinstance(fspec, dict) and any(k in audio for k in fspec):
-            for st, st_spec in fspec.items():
-                fr = parse_fade_range(st_spec)
-                if fr:
-                    all_fades[st] = (fr[0], fr[1])
-                    print(f"  fade_out {grp}/{st}: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
-        else:
-            fr = parse_fade_range(fspec)
-            if fr:
-                print(f"  fade_out {grp}: {fr[2]:.3f}s -> {fr[3]:.3f}s ({fr[3]-fr[2]:.2f}s ramp) -> silent")
-                for st in gstems:
-                    all_fades[st] = (fr[0], fr[1])
+    all_fades = {}                                 # fade_t / fade_msgs: built before the tail logic
+    for st, (t0, t1) in fade_t.items():
+        s0 = max(0, min(total, round(t0 * SR)))
+        all_fades[st] = (s0, max(s0, min(total, round(t1 * SR))))
+    for msg in fade_msgs: print(msg)
 
+    if tail_fade:                                  # JZ_TAIL=hit: ring-out past the last hit fades to 0
+        for st in music:                           # at the render end (an earlier fade_out wins)
+            all_fades.setdefault(st, tail_fade)
     replaced = {r for grp in pb_group_names(mix)              # a layer that RE-RECORDS a Moises stem
                 for ent in (mix.get(grp) or {}).get("layers", []) if isinstance(ent, dict)
                 for r in ent.get("replaces", [])}             # (live bass for studio bass) -> drop that
@@ -1794,6 +1843,9 @@ def main():
             #   (placed at render t=0 when rec_off is absent); stem-frame =
             start = base + round(ent.get("offset_ms", 0)/1000*SR) # cut vs Moises stems (native, placed at OFF)
             lbuf = load_layer(nm, start)               # fx/back-vox layers auto-leveled like stems;
+            if tail_fade and tail_fade[1] > tail_fade[0]:   # JZ_TAIL=hit: same end fade as the stems
+                lbuf[tail_fade[0]:tail_fade[1]] *= np.linspace(1.0, 0.0, tail_fade[1] - tail_fade[0],
+                                                               dtype=np.float32)[:, None]
             role = classify(nm, (m.get("roles") or {}))   # gain_db = trim for those, absolute for musical
             ag, loud = auto_gain_db(lbuf, role)
             if loud is not None: autoleveled.add(grp)
