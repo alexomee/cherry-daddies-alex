@@ -372,7 +372,9 @@ PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "ar
 LAYER = {"piano": {"zen": PICKS["piano"], "reverb": {"rt60": 2.5, "db": -7}},
          "arp": {"zen": PICKS["arp"]}, "low": {"zen": PICKS["arp"]},      # low: the arp's tone - proposal, not Alex's pick
          "strings": {"zen": PICKS["strings"]}, "lead_acc": {"zen": PICKS["lead_acc"]},
-         "strings_hi": {"zen": PICKS["strings"]}, "bells": {"zen": "PRST_I Sun Gate/33"}, "swell": {"zen": "PRST_D Basic Synth/490"}}
+         "strings_hi": {"zen": PICKS["strings"]}, "swell": {"zen": "PRST_D Basic Synth/490"}}
+# bells: Alex chose «колокольчики из mp3, без фильтра» - bars 8 and 10 cut out of the minus mp3 (BELL_CUT, cut_bells(0)),
+# added to the layer by build_layer; bar 23 has no bells now (the strings and backing vocals sound with them there)
 # swell = Dreaming 5 (Alex). bells = Into the dreams, the first place of its sweep, only for the candidate: Alex - none of
 # the sweep «толком не подходят, звучат сильно плоско тускло по сравнению с оригиналом» (scores 0.48-0.70: the arp is louder there)
 # «на соло больше размазать ревербом/делеем»: the melody of the lead with a dotted-eighth echo and a longer room
@@ -593,14 +595,15 @@ def cmd_bellcut():
     part = json.load(open(PART, encoding="utf-8")); top = []
     for name, hp in (("колокольчики из mp3, выше 1.2 кГц", 1200), ("колокольчики из mp3, без фильтра", 0), ("колокольчики из mp3, выше 2 кГц", 2000)):
         cut, sr, song, gp = cut_bells(hp)
-        if hp == 1200:
+        if hp == 0:                                   # Alex's pick
             sf.write(BELL_CUT_FILE, cut.astype(np.float32), sr, subtype="FLOAT")
         a = int(song.t_stem(8) * sr); seg = resample_poly(cut[a:a + int((3 * song.bar + 1.0) * sr)].mean(1), gp.SR, sr)
         ctx = sum(_voice_sig(gp, song, part, [v], 8, 11) * 10 ** (G[v] / 20) for v in ("arp", "low"))
         n = len(ctx); y = np.pad(seg, (0, max(0, n - len(seg))))[:n] + ctx
         fn = f"{tag}-hp{hp}.wav"; sf.write(os.path.join(zen, fn), np.stack([y, y], 1).astype(np.float32), gp.SR, subtype="PCM_16")
         top.append({"bank": "mp3", "number": hp, "name": name + " + наше арпеджио", "category": "вырезано из записи", "score": 0.0, "oct": 0, "file": fn})
-    sun = json.load(open(os.path.join(zen, "zen-keys-bells2-8-11.json"), encoding="utf-8"))["top"][0]
+    jf = next(f for f in (os.path.join(zen, "zen-keys-bells2-8-11.json"), os.path.join(zen, "chosen", "zen-keys-bells2-8-11.json")) if os.path.exists(f))
+    sun = json.load(open(jf, encoding="utf-8"))["top"][0]
     top.append(dict(sun, name="для сравнения: " + sun["name"]))
     json.dump({"voice": "колокольчики: вырезать из минуса", "bars": [8, 11], "stems": ["piano", "keys", "other"], "tried": 0, "played": 0, "top": top},
               open(os.path.join(zen, tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
@@ -659,7 +662,6 @@ def cmd_calibrate():
     bp = lambda y, band: sosfiltfilt(butter(4, band, "bandpass", fs=gp.SR, output="sos"), y)
     # voices added over others: their band of the stem minus what the voices already levelled give there (powers add)
     RES = [(["strings_hi"], ["strings"], 32, 44, (2000, 8000), ["strings"]),
-           (["bells"], ["keys", "other"], 8, 11, (1500, 8000), ["arp", "low"]),
            (["swell"], ["keys", "other"], 3, 5, (500, 3000), ["low"])]
     for voices, stems, b0, b1, band, under in RES:
         u = sum(_voice_sig(gp, song, part, [v], b0, b1) * 10 ** (G[v] / 20) for v in under)
@@ -672,12 +674,22 @@ def cmd_calibrate():
     json.dump(G, open(GAINS, "w", encoding="utf-8"), ensure_ascii=False, indent=1); print(GAINS)
 
 
+def build_layer(gp, song, dst):
+    """The plugin takes (gm800_part layer) + the bells cut out of the minus mp3, both in the stem frame."""
+    import soundfile as sf
+    gp.cmd_layer(song, PART, dst)
+    lay, sr = sf.read(dst, always_2d=True); bells, bsr = sf.read(BELL_CUT_FILE, always_2d=True)
+    assert bsr == sr; n = min(len(lay), len(bells)); lay[:n] += bells[:n]
+    sf.write(dst, lay.astype(np.float32), sr, subtype="FLOAT")
+    print(f"  + bells cut from the minus mp3 -> {dst}  peak {20 * np.log10(np.abs(lay).max() + 1e-9):.1f} dBFS")
+
+
 def cmd_result():
     """The layer candidate (gm800_part layer --out) against the stems it replaces: levels by section, and a whole-song
     page (original keys / layer, with or without drums, bass and backing vocals)."""
     import soundfile as sf
     gp = load_tool("gm800_part"); song = gp.gmm.Song("Знаешь ли ты"); part = json.load(open(PART, encoding="utf-8"))
-    gp.cmd_layer(song, PART, CAND)
+    build_layer(gp, song, CAND)
     lay, sr = sf.read(CAND, always_2d=True); lay = lay.mean(1)
     orig = sum(sf.read(song.stem(st), always_2d=True)[0].mean(1) for st in part["stems"])
     db = lambda y: 10 * np.log10(float(np.mean(y ** 2)) + 1e-20)
@@ -703,7 +715,7 @@ def cmd_result():
     meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / sr, "ctx": "-ctx",
             "title": "Знаешь ли ты — слой клавиш ZENOLOGY",
             "sub": "Кандидат слоя <b>pb-keys</b> против стемов, которые он заменит (piano + keys + other + strings). Тоны — твой "
-                   "выбор; корни — тоном арпеджио (OrganBell 2, моё предложение); тромбона и хитов нет. Громкость голосов — по "
+                   "выбор; колокольчики 8 и 10 — вырезаны из минуса; корни — тоном арпеджио (OrganBell 2, моё предложение); тромбона и хитов нет. Громкость голосов — по "
                    "стемам там, где голос один. В плейбек не поставлен.",
             "tracks": [["1", f"orig-{v}.mp3", "Оригинал: клавиши", "Moises: piano + keys + other + strings", True],
                        ["2", f"layer-{v}.mp3", "Слой ZENOLOGY", "пиано Magical (педаль + реверб), арпеджио и корни OrganBell 2, "

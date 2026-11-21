@@ -1485,9 +1485,7 @@
   {"voice": "strings", "zen": "PRST_F Essential/335", "bars": [12, 60], "gain_db": -5.0},
   {"voice": "lead_acc", "zen": "ZEZ002 Dark Adaptations/20", "bars": [44, 60], "gain_db": -5.0},
   {"voice": "strings_hi", "zen": "PRST_F Essential/335", "bars": [24, 60], "gain_db": 3.6},
-  {"voice": "bells", "zen": "PRST_I Sun Gate/33", "bars": [8, 11], "gain_db": 0.5},
-  {"voice": "bells", "zen": "PRST_I Sun Gate/33", "bars": [23, 24], "gain_db": 0.5},
-  {"voice": "swell", "zen": "PRST_D Basic Synth/490", "bars": [3, 5], "gain_db": 7.6},
+  {"voice": "swell", "zen": "PRST_D Basic Synth/490", "bars": [3, 5], "gain_db": 3.8},
   {"voice": "lead_lo", "zen": "PRST_F Essential/383", "bars": [48, 56], "gain_db": 3.2, "delay": {"beats": 0.75, "db": -7, "fb": 0.35}, "reverb": {"rt60": 3.0, "db": -5}},
   {"voice": "lead_mid", "zen": "PRST_F Essential/383", "bars": [48, 56], "gain_db": 3.2, "delay": {"beats": 0.75, "db": -7, "fb": 0.35}, "reverb": {"rt60": 3.0, "db": -5}},
   {"voice": "lead_hi", "zen": "PRST_F Essential/383", "bars": [48, 56], "gain_db": 3.2, "delay": {"beats": 0.75, "db": -7, "fb": 0.35}, "reverb": {"rt60": 3.0, "db": -5}}
