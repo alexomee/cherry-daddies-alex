@@ -99,7 +99,7 @@ def do_metronome():
 
 
 # ---- keys as notes (2026-11-21) -------------------------------------------------------------------------------
-import collections, importlib.util, json, time
+import collections, importlib.util, json, re, time
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(REPO, "analysis", "gm800-match", os.path.basename(SONG))
 MID = os.path.join(SONG, "parts", "znaesh-rusmidi.mid")   # Alex 2026-11-21 after the A/B page: «Да, берём MIDI»
@@ -618,6 +618,69 @@ def cmd_bellcut():
     print(BELL_CUT_FILE, os.path.join(zen, tag + ".json"))
 
 
+# The roots (`low`, MIDI track 4: one low note a bar or half bar, C#3 / A2 / B2) were on the arp's tone, OrganBell 2, my
+# proposal. Below 180 Hz (bars 7-11, only keys there) the record holds them at -32..-35 dB through the bar; OrganBell 2
+# falls from -33 to -61 dB in 1.5 beats. Alex: «давай послушаем, подбери, с ним без него фрагменты».
+LOW_CATS = "Synth Pad/Str,E.Organ,Synth Bellpad,Ensemble Strings,E.Piano1,E.Piano2,Synth PolyKey,Ac.Piano,Pop Piano,Synth Bass,Vox/Choir"
+LOW_FRAGS = [(7, 12), (19, 24)]        # the verse (no strings, no bass) and the modulation before the drums (no bass)
+
+
+def cmd_lowpick(top=8):
+    """(zr env) Sustaining tones (traits: sustain_db > -8, attack_ms < 120) for the roots, ranked by how their level
+    below 180 Hz follows the record's over bars 7-11 (half-beat envelope, dB, after one offset); the best `top` clean,
+    as fragments: original / our layer now (OrganBell 2) / without the roots / with each candidate, arp + roots only,
+    the roots levelled to the record below 180 Hz -> zenology/zen-keys-low-<frag>.json (zr page)."""
+    import types, zlib, soundfile as sf
+    from mido import Message
+    from scipy.signal import butter, sosfiltfilt
+    zr = load_tool("zenology_render"); S = os.path.basename(SONG); gp, sg = zr.gp_song(S); SR = zr.SR
+    part = json.load(open(PART, encoding="utf-8")); G = json.load(open(GAINS, encoding="utf-8"))
+    lp = lambda y: sosfiltfilt(butter(4, 180, "lowpass", fs=SR, output="sos"), y)
+    h = int(sg.bar / 8 * SR)
+    envd = lambda y: np.array([10 * np.log10((y[i:i + h] ** 2).mean() + 1e-12) for i in range(0, len(y) - h + 1, h)])
+    b0, b1 = LOW_FRAGS[0]; want = envd(lp(_stem_sig(sg, ["keys", "other"], b0, b1)))
+    ev = []
+    for t, n, d in gp.voice_line(sg, part, "low", b0, b1):
+        ev += [Message("note_on", note=n, velocity=100, time=t), Message("note_off", note=n, time=t + d)]
+    ev.sort(key=lambda m: (m.time, m.type == "note_on")); dur = (b1 - b0) * sg.bar
+    rows = zr.select(types.SimpleNamespace(cat=LOW_CATS, name="", bank="", where="sustain_db>-8,attack_ms<120"))
+    p = zr.plugin(); res = []; t0 = time.time()
+    for i, r in enumerate(rows, 1):
+        p.raw_state = zlib.decompress(open(os.path.join(zr.CACHE, r["file"]), "rb").read()); p([], duration=1.5, sample_rate=SR, reset=False)
+        x = p(ev, duration=dur, sample_rate=SR, reset=False).T.mean(1)
+        e = envd(lp(x))[:len(want)]
+        if e.max() < -70:
+            continue
+        off = np.median(want[:len(e)] - e); res.append((float(np.mean(np.abs(want[:len(e)] - e - off))), r))
+        if i % 100 == 0:
+            print(f"  {i}/{len(rows)}  {(time.time() - t0) / i:.2f} s a tone", flush=True)
+    res.sort(key=lambda v: v[0]); zen = os.path.join(OUT, "zenology")
+    cur = ("PRST_D Basic Synth/539", "OrganBell 2 (сейчас в плейбеке)")
+    picks = [(f"{r['bank']}/{r['number']}", r["name"], d) for d, r in res[:top]]
+    print("best by the low envelope (mean |dB| off the record, half beats):")
+    for tag, nm, d in picks:
+        print(f"  {tag:32} {nm:18} {d:.1f} dB")
+    for fb0, fb1 in LOW_FRAGS:
+        arp = _voice_sig(gp, sg, part, ["arp"], fb0, fb1) * 10 ** (G["arp"] / 20)
+        swell = _voice_sig(gp, sg, part, ["swell"], fb0, fb1) * 10 ** (G.get("swell", 0) / 20)
+        ref = lp(_stem_sig(sg, ["keys", "other"], fb0, fb1)); n = len(arp); out = []; tagj = f"zen-keys-low-{fb0}-{fb1}"
+        clips = [("none", "без корней", "только наше арпеджио", None)]
+        for tag, nm, d in [(cur[0], cur[1], None)] + picks:
+            clips.append((re.sub(r"[^A-Za-z0-9]+", "_", tag), nm, (f"{tag} · огибающая низа ±{d:.1f} дБ к записи" if d is not None else tag), tag))
+        for cid, nm, note, tag in clips:
+            if tag:
+                x, _, _ = zr.render(tag, S, PART, "low", fb0, fb1); x = x.mean(1)[:n]; x = np.pad(x, (0, n - len(x)))
+                g = np.sqrt((ref[:n] ** 2).mean() / ((lp(x) ** 2).mean() + 1e-20)); y = arp + swell + x * g; note += f" · {20 * np.log10(g):+.0f} дБ"
+            else:
+                y = arp + swell
+            fn = f"{tagj}-{cid}.wav"; sf.write(os.path.join(zen, fn), np.stack([y, y], 1).astype(np.float32), SR, subtype="PCM_16")
+            out.append({"bank": "", "number": "", "name": nm, "category": note, "score": 0.0, "oct": 0, "file": fn})
+        json.dump({"voice": f"корни (низ под арпеджио), такты {fb0}–{fb1 - 1}: оригинал / без корней / сейчас / варианты", "bars": [fb0, fb1],
+                   "stems": ["keys", "other"], "tried": len(rows), "played": len(res), "top": out},
+                  open(os.path.join(zen, tagj + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(os.path.join(zen, tagj + ".json"))
+
+
 # where each voice group is measured against its stems: (voices, stems, bars [b0, b1)); one gain for the voices of a row
 CAL = [(["piano"], ["piano"], 1, 7),                       # intro: the piano stem is the piano alone
        (["strings"], ["strings"], 12, 19),
@@ -768,6 +831,8 @@ if __name__ == "__main__":
         cmd_bells()
     elif cmd == "bellcut":
         cmd_bellcut()
+    elif cmd == "lowpick":
+        cmd_lowpick()
     elif cmd == "calibrate":
         cmd_calibrate()
     elif cmd == "result":
