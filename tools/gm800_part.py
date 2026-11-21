@@ -405,10 +405,16 @@ def cmd_layer(song, part_file, out_path=None):
         x = gmm.read_wav(rec_path(song, part_file, tk)).astype(np.float64) * 10 ** (tk.get("gain_db", 0) / 20)
         x = apply_gains(x, voice_gains(song, part, tk["voice"], *tk["bars"]), SR)
         x = apply_bends(x, voice_bends(song, part, tk["voice"], *tk["bars"]), SR)
+        if tk.get("lowpass"):                                # Hz: the highs of a tone cut (12 dB an octave), offline
+            from scipy.signal import butter, sosfiltfilt
+            x = sosfiltfilt(butter(2, tk["lowpass"], "lowpass", fs=SR, output="sos"), x, axis=0)
         if tk.get("delay"):                                  # {"beats": 0.5, "db": -5, "fb": 0.25}: echo, offline
             d = tk["delay"]; x = apply_delay(x, SR, d["beats"] * song.bar / 4, d.get("db", -6.0), d.get("fb", 0.25))
         if tk.get("reverb"):                                 # {"rt60": 4.0, "db": 3}: reverb, offline (apply_reverb)
             x = apply_reverb(x, SR, **tk["reverb"])
+        if tk.get("gain_curve"):                             # [[bar, dB], ...]: level over the take, straight lines in dB
+            pts = sorted(tk["gain_curve"]); t = tk["bars"][0] + np.arange(len(x)) / SR / song.bar   # between the points, held outside
+            x = x * (10 ** (np.interp(t, [p[0] for p in pts], [p[1] for p in pts]) / 20))[:, None]
         n = int(0.3 * SR); x[-n:] *= np.linspace(1, 0, n)[:, None]; x[:48] *= np.linspace(0, 1, 48)[:, None]
         if tk.get("fade"):                                   # [from bar, to bar]: linear fade to silence
             f0, f1 = (int((b - tk["bars"][0]) * song.bar * SR) for b in tk["fade"])

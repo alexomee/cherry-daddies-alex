@@ -2477,8 +2477,8 @@
   {"voice": "stack", "tone": 970, "base": 33, "shift": 0, "bars": [129, 145], "gain_db": -5.3},
   {"voice": "sweep", "tone": 287, "base": 33, "shift": 0, "bars": [65, 73], "gain_db": 8.6},
   {"voice": "pad", "tone": 287, "base": 33, "shift": 0, "bars": [73, 89], "gain_db": -2.4},
-  {"voice": "strings", "tone": 1011, "base": 33, "shift": 0, "bars": [73, 89], "gain_db": 3.6},
-  {"voice": "brass", "tone": 249, "base": 33, "shift": 0, "bars": [73, 88], "gain_db": 3.5},
+  {"voice": "strings", "zen": "PRST_E XV Collection/292", "bars": [73, 89], "gain_db": -14.5, "gain_curve": [[73, -12], [76.5, -12], [78, -5]]},
+  {"voice": "brass", "tone": 249, "base": 33, "shift": 0, "bars": [73, 88], "gain_db": -9.2, "lowpass": 2400, "reverb": {"rt60": 4.0, "db": 9}},
   {"voice": "roll", "tone": 249, "base": 33, "shift": 0, "bars": [128, 129], "gain_db": 3.5}
  ]}
 }
