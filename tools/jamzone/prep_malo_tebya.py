@@ -47,7 +47,7 @@ Not notes: the hits of the `other` stem in the solos (a slide C4 -> D#4 with a t
 bars 37 39 41 43, and a cluster at the end of 38) and its riser 91-93 - FX; Alex's own parts/malo-sfx.wav already
 covers the transitions, so nothing is cut from the stems here (ask Alex about the solo hits).
 """
-import collections, importlib.util, json, os, shutil, subprocess, sys
+import collections, importlib.util, json, os, shutil, subprocess, sys, time
 import numpy as np
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -358,6 +358,8 @@ def cmd_sound():
     bar_html = bar_html.replace('<div id="fill"></div>', '<div id="fill"></div>' + marks)
     script = re.sub(r"const BAR = [^;]+;", f"const BAR = {song.bar};", script)
     script = re.sub(r"const T = \[.*?\n\];", lambda _: "const T = " + json.dumps(T, ensure_ascii=False) + ";", script, flags=re.S)
+    ver = time.strftime("%m%d-%H%M%S")                        # a rebuilt mp3 keeps its name: without this the browser plays the cached one
+    script = script.replace('const VER = "";', f'const VER = "?v={ver}";')
     script = re.sub(r"const KEYCODE = \{[^}]*\};", "const KEYCODE = {" + ", ".join(f'{c}: "Key{c}"' for c in "QWERTYUIOPASDFGHJKLZXCVBNM") + "};", script)
     main = ("<main>\n  <h1>Мало тебя — выбор звука пэда</h1>\n  <p class=\"sub\">Четыре такта на голос, всё на одной громкости, играет по кругу; "
             "переключение идёт с того же места. В каждой группе оригинал, Рома и лучшие кандидаты — твои сцены и отдельные тоны в одном "
@@ -365,7 +367,7 @@ def cmd_sound():
             "Дубли с прибора в стерео. <kbd>пробел</kbd> пауза, клавиши на кнопках.</p>\n" + "\n".join(groups) + "\n</main>")
     head = re.sub(r"<title>.*?</title>", "<title>Мало тебя — выбор звука</title>", head, flags=re.S)
     open(os.path.join(PAGE, "sound.html"), "w", encoding="utf-8").write(head + main + bar_html + script)
-    print(os.path.join(PAGE, "sound.html"))
+    print(os.path.join(PAGE, "sound.html") + f"   open as sound.html?v={ver} (the page itself is cached the same way)")
 
 
 HTML = """

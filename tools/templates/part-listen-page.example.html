@@ -128,9 +128,11 @@ const T = [
   ["g-a6", "V", "31-a6-tone-866.mp3", "866 Piccolo", ""],
   ["g-a6", "B", "31-a6-tone-224.mp3", "224 Warm Sine Lead", ""],
 ];
+const VER = "";   // the prep script puts "?v=<build time>" here: python3 -m http.server sends no Cache-Control, a rebuilt
+                  // mp3 under the same name is otherwise played from the browser cache without a request
 const KEYCODE = { Q: "KeyQ", W: "KeyW", E: "KeyE", R: "KeyR", A: "KeyA", S: "KeyS", D: "KeyD", F: "KeyF", Z: "KeyZ", X: "KeyX", C: "KeyC", V: "KeyV", B: "KeyB" };
 const items = T.map(([grp, key, file, name, note, ref]) => {
-  const a = new Audio(encodeURIComponent(file)); a.preload = "auto"; a.muted = true;
+  const a = new Audio(encodeURIComponent(file) + VER); a.preload = "auto"; a.muted = true;
   const b = document.createElement("button"); b.className = "t" + (ref ? " ref" : "");
   b.innerHTML = `<span class="k">${key}</span><span><b>${name}</b><small>${note}</small></span>`;
   document.getElementById(grp).appendChild(b);
