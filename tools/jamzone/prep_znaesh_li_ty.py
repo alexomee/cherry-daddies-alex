@@ -772,5 +772,7 @@ if __name__ == "__main__":
         cmd_calibrate()
     elif cmd == "result":
         cmd_result()
+    elif cmd == "layer":                  # Alex 2026-11-21 «Да, ставь»: the layer of the playback, parts/pb-keys.wav
+        _gp = load_tool("gm800_part"); build_layer(_gp, _gp.gmm.Song("Знаешь ли ты"), os.path.join(SONG, "parts", "pb-keys.wav"))
     else:
         sys.exit(__doc__)

@@ -3,15 +3,16 @@
   "podgo": "32C",
   "bpm": 64.0,
   "pitch_semitones": 0,
-  "pb-other": {"stems": ["piano", "keys", "strings", "other", "backing_vocals"]},
+  "pb-other": {"stems": ["backing_vocals"], "peak": "limit",
+               "layers": [{"file": "pb-keys", "frame": "stem", "gain_db": -2.3, "derived": true, "source": ["piano", "keys", "strings", "other"]}]},
   "pb-bass": {"stems": ["bass"]},
   "players": {"steve": ["drums"]},
   "cues": [
     {"bar": 1,  "text": "Знаешь ли ты playback in", "abs_sec": 4.793, "snap_sec": 0.0},
-    {"bar": 7,  "text": "voice in", "abs_sec": 27.293, "snap_sec": 19.793},
-    {"bar": 19, "text": "modulation in", "abs_sec": 72.293, "snap_sec": 64.793},
-    {"bar": 24, "text": "drums in", "abs_sec": 91.043, "snap_sec": 83.543},
-    {"bar": 44, "text": "modulation in", "abs_sec": 166.043, "snap_sec": 158.543},
-    {"bar": 59, "beat": "4&", "text": "end in", "count": true, "abs_sec": 225.574, "snap_sec": 217.136}
+    {"bar": 7,  "text": "voice in", "abs_sec": 27.293, "snap_sec": 19.723},
+    {"bar": 19, "text": "modulation in", "abs_sec": 72.293, "snap_sec": 64.773},
+    {"bar": 24, "text": "drums in", "abs_sec": 91.043, "snap_sec": 83.503},
+    {"bar": 44, "text": "modulation in", "abs_sec": 166.043, "snap_sec": 158.523},
+    {"bar": 59, "beat": "4&", "text": "end in", "count": true, "abs_sec": 225.574, "snap_sec": 217.968}
   ]
 }
