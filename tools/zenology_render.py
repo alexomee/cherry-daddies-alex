@@ -17,6 +17,11 @@ and bring him as variants). ZEN-Core is the engine of both; a tone goes ZENOLOGY
     zr page "<song>" NOTES.json      # listening page of this song's sweeps: original + the best takes per voice
     zr render "PRST_B AX Collection/196" "<song>" NOTES.json riff 105 109 out.wav [--vel 100]
     zr pick NAME                     # by hand: opens the window, the chosen tone -> gear/zenology/states/NAME.bin
+    zr variant "<song>" NOTES.json riff 105 109 "PRST_A Factory Presets/32{p1.level=0}" --name "Sunrise без слоя"
+                                     # an EDITED tone as one more take of that sweep (next to its tone on the page)
+
+A tone can be edited wherever a tone is named: "BANK/NUMBER{p1.level=0,p1.keyfollow=100,p1.coarse=-31}" sets
+parameters of partials 1..4 in the state before it is loaded (PARTIAL below: the ones found and measured so far).
 
 How it works. The plugin has no "select tone" parameter and ignores bank / program change without its window
 (measured 2026-11-20), but its whole state can be read and set (pedalboard raw_state): a flat list of
@@ -61,6 +66,45 @@ def state_name(st):
     return "".join(chr(rec.get(0x1130 + 4 * k, 32)) if 32 <= rec.get(0x1130 + 4 * k, 32) < 127 else "?" for k in range(16)).rstrip()
 
 
+# A partial's parameters in the state: records at 80000 + 40000 * (partial - 1) + offset. Found on "Sunrise"
+# (PRST_A 32) and measured 2026-11-21: level 0 silences the partial; coarse moves it by semitones; keyfollow 0 = the
+# partial sounds at ONE pitch whatever key is played (a bell sample there, heard as "an accompaniment out of tune"),
+# 100 = it follows the keys. Offset 48 of the block is the PCM wave number (read only so far).
+PARTIAL = {"level": 900, "coarse": 904, "keyfollow": 1012}
+
+
+def state_edit(st, edits):
+    """The state with some records set: edits = "p1.level=0,p1.coarse=-31" (PARTIAL) or {address: value}."""
+    import re, struct
+    if isinstance(edits, str):
+        ed = {}
+        for e in filter(None, (x.strip() for x in edits.split(","))):
+            m = re.match(r"^p([1-4])\.(\w+)=(-?\d+)$", e)
+            if not m or m.group(2) not in PARTIAL:
+                raise SystemExit(f"tone edit '{e}': expected pN.{{{'|'.join(PARTIAL)}}}=VALUE")
+            ed[80000 + 40000 * (int(m.group(1)) - 1) + PARTIAL[m.group(2)]] = int(m.group(3))
+        edits = ed
+    m = re.search(rb"<IComponent>(\d+)\.([^<]*)</IComponent>", st); n = int(m.group(1)); raw = bytearray(n + 2); pos = 0
+    for c in m.group(2):
+        v = ALPHA.get(c)
+        if v is None:
+            continue
+        byte, bit = divmod(pos, 8)
+        if byte >= n:
+            break
+        x = v << bit; raw[byte] |= x & 0xFF; raw[byte + 1] |= x >> 8; pos += 6
+    raw[n:] = b"\0\0"; left = dict(edits)
+    for i in range(4, n - 7, 8):
+        a = struct.unpack(">I", raw[i:i + 4])[0]
+        if a in left:
+            raw[i + 4:i + 8] = struct.pack(">i", left.pop(a))
+    if left:
+        raise SystemExit(f"tone edit: no record at {sorted(left)} in this state")
+    inv = {i: c for c, i in ALPHA.items()}
+    chars = bytes(inv[((raw[k * 6 // 8] | raw[k * 6 // 8 + 1] << 8) >> (k * 6 % 8)) & 63] for k in range((n * 8 + 5) // 6))
+    return st[:m.start(2)] + chars + st[m.end(2):]
+
+
 def read_catalog():
     if not os.path.exists(CATALOG):
         return []
@@ -69,14 +113,16 @@ def read_catalog():
 
 
 def tone_state(tag):
-    """Plugin state of a tone: 'BANK/NUMBER' or a unique part of it from the catalog, else a hand-picked state."""
+    """Plugin state of a tone: 'BANK/NUMBER' or a unique part of it from the catalog, else a hand-picked state;
+    '...{p1.level=0}' edits it (state_edit)."""
     import zlib
+    tag, _, ed = tag.partition("{"); tag = tag.strip(); edit = (lambda st: state_edit(st, ed.rstrip("}"))) if ed else (lambda st: st)
     rows = [r for r in read_catalog() if f"{r['bank']}/{r['number']}" == tag] or \
            [r for r in read_catalog() if tag.lower() in f"{r['bank']}/{r['number']} {r['name']}".lower()]
     if len(rows) == 1:
-        return zlib.decompress(open(os.path.join(CACHE, rows[0]["file"]), "rb").read()), rows[0]
+        return edit(zlib.decompress(open(os.path.join(CACHE, rows[0]["file"]), "rb").read())), rows[0]
     if os.path.exists(state_path(tag)):
-        return open(state_path(tag), "rb").read(), {"bank": "hand", "number": tag, "name": str(tag), "category": ""}
+        return edit(open(state_path(tag), "rb").read()), {"bank": "hand", "number": tag, "name": str(tag), "category": ""}
     raise SystemExit(f"tone '{tag}': {len(rows)} catalog matches {[r['bank'] + '/' + r['number'] + ' ' + r['name'] for r in rows[:8]]}")
 
 
@@ -294,6 +340,29 @@ def cmd_sweep(a):
     print(f"takes of the best {len(top)} and the ranking: {out}/{tag}*")
 
 
+def cmd_variant(a):
+    """An edited tone as one more take of a sweep already made: rendered, scored the same way, put into the sweep's
+    ranking right after the tone it is made of, so `page` shows the two side by side."""
+    import soundfile as sf
+    x, gp, sg = render(a.tag, a.song, a.notes, a.voice, a.b0, a.b1, a.vel); part = json.load(open(a.notes, encoding="utf-8"))
+    out = os.path.join(sg.out, "zenology"); tag = f"zen-{os.path.basename(a.notes).replace('.notes.json', '')}-{a.voice}-{a.b0}-{a.b1}"
+    jf = os.path.join(out, tag + ".json")
+    if not os.path.exists(jf):
+        raise SystemExit(f"no sweep of this voice and bars yet ({jf}): run `sweep` first")
+    rk = json.load(open(jf, encoding="utf-8")); _, row = tone_state(a.tag); dur = (a.b1 - a.b0) * sg.bar + 1.0
+    ref = sum(sg.read(f"{st}.wav", sg.t_stem(a.b0), sg.t_stem(a.b0) + dur) for st in part["stems"]).mean(1)
+    sc, sp, tf, o = gp.sweep_score(gp.cqt_db(ref), gp.cqt_db(x.mean(1)), sg.semi)
+    import re
+    fn = f"{tag}-{re.sub(r'[^A-Za-z0-9]+', '_', a.tag).strip('_')}.wav"; sf.write(os.path.join(out, fn), x, SR, subtype="PCM_16")
+    e = {"bank": row["bank"], "number": row["number"], "name": a.name or f"{row['name']} {a.tag.partition('{')[2].rstrip('}')}",
+         "category": row["category"], "score": round(sc, 3), "oct": o, "file": fn, "tone": a.tag}
+    top = [t for t in rk["top"] if t.get("tone") != a.tag]
+    k = max((i for i, t in enumerate(top) if (t["bank"], str(t["number"])) == (row["bank"], str(row["number"]))), default=len(top) - 1)
+    top.insert(k + 1, e); rk["top"] = top
+    json.dump(rk, open(jf, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"{e['name']}: score {sc:.3f} (spec {sp:.3f}, tf {tf:.3f}, oct {o:+d}) -> {os.path.join(out, fn)}; place {k + 2} of {len(top)} in {os.path.basename(jf)}")
+
+
 def cmd_page(a):
     """Listening page of the sweeps of a song: per voice the original bars (band key) and the best ZENOLOGY takes,
     looped, same loudness -> analysis/gm800-match/<song>/zenology/page/index.html (tools/templates/part-tone-pick.html)."""
@@ -314,7 +383,8 @@ def cmd_page(a):
         clips = [("orig", orig, "Оригинал", "стемы " + " + ".join(part["stems"]), True)]
         for k, t in enumerate(rk["top"][:a.top], 1):
             x = resample_poly(sf.read(os.path.join(src, t["file"]), always_2d=True)[0].mean(1), 147, 160); x = np.pad(x, (0, max(0, n - len(x))))[:n]
-            clips.append((f"{k:02d}", x * rms(orig) / rms(x), f"{t['name']}", f"{t['bank']} {t['number']} · {t['category']} · №{k}, близость {t['score']:.2f}", False))
+            clips.append((f"{k:02d}", x * rms(orig) / rms(x), f"{t['name']}", f"{t['bank']} {t['number']} · {t['category']} · "
+                          + ("правленый тон" if t.get("tone") else f"№{k}") + f", близость {t['score']:.2f}", False))
         peak = max(np.abs(c[1]).max() for c in clips); out = []; tag = os.path.basename(jf)[:-5]
         for cid, x, nm, note, ref in clips:
             x = x / peak * 0.8; k = int(0.008 * 44100); x[:k] *= np.linspace(0, 1, k); x[-k:] *= np.linspace(1, 0, k)
@@ -392,6 +462,8 @@ def main():
     p = sub.add_parser("sweep"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int); p.add_argument("b1", type=int)
     filt(p); p.add_argument("--top", type=int, default=12); p.add_argument("--limit", type=int, default=100000); p.add_argument("--vel", type=int, default=100)
     p = sub.add_parser("page"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--top", type=int, default=8)
+    p = sub.add_parser("variant"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int)
+    p.add_argument("b1", type=int); p.add_argument("tag"); p.add_argument("--name", default=""); p.add_argument("--vel", type=int, default=100)
     for nm in ("render", "compare"):
         p = sub.add_parser(nm); p.add_argument("tag"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice")
         p.add_argument("b0", type=int); p.add_argument("b1", type=int)
@@ -401,7 +473,7 @@ def main():
             p.add_argument("--gm", default="", help="GM-800 tone number of the sweep take to compare with (default: the tag)")
         p.add_argument("--vel", type=int, default=100)
     a = ap.parse_args()
-    return {"pick": lambda: cmd_pick(a.tag), "catalog": lambda: cmd_catalog(a), "list": lambda: cmd_list(a), "sweep": lambda: cmd_sweep(a), "page": lambda: cmd_page(a),
+    return {"pick": lambda: cmd_pick(a.tag), "catalog": lambda: cmd_catalog(a), "list": lambda: cmd_list(a), "sweep": lambda: cmd_sweep(a), "page": lambda: cmd_page(a), "variant": lambda: cmd_variant(a),
             "render": lambda: cmd_render(a), "compare": lambda: cmd_compare(a)}[a.cmd]()
 
 
