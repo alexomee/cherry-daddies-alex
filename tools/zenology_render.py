@@ -552,9 +552,12 @@ def cmd_page(a):
     looped, same loudness -> analysis/gm800-match/<song>/zenology/page/index.html (tools/templates/part-tone-pick.html)."""
     import glob, subprocess, soundfile as sf
     from scipy.signal import resample_poly
-    gp, sg = gp_song(a.song); part = json.load(open(a.notes, encoding="utf-8")); src = os.path.join(sg.out, "zenology"); dst = os.path.join(src, "page")
+    import re
+    gp, sg = gp_song(a.song); part = json.load(open(a.notes, encoding="utf-8")); src = os.path.join(sg.out, "zenology"); dst = os.path.join(src, a.dir)
     os.makedirs(dst, exist_ok=True); rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; groups = []
     for jf in sorted(glob.glob(os.path.join(src, "zen-*.json")), key=os.path.getmtime):
+        if a.only and not re.search(a.only, os.path.basename(jf)):
+            continue
         rk = json.load(open(jf, encoding="utf-8")); b0, b1 = rk["bars"]; n = int(round((b1 - b0) * sg.bar * 44100)); orig = np.zeros(n)
         stems = rk.get("stems") or part["stems"]                 # a sweep made on another notes file (a voice heard in
         for st in stems:                                         # another stem) is shown against ITS stems; band key
@@ -676,6 +679,8 @@ def main():
     p = sub.add_parser("index"); p.add_argument("--banks", default="."); p.add_argument("--jobs", type=int, default=4)
     p.add_argument("--redo", action="store_true"); p.add_argument("--shard", default="", help="(worker) 'BANK|START'")
     p = sub.add_parser("page"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("--top", type=int, default=8)
+    p.add_argument("--only", default="", help="regular expression on the sweep files (zen-<notes>-<voice>-<bars>.json) to show")
+    p.add_argument("--dir", default="page", help="folder of the page inside <song>/zenology/ (another page beside the main one)")
     p = sub.add_parser("record"); p.add_argument("song"); p.add_argument("notes")
     p = sub.add_parser("variant"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int)
     p.add_argument("b1", type=int); p.add_argument("tag"); p.add_argument("--name", default=""); p.add_argument("--vel", type=int, default=100)

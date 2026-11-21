@@ -162,6 +162,10 @@ def build(as_midi=False):
     fifth = SEMI if as_midi else SEMI + 7
     V["organ"] = (cut(T[9], 38, 54, 41, fifth) + cut(T[9], 86, 102, 89, fifth)
                   + cut(T[9], 110, 125, 113, fifth) + cut(T[9], 126, 142, 129, fifth))
+    if not as_midi:                      # the record against the MIDI, checked on every organ note 2026-11-21 (Alex: «проверь, что там
+        for n in V["organ"]:             # по нотам»): the last off-beat of bars 116 / 120 / 124 is G#4 there (16-19 dB over G4)
+            if n[0] in (116, 120, 124) and n[1] == 4.5 and n[3] == "G4":
+                n[3] = "G#4"
     V["arp"] = cut(T[3], 45, 70, 48) + cut(T[3], 93, 102, 96) + cut(T[3], 126, 142, 129)
     if not as_midi:
         V["arp_lo"] = cut(T[3], 45, 54, 48, SEMI - 12) + cut(T[3], 93, 102, 96, SEMI - 12)
