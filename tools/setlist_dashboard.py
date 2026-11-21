@@ -556,6 +556,15 @@ def main():
     data = build_data()
     _save_hcache()
     OUT.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:                                    # web/audition-updates.json: «последнее обновление» on audition.html
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import audition_updates
+        n = audition_updates.update(data)
+        if n:
+            print(f"  audition updates: {n} song(s) changed")
+    except Exception as e:                  # the ledger must never break a render
+        print(f"  audition updates skipped: {e}")
     c = data["counts"]
     print(f"wrote {OUT}")
     print(f"  {c['data']}/{c['total']} songs with data · {c['cues']} cues · "

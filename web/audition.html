@@ -47,6 +47,24 @@
     width:48px;height:48px;font-size:18px;cursor:pointer;-webkit-tap-highlight-color:transparent}
   .ctl button.main{width:62px;height:62px;font-size:24px;background:var(--accent);border-color:var(--accent);color:#fff}
   .ctl button:disabled{opacity:.4}
+  .upd{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 14px}
+  .upd h2{font-size:14px;margin:0 0 8px;font-weight:600}
+  .upd h2 span{color:var(--dim);font-weight:400}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:#0e1016;border:1px solid var(--line);color:var(--txt);border-radius:16px;padding:4px 10px;
+    font-size:13px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .chip:hover{border-color:var(--accent)}
+  .chip i{font-style:normal;color:var(--ok);font-size:11px;margin-left:5px}
+  .arch-link{display:inline-block;margin-top:10px;background:none;border:0;padding:0;color:var(--accent);
+    font-size:13px;cursor:pointer}
+  .arch{margin-top:10px;border-top:1px solid var(--line);padding-top:6px}
+  .arch[hidden]{display:none}
+  .arch details{padding:6px 0;border-bottom:1px solid var(--line)}
+  .arch details:last-child{border-bottom:0}
+  .arch summary{cursor:pointer;font-size:14px;list-style-position:inside}
+  .arch summary span{color:var(--dim);font-size:13px}
+  .arch .chips{margin:8px 0 4px}
+  li .u{color:var(--ok);font-size:11px;border:1px solid #234a3c;border-radius:10px;padding:1px 6px;white-space:nowrap}
   .msg{color:var(--no);font-size:13px;text-align:center;margin-top:6px;min-height:0}
   .msg:empty{display:none}
 </style>
@@ -58,6 +76,7 @@
     <a href="./">← сетлист</a>
   </header>
   <p class="sub" id="sub">загрузка…</p>
+  <section class="upd" id="upd" hidden></section>
   <ol id="list"></ol>
 </div>
 
@@ -89,7 +108,53 @@
   var seek = document.getElementById("seek");
   var playBtn = document.getElementById("play");
   var msg = document.getElementById("msg");
-  var songs = [], idx = -1, dragging = false, durs = {};
+  var songs = [], idx = -1, dragging = false, durs = {}, fresh = {};
+
+  // «последнее обновление» + archive by date, from web/audition-updates.json (tools/audition_updates.py)
+  function dayName(d){
+    var t = new Date(d + "T12:00:00");
+    return isNaN(t) ? d : t.toLocaleDateString("ru-RU", {day: "numeric", month: "long", weekday: "short"});
+  }
+  function shortDay(d){ var p = d.split("-"); return p.length === 3 ? p[2] + "." + p[1] : d; }
+  function plural(n){ var m = n % 10, h = n % 100;
+    return n + (m === 1 && h !== 11 ? " песня" : m >= 2 && m <= 4 && (h < 12 || h > 14) ? " песни" : " песен"); }
+  function chips(list_){
+    return '<div class="chips">' + list_.map(function(x){
+      return '<button class="chip" type="button" data-slug="' + esc(x.slug) + '">' + esc(x.title || x.sid || "")
+        + (x["new"] ? '<i>новая</i>' : "") + '</button>';
+    }).join("") + '</div>';
+  }
+  function showUpdates(u){
+    var box = document.getElementById("upd");
+    var ups = (u && u.updates || []).map(function(d){
+      return {date: d.date, songs: d.songs.filter(function(x){ return bySlug[x.slug] !== undefined; })};
+    }).filter(function(d){ return d.songs.length; });
+    if(!ups.length) return;
+    var last = ups[0], older = ups.slice(1);
+    last.songs.forEach(function(x){ fresh[x.slug] = "↻ " + shortDay(last.date); });
+    var h = '<h2>Последнее обновление · ' + esc(dayName(last.date)) + ' <span>· ' + plural(last.songs.length) + '</span></h2>'
+          + chips(last.songs);
+    if(older.length){
+      h += '<button class="arch-link" type="button" id="archBtn">архив обновлений (' + older.length + ') ▾</button>'
+         + '<div class="arch" id="arch" hidden>' + older.map(function(d){
+             return '<details><summary>' + esc(dayName(d.date)) + ' <span>· ' + plural(d.songs.length) + '</span></summary>'
+               + chips(d.songs) + '</details>';
+           }).join("") + '</div>';
+    }
+    box.innerHTML = h; box.hidden = false;
+    var btn = document.getElementById("archBtn");
+    if(btn) btn.addEventListener("click", function(){
+      var a_ = document.getElementById("arch"); a_.hidden = !a_.hidden;
+      btn.textContent = "архив обновлений (" + older.length + ") " + (a_.hidden ? "▾" : "▴");
+    });
+    box.addEventListener("click", function(e){
+      var c = e.target.closest(".chip"); if(!c) return;
+      var i = bySlug[c.getAttribute("data-slug")];
+      if(i !== undefined) select(i, true);
+    });
+    render();
+  }
+  var bySlug = {};
 
   function src(s){
     if(LOCAL) return "audio?sid=" + encodeURIComponent(s.sid) + "&p=pb-audition";
@@ -105,8 +170,9 @@
 
   function render(){
     list.innerHTML = songs.map(function(s, i){
+      var u = fresh[s.slug] ? '<span class="u" title="обновлена в последнем обновлении">' + fresh[s.slug] + '</span>' : "";
       return '<li data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="t"><b>' + esc(s.title)
-        + '</b><span>' + esc(s.artist || "") + '</span></span><span class="d">' + (durs[i] ? fmt(durs[i]) : "") + '</span></li>';
+        + '</b><span>' + esc(s.artist || "") + '</span></span>' + u + '<span class="d">' + (durs[i] ? fmt(durs[i]) : "") + '</span></li>';
     }).join("");
     mark();
   }
@@ -214,7 +280,10 @@
     document.getElementById("sub").textContent = songs.length + " песен подряд · "
       + (set.subtitle || "") + (skipped ? " · без pb audition: " + skipped : "")
       + " · играет и при заблокированном экране";
+    songs.forEach(function(s, i){ bySlug[s.slug] = i; });
     render();
+    fetch("audition-updates.json", {cache: "no-store", credentials: "same-origin"})
+      .then(function(r){ return r.ok ? r.json() : null; }).then(showUpdates).catch(function(){});
     var st = load(), at = 0;
     if(st && st.sid) songs.forEach(function(s, i){ if(s.sid === st.sid) at = i; });
     select(at, false, st && st.t > 5 ? st.t : 0);

@@ -1,0 +1,537 @@
+{
+ "hashes": {
+  "fd31c4f9ad95": "82f4ab8ca0",
+  "059476adbfec": "a921a92b07",
+  "ab33e65bf629": "5c322655df",
+  "e773956ecaa6": "48ca5b60fe",
+  "c1b741b6747a": "b38bec70db",
+  "8aed085975f2": "1e10a32269",
+  "ccbcf0c2cad9": "d54c833034",
+  "d19286157d3c": "50ea953498",
+  "42a10b949a41": "793502522e",
+  "b581fa388c98": "141acf8512",
+  "fb79a34f990d": "de92479e2d",
+  "dfa18d189118": "7a55b3b2c5",
+  "351bca043e8d": "2e31cc06d9",
+  "cadd346666dc": "7fe3859883",
+  "a234bff4f98d": "c144e2eda4",
+  "278090c6fbe3": "92847e6ad1",
+  "a207e9a0dae0": "2e327d7866",
+  "cfc3bca52e8c": "f39e1268b3",
+  "ace2a923452e": "9e1500c71e",
+  "bfc10db79749": "9a2643c065",
+  "1876a74e9617": "494db7cfea",
+  "fde163f34bf4": "4597e433ab",
+  "54244363ae3e": "35031fb1ed",
+  "ce6a8891a4b7": "40b9966448",
+  "38c4670831f0": "8e94cc2e12",
+  "06185b95940b": "8231ede05a",
+  "4bfe90ef136b": "347d6144f3",
+  "13127f359691": "e821396eac",
+  "ebdf7d5b7b57": "153e317441",
+  "297f69dca0f1": "b2d22dc29f",
+  "7988839c0526": "d2637eeab6",
+  "003a4f299383": "0919c5c64b",
+  "d25496cbe2d5": "1afaf65da7",
+  "53a4ff952038": "b70a81bc9a"
+ },
+ "updates": [
+  {
+   "date": "2026-11-21",
+   "songs": [
+    {
+     "slug": "e773956ecaa6",
+     "sid": "Беги от меня",
+     "title": "Беги от меня",
+     "artist": "Гости из будущего",
+     "ts": 1795252356,
+     "new": false
+    },
+    {
+     "slug": "8aed085975f2",
+     "sid": "Елена Терлеева - Солнце",
+     "title": "Солнце",
+     "artist": "Елена Терлеева",
+     "ts": 1795252356,
+     "new": false
+    },
+    {
+     "slug": "dfa18d189118",
+     "sid": "A Touch of Class - Around the World (La La La La La)",
+     "title": "Around the World",
+     "artist": "ATC",
+     "ts": 1795252356,
+     "new": false
+    },
+    {
+     "slug": "ace2a923452e",
+     "sid": "SEREBRO - Malo tebya",
+     "title": "Мало тебя",
+     "artist": "SEREBRO",
+     "ts": 1795252356,
+     "new": false
+    },
+    {
+     "slug": "fde163f34bf4",
+     "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+     "title": "Я сошла с ума",
+     "artist": "t.A.T.u.",
+     "ts": 1795252356,
+     "new": false
+    },
+    {
+     "slug": "c1b741b6747a",
+     "sid": "Demo - Solnyshko",
+     "title": "Солнышко",
+     "artist": "Демо",
+     "ts": 1795255107,
+     "new": false
+    },
+    {
+     "slug": "d25496cbe2d5",
+     "sid": "МакSим - Знаешь ли ты",
+     "title": "Знаешь ли ты",
+     "artist": "МакSим",
+     "ts": 1795277895,
+     "new": false
+    }
+   ]
+  },
+  {
+   "date": "2026-11-20",
+   "songs": [
+    {
+     "slug": "bfc10db79749",
+     "sid": "Мама Люба",
+     "title": "Мама Люба",
+     "artist": "SEREBRO",
+     "ts": 1795183916,
+     "new": false
+    },
+    {
+     "slug": "fd31c4f9ad95",
+     "sid": "Кислотный DJ",
+     "title": "Кислотный DJ",
+     "artist": "Акула",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "059476adbfec",
+     "sid": "Такая любовь",
+     "title": "Такая любовь",
+     "artist": "Акула",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "ab33e65bf629",
+     "sid": "Band'Eros - Pro krasivuju zhizn'",
+     "title": "Про красивую жизнь",
+     "artist": "Банд'Эрос",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "e773956ecaa6",
+     "sid": "Беги от меня",
+     "title": "Беги от меня",
+     "artist": "Гости из будущего",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "c1b741b6747a",
+     "sid": "Demo - Solnyshko",
+     "title": "Солнышко",
+     "artist": "Демо",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "8aed085975f2",
+     "sid": "Елена Терлеева - Солнце",
+     "title": "Солнце",
+     "artist": "Елена Терлеева",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "ccbcf0c2cad9",
+     "sid": "Король и Шут - Кукла колдуна",
+     "title": "Кукла колдуна",
+     "artist": "Король и Шут",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "d19286157d3c",
+     "sid": "Мумий Тролль - Владивосток 2000",
+     "title": "Владивосток 2000",
+     "artist": "Мумий Тролль",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "42a10b949a41",
+     "sid": "Мумий Тролль - Медведица",
+     "title": "Медведица",
+     "artist": "Мумий Тролль",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "b581fa388c98",
+     "sid": "Мелом",
+     "title": "Мелом",
+     "artist": "Пропаганда",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "fb79a34f990d",
+     "sid": "Чичерина - Ту-лу-ла",
+     "title": "Ту-лу-ла",
+     "artist": "Чичерина",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "dfa18d189118",
+     "sid": "A Touch of Class - Around the World (La La La La La)",
+     "title": "Around the World",
+     "artist": "ATC",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "297f69dca0f1",
+     "sid": "Alexandra Stan - Mr. Saxobeat",
+     "title": "Mr. Saxobeat",
+     "artist": "Alexandra Stan",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "351bca043e8d",
+     "sid": "Alex Gaudino - Destination Calabria",
+     "title": "Destination Calabria",
+     "artist": "Alex Gaudino",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "7988839c0526",
+     "sid": "Basshunter - Now You're Gone",
+     "title": "Now You're Gone",
+     "artist": "Basshunter",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "cadd346666dc",
+     "sid": "Cascada - Everytime We Touch",
+     "title": "Everytime We Touch",
+     "artist": "Cascada",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "a234bff4f98d",
+     "sid": "Gala - Freed from Desire",
+     "title": "Freed From Desire",
+     "artist": "Gala",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "278090c6fbe3",
+     "sid": "Icona Pop & Charli XCX - I Love It",
+     "title": "I Love It",
+     "artist": "Icona Pop",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "a207e9a0dae0",
+     "sid": "Mr. Credo - Медляк",
+     "title": "Медляк",
+     "artist": "Mr. Credo",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "53a4ff952038",
+     "sid": "Nirvana - Smells Like Teen Spirit",
+     "title": "Smells Like Teen Spirit",
+     "artist": "Nirvana",
+     "ts": 1795209147,
+     "new": true
+    },
+    {
+     "slug": "cfc3bca52e8c",
+     "sid": "Quest Pistols - Я устал",
+     "title": "Я устал",
+     "artist": "Quest Pistols",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "ace2a923452e",
+     "sid": "SEREBRO - Malo tebya",
+     "title": "Мало тебя",
+     "artist": "SEREBRO",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "1876a74e9617",
+     "sid": "Shakira - Whenever, Wherever",
+     "title": "Whenever, Wherever",
+     "artist": "Shakira",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "fde163f34bf4",
+     "sid": "t.A.T.u. - Ya Soshla S Uma (Я сошла с ума)",
+     "title": "Я сошла с ума",
+     "artist": "t.A.T.u.",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "54244363ae3e",
+     "sid": "The Offspring - Pretty Fly (For A White Guy)",
+     "title": "Pretty Fly",
+     "artist": "The Offspring",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "ce6a8891a4b7",
+     "sid": "The Weeknd - Blinding Lights",
+     "title": "Blinding Lights",
+     "artist": "The Weeknd",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "38c4670831f0",
+     "sid": "Yeah Yeah Yeahs - Heads Will Roll",
+     "title": "Heads Will Roll",
+     "artist": "Yeah Yeah Yeahs",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "06185b95940b",
+     "sid": "Beverly Hills",
+     "title": "Beverly Hills",
+     "artist": "Zivert",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "4bfe90ef136b",
+     "sid": "Вирус - Попрошу тебя",
+     "title": "Попрошу тебя",
+     "artist": "Вирус",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "13127f359691",
+     "sid": "Вирус - Ты меня не ищи",
+     "title": "Ты меня не ищи",
+     "artist": "Вирус",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "d25496cbe2d5",
+     "sid": "МакSим - Знаешь ли ты",
+     "title": "Знаешь ли ты",
+     "artist": "МакSим",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "ebdf7d5b7b57",
+     "sid": "Muse - Supermassive Black Hole",
+     "title": "Supermassive Black Hole",
+     "artist": "Muse",
+     "ts": 1795209147,
+     "new": false
+    },
+    {
+     "slug": "003a4f299383",
+     "sid": "t.A.T.u. - Not Gonna Get Us (Нас не догонят)",
+     "title": "Нас не догонят",
+     "artist": "t.A.T.u.",
+     "ts": 1795209147,
+     "new": false
+    }
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "songs": [
+    {
+     "slug": "8aed085975f2",
+     "sid": "Елена Терлеева - Солнце",
+     "title": "Солнце",
+     "artist": "Елена Терлеева",
+     "ts": 1795066839,
+     "new": false
+    },
+    {
+     "slug": "059476adbfec",
+     "sid": "Такая любовь",
+     "title": "Такая любовь",
+     "artist": "Акула",
+     "ts": 1795071811,
+     "new": false
+    },
+    {
+     "slug": "c1b741b6747a",
+     "sid": "Demo - Solnyshko",
+     "title": "Солнышко",
+     "artist": "Демо",
+     "ts": 1795071811,
+     "new": false
+    },
+    {
+     "slug": "297f69dca0f1",
+     "sid": "Alexandra Stan - Mr. Saxobeat",
+     "title": "Mr. Saxobeat",
+     "artist": "Alexandra Stan",
+     "ts": 1795071811,
+     "new": true
+    },
+    {
+     "slug": "7988839c0526",
+     "sid": "Basshunter - Now You're Gone",
+     "title": "Now You're Gone",
+     "artist": "Basshunter",
+     "ts": 1795071811,
+     "new": true
+    },
+    {
+     "slug": "06185b95940b",
+     "sid": "Beverly Hills",
+     "title": "Beverly Hills",
+     "artist": "Zivert",
+     "ts": 1795071811,
+     "new": false
+    },
+    {
+     "slug": "13127f359691",
+     "sid": "Вирус - Ты меня не ищи",
+     "title": "Ты меня не ищи",
+     "artist": "Вирус",
+     "ts": 1795071811,
+     "new": false
+    },
+    {
+     "slug": "ebdf7d5b7b57",
+     "sid": "Muse - Supermassive Black Hole",
+     "title": "Supermassive Black Hole",
+     "artist": "Muse",
+     "ts": 1795071811,
+     "new": false
+    },
+    {
+     "slug": "003a4f299383",
+     "sid": "t.A.T.u. - Not Gonna Get Us (Нас не догонят)",
+     "title": "Нас не догонят",
+     "artist": "t.A.T.u.",
+     "ts": 1795079414,
+     "new": true
+    }
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "songs": [
+    {
+     "slug": "059476adbfec",
+     "sid": "Такая любовь",
+     "title": "Такая любовь",
+     "artist": "Акула",
+     "ts": 1794983360,
+     "new": false
+    },
+    {
+     "slug": "8aed085975f2",
+     "sid": "Елена Терлеева - Солнце",
+     "title": "Солнце",
+     "artist": "Елена Терлеева",
+     "ts": 1794983360,
+     "new": false
+    },
+    {
+     "slug": "dfa18d189118",
+     "sid": "A Touch of Class - Around the World (La La La La La)",
+     "title": "Around the World",
+     "artist": "ATC",
+     "ts": 1794983360,
+     "new": false
+    },
+    {
+     "slug": "cfc3bca52e8c",
+     "sid": "Quest Pistols - Я устал",
+     "title": "Я устал",
+     "artist": "Quest Pistols",
+     "ts": 1794983360,
+     "new": false
+    },
+    {
+     "slug": "351bca043e8d",
+     "sid": "Alex Gaudino - Destination Calabria",
+     "title": "Destination Calabria",
+     "artist": "Alex Gaudino",
+     "ts": 1794983816,
+     "new": false
+    },
+    {
+     "slug": "cadd346666dc",
+     "sid": "Cascada - Everytime We Touch",
+     "title": "Everytime We Touch",
+     "artist": "Cascada",
+     "ts": 1794986986,
+     "new": false
+    },
+    {
+     "slug": "4bfe90ef136b",
+     "sid": "Вирус - Попрошу тебя",
+     "title": "Попрошу тебя",
+     "artist": "Вирус",
+     "ts": 1794986986,
+     "new": false
+    },
+    {
+     "slug": "13127f359691",
+     "sid": "Вирус - Ты меня не ищи",
+     "title": "Ты меня не ищи",
+     "artist": "Вирус",
+     "ts": 1794992204,
+     "new": false
+    }
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "songs": [
+    {
+     "slug": "13127f359691",
+     "sid": "Вирус - Ты меня не ищи",
+     "title": "Ты меня не ищи",
+     "artist": "Вирус",
+     "ts": 1794951842,
+     "new": false
+    }
+   ]
+  }
+ ]
+}
