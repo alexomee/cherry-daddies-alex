@@ -810,7 +810,7 @@ def cmd_round5():
     clips.append(("Saws Key 10 — как сейчас в слое", "слишком электрический: верх на 8 дБ выше оригинала", fx(saws, LEAD_FX, bar), False))
     clips.append(("Saws Key 10 приглушённый", "тот же тон через фильтр 2.2 кГц (24 дБ/окт)", fx(saws, [lp(2200)] + LEAD_FX, bar), False))
     clips.append(("Margherita Pizz + объём", "плак, который ты выбирал раньше, с тем же объёмом и повтором", fx(marg, LEAD_FX, bar), False))
-    pledge = [("PRST_F Essential/668", 0.0), ("PRST_F Essential/669", -3.0), ("PRST_A Factory Presets/21", 2.0)]     # Seq 3 + Seq Sqr 1 + Sine Pluck
+    pledge = PLEDGE
     pf = zen_best(os.path.join(r5, "pledge"), "lead,lead_lo", b0, b1, [t for t, _ in pledge], cells, bar, plays=1)
     mixp = None
     for t, db in pledge:
@@ -831,6 +831,63 @@ def cmd_round5():
     json.dump([{"tone": t, "name": cat[t]["name"], "score": round(v[0], 3), "transpose": v[3], "hi3_db": round(v[4], 1), "hi6_db": round(v[5], 1)}
                for t, v in sorted(final.items(), key=lambda kv: -kv[1][0])], open(os.path.join(r5, "ranking.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(os.path.join(page, "round5.html"))
+
+
+# Alex 2026-11-21, after round 5: «давай попробуем поискать слияние ... Saws Key 10 приглушённый и ... Стопка как SYNTH
+# PLEDGE». The two as one lead: the muffled saw + the stack of plugin tones, each at the same RMS, then a balance in dB,
+# then LEAD_FX on the sum.
+PLEDGE = [("PRST_F Essential/668", 0.0), ("PRST_F Essential/669", -3.0), ("PRST_A Factory Presets/21", 2.0)]     # Seq 3 + Seq Sqr 1 + Sine Pluck
+BLEND_LP = 2200                              # Hz, 24 dB/oct on the saw
+BLEND = (0.0, 0.0)                           # dB: the saw, the stack - the balance that goes into the whole-song layer
+
+
+def lp24(x, hz, sr=48000):
+    import pedalboard
+    return pedalboard.Pedalboard([pedalboard.LadderFilter(mode=pedalboard.LadderFilter.Mode.LPF24, cutoff_hz=hz, resonance=0.0)])(x.T, sr).T
+
+
+def blend_lead(saws, stack_parts, bar, saw_db, stack_db, lp_hz=BLEND_LP, a=None, b=None, sr=48000):
+    """saws = dry take of Saws Key 10, stack_parts = [(dry take, dB)] of PLEDGE; RMS taken inside samples [a, b)."""
+    rms = lambda v: np.sqrt((v[a:b] ** 2).mean()) + 1e-9; n = min([len(saws)] + [len(x) for x, _ in stack_parts])
+    stack = sum(x[:n] / rms(x) * 10 ** (db / 20) for x, db in stack_parts); sw = lp24(saws[:n], lp_hz, sr)
+    return (sw / rms(sw) * 10 ** (saw_db / 20) + stack / rms(stack) * 10 ** (stack_db / 20)).astype(np.float32)
+
+
+def cmd_blend():
+    """Four bars of the blended lead at several balances -> zenology/page/lead-blend.html (needs pedalboard: zr env)."""
+    import re, soundfile as sf
+    from scipy.signal import resample_poly
+    gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); zen = os.path.join(song.out, "zenology"); page = os.path.join(zen, "page")
+    bar = song.bar; b0, b1 = VOICES["lead"]["solo"]; n = int(round((b1 - b0) * bar * 44100)); rd = lambda f: sf.read(f, always_2d=True, dtype="float32")[0]
+    saws = rd(os.path.join(zen, "round3", "best2", "play1", "PRST_D_Basic_Synth_348.wav"))
+    pp = [(rd(os.path.join(zen, "round5", "pledge", "play1", re.sub(r"[^A-Za-z0-9]+", "_", t).strip("_") + ".wav")), db) for t, db in PLEDGE]
+    gm = rd(os.path.join(song.out, "part-synths-lead-s084-all-144-148.wav"))
+    orig = sum(resample_poly(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar + 0.2).mean(1), 147, 160) for st in part["stems"])
+    B = lambda sd, td, hz=BLEND_LP: fx(blend_lead(saws, pp, bar, sd, td, hz), LEAD_FX, bar)
+    clips = [("Оригинал", "стемы keys + strings", orig, True),
+             ("Saws Key 10 приглушённый", "одна половина: пила через фильтр 2.2 кГц", fx(lp24(saws, BLEND_LP), LEAD_FX, bar), False),
+             ("Стопка как SYNTH PLEDGE", "вторая половина: Seq 3 + Seq Sqr 1 + Sine Pluck", B(-120, 0), False),
+             ("Слияние поровну", "пила и стопка на одной громкости — это в миксе, дорожка 8", B(0, 0), False),
+             ("Слияние: больше пилы", "пила +4 дБ к стопке", B(2, -2), False),
+             ("Слияние: больше стопки", "стопка +4 дБ к пиле", B(-2, 2), False),
+             ("Слияние: пила намёком", "стопка +8 дБ к пиле", B(-4, 4), False),
+             ("Слияние поровну, пила темнее", "фильтр пилы 1.5 кГц", B(0, 0, 1500), False),
+             ("Слияние поровну, пила светлее", "фильтр пилы 3.2 кГц", B(0, 0, 3200), False),
+             ("Пила приглушённая + настоящая сцена 84", "вместо стопки — дубль сцены 84 с GM-800, поровну", fx(blend_lead(saws, [(gm, 0.0)], bar, 0, 0), LEAD_FX, bar), False)]
+    rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; fit = []
+    for nm, note, x, isref in clips:
+        y = x if isref else resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]; fit.append(y if isref else y * rms(orig[:n]) / rms(y))
+    peak = max(np.abs(y).max() for y in fit); out = []
+    for k, ((nm, note, _, isref), y) in enumerate(zip(clips, fit)):
+        y = y / peak * 0.8; f = int(0.008 * 44100); y[:f] *= np.linspace(0, 1, f); y[-f:] *= np.linspace(1, 0, f)
+        fn = f"blend-lead-{k:02d}.wav"; sf.write(os.path.join(page, fn), y.astype(np.float32), 44100, subtype="PCM_16"); out.append([fn, nm, note, isref])
+        if not isref:
+            h = hi_share(resample_poly(y, 160, 147)); print(f"  {nm:40} above 3 kHz {h[0]:6.1f} dB, above 6 kHz {h[1]:6.1f} dB")
+    meta = {"title": "Беги от меня — лид: слияние пилы и стопки", "groups": [{"name": "Лид, такты 144–147", "note": "на каждом объём и повтор 1/8; по кругу, одна громкость", "clips": out}],
+            "sub": "Saws Key 10 приглушённый + стопка «как SYNTH PLEDGE» одним звуком, в разных пропорциях. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза."}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(page, "lead-blend.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(page, "lead-blend.html"))
 
 
 def cmd_leadab():
@@ -930,6 +987,11 @@ def cmd_zenlayer():
     mf = os.path.join(d, "take-lead-margherita.wav"); gf = os.path.join(song.out, f"part-synths-lead+lead_lo-s084-all-1-{END}.wav")
     if os.path.exists(mf):
         leads.append(("margherita", fx(sf.read(mf, always_2d=True, dtype="float32")[0], LEAD_FX, bar, SRZ), "PRST_I/62 Margherita Pizz + LEAD_FX"))
+    pf = [os.path.join(d, f"take-pledge-{k}.wav") for k in range(len(PLEDGE))]
+    if all(os.path.exists(f) for f in pf):                       # the blend: muffled saw + the stack of plugin tones, BLEND dB, RMS inside the first solo
+        i0, i1 = int(58 * bar * SRZ), int(66 * bar * SRZ); raw = sf.read(os.path.join(d, "take-lead.wav"), always_2d=True, dtype="float32")[0]
+        bl = blend_lead(raw, [(sf.read(f, always_2d=True, dtype="float32")[0], db) for f, (_, db) in zip(pf, PLEDGE)], bar, BLEND[0], BLEND[1], a=i0, b=i1, sr=SRZ)
+        leads.append(("blend", fx(bl, LEAD_FX, bar, SRZ), f"Saws Key 10 through {BLEND_LP} Hz + Seq 3 / Seq Sqr 1 / Sine Pluck, {BLEND} dB, + LEAD_FX"))
     if os.path.exists(gf):                                       # his first pick, the GM-800 scene itself (gm800_part.py take): note gains, the repeat only
         x = gp.apply_gains(sf.read(gf, always_2d=True, dtype="float32")[0], gp.voice_gains(song, part, "lead", 1, END), SRZ)
         leads.append(("s84", fx(x, LEAD_REPEAT, bar, SRZ), "GM-800 scene 84 SYNTH PLEDGE + LEAD_REPEAT"))
@@ -1111,7 +1173,8 @@ def cmd_preview():
     src["roma"] *= rms(orig, 9, 17) / rms(src["roma"], 9, 17)
     ZT = [("zen", "", "Слой: лид Saws Key 10", "выбранные тоны, вся песня; лид «слишком электрический»"),
           ("zen-marg", "-margherita", "Слой: лид Margherita Pizz", "тот же слой, лид — Margherita Pizz + объём + повтор 1/8"),
-          ("zen-s84", "-s84", "Слой: лид сцена 84 SYNTH PLEDGE", "тот же слой, лид — твой первый выбор с GM-800 + повтор 1/8")]
+          ("zen-s84", "-s84", "Слой: лид сцена 84 SYNTH PLEDGE", "тот же слой, лид — твой первый выбор с GM-800 + повтор 1/8"),
+          ("zen-blend", "-blend", "Слой: лид слияние", "тот же слой, лид — Saws Key 10 приглушённый + стопка «как SYNTH PLEDGE», поровну")]
     from scipy.signal import resample_poly
     for key, suf, _, _ in ZT:                                   # the layers of cmd_zenlayer, stem frame
         if os.path.exists(ZEN_LAYER.replace(".wav", suf + ".wav")):
@@ -1151,4 +1214,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "zenlayer": cmd_zenlayer, "round5": cmd_round5, "leadab": cmd_leadab, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "zenlayer": cmd_zenlayer, "round5": cmd_round5, "leadab": cmd_leadab, "blend": cmd_blend, "preview": cmd_preview}[sys.argv[1]]()
