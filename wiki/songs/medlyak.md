@@ -78,6 +78,8 @@ Alex, работая над «Солнышком»: вокализ там син
 - **brk** (брейкдаун 82–85): J/6 Dreamer Keys 0.920, A/24 AnalogAtmosphere, L/219 Liquid Desert, D/511 Pipe Chatter.
 - **counter** (куплет 17–20): рейтинг шумовой (0.82 и обрыв до 0.59, наверху FX и хиты) — в куплете голос звучит не один. Тот же голос играет мелодию интро внутри `poly`, разумно брать ему тон `poly`.
 
+**Круг 2–3 (2026-11-21):** голоса переделаны (arp / lead / hookline, mel / fig / cpad), перебор заново; во втором круге у lead, hookline и mel наверх вышли шумовые FX и хиты (голос в тактах не один, мерка награждает тоны, заполняющие спектр) — третий круг только по мелодическим категориям (`sweeps3.sh`). Первые места: arp — I/33 Into the dreams, J/35 Grains, ZEZ001/1 Rocket Pad; lead — I/33 Into the dreams, I/1 ZenoPoly, D/536 Tower Bell; hookline — D/536 Tower Bell, A/29 Heliosphere, L/192 Horn Blast 2; mel — ZEZ003/9 Ionic Atmosphere, F/712 Vox Key, A/32 Sunrise; fig — F/712 Vox Key, D/491 Dreaming 6, D/520 Bell 7; cpad — ZEZ003/9 Ionic Atmosphere, B/184 Tuned Nz 2, D/191 Glass Forest. Страница дополняется `prep_medlyak.py tonepage`: под каждым голосом — что слушать в оригинале, выбор Alex отмечен ✓.
+
 **Выбрано Alex (2026-11-21):** strings — ZEZ003/7 Mercurial, brk — J/6 Dreamer Keys (`ZEN` в `prep_medlyak.py`). Перебор poly / counter / stab отменён (голоса переделаны), второй круг: mel, fig, arp, lead, hookline, cpad.
 
 Ждёт: Alex выбирает тон на остальные голоса (brk_pad — по умолчанию Mercurial, как струнные?); затем дубли плагином (`zen` в `layer.takes`), слой в `pb-other` вместо Moises keys + strings, рендер, Stage Traxx.
