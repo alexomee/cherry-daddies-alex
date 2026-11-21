@@ -14,3 +14,12 @@
 (`prep_begi_ot_menya.py fx`); в mix.json пойдёт слоем `derived` вместе с `pb-synths`.
 Тоны и усиления в `layer.takes` предварительные: на приборе ничего не сыграно, слоя `pb-synths.wav` ещё нет, `mix.json` не тронут.
 Alex 2026-11-20: «всё в плейбек» — все голоса идут в слой, живых нет. Разбор и что дальше: `wiki/songs/begi-ot-menya.md`.
+
+## pb-synths.wav — 2026-11-21 (в плейбеке)
+
+Клавиши песни новым слоем, заменяет в `pb-other` `roma-keys-2810` и стем strings (Alex: «Да, ставь»). Stem-фрейм, 44.1 кГц, 24 бит,
+длина стемов; в mix.json `derived`, `source: [keys, strings]`, `gain_db −5.5` (лид на уровне прежних клавиш Ромы). Внутри:
+лид — заводская сцена GM-800 в слоте 84 SYNTH PLEDGE, запись с прибора на всю песню, + повтор 1/8; свист — Porta Sine Lead легато;
+удары — Scented; арп — TB Bass 2 с фильтром и дилеем; пэд — Soft Storm Pad (тоны ZENOLOGY); свеллы `pb-fx` из стемов.
+Собирает `tools/jamzone/prep_begi_ot_menya.py zenlayer` (слой в `analysis/gm800-match/Беги от меня/zenology/layer/pb-synths-zen.wav`,
+оттуда пересэмплирован сюда). wav не в git. Разбор: `wiki/songs/begi-ot-menya.md`.

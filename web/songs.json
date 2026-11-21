@@ -1,17 +1,17 @@
 {
-  "generated": "2026-11-20T23:12:03",
+  "generated": "2026-11-21T11:11:38",
   "counts": {
-    "total": 129,
-    "data": 129,
-    "cues": 129,
-    "playback": 124,
-    "other": 119,
-    "practice": 119
+    "total": 128,
+    "data": 128,
+    "cues": 128,
+    "playback": 123,
+    "other": 118,
+    "practice": 118
   },
   "sets": [
     {
       "name": "СЕТ 1",
-      "subtitle": "28.10 Music Hall — Dance Nostalgia (11 песен)",
+      "subtitle": "28.10 Music Hall — Dance Nostalgia (10 песен)",
       "cls": "musichall1",
       "songs": [
         {
@@ -34,67 +34,67 @@
                 "t": 15.685,
                 "text": "stop",
                 "bar": 8,
-                "snap": 11.531
+                "snap": 11.321
               },
               {
                 "t": 32.762,
                 "text": "verse in",
                 "bar": 17,
-                "snap": 29.069
+                "snap": 29.019
               },
               {
                 "t": 59.992,
                 "text": "stop",
                 "bar": 32,
-                "snap": 55.838
+                "snap": 55.628
               },
               {
                 "t": 89.531,
                 "text": "stop",
                 "bar": 48,
-                "snap": 85.377
+                "snap": 85.167
               },
               {
                 "t": 91.377,
                 "text": "verse in",
                 "bar": 49,
-                "snap": 87.685
+                "snap": 87.635
               },
               {
                 "t": 119.069,
                 "text": "stop",
                 "bar": 64,
-                "snap": 114.915
+                "snap": 114.705
               },
               {
                 "t": 150.454,
                 "text": "keys stop",
                 "bar": 81,
-                "snap": 146.3
+                "snap": 145.874
               },
               {
                 "t": 165.223,
                 "text": "keys in",
                 "bar": 89,
-                "snap": 161.531
+                "snap": 161.501
               },
               {
                 "t": 178.146,
                 "text": "stop",
                 "bar": 96,
-                "snap": 173.992
+                "snap": 173.782
               },
               {
                 "t": 179.992,
                 "text": "chorus in",
                 "bar": 97,
-                "snap": 176.3
+                "snap": 176.26
               },
               {
                 "t": 209.531,
                 "text": "end in",
                 "bar": 113,
-                "snap": 205.377
+                "snap": 205.257
               }
             ]
           },
@@ -156,26 +156,26 @@
             }
           ],
           "stem_versions": {
-            "vocal": "64b80ab609",
-            "back_vox": "5fc651d755",
-            "drums": "8e0a2a56b6",
-            "keys": "d86f459f5e",
-            "bass": "bb909dfebd",
-            "guitars": "c55ee7efb0",
-            "other": "09001b6667",
-            "click": "870a592c0b",
-            "cues": "2ad796c490"
+            "vocal": "8e1ab48331",
+            "back_vox": "f19dc6ef34",
+            "drums": "dbdaeb7b56",
+            "keys": "53b0dc25c1",
+            "bass": "257cfe44ca",
+            "guitars": "f9a23de388",
+            "other": "cf19e61044",
+            "click": "5d8e0f3448",
+            "cues": "505bed5a74"
           },
           "versions": {
-            "all": "d890049e78",
-            "drums": "51052284b9",
-            "alex": "e015bc23ec",
-            "steve": "7910917a01",
-            "tanya": "5e2433dae2",
-            "trio": "588ec3479a",
-            "pb-other": "87cf63ae07",
-            "pb-bass": "33e347a18a",
-            "pb-audition": "01b5685cab"
+            "all": "c27e034cbf",
+            "drums": "36763aa821",
+            "alex": "abe6a70ece",
+            "steve": "c47a1dd7a7",
+            "tanya": "6dd18ee947",
+            "trio": "a7c9fb62f4",
+            "pb-other": "55014626bd",
+            "pb-bass": "350e8831b6",
+            "pb-audition": "1e10a32269"
           },
           "pb_other": {
             "available": true,
@@ -212,67 +212,67 @@
                 "t": 10.909,
                 "text": "vocal in",
                 "bar": 7,
-                "snap": 7.273
+                "snap": 7.243
               },
               {
                 "t": 25.455,
                 "text": "bass-n-beat in",
                 "bar": 15,
-                "snap": 21.364
+                "snap": 21.354
               },
               {
                 "t": 54.545,
                 "text": "solo in",
                 "bar": 31,
-                "snap": 50.909
+                "snap": 50.789
               },
               {
                 "t": 69.091,
                 "text": "vocal in",
                 "bar": 39,
-                "snap": 65.455
+                "snap": 65.425
               },
               {
                 "t": 83.636,
                 "text": "piano in",
                 "bar": 47,
-                "snap": 80.0
+                "snap": 79.95
               },
               {
                 "t": 127.273,
                 "text": "solo in",
                 "bar": 71,
-                "snap": 123.636
+                "snap": 123.516
               },
               {
                 "t": 141.818,
                 "text": "keys-only in",
                 "bar": 79,
-                "snap": 137.727
+                "snap": 137.309
               },
               {
                 "t": 158.182,
                 "text": "modulation in",
                 "bar": 88,
-                "snap": 154.545
+                "snap": 154.535
               },
               {
                 "t": 187.273,
                 "text": "keep going",
                 "bar": 104,
-                "snap": 184.545
+                "snap": 184.495
               },
               {
                 "t": 201.818,
                 "text": "keys-only in",
                 "bar": 112,
-                "snap": 197.727
+                "snap": 197.309
               },
               {
                 "t": 216.364,
                 "text": "end stop",
                 "bar": 120,
-                "snap": 212.273
+                "snap": 211.866
               }
             ]
           },
@@ -336,23 +336,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e33483be91",
-            "back_vox": "877c2acd22",
-            "drums": "f03f36f91b",
-            "keys": "10a60d555d",
-            "bass": "672374bee3",
-            "other": "adba078c51",
-            "click": "cfc8d05f0e",
-            "cues": "641335624e"
+            "vocal": "c512292119",
+            "back_vox": "f76c5859ff",
+            "drums": "a6c437a297",
+            "keys": "accd90ae61",
+            "bass": "0f651dd788",
+            "other": "407f288ef1",
+            "click": "452245a16b",
+            "cues": "df11a32fb1"
           },
           "versions": {
-            "all": "fdb4fd1b96",
-            "drums": "f03f36f91b",
-            "steve": "333ab3671c",
-            "tanya": "cd1ff1b704",
-            "pb-other": "9c2f51b468",
-            "pb-bass": "43e6efffef",
-            "pb-audition": "b221117437"
+            "all": "1c47cc7bbc",
+            "drums": "a6c437a297",
+            "steve": "3c5ceff6f0",
+            "tanya": "da1d88534e",
+            "pb-other": "4760de7e3d",
+            "pb-bass": "ab28ad0fef",
+            "pb-audition": "7a55b3b2c5"
           },
           "pb_other": {
             "available": true,
@@ -390,67 +390,67 @@
                 "t": 18.362,
                 "text": "kick in",
                 "bar": 9,
-                "snap": 14.522
+                "snap": 14.462
               },
               {
                 "t": 49.082,
                 "text": "stop",
                 "bar": 25,
-                "snap": 44.762
+                "snap": 44.589
               },
               {
                 "t": 52.922,
                 "text": "kick-bass ready go",
                 "bar": 27,
-                "snap": 49.562
+                "snap": 49.542
               },
               {
                 "t": 68.282,
                 "text": "beat in",
                 "bar": 35,
-                "snap": 64.442
+                "snap": 64.432
               },
               {
                 "t": 114.362,
                 "text": "solo in",
                 "bar": 59,
-                "snap": 110.522
+                "snap": 110.402
               },
               {
                 "t": 129.722,
                 "text": "stop",
                 "bar": 67,
-                "snap": 125.402
+                "snap": 125.229
               },
               {
                 "t": 131.642,
                 "text": "kick-bass ready go",
                 "bar": 68,
-                "snap": 128.282
+                "snap": 128.262
               },
               {
                 "t": 147.002,
                 "text": "beat in",
                 "bar": 76,
-                "snap": 143.162
+                "snap": 143.152
               },
               {
                 "t": 193.082,
                 "text": "solo in",
                 "bar": 100,
-                "snap": 189.242
+                "snap": 189.122
               },
               {
                 "t": 207.482,
                 "text": "keep going",
                 "bar": 107,
-                "snap": 204.602
+                "snap": 204.552
               },
               {
                 "t": 216.122,
                 "text": "stop-and-bridge-in",
                 "bar": 112,
-                "snap": 211.802
+                "snap": 211.078
               },
               {
                 "t": 231.482,
@@ -462,19 +462,19 @@
                 "t": 246.842,
                 "text": "chorus in",
                 "bar": 128,
-                "snap": 243.002
+                "snap": 242.962
               },
               {
                 "t": 277.562,
                 "text": "stop-and-solo-only-in",
                 "bar": 144,
-                "snap": 273.242
+                "snap": 272.29
               },
               {
                 "t": 292.922,
                 "text": "end in",
                 "bar": 152,
-                "snap": 288.602
+                "snap": 288.519
               }
             ]
           },
@@ -485,7 +485,7 @@
           "other": {
             "kind": "layers",
             "items": [
-              "roma-keys-2810"
+              "pb-synths"
             ]
           },
           "practice": [
@@ -527,150 +527,25 @@
           "stem_versions": {
             "vocal": "b873946ea4",
             "drums": "c74a63ee37",
-            "keys": "98c0bb07fb",
+            "keys": "fbae065c6f",
             "bass": "8cfc0f16fa",
             "other": "6261d6099e",
             "click": "43586e6dcb",
             "cues": "3bc5b75f35"
           },
           "versions": {
-            "all": "7b3f744293",
+            "all": "2b71142059",
             "drums": "f8079d72fc",
             "steve": "591211bdf4",
             "tanya": "5e1287af4b",
-            "pb-other": "9df948b195",
+            "pb-other": "142f153265",
             "pb-bass": "8cfc0f16fa",
-            "pb-audition": "a55c973cc2"
+            "pb-audition": "48ca5b60fe"
           },
           "pb_other": {
             "available": true,
             "mutes": [
               "keys",
-              "other"
-            ]
-          },
-          "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
-          },
-          "audition": true
-        },
-        {
-          "sid": "5sta Family & 23:45 - Я буду",
-          "slug": "d039501d8749",
-          "title": "Я буду",
-          "artist": "5sta Family",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 3,
-            "list": [
-              {
-                "t": 3.523,
-                "text": "Я буду all in",
-                "bar": 1,
-                "snap": 0.0
-              },
-              {
-                "t": 24.856,
-                "text": "chorus in",
-                "bar": 9,
-                "snap": 19.523
-              },
-              {
-                "t": 46.19,
-                "text": "verse in",
-                "bar": 17,
-                "snap": 40.856
-              }
-            ]
-          },
-          "bass": {
-            "kind": "playback",
-            "label": "bass"
-          },
-          "other": {
-            "kind": "stems",
-            "items": [
-              "backing vocals",
-              "guitars",
-              "piano",
-              "keys",
-              "other"
-            ]
-          },
-          "practice": [
-            "all",
-            "drums",
-            "steve",
-            "tanya"
-          ],
-          "stems": [
-            {
-              "id": "vocal",
-              "label": "Вокал"
-            },
-            {
-              "id": "back_vox",
-              "label": "Бэк-вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "guitars",
-              "label": "Гитары"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "vocal": "8b6709491b",
-            "back_vox": "a2cd730124",
-            "drums": "7b57cbba92",
-            "keys": "b0903b4723",
-            "bass": "424b735c92",
-            "guitars": "63c518153b",
-            "other": "0cc0cb7cac",
-            "click": "f7be9c88c1",
-            "cues": "ab743fd478"
-          },
-          "versions": {
-            "all": "dbb24a417b",
-            "drums": "39a2ac1b53",
-            "steve": "c4e9c430a3",
-            "tanya": "c81a9db980",
-            "pb-other": "f71ff11450",
-            "pb-bass": "cb5f9ba536",
-            "pb-audition": "38f542db96"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "back_vox",
-              "keys",
-              "guitars",
               "other"
             ]
           },
@@ -1902,370 +1777,92 @@
       "cls": "musichall2",
       "songs": [
         {
-          "sid": "Кислотный DJ",
-          "slug": "fd31c4f9ad95",
-          "title": "Кислотный DJ",
-          "artist": "Акула",
+          "sid": "Beverly Hills",
+          "slug": "06185b95940b",
+          "title": "Beverly Hills",
+          "artist": "Zivert",
           "hasData": true,
           "cues": {
             "ready": true,
-            "count": 22,
+            "count": 12,
             "list": [
               {
-                "t": 2.996,
-                "text": "Кислотный DJ drums in",
+                "t": 3.213,
+                "text": "Beverly Hills all in ready go",
                 "bar": 1,
                 "snap": 0.0
               },
               {
-                "t": 16.282,
-                "text": "synth in",
-                "bar": 8,
-                "snap": 12.853
+                "t": 11.553,
+                "text": "vocal in",
+                "bar": 5,
+                "snap": 7.368
               },
               {
-                "t": 28.71,
+                "t": 28.251,
+                "text": "ghost beat ready skip",
+                "bar": 13,
+                "snap": 24.067
+              },
+              {
+                "t": 78.333,
                 "text": "stop",
-                "bar": 16,
-                "snap": 24.853
+                "bar": 37,
+                "snap": 73.646
               },
               {
-                "t": 42.425,
-                "text": "drums break ready go",
-                "bar": 24,
-                "snap": 38.996
-              },
-              {
-                "t": 56.139,
-                "text": "drums-bass break ready go",
-                "bar": 32,
-                "snap": 52.282
-              },
-              {
-                "t": 66.425,
-                "text": "synth in ready go",
-                "bar": 38,
-                "snap": 62.996
-              },
-              {
-                "t": 68.139,
-                "text": "build up ready go",
-                "bar": 39,
-                "snap": 64.71
-              },
-              {
-                "t": 71.568,
-                "text": "chorus in ready go",
-                "bar": 41,
-                "snap": 68.139
-              },
-              {
-                "t": 97.282,
-                "text": "drums-bass fill ready go",
-                "bar": 56,
-                "snap": 93.425
-              },
-              {
-                "t": 110.996,
-                "text": "bass break ready go",
-                "bar": 64,
-                "snap": 107.568
-              },
-              {
-                "t": 112.71,
-                "text": "solo in ready go",
-                "bar": 65,
-                "snap": 109.282
-              },
-              {
-                "t": 124.71,
-                "text": "drum fill ready go",
-                "bar": 72,
-                "snap": 121.282
-              },
-              {
-                "t": 140.139,
-                "text": "drums-bass break ready go",
-                "bar": 81,
-                "snap": 136.282
-              },
-              {
-                "t": 146.996,
-                "text": "build up ready go",
-                "bar": 85,
-                "snap": 143.568
-              },
-              {
-                "t": 148.71,
-                "text": "all in ready go",
-                "bar": 86,
-                "snap": 145.282
-              },
-              {
-                "t": 174.425,
-                "text": "stop",
-                "bar": 101,
-                "snap": 170.568
-              },
-              {
-                "t": 176.139,
-                "text": "solo in ready go",
-                "bar": 102,
-                "snap": 172.71
-              },
-              {
-                "t": 201.853,
-                "text": "drums-bass stop",
-                "bar": 117,
-                "snap": 197.996
-              },
-              {
-                "t": 213.853,
-                "text": "build up ready go",
-                "bar": 124,
-                "snap": 210.425
-              },
-              {
-                "t": 217.282,
-                "text": "stop",
-                "bar": 126,
-                "snap": 213.425
-              },
-              {
-                "t": 218.996,
-                "text": "all in ready go",
-                "bar": 127,
-                "snap": 215.568
-              },
-              {
-                "t": 232.71,
-                "text": "end in",
-                "bar": 135,
-                "snap": 228.853
-              }
-            ]
-          },
-          "bass": {
-            "kind": "assign",
-            "who": "Alex"
-          },
-          "other": {
-            "kind": "layers",
-            "items": [
-              "DJ_arp",
-              "wind_part",
-              "roma-keys-2810"
-            ]
-          },
-          "practice": [
-            "all",
-            "drums",
-            "alex",
-            "steve",
-            "tanya",
-            "trio"
-          ],
-          "stems": [
-            {
-              "id": "vocal",
-              "label": "Вокал"
-            },
-            {
-              "id": "back_vox",
-              "label": "Бэк-вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "guitars",
-              "label": "Гитары"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "vocal": "7f0bd7969b",
-            "back_vox": "588dbd0fee",
-            "drums": "5b83ec819e",
-            "keys": "bd9d532baa",
-            "bass": "07a289c407",
-            "guitars": "af6db958ab",
-            "other": "497576658d",
-            "click": "70c6f3ee65",
-            "cues": "07efbf1dc2"
-          },
-          "versions": {
-            "all": "ae2f7f74e5",
-            "drums": "217634bc93",
-            "alex": "3f78abe55b",
-            "steve": "5b18f0bab2",
-            "tanya": "eed4643053",
-            "trio": "373085067f",
-            "pb-other": "c3ef680d6d",
-            "pb-audition": "82f4ab8ca0"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "keys",
-              "other"
-            ]
-          },
-          "pb_bass": {
-            "available": false,
-            "mutes": []
-          },
-          "audition": true
-        },
-        {
-          "sid": "Demo - Solnyshko",
-          "slug": "c1b741b6747a",
-          "title": "Солнышко",
-          "artist": "Демо",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 19,
-            "list": [
-              {
-                "t": 2.756,
-                "text": "Солнышко all in",
-                "bar": 1,
-                "snap": 0.0
-              },
-              {
-                "t": 14.495,
-                "text": "stop",
-                "bar": 7,
-                "snap": 10.582
-              },
-              {
-                "t": 16.669,
+                "t": 80.411,
                 "text": "all in",
-                "bar": 9,
-                "snap": 13.19
+                "bar": 38,
+                "snap": 76.246
               },
               {
-                "t": 30.582,
-                "text": "alex in",
-                "bar": 17,
-                "snap": 27.103
+                "t": 97.113,
+                "text": "ghost beat ready skip",
+                "bar": 46,
+                "snap": 92.944
               },
               {
-                "t": 44.495,
-                "text": "verse in",
-                "bar": 25,
-                "snap": 41.016
-              },
-              {
-                "t": 86.234,
-                "text": "arpegiator in",
-                "bar": 49,
-                "snap": 82.321
-              },
-              {
-                "t": 100.147,
-                "text": "more-arpegiator in",
-                "bar": 57,
-                "snap": 95.799
-              },
-              {
-                "t": 127.973,
-                "text": "soft-verse in",
-                "bar": 73,
-                "snap": 124.06
-              },
-              {
-                "t": 134.929,
-                "text": "drum in",
-                "bar": 77,
-                "snap": 131.451
-              },
-              {
-                "t": 141.886,
-                "text": "bass-n-beat in",
-                "bar": 81,
-                "snap": 137.973
-              },
-              {
-                "t": 169.712,
-                "text": "arpegiator in",
-                "bar": 97,
-                "snap": 165.799
-              },
-              {
-                "t": 183.625,
-                "text": "roma only ready go",
-                "bar": 105,
-                "snap": 180.147
-              },
-              {
-                "t": 190.582,
-                "text": "bass in",
-                "bar": 109,
-                "snap": 187.103
-              },
-              {
-                "t": 197.538,
-                "text": "drums in",
-                "bar": 113,
-                "snap": 194.06
-              },
-              {
-                "t": 211.451,
-                "text": "alex in",
-                "bar": 121,
-                "snap": 207.973
-              },
-              {
-                "t": 223.19,
+                "t": 113.813,
                 "text": "stop",
-                "bar": 127,
-                "snap": 219.277
+                "bar": 54,
+                "snap": 109.126
               },
               {
-                "t": 225.364,
-                "text": "chorus in",
-                "bar": 129,
-                "snap": 221.886
+                "t": 115.893,
+                "text": "all in",
+                "bar": 55,
+                "snap": 111.726
               },
               {
-                "t": 239.277,
-                "text": "outro-solo in",
-                "bar": 137,
-                "snap": 235.364
+                "t": 165.974,
+                "text": "all stop",
+                "bar": 79,
+                "snap": 161.283
               },
               {
-                "t": 253.19,
-                "text": "stop",
-                "bar": 145,
-                "snap": 249.277
+                "t": 184.773,
+                "text": "all in",
+                "bar": 88,
+                "snap": 180.587
+              },
+              {
+                "t": 201.471,
+                "text": "outro in",
+                "bar": 96,
+                "snap": 197.286
+              },
+              {
+                "t": 218.153,
+                "text": "end stop",
+                "bar": 104,
+                "snap": 213.466
               }
             ]
           },
           "bass": {
             "kind": "playback",
-            "label": "synth-bass"
+            "label": "zivert-bass"
           },
           "other": {
             "kind": "layers",
@@ -2275,8 +1872,6 @@
           },
           "practice": [
             "all",
-            "drums",
-            "alex",
             "steve",
             "tanya"
           ],
@@ -2298,10 +1893,6 @@
               "label": "Бас"
             },
             {
-              "id": "guitars",
-              "label": "Гитары"
-            },
-            {
               "id": "other",
               "label": "Остальное"
             },
@@ -2315,24 +1906,21 @@
             }
           ],
           "stem_versions": {
-            "vocal": "8111e1758b",
-            "drums": "a4a0b1d38a",
-            "keys": "f901cfa5ec",
-            "bass": "35cc1c087c",
-            "guitars": "b89909b143",
-            "other": "2e7c75419b",
-            "click": "444fb1db3a",
-            "cues": "7228ce71f7"
+            "vocal": "54b2979520",
+            "drums": "1edba29885",
+            "keys": "4c0cf4a66e",
+            "bass": "cf61ec614c",
+            "other": "6a7ea8651e",
+            "click": "41c9b7b41b",
+            "cues": "5e046021f2"
           },
           "versions": {
-            "all": "4c7b0acd62",
-            "drums": "a4a0b1d38a",
-            "alex": "8bd843122c",
-            "steve": "a43c9c750d",
-            "tanya": "cb4a867687",
-            "pb-other": "f901cfa5ec",
-            "pb-bass": "35cc1c087c",
-            "pb-audition": "2b734273df"
+            "all": "29aac4a84d",
+            "steve": "73a82d5349",
+            "tanya": "3ffd440a3f",
+            "pb-other": "4c0cf4a66e",
+            "pb-bass": "cf61ec614c",
+            "pb-audition": "8231ede05a"
           },
           "pb_other": {
             "available": true,
@@ -2490,6 +2078,220 @@
             "pb-other": "2f349b40ef",
             "pb-bass": "549a9dd75e",
             "pb-audition": "5c322655df"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
+          "sid": "Demo - Solnyshko",
+          "slug": "c1b741b6747a",
+          "title": "Солнышко",
+          "artist": "Демо",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 19,
+            "list": [
+              {
+                "t": 2.756,
+                "text": "Солнышко all in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 14.495,
+                "text": "stop",
+                "bar": 7,
+                "snap": 10.303
+              },
+              {
+                "t": 16.669,
+                "text": "all in",
+                "bar": 9,
+                "snap": 13.18
+              },
+              {
+                "t": 30.582,
+                "text": "alex in",
+                "bar": 17,
+                "snap": 27.103
+              },
+              {
+                "t": 44.495,
+                "text": "verse in",
+                "bar": 25,
+                "snap": 40.966
+              },
+              {
+                "t": 86.234,
+                "text": "arpegiator in",
+                "bar": 49,
+                "snap": 82.321
+              },
+              {
+                "t": 100.147,
+                "text": "more-arpegiator in",
+                "bar": 57,
+                "snap": 95.789
+              },
+              {
+                "t": 127.973,
+                "text": "soft-verse in",
+                "bar": 73,
+                "snap": 123.93
+              },
+              {
+                "t": 134.929,
+                "text": "drum in",
+                "bar": 77,
+                "snap": 131.421
+              },
+              {
+                "t": 141.886,
+                "text": "bass-n-beat in",
+                "bar": 81,
+                "snap": 137.963
+              },
+              {
+                "t": 169.712,
+                "text": "arpegiator in",
+                "bar": 97,
+                "snap": 165.799
+              },
+              {
+                "t": 183.625,
+                "text": "roma only ready go",
+                "bar": 105,
+                "snap": 180.117
+              },
+              {
+                "t": 190.582,
+                "text": "bass in",
+                "bar": 109,
+                "snap": 187.103
+              },
+              {
+                "t": 197.538,
+                "text": "drums in",
+                "bar": 113,
+                "snap": 194.03
+              },
+              {
+                "t": 211.451,
+                "text": "alex in",
+                "bar": 121,
+                "snap": 207.973
+              },
+              {
+                "t": 223.19,
+                "text": "stop",
+                "bar": 127,
+                "snap": 218.999
+              },
+              {
+                "t": 225.364,
+                "text": "chorus in",
+                "bar": 129,
+                "snap": 221.846
+              },
+              {
+                "t": 239.277,
+                "text": "outro-solo in",
+                "bar": 137,
+                "snap": 235.364
+              },
+              {
+                "t": 253.19,
+                "text": "stop",
+                "bar": 145,
+                "snap": 248.999
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "synth-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "pb-synths",
+              "pb-fx",
+              "pb-backvox"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "8111e1758b",
+            "drums": "a4a0b1d38a",
+            "keys": "32345299e9",
+            "bass": "35cc1c087c",
+            "guitars": "b89909b143",
+            "other": "e977b4019d",
+            "click": "444fb1db3a",
+            "cues": "2cde80abd5"
+          },
+          "versions": {
+            "all": "53ce636509",
+            "drums": "a4a0b1d38a",
+            "alex": "8bd843122c",
+            "steve": "a43c9c750d",
+            "tanya": "cb4a867687",
+            "pb-other": "264ee71c0f",
+            "pb-bass": "35cc1c087c",
+            "pb-audition": "0081487ac0"
           },
           "pb_other": {
             "available": true,
@@ -2671,6 +2473,201 @@
           "audition": true
         },
         {
+          "sid": "SEREBRO - Malo tebya",
+          "slug": "ace2a923452e",
+          "title": "Мало тебя",
+          "artist": "SEREBRO",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 16,
+            "list": [
+              {
+                "t": 2.856,
+                "text": "Мало тебя guitar in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 10.241,
+                "text": "voice in",
+                "bar": 5,
+                "snap": 6.498
+              },
+              {
+                "t": 25.01,
+                "text": "bass in",
+                "bar": 13,
+                "snap": 21.318
+              },
+              {
+                "t": 32.395,
+                "text": "drums in",
+                "bar": 17,
+                "snap": 28.672
+              },
+              {
+                "t": 69.318,
+                "text": "solo in",
+                "bar": 37,
+                "snap": 65.505
+              },
+              {
+                "t": 84.087,
+                "text": "verse in",
+                "bar": 45,
+                "snap": 80.345
+              },
+              {
+                "t": 87.779,
+                "text": "kick in",
+                "bar": 47,
+                "snap": 84.027
+              },
+              {
+                "t": 98.856,
+                "text": "bass in",
+                "bar": 53,
+                "snap": 95.164
+              },
+              {
+                "t": 113.164,
+                "text": "pause in",
+                "bar": 60,
+                "snap": 108.848
+              },
+              {
+                "t": 143.164,
+                "text": "solo in",
+                "bar": 77,
+                "snap": 139.352
+              },
+              {
+                "t": 157.933,
+                "text": "bridge in",
+                "bar": 85,
+                "snap": 154.211
+              },
+              {
+                "t": 169.01,
+                "text": "snare in",
+                "bar": 91,
+                "snap": 165.198
+              },
+              {
+                "t": 174.548,
+                "text": "all stop",
+                "bar": 94,
+                "snap": 170.091
+              },
+              {
+                "t": 176.395,
+                "text": "solo in",
+                "bar": 95,
+                "snap": 172.582
+              },
+              {
+                "t": 191.164,
+                "text": "chorus in",
+                "bar": 103,
+                "snap": 187.432
+              },
+              {
+                "t": 220.702,
+                "text": "all stop",
+                "bar": 119,
+                "snap": 216.245
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "malo-bass"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "malo-guitars",
+              "malo-sfx",
+              "pb-synths"
+            ]
+          },
+          "practice": [
+            "all",
+            "alex",
+            "steve",
+            "tanya"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "637a32d27b",
+            "drums": "7c308dfe42",
+            "keys": "d7e0209578",
+            "bass": "3a9a5be986",
+            "guitars": "b4bdb62224",
+            "other": "7a28b601d5",
+            "click": "c11e52c1a4",
+            "cues": "e34591d614"
+          },
+          "versions": {
+            "all": "ba432c4618",
+            "alex": "6a3a64dd6e",
+            "steve": "6a6aebead3",
+            "tanya": "dedadd124f",
+            "pb-other": "c67d561ae4",
+            "pb-bass": "330e405984",
+            "pb-audition": "9e1500c71e"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "guitars",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
           "sid": "Mr. Credo - Медляк",
           "slug": "a207e9a0dae0",
           "title": "Медляк",
@@ -2794,346 +2791,6 @@
             "mutes": [
               "back_vox",
               "keys",
-              "other"
-            ]
-          },
-          "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
-          },
-          "audition": true
-        },
-        {
-          "sid": "Beverly Hills",
-          "slug": "06185b95940b",
-          "title": "Beverly Hills",
-          "artist": "Zivert",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 12,
-            "list": [
-              {
-                "t": 3.213,
-                "text": "Beverly Hills all in ready go",
-                "bar": 1,
-                "snap": 0.0
-              },
-              {
-                "t": 11.553,
-                "text": "vocal in",
-                "bar": 5,
-                "snap": 7.368
-              },
-              {
-                "t": 28.251,
-                "text": "ghost beat ready skip",
-                "bar": 13,
-                "snap": 24.067
-              },
-              {
-                "t": 78.333,
-                "text": "stop",
-                "bar": 37,
-                "snap": 73.646
-              },
-              {
-                "t": 80.411,
-                "text": "all in",
-                "bar": 38,
-                "snap": 76.246
-              },
-              {
-                "t": 97.113,
-                "text": "ghost beat ready skip",
-                "bar": 46,
-                "snap": 92.944
-              },
-              {
-                "t": 113.813,
-                "text": "stop",
-                "bar": 54,
-                "snap": 109.126
-              },
-              {
-                "t": 115.893,
-                "text": "all in",
-                "bar": 55,
-                "snap": 111.726
-              },
-              {
-                "t": 165.974,
-                "text": "all stop",
-                "bar": 79,
-                "snap": 161.283
-              },
-              {
-                "t": 184.773,
-                "text": "all in",
-                "bar": 88,
-                "snap": 180.587
-              },
-              {
-                "t": 201.471,
-                "text": "outro in",
-                "bar": 96,
-                "snap": 197.286
-              },
-              {
-                "t": 218.153,
-                "text": "end stop",
-                "bar": 104,
-                "snap": 213.466
-              }
-            ]
-          },
-          "bass": {
-            "kind": "playback",
-            "label": "zivert-bass"
-          },
-          "other": {
-            "kind": "layers",
-            "items": [
-              "roma-keys-2810"
-            ]
-          },
-          "practice": [
-            "all",
-            "steve",
-            "tanya"
-          ],
-          "stems": [
-            {
-              "id": "vocal",
-              "label": "Вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "vocal": "54b2979520",
-            "drums": "1edba29885",
-            "keys": "4c0cf4a66e",
-            "bass": "cf61ec614c",
-            "other": "6a7ea8651e",
-            "click": "41c9b7b41b",
-            "cues": "5e046021f2"
-          },
-          "versions": {
-            "all": "29aac4a84d",
-            "steve": "73a82d5349",
-            "tanya": "3ffd440a3f",
-            "pb-other": "4c0cf4a66e",
-            "pb-bass": "cf61ec614c",
-            "pb-audition": "8231ede05a"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "keys",
-              "other"
-            ]
-          },
-          "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
-          },
-          "audition": true
-        },
-        {
-          "sid": "SEREBRO - Malo tebya",
-          "slug": "ace2a923452e",
-          "title": "Мало тебя",
-          "artist": "SEREBRO",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 16,
-            "list": [
-              {
-                "t": 3.692,
-                "text": "Мало тебя guitar in",
-                "bar": 1
-              },
-              {
-                "t": 11.077,
-                "text": "voice in",
-                "bar": 5
-              },
-              {
-                "t": 25.846,
-                "text": "bass in",
-                "bar": 13
-              },
-              {
-                "t": 33.231,
-                "text": "drums in",
-                "bar": 17
-              },
-              {
-                "t": 70.154,
-                "text": "solo in",
-                "bar": 37
-              },
-              {
-                "t": 84.923,
-                "text": "verse in",
-                "bar": 45
-              },
-              {
-                "t": 88.615,
-                "text": "kick in",
-                "bar": 47
-              },
-              {
-                "t": 99.692,
-                "text": "bass in",
-                "bar": 53
-              },
-              {
-                "t": 114.0,
-                "text": "pause in",
-                "bar": 60
-              },
-              {
-                "t": 144.0,
-                "text": "solo in",
-                "bar": 77
-              },
-              {
-                "t": 158.769,
-                "text": "bridge in",
-                "bar": 85
-              },
-              {
-                "t": 169.846,
-                "text": "snare in",
-                "bar": 91
-              },
-              {
-                "t": 175.385,
-                "text": "all stop",
-                "bar": 94
-              },
-              {
-                "t": 177.231,
-                "text": "solo in",
-                "bar": 95
-              },
-              {
-                "t": 192.0,
-                "text": "chorus in",
-                "bar": 103
-              },
-              {
-                "t": 221.538,
-                "text": "all stop",
-                "bar": 119
-              }
-            ]
-          },
-          "bass": {
-            "kind": "playback",
-            "label": "malo-bass"
-          },
-          "other": {
-            "kind": "layers",
-            "items": [
-              "malo-guitars",
-              "malo-sfx",
-              "roma-keys-2810"
-            ]
-          },
-          "practice": [
-            "all",
-            "alex",
-            "steve",
-            "tanya"
-          ],
-          "stems": [
-            {
-              "id": "vocal",
-              "label": "Вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "guitars",
-              "label": "Гитары"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "vocal": "637a32d27b",
-            "drums": "7c308dfe42",
-            "keys": "dc18a1c9d4",
-            "bass": "3a9a5be986",
-            "guitars": "b4bdb62224",
-            "other": "ae817d4a23",
-            "click": "c11e52c1a4",
-            "cues": "db22c6ea47"
-          },
-          "versions": {
-            "all": "410c93b690",
-            "alex": "25bae930a9",
-            "steve": "a85fcfd5d0",
-            "tanya": "0d78bd1832",
-            "pb-other": "d90b1ac994",
-            "pb-bass": "330e405984",
-            "pb-audition": "24e6748bc8"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "keys",
-              "guitars",
               "other"
             ]
           },
@@ -4097,6 +3754,242 @@
             ]
           },
           "audition": true
+        },
+        {
+          "sid": "Кислотный DJ",
+          "slug": "fd31c4f9ad95",
+          "title": "Кислотный DJ",
+          "artist": "Акула",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 22,
+            "list": [
+              {
+                "t": 2.996,
+                "text": "Кислотный DJ drums in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 16.282,
+                "text": "synth in",
+                "bar": 8,
+                "snap": 12.853
+              },
+              {
+                "t": 28.71,
+                "text": "stop",
+                "bar": 16,
+                "snap": 24.853
+              },
+              {
+                "t": 42.425,
+                "text": "drums break ready go",
+                "bar": 24,
+                "snap": 38.996
+              },
+              {
+                "t": 56.139,
+                "text": "drums-bass break ready go",
+                "bar": 32,
+                "snap": 52.282
+              },
+              {
+                "t": 66.425,
+                "text": "synth in ready go",
+                "bar": 38,
+                "snap": 62.996
+              },
+              {
+                "t": 68.139,
+                "text": "build up ready go",
+                "bar": 39,
+                "snap": 64.71
+              },
+              {
+                "t": 71.568,
+                "text": "chorus in ready go",
+                "bar": 41,
+                "snap": 68.139
+              },
+              {
+                "t": 97.282,
+                "text": "drums-bass fill ready go",
+                "bar": 56,
+                "snap": 93.425
+              },
+              {
+                "t": 110.996,
+                "text": "bass break ready go",
+                "bar": 64,
+                "snap": 107.568
+              },
+              {
+                "t": 112.71,
+                "text": "solo in ready go",
+                "bar": 65,
+                "snap": 109.282
+              },
+              {
+                "t": 124.71,
+                "text": "drum fill ready go",
+                "bar": 72,
+                "snap": 121.282
+              },
+              {
+                "t": 140.139,
+                "text": "drums-bass break ready go",
+                "bar": 81,
+                "snap": 136.282
+              },
+              {
+                "t": 146.996,
+                "text": "build up ready go",
+                "bar": 85,
+                "snap": 143.568
+              },
+              {
+                "t": 148.71,
+                "text": "all in ready go",
+                "bar": 86,
+                "snap": 145.282
+              },
+              {
+                "t": 174.425,
+                "text": "stop",
+                "bar": 101,
+                "snap": 170.568
+              },
+              {
+                "t": 176.139,
+                "text": "solo in ready go",
+                "bar": 102,
+                "snap": 172.71
+              },
+              {
+                "t": 201.853,
+                "text": "drums-bass stop",
+                "bar": 117,
+                "snap": 197.996
+              },
+              {
+                "t": 213.853,
+                "text": "build up ready go",
+                "bar": 124,
+                "snap": 210.425
+              },
+              {
+                "t": 217.282,
+                "text": "stop",
+                "bar": 126,
+                "snap": 213.425
+              },
+              {
+                "t": 218.996,
+                "text": "all in ready go",
+                "bar": 127,
+                "snap": 215.568
+              },
+              {
+                "t": 232.71,
+                "text": "end in",
+                "bar": 135,
+                "snap": 228.853
+              }
+            ]
+          },
+          "bass": {
+            "kind": "assign",
+            "who": "Alex"
+          },
+          "other": {
+            "kind": "layers",
+            "items": [
+              "DJ_arp",
+              "wind_part",
+              "roma-keys-2810"
+            ]
+          },
+          "practice": [
+            "all",
+            "drums",
+            "alex",
+            "steve",
+            "tanya",
+            "trio"
+          ],
+          "stems": [
+            {
+              "id": "vocal",
+              "label": "Вокал"
+            },
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "guitars",
+              "label": "Гитары"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "vocal": "7f0bd7969b",
+            "back_vox": "588dbd0fee",
+            "drums": "5b83ec819e",
+            "keys": "bd9d532baa",
+            "bass": "07a289c407",
+            "guitars": "af6db958ab",
+            "other": "497576658d",
+            "click": "70c6f3ee65",
+            "cues": "07efbf1dc2"
+          },
+          "versions": {
+            "all": "ae2f7f74e5",
+            "drums": "217634bc93",
+            "alex": "3f78abe55b",
+            "steve": "5b18f0bab2",
+            "tanya": "eed4643053",
+            "trio": "373085067f",
+            "pb-other": "c3ef680d6d",
+            "pb-audition": "82f4ab8ca0"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": false,
+            "mutes": []
+          },
+          "audition": true
         }
       ]
     },
@@ -4291,25 +4184,25 @@
                 "t": 14.964,
                 "text": "chorus in",
                 "bar": 6,
-                "snap": 9.63
+                "snap": 9.58
               },
               {
                 "t": 36.297,
                 "text": "verse in",
                 "bar": 14,
-                "snap": 30.964
+                "snap": 30.884
               },
               {
                 "t": 60.297,
                 "text": "chorus in",
                 "bar": 23,
-                "snap": 54.964
+                "snap": 54.914
               },
               {
                 "t": 81.63,
                 "text": "drums stop",
                 "bar": 31,
-                "snap": 75.63
+                "snap": 75.511
               },
               {
                 "t": 86.964,
@@ -4321,37 +4214,37 @@
                 "t": 108.297,
                 "text": "all stop",
                 "bar": 41,
-                "snap": 102.297
+                "snap": 102.404
               },
               {
                 "t": 129.63,
                 "text": "chorus in",
                 "bar": 49,
-                "snap": 124.297
+                "snap": 124.247
               },
               {
                 "t": 161.63,
                 "text": "all stop",
                 "bar": 61,
-                "snap": 155.63
+                "snap": 155.737
               },
               {
                 "t": 172.297,
                 "text": "drums in",
                 "bar": 65,
-                "snap": 166.964
+                "snap": 166.924
               },
               {
                 "t": 182.964,
                 "text": "chorus in",
                 "bar": 69,
-                "snap": 177.63
+                "snap": 177.58
               },
               {
                 "t": 204.297,
                 "text": "all stop",
                 "bar": 77,
-                "snap": 198.297
+                "snap": 198.404
               }
             ]
           },
@@ -4416,23 +4309,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "266278a1ea",
-            "back_vox": "96d19ff041",
-            "drums": "c4deacd97c",
-            "keys": "8cbb2236b7",
-            "bass": "7e96fa9b34",
-            "guitars": "d70b76b08c",
-            "other": "da48983e6e",
-            "click": "48aa8ed4ce",
-            "cues": "71da5a24f9"
+            "vocal": "fec35f33e9",
+            "back_vox": "1c5d549ca7",
+            "drums": "f106ecfb56",
+            "keys": "575d6bb5e3",
+            "bass": "5ece4b82dd",
+            "guitars": "442d5b8c4a",
+            "other": "f2322e421d",
+            "click": "9baa6bd3ba",
+            "cues": "1e427a0ba4"
           },
           "versions": {
-            "all": "173b91f9eb",
-            "steve": "a96806f53d",
-            "tanya": "bdcf8f56ff",
-            "pb-other": "933a925818",
-            "pb-bass": "6f29cbe794",
-            "pb-audition": "d0f3111739"
+            "all": "a44f08435a",
+            "steve": "bbccdab2b5",
+            "tanya": "ff20dde910",
+            "pb-other": "3bc5114589",
+            "pb-bass": "7d1e897509",
+            "pb-audition": "4597e433ab"
           },
           "pb_other": {
             "available": true,
@@ -5524,13 +5417,13 @@
                 "t": 20.677,
                 "text": "drums in",
                 "bar": 10,
-                "snap": 16.623
+                "snap": 16.583
               },
               {
                 "t": 39.307,
                 "text": "verse in",
                 "bar": 19,
-                "snap": 35.293
+                "snap": 35.243
               },
               {
                 "t": 86.777,
@@ -5542,13 +5435,13 @@
                 "t": 107.697,
                 "text": "verse in ready go",
                 "bar": 53,
-                "snap": 103.653
+                "snap": 103.573
               },
               {
                 "t": 140.097,
                 "text": "chorus in ready go",
                 "bar": 69,
-                "snap": 136.063
+                "snap": 136.023
               },
               {
                 "t": 174.727,
@@ -5560,7 +5453,7 @@
                 "t": 198.897,
                 "text": "end in",
                 "bar": 99,
-                "snap": 194.403
+                "snap": 194.35
               }
             ]
           },
@@ -8093,67 +7986,67 @@
                 "t": 10.909,
                 "text": "vocal in",
                 "bar": 7,
-                "snap": 7.273
+                "snap": 7.243
               },
               {
                 "t": 25.455,
                 "text": "bass-n-beat in",
                 "bar": 15,
-                "snap": 21.364
+                "snap": 21.354
               },
               {
                 "t": 54.545,
                 "text": "solo in",
                 "bar": 31,
-                "snap": 50.909
+                "snap": 50.789
               },
               {
                 "t": 69.091,
                 "text": "vocal in",
                 "bar": 39,
-                "snap": 65.455
+                "snap": 65.425
               },
               {
                 "t": 83.636,
                 "text": "piano in",
                 "bar": 47,
-                "snap": 80.0
+                "snap": 79.95
               },
               {
                 "t": 127.273,
                 "text": "solo in",
                 "bar": 71,
-                "snap": 123.636
+                "snap": 123.516
               },
               {
                 "t": 141.818,
                 "text": "keys-only in",
                 "bar": 79,
-                "snap": 137.727
+                "snap": 137.309
               },
               {
                 "t": 158.182,
                 "text": "modulation in",
                 "bar": 88,
-                "snap": 154.545
+                "snap": 154.535
               },
               {
                 "t": 187.273,
                 "text": "keep going",
                 "bar": 104,
-                "snap": 184.545
+                "snap": 184.495
               },
               {
                 "t": 201.818,
                 "text": "keys-only in",
                 "bar": 112,
-                "snap": 197.727
+                "snap": 197.309
               },
               {
                 "t": 216.364,
                 "text": "end stop",
                 "bar": 120,
-                "snap": 212.273
+                "snap": 211.866
               }
             ]
           },
@@ -8217,23 +8110,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e33483be91",
-            "back_vox": "877c2acd22",
-            "drums": "f03f36f91b",
-            "keys": "10a60d555d",
-            "bass": "672374bee3",
-            "other": "adba078c51",
-            "click": "cfc8d05f0e",
-            "cues": "641335624e"
+            "vocal": "c512292119",
+            "back_vox": "f76c5859ff",
+            "drums": "a6c437a297",
+            "keys": "accd90ae61",
+            "bass": "0f651dd788",
+            "other": "407f288ef1",
+            "click": "452245a16b",
+            "cues": "df11a32fb1"
           },
           "versions": {
-            "all": "fdb4fd1b96",
-            "drums": "f03f36f91b",
-            "steve": "333ab3671c",
-            "tanya": "cd1ff1b704",
-            "pb-other": "9c2f51b468",
-            "pb-bass": "43e6efffef",
-            "pb-audition": "b221117437"
+            "all": "1c47cc7bbc",
+            "drums": "a6c437a297",
+            "steve": "3c5ceff6f0",
+            "tanya": "da1d88534e",
+            "pb-other": "4760de7e3d",
+            "pb-bass": "ab28ad0fef",
+            "pb-audition": "7a55b3b2c5"
           },
           "pb_other": {
             "available": true,
@@ -9873,13 +9766,13 @@
                 "t": 14.495,
                 "text": "stop",
                 "bar": 7,
-                "snap": 10.582
+                "snap": 10.303
               },
               {
                 "t": 16.669,
                 "text": "all in",
                 "bar": 9,
-                "snap": 13.19
+                "snap": 13.18
               },
               {
                 "t": 30.582,
@@ -9891,7 +9784,7 @@
                 "t": 44.495,
                 "text": "verse in",
                 "bar": 25,
-                "snap": 41.016
+                "snap": 40.966
               },
               {
                 "t": 86.234,
@@ -9903,25 +9796,25 @@
                 "t": 100.147,
                 "text": "more-arpegiator in",
                 "bar": 57,
-                "snap": 95.799
+                "snap": 95.789
               },
               {
                 "t": 127.973,
                 "text": "soft-verse in",
                 "bar": 73,
-                "snap": 124.06
+                "snap": 123.93
               },
               {
                 "t": 134.929,
                 "text": "drum in",
                 "bar": 77,
-                "snap": 131.451
+                "snap": 131.421
               },
               {
                 "t": 141.886,
                 "text": "bass-n-beat in",
                 "bar": 81,
-                "snap": 137.973
+                "snap": 137.963
               },
               {
                 "t": 169.712,
@@ -9933,7 +9826,7 @@
                 "t": 183.625,
                 "text": "roma only ready go",
                 "bar": 105,
-                "snap": 180.147
+                "snap": 180.117
               },
               {
                 "t": 190.582,
@@ -9945,7 +9838,7 @@
                 "t": 197.538,
                 "text": "drums in",
                 "bar": 113,
-                "snap": 194.06
+                "snap": 194.03
               },
               {
                 "t": 211.451,
@@ -9957,13 +9850,13 @@
                 "t": 223.19,
                 "text": "stop",
                 "bar": 127,
-                "snap": 219.277
+                "snap": 218.999
               },
               {
                 "t": 225.364,
                 "text": "chorus in",
                 "bar": 129,
-                "snap": 221.886
+                "snap": 221.846
               },
               {
                 "t": 239.277,
@@ -9975,7 +9868,7 @@
                 "t": 253.19,
                 "text": "stop",
                 "bar": 145,
-                "snap": 249.277
+                "snap": 248.999
               }
             ]
           },
@@ -9986,7 +9879,9 @@
           "other": {
             "kind": "layers",
             "items": [
-              "roma-keys-2810"
+              "pb-synths",
+              "pb-fx",
+              "pb-backvox"
             ]
           },
           "practice": [
@@ -10033,22 +9928,22 @@
           "stem_versions": {
             "vocal": "8111e1758b",
             "drums": "a4a0b1d38a",
-            "keys": "f901cfa5ec",
+            "keys": "32345299e9",
             "bass": "35cc1c087c",
             "guitars": "b89909b143",
-            "other": "2e7c75419b",
+            "other": "e977b4019d",
             "click": "444fb1db3a",
-            "cues": "7228ce71f7"
+            "cues": "2cde80abd5"
           },
           "versions": {
-            "all": "4c7b0acd62",
+            "all": "53ce636509",
             "drums": "a4a0b1d38a",
             "alex": "8bd843122c",
             "steve": "a43c9c750d",
             "tanya": "cb4a867687",
-            "pb-other": "f901cfa5ec",
+            "pb-other": "264ee71c0f",
             "pb-bass": "35cc1c087c",
-            "pb-audition": "2b734273df"
+            "pb-audition": "0081487ac0"
           },
           "pb_other": {
             "available": true,
@@ -10233,84 +10128,100 @@
             "count": 16,
             "list": [
               {
-                "t": 3.692,
+                "t": 2.856,
                 "text": "Мало тебя guitar in",
-                "bar": 1
+                "bar": 1,
+                "snap": 0.0
               },
               {
-                "t": 11.077,
+                "t": 10.241,
                 "text": "voice in",
-                "bar": 5
+                "bar": 5,
+                "snap": 6.498
               },
               {
-                "t": 25.846,
+                "t": 25.01,
                 "text": "bass in",
-                "bar": 13
+                "bar": 13,
+                "snap": 21.318
               },
               {
-                "t": 33.231,
+                "t": 32.395,
                 "text": "drums in",
-                "bar": 17
+                "bar": 17,
+                "snap": 28.672
               },
               {
-                "t": 70.154,
+                "t": 69.318,
                 "text": "solo in",
-                "bar": 37
+                "bar": 37,
+                "snap": 65.505
               },
               {
-                "t": 84.923,
+                "t": 84.087,
                 "text": "verse in",
-                "bar": 45
+                "bar": 45,
+                "snap": 80.345
               },
               {
-                "t": 88.615,
+                "t": 87.779,
                 "text": "kick in",
-                "bar": 47
+                "bar": 47,
+                "snap": 84.027
               },
               {
-                "t": 99.692,
+                "t": 98.856,
                 "text": "bass in",
-                "bar": 53
+                "bar": 53,
+                "snap": 95.164
               },
               {
-                "t": 114.0,
+                "t": 113.164,
                 "text": "pause in",
-                "bar": 60
+                "bar": 60,
+                "snap": 108.848
               },
               {
-                "t": 144.0,
+                "t": 143.164,
                 "text": "solo in",
-                "bar": 77
+                "bar": 77,
+                "snap": 139.352
               },
               {
-                "t": 158.769,
+                "t": 157.933,
                 "text": "bridge in",
-                "bar": 85
+                "bar": 85,
+                "snap": 154.211
               },
               {
-                "t": 169.846,
+                "t": 169.01,
                 "text": "snare in",
-                "bar": 91
+                "bar": 91,
+                "snap": 165.198
               },
               {
-                "t": 175.385,
+                "t": 174.548,
                 "text": "all stop",
-                "bar": 94
+                "bar": 94,
+                "snap": 170.091
               },
               {
-                "t": 177.231,
+                "t": 176.395,
                 "text": "solo in",
-                "bar": 95
+                "bar": 95,
+                "snap": 172.582
               },
               {
-                "t": 192.0,
+                "t": 191.164,
                 "text": "chorus in",
-                "bar": 103
+                "bar": 103,
+                "snap": 187.432
               },
               {
-                "t": 221.538,
+                "t": 220.702,
                 "text": "all stop",
-                "bar": 119
+                "bar": 119,
+                "snap": 216.245
               }
             ]
           },
@@ -10323,7 +10234,7 @@
             "items": [
               "malo-guitars",
               "malo-sfx",
-              "roma-keys-2810"
+              "pb-synths"
             ]
           },
           "practice": [
@@ -10369,21 +10280,21 @@
           "stem_versions": {
             "vocal": "637a32d27b",
             "drums": "7c308dfe42",
-            "keys": "dc18a1c9d4",
+            "keys": "d7e0209578",
             "bass": "3a9a5be986",
             "guitars": "b4bdb62224",
-            "other": "ae817d4a23",
+            "other": "7a28b601d5",
             "click": "c11e52c1a4",
-            "cues": "db22c6ea47"
+            "cues": "e34591d614"
           },
           "versions": {
-            "all": "410c93b690",
-            "alex": "25bae930a9",
-            "steve": "a85fcfd5d0",
-            "tanya": "0d78bd1832",
-            "pb-other": "d90b1ac994",
+            "all": "ba432c4618",
+            "alex": "6a3a64dd6e",
+            "steve": "6a6aebead3",
+            "tanya": "dedadd124f",
+            "pb-other": "c67d561ae4",
             "pb-bass": "330e405984",
-            "pb-audition": "24e6748bc8"
+            "pb-audition": "9e1500c71e"
           },
           "pb_other": {
             "available": true,
@@ -12035,25 +11946,25 @@
                 "t": 14.964,
                 "text": "chorus in",
                 "bar": 6,
-                "snap": 9.63
+                "snap": 9.58
               },
               {
                 "t": 36.297,
                 "text": "verse in",
                 "bar": 14,
-                "snap": 30.964
+                "snap": 30.884
               },
               {
                 "t": 60.297,
                 "text": "chorus in",
                 "bar": 23,
-                "snap": 54.964
+                "snap": 54.914
               },
               {
                 "t": 81.63,
                 "text": "drums stop",
                 "bar": 31,
-                "snap": 75.63
+                "snap": 75.511
               },
               {
                 "t": 86.964,
@@ -12065,37 +11976,37 @@
                 "t": 108.297,
                 "text": "all stop",
                 "bar": 41,
-                "snap": 102.297
+                "snap": 102.404
               },
               {
                 "t": 129.63,
                 "text": "chorus in",
                 "bar": 49,
-                "snap": 124.297
+                "snap": 124.247
               },
               {
                 "t": 161.63,
                 "text": "all stop",
                 "bar": 61,
-                "snap": 155.63
+                "snap": 155.737
               },
               {
                 "t": 172.297,
                 "text": "drums in",
                 "bar": 65,
-                "snap": 166.964
+                "snap": 166.924
               },
               {
                 "t": 182.964,
                 "text": "chorus in",
                 "bar": 69,
-                "snap": 177.63
+                "snap": 177.58
               },
               {
                 "t": 204.297,
                 "text": "all stop",
                 "bar": 77,
-                "snap": 198.297
+                "snap": 198.404
               }
             ]
           },
@@ -12160,23 +12071,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "266278a1ea",
-            "back_vox": "96d19ff041",
-            "drums": "c4deacd97c",
-            "keys": "8cbb2236b7",
-            "bass": "7e96fa9b34",
-            "guitars": "d70b76b08c",
-            "other": "da48983e6e",
-            "click": "48aa8ed4ce",
-            "cues": "71da5a24f9"
+            "vocal": "fec35f33e9",
+            "back_vox": "1c5d549ca7",
+            "drums": "f106ecfb56",
+            "keys": "575d6bb5e3",
+            "bass": "5ece4b82dd",
+            "guitars": "442d5b8c4a",
+            "other": "f2322e421d",
+            "click": "9baa6bd3ba",
+            "cues": "1e427a0ba4"
           },
           "versions": {
-            "all": "173b91f9eb",
-            "steve": "a96806f53d",
-            "tanya": "bdcf8f56ff",
-            "pb-other": "933a925818",
-            "pb-bass": "6f29cbe794",
-            "pb-audition": "d0f3111739"
+            "all": "a44f08435a",
+            "steve": "bbccdab2b5",
+            "tanya": "ff20dde910",
+            "pb-other": "3bc5114589",
+            "pb-bass": "7d1e897509",
+            "pb-audition": "4597e433ab"
           },
           "pb_other": {
             "available": true,
@@ -12847,67 +12758,67 @@
                 "t": 15.685,
                 "text": "stop",
                 "bar": 8,
-                "snap": 11.531
+                "snap": 11.321
               },
               {
                 "t": 32.762,
                 "text": "verse in",
                 "bar": 17,
-                "snap": 29.069
+                "snap": 29.019
               },
               {
                 "t": 59.992,
                 "text": "stop",
                 "bar": 32,
-                "snap": 55.838
+                "snap": 55.628
               },
               {
                 "t": 89.531,
                 "text": "stop",
                 "bar": 48,
-                "snap": 85.377
+                "snap": 85.167
               },
               {
                 "t": 91.377,
                 "text": "verse in",
                 "bar": 49,
-                "snap": 87.685
+                "snap": 87.635
               },
               {
                 "t": 119.069,
                 "text": "stop",
                 "bar": 64,
-                "snap": 114.915
+                "snap": 114.705
               },
               {
                 "t": 150.454,
                 "text": "keys stop",
                 "bar": 81,
-                "snap": 146.3
+                "snap": 145.874
               },
               {
                 "t": 165.223,
                 "text": "keys in",
                 "bar": 89,
-                "snap": 161.531
+                "snap": 161.501
               },
               {
                 "t": 178.146,
                 "text": "stop",
                 "bar": 96,
-                "snap": 173.992
+                "snap": 173.782
               },
               {
                 "t": 179.992,
                 "text": "chorus in",
                 "bar": 97,
-                "snap": 176.3
+                "snap": 176.26
               },
               {
                 "t": 209.531,
                 "text": "end in",
                 "bar": 113,
-                "snap": 205.377
+                "snap": 205.257
               }
             ]
           },
@@ -12969,26 +12880,26 @@
             }
           ],
           "stem_versions": {
-            "vocal": "64b80ab609",
-            "back_vox": "5fc651d755",
-            "drums": "8e0a2a56b6",
-            "keys": "d86f459f5e",
-            "bass": "bb909dfebd",
-            "guitars": "c55ee7efb0",
-            "other": "09001b6667",
-            "click": "870a592c0b",
-            "cues": "2ad796c490"
+            "vocal": "8e1ab48331",
+            "back_vox": "f19dc6ef34",
+            "drums": "dbdaeb7b56",
+            "keys": "53b0dc25c1",
+            "bass": "257cfe44ca",
+            "guitars": "f9a23de388",
+            "other": "cf19e61044",
+            "click": "5d8e0f3448",
+            "cues": "505bed5a74"
           },
           "versions": {
-            "all": "d890049e78",
-            "drums": "51052284b9",
-            "alex": "e015bc23ec",
-            "steve": "7910917a01",
-            "tanya": "5e2433dae2",
-            "trio": "588ec3479a",
-            "pb-other": "87cf63ae07",
-            "pb-bass": "33e347a18a",
-            "pb-audition": "01b5685cab"
+            "all": "c27e034cbf",
+            "drums": "36763aa821",
+            "alex": "abe6a70ece",
+            "steve": "c47a1dd7a7",
+            "tanya": "6dd18ee947",
+            "trio": "a7c9fb62f4",
+            "pb-other": "55014626bd",
+            "pb-bass": "350e8831b6",
+            "pb-audition": "1e10a32269"
           },
           "pb_other": {
             "available": true,
@@ -13025,67 +12936,67 @@
                 "t": 18.362,
                 "text": "kick in",
                 "bar": 9,
-                "snap": 14.522
+                "snap": 14.462
               },
               {
                 "t": 49.082,
                 "text": "stop",
                 "bar": 25,
-                "snap": 44.762
+                "snap": 44.589
               },
               {
                 "t": 52.922,
                 "text": "kick-bass ready go",
                 "bar": 27,
-                "snap": 49.562
+                "snap": 49.542
               },
               {
                 "t": 68.282,
                 "text": "beat in",
                 "bar": 35,
-                "snap": 64.442
+                "snap": 64.432
               },
               {
                 "t": 114.362,
                 "text": "solo in",
                 "bar": 59,
-                "snap": 110.522
+                "snap": 110.402
               },
               {
                 "t": 129.722,
                 "text": "stop",
                 "bar": 67,
-                "snap": 125.402
+                "snap": 125.229
               },
               {
                 "t": 131.642,
                 "text": "kick-bass ready go",
                 "bar": 68,
-                "snap": 128.282
+                "snap": 128.262
               },
               {
                 "t": 147.002,
                 "text": "beat in",
                 "bar": 76,
-                "snap": 143.162
+                "snap": 143.152
               },
               {
                 "t": 193.082,
                 "text": "solo in",
                 "bar": 100,
-                "snap": 189.242
+                "snap": 189.122
               },
               {
                 "t": 207.482,
                 "text": "keep going",
                 "bar": 107,
-                "snap": 204.602
+                "snap": 204.552
               },
               {
                 "t": 216.122,
                 "text": "stop-and-bridge-in",
                 "bar": 112,
-                "snap": 211.802
+                "snap": 211.078
               },
               {
                 "t": 231.482,
@@ -13097,19 +13008,19 @@
                 "t": 246.842,
                 "text": "chorus in",
                 "bar": 128,
-                "snap": 243.002
+                "snap": 242.962
               },
               {
                 "t": 277.562,
                 "text": "stop-and-solo-only-in",
                 "bar": 144,
-                "snap": 273.242
+                "snap": 272.29
               },
               {
                 "t": 292.922,
                 "text": "end in",
                 "bar": 152,
-                "snap": 288.602
+                "snap": 288.519
               }
             ]
           },
@@ -13120,7 +13031,7 @@
           "other": {
             "kind": "layers",
             "items": [
-              "roma-keys-2810"
+              "pb-synths"
             ]
           },
           "practice": [
@@ -13162,20 +13073,20 @@
           "stem_versions": {
             "vocal": "b873946ea4",
             "drums": "c74a63ee37",
-            "keys": "98c0bb07fb",
+            "keys": "fbae065c6f",
             "bass": "8cfc0f16fa",
             "other": "6261d6099e",
             "click": "43586e6dcb",
             "cues": "3bc5b75f35"
           },
           "versions": {
-            "all": "7b3f744293",
+            "all": "2b71142059",
             "drums": "f8079d72fc",
             "steve": "591211bdf4",
             "tanya": "5e1287af4b",
-            "pb-other": "9df948b195",
+            "pb-other": "142f153265",
             "pb-bass": "8cfc0f16fa",
-            "pb-audition": "a55c973cc2"
+            "pb-audition": "48ca5b60fe"
           },
           "pb_other": {
             "available": true,
@@ -15632,6 +15543,134 @@
           "audition": true
         },
         {
+          "sid": "МакSим - Знаешь ли ты",
+          "slug": "d25496cbe2d5",
+          "title": "Знаешь ли ты",
+          "artist": "МакSим",
+          "hasData": true,
+          "cues": {
+            "ready": true,
+            "count": 6,
+            "list": [
+              {
+                "t": 4.793,
+                "text": "Знаешь ли ты playback in",
+                "bar": 1,
+                "snap": 0.0
+              },
+              {
+                "t": 27.293,
+                "text": "voice in",
+                "bar": 7,
+                "snap": 19.793
+              },
+              {
+                "t": 72.293,
+                "text": "modulation in",
+                "bar": 19,
+                "snap": 64.793
+              },
+              {
+                "t": 91.043,
+                "text": "drums in",
+                "bar": 24,
+                "snap": 83.543
+              },
+              {
+                "t": 166.043,
+                "text": "modulation in",
+                "bar": 44,
+                "snap": 158.543
+              },
+              {
+                "t": 225.574,
+                "text": "end in",
+                "bar": 59,
+                "snap": 217.136
+              }
+            ]
+          },
+          "bass": {
+            "kind": "playback",
+            "label": "bass"
+          },
+          "other": {
+            "kind": "stems",
+            "items": [
+              "piano",
+              "keys",
+              "strings",
+              "other",
+              "backing vocals"
+            ]
+          },
+          "practice": [
+            "all",
+            "steve"
+          ],
+          "stems": [
+            {
+              "id": "back_vox",
+              "label": "Бэк-вокал"
+            },
+            {
+              "id": "drums",
+              "label": "Барабаны"
+            },
+            {
+              "id": "keys",
+              "label": "Клавиши"
+            },
+            {
+              "id": "bass",
+              "label": "Бас"
+            },
+            {
+              "id": "other",
+              "label": "Остальное"
+            },
+            {
+              "id": "click",
+              "label": "click"
+            },
+            {
+              "id": "cues",
+              "label": "cues"
+            }
+          ],
+          "stem_versions": {
+            "back_vox": "218a1bb9e4",
+            "drums": "102449d3e1",
+            "keys": "59a2e6e583",
+            "bass": "150fe5394c",
+            "other": "ae50a489c9",
+            "click": "5d7ac04e94",
+            "cues": "36edeab301"
+          },
+          "versions": {
+            "all": "514c158328",
+            "steve": "b128b5203f",
+            "pb-other": "23792b35ee",
+            "pb-bass": "150fe5394c",
+            "pb-audition": "2b662bacd2"
+          },
+          "pb_other": {
+            "available": true,
+            "mutes": [
+              "back_vox",
+              "keys",
+              "other"
+            ]
+          },
+          "pb_bass": {
+            "available": true,
+            "mutes": [
+              "bass"
+            ]
+          },
+          "audition": true
+        },
+        {
           "sid": "Мелом",
           "slug": "b581fa388c98",
           "title": "Мелом",
@@ -15788,134 +15827,6 @@
           "pb_other": {
             "available": false,
             "mutes": []
-          },
-          "pb_bass": {
-            "available": true,
-            "mutes": [
-              "bass"
-            ]
-          },
-          "audition": true
-        },
-        {
-          "sid": "МакSим - Знаешь ли ты",
-          "slug": "d25496cbe2d5",
-          "title": "Знаешь ли ты",
-          "artist": "МакSим",
-          "hasData": true,
-          "cues": {
-            "ready": true,
-            "count": 6,
-            "list": [
-              {
-                "t": 4.793,
-                "text": "Знаешь ли ты playback in",
-                "bar": 1,
-                "snap": 0.0
-              },
-              {
-                "t": 27.293,
-                "text": "voice in",
-                "bar": 7,
-                "snap": 19.793
-              },
-              {
-                "t": 72.293,
-                "text": "modulation in",
-                "bar": 19,
-                "snap": 64.793
-              },
-              {
-                "t": 91.043,
-                "text": "drums in",
-                "bar": 24,
-                "snap": 83.543
-              },
-              {
-                "t": 166.043,
-                "text": "modulation in",
-                "bar": 44,
-                "snap": 158.543
-              },
-              {
-                "t": 225.574,
-                "text": "end in",
-                "bar": 59,
-                "snap": 217.136
-              }
-            ]
-          },
-          "bass": {
-            "kind": "playback",
-            "label": "bass"
-          },
-          "other": {
-            "kind": "stems",
-            "items": [
-              "piano",
-              "keys",
-              "strings",
-              "other",
-              "backing vocals"
-            ]
-          },
-          "practice": [
-            "all",
-            "steve"
-          ],
-          "stems": [
-            {
-              "id": "back_vox",
-              "label": "Бэк-вокал"
-            },
-            {
-              "id": "drums",
-              "label": "Барабаны"
-            },
-            {
-              "id": "keys",
-              "label": "Клавиши"
-            },
-            {
-              "id": "bass",
-              "label": "Бас"
-            },
-            {
-              "id": "other",
-              "label": "Остальное"
-            },
-            {
-              "id": "click",
-              "label": "click"
-            },
-            {
-              "id": "cues",
-              "label": "cues"
-            }
-          ],
-          "stem_versions": {
-            "back_vox": "218a1bb9e4",
-            "drums": "102449d3e1",
-            "keys": "59a2e6e583",
-            "bass": "150fe5394c",
-            "other": "ae50a489c9",
-            "click": "5d7ac04e94",
-            "cues": "36edeab301"
-          },
-          "versions": {
-            "all": "514c158328",
-            "steve": "b128b5203f",
-            "pb-other": "23792b35ee",
-            "pb-bass": "150fe5394c",
-            "pb-audition": "2b662bacd2"
-          },
-          "pb_other": {
-            "available": true,
-            "mutes": [
-              "back_vox",
-              "keys",
-              "other"
-            ]
           },
           "pb_bass": {
             "available": true,
@@ -16538,67 +16449,67 @@
                 "t": 18.362,
                 "text": "kick in",
                 "bar": 9,
-                "snap": 14.522
+                "snap": 14.462
               },
               {
                 "t": 49.082,
                 "text": "stop",
                 "bar": 25,
-                "snap": 44.762
+                "snap": 44.589
               },
               {
                 "t": 52.922,
                 "text": "kick-bass ready go",
                 "bar": 27,
-                "snap": 49.562
+                "snap": 49.542
               },
               {
                 "t": 68.282,
                 "text": "beat in",
                 "bar": 35,
-                "snap": 64.442
+                "snap": 64.432
               },
               {
                 "t": 114.362,
                 "text": "solo in",
                 "bar": 59,
-                "snap": 110.522
+                "snap": 110.402
               },
               {
                 "t": 129.722,
                 "text": "stop",
                 "bar": 67,
-                "snap": 125.402
+                "snap": 125.229
               },
               {
                 "t": 131.642,
                 "text": "kick-bass ready go",
                 "bar": 68,
-                "snap": 128.282
+                "snap": 128.262
               },
               {
                 "t": 147.002,
                 "text": "beat in",
                 "bar": 76,
-                "snap": 143.162
+                "snap": 143.152
               },
               {
                 "t": 193.082,
                 "text": "solo in",
                 "bar": 100,
-                "snap": 189.242
+                "snap": 189.122
               },
               {
                 "t": 207.482,
                 "text": "keep going",
                 "bar": 107,
-                "snap": 204.602
+                "snap": 204.552
               },
               {
                 "t": 216.122,
                 "text": "stop-and-bridge-in",
                 "bar": 112,
-                "snap": 211.802
+                "snap": 211.078
               },
               {
                 "t": 231.482,
@@ -16610,19 +16521,19 @@
                 "t": 246.842,
                 "text": "chorus in",
                 "bar": 128,
-                "snap": 243.002
+                "snap": 242.962
               },
               {
                 "t": 277.562,
                 "text": "stop-and-solo-only-in",
                 "bar": 144,
-                "snap": 273.242
+                "snap": 272.29
               },
               {
                 "t": 292.922,
                 "text": "end in",
                 "bar": 152,
-                "snap": 288.602
+                "snap": 288.519
               }
             ]
           },
@@ -16633,7 +16544,7 @@
           "other": {
             "kind": "layers",
             "items": [
-              "roma-keys-2810"
+              "pb-synths"
             ]
           },
           "practice": [
@@ -16675,20 +16586,20 @@
           "stem_versions": {
             "vocal": "b873946ea4",
             "drums": "c74a63ee37",
-            "keys": "98c0bb07fb",
+            "keys": "fbae065c6f",
             "bass": "8cfc0f16fa",
             "other": "6261d6099e",
             "click": "43586e6dcb",
             "cues": "3bc5b75f35"
           },
           "versions": {
-            "all": "7b3f744293",
+            "all": "2b71142059",
             "drums": "f8079d72fc",
             "steve": "591211bdf4",
             "tanya": "5e1287af4b",
-            "pb-other": "9df948b195",
+            "pb-other": "142f153265",
             "pb-bass": "8cfc0f16fa",
-            "pb-audition": "a55c973cc2"
+            "pb-audition": "48ca5b60fe"
           },
           "pb_other": {
             "available": true,
@@ -16725,13 +16636,13 @@
                 "t": 14.495,
                 "text": "stop",
                 "bar": 7,
-                "snap": 10.582
+                "snap": 10.303
               },
               {
                 "t": 16.669,
                 "text": "all in",
                 "bar": 9,
-                "snap": 13.19
+                "snap": 13.18
               },
               {
                 "t": 30.582,
@@ -16743,7 +16654,7 @@
                 "t": 44.495,
                 "text": "verse in",
                 "bar": 25,
-                "snap": 41.016
+                "snap": 40.966
               },
               {
                 "t": 86.234,
@@ -16755,25 +16666,25 @@
                 "t": 100.147,
                 "text": "more-arpegiator in",
                 "bar": 57,
-                "snap": 95.799
+                "snap": 95.789
               },
               {
                 "t": 127.973,
                 "text": "soft-verse in",
                 "bar": 73,
-                "snap": 124.06
+                "snap": 123.93
               },
               {
                 "t": 134.929,
                 "text": "drum in",
                 "bar": 77,
-                "snap": 131.451
+                "snap": 131.421
               },
               {
                 "t": 141.886,
                 "text": "bass-n-beat in",
                 "bar": 81,
-                "snap": 137.973
+                "snap": 137.963
               },
               {
                 "t": 169.712,
@@ -16785,7 +16696,7 @@
                 "t": 183.625,
                 "text": "roma only ready go",
                 "bar": 105,
-                "snap": 180.147
+                "snap": 180.117
               },
               {
                 "t": 190.582,
@@ -16797,7 +16708,7 @@
                 "t": 197.538,
                 "text": "drums in",
                 "bar": 113,
-                "snap": 194.06
+                "snap": 194.03
               },
               {
                 "t": 211.451,
@@ -16809,13 +16720,13 @@
                 "t": 223.19,
                 "text": "stop",
                 "bar": 127,
-                "snap": 219.277
+                "snap": 218.999
               },
               {
                 "t": 225.364,
                 "text": "chorus in",
                 "bar": 129,
-                "snap": 221.886
+                "snap": 221.846
               },
               {
                 "t": 239.277,
@@ -16827,7 +16738,7 @@
                 "t": 253.19,
                 "text": "stop",
                 "bar": 145,
-                "snap": 249.277
+                "snap": 248.999
               }
             ]
           },
@@ -16838,7 +16749,9 @@
           "other": {
             "kind": "layers",
             "items": [
-              "roma-keys-2810"
+              "pb-synths",
+              "pb-fx",
+              "pb-backvox"
             ]
           },
           "practice": [
@@ -16885,22 +16798,22 @@
           "stem_versions": {
             "vocal": "8111e1758b",
             "drums": "a4a0b1d38a",
-            "keys": "f901cfa5ec",
+            "keys": "32345299e9",
             "bass": "35cc1c087c",
             "guitars": "b89909b143",
-            "other": "2e7c75419b",
+            "other": "e977b4019d",
             "click": "444fb1db3a",
-            "cues": "7228ce71f7"
+            "cues": "2cde80abd5"
           },
           "versions": {
-            "all": "4c7b0acd62",
+            "all": "53ce636509",
             "drums": "a4a0b1d38a",
             "alex": "8bd843122c",
             "steve": "a43c9c750d",
             "tanya": "cb4a867687",
-            "pb-other": "f901cfa5ec",
+            "pb-other": "264ee71c0f",
             "pb-bass": "35cc1c087c",
-            "pb-audition": "2b734273df"
+            "pb-audition": "0081487ac0"
           },
           "pb_other": {
             "available": true,
@@ -16937,67 +16850,67 @@
                 "t": 15.685,
                 "text": "stop",
                 "bar": 8,
-                "snap": 11.531
+                "snap": 11.321
               },
               {
                 "t": 32.762,
                 "text": "verse in",
                 "bar": 17,
-                "snap": 29.069
+                "snap": 29.019
               },
               {
                 "t": 59.992,
                 "text": "stop",
                 "bar": 32,
-                "snap": 55.838
+                "snap": 55.628
               },
               {
                 "t": 89.531,
                 "text": "stop",
                 "bar": 48,
-                "snap": 85.377
+                "snap": 85.167
               },
               {
                 "t": 91.377,
                 "text": "verse in",
                 "bar": 49,
-                "snap": 87.685
+                "snap": 87.635
               },
               {
                 "t": 119.069,
                 "text": "stop",
                 "bar": 64,
-                "snap": 114.915
+                "snap": 114.705
               },
               {
                 "t": 150.454,
                 "text": "keys stop",
                 "bar": 81,
-                "snap": 146.3
+                "snap": 145.874
               },
               {
                 "t": 165.223,
                 "text": "keys in",
                 "bar": 89,
-                "snap": 161.531
+                "snap": 161.501
               },
               {
                 "t": 178.146,
                 "text": "stop",
                 "bar": 96,
-                "snap": 173.992
+                "snap": 173.782
               },
               {
                 "t": 179.992,
                 "text": "chorus in",
                 "bar": 97,
-                "snap": 176.3
+                "snap": 176.26
               },
               {
                 "t": 209.531,
                 "text": "end in",
                 "bar": 113,
-                "snap": 205.377
+                "snap": 205.257
               }
             ]
           },
@@ -17059,26 +16972,26 @@
             }
           ],
           "stem_versions": {
-            "vocal": "64b80ab609",
-            "back_vox": "5fc651d755",
-            "drums": "8e0a2a56b6",
-            "keys": "d86f459f5e",
-            "bass": "bb909dfebd",
-            "guitars": "c55ee7efb0",
-            "other": "09001b6667",
-            "click": "870a592c0b",
-            "cues": "2ad796c490"
+            "vocal": "8e1ab48331",
+            "back_vox": "f19dc6ef34",
+            "drums": "dbdaeb7b56",
+            "keys": "53b0dc25c1",
+            "bass": "257cfe44ca",
+            "guitars": "f9a23de388",
+            "other": "cf19e61044",
+            "click": "5d8e0f3448",
+            "cues": "505bed5a74"
           },
           "versions": {
-            "all": "d890049e78",
-            "drums": "51052284b9",
-            "alex": "e015bc23ec",
-            "steve": "7910917a01",
-            "tanya": "5e2433dae2",
-            "trio": "588ec3479a",
-            "pb-other": "87cf63ae07",
-            "pb-bass": "33e347a18a",
-            "pb-audition": "01b5685cab"
+            "all": "c27e034cbf",
+            "drums": "36763aa821",
+            "alex": "abe6a70ece",
+            "steve": "c47a1dd7a7",
+            "tanya": "6dd18ee947",
+            "trio": "a7c9fb62f4",
+            "pb-other": "55014626bd",
+            "pb-bass": "350e8831b6",
+            "pb-audition": "1e10a32269"
           },
           "pb_other": {
             "available": true,
@@ -17808,67 +17721,67 @@
                 "t": 10.909,
                 "text": "vocal in",
                 "bar": 7,
-                "snap": 7.273
+                "snap": 7.243
               },
               {
                 "t": 25.455,
                 "text": "bass-n-beat in",
                 "bar": 15,
-                "snap": 21.364
+                "snap": 21.354
               },
               {
                 "t": 54.545,
                 "text": "solo in",
                 "bar": 31,
-                "snap": 50.909
+                "snap": 50.789
               },
               {
                 "t": 69.091,
                 "text": "vocal in",
                 "bar": 39,
-                "snap": 65.455
+                "snap": 65.425
               },
               {
                 "t": 83.636,
                 "text": "piano in",
                 "bar": 47,
-                "snap": 80.0
+                "snap": 79.95
               },
               {
                 "t": 127.273,
                 "text": "solo in",
                 "bar": 71,
-                "snap": 123.636
+                "snap": 123.516
               },
               {
                 "t": 141.818,
                 "text": "keys-only in",
                 "bar": 79,
-                "snap": 137.727
+                "snap": 137.309
               },
               {
                 "t": 158.182,
                 "text": "modulation in",
                 "bar": 88,
-                "snap": 154.545
+                "snap": 154.535
               },
               {
                 "t": 187.273,
                 "text": "keep going",
                 "bar": 104,
-                "snap": 184.545
+                "snap": 184.495
               },
               {
                 "t": 201.818,
                 "text": "keys-only in",
                 "bar": 112,
-                "snap": 197.727
+                "snap": 197.309
               },
               {
                 "t": 216.364,
                 "text": "end stop",
                 "bar": 120,
-                "snap": 212.273
+                "snap": 211.866
               }
             ]
           },
@@ -17932,23 +17845,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "e33483be91",
-            "back_vox": "877c2acd22",
-            "drums": "f03f36f91b",
-            "keys": "10a60d555d",
-            "bass": "672374bee3",
-            "other": "adba078c51",
-            "click": "cfc8d05f0e",
-            "cues": "641335624e"
+            "vocal": "c512292119",
+            "back_vox": "f76c5859ff",
+            "drums": "a6c437a297",
+            "keys": "accd90ae61",
+            "bass": "0f651dd788",
+            "other": "407f288ef1",
+            "click": "452245a16b",
+            "cues": "df11a32fb1"
           },
           "versions": {
-            "all": "fdb4fd1b96",
-            "drums": "f03f36f91b",
-            "steve": "333ab3671c",
-            "tanya": "cd1ff1b704",
-            "pb-other": "9c2f51b468",
-            "pb-bass": "43e6efffef",
-            "pb-audition": "b221117437"
+            "all": "1c47cc7bbc",
+            "drums": "a6c437a297",
+            "steve": "3c5ceff6f0",
+            "tanya": "da1d88534e",
+            "pb-other": "4760de7e3d",
+            "pb-bass": "ab28ad0fef",
+            "pb-audition": "7a55b3b2c5"
           },
           "pb_other": {
             "available": true,
@@ -19467,84 +19380,100 @@
             "count": 16,
             "list": [
               {
-                "t": 3.692,
+                "t": 2.856,
                 "text": "Мало тебя guitar in",
-                "bar": 1
+                "bar": 1,
+                "snap": 0.0
               },
               {
-                "t": 11.077,
+                "t": 10.241,
                 "text": "voice in",
-                "bar": 5
+                "bar": 5,
+                "snap": 6.498
               },
               {
-                "t": 25.846,
+                "t": 25.01,
                 "text": "bass in",
-                "bar": 13
+                "bar": 13,
+                "snap": 21.318
               },
               {
-                "t": 33.231,
+                "t": 32.395,
                 "text": "drums in",
-                "bar": 17
+                "bar": 17,
+                "snap": 28.672
               },
               {
-                "t": 70.154,
+                "t": 69.318,
                 "text": "solo in",
-                "bar": 37
+                "bar": 37,
+                "snap": 65.505
               },
               {
-                "t": 84.923,
+                "t": 84.087,
                 "text": "verse in",
-                "bar": 45
+                "bar": 45,
+                "snap": 80.345
               },
               {
-                "t": 88.615,
+                "t": 87.779,
                 "text": "kick in",
-                "bar": 47
+                "bar": 47,
+                "snap": 84.027
               },
               {
-                "t": 99.692,
+                "t": 98.856,
                 "text": "bass in",
-                "bar": 53
+                "bar": 53,
+                "snap": 95.164
               },
               {
-                "t": 114.0,
+                "t": 113.164,
                 "text": "pause in",
-                "bar": 60
+                "bar": 60,
+                "snap": 108.848
               },
               {
-                "t": 144.0,
+                "t": 143.164,
                 "text": "solo in",
-                "bar": 77
+                "bar": 77,
+                "snap": 139.352
               },
               {
-                "t": 158.769,
+                "t": 157.933,
                 "text": "bridge in",
-                "bar": 85
+                "bar": 85,
+                "snap": 154.211
               },
               {
-                "t": 169.846,
+                "t": 169.01,
                 "text": "snare in",
-                "bar": 91
+                "bar": 91,
+                "snap": 165.198
               },
               {
-                "t": 175.385,
+                "t": 174.548,
                 "text": "all stop",
-                "bar": 94
+                "bar": 94,
+                "snap": 170.091
               },
               {
-                "t": 177.231,
+                "t": 176.395,
                 "text": "solo in",
-                "bar": 95
+                "bar": 95,
+                "snap": 172.582
               },
               {
-                "t": 192.0,
+                "t": 191.164,
                 "text": "chorus in",
-                "bar": 103
+                "bar": 103,
+                "snap": 187.432
               },
               {
-                "t": 221.538,
+                "t": 220.702,
                 "text": "all stop",
-                "bar": 119
+                "bar": 119,
+                "snap": 216.245
               }
             ]
           },
@@ -19557,7 +19486,7 @@
             "items": [
               "malo-guitars",
               "malo-sfx",
-              "roma-keys-2810"
+              "pb-synths"
             ]
           },
           "practice": [
@@ -19603,21 +19532,21 @@
           "stem_versions": {
             "vocal": "637a32d27b",
             "drums": "7c308dfe42",
-            "keys": "dc18a1c9d4",
+            "keys": "d7e0209578",
             "bass": "3a9a5be986",
             "guitars": "b4bdb62224",
-            "other": "ae817d4a23",
+            "other": "7a28b601d5",
             "click": "c11e52c1a4",
-            "cues": "db22c6ea47"
+            "cues": "e34591d614"
           },
           "versions": {
-            "all": "410c93b690",
-            "alex": "25bae930a9",
-            "steve": "a85fcfd5d0",
-            "tanya": "0d78bd1832",
-            "pb-other": "d90b1ac994",
+            "all": "ba432c4618",
+            "alex": "6a3a64dd6e",
+            "steve": "6a6aebead3",
+            "tanya": "dedadd124f",
+            "pb-other": "c67d561ae4",
             "pb-bass": "330e405984",
-            "pb-audition": "24e6748bc8"
+            "pb-audition": "9e1500c71e"
           },
           "pb_other": {
             "available": true,
@@ -20030,25 +19959,25 @@
                 "t": 14.964,
                 "text": "chorus in",
                 "bar": 6,
-                "snap": 9.63
+                "snap": 9.58
               },
               {
                 "t": 36.297,
                 "text": "verse in",
                 "bar": 14,
-                "snap": 30.964
+                "snap": 30.884
               },
               {
                 "t": 60.297,
                 "text": "chorus in",
                 "bar": 23,
-                "snap": 54.964
+                "snap": 54.914
               },
               {
                 "t": 81.63,
                 "text": "drums stop",
                 "bar": 31,
-                "snap": 75.63
+                "snap": 75.511
               },
               {
                 "t": 86.964,
@@ -20060,37 +19989,37 @@
                 "t": 108.297,
                 "text": "all stop",
                 "bar": 41,
-                "snap": 102.297
+                "snap": 102.404
               },
               {
                 "t": 129.63,
                 "text": "chorus in",
                 "bar": 49,
-                "snap": 124.297
+                "snap": 124.247
               },
               {
                 "t": 161.63,
                 "text": "all stop",
                 "bar": 61,
-                "snap": 155.63
+                "snap": 155.737
               },
               {
                 "t": 172.297,
                 "text": "drums in",
                 "bar": 65,
-                "snap": 166.964
+                "snap": 166.924
               },
               {
                 "t": 182.964,
                 "text": "chorus in",
                 "bar": 69,
-                "snap": 177.63
+                "snap": 177.58
               },
               {
                 "t": 204.297,
                 "text": "all stop",
                 "bar": 77,
-                "snap": 198.297
+                "snap": 198.404
               }
             ]
           },
@@ -20155,23 +20084,23 @@
             }
           ],
           "stem_versions": {
-            "vocal": "266278a1ea",
-            "back_vox": "96d19ff041",
-            "drums": "c4deacd97c",
-            "keys": "8cbb2236b7",
-            "bass": "7e96fa9b34",
-            "guitars": "d70b76b08c",
-            "other": "da48983e6e",
-            "click": "48aa8ed4ce",
-            "cues": "71da5a24f9"
+            "vocal": "fec35f33e9",
+            "back_vox": "1c5d549ca7",
+            "drums": "f106ecfb56",
+            "keys": "575d6bb5e3",
+            "bass": "5ece4b82dd",
+            "guitars": "442d5b8c4a",
+            "other": "f2322e421d",
+            "click": "9baa6bd3ba",
+            "cues": "1e427a0ba4"
           },
           "versions": {
-            "all": "173b91f9eb",
-            "steve": "a96806f53d",
-            "tanya": "bdcf8f56ff",
-            "pb-other": "933a925818",
-            "pb-bass": "6f29cbe794",
-            "pb-audition": "d0f3111739"
+            "all": "a44f08435a",
+            "steve": "bbccdab2b5",
+            "tanya": "ff20dde910",
+            "pb-other": "3bc5114589",
+            "pb-bass": "7d1e897509",
+            "pb-audition": "4597e433ab"
           },
           "pb_other": {
             "available": true,
