@@ -14,6 +14,7 @@ original stems = reference; nothing played on the GM-800 yet: «пока gm 800 
   $P tools/jamzone/prep_begi_ot_menya.py sound     # the page where Alex picks the sound: best takes of every voice
   $P tools/jamzone/prep_begi_ot_menya.py round2    # second round: the picked plugin tones rendered clean + the asked variants
   $P tools/jamzone/prep_begi_ot_menya.py round3    # the lead on a short list of tones, clean, with the approved 1/8 repeat
+  $P tools/jamzone/prep_begi_ot_menya.py zenlayer  # the whole song on the chosen plugin tones -> analysis/.../zenology/layer/ (then `preview`)
   $P tools/jamzone/prep_begi_ot_menya.py zenpicks  # after `zenology_render.py sweep` of every voice: his GM-800 choice as the
                                                    #   first take of each ZENOLOGY ranking (then `zenology_render.py page`)
   $P tools/jamzone/prep_begi_ot_menya.py preview   # A/B page: original / my notes / MIDI as it is / Roma
@@ -725,6 +726,109 @@ def cmd_round3():
     print(os.path.join(page, "round3.html"))
 
 
+# ---- the layer out of plugin takes -------------------------------------------------------------------------------
+# Alex on round 3 (2026-11-21): lead «Saws Key 10 хорошо чуть больше объема на это». All voices are chosen:
+LEAD_TONE = "PRST_D Basic Synth/348"
+LEAD_FX = [("Chorus", {"rate_hz": 0.6, "depth": 0.2, "mix": 0.22}), LEAD_REPEAT[0], ("Reverb", {"room_size": 0.5, "wet_level": 0.15, "dry_level": 0.9})]
+LEAD_FX_MORE = [("Chorus", {"rate_hz": 0.6, "depth": 0.25, "mix": 0.35}), LEAD_REPEAT[0], ("Reverb", {"room_size": 0.6, "wet_level": 0.22, "dry_level": 0.85})]
+STAB_FX = [("Delay", {"delay_bars": 1 / 8, "feedback": 0.35, "mix": 0.12}), ("Reverb", {"room_size": 0.5, "wet_level": 0.12, "dry_level": 0.928})]
+#        group      tone                      voices in one take  gap          processing
+LAYER = [("lead",    LEAD_TONE,                "lead,lead_lo",     None,        LEAD_FX),      # lead_echo is not played: the delay is the repeat
+         ("whistle", "PRST_F Essential/478",   "whistle",          WHISTLE_GAP, WHISTLE_FX),
+         ("stab",    "PRST_J Nebulous Forms/31", "stab",           None,        STAB_FX),
+         ("arp",     "PRST_F Essential/271",   "arp",              None,        ARP_FX),
+         ("pad",     "PRST_L Essential 2/207", "pad",              None,        [])]
+LAYER_LIMIT = {"lead": -4.0}                 # dBFS ceiling of a voice after its gain (pedalboard Limiter)
+ZEN_LAYER = os.path.join(OUT, "zenology", "layer", "pb-synths-zen.wav")
+
+
+def peak_limit(x, ceiling_db, sr, look_ms=4.0):
+    """Peaks above the ceiling turned down, nothing else touched, no make-up gain, no delay (pedalboard's Limiter adds
+    make-up: +5 dB of RMS here). Gain = ceiling / the largest sample within +-look_ms, smoothed over half of that."""
+    from scipy.ndimage import maximum_filter1d, uniform_filter1d
+    c = 10 ** (ceiling_db / 20); w = int(look_ms / 1000 * sr) | 1
+    env = maximum_filter1d(np.abs(x).max(1), size=2 * w + 1); g = np.minimum(1.0, c / np.maximum(env, 1e-9))
+    g = uniform_filter1d(g, size=w)
+    return (x * g[:, None]).astype(np.float32)
+
+
+def cmd_zenlayer():
+    """The whole song on the chosen plugin tones -> analysis/.../zenology/layer/pb-synths-zen.wav (stem frame, 48 kHz;
+    NOT in music/ yet: Alex hears it on the full-song page first). Every voice = one clean take of bars 1-151 in a
+    process of its own (zen_take), its processing, a gain from the stems where the voice is (nearly) alone; + pb-fx."""
+    import soundfile as sf
+    from scipy.signal import resample_poly
+    gp, song = song_obj(); bar = song.bar; d = os.path.dirname(ZEN_LAYER); os.makedirs(d, exist_ok=True); SRZ = 48000
+    procs = {}
+    for g, tag, voices, gap, chain in LAYER:
+        out = os.path.join(d, f"take-{g}.wav")
+        if not os.path.exists(out):
+            procs[g] = subprocess.Popen([sys.executable, os.path.abspath(__file__), "_zenrender", tag, voices, "1", str(END), out] + ([str(gap)] if gap is not None else []),
+                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    for g, pr in procs.items():
+        o, e = pr.communicate()
+        if pr.returncode:
+            raise SystemExit(e[-2000:])
+        print(f"  {g}: " + o.strip().splitlines()[-1].split("; ", 1)[-1], flush=True)
+    head = int(round(song.t_stem(1) * SRZ)); V = {}
+    for g, tag, voices, gap, chain in LAYER:
+        x = sf.read(os.path.join(d, f"take-{g}.wav"), always_2d=True, dtype="float32")[0]
+        V[g] = fx(x, chain, bar, SRZ) if chain else x
+    seg = lambda x, a, b: x[int((a - 1) * bar * SRZ):int((b - 1) * bar * SRZ)].mean(1)
+    rms = lambda x, a, b: float(np.sqrt((seg(x, a, b) ** 2).mean()) + 1e-12)
+    stem = lambda st, a, b, db=0.0: float(np.sqrt((song.read(f"{st}.wav", song.t_stem(a), song.t_stem(b)).mean(1) ** 2).mean()) * 10 ** (db / 20) + 1e-12)
+    left = lambda tot, known: np.sqrt(max(tot ** 2 - known ** 2, (0.25 * tot) ** 2))
+    g = {"pad": stem("strings", 112, 120, 3.5) / rms(V["pad"], 112, 120), "arp": stem("keys", 76, 84) / rms(V["arp"], 76, 84)}
+    half = stem("keys", 43, 59) / np.sqrt(2)                      # chorus = stab + whistle, taken as equal halves
+    g["whistle"] = half / rms(V["whistle"], 43, 59); g["stab"] = half / rms(V["stab"], 43, 59)
+    g["lead"] = left(stem("keys", 59, 67), g["whistle"] * rms(V["whistle"], 59, 67)) / rms(V["lead"], 59, 67)   # solo = lead + whistle
+    print("voice gains (dB): " + ", ".join(f"{k} {20 * np.log10(v):+.1f}" for k, v in g.items()))
+    n = max(len(x) for x in V.values()) + head; layer = np.zeros((n, 2), np.float32)
+    for k, x in V.items():
+        y = x * g[k]
+        if k in LAYER_LIMIT:                                     # the attack clicks of the lead: +3 dBFS at its level, 18 dB over its RMS
+            pk = 20 * np.log10(np.abs(y).max() + 1e-9); r0 = np.sqrt((y ** 2).mean())
+            y = peak_limit(y, LAYER_LIMIT[k], SRZ)
+            print(f"  {k}: peak {pk:+.1f} -> {20 * np.log10(np.abs(y).max() + 1e-9):+.1f} dBFS through the limiter, RMS {20 * np.log10(np.sqrt((y ** 2).mean()) / r0):+.2f} dB")
+        layer[head:head + len(y)] += y
+        sf.write(os.path.join(d, f"voice-{k}.wav"), np.vstack([np.zeros((head, 2), np.float32), y]), SRZ, subtype="FLOAT")
+    if os.path.exists(FX):
+        f, sr = sf.read(FX, always_2d=True, dtype="float32"); f = resample_poly(f, 160, 147, axis=0).astype(np.float32); m = min(len(f), n); layer[:m] += f[:m]
+    stems_n = int(sf.info(song.stem("keys")).frames * SRZ / sf.info(song.stem("keys")).samplerate); layer = layer[:stems_n] if len(layer) > stems_n else np.vstack([layer, np.zeros((stems_n - len(layer), 2), np.float32)])
+    pk = 20 * np.log10(np.abs(layer).max() + 1e-9)
+    if pk > -1.0:                                                # the voices together: the sum to -1 dBFS the same way
+        r0 = np.sqrt((layer ** 2).mean()); over = int((np.abs(layer).max(1) > 10 ** (-1 / 20)).sum()); layer = peak_limit(layer, -1.0, SRZ)
+        print(f"  sum: peak {pk:+.1f} -> {20 * np.log10(np.abs(layer).max()):+.1f} dBFS ({over} samples were above -1), RMS {20 * np.log10(np.sqrt((layer ** 2).mean()) / r0):+.2f} dB")
+    sf.write(ZEN_LAYER, layer, SRZ, subtype="PCM_24")
+    lrms = lambda a, b: 20 * np.log10(np.sqrt((layer[int(song.t_stem(a) * SRZ):int(song.t_stem(b) * SRZ)].mean(1) ** 2).mean()) + 1e-12)
+    orms = lambda a, b: 20 * np.log10(np.sqrt(stem("keys", a, b) ** 2 + stem("strings", a, b, 3.5) ** 2))
+    for a, b, what in ((1, 9, "intro"), (9, 25, "intro+kick"), (43, 59, "chorus 1"), (59, 67, "solo 1"), (76, 84, "arp"), (84, 100, "chorus 2"),
+                       (100, 112, "solo 2"), (112, 120, "bridge"), (120, 128, "bridge all in"), (128, 144, "chorus 3"), (144, 152, "solo only")):
+        print(f"  {what:14} bars {a}-{b - 1}:  orig {orms(a, b):6.1f}  layer {lrms(a, b):6.1f} dBFS  ({lrms(a, b) - orms(a, b):+.1f})")
+    print(ZEN_LAYER, f"peak {20 * np.log10(np.abs(layer).max() + 1e-9):.1f} dBFS")
+    # the lead's «больше объёма»: four bars to check the amount quickly
+    page = os.path.join(OUT, "zenology", "page"); b0, b1 = VOICES["lead"]["solo"]; n4 = int(round((b1 - b0) * bar * 44100))
+    src = os.path.join(OUT, "zenology", "round3", "best2", "play1", "PRST_D_Basic_Synth_348.wav")
+    if os.path.exists(src):
+        x = sf.read(src, always_2d=True, dtype="float32")[0]; part = json.load(open(PART, encoding="utf-8"))
+        orig = sum(resample_poly(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar + 0.2).mean(1), 147, 160) for st in part["stems"])
+        clips = [("Оригинал", "стемы keys + strings", orig, True), ("Saws Key 10 — как на прошлой странице", "повтор 1/8 + лёгкий реверб", fx(x, LEAD_REPEAT, bar), False),
+                 ("Saws Key 10 + объём — так в слое", "хорус 0.22 + повтор 1/8 + реверб 0.5/0.15", fx(x, LEAD_FX, bar), False),
+                 ("Saws Key 10 + ещё больше объёма", "хорус 0.35 + повтор 1/8 + реверб 0.6/0.22", fx(x, LEAD_FX_MORE, bar), False)]
+        r = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; fit = []
+        for nm, note, y, isref in clips:
+            y = y if isref else resample_poly(y.mean(1), 147, 160); y = np.pad(y, (0, max(0, n4 - len(y))))[:n4]; fit.append(y if isref else y * r(orig[:n4]) / r(y))
+        peak = max(np.abs(y).max() for y in fit); out = []
+        for k, ((nm, note, _, isref), y) in enumerate(zip(clips, fit)):
+            y = y / peak * 0.8; f = int(0.008 * 44100); y[:f] *= np.linspace(0, 1, f); y[-f:] *= np.linspace(1, 0, f)
+            fn = f"r4-lead-{k:02d}.wav"; sf.write(os.path.join(page, fn), y.astype(np.float32), 44100, subtype="PCM_16"); out.append([fn, nm, note, isref])
+        meta = {"title": "Беги от меня — объём лида", "sub": "Saws Key 10 с повтором 1/8: сколько объёма добавить. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза.",
+                "groups": [{"name": "Лид, такты 144–147", "note": "по кругу, одна громкость", "clips": out}]}
+        tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+        open(os.path.join(page, "round4.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+        print(os.path.join(page, "round4.html"))
+
+
 SOUND_TOP = 7                              # candidates a voice on the page
 SOUND_KEEP = {"pad": ["-s003-"]}           # always on the page: Alex's own scene of this song
 SOUND_TITLE = {"lead": "Лид (такты 144–147: в оригинале лид + пэд)", "whistle": "Свист (такты 1–4: в оригинале свист + лид + пэд)",
@@ -852,6 +956,9 @@ def cmd_preview():
     src = {"orig": orig, "mine": mix(vm) + fx, "midi": mix(va),
            "roma": fit(rd(os.path.join(SONG, "parts", "roma-keys-2810.wav")))}
     src["roma"] *= rms(orig, 9, 17) / rms(src["roma"], 9, 17)
+    if os.path.exists(ZEN_LAYER):                               # the chosen ZENOLOGY tones, whole song (cmd_zenlayer), stem frame
+        from scipy.signal import resample_poly
+        src["zen"] = at_off(resample_poly(rd(ZEN_LAYER), 147, 160))
     for a, b, what in ((1, 9, "intro"), (9, 25, "intro+kick"), (43, 59, "chorus"), (59, 67, "solo"), (76, 84, "arp"),
                        (100, 112, "solo 2"), (112, 128, "bridge"), (144, 152, "solo only")):
         print(f"  {what:10} bars {a}-{b - 1}:  orig {20 * np.log10(rms(orig, a, b)):6.1f}  mine {20 * np.log10(rms(src['mine'], a, b)):6.1f}"
@@ -873,7 +980,8 @@ def cmd_preview():
             "tracks": [["1", "orig.mp3", "Оригинал", "стемы keys + strings", True],
                        ["2", "mine.mp3", "Мои ноты", "MIDI + правки по записи"],
                        ["3", "midi.mp3", "Как в MIDI", "MIDI без правок"],
-                       ["4", "roma.mp3", "Рома, концерт 28.10", "сейчас в плейбеке; ориентир по типу звука", True]],
+                       ["4", "roma.mp3", "Рома, концерт 28.10", "сейчас в плейбеке; ориентир по типу звука", True]]
+                      + ([["5", "zen.mp3", "Выбранные звуки (ZENOLOGY)", "так будет в плейбеке: твои тоны, вся песня"]] if "zen" in src else []),
             "marks": [[1, "лид: добавлена нижняя октава"], [42, "свелл перед припевом (из стема)"],
                       [43, "удары: квинты октавой выше, другой ритм"], [76, "арп: одна фигура C# D# E G#"],
                       [92, "пэда нет (в MIDI есть)"], [100, "соло: без ударов (в MIDI есть)"],
@@ -886,4 +994,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "zenlayer": cmd_zenlayer, "preview": cmd_preview}[sys.argv[1]]()
