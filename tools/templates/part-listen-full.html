@@ -105,7 +105,7 @@ const audio = {}, el = f => audio[f];
 const files = M.tracks.flatMap(t => [t[1]].concat(M.ctx ? [t[1].replace(/\.mp3$/, M.ctx + ".mp3")] : []));
 let ready = false;
 const loaded = Promise.all(files.map(async f => {
-  const blob = await (await fetch(encodeURIComponent(f))).blob();
+  const blob = await (await fetch(encodeURIComponent(f) + (M.ver || ""))).blob();   // M.ver = "?v=<build time>": no stale cache
   audio[f] = new Audio(URL.createObjectURL(blob)); audio[f].preload = "auto";
 })).then(() => { ready = true; $("title").textContent = "Выбери, что слушать"; },
          e => { $("title").textContent = "Не загрузилось: " + e; });

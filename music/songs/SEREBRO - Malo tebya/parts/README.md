@@ -34,13 +34,14 @@
 Концертная партия Ромы с мультитрека 28.10 Music Hall (`tools/concert-2810/make_layer.py`), render-frame: t=0 = рендер t=0, длина = рендер. Без громкости (gain в mix.json). клавиши Ромы (`08`, Set 2 №6), заменяют Moises `keys`+`other`, `gain_db +4.9` (громкость стемов); сдвиг +12.1 мс. Пики слоя прижаты лимитером до −8.5 dBFS в файле (388 мс за песню), чтобы pb-other не уходил в нормализацию и malo-guitars/malo-sfx остались на своих уровнях. В тактах 5–12 Рома не играл.
 Разбор: `wiki/gigs/2026-10-28-multitrack.md`. При смене cue/OFF пересобрать тем же скриптом.
 
-## synths.notes.json + malo-nepke.mid — 2026-11-20 (подготовка, на GM-800 ничего не сыграно)
+## synths.notes.json + malo-nepke.mid + pb-synths.wav — 2026-11-21 (слой записан, в плейбек не поставлен)
 
 Клавиши песни (Moises `keys` + `other`) нотами для GM-800. Генерирует `tools/jamzone/prep_malo_tebya.py notes` (править там, не здесь); в шапке скрипта — что найдено в записи.
 
 - Тональность: запись D minor, группа C minor (`pitch_semitones −2`); ноты в файле — C minor, такты `mix.json`.
 - Голоса: `pad_ch` + `low_ch` (припевы и соло 21–44, 61–84, 95–118), `pad_hi` (95–102, октава сверху), `pad_v` + `low_v` (куплеты и бридж 13–20, 45–60, 85–93), `lead` (хук соло 37–44, 77–84 — Alex играет вживую на сцене 12, в слой не пишется).
-- `layer`: 13 дублей → `parts/pb-synths.wav` (ещё не записан), `duck` — сайдчейн записи от бочки (7.5 дБ).
+- `layer`: 13 дублей → `parts/pb-synths.wav` (stem-фрейм, тональность группы, пик −8.5 dBFS; `gm800_part.py record` + `layer`, 2026-11-21). Тоны — выбор Alex на слух: припев и соло 316 Trance Syn Poly, куплет и бридж 270 JP-6 Pad. `duck` — сайдчейн записи от бочки (7.5 дБ). Баланс голосов — `TAKE_DB` в скрипте (`level`).
+- Страница «оригинал / слой / Рома»: `analysis/gm800-match/SEREBRO - Malo tebya/preview-part/result.html` (`prep_malo_tebya.py result`).
 - `malo-nepke.mid` — MIDI Waldemar Nepke (D minor, 130 bpm; такт MIDI = наш + 1). Только для сравнения: аккорды там трезвучиями на тактовой черте, лид другой.
 - Страница сравнения (оригинал / мои ноты / MIDI / Рома): `analysis/gm800-match/SEREBRO - Malo tebya/preview-part/index.html` (`prep_malo_tebya.py preview`).
 - В `mix.json` пока ничего не менялось: в плейбеке по-прежнему `roma-keys-2810`.
