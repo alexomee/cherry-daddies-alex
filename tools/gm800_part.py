@@ -156,13 +156,19 @@ def voice_gains(song, part, voice, b0, b1):
     the take is turned down/up over that note, like playing it softer (a chord of a brass that comes out
     louder than in the record)."""
     v = part["voices"][voice]; out = []
-    for at in v["at"]:
-        for n in v["notes"]:
+    hold = v.get("gain_hold")           # true: the gain lasts until the NEXT note of the voice starts, so the note's
+    for at in v["at"]:                  # release is turned down with it. Without it a tone with a long release rings
+        ns = v["notes"]                 # at full level between notes played softer (Solnyshko intro on plugin Sunrise:
+        for i, n in enumerate(ns):      # notes at -17 dB, their tails 9 dB LOUDER than the notes)
             opt = n[4] if len(n) > 4 and isinstance(n[4], dict) else {}
             pos = at + n[0] - 1 + (n[1] - 1) / 4
             if opt.get("gain_db") and b0 <= pos < b1:
-                out.append(((pos - b0) * song.bar, n[2] * song.bar / 4, opt["gain_db"]))
-    return out
+                ln = n[2] / 4
+                if hold:
+                    nxt = [m[0] - 1 + (m[1] - 1) / 4 for m in ns if m[0] - 1 + (m[1] - 1) / 4 > n[0] - 1 + (n[1] - 1) / 4 + 1e-6]
+                    ln = max(ln, min(min(nxt) - (n[0] - 1 + (n[1] - 1) / 4), 1.0) if nxt else ln)
+                out.append(((pos - b0) * song.bar, ln * song.bar - (0.008 if hold else 0), opt["gain_db"]))   # 8 ms = the ramp of
+    return out                                                                                               # apply_gains: one gain crossfades into the next
 
 
 def apply_delay(x, sr, sec, db=-6.0, fb=0.25, repeats=6):

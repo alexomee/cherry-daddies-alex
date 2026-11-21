@@ -576,17 +576,37 @@ def gp_song(song):
     return gp, gp.gmm.Song(song)
 
 
+def clean_take(p, ev, dur, tries=8, tol=6.0):
+    """One take that can be trusted. Rendered faster than real time the plugin now and then drops a few notes
+    (they fade by 10-20 dB over seconds) and brings them back with a thump - at random, about once in 90 s of
+    audio, with any tone, whatever the pause before the take (measured 2026-11-21: the same tone twice gives two
+    different takes; neither a wall-clock wait nor reset=True cures it). So the take is played several times and
+    the one whose level curve (200 ms steps) stays within `tol` dB of the median of all of them is kept; random
+    phases of a unison make +-3 dB. -> (take, how far it is from the median dB, takes played)"""
+    w = int(0.2 * SR); takes, envs = [], []
+    env = lambda m: 10 * np.log10((m[:len(m) // w * w].reshape(-1, w) ** 2).mean(1) + 1e-10)
+    for k in range(tries):
+        x = p(ev, duration=dur, sample_rate=SR, reset=False).T.astype(np.float32); takes.append(x); envs.append(env(x.mean(1)))
+        if k < 2:
+            continue
+        E = np.array(envs); med = np.median(E, 0); on = med > med.max() - 35          # the steps where the voice sounds
+        dev = np.abs(E - med)[:, on].max(1) if on.any() else np.zeros(len(E))
+        if dev.min() < tol:
+            return takes[int(dev.argmin())], float(dev.min()), k + 1
+    return takes[int(dev.argmin())], float(dev.min()), tries
+
+
 def render(tag, song, notes, voice, b0, b1, vel=100, tail=1.0):
     from mido import Message
     gp, sg = gp_song(song); part = json.load(open(notes, encoding="utf-8")); p = plugin(tag)
-    p([], duration=0.5, sample_rate=SR, reset=False)             # let the state settle (no reset: it takes 9 s)
-    ev = []
+    p([], duration=0.5, sample_rate=SR, reset=True)              # a fresh plugin, reset once: nothing of another tone
+    ev = []                                                      # in its delay lines (a sweep take is not that clean)
     for t, n, d in gp.voice_line(sg, part, voice, b0, b1):
         ev += [Message("note_on", note=n, velocity=vel, time=t), Message("note_off", note=n, time=t + d)]
     ev.sort(key=lambda m: (m.time, m.type == "note_on"))
-    x = p(ev, duration=(b1 - b0) * sg.bar + tail, sample_rate=SR, reset=False)
-    return x.T.astype(np.float32), gp, sg
-
+    x, dev, n = clean_take(p, ev, (b1 - b0) * sg.bar + tail)
+    print(f"  take of {voice} {b0}-{b1 - 1}: {n} played, the kept one within {dev:.1f} dB of their median" + ("  <-- NOT CLEAN, listen to it" if dev >= 6 else ""), flush=True)
+    return x, gp, sg
 
 def cmd_render(a):
     import soundfile as sf

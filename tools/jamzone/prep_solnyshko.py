@@ -50,7 +50,7 @@ kept in synths-midi.notes.json for the A/B):
 Not in the MIDI and not written: the part that enters at 137 («outro-solo», scene 9) - Alex live.
 Not notes: the reverse cymbal in `other` (bars 8, 24, 120, 128) and the taiko of the MIDI (percussion: out).
 """
-import collections, importlib.util, json, os, subprocess, sys
+import collections, importlib.util, json, os, subprocess, sys, time
 import numpy as np
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -165,7 +165,8 @@ def build(as_midi=False):
     V["brass"] = cut(T[16], 70, 86, 73)
     V["roll"] = cut(T[16], 125, 126, 128)
     return {vn: dict({"at": [1], "bars": END - 1, "notes": sorted(ns, key=lambda n: (n[0], n[1]))},
-                     **({"gap": GAP[vn]} if vn in GAP else {})) for vn, ns in V.items()}
+                     **({"gap": GAP[vn]} if vn in GAP else {}),
+                     **({"gain_hold": True} if vn in ("riff", "riff_hi") else {})) for vn, ns in V.items()}   # intro: the tails too
 
 
 def spans(notes):
@@ -694,7 +695,7 @@ def cmd_result():
     part = json.load(open(PART, encoding="utf-8"))
     cues = [(c["bar"], c["text"]) for c in song.mix["cues"] if str(c.get("beat", 1)) == "1"]
     rows = "".join(f"<tr><td>{vn}</td><td>{VOICES[vn]['what']}</td><td class=n>{' + '.join(str(t) for t in dict.fromkeys(tk.get('tone') or 'ZENOLOGY ' + tk['zen'] for tk in part['layer']['takes'] if tk['voice'] == vn))}</td></tr>" for vn in VOICES)
-    meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / SR, "ctx": "-ctx", "marks": [],
+    meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / SR, "ctx": "-ctx", "marks": [], "ver": f"?v={int(time.time())}",
             "title": "Солнышко — рифф тоном Sunrise (ZENOLOGY)" if cand else "Солнышко — слой клавиш в плейбеке",
             "sub": ("Кандидат: рифф сыгран плагином ZENOLOGY, тон Sunrise полусухой; остальные голоса — прежние дубли GM-800. "
                     "Все три источника на одной громкости по песне. В плейбек кандидат ещё <b>не поставлен</b>. "
