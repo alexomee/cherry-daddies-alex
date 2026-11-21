@@ -16,6 +16,7 @@
   ],
   "bpm": 130.0,
   "pb-other": {
+    "peak": "limit",
     "layers": [
       {
         "file": "malo-guitars", "rec_off": 3.186911,
@@ -27,12 +28,13 @@
         "frame": "render",
         "gain_db": -4.0
       },
-      {"file": "roma-keys-2810", "rec_off": 3.186911, "frame": "render", "replaces": ["keys", "other"], "gain_db": 4.9}
+      {"file": "pb-synths", "frame": "stem", "gain_db": 9.2, "derived": true, "source": ["keys", "other"],
+       "mute": [[94, 95], [119, 123]], "mute_fade_ms": [80, 5], "gain_bars": [[20.75, 21, -7], [60.75, 61, -7]]}
     ],
     "roles": {
       "malo-guitars": "musical",
       "malo-sfx": "musical",
-      "roma-keys-2810": "musical"
+      "pb-synths": "musical"
     }
   },
   "pb-bass": {

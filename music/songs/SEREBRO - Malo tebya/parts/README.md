@@ -34,7 +34,7 @@
 Концертная партия Ромы с мультитрека 28.10 Music Hall (`tools/concert-2810/make_layer.py`), render-frame: t=0 = рендер t=0, длина = рендер. Без громкости (gain в mix.json). клавиши Ромы (`08`, Set 2 №6), заменяют Moises `keys`+`other`, `gain_db +4.9` (громкость стемов); сдвиг +12.1 мс. Пики слоя прижаты лимитером до −8.5 dBFS в файле (388 мс за песню), чтобы pb-other не уходил в нормализацию и malo-guitars/malo-sfx остались на своих уровнях. В тактах 5–12 Рома не играл.
 Разбор: `wiki/gigs/2026-10-28-multitrack.md`. При смене cue/OFF пересобрать тем же скриптом.
 
-## synths.notes.json + malo-nepke.mid + pb-synths.wav — 2026-11-21 (слой записан, в плейбек не поставлен)
+## synths.notes.json + malo-nepke.mid + pb-synths.wav — 2026-11-21 (слой в плейбеке)
 
 Клавиши песни (Moises `keys` + `other`) нотами для GM-800. Генерирует `tools/jamzone/prep_malo_tebya.py notes` (править там, не здесь); в шапке скрипта — что найдено в записи.
 
@@ -44,4 +44,4 @@
 - Страница «оригинал / слой / Рома»: `analysis/gm800-match/SEREBRO - Malo tebya/preview-part/result.html` (`prep_malo_tebya.py result`).
 - `malo-nepke.mid` — MIDI Waldemar Nepke (D minor, 130 bpm; такт MIDI = наш + 1). Только для сравнения: аккорды там трезвучиями на тактовой черте, лид другой.
 - Страница сравнения (оригинал / мои ноты / MIDI / Рома): `analysis/gm800-match/SEREBRO - Malo tebya/preview-part/index.html` (`prep_malo_tebya.py preview`).
-- В `mix.json` пока ничего не менялось: в плейбеке по-прежнему `roma-keys-2810`.
+- `mix.json`: `pb-synths` в `pb-other` вместо `roma-keys-2810` (`derived`, `source` keys + other, `gain_db 9.2`, `mute` на стопах 94 и 119, `gain_bars` −7 на 4-й доле тактов 20 и 60, на группе `"peak": "limit"`). `roma-keys-2810.wav` остаётся здесь как оригинал, в плейбеке его нет.
