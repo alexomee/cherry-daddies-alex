@@ -120,7 +120,12 @@ MEL_AT, FIG_AT = [65, 89], [33, 73, 97]
 # tones Alex picked on the ZENOLOGY page (2026-11-21)
 ZEN = {"strings": "ZEZ003 Liquid/7", "brk": "PRST_J Nebulous Forms/6",     # Mercurial, Dreamer Keys
        "arp": "ZEZ001 Hazy Pop/1", "cpad": "PRST_D Basic Synth/490",        # Rocket Pad, Dreaming 5
-       "fig": "PRST_A Factory Presets/38"}                                  # AX Analog Dream (+ a saw in unison: round 4)
+       "fig": "PRST_A Factory Presets/38",                                  # AX Analog Dream ...
+       "mel": "PRST_F Essential/582"}                                       # Fantasy 2 (F/582 or D/477: Alex to say)
+ZEN_LAYER = {"fig": ("PRST_D Basic Synth/891", -6.0)}                       # ... + Dance Saw 2 at -6 dB («жирок»)
+ROMA = os.path.join(OUT, "roma", "roma-keys-stemframe.wav")   # Roma's keys of the 28.10 concert (ch 08) in the stem frame:
+# concert_t = a + b * render_t of the render of 2026-11-17 (OFF 4.229 s), a/b from 472 clicks (tools/concert-2810);
+# his attacks are 10 ms ahead of our 16th grid, no extra shift
 
 
 def tracks():
@@ -159,12 +164,18 @@ def fix_poly(ns):
 
 
 def fix_counter(ns):
+    """The second line as Roma played it at the 28.10 concert (his keys channel, clean; Alex: «он там какую-то партию
+    играл довольно точно»): Gm A4 (2&) G4 (3&) and nothing on 4& (the MIDI has F4, a first reading of the stem A#4 -
+    the 2nd/3rd harmonics of the low pickups G3 / D#3 that the record plays on 4&); Cm D4 (2&) C4 (3&) C4 (4&), the
+    MIDI has C4 D4 D#4. Intro and verse alike (Roma: bars 1-8, 17-20)."""
     out = []
     for b, bt, d, p in ns:
-        if chord_of(b) == "Gm" and bt == 4.5 and p == "F4":
-            p = "A#4"
-        if chord_of(b) == "Cm":                         # record D4 C4 A#4, MIDI C4 D4 D#4
-            p = {2.5: "D4", 3.5: "C4", 4.5: "A#4"}.get(bt, p)
+        if chord_of(b) == "Gm" and bt == 4.5:
+            continue
+        if chord_of(b) == "Gm" and bt == 3.5:
+            d = 1.5
+        if chord_of(b) == "Cm":
+            p = {2.5: "D4", 3.5: "C4", 4.5: "C4"}.get(bt, p)
         out.append([b, bt, d, p])
     return out
 
@@ -355,7 +366,7 @@ HTML = """
 <div class="wrap"><table>
 <tr><th>Голос</th><th>Такты</th><th>Что играет</th><th>Откуда</th></tr>
 <tr><td>arp</td><td class="n">1–32, 41–64, 105–112</td><td>арпеджио на 1 1&amp; 2</td><td>MIDI, дорожка 0; на D F#3 A3 C4; в интро и проигрышах тянется весь такт, в куплете короткое; в проигрышах его в MIDI нет</td></tr>
-<tr><td>lead</td><td class="n">1–8, 17–32, 49–64</td><td>мелодия интро = второй голос куплета: A4 G4 на 2&amp; и 3&amp;…</td><td>MIDI, дорожка 2; на 4&amp; Gm A#4 вместо F4; на Cm D4 C4 A#4 вместо C4 D4 D#4</td></tr>
+<tr><td>lead</td><td class="n">1–8, 17–32, 49–64</td><td>мелодия интро = второй голос куплета: A4 G4 на 2&amp; и 3&amp;…</td><td>MIDI, дорожка 2, правки по Роме (концерт 28.10): на 4&amp; Gm ничего (в MIDI F4), на Cm D4 C4 C4 (в MIDI C4 D4 D#4)</td></tr>
 <tr><td>hookline</td><td class="n">9–16, 41–48, 105–112</td><td>подголосок проигрыша: C5 A#4 на 2&amp; 3…</td><td>MIDI, дорожка 0</td></tr>
 <tr><td>strings</td><td class="n">6–40, 43–80, 89–104, 108–112</td><td>тянущиеся аккорды</td><td>стем strings; в проигрыше расклад как в MIDI</td></tr>
 <tr><td>cpad</td><td class="n">33–40, 65–80, 89–104</td><td>подложка припева: трезвучия</td><td>запись (в MIDI припева нет)</td></tr>
@@ -387,9 +398,13 @@ def cmd_preview():
     orig = np.zeros(n); x = keys + strings * g; o = int(round(song.off * SR)); k = min(len(x), n - o); orig[o:o + k] = x[:k]
     mine, alt = json.load(open(PART, encoding="utf-8")), json.load(open(ALT, encoding="utf-8"))
     src = {"orig": orig, "mine": fit(render(song, gp, mine, list(TIMBRE))), "midi": fit(render(song, gp, alt, list(TIMBRE)))}
+    if os.path.exists(ROMA):                                   # Roma at the concert, stem frame -> render frame
+        r = rd(ROMA); rr = np.zeros(n); k = min(len(r), n - o); rr[o:o + k] = r[:k]; src["roma"] = rr
     ref = rms(orig, 9, 17)
     for kk in ("mine", "midi"):
         src[kk] = src[kk] * ref / rms(src["mine"], 9, 17)
+    if "roma" in src:
+        src["roma"] *= ref / rms(src["roma"], 9, 17)
     ctx = sum(fit(rd(os.path.join(SONG, "auto-render", p))) for p in ("stems/drums.mp3", "stems/vocal.mp3", "stems/bass.mp3"))
     ctx *= ref / rms(ctx, 17, 33) * 2.0
     peak = max(np.abs(v + ctx).max() for v in src.values())
@@ -407,8 +422,9 @@ def cmd_preview():
                    "подберём на ZENOLOGY. Переключение сохраняет место; L — петля по секции, C — с группой.",
             "tracks": [["1", "orig.mp3", "Оригинал", "стемы keys + strings", True],
                        ["2", "mine.mp3", "Мои ноты", "MIDI + правки по записи, припев и брейкдаун по записи"],
-                       ["3", "midi.mp3", "Как в MIDI", "MIDI без правок (только такты 1–32 и их повторы)"]],
-            "marks": [[1, "интро: мелодия = второй голос куплета"], [4, "D: F#3 A3 C4 + G4 F#4 G4 A4, как в куплете"], [17, "куплет: A#4 на 4& вместо F4"], [19, "Cm: D4 C4 A#4"], [9, "проигрыш: арпеджио + подголосок"], [33, "припев: фигура восьмыми + подложка"], [65, "припев: мелодия + подложка"], [73, "фигура"], [89, "мелодия"], [97, "фигура"],
+                       ["3", "midi.mp3", "Как в MIDI", "MIDI без правок (только такты 1–32 и их повторы)"]]
+                      + ([["4", "roma.mp3", "Рома, концерт 28.10", "его клавиши с пульта; брейкдаун он не играл", True]] if "roma" in src else []),
+            "marks": [[1, "интро: мелодия как у Ромы (A G | F D# D D# | D C C | G F# G A)"], [4, "D: F#3 A3 C4 + G4 F#4 G4 A4, как в куплете"], [17, "куплет: та же линия, как у Ромы"], [9, "проигрыш: арпеджио + подголосок"], [33, "припев: фигура восьмыми + подложка"], [65, "припев: мелодия + подложка"], [73, "фигура"], [89, "мелодия"], [97, "фигура"],
                       [81, "брейкдаун: арпеджио"]],
             "html": HTML}
     tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-full.html"), encoding="utf-8").read()
@@ -538,5 +554,70 @@ def cmd_round4():
     print(os.path.join(page, "round4.html"))
 
 
+# ---- round 5 (Alex 2026-11-21): lead on Roma's notes (the same soft saws + FX), hookline «Trumpet Echo хорошо, но
+# нужно помягче или тон похожий, но мягче» -> zenology/page/round5.html (run in the zr env)
+SOFT_TPT = [("PRST_F Essential/402", "FrenchHorn2 Echo", None), ("PRST_E XV Collection/439", "Ballad Trump", FX_BRASS),
+            ("PRST_F Essential/384", "Dark Trumpet", FX_BRASS), ("PRST_F Essential/395", "Mute Trumpet 1", FX_BRASS),
+            ("PRST_F Essential/397", "Mute Trumpet 2", FX_BRASS), ("PRST_F Essential/382", "Trumpet + фильтр", [("LowpassFilter", {"cutoff_frequency_hz": 3000})] + FX_BRASS)]
+
+
+def cmd_round5():
+    import soundfile as sf, subprocess, time
+    from scipy.signal import resample_poly
+    zr = load("zenology_render"); gp, song = zr.gp_song(NAME); zen = os.path.join(song.out, "zenology"); page = os.path.join(zen, "page")
+    bar = song.bar; rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; notes = os.path.join(OUT, "keys-r5.notes.json")
+    part = json.load(open(PART, encoding="utf-8")); part["stems"] = ["keys"]; json.dump(part, open(notes, "w"), ensure_ascii=False)
+
+    def render(tone, voice, b0, b1, vel=100):
+        out = os.path.join(zen, f"r5-{voice}-{tone.replace('/', '-').replace(' ', '_')}-v{vel}.wav")
+        if not os.path.exists(out):
+            subprocess.run([sys.executable, os.path.join(REPO, "tools", "zenology_render.py"), "render", tone, NAME, notes, voice,
+                            str(b0), str(b1), out, "--vel", str(vel)], check=True, capture_output=True)
+        return sf.read(out, always_2d=True, dtype="float32")[0]
+
+    groups = []
+    def group(voice, b0, b1, hint, clips, ref_note="стем keys"):
+        n = int(round((b1 - b0) * bar * 44100))
+        orig = resample_poly(song.read("keys.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar).mean(1), 147, 160)
+        orig = np.pad(orig, (0, max(0, n - len(orig))))[:n]; out = [("orig", orig, "Оригинал", ref_note, True)]
+        if os.path.exists(ROMA):
+            sr_ = sf.info(ROMA).samplerate; r, _ = sf.read(ROMA, start=int(song.t_stem(b0) * sr_), stop=int(song.t_stem(b1) * sr_), always_2d=True)
+            r = resample_poly(r.mean(1), 44100, sr_); r = np.pad(r, (0, max(0, n - len(r))))[:n]
+            out.append(("roma", r * rms(orig) / rms(r), "Рома, концерт 28.10", "его клавиши: ноты для сравнения", True))
+        for k, (nm, note, x) in enumerate(clips, 1):
+            y = resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]
+            out.append((f"{k:02d}", y * rms(orig) / rms(y), nm, note, False))
+        peak = max(np.abs(c[1]).max() for c in out); files = []
+        for cid, x, nm, note, ref in out:
+            x = x / peak * 0.8; k = int(0.008 * 44100); x[:k] *= np.linspace(0, 1, k); x[-k:] *= np.linspace(1, 0, k)
+            fn = f"r5-{voice}-{cid}.wav"; sf.write(os.path.join(page, fn), x.astype(np.float32), 44100, subtype="PCM_16"); files.append([fn, nm, note, ref])
+        groups.append({"name": f"{voice}, такты {b0}–{b1 - 1}", "note": f"<b>{hint}</b><br>по кругу, одна громкость", "clips": files})
+
+    r4 = json.load(open(os.path.join(zen, "zen-keys-r4-lead-1-5.json"), encoding="utf-8"))["top"][:10]
+    tag = lambda t: f"{t['bank']}/{t['number']}"
+    clips = [(t["name"], f"{t['bank'].split()[0]}/{t['number']} · хорус + дилей + реверб", fx(render(tag(t), "lead", 1, 5), FX_LEAD, bar)) for t in r4]
+    clips.append((r4[0]["name"] + " сухой", "без эффектов", render(tag(r4[0]), "lead", 1, 5)))
+    group("lead", 1, 5, "НОТЫ ИСПРАВЛЕНЫ ПО РОМЕ: A G | F D♯ D D♯ | D C C | G F♯ G A. Те же мягкие пилы с хорусом, дилеем 3/16 и ревербом", clips)
+    te = "PRST_F Essential/383"
+    clips = [("Trumpet Echo", "F/383 · как выбрал", render(te, "hookline", 9, 13)),
+             ("Trumpet Echo, мягче нажатие", "F/383 · сила 70 из 127", render(te, "hookline", 9, 13, 70)),
+             ("Trumpet Echo, мягко + фильтр 3 кГц", "F/383 · сила 70, ФНЧ 3 кГц",
+              fx(render(te, "hookline", 9, 13, 70), [("LowpassFilter", {"cutoff_frequency_hz": 3000})], bar)),
+             ("Trumpet Echo, мягко + фильтр 2 кГц", "F/383 · сила 70, ФНЧ 2 кГц",
+              fx(render(te, "hookline", 9, 13, 70), [("LowpassFilter", {"cutoff_frequency_hz": 2000})], bar)),
+             ("Trumpet Echo, сила 50 + фильтр 2.5 кГц", "F/383 · сила 50, ФНЧ 2.5 кГц",
+              fx(render(te, "hookline", 9, 13, 50), [("LowpassFilter", {"cutoff_frequency_hz": 2500})], bar))]
+    for tone, nm, chain in SOFT_TPT:
+        x = render(tone, "hookline", 9, 13, 80)
+        clips.append((nm, f"{tone.split()[0]}/{tone.split('/')[-1]} · сила 80" + (" · дилей 3/16 + реверб" if chain else " · своё эхо тона"), fx(x, chain, bar) if chain else x))
+    group("hookline", 9, 13, HINT["hookline"] + ". Trumpet Echo мягче (сила нажатия, фильтр) и похожие мягкие трубы", clips)
+    meta = {"title": "Медляк — тоны, круг 5", "sub": "lead на нотах, исправленных по концерту Ромы (его дорожка — вторая кнопка, для сравнения нот); "
+            "hookline — Trumpet Echo мягче и похожие тоны. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза.",
+            "groups": groups, "v": int(time.time())}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(page, "round5.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(page, "round5.html"))
+
+
 if __name__ == "__main__":
-    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage, "round4": cmd_round4}[sys.argv[1]]()
+    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage, "round4": cmd_round4, "round5": cmd_round5}[sys.argv[1]]()
