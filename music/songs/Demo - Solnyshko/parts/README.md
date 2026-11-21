@@ -27,3 +27,4 @@
 - Тихий куплет (73–88): аккорды — дубль 249 со срезом верхов 2.4 кГц и ревербом (`lowpass`, `reverb`); струнные — плагин Warm Strings (`PRST_E XV Collection/292`) с кривой громкости (`gain_curve`).
 - Орган на слабую долю (41–56, 89–104, 113–144): дубли 537 с затуханием ноты и подъёмом верхов (`decay`, `shelf`) + слой плагина JP80 FatPoly (`PRST_D Basic Synth/456`) на 6 дБ ниже. Нота G#4 в тактах 116 / 120 / 124 в дубле 537 вклеена из соседней доли (`prep_solnyshko.py organfix`).
 - Пересборка: `prep_solnyshko.py notes` → `zenology_render.py record` → `prep_solnyshko.py organfix` / `softgains` → `notes` → `gm800_part.py layer`.
+- Вокализ «а-а» (такты 32, 112, 120): `pb-backvox.wav` — семпл из стема `vocals` в тональности группы, рабочий вариант до записи вокалистки (`prep_solnyshko.py vox`).

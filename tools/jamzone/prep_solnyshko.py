@@ -936,6 +936,35 @@ def cmd_organmix():
     print(os.path.join(dst, "index.html"))
 
 
+VOX_SRC = (112, 2.7, 115, 3.0)           # the clean copy of the vocalise in the vocals stem: no lead vocal around it
+VOX_AT = (32, 112, 120)                  # the bars it sounds in (the same sample three times in the record)
+
+
+def cmd_vox():
+    """The vocalise «а-а» of the record as a working stand-in until the vocalist records it (Alex 2026-11-21: «давай
+    пока рабочий вариант вставим тот вокализ из сырых стемов в pb-other»): the sample cut out of the vocals stem
+    where nothing else is sung (bar 112, with its tail to bar 115), pitched into the band key, put at all three of
+    its places - at bar 32 the stem itself runs into the verse's lead vocal, the copy does not.
+    -> parts/pb-backvox.wav, stem frame (a "derived" layer of pb-other: the stem already carries it in `all`)."""
+    import soundfile as sf
+    gp, song = _gp(); info = sf.info(song.stem("vocals")); sr = info.samplerate; pos = lambda b, bt: int((song.t_stem(b) + (bt - 1) * song.bar / 4) * sr)
+    b0, bt0, b1, bt1 = VOX_SRC; a, e = pos(b0, bt0), pos(b1, bt1); x = sf.read(song.stem("vocals"), start=a, stop=e, always_2d=True)[0].astype(np.float64)
+    k = int(0.02 * sr); x[:k] *= np.linspace(0, 1, k)[:, None]; f = int(song.bar / 2 * sr); x[-f:] *= np.linspace(1, 0, f)[:, None]
+    pad = np.zeros((sr, 2)); tmp = os.path.join(OUT, "tmp-vox"); sf.write(tmp + "-in.wav", np.concatenate([pad, x, pad]).astype(np.float32), sr)
+    subprocess.run(["rubberband", "-3", "-F", "-p", str(SEMI), tmp + "-in.wav", tmp + "-out.wav"], capture_output=True, check=True)
+    y = sf.read(tmp + "-out.wav", always_2d=True)[0][sr:sr + len(x)].astype(np.float64)
+    for q in ("-in.wav", "-out.wav"):
+        os.remove(tmp + q)
+    env = lambda v: np.sqrt(np.convolve(v.mean(1) ** 2, np.ones(441) / 441, "same")); ex, ey = env(x), env(y); lags = range(-2205, 2206, 21)
+    lag = list(lags)[int(np.argmax([np.dot(ex[2205:-2205], np.roll(ey, l)[2205:-2205]) for l in lags]))]      # rubberband must not move it
+    out = np.zeros((info.frames, 2))
+    for b in VOX_AT:
+        i = pos(b, bt0); out[i:i + len(y)] += y
+    dst = os.path.join(SONG, "parts", "pb-backvox.wav"); sf.write(dst, out.astype(np.float32), sr, subtype="FLOAT")
+    print(dst, f"sample {len(y) / sr:.2f} s at bars {VOX_AT}, peak {20 * np.log10(np.abs(y).max() + 1e-9):.1f} dBFS, RMS of its first bar "
+               f"{20 * np.log10(np.sqrt((y[:int(song.bar * sr)] ** 2).mean()) + 1e-9):.1f} dB, pitched against the cut: {-lag / sr * 1000:+.0f} ms")
+
+
 def cmd_candidate():
     """The layer of parts/synths.notes.json -> analysis/.../pb-synths-candidate.wav (not parts/: the playback keeps
     its layer until Alex says so); `result` then compares it with the playback's. To put it in: copy it over
@@ -949,4 +978,4 @@ def sr_pad(info):
 
 if __name__ == "__main__":
     {"notes": cmd_notes, "plan": cmd_plan, "preview": cmd_preview, "tones": cmd_tones, "tones2": cmd_tones2, "check": cmd_check,
-     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result, "candidate": cmd_candidate, "soft": cmd_soft, "softnotes": cmd_softnotes, "softgains": cmd_softgains, "organfix": cmd_organfix, "organmix": cmd_organmix}[sys.argv[1]]()
+     "calibrate": cmd_calibrate, "fx": cmd_fx, "result": cmd_result, "candidate": cmd_candidate, "soft": cmd_soft, "softnotes": cmd_softnotes, "softgains": cmd_softgains, "organfix": cmd_organfix, "organmix": cmd_organmix, "vox": cmd_vox}[sys.argv[1]]()

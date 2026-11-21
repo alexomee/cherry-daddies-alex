@@ -3,7 +3,8 @@
   "bpm": 138.0,
   "count_in": 1,
   "pb-other": {"layers": [{"file": "pb-synths", "frame": "stem", "gain_db": 0.4, "derived": true, "source": ["keys", "other"], "mute": [[145.15, 147]], "mute_fade_ms": [250, 5]},
-                          {"file": "pb-fx", "frame": "stem", "gain_db": 0.4, "derived": true, "source": ["keys", "other"]}],
+                          {"file": "pb-fx", "frame": "stem", "gain_db": 0.4, "derived": true, "source": ["keys", "other"]},
+                            {"file": "pb-backvox", "frame": "stem", "derived": true}],
                "roles": {"pb-synths": "musical", "pb-fx": "musical"}},
   "pb-bass": {"layers": [{"file": "synth-bass", "rec_off": 2.227172, "frame": "render", "replaces": ["bass"], "gain_db": -10.0}]},
   "pb-drums": {"stems": ["drums"]},
@@ -21,8 +22,8 @@
   ],
   "cues": [
     {"bar": 1,   "text": "Солнышко all in", "abs_sec": 2.756, "snap_sec": 0.0},
-    {"bar": 7,   "beat": 4, "text": "stop", "abs_sec": 14.495, "snap_sec": 10.318},
-    {"bar": 9,  "text": "all in", "abs_sec": 16.669, "snap_sec": 13.19},
+    {"bar": 7,   "beat": 4, "text": "stop", "abs_sec": 14.495, "snap_sec": 10.303},
+    {"bar": 9,  "text": "all in", "abs_sec": 16.669, "snap_sec": 13.18},
     {"bar": 17,  "text": "alex in", "abs_sec": 30.582, "snap_sec": 27.103},
     {"bar": 25,  "text": "verse in", "abs_sec": 44.495, "snap_sec": 40.966},
     {"bar": 49,  "text": "arpegiator in", "abs_sec": 86.234, "snap_sec": 82.321},
@@ -35,9 +36,9 @@
     {"bar": 109, "text": "bass in", "abs_sec": 190.582, "snap_sec": 187.103},
     {"bar": 113, "text": "drums in", "abs_sec": 197.538, "snap_sec": 194.03},
     {"bar": 121, "text": "alex in", "abs_sec": 211.451, "snap_sec": 207.973},
-    {"bar": 127, "beat": 4, "text": "stop", "abs_sec": 223.19, "snap_sec": 219.014},
+    {"bar": 127, "beat": 4, "text": "stop", "abs_sec": 223.19, "snap_sec": 218.999},
     {"bar": 129, "text": "chorus in", "abs_sec": 225.364, "snap_sec": 221.846},
     {"bar": 137, "text": "outro-solo in", "abs_sec": 239.277, "snap_sec": 235.364},
-    {"bar": 145, "text": "stop", "abs_sec": 253.19, "snap_sec": 249.014}
+    {"bar": 145, "text": "stop", "abs_sec": 253.19, "snap_sec": 248.999}
   ]
 }
