@@ -853,27 +853,109 @@ def blend_lead(saws, stack_parts, bar, saw_db, stack_db, lp_hz=BLEND_LP, a=None,
     return (sw / rms(sw) * 10 ** (saw_db / 20) + stack / rms(stack) * 10 ** (stack_db / 20)).astype(np.float32)
 
 
+# Alex on the blend (2026-11-21): «при слиянии одна из них на некоторых нотах играет отдельно — повторы должны быть
+# идентичны». Measured over the 220 lead notes of bars 1-143, repeats of ONE pitch: Saws Key 10 keeps its level (+-0.2 dB)
+# but lands anywhere in the stereo field (L-R from -5 to +7 dB, note by note); Seq 3 changes its level by -3..+4 dB and
+# its place by +-3.5 dB; Seq Sqr 1 and Sine Pluck repeat exactly. So the lead is no longer played through: every pitch
+# is ONE note sample of every tone (the hit closest to the median level, summed to the middle), the blend and the chorus
+# are made on the sample, the same sample goes to every repeat, and only the delay + reverb (which treat every note
+# alike) run over the whole track.
+LEAD_NOTE_FX = [("Chorus", {"rate_hz": 0.6, "depth": 0.2, "mix": 0.22})]                       # on the note sample: the same for every repeat
+LEAD_BUS_FX = [LEAD_REPEAT[0], ("Reverb", {"room_size": 0.5, "wet_level": 0.15, "dry_level": 0.9})]   # over the track
+SAMPLE_HITS, SAMPLE_GAP = 6, 2.0             # isolated hits of every pitch in the sample take, seconds between them
+SAMPLES = os.path.join(OUT, "zenology", "samples")
+
+
+def lead_chords(gp, song, part):
+    """[(seconds from bar 1, (pitches), gain dB)] of the lead with its lower octave, and the distinct pitch sets."""
+    lo = {round(t, 4): n for t, n, d in gp.voice_line(song, part, "lead_lo", 1, END)}
+    gains = {round(t, 4): db for t, dd, db in gp.voice_gains(song, part, "lead", 1, END)}
+    notes = [(t, tuple(sorted({lo.get(round(t, 4), n - 12), n})), gains.get(round(t, 4), 0.0)) for t, n, d in gp.voice_line(song, part, "lead", 1, END)]
+    return notes, sorted({c for _, c, _ in notes})
+
+
+def cmd_zensamples():
+    """_zensamples TAG OUT: SAMPLE_HITS isolated hits of every pitch set of the lead on a plugin tone, SAMPLE_GAP apart
+    (zen_take in a process of its own) -> OUT (48 kHz); the hit to keep is chosen by lead_samples."""
+    import soundfile as sf
+    from mido import Message
+    tag, out = sys.argv[2], sys.argv[3]
+    load = lambda nm: (lambda sp: (lambda m: (sp.loader.exec_module(m), m)[1])(importlib.util.module_from_spec(sp)))(
+        importlib.util.spec_from_file_location(nm, os.path.join(REPO, "tools", nm + ".py")))
+    zr = load("zenology_render"); gp, song = zr.gp_song("Беги от меня"); part = json.load(open(PART, encoding="utf-8"))
+    _, chords = lead_chords(gp, song, part); d = song.bar / 16 - 0.002; ev = []
+    for i, c in enumerate(chords):
+        for k in range(SAMPLE_HITS):
+            t = (i * SAMPLE_HITS + k) * SAMPLE_GAP + 0.5
+            ev += [Message("note_on", note=n, velocity=100, time=t) for n in c] + [Message("note_off", note=n, time=t + d) for n in c]
+    ev.sort(key=lambda m: (m.time, m.type == "note_on"))
+    x, dev, k = zen_take(zr, zr.plugin(tag), ev, len(chords) * SAMPLE_HITS * SAMPLE_GAP + 1.0)
+    sf.write(out, x, zr.SR, subtype="FLOAT"); print(out, f"{len(chords)} pitch sets x {SAMPLE_HITS} hits; takes agree within {dev:.1f} dB ({k} played)")
+
+
+def lead_samples(gp, song, part, tones):
+    """{tone: {pitch set: mono note sample}}: of the SAMPLE_HITS hits the one closest to the median level."""
+    import re, soundfile as sf
+    os.makedirs(SAMPLES, exist_ok=True); _, chords = lead_chords(gp, song, part); SRZ = 48000
+    files = {t: os.path.join(SAMPLES, re.sub(r"[^A-Za-z0-9]+", "_", t).strip("_") + ".wav") for t in tones}
+    procs = [subprocess.Popen([sys.executable, os.path.abspath(__file__), "_zensamples", t, f], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+             for t, f in files.items() if not os.path.exists(f)]
+    for pr in procs:
+        o, e = pr.communicate()
+        if pr.returncode:
+            raise SystemExit(e[-2000:])
+        print("  " + o.strip().splitlines()[-1][-90:], flush=True)
+    out = {}
+    for t, f in files.items():
+        x = sf.read(f, always_2d=True, dtype="float32")[0]; out[t] = {}
+        for i, c in enumerate(chords):
+            hits = []
+            for k in range(SAMPLE_HITS):
+                a = int(((i * SAMPLE_HITS + k) * SAMPLE_GAP + 0.5) * SRZ) - 48; hits.append(x[a:a + int((SAMPLE_GAP - 0.05) * SRZ)])
+            lev = np.array([20 * np.log10(np.sqrt((h[:5280].mean(1) ** 2).mean()) + 1e-9) for h in hits]); k = int(np.abs(lev - np.median(lev)).argmin())
+            m = hits[k].mean(1).copy(); f8 = int(0.03 * SRZ); m[-f8:] *= np.linspace(1, 0, f8); out[t][c] = m
+            if lev.max() - lev.min() > 1.5:
+                print(f"   {t.split('/')[0].split()[0]}/{t.split('/')[1]} {c}: hits differ by {lev.max() - lev.min():.1f} dB, the median one kept")
+    return out
+
+
+def sampled_lead(gp, song, part, smp, b0, b1, saw_db, stack_db, lp_hz=BLEND_LP, stack=None, tail=3.0):
+    """The lead of bars [b0, b1) out of note samples: per pitch set saw (through the low-pass) + stack, each tone at the
+    RMS it has over all the pitch sets, the balance in dB, the note chorus - then the same sample on every repeat."""
+    SRZ = 48000; notes, chords = lead_chords(gp, song, part); stack = PLEDGE if stack is None else stack
+    rms_all = lambda d: np.sqrt(np.mean([np.mean(v[:int(0.25 * SRZ)] ** 2) for v in d.values()])) + 1e-9
+    saw = {c: lp24(np.stack([v, v], 1), lp_hz, SRZ)[:, 0] for c, v in smp[LEAD_TONE].items()} if saw_db > -100 else None
+    note = {}
+    for c in chords:
+        st = sum(smp[t][c] / rms_all(smp[t]) * 10 ** (db / 20) for t, db in stack)
+        st = st / (np.sqrt(np.mean([np.mean(sum(smp[t][k] / rms_all(smp[t]) * 10 ** (db / 20) for t, db in stack)[:int(0.25 * SRZ)] ** 2) for k in chords])) + 1e-9)
+        y = st * 10 ** (stack_db / 20) + (saw[c] / rms_all(saw) * 10 ** (saw_db / 20) if saw is not None else 0)
+        note[c] = fx(np.stack([y, y], 1).astype(np.float32), LEAD_NOTE_FX, song.bar, SRZ)
+    n = int(((b1 - b0) * song.bar + tail) * SRZ); out = np.zeros((n, 2), np.float32); t0 = (b0 - 1) * song.bar
+    for t, c, db in notes:
+        if (b0 - 1) * song.bar - 1e-6 <= t < (b1 - 1) * song.bar - 1e-6:
+            i = int(round((t - t0) * SRZ)); y = note[c]; m = min(len(y), n - i); out[i:i + m] += y[:m] * 10 ** (db / 20)
+    return out
+
+
 def cmd_blend():
     """Four bars of the blended lead at several balances -> zenology/page/lead-blend.html (needs pedalboard: zr env)."""
     import re, soundfile as sf
     from scipy.signal import resample_poly
     gp, song = song_obj(); part = json.load(open(PART, encoding="utf-8")); zen = os.path.join(song.out, "zenology"); page = os.path.join(zen, "page")
     bar = song.bar; b0, b1 = VOICES["lead"]["solo"]; n = int(round((b1 - b0) * bar * 44100)); rd = lambda f: sf.read(f, always_2d=True, dtype="float32")[0]
-    saws = rd(os.path.join(zen, "round3", "best2", "play1", "PRST_D_Basic_Synth_348.wav"))
-    pp = [(rd(os.path.join(zen, "round5", "pledge", "play1", re.sub(r"[^A-Za-z0-9]+", "_", t).strip("_") + ".wav")), db) for t, db in PLEDGE]
-    gm = rd(os.path.join(song.out, "part-synths-lead-s084-all-144-148.wav"))
+    smp = lead_samples(gp, song, part, [LEAD_TONE] + [t for t, _ in PLEDGE])
     orig = sum(resample_poly(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar + 0.2).mean(1), 147, 160) for st in part["stems"])
-    B = lambda sd, td, hz=BLEND_LP: fx(blend_lead(saws, pp, bar, sd, td, hz), LEAD_FX, bar)
+    B = lambda sd, td, hz=BLEND_LP: fx(sampled_lead(gp, song, part, smp, b0, b1, sd, td, hz), LEAD_BUS_FX, bar)
     clips = [("Оригинал", "стемы keys + strings", orig, True),
-             ("Saws Key 10 приглушённый", "одна половина: пила через фильтр 2.2 кГц", fx(lp24(saws, BLEND_LP), LEAD_FX, bar), False),
+             ("Saws Key 10 приглушённый", "одна половина: пила через фильтр 2.2 кГц", B(0, -120), False),
              ("Стопка как SYNTH PLEDGE", "вторая половина: Seq 3 + Seq Sqr 1 + Sine Pluck", B(-120, 0), False),
              ("Слияние поровну", "пила и стопка на одной громкости — это в миксе, дорожка 8", B(0, 0), False),
              ("Слияние: больше пилы", "пила +4 дБ к стопке", B(2, -2), False),
              ("Слияние: больше стопки", "стопка +4 дБ к пиле", B(-2, 2), False),
              ("Слияние: пила намёком", "стопка +8 дБ к пиле", B(-4, 4), False),
              ("Слияние поровну, пила темнее", "фильтр пилы 1.5 кГц", B(0, 0, 1500), False),
-             ("Слияние поровну, пила светлее", "фильтр пилы 3.2 кГц", B(0, 0, 3200), False),
-             ("Пила приглушённая + настоящая сцена 84", "вместо стопки — дубль сцены 84 с GM-800, поровну", fx(blend_lead(saws, [(gm, 0.0)], bar, 0, 0), LEAD_FX, bar), False)]
+             ("Слияние поровну, пила светлее", "фильтр пилы 3.2 кГц", B(0, 0, 3200), False)]
     rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9; fit = []
     for nm, note, x, isref in clips:
         y = x if isref else resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]; fit.append(y if isref else y * rms(orig[:n]) / rms(y))
@@ -884,7 +966,7 @@ def cmd_blend():
         if not isref:
             h = hi_share(resample_poly(y, 160, 147)); print(f"  {nm:40} above 3 kHz {h[0]:6.1f} dB, above 6 kHz {h[1]:6.1f} dB")
     meta = {"title": "Беги от меня — лид: слияние пилы и стопки", "groups": [{"name": "Лид, такты 144–147", "note": "на каждом объём и повтор 1/8; по кругу, одна громкость", "clips": out}],
-            "sub": "Saws Key 10 приглушённый + стопка «как SYNTH PLEDGE» одним звуком, в разных пропорциях. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза."}
+            "sub": "Saws Key 10 приглушённый + стопка «как SYNTH PLEDGE» одним звуком, в разных пропорциях. Каждая нота — один и тот же образец, повторы одинаковые. <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза."}
     tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
     open(os.path.join(page, "lead-blend.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
     print(os.path.join(page, "lead-blend.html"))
@@ -987,11 +1069,10 @@ def cmd_zenlayer():
     mf = os.path.join(d, "take-lead-margherita.wav"); gf = os.path.join(song.out, f"part-synths-lead+lead_lo-s084-all-1-{END}.wav")
     if os.path.exists(mf):
         leads.append(("margherita", fx(sf.read(mf, always_2d=True, dtype="float32")[0], LEAD_FX, bar, SRZ), "PRST_I/62 Margherita Pizz + LEAD_FX"))
-    pf = [os.path.join(d, f"take-pledge-{k}.wav") for k in range(len(PLEDGE))]
-    if all(os.path.exists(f) for f in pf):                       # the blend: muffled saw + the stack of plugin tones, BLEND dB, RMS inside the first solo
-        i0, i1 = int(58 * bar * SRZ), int(66 * bar * SRZ); raw = sf.read(os.path.join(d, "take-lead.wav"), always_2d=True, dtype="float32")[0]
-        bl = blend_lead(raw, [(sf.read(f, always_2d=True, dtype="float32")[0], db) for f, (_, db) in zip(pf, PLEDGE)], bar, BLEND[0], BLEND[1], a=i0, b=i1, sr=SRZ)
-        leads.append(("blend", fx(bl, LEAD_FX, bar, SRZ), f"Saws Key 10 through {BLEND_LP} Hz + Seq 3 / Seq Sqr 1 / Sine Pluck, {BLEND} dB, + LEAD_FX"))
+    if os.path.isdir(SAMPLES):                                   # the blend, every note the same sample (sampled_lead), BLEND dB
+        smp = lead_samples(gp, song, part, [LEAD_TONE] + [t for t, _ in PLEDGE])
+        leads.append(("blend", fx(sampled_lead(gp, song, part, smp, 1, END, BLEND[0], BLEND[1]), LEAD_BUS_FX, bar, SRZ),
+                      f"note samples: Saws Key 10 through {BLEND_LP} Hz + Seq 3 / Seq Sqr 1 / Sine Pluck, {BLEND} dB; chorus on the note, delay + reverb over the track"))
     if os.path.exists(gf):                                       # his first pick, the GM-800 scene itself (gm800_part.py take): note gains, the repeat only
         x = gp.apply_gains(sf.read(gf, always_2d=True, dtype="float32")[0], gp.voice_gains(song, part, "lead", 1, END), SRZ)
         leads.append(("s84", fx(x, LEAD_REPEAT, bar, SRZ), "GM-800 scene 84 SYNTH PLEDGE + LEAD_REPEAT"))
@@ -1214,4 +1295,4 @@ def cmd_preview():
 
 
 if __name__ == "__main__":
-    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "zenlayer": cmd_zenlayer, "round5": cmd_round5, "leadab": cmd_leadab, "blend": cmd_blend, "preview": cmd_preview}[sys.argv[1]]()
+    {"notes": cmd_notes, "fx": cmd_fx, "plan": cmd_plan, "rank": cmd_rank, "sound": cmd_sound, "zenpicks": cmd_zenpicks, "_zenrender": cmd_zenrender, "_zenmany": cmd_zenmany, "round2": cmd_round2, "round3": cmd_round3, "zenlayer": cmd_zenlayer, "round5": cmd_round5, "leadab": cmd_leadab, "blend": cmd_blend, "_zensamples": cmd_zensamples, "preview": cmd_preview}[sys.argv[1]]()
