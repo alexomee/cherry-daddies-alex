@@ -188,10 +188,11 @@ def fix_counter(ns):
 # the line (intro melody = verse second line) by chord: Roma's notes (concert 28.10), lengths as in the record (keys stem,
 # narrow band, end = 9 dB under the note's peak; Alex: «сильно долго ноты зажаты, на которых заканчиваются фразы»:
 # the phrase ends G4 / C4 / A4 sound 3/4-1 beat, the first version held G4 1.5 beats)
-LINE = {"Gm": [[2.5, 1.0, "A4"], [3.5, 0.75, "G4"]],
-        "Eb": [[2.5, 1.0, "F4"], [3.5, 0.5, "D#4"], [4.0, 0.5, "D4"], [4.5, 0.5, "D#4"]],
-        "Cm": [[2.5, 1.0, "D4"], [3.5, 1.0, "C4"]],
-        "D": [[2.5, 1.0, "G4"], [3.5, 0.5, "F#4"], [4.0, 0.5, "G4"], [4.5, 0.75, "A4"]]}
+# Alex after the first layer: «ещё короче последние ноты, стаккато типа» -> the last note of every bar 0.4 beat
+LINE = {"Gm": [[2.5, 1.0, "A4"], [3.5, 0.4, "G4"]],
+        "Eb": [[2.5, 1.0, "F4"], [3.5, 0.5, "D#4"], [4.0, 0.5, "D4"], [4.5, 0.4, "D#4"]],
+        "Cm": [[2.5, 1.0, "D4"], [3.5, 0.4, "C4"]],
+        "D": [[2.5, 1.0, "G4"], [3.5, 0.5, "F#4"], [4.0, 0.5, "G4"], [4.5, 0.4, "A4"]]}
 
 
 def line_notes(bars):
@@ -285,9 +286,11 @@ def build(song, as_midi=False):
         arp = held(fix_poly(arp), {h + i for h in HOOK for i in range(8)})
         V["arp"] = (roma_intro_arp(song) if roma_events() else held(fix_poly([n for n in cut(T[0], 1, 9, 1) if n[1] in (1.0, 1.5, 2.0)]), set(range(1, 9)))) + arp
         # lead: the verse's second line, the same line is the intro's melody (LINE); bar 8: D4 only (Roma, no pickup)
-        V["lead"] = line_notes(list(range(1, 8)) + list(range(17, 33)) + list(range(49, 65))) + [[8, 2.5, 1.5, "D4"]]
+        V["lead"] = line_notes(list(range(1, 8)) + list(range(17, 33)) + list(range(49, 65))) + [[8, 2.5, 0.5, "D4"]]
         # hookline: the interlude's line (track 0, bars 9-16: C5 A#4 on 2& 3, ...)
-        V["hookline"] = [n for h in HOOK for n in cut(T[0], 9, 17, h)]
+        # (Alex: «первую ноту потеря около 0:21»): the line starts on the pickup D#4 on 4& of the bar before (keys stem:
+        # D#4 0 / -3 / -4 dB, D#5 an octave over it, bars 8 40 104; the MIDI has it in bar 8, Roma does not play it)
+        V["hookline"] = [n for h in HOOK for n in cut(T[0], 9, 17, h)] + [[h - 1, 4.5, 0.5, "D#4"] for h in HOOK]
     if as_midi:
         V["strings"] = cut(T[2], 8, 17, 8)                                          # the MIDI's pad
         V["bright"] = cut(T[1], 1, 9, 1)
