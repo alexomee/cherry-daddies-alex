@@ -159,14 +159,29 @@ def as_notes(ns):
     return [[b, bt, d, " ".join(f"{NN[p % 12]}{p // 12 - 1}" for p in sorted(ps))] for (b, bt, d), ps in grp.items()]
 
 
-def write_part(p, about, stems, vs):
-    """One note a line (a plain json.dump with an indent makes thousands of lines of it)."""
+def write_part(p, about, stems, vs, layer=None):
+    """One note a line (a plain json.dump with an indent makes thousands of lines of it); one take a line."""
     j = lambda x: json.dumps(x, ensure_ascii=False)
+    body = "{\n" + f' "_about": {j(about)},\n "stems": {j(stems)},\n "voices": {{\n' + ",\n".join(
+        f'  {j(vn)}: {{"at": [1], "bars": {END - 1}, "notes": [\n' + ",\n".join(f"   {j(n)}" for n in v["notes"]) + "\n  ]}"
+        for vn, v in vs.items()) + "\n }"
+    if layer:
+        body += f',\n "layer": {{"file": {j(layer["file"])}, "takes": [\n' + ",\n".join(f"  {j(t)}" for t in layer["takes"]) + "\n ]}"
     with open(p, "w", encoding="utf-8") as f:
-        f.write("{\n" + f' "_about": {j(about)},\n "stems": {j(stems)},\n "voices": {{\n' + ",\n".join(
-            f'  {j(vn)}: {{"at": [1], "bars": {END - 1}, "notes": [\n' + ",\n".join(f"   {j(n)}" for n in v["notes"]) + "\n  ]}"
-            for vn, v in vs.items()) + "\n }\n}\n")
+        f.write(body + "\n}\n")
     print(p)
+
+
+def spans(notes):
+    """Bar ranges [b0, b1) a voice plays in; rests of up to two bars stay inside one range (one take, not many)."""
+    out = []
+    for n in sorted(notes):
+        b0 = int(n[0]); b1 = max(b0 + 1, int(np.ceil(n[0] + (n[1] - 1 + n[2]) / 4 - 1e-6)))
+        if out and b0 <= out[-1][1] + 2:
+            out[-1][1] = max(out[-1][1], b1)
+        else:
+            out.append([b0, b1])
+    return out
 
 
 def cmd_notes(src=None):
@@ -211,9 +226,21 @@ def cmd_notes(src=None):
     for g, stems in GROUPS.items():
         write_part(os.path.join(NOTES, f"{g}.notes.json"), about + " Sweep file of one stem group.", stems,
                    {vn: v for vn, v in V.items() if VOICES[vn][1] == g})
-    write_part(PART, about + " Not in it: the MIDI bells (track 8) and the single 16ths of track 7 (`lead_fig`) - not "
-               "heard in the record. Piano notes held to the bar line (pedal); `lead` has the record's fifth on top.",
-               ["piano", "keys", "other", "strings"], {vn: v for vn, v in V.items() if vn not in ("bells", "lead_fig")})
+    P = {vn: v for vn, v in V.items() if vn not in ("bells", "lead_fig", "lead")}
+    for k, nm in enumerate(("lead_lo", "lead_mid", "lead_hi")):   # the melody stack as three single-note voices: Alex chose
+        P[nm] = {"at": [1], "bars": END - 1, "notes": [[n[0], n[1], n[2], n[3].split()[k]] for n in V["lead"]["notes"]]}   # it so
+    gains = json.load(open(GAINS, encoding="utf-8")) if os.path.exists(GAINS) else {}
+    takes = []
+    for vn, spec in LAYER.items():
+        for sp in spans(P[vn]["notes"]):
+            takes.append(dict({"voice": vn, "zen": spec["zen"], "bars": sp, "gain_db": round(gains.get(vn, 0.0), 1)},
+                              **({"reverb": spec["reverb"]} if spec.get("reverb") else {})))
+    write_part(PART, about + " Not in it: the MIDI bells (track 8) and the single 16ths of track 7 - not heard in the "
+               "record. Piano notes held to the bar line (pedal). The melody of the lead (`lead_lo` / `lead_mid` / `lead_hi`) "
+               "= the MIDI octave pairs + the record's fifth on top, one voice a note. Layer: ZENOLOGY tones chosen by Alex "
+               "(`low` = the arp's tone, my proposal; `horn` and `hits` wait for his word); gains from keys.gains.json "
+               "(`calibrate`).", ["piano", "keys", "other", "strings"], P, {"file": "pb-keys", "takes": takes})
+    print(f"  layer: {len(takes)} takes, {sum(b - a for t in takes for a, b in [t['bars']])} bars")
     for vn, v in V.items():
         bars = sorted({n[0] for n in v["notes"]})
         print(f"  {VOICES[vn][1]:8} {vn:8} {len(v['notes']):4} onsets  bars {bars[0]}-{bars[-1]}")
@@ -322,8 +349,15 @@ def cmd_preview():
 
 # Alex 2026-11-21 on the ZENOLOGY page: piano «Magical Piano но не хватает FX», strings Hybrid Strings, arp OrganBell 2.
 PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "arp": "PRST_D Basic Synth/539",
-         "lead_acc": "ZEZ002 Dark Adaptations/20"}          # Mode (Alex, lead_acc 44-47); piano: + pedal + reverb 2.5 s -7 dB
-# melody `lead`: Alex - «тон более wind/trumpet» -> second sweep on the brass / wind categories (bars 52-55)
+         "lead_acc": "ZEZ002 Dark Adaptations/20",          # Mode (Alex, lead_acc 44-47); piano: + pedal + reverb 2.5 s -7 dB
+         "lead": "PRST_F Essential/383"}                    # Trumpet Echo, the stack as three takes (Alex, after «тон более
+                                                            # wind/trumpet» -> the brass / wind sweep 52-55 + `leadwind`)
+LAYER = {"piano": {"zen": PICKS["piano"], "reverb": {"rt60": 2.5, "db": -7}},
+         "arp": {"zen": PICKS["arp"]}, "low": {"zen": PICKS["arp"]},      # low: the arp's tone - proposal, not Alex's pick
+         "strings": {"zen": PICKS["strings"]}, "lead_acc": {"zen": PICKS["lead_acc"]},
+         "lead_lo": {"zen": PICKS["lead"]}, "lead_mid": {"zen": PICKS["lead"]}, "lead_hi": {"zen": PICKS["lead"]}}
+GAINS = os.path.join(SONG, "parts", "keys.gains.json")      # voice -> dB of its takes, written by `calibrate`
+CAND = os.path.join(OUT, "pb-keys-candidate.wav")           # the layer to listen to before it goes to parts/
 
 
 def cmd_pianofx():
@@ -423,6 +457,99 @@ def cmd_leadwind():
     print(jf)
 
 
+# where each voice group is measured against its stems: (voices, stems, bars [b0, b1)); one gain for the voices of a row
+CAL = [(["piano"], ["piano"], 1, 7),                       # intro: the piano stem is the piano alone
+       (["strings"], ["strings"], 12, 19),
+       (["arp", "low"], ["keys", "other"], 7, 12),         # before the strings come in
+       (["lead_acc"], ["other"], 44, 48)]                  # the accompaniment alone in `other`
+SECTIONS = [(1, 7, "вступление"), (7, 12, "куплет 1"), (12, 19, "куплет 1, струнные"), (19, 24, "модуляция, до барабанов"),
+            (24, 44, "барабаны, Ebm"), (44, 48, "Fm, аккомпанемент"), (48, 56, "Fm, мелодия"), (56, 60, "Fm, конец"), (60, 64, "аутро")]
+
+
+def _voice_sig(gp, song, part, voices, b0, b1):
+    """Mono sum of the takes of these voices over bars [b0, b1), as the layer will have them (gains / reverb of the take)."""
+    SR = gp.SR; n = int((b1 - b0) * song.bar * SR); y = np.zeros(n)
+    for tk in part["layer"]["takes"]:
+        if tk["voice"] not in voices or tk["bars"][1] <= b0 or tk["bars"][0] >= b1:
+            continue
+        x = gp.gmm.read_wav(gp.rec_path(song, PART, tk)).astype(np.float64)
+        if tk.get("reverb"):
+            x = gp.apply_reverb(x, SR, **tk["reverb"])
+        a = int(round((b0 - tk["bars"][0]) * song.bar * SR)); i0, j0 = max(a, 0), max(-a, 0)
+        m = min(len(x) - i0, n - j0)
+        if m > 0:
+            y[j0:j0 + m] += x[i0:i0 + m].mean(1)
+    return y
+
+
+def _stem_sig(song, stems, b0, b1, sr_out=48000):
+    import soundfile as sf
+    from scipy.signal import resample_poly
+    y = 0
+    for st in stems:
+        info = sf.info(song.stem(st)); sr = info.samplerate
+        x = sf.read(song.stem(st), start=int(song.t_stem(b0) * sr), stop=int(song.t_stem(b1) * sr), always_2d=True)[0].mean(1)
+        y = y + (resample_poly(x, sr_out, sr) if sr != sr_out else x)
+    return y
+
+
+def cmd_calibrate():
+    """Voice gains so that each voice group sits at the level of the stems it replaces, where it is alone (CAL); the
+    melody of the lead = what `other` has in 48-55 over the accompaniment (powers add) -> parts/keys.gains.json."""
+    gp = load_tool("gm800_part"); song = gp.gmm.Song("Знаешь ли ты"); part = json.load(open(PART, encoding="utf-8"))
+    ms = lambda y: float(np.mean(y ** 2)) + 1e-20; G = {}
+    for voices, stems, b0, b1 in CAL:
+        g = 10 * np.log10(ms(_stem_sig(song, stems, b0, b1)) / ms(_voice_sig(gp, song, part, voices, b0, b1)))
+        G.update({v: round(g, 1) for v in voices}); print(f"  {'+'.join(voices):12} vs {'+'.join(stems):13} bars {b0}-{b1 - 1}: {g:+.1f} dB")
+    mel = ["lead_lo", "lead_mid", "lead_hi"]
+    rest = ms(_stem_sig(song, ["other"], 48, 56)) - ms(_voice_sig(gp, song, part, ["lead_acc"], 48, 56)) * 10 ** (G["lead_acc"] / 10)
+    g = 10 * np.log10(max(rest, 1e-20) / ms(_voice_sig(gp, song, part, mel, 48, 56)))
+    G.update({v: round(g, 1) for v in mel}); print(f"  melody       vs other - accomp. bars 48-55: {g:+.1f} dB")
+    json.dump(G, open(GAINS, "w", encoding="utf-8"), ensure_ascii=False, indent=1); print(GAINS)
+
+
+def cmd_result():
+    """The layer candidate (gm800_part layer --out) against the stems it replaces: levels by section, and a whole-song
+    page (original keys / layer, with or without drums, bass and backing vocals)."""
+    import soundfile as sf
+    gp = load_tool("gm800_part"); song = gp.gmm.Song("Знаешь ли ты"); part = json.load(open(PART, encoding="utf-8"))
+    gp.cmd_layer(song, PART, CAND)
+    lay, sr = sf.read(CAND, always_2d=True); lay = lay.mean(1)
+    orig = sum(sf.read(song.stem(st), always_2d=True)[0].mean(1) for st in part["stems"])
+    db = lambda y: 10 * np.log10(float(np.mean(y ** 2)) + 1e-20)
+    print("level by section, dB (layer against the stems it replaces: piano + keys + other + strings)")
+    for b0, b1, nm in SECTIONS:
+        a, b = int(song.t_stem(b0) * sr), int(song.t_stem(b1) * sr)
+        print(f"  {b0:2}-{b1 - 1:2} {nm:26} stems {db(orig[a:b]):6.1f}   layer {db(lay[a:b]):6.1f}   {db(lay[a:b]) - db(orig[a:b]):+5.1f}")
+    out = os.path.join(OUT, "result"); os.makedirs(out, exist_ok=True); v = time.strftime("%H%M%S")
+    for f in os.listdir(out):
+        if f.endswith(".mp3"):
+            os.remove(os.path.join(out, f))
+    n = int(round(song.t_render(END) * sr)) + 2 * sr; a = int(round(song.off * sr))
+    def place(y):                                   # stem frame -> render timeline (stems start at the render offset)
+        z = np.zeros(n); k = min(len(y), n - a); z[a:a + k] = y[:k]; return z
+    ctx = place(sum(sf.read(song.stem(st), always_2d=True)[0].mean(1) for st in ("drums", "bass", "backing_vocals")))
+    src = {"orig": place(orig), "layer": place(lay)}
+    peak = max(np.abs(x + ctx).max() for x in src.values())
+    for k, x in src.items():
+        for tag, y in (("", x), ("-ctx", x + ctx)):
+            subprocess.run(["ffmpeg", "-v", "quiet", "-y", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", "-b:a", "160k",
+                            os.path.join(out, f"{k}-{v}{tag}.mp3")], input=(y / peak * 0.9).astype(np.float32).tobytes(), check=True)
+    cues = [(c["bar"], c["text"]) for c in song.mix["cues"] if str(c.get("beat", 1)) == "1"]
+    meta = {"bar": song.bar, "bar1": song.t_render(1), "cues": cues, "dur": n / sr, "ctx": "-ctx",
+            "title": "Знаешь ли ты — слой клавиш ZENOLOGY",
+            "sub": "Кандидат слоя <b>pb-keys</b> против стемов, которые он заменит (piano + keys + other + strings). Тоны — твой "
+                   "выбор; корни — тоном арпеджио (OrganBell 2, моё предложение); тромбона и хитов нет. Громкость голосов — по "
+                   "стемам там, где голос один. В плейбек не поставлен.",
+            "tracks": [["1", f"orig-{v}.mp3", "Оригинал: клавиши", "Moises: piano + keys + other + strings", True],
+                       ["2", f"layer-{v}.mp3", "Слой ZENOLOGY", "пиано Magical (педаль + реверб), арпеджио и корни OrganBell 2, "
+                        "струнные Hybrid, мелодия Trumpet Echo, аккомпанемент Mode"]],
+            "marks": [], "html": ""}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-full.html"), encoding="utf-8").read()
+    open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(out, "index.html"))
+
+
 HTML_NOTES = """
 <h2>Голоса MIDI</h2>
 <div class="wrap"><table>
@@ -453,5 +580,9 @@ if __name__ == "__main__":
         cmd_pianofx()
     elif cmd == "leadwind":
         cmd_leadwind()
+    elif cmd == "calibrate":
+        cmd_calibrate()
+    elif cmd == "result":
+        cmd_result()
     else:
         sys.exit(__doc__)
