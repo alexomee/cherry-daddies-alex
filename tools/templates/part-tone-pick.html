@@ -73,7 +73,7 @@ M.groups.forEach((g, gi) => {
   });
 });
 Promise.all(all.map(async it => {
-  const blob = await (await fetch(encodeURIComponent(it.file))).blob();
+  const blob = await (await fetch(encodeURIComponent(it.file) + (M.v ? "?v=" + M.v : ""))).blob();   // M.v = build stamp: a rebuilt clip under the same name is not taken from the browser cache
   it.a = new Audio(URL.createObjectURL(blob)); it.a.loop = true;
 })).then(() => { ready = true; $("title").textContent = "Выбери звук"; }, e => { $("title").textContent = "Не загрузилось: " + e; });
 function pick(it) {

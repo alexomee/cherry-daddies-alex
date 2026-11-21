@@ -20,8 +20,8 @@ and bring him as variants). ZEN-Core is the engine of both; a tone goes ZENOLOGY
     zr variant "<song>" NOTES.json riff 105 109 "PRST_A Factory Presets/32{p1.level=0}" --name "Sunrise без слоя"
                                      # an EDITED tone as one more take of that sweep (next to its tone on the page)
 
-A tone can be edited wherever a tone is named: "BANK/NUMBER{p1.level=0,p1.keyfollow=100,p1.coarse=-31}" sets
-parameters of partials 1..4 in the state before it is loaded (PARTIAL below: the ones found and measured so far).
+A tone can be edited wherever a tone is named: "BANK/NUMBER{p1.level=0,p*.release=300}" sets parameters of
+partials 1..4 (p* = all four) in the state before it is loaded (PARTIAL below: the ones found and measured so far).
 
 How it works. The plugin has no "select tone" parameter and ignores bank / program change without its window
 (measured 2026-11-20), but its whole state can be read and set (pedalboard raw_state): a flat list of
@@ -69,8 +69,11 @@ def state_name(st):
 # A partial's parameters in the state: records at 80000 + 40000 * (partial - 1) + offset. Found on "Sunrise"
 # (PRST_A 32) and measured 2026-11-21: level 0 silences the partial; coarse moves it by semitones; keyfollow 0 = the
 # partial sounds at ONE pitch whatever key is played (a bell sample there, heard as "an accompaniment out of tune"),
-# 100 = it follows the keys. Offset 48 of the block is the PCM wave number (read only so far).
-PARTIAL = {"level": 900, "coarse": 904, "keyfollow": 1012}
+# 100 = it follows the keys; release = how long a note rings after the key is let go, 0..1023 (Sunrise 658/772: -20 dB
+# only after 0.9 s and a tail of seconds, so the notes of a riff pile up into a chord; 500 -> -20 dB in 0.38 s,
+# 400 -> 0.22, 300 -> 0.16, 200 -> 0.11). Offset 48 of the block is the PCM wave number, 1024 the filter cutoff
+# (read only so far).
+PARTIAL = {"level": 900, "coarse": 904, "keyfollow": 1012, "release": 556}
 
 
 def state_edit(st, edits):
@@ -79,10 +82,11 @@ def state_edit(st, edits):
     if isinstance(edits, str):
         ed = {}
         for e in filter(None, (x.strip() for x in edits.split(","))):
-            m = re.match(r"^p([1-4])\.(\w+)=(-?\d+)$", e)
+            m = re.match(r"^p([1-4*])\.(\w+)=(-?\d+)$", e)                     # p* = every partial
             if not m or m.group(2) not in PARTIAL:
-                raise SystemExit(f"tone edit '{e}': expected pN.{{{'|'.join(PARTIAL)}}}=VALUE")
-            ed[80000 + 40000 * (int(m.group(1)) - 1) + PARTIAL[m.group(2)]] = int(m.group(3))
+                raise SystemExit(f"tone edit '{e}': expected pN.{{{'|'.join(PARTIAL)}}}=VALUE (N = 1..4 or *)")
+            for k in (range(4) if m.group(1) == "*" else [int(m.group(1)) - 1]):
+                ed[80000 + 40000 * k + PARTIAL[m.group(2)]] = int(m.group(3))
         edits = ed
     m = re.search(rb"<IComponent>(\d+)\.([^<]*)</IComponent>", st); n = int(m.group(1)); raw = bytearray(n + 2); pos = 0
     for c in m.group(2):
@@ -395,7 +399,8 @@ def cmd_page(a):
             os.remove(os.path.join(dst, f))
     meta = {"title": f"{sg.name} — тоны ZENOLOGY", "sub": "Варианты звука из ZENOLOGY, сыграны плагином без прибора. Внутри голоса переключение "
             "сохраняет место; <kbd>←</kbd> <kbd>→</kbd> соседний вариант, <kbd>пробел</kbd> пауза. Порядок — по близости к стему, это подсказка, не оценка.",
-            "groups": groups}
+            "groups": groups, "v": int(time.time())}   # the clips are numbered by place: a rebuilt page has other
+                                                                  # audio under the same names, the stamp gets round the cache
     tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
     open(os.path.join(dst, "index.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
     print(os.path.join(dst, "index.html"), f"- {len(groups)} voices")
