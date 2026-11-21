@@ -17,3 +17,7 @@
 
 `pb-synths.wav` — слой клавиш, записанный с GM-800 (25 дублей, `gmp record` → `gmp layer`), stem-фрейм, тональность группы. `pb-fx.wav` — реверс-тарелка из стема `other` (такты 8, 24, 120, 128, выше 3 кГц, транспонирована −2), `prep_solnyshko.py fx`. Оба не в git (wav), пересобираются командами из шапки скрипта; дубли лежат в `analysis/gm800-match/Demo - Solnyshko/rec-synths-*.wav`.
 В `mix.json` с 2026-11-20: `pb-other.layers`, оба `derived` от `keys` + `other`, `gain_db +0.4`. `roma-keys-2810.wav` больше не используется (оставлен как ориентир по звуку).
+
+### 2026-11-21: рифф — плагин ZENOLOGY
+
+Голос `riff` в `pb-synths.wav` сыгран плагином ZENOLOGY, тон `PRST_A Factory Presets/32{p1.level=0,p*.release=450}` («Sunrise полусухой», выбор Alex), вместо дублей GM-800 330 + 1024. Остальные голоса — прежние дубли прибора. Пересборка: `prep_solnyshko.py notes` → `zenology_render.py record` → `prep_solnyshko.py calibrate` → `notes` → `gm800_part.py layer`.
