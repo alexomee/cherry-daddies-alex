@@ -118,7 +118,9 @@ MEL_LO = [[3, 3.5, 0.5, "C4"], [3, 4.0, 0.5, "A#3"], [3, 4.5, 1.5, "A3"], [4, 2.
           [5, 2.0, 1.0, "A#3"], [8, 2.0, 1.0, "C4"]]
 MEL_AT, FIG_AT = [65, 89], [33, 73, 97]
 # tones Alex picked on the ZENOLOGY page (2026-11-21)
-ZEN = {"strings": "ZEZ003 Liquid/7", "brk": "PRST_J Nebulous Forms/6"}     # Mercurial, Dreamer Keys
+ZEN = {"strings": "ZEZ003 Liquid/7", "brk": "PRST_J Nebulous Forms/6",     # Mercurial, Dreamer Keys
+       "arp": "ZEZ001 Hazy Pop/1", "cpad": "PRST_D Basic Synth/490",        # Rocket Pad, Dreaming 5
+       "fig": "PRST_A Factory Presets/38"}                                  # AX Analog Dream (+ a saw in unison: round 4)
 
 
 def tracks():
@@ -446,5 +448,83 @@ def cmd_tonepage():
     print(page, [g["name"] for g in M["groups"]])
 
 
+# ---- round 4 (Alex 2026-11-21): lead «обычная мягкая пила с эффектами», hookline «ближе к brass/trumpet с делеем»,
+# mel «что-то типа magic piano / dreamy», fig «AX Analog Dream хорошо, но не хватает жирка, saw базовой в унисон».
+# Sweeps: analysis/.../sweeps4.sh (notes copy keys-r4); this builds zenology/page/round4.html (run in the zr env).
+FX_LEAD = [("Chorus", {"rate_hz": 0.6, "depth": 0.25, "mix": 0.35}), ("Delay", {"delay_bars": 3 / 16, "feedback": 0.3, "mix": 0.2}),
+           ("Reverb", {"room_size": 0.6, "wet_level": 0.22, "dry_level": 0.85})]
+FX_BRASS = [("Delay", {"delay_bars": 3 / 16, "feedback": 0.35, "mix": 0.25}), ("Reverb", {"room_size": 0.4, "wet_level": 0.12, "dry_level": 0.9})]
+FX_BRASS8 = [("Delay", {"delay_bars": 1 / 8, "feedback": 0.35, "mix": 0.25}), ("Reverb", {"room_size": 0.4, "wet_level": 0.12, "dry_level": 0.9})]
+
+
+def fx(x, chain, bar, sr=48000):
+    import pedalboard
+    units = []
+    for nm, kw in chain:
+        kw = dict(kw)
+        if "delay_bars" in kw:
+            kw["delay_seconds"] = kw.pop("delay_bars") * bar
+        units.append(getattr(pedalboard, nm)(**kw))
+    return pedalboard.Pedalboard(units)(x.T, sr).T
+
+
+def cmd_round4():
+    import soundfile as sf, subprocess, time
+    from scipy.signal import resample_poly
+    zr = load("zenology_render"); gp, song = zr.gp_song(NAME); zen = os.path.join(song.out, "zenology"); page = os.path.join(zen, "page")
+    bar = song.bar; rd = lambda f: sf.read(os.path.join(zen, f), always_2d=True, dtype="float32")[0]
+    rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9
+    rank = lambda v, b0, b1, tag="keys-r4": json.load(open(os.path.join(zen, f"zen-{tag}-{v}-{b0}-{b1}.json"), encoding="utf-8"))
+    label = lambda t: f"{t['bank'].split()[0]}/{t['number']} · {t['category']}"
+
+    def render(tone, voice, b0, b1):          # a tone the sweep did not keep: rendered clean on its own (zr render)
+        out = os.path.join(zen, f"r4-{voice}-{tone.replace('/', '-').replace(' ', '_')}.wav")
+        if not os.path.exists(out):
+            subprocess.run([sys.executable, os.path.join(REPO, "tools", "zenology_render.py"), "render", tone, NAME,
+                            os.path.join(OUT, "keys-r4.notes.json"), voice, str(b0), str(b1), out], check=True)
+        return sf.read(out, always_2d=True, dtype="float32")[0]
+
+    groups = []
+    def group(voice, b0, b1, hint, clips):
+        n = int(round((b1 - b0) * bar * 44100))
+        orig = sum(resample_poly(song.read(f"{st}.wav", song.t_stem(b0), song.t_stem(b0) + (b1 - b0) * bar).mean(1), 147, 160) for st in ["keys"])
+        orig = np.pad(orig, (0, max(0, n - len(orig))))[:n]; out = [("orig", orig, "Оригинал", "стем keys", True)]
+        for k, (nm, note, x) in enumerate(clips, 1):
+            y = resample_poly(x.mean(1), 147, 160); y = np.pad(y, (0, max(0, n - len(y))))[:n]
+            out.append((f"{k:02d}", y * rms(orig) / rms(y), nm, note, False))
+        peak = max(np.abs(c[1]).max() for c in out); files = []
+        for cid, x, nm, note, ref in out:
+            x = x / peak * 0.8; k = int(0.008 * 44100); x[:k] *= np.linspace(0, 1, k); x[-k:] *= np.linspace(1, 0, k)
+            fn = f"r4-{voice}-{cid}.wav"; sf.write(os.path.join(page, fn), x.astype(np.float32), 44100, subtype="PCM_16"); files.append([fn, nm, note, ref])
+        groups.append({"name": f"{voice}, такты {b0}–{b1 - 1}", "note": f"<b>{hint}</b><br>по кругу, одна громкость", "clips": files})
+
+    r = rank("lead", 1, 5); top = r["top"][:10]
+    group("lead", 1, 5, HINT["lead"] + ". Мягкие пилы и лиды, все с хорусом, дилеем 3/16 и ревербом; первый — ещё и сухой",
+          [(t["name"], label(t) + " · хорус + дилей + реверб", fx(rd(t["file"]), FX_LEAD, bar)) for t in top]
+          + [(top[0]["name"] + " сухой", label(top[0]) + " · без эффектов", rd(top[0]["file"]))])
+    r = rank("hookline", 9, 13); top = r["top"][:9]; tpt = "PRST_F Essential/383"            # Trumpet Echo: a trumpet with its own echo
+    clips = [(t["name"], label(t) + " · дилей 3/16 + реверб", fx(rd(t["file"]), FX_BRASS, bar)) for t in top]
+    clips += [(top[0]["name"] + ", дилей 1/8", label(top[0]) + " · дилей 1/8 + реверб", fx(rd(top[0]["file"]), FX_BRASS8, bar))]
+    if not any(f"{t['bank'].split()[0]} " in tpt and t["number"] == "383" for t in top):
+        clips.append(("Trumpet Echo", "F/383 · Solo Brass · своё эхо тона", render(tpt, "hookline", 9, 13)))
+    group("hookline", 9, 13, HINT["hookline"] + ". Медь, с дилеем 3/16 (у первого ещё 1/8)", clips)
+    r = rank("mel", 89, 93); top = r["top"][:12]
+    group("mel", 89, 93, HINT["mel"] + ". Колокольные пэды, Celesta, Music Box, пиано — dreamy", [(t["name"], label(t), rd(t["file"])) for t in top])
+    ax = rd("zen-keys-k-fig-97-101-PRST_A_Factory_Presets-0038.wav"); r = rank("fig", 97, 101); saws = r["top"][:6]
+    mix = lambda s, db: (lambda a, b: a + b * 10 ** (db / 20) * rms(a) / rms(b))(*(lambda a, b: (np.pad(a, ((0, max(0, len(b) - len(a))), (0, 0))),
+                                                                                      np.pad(b, ((0, max(0, len(a) - len(b))), (0, 0)))))(ax, rd(s["file"])))
+    clips = [("AX Analog Dream", "A/38 · как выбрал", ax)]
+    clips += [(f"AX + {s['name']} −6", f"{label(s)} слоем на 6 дБ тише", mix(s, -6)) for s in saws]
+    clips += [(f"AX + {saws[0]['name']} −10", f"{label(saws[0])} слоем на 10 дБ тише", mix(saws[0], -10)),
+              (f"AX + {saws[0]['name']} −3", f"{label(saws[0])} слоем на 3 дБ тише", mix(saws[0], -3))]
+    group("fig", 97, 101, HINT["fig"] + ". AX Analog Dream + пила в унисон слоем", clips)
+    meta = {"title": "Медляк — тоны, круг 4", "sub": "По твоим описаниям: lead — мягкая пила с эффектами, hookline — медь с дилеем, mel — "
+            "dreamy, fig — AX Analog Dream + пила. Внутри голоса переключение сохраняет место; <kbd>←</kbd> <kbd>→</kbd> соседний вариант, "
+            "<kbd>пробел</kbd> пауза. Порядок — по близости к стему, подсказка.", "groups": groups, "v": int(time.time())}
+    tpl = open(os.path.join(REPO, "tools", "templates", "part-tone-pick.html"), encoding="utf-8").read()
+    open(os.path.join(page, "round4.html"), "w", encoding="utf-8").write(tpl.replace("/*META*/", json.dumps(meta, ensure_ascii=False)))
+    print(os.path.join(page, "round4.html"))
+
+
 if __name__ == "__main__":
-    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage}[sys.argv[1]]()
+    {"bp": cmd_bp, "notes": cmd_notes, "preview": cmd_preview, "tonepage": cmd_tonepage, "round4": cmd_round4}[sys.argv[1]]()
