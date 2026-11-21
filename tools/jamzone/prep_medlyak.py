@@ -18,12 +18,20 @@ What the keys of the record are (keys + strings stems; tools/part_notes.py, Basi
 passes of a section, narrow-band envelopes of single notes by 32nds):
   chords  Gm Eb Cm D (intro, interlude, verses), chorus Gm Eb Bb D, breakdown | Gm Cm | F | Eb | F | Gm Cm | F | Eb
           | Dm Bb |, end Gm.
-  poly    MIDI track 0 «Polysynth»: the intro riff (arpeggio of the chord on 1 1& 2, then a melody A4 G4 ... on
-          2& and 3&), the interlude counter line (C5 A#4 on 2& 3, ...), the verse arpeggio (1 1& 2 only).
-          Stem fix: on the D chord the arpeggio is F#3 A3 C4 (D7), the MIDI has D3 F#3 A3 (keys stem bars 4, 8,
-          20, 24: no D3 at all, C4 on beat 2 at -4 dB).
-  counter MIDI track 2, bars 17-32: the second line of the verse (A4 G4 on 2& 3&, ...). Stem fix: beat 4& of the
-          Gm bar is A#4, not F4 (A#4 -1 dB, F4 -33 dB, bars 17 21 25 29).
+  poly    the arpeggio of the chord on 1 1& 2 (MIDI track 0 «Polysynth»), in the intro with the verse's second line
+          over it, in the interlude with the counter line (C5 A#4 on 2& 3, ...) of MIDI track 0, in the verse alone.
+          Stem fixes: on the D chord the arpeggio is F#3 A3 C4 (D7), the MIDI has D3 F#3 A3 (keys stem bars 4, 8,
+          20, 24: no D3 at all, C4 on beat 2 at -4 dB). In the intro and the interludes the arpeggio rings through
+          the bar (G3 / A#3 of bars 1 5 9 41 105 still -5..-20 dB on beat 4), in the verse it is gone by beat 3
+          (-30..-47): there the notes are held to the end of the bar. The intro melody is the verse's second line,
+          not the MIDI's (Alex 2026-11-21: «в интро 4 аккорд точно не тот, вроде так же как в куплете»; stem: A#4
+          on 4& of bar 1, MIDI G3; D4 on 4 of bar 2, MIDI A#3; bar 4 G4 F#4 G4 A4, MIDI D4 C4).
+  counter MIDI track 2, bars 17-32: the second line of the verse (A4 G4 on 2& 3&, ...). Stem fixes: beat 4& of the
+          Gm bar is A#4, not F4 (A#4 -1 dB, F4 -33 dB, bars 17 21 25 29); the Cm bar is D4 (2&) C4 (3&) A#4 (4&),
+          the MIDI has C4 D4 D#4 (same in the intro, bars 3 7).
+  Harmonics, not notes: the arpeggio's synth has a strong 3rd harmonic, so a held G3 A#3 D4 shows D5 F5 A5 and
+          F#3 A3 shows C#5 E5 (they enter and leave with their fundamentals). A first draft took them for a pad
+          with 9ths and «F#m on top of D»; Alex heard it was wrong.
   strings the strings stem: sustained triads; in the interlude (9-16) a step higher, as MIDI track 2 has them.
   stab    chorus (33-40, 65-80, 89-104): 8th-note chords with 16th pickups and octave tops, NOT in the MIDI.
           Basic Pitch onsets of the keys stem folded over the ten 4-bar passes of the choruses, kept where they
@@ -63,9 +71,7 @@ CHORUS = [33, 37, 65, 69, 73, 77, 89, 93, 97, 101]
 VOICING = {"Gm": "D4 G4 A#4", "Eb": "D#4 G4 A#4", "Cm": "D#4 G4 C5", "D": "D4 F#4 A4", "Bb": "D4 F4 A#4",
            "F": "C4 F4 A4", "Dm": "D4 F4 A4"}
 VOICING_HOOK = {"Gm": "G4 A#4 D5", "Eb": "D#4 G4 A#4", "Cm": "C4 D#4 G4", "D": "D4 F#4 A4"}
-# intro / interlude: a pad over the riff with the 9ths (keys stem, notes within 6 dB of the bar's loudest that the
-# riff does not play: Gm D5 F5 A5, Eb A#4 D#5 F5, Cm G4 A#4 D5, D -> F#m on top: C#5 E5 from beat 1& to 4, bars 4 8 12 16)
-PAD = ["D5 F5 A5", "A#4 D#5 F5", "G4 A#4 D5", "F#4 A4 C#5 E5"]
+ARP_TOP = {"Gm": "D4", "Eb": "A#3", "Cm": "G3", "D": "C4"}    # highest note of the arpeggio on 1 1& 2
 BRK_PAD = {81: ("G3 D4 G4 A4", "C4 D4 G4 A#4"), 82: ("A3 C4 F4 A4", "F3 A3 F4 A4 C5"),
            83: ("D#3 D#4 G4 A#4", "D#3 A#3 D#4 G4 A#4"), 84: ("A3 F4 A4 C5", "F3 A3 F4 A4 C5"),
            85: ("G3 D4 G4 A4", "C4 D4 G4 A#4"), 86: ("A3 C4 F4 A4", "F3 A3 F4 A4 C5"),
@@ -136,7 +142,30 @@ def fix_poly(ns):
 
 
 def fix_counter(ns):
-    return [[b, bt, d, "A#4" if (chord_of(b) == "Gm" and bt == 4.5 and p == "F4") else p] for b, bt, d, p in ns]
+    out = []
+    for b, bt, d, p in ns:
+        if chord_of(b) == "Gm" and bt == 4.5 and p == "F4":
+            p = "A#4"
+        if chord_of(b) == "Cm":                         # record D4 C4 A#4, MIDI C4 D4 D#4
+            p = {2.5: "D4", 3.5: "C4", 4.5: "A#4"}.get(bt, p)
+        out.append([b, bt, d, p])
+    return out
+
+
+def held(ns, bars):
+    """The arpeggio notes (1 1& 2, up to ARP_TOP) of the given bars ring to the end of the bar, or until the same
+    pitch is struck again; every other note stays as it is. Duplicates (same bar, beat, pitch) are merged."""
+    single = sorted({(b, bt, p): d for b, bt, d, ps in ns for p in ps.split()}.items())
+    on = collections.defaultdict(list)
+    for (b, bt, p), d in single:
+        on[p].append(b + (bt - 1) / 4)
+    out = []
+    for (b, bt, p), d in single:
+        if b in bars and bt in (1.0, 1.5, 2.0) and midi_of(p) <= midi_of(ARP_TOP[chord_of(b)]):
+            t = b + (bt - 1) / 4; nxt = min([x for x in on[p] if x > t + 1e-6] + [b + 1.0])
+            d = round((nxt - t) * 4, 3)
+        out.append([b, bt, d, p])
+    return out
 
 
 def bp_events(stem):
@@ -160,7 +189,7 @@ def brk_notes(song):
 
 
 def strings_notes():
-    ns = [[6, 3.0, 2.0, "G4 A#4 D5"], [7, 1.0, 4.0, "C4 G4 C5"], [8, 1.0, 4.0, "F#4 A4 C5"]]   # intro: strings enter on 6.3
+    ns = [[6, 3.0, 2.0, "D#4 G4 A#4"], [7, 1.0, 4.0, "C4 D#4 G4"], [8, 1.0, 4.0, "D4 F#4 A4"]]   # intro: strings enter on 6.3
     for bar in list(range(9, 41)) + list(range(43, 81)) + list(range(89, 105)) + [108, 109, 110, 111, 112]:
         v = VOICING_HOOK if any(h <= bar < h + 8 for h in HOOK) else VOICING
         ns.append([bar, 1.0, 4.0, v[chord_of(bar)]])
@@ -170,9 +199,15 @@ def strings_notes():
 def build(song, as_midi=False):
     T = tracks(); V = {}
     poly = cut(T[0], 1, 33, 1) + cut(T[0], 9, 17, 41) + cut(T[0], 17, 33, 49) + cut(T[0], 9, 17, 105)
-    if not as_midi:     # the interlude has the verse arpeggio under the counter line (keys stem: D#3 G3 A#3 on 1 1& 2
-        poly += [n for h in HOOK for n in cut(T[0], 17, 25, h) if n[1] in (1.0, 1.5, 2.0)]   # of bar 10), MIDI not
-    V["poly"] = poly if as_midi else fix_poly(poly)
+    if as_midi:
+        V["poly"] = poly
+    else:
+        poly = [n for n in poly if n[0] > 8 or n[1] in (1.0, 1.5, 2.0)]          # intro: the MIDI's arpeggio only,
+        poly += fix_counter(cut(T[2], 17, 21, 1) + cut(T[2], 17, 20, 5))          # then the verse's second line
+        poly += [[8, 2.5, 2.0, "D4"], [8, 4.5, 0.5, "D#4"]]                      # (bar 8: D4 held, D#4 pickup)
+        # the interlude has the verse arpeggio under the counter line (keys stem: D#3 G3 A#3 on 1 1& 2 of bar 10)
+        poly += [n for h in HOOK for n in cut(T[0], 17, 25, h) if n[1] in (1.0, 1.5, 2.0)]
+        V["poly"] = held(fix_poly(poly), set(range(1, 9)) | {h + i for h in HOOK for i in range(8)})
     counter = cut(T[2], 17, 33, 17) + cut(T[2], 17, 33, 49)
     V["counter"] = counter if as_midi else fix_counter(counter)
     if as_midi:
@@ -180,7 +215,6 @@ def build(song, as_midi=False):
         V["bright"] = cut(T[1], 1, 9, 1)
         return {vn: {"at": [1], "bars": END - 1, "notes": sorted(ns, key=lambda n: (n[0], n[1]))} for vn, ns in V.items()}
     V["strings"] = strings_notes()
-    V["pad"] = [[at + k, 1.0, 4.0, PAD[k % 4]] for at in [1, 5] + [h + i for h in HOOK for i in (0, 4)] for k in range(4)]
     V["stab"] = [[at + n[0] - 1, *n[1:]] for at in CHORUS for n in STAB] + [[at + n[0] - 1, *n[1:]] for at, ns in STAB_C.items() for n in ns]
     V["brk"] = brk_notes(song)
     V["brk_pad"] = [[b, 1.0 + 2 * h, 2.0, BRK_PAD[b][h]] for b in range(81, 89) for h in (0, 1)]
@@ -296,9 +330,8 @@ HTML = """
 <h2>Голоса</h2>
 <div class="wrap"><table>
 <tr><th>Голос</th><th>Такты</th><th>Что играет</th><th>Откуда</th></tr>
-<tr><td>poly</td><td class="n">1–32, 41–64, 105–112</td><td>рифф интро (арпеджио + мелодия), подголосок проигрыша, арпеджио куплета</td><td>MIDI, дорожка 0; на аккорде D арпеджио F#3 A3 C4 по записи; в проигрыше под подголоском арпеджио куплета (в MIDI его нет)</td></tr>
-<tr><td>counter</td><td class="n">17–32, 49–64</td><td>второй голос куплета: A4 G4 на 2&amp; и 3&amp;</td><td>MIDI, дорожка 2; на 4&amp; аккорда Gm A#4 вместо F4</td></tr>
-<tr><td>pad</td><td class="n">1–16, 41–48, 105–112</td><td>пэд с 9-ми под риффом: Gm9, E♭add9, Cm9, на D сверху F♯m (C♯ E)</td><td>запись (в MIDI нет)</td></tr>
+<tr><td>poly</td><td class="n">1–32, 41–64, 105–112</td><td>арпеджио на 1 1&amp; 2; в интро над ним второй голос куплета, в проигрыше подголосок</td><td>MIDI, дорожка 0; на D арпеджио F#3 A3 C4; в интро и проигрышах арпеджио тянется весь такт, в куплете короткое; мелодия интро — как второй голос куплета (MIDI тут другой)</td></tr>
+<tr><td>counter</td><td class="n">17–32, 49–64</td><td>второй голос куплета: A4 G4 на 2&amp; и 3&amp;</td><td>MIDI, дорожка 2; на 4&amp; аккорда Gm A#4 вместо F4; на Cm D4 C4 A#4 вместо C4 D4 D#4</td></tr>
 <tr><td>strings</td><td class="n">6–40, 43–80, 89–104, 108–112</td><td>тянущиеся аккорды</td><td>стем strings; в проигрыше расклад как в MIDI</td></tr>
 <tr><td>stab</td><td class="n">33–40, 65–80, 89–104</td><td>припев: аккорды восьмыми с подхватами шестнадцатыми и верхней октавой</td><td>запись (в MIDI припева нет)</td></tr>
 <tr><td>brk + brk_pad</td><td class="n">81–88</td><td>брейкдаун: арпеджио шестнадцатыми и аккорды под ним</td><td>запись (в MIDI нет)</td></tr>
@@ -306,6 +339,9 @@ HTML = """
 </table></div>
 <p class="q">«Как в MIDI» есть только для тактов 1–32 и их повторов. Мелодия интро из MIDI (дорожка Bright) в стеме
 клавиш не слышна — в «Мои ноты» её нет, в «Как в MIDI» она есть.</p>
+<p class="q">Исправлено после первого прослушивания: «пэд с 9-ми» и «F♯m сверху на D» оказались призвуками самого
+арпеджио (у синта сильная 3-я гармоника: G3 A♯3 D4 дают D5 F5 A5, F♯3 A3 — C♯5 E5) — убраны. D в интро теперь как в
+куплете.</p>
 """
 
 
@@ -344,7 +380,7 @@ def cmd_preview():
             "tracks": [["1", "orig.mp3", "Оригинал", "стемы keys + strings", True],
                        ["2", "mine.mp3", "Мои ноты", "MIDI + правки по записи, припев и брейкдаун по записи"],
                        ["3", "midi.mp3", "Как в MIDI", "MIDI без правок (только такты 1–32 и их повторы)"]],
-            "marks": [[1, "пэд с 9-ми"], [4, "D: арпеджио F#3 A3 C4, сверху F#m"], [9, "проигрыш: арпеджио + подголосок"], [17, "куплет: A#4 на 4& вместо F4"], [33, "припев: фигура восьмыми"], [68, "припев 2: C на D (D7)"],
+            "marks": [[1, "интро: мелодия = второй голос куплета"], [4, "D: F#3 A3 C4 + G4 F#4 G4 A4, как в куплете"], [9, "проигрыш: арпеджио + подголосок"], [17, "куплет: A#4 на 4& вместо F4"], [19, "Cm: D4 C4 A#4"], [33, "припев: фигура восьмыми"], [68, "припев 2: C на D (D7)"],
                       [81, "брейкдаун: арпеджио"]],
             "html": HTML}
     tpl = open(os.path.join(REPO, "tools", "templates", "part-listen-full.html"), encoding="utf-8").read()
