@@ -435,7 +435,9 @@ def cmd_tonepage():
     m = re.search(r"const M = (\{.*\});", html); M = json.loads(m.group(1))
     picked = {v: z.split("/") for v, z in ZEN.items()}
     for g in M["groups"]:
-        vn = g["name"].split(",")[0]
+        vn = g["name"].split(",")[0]; g["name"] = g["name"].replace(" — выбрано", "")      # idempotent
+        for c in g["clips"]:
+            c[1] = c[1].replace("✓ ", "")
         if vn in picked:
             g["name"] += " — выбрано"
         g["note"] = f"<b>{HINT.get(vn, '')}</b><br>" + g["note"].split("<br>")[-1]
