@@ -298,13 +298,23 @@ def select(a):
         rows = [r for r in rows if re.search(a.name, r["name"], re.I)]
     if a.bank:
         rows = [r for r in rows if re.search(a.bank, r["bank"], re.I)]
+    if getattr(a, "where", ""):                              # by the numbers of traits.tsv: "bright<3,attack_ms>15,release_s<0.5"
+        tr = {}
+        for l in list(open(TRAITS, encoding="utf-8"))[1:]:
+            c = l.rstrip("\n").split("\t"); tr[(c[0], c[1])] = dict(zip(TRAIT_COLS, map(float, c[4:])))
+        for cl in filter(None, (x.strip() for x in a.where.split(","))):
+            m = re.match(r"^(\w+)\s*([<>])\s*(-?[\d.]+)$", cl)
+            if not m or m.group(1) not in TRAIT_COLS:
+                raise SystemExit(f"--where '{cl}': expected one of {TRAIT_COLS} then < or > and a number")
+            k, op, v = m.group(1), m.group(2), float(m.group(3))
+            rows = [r for r in rows if (r["bank"], r["number"]) in tr and ((tr[(r["bank"], r["number"])][k] < v) if op == "<" else (tr[(r["bank"], r["number"])][k] > v))]
     return rows
 
 
 def cmd_list(a):
     import collections
     rows = select(a)
-    if not (a.cat or a.name or a.bank):
+    if not (a.cat or a.name or a.bank or a.where):
         print(len(rows), "tones;", ", ".join(f"{c} {n}" for c, n in collections.Counter(r["category"] for r in rows).most_common()))
         print("banks:", ", ".join(f"{b} {n}" for b, n in collections.Counter(r["bank"] for r in rows).items())); return
     for r in rows:
@@ -592,6 +602,9 @@ def clean_take(p, ev, dur, tries=8, tol=6.0):
     phases of a unison make +-3 dB. -> (take, how far it is from the median dB, takes played)"""
     w = int(0.2 * SR); takes, envs = [], []
     env = lambda m: 10 * np.log10((m[:len(m) // w * w].reshape(-1, w) ** 2).mean(1) + 1e-10)
+    p(ev, duration=dur, sample_rate=SR, reset=False)      # a warm-up take, thrown away: the FIRST take after a tone is loaded
+                                                          # is the one that loses notes most, the more so on a busy machine
+                                                          # (measured by the «Беги от меня» session, 2026-11-21)
     for k in range(tries):
         x = p(ev, duration=dur, sample_rate=SR, reset=False).T.astype(np.float32); takes.append(x); envs.append(env(x.mean(1)))
         if k < 2:
@@ -654,6 +667,7 @@ def main():
     def filt(p):
         p.add_argument("--cat", default="", help='categories as the window shows them, e.g. "Synth Lead,Synth PolyKey"')
         p.add_argument("--name", default="", help="regular expression on the tone name"); p.add_argument("--bank", default="", help="regular expression on the bank")
+        p.add_argument("--where", default="", help='limits on the traits of gear/zenology/traits.tsv, e.g. "bright<3,attack_ms>15,release_s<0.5"')
     p = sub.add_parser("list"); filt(p)
     p = sub.add_parser("sweep"); p.add_argument("song"); p.add_argument("notes"); p.add_argument("voice"); p.add_argument("b0", type=int); p.add_argument("b1", type=int)
     filt(p); p.add_argument("--top", type=int, default=12); p.add_argument("--limit", type=int, default=100000); p.add_argument("--vel", type=int, default=100)
