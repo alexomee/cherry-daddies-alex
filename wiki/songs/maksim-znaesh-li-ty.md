@@ -89,6 +89,7 @@ Alex: «помоги снять песню», дал MIDI rusmidi (`znaesh_li_ty
   - Переборы: мелодия на 48–51 (лиды, брасс, PolyKey, Pluck), аккомпанемент на 44–47 (пэды, струнные, орган, гитары, электропиано, брасс). Первый общий перебор лида (52–55) убран в `zenology/first-pass/`.
   - Итог переборов: мелодия 0.83–0.91 — DLM SUM, Horn Blast, Cyber Swing, S-SawPoly 13, Horn Blast 2, JP80 Ring-80; аккомпанемент 0.83–0.94 — Soft Storm Pad, Horn Blast, Horn Blast 2, Ground Str, Heliosphere, Bend Pad, Rotary Organ. На странице теперь только эти две группы (выбранные голоса — в `zenology/chosen/`).
   - **Alex:** аккомпанемент — **Mode** (ZEZ002 Dark Adaptations/20); мелодия — «тон более wind/trumpet» → перебор всех 322 тонов Solo Brass / Ensemble Brass / Wind / Sax / Flute / Synth Brass на 52–55 (без отсева по отпечаткам).
+    Первые 14 — синт-брасс и брасс-секции (Horn Blast 0.91, Horn Blast 2, Bit Brass, Zone Brass, Poly Brass …); соло-трубы и духовые ниже (Harmon Mute 26-й, 0.76; Jazzy Mute Tp 38-й; Trumpet 46-й; Sop.Sax 49-й; Pan Pipes Breath 69-й). 11 из них добавлены на страницу отдельно (`prep_znaesh_li_ty.py leadwind`), стопка октава + квинта сыграна тремя дублями по ноте на случай моно-тонов — оценки не изменились (Harmon Mute 0.764 и так, и так), то есть эти тоны полифоничны, а ниже стоят по спектру.
   - корни (`low`), тромбон, хиты не перебирались: корни, вероятно, тем же тоном, что арпеджио.
 
 ## Открыто

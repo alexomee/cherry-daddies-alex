@@ -385,6 +385,44 @@ def cmd_pianofx():
     print(os.path.join(zen, tag + ".json"))
 
 
+# Alex on the melody: «тон более wind/trumpet». The brass/wind sweep (52-55, all 321 tones) kept synth brass on top;
+# the solo trumpets / winds sat at 26+ - a solo tone is often MONO and plays one note of the octave + fifth stack.
+# Here each of them plays the stack as three single-note takes (gm800-parts rule for mono leads), summed.
+WIND = ["PRST_E XV Collection/257", "PRST_L Essential 2/162", "PRST_F Essential/382", "PRST_F Essential/383",
+        "PRST_B AX Collection/272", "PRST_E XV Collection/256", "PRST_F Essential/404", "PRST_B AX Collection/270",
+        "PRST_E XV Collection/239", "PRST_B AX Collection/334", "PRST_E XV Collection/225"]
+
+
+def cmd_leadwind():
+    """(zr env: needs pedalboard) the WIND tones on the melody, stack split -> appended to zen-lead-lead-52-56.json."""
+    import soundfile as sf
+    zr = load_tool("zenology_render"); S = os.path.basename(SONG); B0, B1 = 52, 56
+    src = json.load(open(os.path.join(NOTES, "lead.notes.json"), encoding="utf-8"))
+    split = {f"lead_{k}": {"at": [1], "bars": END - 1, "notes": []} for k in ("lo", "mid", "hi")}
+    for n in src["voices"]["lead"]["notes"]:
+        for k, p in zip(("lo", "mid", "hi"), n[3].split()):
+            split[f"lead_{k}"]["notes"].append([n[0], n[1], n[2], p])
+    sp = os.path.join(NOTES, "lead-split.notes.json")
+    write_part(sp, "the melody stack (octave + fifth) as three single-note voices, for mono tones", ["other"], split)
+    zen = os.path.join(OUT, "zenology"); jf = os.path.join(zen, f"zen-lead-lead-{B0}-{B1}.json"); rk = json.load(open(jf, encoding="utf-8"))
+    rk["top"] = [t for t in rk["top"] if not t.get("wind")]
+    for tag in WIND:
+        x = None
+        for vn in split:
+            y, gp, sg = zr.render(tag, S, sp, vn, B0, B1)
+            x = y if x is None else x[:min(len(x), len(y))] + y[:min(len(x), len(y))]
+        dur = (B1 - B0) * sg.bar + 1.0
+        ref = sum(sg.read(f"{st}.wav", sg.t_stem(B0), sg.t_stem(B0) + dur) for st in rk["stems"]).mean(1)
+        sc, _, _, o = gp.sweep_score(gp.cqt_db(ref), gp.cqt_db(x.mean(1)), sg.semi)
+        _, row = zr.tone_state(tag); fn = f"zen-lead-lead-{B0}-{B1}-wind-{row['file'][:-2]}.wav"
+        sf.write(os.path.join(zen, fn), x, zr.SR, subtype="PCM_16")
+        rk["top"].append({"bank": row["bank"], "number": row["number"], "name": row["name"] + " (стопка тремя дублями)",
+                          "category": row["category"], "score": round(sc, 3), "oct": o, "file": fn, "wind": True})
+        print(f"  {row['name']:18} {row['category']:15} score {sc:.3f}")
+    json.dump(rk, open(jf, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(jf)
+
+
 HTML_NOTES = """
 <h2>Голоса MIDI</h2>
 <div class="wrap"><table>
@@ -413,5 +451,7 @@ if __name__ == "__main__":
         cmd_preview()
     elif cmd == "pianofx":
         cmd_pianofx()
+    elif cmd == "leadwind":
+        cmd_leadwind()
     else:
         sys.exit(__doc__)
