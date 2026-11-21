@@ -477,7 +477,17 @@ def cmd_round4():
     bar = song.bar; rd = lambda f: sf.read(os.path.join(zen, f), always_2d=True, dtype="float32")[0]
     rms = lambda v: np.sqrt((v ** 2).mean()) + 1e-9
     rank = lambda v, b0, b1, tag="keys-r4": json.load(open(os.path.join(zen, f"zen-{tag}-{v}-{b0}-{b1}.json"), encoding="utf-8"))
-    label = lambda t: f"{t['bank'].split()[0]}/{t['number']} · {t['category']}"
+    import librosa
+    part4 = json.load(open(os.path.join(OUT, "keys-r4.notes.json"), encoding="utf-8"))
+
+    def octave(f, voice, b0, b1):   # energy centre of the notes' pitch classes against the written notes (12 st = octave off;
+        x = rd(f).mean(1); line = gp.voice_line(song, part4, voice, b0, b1); pcs = {n % 12 for t, n, d in line}   # the sweep's
+        E = (np.abs(librosa.cqt(x, sr=48000, hop_length=512, fmin=librosa.midi_to_hz(36), n_bins=72)) ** 2).sum(1)  # «oct» is
+        i = [k for k in range(72) if (36 + k) % 12 in pcs]                                    # scored against the whole
+        d = sum((36 + k) * E[k] for k in i) / sum(E[k] for k in i) - np.median([n for t, n, d in line])   # stem: unreliable
+        return " · ⚠ звучит октавой выше" if d >= 10 else " · ⚠ слой октавой ниже" if d <= -10 else ""
+    label = lambda t: f"{t['bank'].split()[0]}/{t['number']} · {t['category']}" + octave(t["file"], *OCT_OF[t["file"].split("-")[3]])
+    OCT_OF = {"lead": ("lead", 1, 5), "hookline": ("hookline", 9, 13), "mel": ("mel", 89, 93), "fig": ("fig", 97, 101)}
 
     def render(tone, voice, b0, b1):          # a tone the sweep did not keep: rendered clean on its own (zr render)
         out = os.path.join(zen, f"r4-{voice}-{tone.replace('/', '-').replace(' ', '_')}.wav")
