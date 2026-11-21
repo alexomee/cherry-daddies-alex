@@ -287,6 +287,69 @@ def cmd_preview():
     print(os.path.join(PAGE, "index.html"))
 
 
+# Alex 2026-11-21 on the ZENOLOGY page: piano «Magical Piano но не хватает FX», strings Hybrid Strings, arp OrganBell 2.
+PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "arp": "PRST_D Basic Synth/539"}
+
+
+def cmd_pianofx():
+    """Reverb variants of Magical Piano for «не хватает FX». Measured first (bars 1-6): between the arpeggio notes the
+    record and the dry take die away alike (-6 / -7 dB before the next note), stereo alike (L/R corr 0.26 / 0.19);
+    the difference is the TAIL - after the last chord of the intro the record holds -11 / -14 / -19 dB at 0.25 /
+    0.5 / 0.75 s, the take drops to -21 / -36 / -34 (pedal + reverb). gm800_part.apply_reverb on the dry take
+    (zenology/fx/magical-1-8.wav = zr render of bars 1-8), fitted on that tail and on the floor between notes;
+    the best fit and a spread around it go to the page as one more voice group (zen-pianofx-*.json). The same with the
+    pedal down (analysis/.../notes/piano-pedal.notes.json: every note held to the next bar line, zenology/fx/
+    magical-pedal-1-8.wav) - the long tail of the record may be the pedal rather than a room."""
+    import soundfile as sf
+    from scipy.signal import butter, sosfiltfilt, resample_poly
+    gp = load_tool("gm800_part"); song = gp.gmm.Song("Знаешь ли ты"); part = json.load(open(PART, encoding="utf-8"))
+    zen = os.path.join(OUT, "zenology"); SR = 48000
+    dry = sf.read(os.path.join(zen, "fx", "magical-1-8.wav"), always_2d=True)[0]
+    x, sr = sf.read(song.stem("piano"), always_2d=True); i0 = int(song.t_stem(1) * sr)
+    stem = resample_poly(x[i0:i0 + int(8 * song.bar * sr)], SR, sr, axis=0)
+    line = gp.voice_line(song, part, "piano", 1, 7); on = sorted({t for t, _, _ in line}); last = max(t + d for t, _, d in line)
+    bp = butter(4, [250, 6000], "bandpass", fs=SR, output="sos")
+
+    def env(y):
+        m = sosfiltfilt(bp, y.mean(1)); w = int(0.005 * SR)
+        return 10 * np.log10(np.convolve(m ** 2, np.ones(w) / w, "same") + 1e-12)
+
+    def shape(y):          # floor just before each next note (dB to the note's peak), then the tail after the intro
+        e = env(y); fl = [e[int(b * SR) - int(0.015 * SR)] - e[int(a * SR):int(a * SR) + int(0.06 * SR)].max()
+                          for a, b in zip(on, on[1:]) if b - a >= 0.2]
+        ref = e[int((last - 1) * SR):int(last * SR)].max()
+        return np.array([np.median(fl)] + [e[int((last + k * 0.25) * SR)] - ref for k in (1, 2, 3)])
+
+    pedal = sf.read(os.path.join(zen, "fx", "magical-pedal-1-8.wav"), always_2d=True)[0]   # notes held to the bar line
+    want = shape(stem); res = []
+    for src, y0 in (("dry", dry), ("pedal", pedal)):
+        for rt in (1.2, 1.8, 2.5, 3.5, 4.5):
+            for db in (-18, -14, -10, -7, -4, -1):
+                s = shape(gp.apply_reverb(y0, SR, rt60=rt, db=db))
+                res.append((float(np.sqrt(((s - want) ** 2).mean())), src, rt, db, s))
+    res.sort(key=lambda r: r[0])
+    print("record: floor between notes, tail at 0.25/0.5/0.75 s:", " ".join(f"{v:.1f}" for v in want))
+    for nm, y0 in (("dry", dry), ("pedal", pedal)):
+        print(f"{nm:5} :", " ".join(f"{v:.1f}" for v in shape(y0)), f" off by {np.sqrt(((shape(y0) - want) ** 2).mean()):.1f} dB")
+    for d, src, rt, db, s in res[:8]:
+        print(f"  {src:5} rt60 {rt:.1f} s  {db:+d} dB  off by {d:.1f} dB:", " ".join(f"{v:.1f}" for v in s))
+    bd = next(r for r in res if r[1] == "dry"); bp_ = next(r for r in res if r[1] == "pedal")
+    # the fit puts the pedal reverb at -18 dB (just audible): two wetter ones beside it, for «FX» to be heard
+    pick = [("dry", None, None), ("pedal", None, None), ("pedal", bp_[2], bp_[3]), ("pedal", bp_[2], bp_[3] + 6),
+            ("pedal", bp_[2], bp_[3] + 11), ("dry", bd[2], bd[3]), ("dry", 2.5, -7)]
+    tag = "zen-pianofx-piano-1-5"; top = []; srcs = {"dry": dry, "pedal": pedal}
+    for k, (src, rt, db) in enumerate(pick):
+        y = srcs[src] if rt is None else gp.apply_reverb(srcs[src], SR, rt60=rt, db=db)
+        fn = f"{tag}-{k:02d}.wav"; sf.write(os.path.join(zen, fn), y[:int((4 * song.bar + 1.0) * SR)].astype(np.float32), SR, subtype="PCM_16")
+        nm = "Magical Piano" + (" с педалью" if src == "pedal" else "") + (" сухой" if rt is None else f" + реверб {rt:.1f} с, {db:+d} дБ")
+        if (src, rt, db) in ((bd[1], bd[2], bd[3]), (bp_[1], bp_[2], bp_[3])):
+            nm += " (ближе всего к записи)"
+        top.append({"bank": "PRST_L Essential 2", "number": 6, "name": nm, "category": "Pop Piano", "score": 0.0, "oct": 0, "file": fn, "tone": True})
+    json.dump({"voice": "piano + FX", "bars": [1, 5], "stems": ["piano"], "tried": len(res), "played": len(res), "top": top},
+              open(os.path.join(zen, tag + ".json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(os.path.join(zen, tag + ".json"))
+
+
 HTML_NOTES = """
 <h2>Голоса MIDI</h2>
 <div class="wrap"><table>
@@ -313,5 +376,7 @@ if __name__ == "__main__":
         cmd_notes(sys.argv[2] if len(sys.argv) > 2 else None)
     elif cmd == "preview":
         cmd_preview()
+    elif cmd == "pianofx":
+        cmd_pianofx()
     else:
         sys.exit(__doc__)
