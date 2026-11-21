@@ -571,6 +571,8 @@ def cmd_page(a):
         clips = [("orig", orig, "Оригинал", "стемы " + " + ".join(stems), True)]
         for k, t in enumerate(rk["top"][:a.top], 1):
             x = resample_poly(sf.read(os.path.join(src, t["file"]), always_2d=True)[0].mean(1), 147, 160); x = np.pad(x, (0, max(0, n - len(x))))[:n]
+            if t.get("ref"):                                     # a take to compare with (what the playback has now), not a candidate
+                clips.append((f"{k:02d}", x * rms(orig) / rms(x), t["name"], t.get("note", ""), True)); continue
             clips.append((f"{k:02d}", x * rms(orig) / rms(x), f"{t['name']}", f"{t['bank']} {t['number']} · {t['category']} · "
                           + ("правленый тон" if t.get("tone") else f"№{k}") + f", близость {t['score']:.2f}", False))
         peak = max(np.abs(c[1]).max() for c in clips); out = []; tag = os.path.basename(jf)[:-5]
