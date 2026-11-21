@@ -321,7 +321,9 @@ def cmd_preview():
 
 
 # Alex 2026-11-21 on the ZENOLOGY page: piano «Magical Piano но не хватает FX», strings Hybrid Strings, arp OrganBell 2.
-PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "arp": "PRST_D Basic Synth/539"}
+PICKS = {"piano": "PRST_L Essential 2/6", "strings": "PRST_F Essential/335", "arp": "PRST_D Basic Synth/539",
+         "lead_acc": "ZEZ002 Dark Adaptations/20"}          # Mode (Alex, lead_acc 44-47); piano: + pedal + reverb 2.5 s -7 dB
+# melody `lead`: Alex - «тон более wind/trumpet» -> second sweep on the brass / wind categories (bars 52-55)
 
 
 def cmd_pianofx():

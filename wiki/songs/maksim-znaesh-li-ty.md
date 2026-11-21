@@ -88,6 +88,7 @@ Alex: «помоги снять песню», дал MIDI rusmidi (`znaesh_li_ty
   - одиночные шестнадцатые той же дорожки MIDI (G♯5 C6 G♯5 F5 …) в записи не слышны (G♯5 −50…−58 дБ) → `lead_fig`, в плейбек не идёт.
   - Переборы: мелодия на 48–51 (лиды, брасс, PolyKey, Pluck), аккомпанемент на 44–47 (пэды, струнные, орган, гитары, электропиано, брасс). Первый общий перебор лида (52–55) убран в `zenology/first-pass/`.
   - Итог переборов: мелодия 0.83–0.91 — DLM SUM, Horn Blast, Cyber Swing, S-SawPoly 13, Horn Blast 2, JP80 Ring-80; аккомпанемент 0.83–0.94 — Soft Storm Pad, Horn Blast, Horn Blast 2, Ground Str, Heliosphere, Bend Pad, Rotary Organ. На странице теперь только эти две группы (выбранные голоса — в `zenology/chosen/`).
+  - **Alex:** аккомпанемент — **Mode** (ZEZ002 Dark Adaptations/20); мелодия — «тон более wind/trumpet» → перебор всех 322 тонов Solo Brass / Ensemble Brass / Wind / Sax / Flute / Synth Brass на 52–55 (без отсева по отпечаткам).
   - корни (`low`), тромбон, хиты не перебирались: корни, вероятно, тем же тоном, что арпеджио.
 
 ## Открыто
